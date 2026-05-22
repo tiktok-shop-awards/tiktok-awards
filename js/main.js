@@ -1292,6 +1292,8 @@ function showShareModal(projectName, teamAward, bonus, reason, members) {
   
   modalTitle.textContent = 'Share Award';
   
+  // Add preview hint above poster
+  
   // Format members list - grid layout with individual items
   let memberList;
   let membersClass = 'poster-members';
@@ -1352,16 +1354,23 @@ function showShareModal(projectName, teamAward, bonus, reason, members) {
   const preview = document.getElementById('poster-preview');
   const posterEl = preview ? preview.querySelector('.poster-container') : null;
   if (posterEl && preview) {
-    const targetWidth = Math.min(window.innerWidth - 64, 800);
+    // Fit poster into modal width (700px modal - padding)
+    const modalWidth = Math.min(window.innerWidth - 48, 700);
+    const targetWidth = modalWidth - 32; // 16px padding each side
     const scale = targetWidth / 2560;
     // Measure real height BEFORE applying transform
     posterEl.style.transform = 'none';
     const actualHeight = posterEl.scrollHeight;
     posterEl.style.transform = 'scale(' + scale + ')';
     posterEl.style.transformOrigin = 'top left';
-    preview.style.height = Math.ceil(actualHeight * scale) + 'px';
+    const scaledHeight = Math.ceil(actualHeight * scale);
+    // Cap preview at 50vh, allow scroll for taller posters
+    const maxPreviewH = Math.floor(window.innerHeight * 0.5);
+    preview.style.height = Math.min(scaledHeight, maxPreviewH) + 'px';
+    preview.style.width = targetWidth + 'px';
     preview.style.position = 'relative';
-    preview.style.overflow = 'hidden';
+    preview.style.overflow = scaledHeight > maxPreviewH ? 'auto' : 'hidden';
+    preview.style.margin = '0 auto';
   }
   
   modal.classList.add('active');
