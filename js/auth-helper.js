@@ -1,13 +1,57 @@
 /**
- * Feishu Auth Helper v10
- * Per Feishu docs: load JSSDK, register error handler first, then use requestAccess
- * No visible UI - console logging only
+ * Feishu Auth Helper v11 - Redirect-based auth
+ * Uses OAuth redirect flow instead of SDK popup to avoid "授权失败" error
  */
 const FeishuAuthHelper = {
   _user: null,
   APP_ID: 'cli_a968a864a0f89bdd',
+  REDIRECT_URI: 'https://tiktok-shop-awards.github.io/tiktok-awards/',
 
-  // Register error handler BEFORE any SDK calls to prevent SDK from showing error banners
+  async getUser() {
+    if (this._user) return this._user;
+
+    // Check sessionStorage cache first
+    try {
+      const cached = sessionStorage.getItem('feishu_user');
+      if (cached) {
+        this._user = JSON.parse(cached);
+        return this._user;
+      }
+    } catch(e) {}
+
+    // Check if we have a code in URL (returned from Feishu OAuth)
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+    
+    if (code) {
+      // Clean URL to remove code parameter
+      const cleanUrl = window.location.pathname + window.location.hash;
+      window.history.replaceState({}, '', cleanUrl);
+      
+      // Exchange code for user info
+      const user = await this._loginWithCode(code);
+      if (user && user.userId) return user;
+    }
+
+    // Try SDK auth as fallback (for Feishu in-app)
+    var isInFeishu = /Lark|Feishu/i.test(navigator.userAgent);
+    if (isInFeishu) {
+      try {
+        await this._loadJSSDK();
+        await new Promise(r => setTimeout(r, 300));
+        if (window.h5sdk || window.tt) {
+          this._registerErrorHandler();
+          const user = await this._trySDKAuth();
+          if (user && user.userId) return user;
+        }
+      } catch (e) {
+        console.warn('[Auth] SDK auth failed:', e);
+      }
+    }
+
+    return this._getFallbackUser();
+  },
+
   _registerErrorHandler() {
     if (window.h5sdk && window.h5sdk.error) {
       window.h5sdk.error(function(err) {
@@ -16,36 +60,9 @@ const FeishuAuthHelper = {
     }
   },
 
-  async getUser() {
-    if (this._user) return this._user;
-
-    var isInFeishu = /Lark|Feishu/i.test(navigator.userAgent);
-
-    // Step 1: If h5sdk/tt already available
-    if (window.h5sdk || window.tt) {
-      this._registerErrorHandler();
-      return this._tryAuth();
-    }
-
-    // Step 2: Load JSSDK dynamically (only in Feishu browser)
-    if (isInFeishu) {
-      try {
-        await this._loadJSSDK();
-        await new Promise(r => setTimeout(r, 500));
-        if (window.h5sdk || window.tt) {
-          this._registerErrorHandler();
-          return this._tryAuth();
-        }
-      } catch (e) {
-        console.warn('[Auth] JSSDK load failed:', e);
-      }
-    }
-
-    return this._getFallbackUser();
-  },
-
   _loadJSSDK() {
     return new Promise((resolve, reject) => {
+      if (window.h5sdk || window.tt) { resolve(); return; }
       var s = document.createElement('script');
       s.src = 'https://lf-scm-cn.feishucdn.com/lark/op/h5-js-sdk-1.5.44.js';
       s.onload = () => resolve();
@@ -54,46 +71,30 @@ const FeishuAuthHelper = {
     });
   },
 
-  async _tryAuth() {
+  async _trySDKAuth() {
     try {
-      var h5sdk = window.h5sdk;
       var tt = window.tt;
-      if (!h5sdk && !tt) return this._getFallbackUser();
+      if (!tt) return null;
 
-      // Wait for h5sdk.ready
-      if (h5sdk && h5sdk.ready) {
-        await new Promise(r => h5sdk.ready(() => r()));
+      // Wait for ready
+      if (window.h5sdk && window.h5sdk.ready) {
+        await new Promise(r => window.h5sdk.ready(() => r()));
       }
 
-      // Try requestAccess first
-      var code = null;
-      if (tt && tt.requestAccess) {
-        code = await new Promise(r => {
-          tt.requestAccess({
-            appID: this.APP_ID,
-            scopeList: [],
-            success: res => r(res.code),
-            fail: err => { console.warn('[Auth] requestAccess fail:', JSON.stringify(err)); r(null); }
-          });
+      // Try requestAuthCode (silent, no popup)
+      var code = await new Promise(r => {
+        tt.requestAuthCode({
+          appId: this.APP_ID,
+          success: res => r(res.code),
+          fail: err => { console.warn('[Auth] requestAuthCode fail:', JSON.stringify(err)); r(null); }
         });
-      }
-
-      // Fallback to requestAuthCode
-      if (!code && tt && tt.requestAuthCode) {
-        code = await new Promise(r => {
-          tt.requestAuthCode({
-            appId: this.APP_ID,
-            success: res => r(res.code),
-            fail: err => { console.warn('[Auth] requestAuthCode fail:', JSON.stringify(err)); r(null); }
-          });
-        });
-      }
+      });
 
       if (code) return await this._loginWithCode(code);
     } catch (e) {
-      console.warn('[Auth] Error:', e.message);
+      console.warn('[Auth] SDK auth error:', e.message);
     }
-    return this._getFallbackUser();
+    return null;
   },
 
   async _loginWithCode(code) {
@@ -115,7 +116,7 @@ const FeishuAuthHelper = {
     } catch (e) {
       console.warn('[Auth] Login failed:', e.message);
     }
-    return this._getFallbackUser();
+    return null;
   },
 
   _getFallbackUser() {
