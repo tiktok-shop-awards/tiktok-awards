@@ -1309,12 +1309,7 @@ document.addEventListener('DOMContentLoaded', function() {
         commentsEl.textContent = formatNum(stats.total_comments || 0);
         [pvEl, likesEl, commentsEl].forEach(el => el.classList.remove('loading'));
         footerEl.textContent = 'Updated ' + new Date().toLocaleTimeString();
-        // Also report a page view
-        fetch('https://da1e5fb0.aipa.bytedance.net/api/pageview', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ page: window.location.pathname, timestamp: Date.now() })
-        }).catch(() => {});
+
         return;
       }
     } catch (e) {
