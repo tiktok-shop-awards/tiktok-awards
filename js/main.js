@@ -1137,7 +1137,8 @@ async function deleteComment(btnEl, commentId) {
         // Refresh comment list
         if (cardId) await _loadCommentsForModal(cardId);
       } else {
-        alert('Failed to delete comment.');
+        const errBody = await res.text().catch(() => '');
+        alert('Failed to delete comment.\nStatus: ' + res.status + '\nResponse: ' + errBody);
       }
     } else {
       // localStorage fallback - remove from DOM
