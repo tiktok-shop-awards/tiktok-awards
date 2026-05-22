@@ -1355,24 +1355,36 @@ function showShareModal(projectName, teamAward, bonus, reason, members) {
   const posterEl = preview ? preview.querySelector('.poster-container') : null;
   if (posterEl && preview) {
     // Fit poster into modal width (700px modal - padding)
-    const modalWidth = Math.min(window.innerWidth - 48, 700);
-    const targetWidth = modalWidth - 48; // 24px padding each side
-    const scale = targetWidth / 2560;
-    // Measure real height BEFORE applying transform
+    const modalContent = modal.querySelector('.modal-content');
+    const availableWidth = modalContent ? Math.min(modalContent.clientWidth - 48, 652) : 652;
+    const scale = availableWidth / 2560;
+    
+    // First, reset any previous transform to measure true dimensions
     posterEl.style.transform = 'none';
     posterEl.style.width = '2560px';
+    
+    // Force a reflow so scrollHeight is accurate
+    void posterEl.offsetHeight;
+    
     const actualHeight = posterEl.scrollHeight;
+    const scaledHeight = Math.ceil(actualHeight * scale);
+    
+    // Apply scale transform
     posterEl.style.transform = 'scale(' + scale + ')';
     posterEl.style.transformOrigin = 'top left';
-    const scaledHeight = Math.ceil(actualHeight * scale);
-    // Cap preview at 55vh, allow scroll for taller posters
+    
+    // Set preview container size to match scaled poster
+    // CSS transform doesn't affect layout, so we must set explicit height
     const maxPreviewH = Math.floor(window.innerHeight * 0.55);
     const displayHeight = Math.min(scaledHeight, maxPreviewH);
     preview.style.height = displayHeight + 'px';
-    preview.style.width = targetWidth + 'px';
+    preview.style.width = availableWidth + 'px';
     preview.style.position = 'relative';
     preview.style.overflow = scaledHeight > maxPreviewH ? 'auto' : 'hidden';
     preview.style.margin = '0 auto';
+    preview.style.display = 'block';
+    
+    console.log('Poster preview:', { availableWidth, scale, actualHeight, scaledHeight, displayHeight, maxPreviewH });
   }
   
   modal.classList.add('active');
