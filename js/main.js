@@ -1914,6 +1914,7 @@ function performSearch(query, level = 'all') {
             award: award.team_award,
             members: award.members,
             department: award.department,
+            email: award.email || '',
             reason: award.reason,
             matchSource: getMatchSource(matchName, matchDept, matchMember, matchReason),
             matchedMembers: matchedMembers,
@@ -1952,6 +1953,7 @@ function performSearch(query, level = 'all') {
               award: award.team_award,
               members: award.members,
               department: award.department,
+              email: award.email || '',
               matchSource: getMatchSource(matchName, matchDept, matchMember, false),
               matchedMembers: matchedMembers,
               memberCount: award.members?.length || 0
@@ -1973,6 +1975,7 @@ function performSearch(query, level = 'all') {
               name: award.winner_name,
               award: award.team_award,
               department: award.department,
+              email: award.email || '',
               matchSource: getMatchSource(matchName, matchDept, false, false)
             });
           }
@@ -1994,6 +1997,7 @@ function performSearch(query, level = 'all') {
           name: r.name,
           points: r.points,
           department: r.department || r.region || 'TikTok Shop',
+          email: r.email || '',
           matchSource: getMatchSource(matchName, matchDept, false, false)
         });
       }
@@ -2023,6 +2027,7 @@ function performSearch(query, level = 'all') {
               award: award.award_type,
               members: award.members,
               department: award.department,
+              email: award.email || '',
               matchSource: getMatchSource(matchName, matchDept, matchMember, false),
               matchedMembers: matchedMembers,
               memberCount: award.members?.length || 0
@@ -2068,7 +2073,7 @@ function renderSearchResults(results, containerId) {
         </div>
         <div style="font-weight: 600; margin-bottom: 4px;">${result.name}</div>
         <div style="color: var(--accent-color); font-size: 14px;">${result.award || (result.points ? result.points + ' pts' : '')}</div>
-        ${result.department ? `<div style="color: var(--text-secondary); font-size: 12px;">${result.department}</div>` : ''}
+        ${result.email ? `<div style="color: var(--text-secondary); font-size: 11px;">✉ ${result.email}</div>` : ''}
         ${memberLine}
       </div>
     `;
