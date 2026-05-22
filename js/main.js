@@ -1040,6 +1040,9 @@ async function _loadCommentsForModal(cardId) {
   const commentList = document.getElementById('comment-list');
   if (!commentList) return;
   
+  // Cache current user ID for delete button visibility
+  await _cacheOwnUserId();
+  
   if (await _isApiMode()) {
     try {
       const user = await getCurrentUser();
@@ -1085,15 +1088,19 @@ function _renderComments(container, comments, isApiMode) {
 
 
 // Check if comment belongs to current user
-function _isOwnComment(commentObj) {
+// Note: This is synchronous but caches the result; _renderComments is called after auth
+let _ownUserId = null;
+async function _cacheOwnUserId() {
+  if (_ownUserId) return;
   try {
-    const currentUser = window._currentUser;
-    if (!currentUser || !currentUser.userId) return false;
-    const commentUserId = commentObj.user_id || commentObj.userId || '';
-    return commentUserId === currentUser.userId;
-  } catch (e) {
-    return false;
-  }
+    const user = await getCurrentUser();
+    if (user && user.userId) _ownUserId = user.userId;
+  } catch (e) {}
+}
+function _isOwnComment(commentObj) {
+  if (!_ownUserId) return false;
+  const commentUserId = commentObj.user_id || commentObj.userId || '';
+  return commentUserId === _ownUserId;
 }
 
 // Delete a comment
