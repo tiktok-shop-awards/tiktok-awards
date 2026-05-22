@@ -305,89 +305,10 @@
 
     /* Awards list */
     .dept-awards-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .dept-award-item {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px;
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 16px;
-      transition: all 0.2s ease;
-    }
-    .dept-award-item:hover {
-      border-color: rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.06);
-    }
-    .dept-award-icon {
-      font-size: 24px;
-      flex-shrink: 0;
-    }
-    .dept-award-info {
-      flex: 1;
-      min-width: 0;
-    }
-    .dept-award-name {
-      font-size: 15px;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 2px;
-    }
-    .dept-award-email {
-      font-size: 12px;
-      color: rgba(255,255,255,0.45);
-      margin-bottom: 4px;
-    }
-    .dept-award-meta {
-      font-size: 12px;
-      color: var(--text-secondary);
-    }
-    .dept-award-meta span {
-      margin-right: 12px;
-    }
-    .dept-award-reason {
-      font-size: 12px;
-      color: rgba(255, 255, 255, 0.6);
-      line-height: 1.5;
-      margin-top: 4px;
-      max-height: 80px;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(255,255,255,0.2) transparent;
-    }
-    .dept-award-reason::-webkit-scrollbar {
-      width: 4px;
-    }
-    .dept-award-reason::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    .dept-award-reason::-webkit-scrollbar-thumb {
-      background: rgba(255,255,255,0.2);
-      border-radius: 2px;
-    }
-    .dept-award-bonus {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--accent-color);
-      flex-shrink: 0;
-    }
-    .dept-award-type-badge {
-      font-size: 11px;
-      padding: 2px 10px;
-      border-radius: 10px;
-      background: rgba(46,208,214,0.15);
-      color: var(--accent-color);
-      font-weight: 600;
-      flex-shrink: 0;
-    }
-    .dept-award-type-badge.spot {
-      background: rgba(246,33,74,0.15);
-      color: var(--primary-color);
+      padding: 16px 0;
     }
 
     .no-data-msg {
@@ -479,7 +400,7 @@
             <!-- Dynamically rendered -->
           </div>
 
-          <div class="dept-awards-list" id="dept-awards-list">
+          <div id="dept-awards-list">
             <!-- Dynamically rendered -->
           </div>
         </div>
@@ -919,35 +840,59 @@
         return;
       }
 
-      let html = '';
+      let html = '<div class="awards-grid">';
       awards.forEach(award => {
         const icon = award.award_type === 'Spot Bonus' ? '⭐' : (award.award_type === 'Special Recognition' ? '🌟' : '🏆');
-        const badgeClass = award.award_type === 'Spot Bonus' ? 'spot' : '';
         const badgeLabel = award.award_type === 'Departmental Award' ? 'Team Award' : award.award_type;
         const quarter = award._quarter || '';
         const memberCount = (award.members && award.members.length) || 0;
         const memberInfo = memberCount > 0 ? `Team of ${memberCount}` : 'Individual';
-        const bonus = formatBonusFull(award.bonus, award.currency);
+        const bonus = formatCurrency(award.bonus, award.currency);
         const name = award.winner_name || 'Unknown';
         const email = award.email || '';
+        const department = award.department || '';
+        const reasonText = award.reason || '';
+
+        // Build a unique cardId consistent with regional/global format
+        const cardId = `dept_${(department + '_' + name).replace(/\s+/g, '_')}_${award.award_type.replace(/\s+/g, '_')}`;
+        const likeCount = getLikeCount(cardId);
+
+        // Escape single quotes for onclick handlers
+        const safeName = name.replace(/'/g, "\\'");
 
         html += `
-          <div class="dept-award-item">
-            <div class="dept-award-icon">${icon}</div>
-            <div class="dept-award-info">
-              <div class="dept-award-name">${name}</div>
-              ${email ? `<div class="dept-award-email">${email}</div>` : ''}
-              <div class="dept-award-meta">
-                ${quarter ? `<span>${quarter} 2026</span>` : ''}
-                <span>${memberInfo}</span>
-              </div>
-              ${award.reason ? `<div class="dept-award-reason">${award.reason}</div>` : ''}
+          <div class="card individual-card" data-card-id="${cardId}">
+            <div class="card-header">
+              <span class="card-icon">👤</span>
+              <span class="card-title">${name}</span>
             </div>
-            <span class="dept-award-type-badge ${badgeClass}">${badgeLabel}</span>
-            <div class="dept-award-bonus">${bonus}</div>
+            <div class="card-meta">${department}${email ? ' · ' + email : ''}${quarter ? ' · ' + quarter + ' 2026' : ''} · ${memberInfo}</div>
+            <div class="card-body">
+              <div class="card-award">
+                <span class="card-award-name">${icon} ${badgeLabel}</span>
+              </div>
+              <div class="card-amount">${bonus}</div>
+              <div class="card-reason-scroll">
+                ${reasonText}
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="card-actions">
+                <button class="like-btn ${likeCount > 0 ? 'liked' : ''}" onclick="toggleLike('${cardId}', 'departmental', '${safeName}')">
+                  ❤️ <span class="like-count">${likeCount}</span>
+                </button>
+                <button class="comment-btn" onclick="showCommentsModal('${cardId}', '${safeName}', '${badgeLabel}')">
+                  💬 Comment
+                </button>
+                <button class="share-btn" data-project="${safeName}" data-award="${badgeLabel}" data-bonus="${award.bonus || ''}" data-reason="${reasonText.replace(/'/g, "\\'").replace(/"/g, '&quot;')}" data-members='${JSON.stringify([{name: name, email: email}]).replace(/'/g, "&#39;")}' onclick="showShareModalFromBtn(this)">
+                  📤 Share
+                </button>
+              </div>
+            </div>
           </div>
         `;
       });
+      html += '</div>';
 
       listContainer.innerHTML = html;
     }
