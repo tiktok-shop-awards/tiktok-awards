@@ -1255,7 +1255,7 @@
     }
   
 // ===== Stats Widget =====
-(function() {
+document.addEventListener('DOMContentLoaded', function() {
   const btn = document.getElementById('statsWidgetBtn');
   const panel = document.getElementById('statsPanel');
   
@@ -1360,7 +1360,7 @@
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ page: window.location.pathname, timestamp: Date.now() })
   }).catch(() => {});
-})();
+});
 
 </script>
 <!-- Stats Widget -->
