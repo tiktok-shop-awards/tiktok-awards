@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Global E-commerce Recognition Hub</title>
-  <link rel="stylesheet" href="css/main.css?v=20260518a">
+  <link rel="stylesheet" href="css/main.css?v=20260522a">
   <style>
     /* ==================== Home Page Specific Styles ==================== */
     .home-header {
@@ -583,6 +583,96 @@
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
+
+    /* Stats Widget */
+    .stats-widget-btn {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #F6214A, #F86482);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      z-index: 1000;
+      box-shadow: 0 4px 16px rgba(246, 33, 74, 0.3);
+      transition: all 0.3s ease;
+    }
+    .stats-widget-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 24px rgba(246, 33, 74, 0.4);
+    }
+    .stats-widget-btn.active {
+      background: linear-gradient(135deg, #2ED0D6, #1ab5ba);
+      box-shadow: 0 4px 16px rgba(46, 208, 214, 0.3);
+    }
+
+    .stats-panel {
+      position: fixed;
+      bottom: 84px;
+      left: 24px;
+      width: 280px;
+      background: var(--bg-card, #1c1c1e);
+      border: 1px solid var(--border-color, rgba(255,255,255,0.1));
+      border-radius: 16px;
+      padding: 20px;
+      z-index: 999;
+      display: none;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      animation: slideUp 0.3s ease;
+    }
+    .stats-panel.visible {
+      display: block;
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .stats-panel-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary, #fff);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .stats-panel-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+    }
+    .stats-panel-item {
+      text-align: center;
+      padding: 12px 4px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+    }
+    .stats-panel-value {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-primary, #fff);
+      line-height: 1.2;
+    }
+    .stats-panel-value.loading {
+      color: rgba(255,255,255,0.3);
+    }
+    .stats-panel-label {
+      font-size: 11px;
+      color: var(--text-secondary, rgba(255,255,255,0.5));
+      margin-top: 4px;
+    }
+    .stats-panel-footer {
+      margin-top: 12px;
+      font-size: 10px;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -757,7 +847,7 @@
   <script src="js/auth.js"></script>
   <script src="js/auth-helper.js?v=20260514a"></script>
   <script src="js/award-api.js?v=20250514n"></script>
-  <script src="js/main.js?v=20260518a"></script>
+  <script src="js/main.js?v=20260522a"></script>
   <script>
     // Render Home Stats - Now includes Q1/Q2/Q3/Q4 data for FS/POP and all regional data
     // IMPORTANT: Project awards are counted by unique project, not by member records
@@ -1163,6 +1253,135 @@
         });
       }
     }
-  </script>
+  
+// ===== Stats Widget =====
+(function() {
+  const btn = document.getElementById('statsWidgetBtn');
+  const panel = document.getElementById('statsPanel');
+  
+  if (!btn || !panel) return;
+  
+  // Toggle panel
+  btn.addEventListener('click', () => {
+    const isVisible = panel.classList.contains('visible');
+    if (isVisible) {
+      panel.classList.remove('visible');
+      btn.classList.remove('active');
+    } else {
+      panel.classList.add('visible');
+      btn.classList.add('active');
+      loadStats();
+    }
+  });
+  
+  // Close on click outside
+  document.addEventListener('click', (e) => {
+    if (!panel.contains(e.target) && !btn.contains(e.target)) {
+      panel.classList.remove('visible');
+      btn.classList.remove('active');
+    }
+  });
+  
+  // Load stats data
+  async function loadStats() {
+    const pvEl = document.getElementById('statsPageViews');
+    const likesEl = document.getElementById('statsLikes');
+    const commentsEl = document.getElementById('statsComments');
+    const footerEl = document.getElementById('statsFooter');
+    
+    // Reset
+    [pvEl, likesEl, commentsEl].forEach(el => {
+      el.textContent = '-';
+      el.classList.add('loading');
+    });
+    footerEl.textContent = 'Loading...';
+    
+    try {
+      // Try AIPA stats API first
+      const res = await fetch('https://da1e5fb0.aipa.bytedance.net/api/stats', {
+        signal: AbortSignal.timeout(8000)
+      });
+      if (res.ok) {
+        const data = await res.json();
+        const stats = data.data || data;
+        pvEl.textContent = formatNum(stats.page_views || stats.visits || 0);
+        likesEl.textContent = formatNum(stats.total_likes || 0);
+        commentsEl.textContent = formatNum(stats.total_comments || 0);
+        [pvEl, likesEl, commentsEl].forEach(el => el.classList.remove('loading'));
+        footerEl.textContent = 'Updated ' + new Date().toLocaleTimeString();
+        // Also report a page view
+        fetch('https://da1e5fb0.aipa.bytedance.net/api/pageview', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ page: window.location.pathname, timestamp: Date.now() })
+        }).catch(() => {});
+        return;
+      }
+    } catch (e) {
+      console.warn('[Stats] AIPA API unavailable, using fallback');
+    }
+    
+    // Fallback: estimate from localStorage + AIPA if available
+    let likes = 0, comments = 0;
+    try {
+      if (typeof AwardAPI !== 'undefined' && await AwardAPI.checkAvailability()) {
+        // Can't easily get totals from existing API, show partial
+        likesEl.textContent = '?';
+        commentsEl.textContent = '?';
+      }
+    } catch(e) {}
+    
+    // Try localStorage fallback for likes
+    try {
+      const lsLikes = JSON.parse(localStorage.getItem('likes') || '{}');
+      likes = Object.keys(lsLikes).length;
+    } catch(e) {}
+    
+    // Page views from localStorage (approximate)
+    let pv = parseInt(localStorage.getItem('page_views') || '0') + 1;
+    localStorage.setItem('page_views', pv.toString());
+    
+    pvEl.textContent = pv;
+    likesEl.textContent = likes || '-';
+    commentsEl.textContent = '-';
+    [pvEl, likesEl, commentsEl].forEach(el => el.classList.remove('loading'));
+    footerEl.textContent = 'Local data only · Not shared across users';
+  }
+  
+  function formatNum(n) {
+    if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+    if (n >= 1000) return (n / 1000).toFixed(1) + 'K';
+    return n.toString();
+  }
+  
+  // Report page view on load
+  fetch('https://da1e5fb0.aipa.bytedance.net/api/pageview', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ page: window.location.pathname, timestamp: Date.now() })
+  }).catch(() => {});
+})();
+
+</script>
+<!-- Stats Widget -->
+<button class="stats-widget-btn" id="statsWidgetBtn" title="View statistics">📊</button>
+<div class="stats-panel" id="statsPanel">
+  <div class="stats-panel-title">📈 Site Statistics</div>
+  <div class="stats-panel-grid">
+    <div class="stats-panel-item">
+      <div class="stats-panel-value loading" id="statsPageViews">-</div>
+      <div class="stats-panel-label">Visits</div>
+    </div>
+    <div class="stats-panel-item">
+      <div class="stats-panel-value loading" id="statsLikes">-</div>
+      <div class="stats-panel-label">Likes</div>
+    </div>
+    <div class="stats-panel-item">
+      <div class="stats-panel-value loading" id="statsComments">-</div>
+      <div class="stats-panel-label">Comments</div>
+    </div>
+  </div>
+  <div class="stats-panel-footer" id="statsFooter">Loading...</div>
+</div>
 </body>
 </html>
