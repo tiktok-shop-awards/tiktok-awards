@@ -1350,31 +1350,32 @@ function showShareModal(projectName, teamAward, bonus, reason, members) {
     </div>
   `;
   
-  // Calculate and apply poster scaling BEFORE showing modal to prevent flicker
+  // Show modal FIRST so the browser computes layout (scrollHeight is 0 when display:none)
+  modal.classList.add('active');
+  
+  // Now measure and scale the poster preview
   const preview = document.getElementById('poster-preview');
   const posterEl = preview ? preview.querySelector('.poster-container') : null;
   if (posterEl && preview) {
-    // Fit poster into modal width (700px modal - padding)
     const modalContent = modal.querySelector('.modal-content');
     const availableWidth = modalContent ? Math.min(modalContent.clientWidth - 48, 652) : 652;
     const scale = availableWidth / 2560;
     
-    // First, reset any previous transform to measure true dimensions
+    // Reset transform to measure true dimensions
     posterEl.style.transform = 'none';
     posterEl.style.width = '2560px';
     
-    // Force a reflow so scrollHeight is accurate
+    // Force reflow
     void posterEl.offsetHeight;
     
     const actualHeight = posterEl.scrollHeight;
     const scaledHeight = Math.ceil(actualHeight * scale);
     
-    // Apply scale transform
+    // Apply scale
     posterEl.style.transform = 'scale(' + scale + ')';
     posterEl.style.transformOrigin = 'top left';
     
-    // Set preview container size to match scaled poster
-    // CSS transform doesn't affect layout, so we must set explicit height
+    // Set preview container to match scaled poster dimensions
     const maxPreviewH = Math.floor(window.innerHeight * 0.55);
     const displayHeight = Math.min(scaledHeight, maxPreviewH);
     preview.style.height = displayHeight + 'px';
@@ -1383,11 +1384,7 @@ function showShareModal(projectName, teamAward, bonus, reason, members) {
     preview.style.overflow = scaledHeight > maxPreviewH ? 'auto' : 'hidden';
     preview.style.margin = '0 auto';
     preview.style.display = 'block';
-    
-    console.log('Poster preview:', { availableWidth, scale, actualHeight, scaledHeight, displayHeight, maxPreviewH });
   }
-  
-  modal.classList.add('active');
 }
 
 function closeShareModal() {
