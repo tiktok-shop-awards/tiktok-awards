@@ -1349,12 +1349,15 @@ document.addEventListener('DOMContentLoaded', function() {
     return n.toString();
   }
   
-  // Report page view on load
-  fetch('https://da1e5fb0.aipa.bytedance.net/api/pageview', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ page: window.location.pathname, timestamp: Date.now() })
-  }).catch(() => {});
+  // Report page view on load (once per session)
+  if (!sessionStorage.getItem('pageview_reported')) {
+    sessionStorage.setItem('pageview_reported', '1');
+    fetch('https://da1e5fb0.aipa.bytedance.net/api/pageview', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ page: window.location.pathname, timestamp: Date.now() })
+    }).catch(() => {});
+  }
 });
 
 </script>
