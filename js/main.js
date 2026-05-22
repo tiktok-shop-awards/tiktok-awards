@@ -1069,14 +1069,78 @@ function _renderComments(container, comments, isApiMode) {
     const dateStr = isApiMode
       ? (c.created_at ? new Date(c.created_at).toLocaleDateString() : '')
       : new Date(c.timestamp).toLocaleDateString();
+    const commentId = isApiMode ? (c._id || c.id || '') : '';
+    const isOwn = isApiMode ? _isOwnComment(c) : true;
     return `
-      <div class="comment-item">
+      <div class="comment-item" data-comment-id="${commentId}">
         ${author ? `<div class="comment-author">${author}</div>` : ''}
         <div class="comment-text">${text}</div>
         <div class="comment-date">${dateStr}</div>
+        ${isOwn ? `<button class="comment-delete-btn" onclick="deleteComment(this, '${commentId}')" title="Delete comment">✕</button>` : ''}
       </div>
     `;
   }).join('');
+}
+
+
+
+// Check if comment belongs to current user
+function _isOwnComment(commentObj) {
+  try {
+    const currentUser = window._currentUser;
+    if (!currentUser || !currentUser.userId) return false;
+    const commentUserId = commentObj.user_id || commentObj.userId || '';
+    return commentUserId === currentUser.userId;
+  } catch (e) {
+    return false;
+  }
+}
+
+// Delete a comment
+async function deleteComment(btnEl, commentId) {
+  const modal = document.getElementById('comments-modal');
+  const cardId = modal ? modal.dataset.cardId : '';
+  
+  // Confirm before delete
+  if (!confirm('Delete this comment?')) return;
+  
+  // If no commentId (localStorage mode), remove from DOM directly
+  if (!commentId) {
+    const commentItem = btnEl.closest('.comment-item');
+    if (commentItem) commentItem.remove();
+    return;
+  }
+  
+  try {
+    if (await _isApiMode()) {
+      const user = await getCurrentUser();
+      const res = await fetch(`https://da1e5fb0.aipa.bytedance.net/api/comment/${commentId}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user_id: user.userId })
+      });
+      if (res.ok) {
+        // Remove from DOM
+        const commentItem = btnEl.closest('.comment-item');
+        if (commentItem) {
+          commentItem.style.transition = 'opacity 0.3s ease';
+          commentItem.style.opacity = '0';
+          setTimeout(() => commentItem.remove(), 300);
+        }
+        // Refresh comment list
+        if (cardId) await _loadCommentsForModal(cardId);
+      } else {
+        alert('Failed to delete comment.');
+      }
+    } else {
+      // localStorage fallback - remove from DOM
+      const commentItem = btnEl.closest('.comment-item');
+      if (commentItem) commentItem.remove();
+    }
+  } catch (e) {
+    console.error('[deleteComment] Error:', e);
+    alert('Failed to delete comment: ' + e.message);
+  }
 }
 
 async function submitComment() {
