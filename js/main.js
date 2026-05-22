@@ -1121,10 +1121,15 @@ async function deleteComment(btnEl, commentId) {
   try {
     if (await _isApiMode()) {
       const user = await getCurrentUser();
+      const userId = user?.userId || user?.open_id || user?.id || '';
+      if (!userId) {
+        alert('Cannot delete: user identity not available. Please refresh and try again.');
+        return;
+      }
       const res = await fetch(`https://da1e5fb0.aipa.bytedance.net/api/comment/${commentId}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ user_id: user.userId })
+        body: JSON.stringify({ user_id: userId })
       });
       if (res.ok) {
         // Remove from DOM
