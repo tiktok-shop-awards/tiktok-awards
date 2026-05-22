@@ -847,7 +847,7 @@
   <script src="js/auth.js"></script>
   <script src="js/auth-helper.js?v=20260514a"></script>
   <script src="js/award-api.js?v=20250514n"></script>
-  <script src="js/main.js?v=20260522c"></script>
+  <script src="js/main.js?v=20260522d"></script>
   <script>
     // Render Home Stats - Now includes Q1/Q2/Q3/Q4 data for FS/POP and all regional data
     // IMPORTANT: Project awards are counted by unique project, not by member records
@@ -1258,8 +1258,19 @@
 document.addEventListener('DOMContentLoaded', function() {
   const btn = document.getElementById('statsWidgetBtn');
   const panel = document.getElementById('statsPanel');
+  const pinModal = document.getElementById('statsPinModal');
+  const pinInput = document.getElementById('statsPinInput');
+  const pinSubmit = document.getElementById('statsPinSubmit');
+  const pinError = document.getElementById('statsPinError');
+  const STATS_PIN = '2026TTSOC';
+  const PIN_KEY = 'stats_pin_verified';
   
   if (!btn || !panel) return;
+  
+  // Check if already verified this session
+  function isPinVerified() {
+    return sessionStorage.getItem(PIN_KEY) === '1';
+  }
   
   // Toggle panel
   btn.addEventListener('click', () => {
@@ -1267,16 +1278,50 @@ document.addEventListener('DOMContentLoaded', function() {
     if (isVisible) {
       panel.classList.remove('visible');
       btn.classList.remove('active');
-    } else {
+      return;
+    }
+    if (isPinVerified()) {
       panel.classList.add('visible');
       btn.classList.add('active');
       loadStats();
+    } else {
+      // Show PIN modal
+      if (pinModal) {
+        pinModal.style.display = 'block';
+        pinInput.value = '';
+        pinError.style.display = 'none';
+        setTimeout(() => pinInput.focus(), 100);
+      }
     }
   });
   
+  // PIN submit
+  if (pinSubmit) {
+    pinSubmit.addEventListener('click', verifyPin);
+  }
+  if (pinInput) {
+    pinInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') verifyPin();
+    });
+  }
+  
+  function verifyPin() {
+    if (pinInput.value.trim().toUpperCase() === STATS_PIN) {
+      sessionStorage.setItem(PIN_KEY, '1');
+      pinModal.style.display = 'none';
+      panel.classList.add('visible');
+      btn.classList.add('active');
+      loadStats();
+    } else {
+      pinError.style.display = 'block';
+      pinInput.value = '';
+      pinInput.focus();
+    }
+  }
+  
   // Close on click outside
   document.addEventListener('click', (e) => {
-    if (!panel.contains(e.target) && !btn.contains(e.target)) {
+    if (!panel.contains(e.target) && !btn.contains(e.target) && !pinModal?.contains(e.target)) {
       panel.classList.remove('visible');
       btn.classList.remove('active');
     }
@@ -1363,6 +1408,15 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 <!-- Stats Widget -->
 <button class="stats-widget-btn" id="statsWidgetBtn" title="View statistics">📊</button>
+
+<!-- PIN Modal -->
+<div id="statsPinModal" style="display:none; position:fixed; bottom:84px; left:24px; width:240px; background:var(--bg-card,#1c1c1e); border:1px solid var(--border-color,rgba(255,255,255,0.1)); border-radius:16px; padding:20px; z-index:1001; box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+  <div style="font-size:14px; font-weight:700; color:var(--text-primary,#fff); margin-bottom:12px;">🔒 Enter PIN</div>
+  <input id="statsPinInput" type="password" placeholder="Enter PIN" style="width:100%; padding:10px 14px; border-radius:10px; border:1px solid var(--border-color,rgba(255,255,255,0.15)); background:rgba(255,255,255,0.05); color:var(--text-primary,#fff); font-size:14px; outline:none; box-sizing:border-box;">
+  <div id="statsPinError" style="display:none; color:#F6214A; font-size:12px; margin-top:6px;">Incorrect PIN</div>
+  <button id="statsPinSubmit" style="width:100%; margin-top:10px; padding:10px; border-radius:10px; border:none; background:linear-gradient(135deg,#F6214A,#F86482); color:#fff; font-size:14px; font-weight:600; cursor:pointer;">Unlock</button>
+</div>
+
 <div class="stats-panel" id="statsPanel">
   <div class="stats-panel-title">📈 Site Statistics</div>
   <div class="stats-panel-grid">
