@@ -1,11 +1,22 @@
 /**
- * Feishu Auth Helper v11 - Redirect-based auth
+ * Feishu Auth Helper v12 - Redirect-based auth + debug panel
  * Uses OAuth redirect flow instead of SDK popup to avoid "授权失败" error
  */
 const FeishuAuthHelper = {
   _user: null,
   APP_ID: 'cli_a968a864a0f89bdd',
   REDIRECT_URI: 'https://tiktok-shop-awards.github.io/tiktok-awards/',
+
+  _showDebugPanel(user, source) {
+    var existing = document.getElementById('auth-debug-panel');
+    if (existing) existing.remove();
+    var dbg = document.createElement('div');
+    dbg.id = 'auth-debug-panel';
+    dbg.style.cssText = 'position:fixed;top:10px;right:10px;background:#222;color:#0f0;padding:12px 16px;border-radius:8px;font:12px/1.6 monospace;z-index:999999;max-width:360px;word-break:break-all;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.5)';
+    dbg.innerHTML = '<b>🔧 Auth Debug v12</b><br>source: ' + source + '<br>userId: ' + (user.userId||'N/A') + '<br>username: ' + (user.username||'N/A') + '<br><br><small>Click to dismiss</small>';
+    dbg.onclick = function(){ dbg.remove(); };
+    document.body.appendChild(dbg);
+  },
 
   async getUser() {
     if (this._user) return this._user;
@@ -15,6 +26,8 @@ const FeishuAuthHelper = {
       const cached = sessionStorage.getItem('feishu_user');
       if (cached) {
         this._user = JSON.parse(cached);
+        // DEBUG: show cached user
+        setTimeout(() => this._showDebugPanel(this._user, 'sessionCache'), 500);
         return this._user;
       }
     } catch(e) {}
@@ -112,13 +125,7 @@ const FeishuAuthHelper = {
         if (data.success && data.data) {
           this._user = { userId: data.data.user_id, username: data.data.username || '' };
           sessionStorage.setItem('feishu_user', JSON.stringify(this._user));
-          // DEBUG: show user info on page (click to dismiss)
-          var dbg = document.createElement('div');
-          dbg.id = 'auth-debug-panel';
-          dbg.style.cssText = 'position:fixed;top:10px;right:10px;background:#222;color:#0f0;padding:12px 16px;border-radius:8px;font:12px/1.6 monospace;z-index:999999;max-width:360px;word-break:break-all;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.5)';
-          dbg.innerHTML = '<b>🔧 Auth Debug</b><br>user_id: ' + data.data.user_id + '<br>username: ' + data.data.username + '<br><br><small>Click to dismiss</small>';
-          dbg.onclick = function(){ dbg.remove(); };
-          document.body.appendChild(dbg);
+          this._showDebugPanel(this._user, 'AIPA /api/auth/login');
           return this._user;
         }
       }
@@ -135,6 +142,7 @@ const FeishuAuthHelper = {
       localStorage.setItem('award_uid', uid);
     }
     this._user = { userId: uid, username: '' };
+    this._showDebugPanel(this._user, 'fallback (no auth)');
     return this._user;
   }
 };
