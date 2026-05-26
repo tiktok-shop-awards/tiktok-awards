@@ -3,7 +3,7 @@
  * Redirects external browsers to Feishu app
  */
 const FeishuAuth = {
-  APP_ID: 'cli_a968a864a0f89bdd',
+  APP_ID: 'cli_aa8858d3f0a6dccd',
 
   async init() {
     var ua = navigator.userAgent;
