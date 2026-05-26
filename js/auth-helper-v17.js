@@ -5,7 +5,7 @@
  */
 const FeishuAuthHelper = {
   _user: null,
-  APP_ID: 'cli_aa8858d3f0a6dccd',
+  APP_ID: 'cli_a968a864a0f89bdd',
   AIPA_LOGIN: 'https://da1e5fb0.aipa.bytedance.net/api/auth/login',
 
   async getUser() {
