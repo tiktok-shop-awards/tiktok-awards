@@ -1,6 +1,7 @@
 /**
- * Feishu Auth Helper v20 - Clean production version
+ * Feishu Auth Helper v21 - Robust user ID extraction + clean production
  * Flow: sessionStorage → URL code → SDK requestAuthCode → fallback
+ * Fix: _loginWithCode tries multiple field names for user ID (user_id, open_id, id)
  */
 const FeishuAuthHelper = {
   _user: null,
@@ -10,7 +11,7 @@ const FeishuAuthHelper = {
   async getUser() {
     if (this._user) return this._user;
 
-    // Step 1: Check sessionStorage cache (only real Feishu users)
+    // Step 1: Check sessionStorage cache (only real Feishu users with ou_ ID)
     try {
       const cached = sessionStorage.getItem('feishu_user');
       if (cached) {
@@ -19,6 +20,7 @@ const FeishuAuthHelper = {
           this._user = parsed;
           return this._user;
         }
+        // Clear invalid cache (fallback IDs or empty userId)
         sessionStorage.removeItem('feishu_user');
       }
     } catch(e) { sessionStorage.removeItem('feishu_user'); }
@@ -97,11 +99,20 @@ const FeishuAuthHelper = {
       });
       if (res.ok) {
         const data = await res.json();
+        console.log('[Auth] AIPA response:', JSON.stringify(data));
         if (data.success && data.data) {
-          this._user = { userId: data.data.user_id, username: data.data.username || '' };
-          sessionStorage.setItem('feishu_user', JSON.stringify(this._user));
-          return this._user;
+          // Try multiple field names for user ID - AIPA might return different keys
+          var uid = data.data.user_id || data.data.open_id || data.data.id || data.data.userId || '';
+          var name = data.data.username || data.data.name || data.data.en_name || '';
+          if (uid) {
+            this._user = { userId: uid, username: name };
+            sessionStorage.setItem('feishu_user', JSON.stringify(this._user));
+            return this._user;
+          }
+          console.warn('[Auth] AIPA returned no user ID field. Data:', JSON.stringify(data.data));
         }
+      } else {
+        console.warn('[Auth] AIPA HTTP error:', res.status);
       }
     } catch (e) {
       console.warn('[Auth] Login failed:', e.message);

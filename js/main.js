@@ -1121,7 +1121,8 @@ async function deleteComment(btnEl, commentId) {
   try {
     if (await _isApiMode()) {
       const user = await getCurrentUser();
-      const userId = user?.userId || user?.open_id || user?.id || '';
+      console.log('[deleteComment] user:', JSON.stringify(user));
+      const userId = user?.userId || user?.open_id || user?.id || user?.user_id || '';
       if (!userId) {
         alert('Cannot delete: user identity not available. Please refresh and try again.');
         return;
