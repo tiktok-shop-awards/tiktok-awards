@@ -1127,10 +1127,8 @@ async function deleteComment(btnEl, commentId) {
         alert('Cannot delete: user identity not available. Please refresh and try again.');
         return;
       }
-      const res = await fetch(`https://da1e5fb0.aipa.bytedance.net/api/comment/${commentId}`, {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ user_id: userId })
+      const res = await fetch(`https://da1e5fb0.aipa.bytedance.net/api/comment/${commentId}?user_id=${encodeURIComponent(userId)}`, {
+        method: 'DELETE'
       });
       if (res.ok) {
         // Remove from DOM
