@@ -21,48 +21,82 @@ const FeishuAuthHelper = {
   async getUser() {
     if (this._user) return this._user;
 
+    // DEBUG: collect auth flow steps
+    var _debugSteps = [];
+
     // Check sessionStorage cache first
     try {
       const cached = sessionStorage.getItem('feishu_user');
       if (cached) {
         this._user = JSON.parse(cached);
-        // DEBUG: show cached user
+        _debugSteps.push('1.sessionCache: HIT');
         setTimeout(() => this._showDebugPanel(this._user, 'sessionCache'), 500);
         return this._user;
+      } else {
+        _debugSteps.push('1.sessionCache: MISS');
       }
-    } catch(e) {}
+    } catch(e) { _debugSteps.push('1.sessionCache: ERROR'); }
 
     // Check if we have a code in URL (returned from Feishu OAuth)
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
     
     if (code) {
+      _debugSteps.push('2.urlCode: YES');
       // Clean URL to remove code parameter
       const cleanUrl = window.location.pathname + window.location.hash;
       window.history.replaceState({}, '', cleanUrl);
       
       // Exchange code for user info
       const user = await this._loginWithCode(code);
-      if (user && user.userId) return user;
+      if (user && user.userId) {
+        _debugSteps.push('2.loginWithCode: OK');
+        return user;
+      } else {
+        _debugSteps.push('2.loginWithCode: FAILED');
+      }
+    } else {
+      _debugSteps.push('2.urlCode: NO');
     }
 
     // Try SDK auth as fallback (for Feishu in-app)
     var isInFeishu = /Lark|Feishu/i.test(navigator.userAgent);
+    _debugSteps.push('3.isInFeishu: ' + isInFeishu);
+    _debugSteps.push('3.UA: ' + navigator.userAgent.substring(0, 80));
+    
     if (isInFeishu) {
       try {
         await this._loadJSSDK();
         await new Promise(r => setTimeout(r, 300));
+        _debugSteps.push('3.h5sdk: ' + (!!window.h5sdk));
+        _debugSteps.push('3.tt: ' + (!!window.tt));
         if (window.h5sdk || window.tt) {
           this._registerErrorHandler();
           const user = await this._trySDKAuth();
+          _debugSteps.push('3.sdkAuth: ' + (user ? user.userId : 'null'));
           if (user && user.userId) return user;
         }
       } catch (e) {
+        _debugSteps.push('3.SDK: ERROR ' + e.message);
         console.warn('[Auth] SDK auth failed:', e);
       }
     }
 
+    // Show debug before fallback
+    _debugSteps.push('4.FALLBACK');
+    this._showDebugFlowPanel(_debugSteps);
     return this._getFallbackUser();
+  },
+
+  _showDebugFlowPanel(steps) {
+    var existing = document.getElementById('auth-debug-panel');
+    if (existing) existing.remove();
+    var dbg = document.createElement('div');
+    dbg.id = 'auth-debug-panel';
+    dbg.style.cssText = 'position:fixed;top:10px;right:10px;background:#222;color:#0f0;padding:12px 16px;border-radius:8px;font:11px/1.5 monospace;z-index:999999;max-width:380px;word-break:break-all;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.5)';
+    dbg.innerHTML = '<b>🔧 Auth Flow Debug v13</b><br>' + steps.map(s => '<span style="color:#ff0">' + s + '</span>').join('<br>') + '<br><br><small>Click to dismiss</small>';
+    dbg.onclick = function(){ dbg.remove(); };
+    document.body.appendChild(dbg);
   },
 
   _registerErrorHandler() {
