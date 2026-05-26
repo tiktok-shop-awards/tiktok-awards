@@ -1,98 +1,58 @@
 /**
- * Feishu Auth Helper v19 - shows exact URL for 10236 diagnosis
+ * Feishu Auth Helper v20 - Clean production version
+ * Flow: sessionStorage → URL code → SDK requestAuthCode → fallback
  */
 const FeishuAuthHelper = {
   _user: null,
   APP_ID: 'cli_a968a864a0f89bdd',
   AIPA_LOGIN: 'https://da1e5fb0.aipa.bytedance.net/api/auth/login',
-  _steps: [],
-
-  _log(msg) {
-    this._steps.push(msg);
-    console.log('[Auth] ' + msg);
-  },
-
-  _showDebug() {
-    var existing = document.getElementById('auth-debug');
-    if (existing) existing.remove();
-    var d = document.createElement('div');
-    d.id = 'auth-debug';
-    d.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#222;color:#0f0;padding:10px 14px;font:11px/1.5 monospace;z-index:999999;max-height:40vh;overflow:auto;cursor:pointer';
-    d.innerHTML = '<b>🔍 Auth Debug v19</b><br>' + this._steps.map(s => '<span style="color:#ff0">' + s + '</span>').join('<br>') + '<br><br><small>Click to dismiss</small>';
-    d.onclick = function(){ d.remove(); };
-    document.body.appendChild(d);
-  },
 
   async getUser() {
     if (this._user) return this._user;
 
-    // Show exact current URL (the one Feishu checks against redirect URL list)
-    var currentUrl = window.location.href.split('?')[0].split('#')[0];
-    this._log('Current URL: ' + currentUrl);
-    this._log('Full href: ' + window.location.href);
-
-    // Step 1: Cache
+    // Step 1: Check sessionStorage cache (only real Feishu users)
     try {
       const cached = sessionStorage.getItem('feishu_user');
       if (cached) {
         const parsed = JSON.parse(cached);
         if (parsed.userId && parsed.userId.startsWith('ou_')) {
           this._user = parsed;
-          this._log('1.Cache HIT: ' + parsed.userId);
-          this._showDebug();
           return this._user;
         }
         sessionStorage.removeItem('feishu_user');
-        this._log('1.Cache cleared (fallback)');
-      } else {
-        this._log('1.Cache: empty');
       }
     } catch(e) { sessionStorage.removeItem('feishu_user'); }
 
-    // Step 2: URL code
+    // Step 2: Check URL code parameter
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
     if (code) {
-      this._log('2.URL code: YES');
       window.history.replaceState({}, '', window.location.pathname + window.location.hash);
       const user = await this._loginWithCode(code);
-      if (user && user.userId) {
-        this._log('2.Login OK: ' + user.userId + ' / ' + user.username);
-        this._showDebug();
-        return user;
-      }
-      this._log('2.Login FAILED');
-    } else {
-      this._log('2.URL code: none');
+      if (user && user.userId) return user;
     }
 
-    // Step 3: SDK auth
+    // Step 3: SDK auth (Feishu embedded browser)
     var isInFeishu = /Lark|Feishu/i.test(navigator.userAgent);
-    this._log('3.isFeishu: ' + isInFeishu);
-
     if (isInFeishu) {
       try {
         await this._loadJSSDK();
         await new Promise(r => setTimeout(r, 500));
-        this._log('3.h5sdk: ' + !!window.h5sdk + ' tt: ' + !!window.tt);
         if (window.h5sdk || window.tt) {
           if (window.h5sdk && window.h5sdk.error) {
-            window.h5sdk.error(err => this._log('3.h5sdk error: ' + JSON.stringify(err)));
+            window.h5sdk.error(function(err) {
+              console.warn('[Auth] h5sdk error:', JSON.stringify(err));
+            });
           }
           const user = await this._trySDKAuth();
-          if (user && user.userId) {
-            this._log('3.SDK OK: ' + user.userId + ' / ' + user.username);
-            this._showDebug();
-            return user;
-          }
+          if (user && user.userId) return user;
         }
       } catch (e) {
-        this._log('3.SDK error: ' + e.message);
+        console.warn('[Auth] SDK auth failed:', e);
       }
     }
 
-    this._log('4.FALLBACK');
-    this._showDebug();
+    // Step 4: Fallback
     return this._getFallbackUser();
   },
 
@@ -112,19 +72,17 @@ const FeishuAuthHelper = {
       if (!window.tt) return null;
       if (window.h5sdk && window.h5sdk.ready) {
         await new Promise(r => window.h5sdk.ready(() => r()));
-        this._log('3.h5sdk ready');
       }
-      this._log('3.Calling requestAuthCode...');
       var code = await new Promise(r => {
         window.tt.requestAuthCode({
           appId: this.APP_ID,
-          success: res => { this._log('3.rAC OK'); r(res.code); },
-          fail: err => { this._log('3.rAC FAIL: ' + err.errCode + ' ' + (err.errMsg || err.errString || '')); r(null); }
+          success: res => r(res.code),
+          fail: err => { console.warn('[Auth] requestAuthCode fail:', JSON.stringify(err)); r(null); }
         });
       });
       if (code) return await this._loginWithCode(code);
     } catch (e) {
-      this._log('3.SDK exception: ' + e.message);
+      console.warn('[Auth] SDK auth error:', e.message);
     }
     return null;
   },
@@ -139,7 +97,6 @@ const FeishuAuthHelper = {
       });
       if (res.ok) {
         const data = await res.json();
-        this._log('AIPA: ' + JSON.stringify(data));
         if (data.success && data.data) {
           this._user = { userId: data.data.user_id, username: data.data.username || '' };
           sessionStorage.setItem('feishu_user', JSON.stringify(this._user));
@@ -147,7 +104,7 @@ const FeishuAuthHelper = {
         }
       }
     } catch (e) {
-      this._log('AIPA error: ' + e.message);
+      console.warn('[Auth] Login failed:', e.message);
     }
     return null;
   },
