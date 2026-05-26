@@ -1128,7 +1128,9 @@ async function deleteComment(btnEl, commentId) {
         return;
       }
       const res = await fetch(`https://da1e5fb0.aipa.bytedance.net/api/comment/${commentId}?user_id=${encodeURIComponent(userId)}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user_id: userId })
       });
       if (res.ok) {
         // Remove from DOM
