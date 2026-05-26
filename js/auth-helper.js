@@ -1,5 +1,5 @@
 /**
- * Feishu Auth Helper v18 - SDK auth with visible debug for mobile
+ * Feishu Auth Helper v19 - shows exact URL for 10236 diagnosis
  */
 const FeishuAuthHelper = {
   _user: null,
@@ -18,7 +18,7 @@ const FeishuAuthHelper = {
     var d = document.createElement('div');
     d.id = 'auth-debug';
     d.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#222;color:#0f0;padding:10px 14px;font:11px/1.5 monospace;z-index:999999;max-height:40vh;overflow:auto;cursor:pointer';
-    d.innerHTML = '<b>🔍 Auth Debug v18</b><br>' + this._steps.map(s => '<span style="color:#ff0">' + s + '</span>').join('<br>') + '<br><br><small>Click to dismiss</small>';
+    d.innerHTML = '<b>🔍 Auth Debug v19</b><br>' + this._steps.map(s => '<span style="color:#ff0">' + s + '</span>').join('<br>') + '<br><br><small>Click to dismiss</small>';
     d.onclick = function(){ d.remove(); };
     document.body.appendChild(d);
   },
@@ -26,7 +26,12 @@ const FeishuAuthHelper = {
   async getUser() {
     if (this._user) return this._user;
 
-    // Step 1: Cache check
+    // Show exact current URL (the one Feishu checks against redirect URL list)
+    var currentUrl = window.location.href.split('?')[0].split('#')[0];
+    this._log('Current URL: ' + currentUrl);
+    this._log('Full href: ' + window.location.href);
+
+    // Step 1: Cache
     try {
       const cached = sessionStorage.getItem('feishu_user');
       if (cached) {
@@ -37,12 +42,12 @@ const FeishuAuthHelper = {
           this._showDebug();
           return this._user;
         }
-        this._log('1.Cache has fallback, cleared');
         sessionStorage.removeItem('feishu_user');
+        this._log('1.Cache cleared (fallback)');
       } else {
         this._log('1.Cache: empty');
       }
-    } catch(e) { this._log('1.Cache: error'); sessionStorage.removeItem('feishu_user'); }
+    } catch(e) { sessionStorage.removeItem('feishu_user'); }
 
     // Step 2: URL code
     const urlParams = new URLSearchParams(window.location.search);
@@ -64,7 +69,6 @@ const FeishuAuthHelper = {
     // Step 3: SDK auth
     var isInFeishu = /Lark|Feishu/i.test(navigator.userAgent);
     this._log('3.isFeishu: ' + isInFeishu);
-    this._log('3.UA: ' + navigator.userAgent.substring(0, 60));
 
     if (isInFeishu) {
       try {
@@ -87,8 +91,7 @@ const FeishuAuthHelper = {
       }
     }
 
-    // Step 4: Fallback
-    this._log('4.FALLBACK - auth failed');
+    this._log('4.FALLBACK');
     this._showDebug();
     return this._getFallbackUser();
   },
@@ -106,7 +109,7 @@ const FeishuAuthHelper = {
 
   async _trySDKAuth() {
     try {
-      if (!window.tt) { this._log('3.No tt object'); return null; }
+      if (!window.tt) return null;
       if (window.h5sdk && window.h5sdk.ready) {
         await new Promise(r => window.h5sdk.ready(() => r()));
         this._log('3.h5sdk ready');
@@ -128,23 +131,20 @@ const FeishuAuthHelper = {
 
   async _loginWithCode(code) {
     try {
-      this._log('AIPA POST /api/auth/login...');
       const res = await fetch(this.AIPA_LOGIN, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ code: code }),
         signal: AbortSignal.timeout(8000)
       });
-      this._log('AIPA HTTP ' + res.status);
       if (res.ok) {
         const data = await res.json();
-        this._log('AIPA response: ' + JSON.stringify(data));
+        this._log('AIPA: ' + JSON.stringify(data));
         if (data.success && data.data) {
           this._user = { userId: data.data.user_id, username: data.data.username || '' };
           sessionStorage.setItem('feishu_user', JSON.stringify(this._user));
           return this._user;
         }
-        this._log('AIPA: success=false');
       }
     } catch (e) {
       this._log('AIPA error: ' + e.message);
