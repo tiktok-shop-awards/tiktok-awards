@@ -107,9 +107,18 @@ const FeishuAuthHelper = {
       });
       if (res.ok) {
         const data = await res.json();
+        // DEBUG: log raw AIPA response
+        console.log('[Auth-DEBUG] AIPA raw response:', JSON.stringify(data));
         if (data.success && data.data) {
           this._user = { userId: data.data.user_id, username: data.data.username || '' };
           sessionStorage.setItem('feishu_user', JSON.stringify(this._user));
+          // DEBUG: show user info on page (click to dismiss)
+          var dbg = document.createElement('div');
+          dbg.id = 'auth-debug-panel';
+          dbg.style.cssText = 'position:fixed;top:10px;right:10px;background:#222;color:#0f0;padding:12px 16px;border-radius:8px;font:12px/1.6 monospace;z-index:999999;max-width:360px;word-break:break-all;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.5)';
+          dbg.innerHTML = '<b>🔧 Auth Debug</b><br>user_id: ' + data.data.user_id + '<br>username: ' + data.data.username + '<br><br><small>Click to dismiss</small>';
+          dbg.onclick = function(){ dbg.remove(); };
+          document.body.appendChild(dbg);
           return this._user;
         }
       }
