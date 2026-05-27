@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Regional Awards - Global E-commerce Recognition Hub</title>
-  <link rel="stylesheet" href="css/main.css?v=20250512k">
+  <link rel="stylesheet" href="css/main.css?v=20260527k">
   <style>
     /* ==================== Regional Page Specific Styles ==================== */
     .regional-header {
@@ -504,15 +504,15 @@
         <!-- Award Type Toggle - For Non-LATAM Regions -->
         <div class="award-type-wrapper" id="award-type-wrapper">
           <div class="award-type-toggle">
-            <button class="award-type-btn" data-type="H1项目奖">
+            <button class="award-type-btn" data-type="H1 Project Awards">
               H1
               <span class="btn-subtitle">Impactful XFN Projects</span>
             </button>
-            <button class="award-type-btn active" data-type="H2项目奖">
+            <button class="award-type-btn active" data-type="H2 Project Awards">
               H2
               <span class="btn-subtitle">Impactful XFN Projects</span>
             </button>
-            <button class="award-type-btn" data-type="H2个人奖">
+            <button class="award-type-btn" data-type="H2 Individual Awards">
               H2 BFCM
               <span class="btn-subtitle">Stellar Contributors</span>
             </button>
@@ -538,13 +538,13 @@
               Q4
               <span class="btn-subtitle">Project Awards</span>
             </button>
-            <button class="award-type-btn" data-type="Q4个人奖" id="q4-individual-btn" style="display: none;">
+            <button class="award-type-btn" data-type="Q4 Individual Awards" id="q4-individual-btn" style="display: none;">
               Q4 BFCM
               <span class="btn-subtitle">Stellar Contributors</span>
             </button>
           </div>
           <div class="award-type-toggle" id="h1-individual-button" style="display: none;">
-            <button class="award-type-btn active" data-type="H1个人奖">
+            <button class="award-type-btn active" data-type="H1 Individual Awards">
               H1
               <span class="btn-subtitle">Stellar Contributors</span>
             </button>
@@ -611,10 +611,10 @@
     </div>
   </div>
 
-<script src="js/auth.js?v=20250514h"></script>
+<script src="js/auth.js?v=20260527k"></script>
   <script src="js/auth-helper-v21.js"></script>
-  <script src="js/award-api.js?v=20260526b"></script>
-  <script src="js/main.js?v=20260526b"></script>
+  <script src="js/award-api.js?v=20260527k"></script>
+  <script src="js/main.js?v=20260527k"></script>
   <script>
     // Regional page specific initialization
     const regionNames = {
@@ -628,7 +628,7 @@
     };
     
     let currentRegion = 'us';
-    let currentAwardType = 'H2项目奖';
+    let currentAwardType = 'H2 Project Awards';
     let regionalData = null;
     let allRegionalData = null; // Store all regional data for US+POP merge
     
@@ -658,8 +658,8 @@
         titleEl.textContent = (regionNames[displayRegion] || regionNames[currentRegion]) + ' Regional Awards';
       }
       
-      // Update H2个人奖 tab text based on region
-      const h2IndivTab = document.querySelector('#award-type-wrapper .award-type-btn[data-type="H2个人奖"]');
+      // Update H2 Individual Awards tab text based on region
+      const h2IndivTab = document.querySelector('#award-type-wrapper .award-type-btn[data-type="H2 Individual Awards"]');
       if (h2IndivTab) {
         let tabTitle = 'Stellar Contributors';
         let tabSubtitle = '';
@@ -691,7 +691,7 @@
       const quarterButtons = document.getElementById('quarter-buttons');
       const h1IndividualButton = document.getElementById('h1-individual-button');
       
-      // FS/POP: 季度结构 (Q1/Q2/Q3/Q4项目奖)
+      // FS/POP: 季度结构 (Q1/Q2/Q3/Q4 Project Awards)
       const isQuarterRegion = currentRegion === 'fs' || currentRegion === 'pop';
       
       if (currentRegion === 'latam') {
@@ -700,12 +700,12 @@
         quarterToggle.style.display = 'block';
         
         if (currentYear === '2026') {
-          // 2026: show Q1个人奖 button only
+          // 2026: show Q1 Individual Awards button only
           quarterButtons.style.display = 'none';
           h1IndividualButton.style.display = 'block';
-          h1IndividualButton.innerHTML = '<button class="award-type-btn active" data-type="Q1个人奖">Q1<span class="btn-subtitle">Stellar Contributors</span></button>';
-          if (!['Q1个人奖'].includes(currentAwardType)) {
-            currentAwardType = 'Q1个人奖';
+          h1IndividualButton.innerHTML = '<button class="award-type-btn active" data-type="Q1 Individual Awards">Q1<span class="btn-subtitle">Stellar Contributors</span></button>';
+          if (!['Q1 Individual Awards'].includes(currentAwardType)) {
+            currentAwardType = 'Q1 Individual Awards';
           }
         } else {
           // 2025 and earlier: show Q buttons
@@ -716,7 +716,7 @@
           const quarterBtns = document.querySelectorAll('#quarter-buttons .award-type-btn');
           quarterBtns.forEach(btn => {
             const q = btn.dataset.type;
-            if (q === 'Q4个人奖') {
+            if (q === 'Q4 Individual Awards') {
               // LATAM不显示Q4 BFCM按钮
               btn.style.display = 'none';
             } else if (q) {
@@ -733,17 +733,17 @@
           b.classList.toggle('active', b.dataset.type === currentAwardType);
         });
       } else if (isQuarterRegion) {
-        // FS/POP: 季度结构，显示Q1-Q4项目奖 + Q4 BFCM个人奖按钮
+        // FS/POP: 季度结构，显示Q1-Q4 Project Awards + Q4 BFCM个人奖按钮
         awardTypeWrapper.style.display = 'none';
         quarterToggle.style.display = 'flex';
         quarterButtons.style.display = 'inline-flex';
         h1IndividualButton.style.display = 'none';
         
-        // 更新季度按钮文字 - 对齐US的H1/H2项目奖样式
+        // 更新季度按钮文字 - 对齐US的H1/H2 Project Awards样式
         const quarterBtns = document.querySelectorAll('#quarter-buttons .award-type-btn');
         quarterBtns.forEach(btn => {
           const q = btn.dataset.type;
-          if (q === 'Q4个人奖') {
+          if (q === 'Q4 Individual Awards') {
             // Q4 BFCM按钮保持个人奖样式
             btn.style.display = '';
           } else if (q) {
@@ -753,7 +753,7 @@
         });
         
         // 默认显示Q1
-        if (!['Q1', 'Q2', 'Q3', 'Q4', 'Q4个人奖'].includes(currentAwardType)) {
+        if (!['Q1', 'Q2', 'Q3', 'Q4', 'Q4 Individual Awards'].includes(currentAwardType)) {
           currentAwardType = 'Q1';
         }
         document.querySelectorAll('#quarter-toggle .award-type-btn').forEach(b => {
@@ -765,21 +765,21 @@
         quarterToggle.style.display = 'none';
         
         // 恢复H1/H2按钮文字
-        const h1Btn = document.querySelector('#award-type-wrapper .award-type-btn[data-type="H1项目奖"]');
-        const h2Btn = document.querySelector('#award-type-wrapper .award-type-btn[data-type="H2项目奖"]');
+        const h1Btn = document.querySelector('#award-type-wrapper .award-type-btn[data-type="H1 Project Awards"]');
+        const h2Btn = document.querySelector('#award-type-wrapper .award-type-btn[data-type="H2 Project Awards"]');
         
         if (h1Btn) {
           h1Btn.innerHTML = 'H1<span class="btn-subtitle">Project Awards</span>';
-          h1Btn.dataset.type = 'H1项目奖';
+          h1Btn.dataset.type = 'H1 Project Awards';
         }
         if (h2Btn) {
           h2Btn.innerHTML = 'H2<span class="btn-subtitle">Project Awards</span>';
-          h2Btn.dataset.type = 'H2项目奖';
+          h2Btn.dataset.type = 'H2 Project Awards';
         }
         
-        // Only reset if coming from LATAM (Q1-Q4 or H1个人奖)
-        if (['Q1', 'Q2', 'Q3', 'Q4', 'H1个人奖', 'Q1项目奖', 'Q3项目奖'].includes(currentAwardType)) {
-          currentAwardType = 'H2项目奖';
+        // Only reset if coming from LATAM (Q1-Q4 or H1 Individual Awards)
+        if (['Q1', 'Q2', 'Q3', 'Q4', 'H1 Individual Awards', 'Q1 Project Awards', 'Q3 Project Awards'].includes(currentAwardType)) {
+          currentAwardType = 'H2 Project Awards';
         }
         document.querySelectorAll('#award-type-wrapper .award-type-btn').forEach(b => {
           b.classList.toggle('active', b.dataset.type === currentAwardType);
@@ -804,13 +804,13 @@
           // Merge US and POP data
           regionalData = {
             ...usData,
-            'Q1项目奖': [...(usData?.['Q1项目奖'] || []), ...(popData?.['Q1项目奖'] || [])],
-            'Q2项目奖': [...(usData?.['Q2项目奖'] || []), ...(popData?.['Q2项目奖'] || [])],
-            'Q3项目奖': [...(usData?.['Q3项目奖'] || []), ...(popData?.['Q3项目奖'] || [])],
-            'Q4项目奖': [...(usData?.['Q4项目奖'] || []), ...(popData?.['Q4项目奖'] || [])],
-            'H1项目奖': [...(usData?.['H1项目奖'] || []), ...(popData?.['H1项目奖'] || [])],
-            'H2项目奖': [...(usData?.['H2项目奖'] || []), ...(popData?.['H2项目奖'] || [])],
-            'H2个人奖': [...(usData?.['H2个人奖'] || []), ...(popData?.['H2个人奖'] || [])]
+            'Q1 Project Awards': [...(usData?.['Q1 Project Awards'] || []), ...(popData?.['Q1 Project Awards'] || [])],
+            'Q2 Project Awards': [...(usData?.['Q2 Project Awards'] || []), ...(popData?.['Q2 Project Awards'] || [])],
+            'Q3 Project Awards': [...(usData?.['Q3 Project Awards'] || []), ...(popData?.['Q3 Project Awards'] || [])],
+            'Q4 Project Awards': [...(usData?.['Q4 Project Awards'] || []), ...(popData?.['Q4 Project Awards'] || [])],
+            'H1 Project Awards': [...(usData?.['H1 Project Awards'] || []), ...(popData?.['H1 Project Awards'] || [])],
+            'H2 Project Awards': [...(usData?.['H2 Project Awards'] || []), ...(popData?.['H2 Project Awards'] || [])],
+            'H2 Individual Awards': [...(usData?.['H2 Individual Awards'] || []), ...(popData?.['H2 Individual Awards'] || [])]
           };
         } else if (region === 'fs') {
           // FS 数据用 loadData('fs')
@@ -920,7 +920,7 @@
           if (!isQuarterRegion) return; // Only for LATAM / FS / POP
           quarterBtns.forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
-          currentAwardType = btn.dataset.type; // Q1, Q2, Q3, Q4, Q4个人奖
+          currentAwardType = btn.dataset.type; // Q1, Q2, Q3, Q4, Q4 Individual Awards
           AppData.currentLatamQuarter = currentAwardType;
           
           if (regionalData) {

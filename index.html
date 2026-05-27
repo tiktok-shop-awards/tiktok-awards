@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Global E-commerce Recognition Hub</title>
-  <link rel="stylesheet" href="css/main.css?v=20260522b">
+  <link rel="stylesheet" href="css/main.css?v=20260527k">
   <style>
     /* ==================== Home Page Specific Styles ==================== */
     .home-header {
@@ -846,8 +846,8 @@
   <!-- Feishu H5 SDK -->
   <script src="js/auth.js"></script>
   <script src="js/auth-helper-v21.js"></script>
-  <script src="js/award-api.js?v=20260526b"></script>
-  <script src="js/main.js?v=20260526b"></script>
+  <script src="js/award-api.js?v=20260527k"></script>
+  <script src="js/main.js?v=20260527k"></script>
   <script>
     // Render Home Stats - Now includes Q1/Q2/Q3/Q4 data for FS/POP and all regional data
     // IMPORTANT: Project awards are counted by unique project, not by member records
@@ -903,12 +903,12 @@
       // Team Members 包含 Global + Regional 所有项目奖的成员数量
       if (globalData) {
         const allProjAwards = [
-          ...(globalData['Q1项目奖'] || []),
-          ...(globalData['Q2项目奖'] || []),
-          ...(globalData['Q3项目奖'] || []),
-          ...(globalData['Q4项目奖'] || []),
-          ...(globalData['H1项目奖'] || []),
-          ...(globalData['H2项目奖'] || [])
+          ...(globalData['Q1 Project Awards'] || []),
+          ...(globalData['Q2 Project Awards'] || []),
+          ...(globalData['Q3 Project Awards'] || []),
+          ...(globalData['Q4 Project Awards'] || []),
+          ...(globalData['H1 Project Awards'] || []),
+          ...(globalData['H2 Project Awards'] || [])
         ];
         const result = processProjectAwards(allProjAwards);
         globalProjects = result.projCount;
@@ -934,26 +934,26 @@
           const usData = regionalData['us'] || {};
           const popData2 = regionalData['pop'] || {};
           regionData = {
-            'Q1项目奖': [...(usData['Q1项目奖'] || []), ...(popData2['Q1项目奖'] || [])],
-            'Q2项目奖': [...(usData['Q2项目奖'] || []), ...(popData2['Q2项目奖'] || [])],
-            'Q3项目奖': [...(usData['Q3项目奖'] || []), ...(popData2['Q3项目奖'] || [])],
-            'Q4项目奖': [...(usData['Q4项目奖'] || []), ...(popData2['Q4项目奖'] || [])],
-            'H1项目奖': [...(usData['H1项目奖'] || []), ...(popData2['H1项目奖'] || [])],
-            'H2项目奖': [...(usData['H2项目奖'] || []), ...(popData2['H2项目奖'] || [])],
-            'H2个人奖': [...(usData['H2个人奖'] || []), ...(popData2['H2个人奖'] || [])],
-            'Q1个人奖': [...(usData['Q1个人奖'] || []), ...(popData2['Q1个人奖'] || [])]
+            'Q1 Project Awards': [...(usData['Q1 Project Awards'] || []), ...(popData2['Q1 Project Awards'] || [])],
+            'Q2 Project Awards': [...(usData['Q2 Project Awards'] || []), ...(popData2['Q2 Project Awards'] || [])],
+            'Q3 Project Awards': [...(usData['Q3 Project Awards'] || []), ...(popData2['Q3 Project Awards'] || [])],
+            'Q4 Project Awards': [...(usData['Q4 Project Awards'] || []), ...(popData2['Q4 Project Awards'] || [])],
+            'H1 Project Awards': [...(usData['H1 Project Awards'] || []), ...(popData2['H1 Project Awards'] || [])],
+            'H2 Project Awards': [...(usData['H2 Project Awards'] || []), ...(popData2['H2 Project Awards'] || [])],
+            'H2 Individual Awards': [...(usData['H2 Individual Awards'] || []), ...(popData2['H2 Individual Awards'] || [])],
+            'Q1 Individual Awards': [...(usData['Q1 Individual Awards'] || []), ...(popData2['Q1 Individual Awards'] || [])]
           };
         }
         
         if (regionData) {
           // Regional 项目奖
           const allProjAwards = [
-            ...(regionData['Q1项目奖'] || []),
-            ...(regionData['Q2项目奖'] || []),
-            ...(regionData['Q3项目奖'] || []),
-            ...(regionData['Q4项目奖'] || []),
-            ...(regionData['H1项目奖'] || []),
-            ...(regionData['H2项目奖'] || [])
+            ...(regionData['Q1 Project Awards'] || []),
+            ...(regionData['Q2 Project Awards'] || []),
+            ...(regionData['Q3 Project Awards'] || []),
+            ...(regionData['Q4 Project Awards'] || []),
+            ...(regionData['H1 Project Awards'] || []),
+            ...(regionData['H2 Project Awards'] || [])
           ];
           const projResult = processProjectAwards(allProjAwards);
           regionalProjects += projResult.projCount;
@@ -962,8 +962,8 @@
           
           // Individual awards
           const indivAwards = [
-            ...(regionData['H2个人奖'] || []),
-            ...(regionData['Q1个人奖'] || [])
+            ...(regionData['H2 Individual Awards'] || []),
+            ...(regionData['Q1 Individual Awards'] || [])
           ];
           allIndividualAwards.push(...indivAwards);
         }
@@ -972,38 +972,38 @@
       // 3. FS 独立数据 (如果没有在 regional 中处理)
       if (fsData && !regions.includes('fs')) {
         const allProjAwards = [
-          ...(fsData['Q1项目奖'] || []),
-          ...(fsData['Q2项目奖'] || []),
-          ...(fsData['Q3项目奖'] || []),
-          ...(fsData['Q4项目奖'] || []),
-          ...(fsData['H1项目奖'] || []),
-          ...(fsData['H2项目奖'] || [])
+          ...(fsData['Q1 Project Awards'] || []),
+          ...(fsData['Q2 Project Awards'] || []),
+          ...(fsData['Q3 Project Awards'] || []),
+          ...(fsData['Q4 Project Awards'] || []),
+          ...(fsData['H1 Project Awards'] || []),
+          ...(fsData['H2 Project Awards'] || [])
         ];
         const result = processProjectAwards(allProjAwards);
         regionalProjects += result.projCount;
         totalBonusUSD += result.projBonus;
         teamMemberCount += result.members;
         
-        const indivAwards = [...(fsData['H2个人奖'] || []), ...(fsData['Q1个人奖'] || [])];
+        const indivAwards = [...(fsData['H2 Individual Awards'] || []), ...(fsData['Q1 Individual Awards'] || [])];
         allIndividualAwards.push(...indivAwards);
       }
       
       // 4. POP 独立数据 (如果没有在 regional 中处理)
       if (popData && !regions.includes('pop')) {
         const allProjAwards = [
-          ...(popData['Q1项目奖'] || []),
-          ...(popData['Q2项目奖'] || []),
-          ...(popData['Q3项目奖'] || []),
-          ...(popData['Q4项目奖'] || []),
-          ...(popData['H1项目奖'] || []),
-          ...(popData['H2项目奖'] || [])
+          ...(popData['Q1 Project Awards'] || []),
+          ...(popData['Q2 Project Awards'] || []),
+          ...(popData['Q3 Project Awards'] || []),
+          ...(popData['Q4 Project Awards'] || []),
+          ...(popData['H1 Project Awards'] || []),
+          ...(popData['H2 Project Awards'] || [])
         ];
         const result = processProjectAwards(allProjAwards);
         regionalProjects += result.projCount;
         totalBonusUSD += result.projBonus;
         teamMemberCount += result.members;
         
-        const indivAwards = [...(popData['H2个人奖'] || []), ...(popData['Q1个人奖'] || [])];
+        const indivAwards = [...(popData['H2 Individual Awards'] || []), ...(popData['Q1 Individual Awards'] || [])];
         allIndividualAwards.push(...indivAwards);
       }
       
@@ -1124,13 +1124,13 @@
         allData.forEach(data => {
           if (!data) return;
           const allAwards = [
-            ...(data['Q1项目奖'] || []),
-            ...(data['Q2项目奖'] || []),
-            ...(data['Q3项目奖'] || []),
-            ...(data['Q4项目奖'] || []),
-            ...(data['H1项目奖'] || []),
-            ...(data['H2项目奖'] || []),
-            ...(data['H2个人奖'] || [])
+            ...(data['Q1 Project Awards'] || []),
+            ...(data['Q2 Project Awards'] || []),
+            ...(data['Q3 Project Awards'] || []),
+            ...(data['Q4 Project Awards'] || []),
+            ...(data['H1 Project Awards'] || []),
+            ...(data['H2 Project Awards'] || []),
+            ...(data['H2 Individual Awards'] || [])
           ];
           allAwards.forEach(award => {
             const dept = award.department || 'TikTok Shop';
@@ -1180,33 +1180,33 @@
       if (!fs) return global;
       
       return {
-        'Q1项目奖': [
-          ...(global['Q1项目奖'] || []),
-          ...(fs['Q1项目奖'] || [])
+        'Q1 Project Awards': [
+          ...(global['Q1 Project Awards'] || []),
+          ...(fs['Q1 Project Awards'] || [])
         ],
-        'Q2项目奖': [
-          ...(global['Q2项目奖'] || []),
-          ...(fs['Q2项目奖'] || [])
+        'Q2 Project Awards': [
+          ...(global['Q2 Project Awards'] || []),
+          ...(fs['Q2 Project Awards'] || [])
         ],
-        'Q3项目奖': [
-          ...(global['Q3项目奖'] || []),
-          ...(fs['Q3项目奖'] || [])
+        'Q3 Project Awards': [
+          ...(global['Q3 Project Awards'] || []),
+          ...(fs['Q3 Project Awards'] || [])
         ],
-        'Q4项目奖': [
-          ...(global['Q4项目奖'] || []),
-          ...(fs['Q4项目奖'] || [])
+        'Q4 Project Awards': [
+          ...(global['Q4 Project Awards'] || []),
+          ...(fs['Q4 Project Awards'] || [])
         ],
-        'H1项目奖': [
-          ...(global['H1项目奖'] || []),
-          ...(fs['H1项目奖'] || [])
+        'H1 Project Awards': [
+          ...(global['H1 Project Awards'] || []),
+          ...(fs['H1 Project Awards'] || [])
         ],
-        'H2项目奖': [
-          ...(global['H2项目奖'] || []),
-          ...(fs['H2项目奖'] || [])
+        'H2 Project Awards': [
+          ...(global['H2 Project Awards'] || []),
+          ...(fs['H2 Project Awards'] || [])
         ],
-        'H2个人奖': [
-          ...(global['H2个人奖'] || []),
-          ...(fs['H2个人奖'] || [])
+        'H2 Individual Awards': [
+          ...(global['H2 Individual Awards'] || []),
+          ...(fs['H2 Individual Awards'] || [])
         ]
       };
     }

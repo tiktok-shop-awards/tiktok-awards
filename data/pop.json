@@ -1,11 +1,11 @@
 {
-  "Q1项目奖": [
+  "Q1 Project Awards": [
     {
-      "award_type": "Q1项目奖",
+      "award_type": "Q1 Project Awards",
       "period": "Q1",
       "quarter": "Q1",
-      "project_name": "Nova-springtok项目",
-      "team_award": "金牌专项",
+      "project_name": "Nova SpringTok Project",
+      "team_award": "Gold Medal Initiative",
       "department": "Global E-Commerce-Global Selling POP-Campaign",
       "region": "POP",
       "original_region": "POP",
@@ -34,13 +34,13 @@
       "currency": "CNY"
     }
   ],
-  "Q2项目奖": [
+  "Q2 Project Awards": [
     {
-      "award_type": "Q2项目奖",
+      "award_type": "Q2 Project Awards",
       "period": "Q2",
       "quarter": "Q2",
-      "project_name": "Nova Outdoorfun 户外专项",
-      "team_award": "金牌专项",
+      "project_name": "Nova Outdoorfun Outdoor Initiative",
+      "team_award": "Gold Medal Initiative",
       "department": "Global E-Commerce-Global Selling POP-Campaign",
       "region": "POP",
       "original_region": "POP",
@@ -71,11 +71,11 @@
       "currency": "CNY"
     },
     {
-      "award_type": "Q2项目奖",
+      "award_type": "Q2 Project Awards",
       "period": "Q2",
       "quarter": "Q2",
-      "project_name": "商家直播突破-POPMART",
-      "team_award": "金牌专项",
+      "project_name": "Seller Live Streaming Breakthrough - POPMART",
+      "team_award": "Gold Medal Initiative",
       "department": "Global E-commerce-US Operations Center-Methodology & Marketing-Methodology & User Marketing",
       "region": "POP",
       "original_region": "POP",
@@ -94,11 +94,11 @@
       "currency": "CNY"
     },
     {
-      "award_type": "Q2项目奖",
+      "award_type": "Q2 Project Awards",
       "period": "Q2",
       "quarter": "Q2",
-      "project_name": "POP新开国（UK/EU/JP）专项",
-      "team_award": "金牌专项",
+      "project_name": "POP New Market Launch (UK/EU/JP) Initiative",
+      "team_award": "Gold Medal Initiative",
       "department": "Global E-commerce-UK&EU&JP POP",
       "region": "POP",
       "original_region": "POP",
@@ -143,13 +143,13 @@
       "currency": "CNY"
     }
   ],
-  "Q3项目奖": [
+  "Q3 Project Awards": [
     {
-      "award_type": "Q3项目奖",
+      "award_type": "Q3 Project Awards",
       "period": "Q3",
       "quarter": "Q3",
-      "project_name": "POP新市场Peakday里程碑活动",
-      "team_award": "金牌专项",
+      "project_name": "POP New Market Peak Day Milestone Event",
+      "team_award": "Gold Medal Initiative",
       "department": "Global E-commerce-UK&EU&JP POP",
       "region": "POP",
       "original_region": "POP",
@@ -179,11 +179,11 @@
       "currency": "CNY"
     },
     {
-      "award_type": "Q3项目奖",
+      "award_type": "Q3 Project Awards",
       "period": "Q3",
       "quarter": "Q3",
-      "project_name": "POP趋势品专项",
-      "team_award": "金牌专项",
+      "project_name": "POP Trend Products Initiative",
+      "team_award": "Gold Medal Initiative",
       "department": "Global E-Commerce-Global Selling POP-Campaign",
       "region": "POP",
       "original_region": "POP",
@@ -202,18 +202,18 @@
       "currency": "CNY"
     }
   ],
-  "Q4项目奖": [
+  "Q4 Project Awards": [
     {
-      "award_type": "Q4项目奖",
+      "award_type": "Q4 Project Awards",
       "period": "Q4",
       "quarter": "Q4",
-      "project_name": "POP垂类达人孵化专项",
-      "team_award": "金牌专项",
+      "project_name": "POP Vertical Creator Incubation Initiative",
+      "team_award": "Gold Medal Initiative",
       "department": "Global Monetization Product and Technology-Business Integrity-Data Cycling Center-AIGC Support",
       "region": "POP",
       "original_region": "POP",
       "bonus": "30000",
-      "reason": "项目背景：\n垂类达人项目作为美国达人侧的重点项目，POP在其中扮演了关键角色，利用GMV占比最高的两大核心类目+两大高成长类目（Home、Fashion、Sports、Auto & Tech），承担70%的垂达孵化目标，助力整个达人业务的增长。\n\n关键动作：\n- 对现有L3+垂类潜力达人，通过提升其垂类内容浓度与内容质量，强化其类目影响力及GMV转化效率；\n- 针对L2+潜力达人，通过任务激励、教育运营和定向支持，系统性孵化其跃迁至L3+\n\n项目突破：\n1）为美国市场贡献730位新增垂类达人（70%贡献度）：项目立项以来（2025年9月-12月），垂达人数孵化~730位（vs. CCS ~320位），项目目标完成度连续2个月达成度超110%\n2）达人POP渗透提升、POP行业对该部分达人的把控变好：在目标类目，达人的POP GMV渗透率从59% 提升至 60%（vs. CCS的目标类目，L2L渗透下降）\n3）该项目为商家提供了高匹配度的达人资源和内容输出机制，提升了内容营销效率与转化效果。通过垂类任务、打榜赛等多样化机制，商家与达人实现深度联动",
+      "reason": "Project Background:\nVertical creator project, as a key creator-side project in the US, POP played a critical role. Using the two core categories with highest GMV proportion plus two high-growth categories (Home, Fashion, Sports, Auto & Tech), it took on 70% of vertical creator incubation targets, helping the overall creator business growth.\n\nKey Actions:\n- For existing L3+ vertical potential creators, strengthened their category influence and GMV conversion efficiency by improving vertical content concentration and quality.\n- For L2+ potential creators, systematically incubated their migration to L3+ through task incentives, education operations, and targeted support.\n\nProject Breakthroughs:\n1) Contributed 730 new vertical creators to the US market (70% contribution): Since project launch (September-December 2025), vertical creator number incubated ~730 (vs. CCS ~320). Project target completion exceeded 110% for two consecutive months.\n2) Creator POP penetration improved, POP industry control over this segment improved: In target categories, creator POP GMV penetration rate increased from 59% to 60% (vs. CCS target categories where L2L penetration decreased).\n3) This project provided sellers with highly matched creator resources and content output mechanisms, improving content marketing efficiency and conversion. Through vertical tasks, ranking competitions and other diversified mechanisms, sellers and creators achieved deep collaboration.",
       "members": [
         "Lee Li",
         "林弘毅",
@@ -233,11 +233,11 @@
       "currency": "CNY"
     },
     {
-      "award_type": "Q4项目奖",
+      "award_type": "Q4 Project Awards",
       "period": "Q4",
       "quarter": "Q4",
-      "project_name": "百万富翁专项",
-      "team_award": "金牌专项",
+      "project_name": "Millionaire Initiative",
+      "team_award": "Gold Medal Initiative",
       "department": "Seed-Application-AI Search",
       "region": "POP",
       "original_region": "POP",
@@ -263,11 +263,11 @@
       "currency": "CNY"
     },
     {
-      "award_type": "Q4项目奖",
+      "award_type": "Q4 Project Awards",
       "period": "Q4",
       "quarter": "Q4",
-      "project_name": "POP商家短视频Q4突破专项",
-      "team_award": "金牌专项",
+      "project_name": "POP Seller Short Video Q4 Breakthrough Initiative",
+      "team_award": "Gold Medal Initiative",
       "department": "Global E-Commerce-Global Selling POP-Category Management-Seller Content Operations",
       "region": "POP",
       "original_region": "POP",
@@ -292,11 +292,11 @@
       "currency": "CNY"
     },
     {
-      "award_type": "Q4项目奖",
+      "award_type": "Q4 Project Awards",
       "period": "Q4",
       "quarter": "Q4",
-      "project_name": "POP CCCU治理专项",
-      "team_award": "金牌专项",
+      "project_name": "POP CCCU Governance Initiative",
+      "team_award": "Gold Medal Initiative",
       "department": "Global E-commerce-US Operations Center-Strategy-Merchandise Strategy",
       "region": "POP",
       "original_region": "POP",
@@ -317,49 +317,49 @@
       "currency": "CNY"
     }
   ],
-  "H2个人奖": [
+  "H2 Individual Awards": [
     {
-      "award_type": "H2个人奖",
+      "award_type": "H2 Individual Awards",
       "period": "H2",
       "quarter": "Q4",
-      "project_name": "POP 黑五大促个人奖",
-      "team_award": "黑五大促个人奖",
+      "project_name": "POP Black Friday Individual Award",
+      "team_award": "Black Friday Individual Award",
       "winner_name": "林茜",
       "email": "linxi.cicci@bytedance.com",
       "department": "Parallel",
       "region": "POP",
       "original_region": "POP",
       "bonus": "5000",
-      "reason": "1. 大促主导了UG相关协作， 推进了一套券，CFP货补等机制， 贡献大盘GMV AB+5.3%， 一套券方案将补贴钱效（iROAS）提升20%; \n2. 同时深度参与大促的每日补贴运营工作， 相应快速， 高效应对不同钱效/预算约束条件下，应对GMV目标的最优补贴策略调节；",
+      "reason": "1. Led UG-related collaboration, promoted single-voucher and CFP subsidy mechanisms, contributing GMV AB +5.3% to total market. Single-voucher solution improved subsidy ROI (iROAS) by 20%.\n2. Deeply participated in daily subsidy operations during campaign, responded quickly and efficiently to optimal subsidy strategy adjustments under different ROI/budget constraints for GMV targets.",
       "members": [
         "林茜"
       ],
       "currency": "CNY"
     },
     {
-      "award_type": "H2个人奖",
+      "award_type": "H2 Individual Awards",
       "period": "H2",
       "quarter": "Q4",
-      "project_name": "POP 黑五大促个人奖",
-      "team_award": "黑五大促个人奖",
+      "project_name": "POP Black Friday Individual Award",
+      "team_award": "Black Friday Individual Award",
       "winner_name": "黄万军",
       "email": "huangwanjun.2020@bytedance.com",
       "department": "产品研发和工程架构-Global E-Commerce-Global Selling-场景服务-营销运营",
       "region": "POP",
       "original_region": "POP",
       "bonus": "5000",
-      "reason": "黄万军在 2025 黑五期间担任 GS-POP 技术 POC，统筹推进POP 协作机制与作战手册落地，提前梳理关键链路与容量风险，大促期间高频响应 Oncall 与热点问题升级，保障 POP 侧零重大事故、核心商家体验稳定，为黑五整体 GMV 增长提供了坚实技术保障。",
+      "reason": "During 2025 BF, Huang Wanjun served as GS-POP Technical POC. He coordinated and promoted POP collaboration mechanism and operations manual implementation, pre-sorted key links and capacity risks. During campaign, he responded frequently to Oncall and escalated hot issues, ensuring POP side zero major accidents and stable core seller experience, providing solid technical assurance for overall BF GMV growth.",
       "members": [
         "黄万军"
       ],
       "currency": "CNY"
     },
     {
-      "award_type": "H2个人奖",
+      "award_type": "H2 Individual Awards",
       "period": "H2",
       "quarter": "Q4",
-      "project_name": "POP 黑五大促个人奖",
-      "team_award": "黑五大促个人奖",
+      "project_name": "POP Black Friday Individual Award",
+      "team_award": "Black Friday Individual Award",
       "winner_name": "高书林",
       "email": "gaoshulin@bytedance.com",
       "department": "Global E-Commerce-Product-US and Global Product-Seller Operations and Growth-Product Operations",
@@ -373,11 +373,11 @@
       "currency": "CNY"
     },
     {
-      "award_type": "H2个人奖",
+      "award_type": "H2 Individual Awards",
       "period": "H2",
       "quarter": "Q4",
-      "project_name": "POP 黑五大促个人奖",
-      "team_award": "黑五大促个人奖",
+      "project_name": "POP Black Friday Individual Award",
+      "team_award": "Black Friday Individual Award",
       "winner_name": "闫潇晓",
       "email": "yanxiaoxiao.j@bytedance.com",
       "department": "Global E-Commerce-Product-Creator and Affiliate",
@@ -391,29 +391,29 @@
       "currency": "CNY"
     },
     {
-      "award_type": "H2个人奖",
+      "award_type": "H2 Individual Awards",
       "period": "H2",
       "quarter": "Q4",
-      "project_name": "POP 黑五大促个人奖",
-      "team_award": "黑五大促个人奖",
+      "project_name": "POP Black Friday Individual Award",
+      "team_award": "Black Friday Individual Award",
       "winner_name": "丁未未",
       "email": "dingweiwei1@bytedance.com",
       "department": "Global E-Commerce-Data Science-Business Ecosystem Data Science-Seller and Platform",
       "region": "POP",
       "original_region": "POP",
       "bonus": "5000",
-      "reason": "完备支持黑五大促。促前从0到1搭建筹备策略指标体系，与多方共识、周度同步筹备进展与风险，快速上线促前筹备看板；促中实现大促基建能力全面实时化，围绕低爆发行业归因/内容供给/商品卡诊断等关键业务问题快速归因和输出建议，初步尝试利用AI工具提效；促后深度复盘供给/内容/生态等问题，第一次完整沉淀业务诊断归因框架、高效明确定位业务关键问题",
+      "reason": "Fully supported BF campaign. Pre-campaign: Built preparation strategy metric system from 0 to 1. Aligned with multiple parties, synchronized preparation progress and risks weekly. Rapidly launched pre-campaign preparation dashboard. Mid-campaign: Achieved full real-time campaign infrastructure capabilities. Quickly attributed and output suggestions around key business issues like low-surge industry attribution/content supply/product card diagnostics. Initially tried using AI tools for efficiency. Post-campaign: Deeply reviewed supply/content/ecology issues. First complete precipitation of business diagnosis attribution framework, efficiently and clearly locating key business issues.",
       "members": [
         "丁未未"
       ],
       "currency": "CNY"
     },
     {
-      "award_type": "H2个人奖",
+      "award_type": "H2 Individual Awards",
       "period": "H2",
       "quarter": "Q4",
-      "project_name": "POP 黑五大促个人奖",
-      "team_award": "黑五大促个人奖",
+      "project_name": "POP Black Friday Individual Award",
+      "team_award": "Black Friday Individual Award",
       "winner_name": "Yiru Wang",
       "email": "yiru.wang@bytedance.com",
       "department": "Global E-commerce-US Operations Center-Campaign-Platform Campaign B",
@@ -427,47 +427,47 @@
       "currency": "CNY"
     },
     {
-      "award_type": "H2个人奖",
+      "award_type": "H2 Individual Awards",
       "period": "H2",
       "quarter": "Q4",
-      "project_name": "POP 黑五大促个人奖",
-      "team_award": "黑五大促个人奖",
+      "project_name": "POP Black Friday Individual Award",
+      "team_award": "Black Friday Individual Award",
       "winner_name": "Matthew Fahey",
       "email": "matthew.fahey@bytedance.com",
       "department": "Global E-commerce-US Operations Center-Creator & Partner-Creator Live",
       "region": "POP",
       "original_region": "POP",
       "bonus": "5000",
-      "reason": "达人直播，主要支持PoP的商品的，就是帮PoP卖爆了那个猫砂盆。提名理由待补充",
+      "reason": "Creator live streaming, mainly supporting POP products, specifically helping POP achieve explosive sales on cat litter boxes. Nomination reason to be supplemented.",
       "members": [
         "Matthew Fahey"
       ],
       "currency": "CNY"
     },
     {
-      "award_type": "H2个人奖",
+      "award_type": "H2 Individual Awards",
       "period": "H2",
       "quarter": "Q4",
-      "project_name": "POP 黑五大促个人奖",
-      "team_award": "黑五大促个人奖",
+      "project_name": "POP Black Friday Individual Award",
+      "team_award": "Black Friday Individual Award",
       "winner_name": "Casimir Black",
       "email": "casimir.black@bytedance.com",
       "department": "Global E-commerce-US Operations Center-Creator & Partner-Top Creator Short Video",
       "region": "POP",
       "original_region": "POP",
       "bonus": "5000",
-      "reason": "达人短视频，主要支持Home类目。提名理由待补充",
+      "reason": "Creator short videos, mainly supporting Home category. Nomination reason to be supplemented.",
       "members": [
         "Casimir Black"
       ],
       "currency": "CNY"
     },
     {
-      "award_type": "H2个人奖",
+      "award_type": "H2 Individual Awards",
       "period": "H2",
       "quarter": "Q4",
-      "project_name": "POP 黑五大促个人奖",
-      "team_award": "黑五大促个人奖",
+      "project_name": "POP Black Friday Individual Award",
+      "team_award": "Black Friday Individual Award",
       "winner_name": "王宇",
       "email": "wangyu.winnie2@bytedance.com",
       "department": "Global E-commerce-US Operations Center-Seller Content-Strategy",
@@ -481,11 +481,11 @@
       "currency": "CNY"
     },
     {
-      "award_type": "H2个人奖",
+      "award_type": "H2 Individual Awards",
       "period": "H2",
       "quarter": "Q4",
-      "project_name": "POP 黑五大促个人奖",
-      "team_award": "黑五大促个人奖",
+      "project_name": "POP Black Friday Individual Award",
+      "team_award": "Black Friday Individual Award",
       "winner_name": "赵溪月",
       "email": "zhaoxiyue.elena@bytedance.com",
       "department": "Global E-Commerce-Governance and Experience-US-Governance-Listing Governance",
@@ -499,47 +499,47 @@
       "currency": "CNY"
     },
     {
-      "award_type": "H2个人奖",
+      "award_type": "H2 Individual Awards",
       "period": "H2",
       "quarter": "Q4",
-      "project_name": "POP 黑五大促个人奖",
-      "team_award": "黑五大促个人奖",
+      "project_name": "POP Black Friday Individual Award",
+      "team_award": "Black Friday Individual Award",
       "winner_name": "刘菡姝",
       "email": "liuhanshu.7@bytedance.com",
       "department": "Global E-commerce-US Operations Center-Strategy-Merchandise Strategy",
       "region": "POP",
       "original_region": "POP",
       "bonus": "5000",
-      "reason": "1、黑五核心货盘管理与迭代：负责黑五核心货盘的策略设计、商品圈选和促中汰换；制定了聚焦重点商家新品、趋势品、黑五专属组套等场景的行业提报规则，协同POP BP审核提报商品，处理行业超额提报与协作沟通。保障黑五期间POP核心货盘质量，达成POP核心品日均GMV $24.5M，大盘占比28.4%，爆发127.8%，高出行业大盘59.2pp，增量贡献大盘40%。严控行业提报准入标准，POP黑五期间行业提报并通过1200+商品，爆发122%，高出行业大盘53.4pp。\n\n2、黑五促前促中商品运营\n注册追赶：黑五前1周通过产出注册机会商品清单，进行行业分发和重点跟进；实现POP促前一周机会GMV新增注册9.4%，超额完成注册目标\n前置备货：9月起对大促重点商品进行备货量滚动预测，分FBT仓、商家仓进行备货计划和跟进；截至黑五前1周，POP整体库存备货进度达成87.09%\n缺货预警：协同场域进行整体库存、活动库存和FBT库存预警，对高GMV loss商品进行行业侧单点追补货；通过预警完成POP 253个重点商品的促中补货，占比59%，挽回GMV 1800万+，占比大盘1.13%",
+      "reason": "1. BF core inventory management and iteration: Responsible for BF core inventory strategy design, product selection, and mid-campaign replacement. Developed industry reporting rules focusing on key seller new products, trend products, BF exclusive bundles and other scenarios. Coordinated with POP BP to review reported products, handled industry over-reporting and collaboration communication. Ensured POP core inventory quality during BF, achieving POP core product daily average GMV $24.5M, market share 28.4%, surge 127.8%, 59.2pp higher than industry market. Incremental contribution to market 40%. Strictly controlled industry reporting access standards. POP BF period industry reported and approved 1200+ products, surge 122%, 53.4pp higher than industry market.\n\n2. BF pre and mid-campaign product operations\nRegistration catch-up: One week before BF, produced registration opportunity product list for industry distribution and key follow-up. Achieved POP pre-campaign one-week opportunity GMV new registration 9.4%, exceeded registration target.\nPre-stocking: From September, conducted rolling forecast of stocking volume for campaign key products, planned and followed up FBT warehouse and seller warehouse separately. By one week before BF, POP overall inventory stocking progress achieved 87.09%.\nOut-of-stock warning: Coordinated with field for overall inventory, event inventory and FBT inventory warning. Followed up single-point replenishment for high GMV loss products at industry side. Through warning, completed POP 253 key product mid-campaign replenishment, accounting for 59%, recovered GMV 18M+, accounting for market 1.13%.",
       "members": [
         "刘菡姝"
       ],
       "currency": "CNY"
     },
     {
-      "award_type": "H2个人奖",
+      "award_type": "H2 Individual Awards",
       "period": "H2",
       "quarter": "Q4",
-      "project_name": "POP 黑五大促个人奖",
-      "team_award": "黑五大促个人奖",
+      "project_name": "POP Black Friday Individual Award",
+      "team_award": "Black Friday Individual Award",
       "winner_name": "徐月蔷",
       "email": "xuyueqiang@bytedance.com",
       "department": "Global E-commerce-US Operations Center-Strategy-Merchandise Strategy",
       "region": "POP",
       "original_region": "POP",
       "bonus": "5000",
-      "reason": "1、 黑五核心品与趋势新品/爆品/SKPP策略做结合，提升POP黑五核心品占比，过程中结合价格豁免提报，提升POP商品交易及爆发。\n2、 POP核心品占比45%，其中战略重点商品贡献了49%的增量｜Uplift+103.0%(高其他商品 51pp）,趋势品贡献黑五交易48.9%｜uplift+76.0%（优于US大盘4pp）;累计支持价格豁免51.3k商品，贡献49.8%｜Uplift+108.7%",
+      "reason": "1. Combined BF core products with trend new products/best-sellers/SKPP strategy to improve POP BF core product ratio. Incorporated price exemption applications during the process to boost POP product transactions and surge.\n2. POP core product ratio 45%, with strategic key products contributing 49% of increment | Uplift +103.0% (51pp higher than other products). Trend products contributed 48.9% of BF transactions | Uplift +76.0% (outperforming US market by 4pp); Supported price exemption for 51.3K products cumulatively, contributing 49.8% | Uplift +108.7%",
       "members": [
         "徐月蔷"
       ],
       "currency": "CNY"
     },
     {
-      "award_type": "H2个人奖",
+      "award_type": "H2 Individual Awards",
       "period": "H2",
       "quarter": "Q4",
-      "project_name": "POP 黑五大促个人奖",
-      "team_award": "黑五大促个人奖",
+      "project_name": "POP Black Friday Individual Award",
+      "team_award": "Black Friday Individual Award",
       "winner_name": "李文杰",
       "email": "liwenjie.123@bytedance.com",
       "department": "Global E-commerce-US Operations Center-Strategy-Product & Data Foundation",
@@ -553,36 +553,36 @@
       "currency": "CNY"
     },
     {
-      "award_type": "H2个人奖",
+      "award_type": "H2 Individual Awards",
       "period": "H2",
       "quarter": "Q4",
-      "project_name": "POP 黑五大促个人奖",
-      "team_award": "黑五大促个人奖",
+      "project_name": "POP Black Friday Individual Award",
+      "team_award": "Black Friday Individual Award",
       "winner_name": "王帅",
       "email": "wangshuai.0210@bytedance.com",
       "department": "供应链与物流-跨境物流运营-跨境B段物流运营-东南亚运营",
       "region": "POP",
       "original_region": "POP",
       "bonus": "5000",
-      "reason": "1.时效体验不断优化：联动关务通过搭建干线侧合并主单申报快速提升POP 4PL 履约时效，Q4平均时效达成12.86天，对比Q3提升近3天，CCR Q4 对比Q3下降0.015%。4PL时效和体验指标均优于3PL\n2.韩国发美国3PL能力搭建：支持行业开通韩国发美国小包直邮的3PL模式，供大商测品，Q4完成测试并跑通链路。\n3.水单治理：针对水单问题，于11月底启动3PL向4PL切换方案设计，协同物流各部门对相关方案全方位评估并输出损益方案、卡点、待改造项。",
+      "reason": "1. Continuous improvement in time and experience: Collaborated with customs to rapidly improve POP 4PL fulfillment time by building mainline consolidated main waybill declaration. Q4 average time achieved 12.86 days, improved nearly 3 days compared to Q3. CCR Q4 decreased 0.015% vs Q3. 4PL time and experience metrics both better than 3PL.\n2. Korea to US 3PL capability building: Supported industry to launch Korea to US small parcel direct mail 3PL mode for big seller product testing. Q4 completed testing and ran through the process.\n3. Waterway bill governance: For waterway bill issues, initiated 3PL to 4PL switch plan design at end of November. Coordinated with all logistics departments for comprehensive evaluation and output P&L plan, bottlenecks, and items requiring transformation.",
       "members": [
         "王帅"
       ],
       "currency": "CNY"
     },
     {
-      "award_type": "H2个人奖",
+      "award_type": "H2 Individual Awards",
       "period": "H2",
       "quarter": "Q4",
-      "project_name": "POP 黑五大促个人奖",
-      "team_award": "黑五大促个人奖",
+      "project_name": "POP Black Friday Individual Award",
+      "team_award": "Black Friday Individual Award",
       "winner_name": "李威",
       "email": "way.li@bytedance.com",
       "department": "供应链与物流-跨境物流运营-国际关务运营",
       "region": "POP",
       "original_region": "POP",
       "bonus": "5000",
-      "reason": "1. 促前筹备阶段，联动大 B 服务商提前储备优质清关资源；促期遇海关查验或 PGA 审核，daily协调服务商优先挑货并交接给尾程。大促清关时效74.6 小时，优于目标值；\n2. 大促期间复核超 45,000 单的税金账单，核出差额超 9,000 美元并调减 POP 商家的税金，有效帮助商家降低成本。",
+      "reason": "1. Pre-campaign preparation: Coordinated with major B-end service providers to pre-stock quality customs clearance resources; during campaign, when encountering customs inspection or PGA review, coordinated daily with service providers to prioritize goods inspection and handover to last-mile. Campaign customs clearance time 74.6 hours, better than target.\n2. During campaign, reviewed over 45,000 tax bills, identified discrepancies exceeding $9,000 and adjusted POP seller taxes, effectively helping sellers reduce costs.",
       "members": [
         "李威"
       ],

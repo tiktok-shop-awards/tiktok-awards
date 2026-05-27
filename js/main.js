@@ -1,4 +1,4 @@
-// MAIN.JS VERSION: 20250520a
+// MAIN.JS VERSION: 20260527k
 // TikTok Shop Stars Awards - Main JavaScript
 
 // ==================== Global Data Store ====================
@@ -14,7 +14,7 @@ const AppData = {
   rankings: null,
   currentYear: '2025',
   currentRegion: 'us',
-  currentPeriod: 'H1项目奖', // For Regional page: H1项目奖 | H2项目奖 | H2个人奖
+  currentPeriod: 'H1 Project Awards', // For Regional page: H1 Project Awards | H2 Project Awards | H2 Individual Awards
   currentHalf: 'H1', // For Global page: H1 | H2
   currentLatamQuarter: 'Q1' // For LATAM individual awards: Q1 | Q2 | Q3 | Q4
 };
@@ -343,50 +343,50 @@ async function loadRankings(year = null) {
 // Get Q1 project awards
 function getQ1ProjectAwards(data) {
   if (!data) return [];
-  // Support both quarterly (Q1项目奖) and legacy (H1项目奖) structure
-  if (data['Q1项目奖']) {
-    return data['Q1项目奖'];
+  // Support both quarterly (Q1 Project Awards) and legacy (H1 Project Awards) structure
+  if (data['Q1 Project Awards']) {
+    return data['Q1 Project Awards'];
   }
-  // Legacy: H1项目奖中quarter为Q1的
-  const h1Awards = data['H1项目奖'] || [];
+  // Legacy: H1 Project Awards中quarter为Q1的
+  const h1Awards = data['H1 Project Awards'] || [];
   return h1Awards.filter(a => a.quarter === 'Q1' || a.period === 'Q1');
 }
 
 // Get Q2 project awards
 function getQ2ProjectAwards(data) {
   if (!data) return [];
-  if (data['Q2项目奖']) {
-    return data['Q2项目奖'];
+  if (data['Q2 Project Awards']) {
+    return data['Q2 Project Awards'];
   }
-  const h1Awards = data['H1项目奖'] || [];
+  const h1Awards = data['H1 Project Awards'] || [];
   return h1Awards.filter(a => a.quarter === 'Q2' || a.period === 'Q2');
 }
 
 // Get Q3 project awards
 function getQ3ProjectAwards(data) {
   if (!data) return [];
-  if (data['Q3项目奖']) {
-    return data['Q3项目奖'];
+  if (data['Q3 Project Awards']) {
+    return data['Q3 Project Awards'];
   }
-  const h2Awards = data['H2项目奖'] || [];
+  const h2Awards = data['H2 Project Awards'] || [];
   return h2Awards.filter(a => a.quarter === 'Q3' || a.period === 'Q3');
 }
 
 // Get Q4 project awards
 function getQ4ProjectAwards(data) {
   if (!data) return [];
-  if (data['Q4项目奖']) {
-    return data['Q4项目奖'];
+  if (data['Q4 Project Awards']) {
+    return data['Q4 Project Awards'];
   }
-  const h2Awards = data['H2项目奖'] || [];
+  const h2Awards = data['H2 Project Awards'] || [];
   return h2Awards.filter(a => a.quarter === 'Q4' || a.period === 'Q4');
 }
 
 // Legacy support: Get H1 project awards (Q1 + Q2)
 function getH1ProjectAwards(data) {
   if (!data) return [];
-  if (data['H1项目奖']) {
-    return data['H1项目奖'];
+  if (data['H1 Project Awards']) {
+    return data['H1 Project Awards'];
   }
   return [...getQ1ProjectAwards(data), ...getQ2ProjectAwards(data)];
 }
@@ -394,8 +394,8 @@ function getH1ProjectAwards(data) {
 // Legacy support: Get H2 project awards (Q3 + Q4)
 function getH2ProjectAwards(data) {
   if (!data) return [];
-  if (data['H2项目奖']) {
-    return data['H2项目奖'];
+  if (data['H2 Project Awards']) {
+    return data['H2 Project Awards'];
   }
   return [...getQ3ProjectAwards(data), ...getQ4ProjectAwards(data)];
 }
@@ -409,7 +409,7 @@ function getAllProjectAwards(data) {
 // Get all individual awards
 function getAllIndividualAwards(data) {
   if (!data) return [];
-  return data['H2个人奖'] || [];
+  return data['H2 Individual Awards'] || [];
 }
 
 // Get individual awards by quarter (for LATAM)
@@ -420,10 +420,10 @@ function getIndividualAwardsByQuarter(data, quarter) {
   if (hasYearStructure(data)) {
     const yearData = data[currentYear];
     if (!yearData) return [];
-    const allIndividual = yearData['H2个人奖'] || [];
+    const allIndividual = yearData['H2 Individual Awards'] || [];
     return allIndividual.filter(a => a.quarter === quarter || a.period === quarter);
   }
-  const allIndividual = data['H2个人奖'] || [];
+  const allIndividual = data['H2 Individual Awards'] || [];
   return allIndividual.filter(a => a.quarter === quarter || a.period === quarter);
 }
 
@@ -450,8 +450,8 @@ function getYearData(data, year) {
 function getQ1ProjectAwardsYear(data, year) {
   const yearData = getYearData(data, year);
   if (!yearData) return [];
-  if (yearData['Q1项目奖']) return yearData['Q1项目奖'];
-  const h1Awards = yearData['H1项目奖'] || [];
+  if (yearData['Q1 Project Awards']) return yearData['Q1 Project Awards'];
+  const h1Awards = yearData['H1 Project Awards'] || [];
   return h1Awards.filter(a => a.quarter === 'Q1' || a.period === 'Q1');
 }
 
@@ -459,8 +459,8 @@ function getQ1ProjectAwardsYear(data, year) {
 function getQ2ProjectAwardsYear(data, year) {
   const yearData = getYearData(data, year);
   if (!yearData) return [];
-  if (yearData['Q2项目奖']) return yearData['Q2项目奖'];
-  const h1Awards = yearData['H1项目奖'] || [];
+  if (yearData['Q2 Project Awards']) return yearData['Q2 Project Awards'];
+  const h1Awards = yearData['H1 Project Awards'] || [];
   return h1Awards.filter(a => a.quarter === 'Q2' || a.period === 'Q2');
 }
 
@@ -468,8 +468,8 @@ function getQ2ProjectAwardsYear(data, year) {
 function getQ3ProjectAwardsYear(data, year) {
   const yearData = getYearData(data, year);
   if (!yearData) return [];
-  if (yearData['Q3项目奖']) return yearData['Q3项目奖'];
-  const h2Awards = yearData['H2项目奖'] || [];
+  if (yearData['Q3 Project Awards']) return yearData['Q3 Project Awards'];
+  const h2Awards = yearData['H2 Project Awards'] || [];
   return h2Awards.filter(a => a.quarter === 'Q3' || a.period === 'Q3');
 }
 
@@ -477,8 +477,8 @@ function getQ3ProjectAwardsYear(data, year) {
 function getQ4ProjectAwardsYear(data, year) {
   const yearData = getYearData(data, year);
   if (!yearData) return [];
-  if (yearData['Q4项目奖']) return yearData['Q4项目奖'];
-  const h2Awards = yearData['H2项目奖'] || [];
+  if (yearData['Q4 Project Awards']) return yearData['Q4 Project Awards'];
+  const h2Awards = yearData['H2 Project Awards'] || [];
   return h2Awards.filter(a => a.quarter === 'Q4' || a.period === 'Q4');
 }
 
@@ -486,7 +486,7 @@ function getQ4ProjectAwardsYear(data, year) {
 function getH1ProjectAwardsYear(data, year) {
   const yearData = getYearData(data, year);
   if (!yearData) return [];
-  if (yearData['H1项目奖']) return yearData['H1项目奖'];
+  if (yearData['H1 Project Awards']) return yearData['H1 Project Awards'];
   return [...getQ1ProjectAwardsYear(data, year), ...getQ2ProjectAwardsYear(data, year)];
 }
 
@@ -494,7 +494,7 @@ function getH1ProjectAwardsYear(data, year) {
 function getH2ProjectAwardsYear(data, year) {
   const yearData = getYearData(data, year);
   if (!yearData) return [];
-  if (yearData['H2项目奖']) return yearData['H2项目奖'];
+  if (yearData['H2 Project Awards']) return yearData['H2 Project Awards'];
   return [...getQ3ProjectAwardsYear(data, year), ...getQ4ProjectAwardsYear(data, year)];
 }
 
@@ -502,14 +502,14 @@ function getH2ProjectAwardsYear(data, year) {
 function getQ1IndividualAwardsYear(data, year) {
   const yearData = getYearData(data, year);
   if (!yearData) return [];
-  return yearData['Q1个人奖'] || [];
+  return yearData['Q1 Individual Awards'] || [];
 }
 
 // Get H2 individual awards (year-based structure)
 function getH2IndividualAwardsYear(data, year) {
   const yearData = getYearData(data, year);
   if (!yearData) return [];
-  return yearData['H2个人奖'] || [];
+  return yearData['H2 Individual Awards'] || [];
 }
 
 // Get LATAM individual awards by year and period
@@ -517,10 +517,10 @@ function getLatamIndividualAwards(data, year, period) {
   const yearData = getYearData(data, year);
   if (!yearData) return [];
   
-  if (period === 'Q1个人奖') {
-    return yearData['Q1个人奖'] || [];
-  } else if (period === 'H2个人奖') {
-    return yearData['H2个人奖'] || [];
+  if (period === 'Q1 Individual Awards') {
+    return yearData['Q1 Individual Awards'] || [];
+  } else if (period === 'H2 Individual Awards') {
+    return yearData['H2 Individual Awards'] || [];
   }
   return [];
 }
@@ -531,17 +531,17 @@ function getAvailableLatamPeriods(data, year) {
   if (!yearData) return [];
   
   const periods = [];
-  if (yearData['Q1个人奖'] && yearData['Q1个人奖'].length > 0) {
-    periods.push('Q1个人奖');
+  if (yearData['Q1 Individual Awards'] && yearData['Q1 Individual Awards'].length > 0) {
+    periods.push('Q1 Individual Awards');
   }
-  if (yearData['H2个人奖'] && yearData['H2个人奖'].length > 0) {
-    periods.push('H2个人奖');
+  if (yearData['H2 Individual Awards'] && yearData['H2 Individual Awards'].length > 0) {
+    periods.push('H2 Individual Awards');
   }
-  if (yearData['H1项目奖'] && yearData['H1项目奖'].length > 0) {
-    periods.push('H1项目奖');
+  if (yearData['H1 Project Awards'] && yearData['H1 Project Awards'].length > 0) {
+    periods.push('H1 Project Awards');
   }
-  if (yearData['H2项目奖'] && yearData['H2项目奖'].length > 0) {
-    periods.push('H2项目奖');
+  if (yearData['H2 Project Awards'] && yearData['H2 Project Awards'].length > 0) {
+    periods.push('H2 Project Awards');
   }
   return periods;
 }
@@ -672,7 +672,7 @@ function calculateRegionTop3(regionData, region, period) {
     return defaultVal || 'TikTok Shop';
   };
   
-  if (period === 'H1项目奖') {
+  if (period === 'H1 Project Awards') {
     const h1Awards = getH1ProjectAwards(regionData);
     h1Awards.forEach(award => {
       if (!award.members) return;
@@ -691,7 +691,7 @@ function calculateRegionTop3(regionData, region, period) {
         memberScores[key].awards += 1;
       });
     });
-  } else if (period === 'H2项目奖') {
+  } else if (period === 'H2 Project Awards') {
     const h2Awards = getH2ProjectAwards(regionData);
     h2Awards.forEach(award => {
       if (!award.members) return;
@@ -710,7 +710,7 @@ function calculateRegionTop3(regionData, region, period) {
         memberScores[key].awards += 1;
       });
     });
-  } else if (period === 'H2个人奖') {
+  } else if (period === 'H2 Individual Awards') {
     const individualAwards = region === 'latam' 
       ? getIndividualAwardsByQuarter(regionData, AppData.currentLatamQuarter)
       : getAllIndividualAwards(regionData);
@@ -761,11 +761,11 @@ function calculateRegionTop3FullYear(regionData, region) {
   const h1Awards = getH1ProjectAwardsYear(regionData, currentYear);
   const h2Awards = getH2ProjectAwardsYear(regionData, currentYear);
   
-  // For LATAM, combine all quarters or Q1个人奖 based on year
+  // For LATAM, combine all quarters or Q1 Individual Awards based on year
   let allIndividualAwards = [];
   if (region === 'latam') {
     if (currentYear === '2026') {
-      // 2026: use Q1个人奖
+      // 2026: use Q1 Individual Awards
       allIndividualAwards = getQ1IndividualAwardsYear(regionData, currentYear);
     } else {
       // 2025: use Q1-Q4 quarters
@@ -1490,7 +1490,7 @@ function renderGlobalAwards(data, containerId, half) {
     return;
   }
   
-  console.log('renderGlobalAwards called:', { half, hasH1: !!data['H1项目奖'], hasH2: !!data['H2项目奖'], h2Count: (data['H2项目奖'] || []).length });
+  console.log('renderGlobalAwards called:', { half, hasH1: !!data['H1 Project Awards'], hasH2: !!data['H2 Project Awards'], h2Count: (data['H2 Project Awards'] || []).length });
   
   let awards = [];
   if (half === 'H1') {
@@ -1613,15 +1613,15 @@ function renderRegionalAwards(data, containerId, period, region) {
         html = renderIndividualCards(quarterAwards, region, period);
       }
     }
-  } else if (period === 'Q4个人奖') {
-    // FS/POP Q4 BFCM个人奖 (H2个人奖)
-    const individualAwards = data['H2个人奖'] || [];
+  } else if (period === 'Q4 Individual Awards') {
+    // FS/POP Q4 BFCM个人奖 (H2 Individual Awards)
+    const individualAwards = data['H2 Individual Awards'] || [];
     if (individualAwards.length === 0) {
       html = '<div class="no-data-msg">No Q4 BFCM Stellar Contributors available</div>';
     } else {
       html = renderIndividualCards(individualAwards, region, 'Q4 BFCM');
     }
-  } else if (period === 'Q1个人奖') {
+  } else if (period === 'Q1 Individual Awards') {
     // LATAM H1 individual awards (2026)
     const h1Awards = getQ1IndividualAwardsYear(data, currentYear);
     if (h1Awards.length === 0) {
@@ -1629,21 +1629,21 @@ function renderRegionalAwards(data, containerId, period, region) {
     } else {
       html = renderIndividualCards(h1Awards, region, 'H1');
     }
-  } else if (period === 'H1项目奖') {
+  } else if (period === 'H1 Project Awards') {
     const h1Awards = getH1ProjectAwardsYear(data, currentYear);
     if (h1Awards.length === 0) {
       html = '<div class="no-data-msg">No H1 project awards available for this region</div>';
     } else {
       html = renderProjectCards(h1Awards, region, 'H1');
     }
-  } else if (period === 'H2项目奖') {
+  } else if (period === 'H2 Project Awards') {
     const h2Awards = getH2ProjectAwardsYear(data, currentYear);
     if (h2Awards.length === 0) {
       html = '<div class="no-data-msg">No H2 project awards available for this region</div>';
     } else {
       html = renderProjectCards(h2Awards, region, 'H2');
     }
-  } else if (period === 'H2个人奖') {
+  } else if (period === 'H2 Individual Awards') {
     // Non-LATAM individual awards or LATAM 2025 H2 individual
     const individualAwards = getH2IndividualAwardsYear(data, currentYear);
     if (individualAwards.length === 0) {
@@ -1892,7 +1892,7 @@ async function loadSearchData() {
       rankings: unwrapYearData(rankings, targetYear),
       departmental: unwrapYearData(departmental, targetYear)
     };
-    console.log("[Search] Data loaded successfully - global:", !!searchData.global, "H1 count:", searchData.global?.['H1项目奖']?.length, "H2 count:", searchData.global?.['H2项目奖']?.length);
+    console.log("[Search] Data loaded successfully - global:", !!searchData.global, "H1 count:", searchData.global?.['H1 Project Awards']?.length, "H2 count:", searchData.global?.['H2 Project Awards']?.length);
   } catch (error) {
     console.error('Error loading search data:', error);
   }
@@ -1928,8 +1928,8 @@ function performSearch(query, level = 'all') {
   
   // Search Global awards (level: 'global' or 'all')
   if (searchData.global && (level === 'all' || level === 'global')) {
-    const h1Awards = searchData.global['H1项目奖'] || [];
-    const h2Awards = searchData.global['H2项目奖'] || [];
+    const h1Awards = searchData.global['H1 Project Awards'] || [];
+    const h2Awards = searchData.global['H2 Project Awards'] || [];
     const allGlobalAwards = [...h1Awards, ...h2Awards];
     
     allGlobalAwards.forEach(award => {
@@ -1969,8 +1969,8 @@ function performSearch(query, level = 'all') {
       const data = searchData.regional[region];
       if (!data) return;
       
-      const h1Awards = data['H1项目奖'] || [];
-      const h2Awards = data['H2项目奖'] || [];
+      const h1Awards = data['H1 Project Awards'] || [];
+      const h2Awards = data['H2 Project Awards'] || [];
       const allRegionalAwards = [...h1Awards, ...h2Awards];
       
       allRegionalAwards.forEach(award => {
@@ -2000,7 +2000,7 @@ function performSearch(query, level = 'all') {
         }
       });
       
-      const individualAwards = data['H2个人奖'] || [];
+      const individualAwards = data['H2 Individual Awards'] || [];
       individualAwards.forEach(award => {
         if (award.winner_name) {
           const matchName = matchesWord(award.winner_name, searchTerm);

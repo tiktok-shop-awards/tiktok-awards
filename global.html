@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Global Awards - Global E-commerce Recognition Hub</title>
-  <link rel="stylesheet" href="css/main.css?v=20250512k">
+  <link rel="stylesheet" href="css/main.css?v=20260527k">
   <style>
     /* ==================== Global Page Specific Styles ==================== */
     .home-header {
@@ -521,10 +521,10 @@
     </div>
   </div>
 
-<script src="js/auth.js?v=20250514h"></script>
+<script src="js/auth.js?v=20260527k"></script>
   <script src="js/auth-helper-v21.js"></script>
-  <script src="js/award-api.js?v=20260527a"></script>
-  <script src="js/main.js?v=20260527j"></script>
+  <script src="js/award-api.js?v=20260527k"></script>
+  <script src="js/main.js?v=20260527k"></script>
   <script>
     // Global page specific initialization
     let currentHalf = 'H1';
@@ -632,8 +632,8 @@
         console.log('=== GLOBAL PAGE DEBUG ===');
         console.log('globalData loaded:', !!globalData);
         if (globalData) {
-          console.log('H1项目奖 count:', (globalData['H1项目奖'] || []).length);
-          console.log('H2项目奖 count:', (globalData['H2项目奖'] || []).length);
+          console.log('H1 Project Awards count:', (globalData['H1 Project Awards'] || []).length);
+          console.log('H2 Project Awards count:', (globalData['H2 Project Awards'] || []).length);
           console.log('Data keys:', Object.keys(globalData));
         }
         
