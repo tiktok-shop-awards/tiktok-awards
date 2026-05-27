@@ -523,8 +523,8 @@
 
 <script src="js/auth.js?v=20250514h"></script>
   <script src="js/auth-helper-v21.js"></script>
-  <script src="js/award-api.js?v=20260526b"></script>
-  <script src="js/main.js?v=20260526b"></script>
+  <script src="js/award-api.js?v=20260527a"></script>
+  <script src="js/main.js?v=20260527a"></script>
   <script>
     // Global page specific initialization
     let currentHalf = 'H1';
@@ -654,7 +654,7 @@
 
       } catch (error) {
         console.error('Error loading global page:', error);
-        document.getElementById('global-awards').innerHTML = '<p style="color: var(--text-secondary);">Failed to load data. Please try again later.</p>';
+        document.getElementById('global-awards').innerHTML = '<p style="color: var(--text-secondary);">Failed to load data.</p><p style="color: #ff6b6b; font-size: 12px; word-break: break-all;">Error: ' + (error.message || error) + '</p><p style="color: #999; font-size: 11px;">Stack: ' + (error.stack || '').substring(0, 300) + '</p>';
       }
       
       // Handle year change without page reload
