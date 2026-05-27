@@ -1127,29 +1127,45 @@ async function deleteComment(btnEl, commentId) {
         alert('Cannot delete: user identity not available. Please refresh and try again.');
         return;
       }
+      // Show deleting state on the button
+      const commentItem = btnEl.closest('.comment-item');
+      btnEl.textContent = '...';
+      btnEl.disabled = true;
+      
       const res = await fetch(`https://da1e5fb0.aipa.bytedance.net/api/comment/${commentId}?user_id=${encodeURIComponent(userId)}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ user_id: userId })
       });
-      // Optimistic delete: remove from DOM immediately
-      const commentItem = btnEl.closest('.comment-item');
-      if (commentItem) {
-        commentItem.style.transition = 'opacity 0.3s ease';
-        commentItem.style.opacity = '0';
-        setTimeout(() => {
-          commentItem.remove();
-          // Show "no comments" if list is now empty
-          const commentList = document.getElementById('comment-list');
-          if (commentList && !commentList.querySelector('.comment-item')) {
-            commentList.innerHTML = '<div class="no-comments">No comments yet. Be the first!</div>';
-          }
-        }, 300);
-      }
-      _updateCommentCountOnCard(cardId);
-      if (!res.ok) {
+      
+      if (res.ok) {
+        // Server confirmed deletion — remove from DOM
+        if (commentItem) {
+          commentItem.style.transition = 'opacity 0.3s ease';
+          commentItem.style.opacity = '0';
+          setTimeout(() => {
+            commentItem.remove();
+            const commentList = document.getElementById('comment-list');
+            if (commentList && !commentList.querySelector('.comment-item')) {
+              commentList.innerHTML = '<div class="no-comments">No comments yet. Be the first!</div>';
+            }
+          }, 300);
+        }
+        _updateCommentCountOnCard(cardId);
+      } else {
+        // Server rejected — restore button, show inline error
+        btnEl.textContent = '✕';
+        btnEl.disabled = false;
         const errBody = await res.text().catch(() => '');
         console.warn('[deleteComment] Server returned:', res.status, errBody);
+        // Briefly show error on the comment item
+        if (commentItem) {
+          const errHint = document.createElement('div');
+          errHint.style.cssText = 'color:#ff6b6b;font-size:11px;padding:2px 0;';
+          errHint.textContent = 'Delete failed, please try again';
+          commentItem.appendChild(errHint);
+          setTimeout(() => errHint.remove(), 3000);
+        }
       }
     } else {
       // localStorage fallback - remove from DOM
