@@ -1140,9 +1140,12 @@ async function deleteComment(btnEl, commentId) {
       console.log('[deleteComment] Response:', res.status, resText);
       
       if (res.ok) {
-        // Invalidate AwardAPI cache so next open won't show stale data
-        if (cardId && typeof AwardAPI !== 'undefined') {
-          delete AwardAPI._cache[cardId];
+        // Remove deleted comment from AwardAPI cache immediately
+        if (cardId && typeof AwardAPI !== 'undefined' && AwardAPI._cache[cardId]) {
+          const cached = AwardAPI._cache[cardId];
+          if (cached.comments) {
+            cached.comments = cached.comments.filter(c => (c._id || c.id) !== commentId);
+          }
         }
         // Remove from DOM directly
         if (commentItem) {
