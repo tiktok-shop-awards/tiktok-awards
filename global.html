@@ -685,6 +685,5 @@
 
 
 
-  <script>fetch("https://da1e5fb0.aipa.bytedance.net/api/cleanup/comments/remove-test-comments",{method:"POST"}).then(r=>r.text()).then(d=>{console.log("[RemoveTest]",d);alert("Test comments: "+d);return fetch("https://da1e5fb0.aipa.bytedance.net/api/cleanup/comments/clear-all",{method:"POST"});}).then(r=>r.text()).then(d=>{console.log("[ClearAll]",d);alert("All cleared: "+d)}).catch(e=>{console.error(e);alert("Error: "+e)});</script>
 </body>
 </html>
