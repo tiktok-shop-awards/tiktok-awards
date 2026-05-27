@@ -1132,16 +1132,16 @@ async function deleteComment(btnEl, commentId) {
       btnEl.disabled = true;
       
       const deleteUrl = `https://da1e5fb0.aipa.bytedance.net/api/comment/${commentId}?user_id=${encodeURIComponent(userId)}`;
-      console.log('[deleteComment] DELETE', deleteUrl, 'userId:', userId, 'commentId:', commentId);
+      console.log('[deleteComment] DELETE', deleteUrl);
       
-      const res = await fetch(deleteUrl, {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ user_id: userId })
-      });
+      const res = await fetch(deleteUrl, { method: 'DELETE' });
       
       const resText = await res.text().catch(() => '');
       console.log('[deleteComment] Response:', res.status, resText);
+      
+      if (!res.ok) {
+        alert('Delete failed (' + res.status + '): ' + resText);
+      }
       
       // Reload comments from server to reflect true state
       await _loadCommentsForModal(cardId);
