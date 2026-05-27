@@ -1132,15 +1132,20 @@ async function deleteComment(btnEl, commentId) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ user_id: userId })
       });
-      // Remove from DOM immediately (optimistic update)
+      // Optimistic delete: remove from DOM immediately
       const commentItem = btnEl.closest('.comment-item');
       if (commentItem) {
         commentItem.style.transition = 'opacity 0.3s ease';
         commentItem.style.opacity = '0';
-        setTimeout(() => commentItem.remove(), 300);
+        setTimeout(() => {
+          commentItem.remove();
+          // Show "no comments" if list is now empty
+          const commentList = document.getElementById('comment-list');
+          if (commentList && !commentList.querySelector('.comment-item')) {
+            commentList.innerHTML = '<div class="no-comments">No comments yet. Be the first!</div>';
+          }
+        }, 300);
       }
-      // Refresh comment list from server
-      if (cardId) await _loadCommentsForModal(cardId);
       _updateCommentCountOnCard(cardId);
       if (!res.ok) {
         const errBody = await res.text().catch(() => '');
