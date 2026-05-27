@@ -1140,8 +1140,11 @@ async function deleteComment(btnEl, commentId) {
       console.log('[deleteComment] Response:', res.status, resText);
       
       if (res.ok) {
-        // Remove from DOM directly — don't reload from server
-        // (server may return stale data if queried too quickly)
+        // Invalidate AwardAPI cache so next open won't show stale data
+        if (cardId && typeof AwardAPI !== 'undefined') {
+          delete AwardAPI._cache[cardId];
+        }
+        // Remove from DOM directly
         if (commentItem) {
           commentItem.style.transition = 'opacity 0.3s ease';
           commentItem.style.opacity = '0';
