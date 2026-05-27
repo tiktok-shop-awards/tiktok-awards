@@ -1128,6 +1128,7 @@ async function deleteComment(btnEl, commentId) {
         return;
       }
       // Show deleting state
+      const commentItem = btnEl.closest('.comment-item');
       btnEl.textContent = '...';
       btnEl.disabled = true;
       
@@ -1135,16 +1136,28 @@ async function deleteComment(btnEl, commentId) {
       console.log('[deleteComment] DELETE', deleteUrl);
       
       const res = await fetch(deleteUrl, { method: 'DELETE' });
-      
       const resText = await res.text().catch(() => '');
       console.log('[deleteComment] Response:', res.status, resText);
       
-      if (!res.ok) {
+      if (res.ok) {
+        // Remove from DOM directly — don't reload from server
+        // (server may return stale data if queried too quickly)
+        if (commentItem) {
+          commentItem.style.transition = 'opacity 0.3s ease';
+          commentItem.style.opacity = '0';
+          setTimeout(() => {
+            commentItem.remove();
+            const commentList = document.getElementById('comment-list');
+            if (commentList && !commentList.querySelector('.comment-item')) {
+              commentList.innerHTML = '<div class="no-comments">No comments yet. Be the first!</div>';
+            }
+          }, 300);
+        }
+      } else {
         alert('Delete failed (' + res.status + '): ' + resText);
+        btnEl.textContent = '✕';
+        btnEl.disabled = false;
       }
-      
-      // Reload comments from server to reflect true state
-      await _loadCommentsForModal(cardId);
     } else {
       // localStorage fallback - remove from DOM
       const commentItem = btnEl.closest('.comment-item');
