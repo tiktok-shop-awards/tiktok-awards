@@ -1133,20 +1133,18 @@ async function deleteComment(btnEl, commentId) {
         body: JSON.stringify({ user_id: userId })
       });
       // Remove from DOM immediately (optimistic update)
-        const commentItem = btnEl.closest('.comment-item');
-        if (commentItem) {
-          commentItem.style.transition = 'opacity 0.3s ease';
-          commentItem.style.opacity = '0';
-          setTimeout(() => commentItem.remove(), 300);
-        }
-        // Refresh comment list from server
-        if (cardId) await _loadCommentsForModal(cardId);
-        _updateCommentCountOnCard(cardId);
-        if (!res.ok) {
-          const errBody = await res.text().catch(() => '');
-          console.warn('[deleteComment] Server returned:', res.status, errBody);
-          // Deletion likely succeeded even if response was odd, refresh to confirm
-        }
+      const commentItem = btnEl.closest('.comment-item');
+      if (commentItem) {
+        commentItem.style.transition = 'opacity 0.3s ease';
+        commentItem.style.opacity = '0';
+        setTimeout(() => commentItem.remove(), 300);
+      }
+      // Refresh comment list from server
+      if (cardId) await _loadCommentsForModal(cardId);
+      _updateCommentCountOnCard(cardId);
+      if (!res.ok) {
+        const errBody = await res.text().catch(() => '');
+        console.warn('[deleteComment] Server returned:', res.status, errBody);
       }
     } else {
       // localStorage fallback - remove from DOM
@@ -1154,7 +1152,6 @@ async function deleteComment(btnEl, commentId) {
       if (commentItem) commentItem.remove();
     }
   } catch (e) {
-    console.error('[deleteComment] Error:', e);
     console.error('[deleteComment] Error:', e);
   }
 }
