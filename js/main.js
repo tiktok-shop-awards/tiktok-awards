@@ -1597,7 +1597,7 @@ function renderRegionalAwards(data, containerId, period, region) {
     
     if (isQuarterProjectRegion) {
       // FS/POP: 显示季度项目奖
-      const quarterKey = `${period}项目奖`;
+      const quarterKey = `${period} Project Awards`;
       const quarterAwards = data[quarterKey] || [];
       if (quarterAwards.length === 0) {
         html = `<div class="no-data-msg">No ${period} project awards available</div>`;
