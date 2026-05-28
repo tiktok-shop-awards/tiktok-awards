@@ -434,9 +434,9 @@
 
   <!-- Feishu H5 SDK -->
   <script src="js/auth.js"></script>
-  <script src="js/auth-helper-v21.js"></script>
-  <script src="js/award-api.js?v=20260526b"></script>
-  <script src="js/main.js?v=20260526b"></script>
+  <script src="js/auth-helper-v21.js?v=20260528a"></script>
+  <script src="js/award-api.js?v=20260528a"></script>
+  <script src="js/main.js?v=20260528a"></script>
   <script>
     // ===== Departmental Page State =====
     let departmentalData = null;
@@ -521,7 +521,7 @@
     // ===== Load Data =====
     async function loadAndRenderDepartmentalAwards() {
       try {
-        const response = await fetch('data/departmental.json?v=20260512a');
+        const response = await fetch('data/departmental.json?v=20260528a');
         if (!response.ok) throw new Error('Failed to load departmental data');
         departmentalData = await response.json();
       } catch (error) {

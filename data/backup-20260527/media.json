@@ -1,0 +1,16 @@
+{
+  "videos": [
+    {
+      "id": "featured-2026",
+      "title": "All Hands 颁奖典礼 (50p)",
+      "description": "2026 H1 Global E-commerce All-hands Award Ceremony Highlights",
+      "type": "featured",
+      "source": "feishu",
+      "url": "https://bytedance.larkoffice.com/file/Cc0rbwAHmo04Srx9SdqcqQhOnrg",
+      "duration": "50mins",
+      "badge": "Featured",
+      "uploadedAt": "2026-04-17",
+      "thumbnail": "images/video-cover-featured.png"
+    }
+  ]
+}

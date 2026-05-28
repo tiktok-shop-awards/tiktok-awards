@@ -237,13 +237,13 @@ async function loadData(level, region = null, year = null) {
     let dataFile;
     
     if (level === 'global') {
-      dataFile = 'data/global.json';
+      dataFile = 'data/global.json?v=20260528a';
     } else if (level === 'regional' && region) {
-      dataFile = `data/${region}.json`;
+      dataFile = 'data/' + region + '.json?v=20260528a';
     } else if (level === 'fs') {
-      dataFile = 'data/fs.json';
+      dataFile = 'data/fs.json?v=20260528a';
     } else if (level === 'pop') {
-      dataFile = 'data/pop.json';
+      dataFile = 'data/pop.json?v=20260528a';
     }
     
     const response = await fetch(dataFile);
@@ -318,7 +318,7 @@ async function loadData(level, region = null, year = null) {
 
 async function loadRankings(year = null) {
   try {
-    const response = await fetch('data/rankings.json?v=20260512a');
+    const response = await fetch('data/rankings.json?v=20260528a');
     if (!response.ok) throw new Error('Failed to load rankings');
     
     const data = await response.json();
@@ -1871,13 +1871,13 @@ function unwrapYearData(data, year) {
 async function loadSearchData() {
   try {
     const [global, us, eu, sea, latam, rankings, departmental] = await Promise.all([
-      fetch('data/global.json?v=20260512a').then(r => r.json()).catch(() => null),
-      fetch('data/us.json?v=20260512a').then(r => r.json()).catch(() => null),
-      fetch('data/eu.json?v=20260512a').then(r => r.json()).catch(() => null),
-      fetch('data/sea.json?v=20260512a').then(r => r.json()).catch(() => null),
-      fetch('data/latam.json?v=20260512a').then(r => r.json()).catch(() => null),
-      fetch('data/rankings.json?v=20260512a').then(r => r.json()).catch(() => null),
-      fetch('data/departmental.json?v=20260512a').then(r => r.json()).catch(() => null)
+      fetch('data/global.json?v=20260528a').then(r => r.json()).catch(() => null),
+      fetch('data/us.json?v=20260528a').then(r => r.json()).catch(() => null),
+      fetch('data/eu.json?v=20260528a').then(r => r.json()).catch(() => null),
+      fetch('data/sea.json?v=20260528a').then(r => r.json()).catch(() => null),
+      fetch('data/latam.json?v=20260528a').then(r => r.json()).catch(() => null),
+      fetch('data/rankings.json?v=20260528a').then(r => r.json()).catch(() => null),
+      fetch('data/departmental.json?v=20260528a').then(r => r.json()).catch(() => null)
     ]);
     
     const targetYear = AppData.currentYear || '2025';
