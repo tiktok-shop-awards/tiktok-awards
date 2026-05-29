@@ -1,4 +1,4 @@
-// MAIN.JS VERSION: 20260529a
+// MAIN.JS VERSION: 20260529b
 // TikTok Shop Stars Awards - Main JavaScript
 
 // ==================== Language System ====================
@@ -26,8 +26,8 @@ const I18N = {
       'label.members': 'Members', 'label.bonus': 'Bonus',
       'label.department': 'Department', 'label.reason': 'Reason',
       'placeholder.comment': 'Write a comment...',
-      'btn.send': 'Send', 'btn.delete.confirm': I18N.t('btn.delete.confirm'),
-      'no.data': 'No data available', 'no.comments': I18N.t('no.comments'),
+      'btn.send': 'Send', 'btn.delete.confirm': 'Delete this comment?',
+      'no.data': 'No data available', 'no.comments': 'No comments yet. Be the first!',
       'stats.projects': 'Projects', 'stats.members': 'Team Members',
       'stats.individual': 'Individual Awards', 'stats.bonus': 'Total Bonus',
       'search.placeholder': 'Search awards...',
