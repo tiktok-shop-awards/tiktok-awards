@@ -317,7 +317,25 @@
       padding: var(--spacing-xxl);
       font-size: 14px;
     }
-  </style>
+  
+.lang-toggle {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+  white-space: nowrap;
+  margin-left: 12px;
+}
+.lang-toggle:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+</style>
 </head>
 <body>
   <div class="page-wrapper">
@@ -339,6 +357,7 @@
           <a href="award-structure.html" class="nav-item">Award Structure & Timeline</a>
           <a href="media-gallery.html" class="nav-item">Media Gallery</a>
         </nav>
+          <button class="lang-toggle" onclick="I18N.toggle()" id="langToggle"></button>
       </div>
     </header>
 
@@ -434,9 +453,9 @@
 
   <!-- Feishu H5 SDK -->
   <script src="js/auth.js"></script>
-  <script src="js/auth-helper-v21.js?v=20260528a"></script>
-  <script src="js/award-api.js?v=20260528a"></script>
-  <script src="js/main.js?v=20260528a"></script>
+  <script src="js/auth-helper-v21.js?v=20260529a"></script>
+  <script src="js/award-api.js?v=20260529a"></script>
+  <script src="js/main.js?v=20260529a"></script>
   <script>
     // ===== Departmental Page State =====
     let departmentalData = null;
@@ -521,7 +540,7 @@
     // ===== Load Data =====
     async function loadAndRenderDepartmentalAwards() {
       try {
-        const response = await fetch('data/departmental.json?v=20260528a');
+        const response = await fetch(I18N.dataPath('data/departmental.json?v=20260529a'));
         if (!response.ok) throw new Error('Failed to load departmental data');
         departmentalData = await response.json();
       } catch (error) {

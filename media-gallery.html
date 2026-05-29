@@ -813,7 +813,25 @@
     }
     
     @keyframes spin { to { transform: rotate(360deg); } }
-  </style>
+  
+.lang-toggle {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+  white-space: nowrap;
+  margin-left: 12px;
+}
+.lang-toggle:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+</style>
 </head>
 <body>
   <!-- Auth Overlay -->
@@ -842,6 +860,7 @@
           <a href="award-structure.html" class="nav-item">Award Structure & Timeline</a>
           <a href="media-gallery.html" class="nav-item active">Media Gallery</a>
         </nav>
+          <button class="lang-toggle" onclick="I18N.toggle()" id="langToggle"></button>
       </div>
     </header>
 
@@ -895,8 +914,8 @@
   <!-- Feishu H5 SDK -->
   <script src="https://lf1-cdn-tos.bytegoofy.com/goofy/lark/op/h5-js-sdk-1.5.16.js"></script>
   <script src="js/auth.js"></script>
-  <script src="js/auth-helper-v21.js?v=20260528a"></script>
-  <script src="js/main.js?v=20260528a"></script>
+  <script src="js/auth-helper-v21.js?v=20260529a"></script>
+  <script src="js/main.js?v=20260529a"></script>
   <script>
     // Video data
     let videosData = {
@@ -917,7 +936,7 @@
     // Load videos from JSON
     async function loadVideos() {
       try {
-        const response = await fetch('data/media.json?v=20260528a');
+        const response = await fetch(I18N.dataPath('data/media.json?v=20260529a'));
         if (response.ok) {
           videosData = await response.json();
           renderVideos();

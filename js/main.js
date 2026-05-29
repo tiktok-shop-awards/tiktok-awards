@@ -1,5 +1,91 @@
-// MAIN.JS VERSION: 20260527k
+// MAIN.JS VERSION: 20260529a
 // TikTok Shop Stars Awards - Main JavaScript
+
+// ==================== Language System ====================
+const I18N = {
+  lang: localStorage.getItem('award_lang') || 'en',
+  KEY_MAP: {
+    'H1项目奖': 'H1 Project Awards', 'H2项目奖': 'H2 Project Awards',
+    'H2个人奖': 'H2 Individual Awards', 'Q1项目奖': 'Q1 Project Awards',
+    'Q2项目奖': 'Q2 Project Awards', 'Q3项目奖': 'Q3 Project Awards',
+    'Q4项目奖': 'Q4 Project Awards',
+  },
+  // UI text translations
+  UI: {
+    en: {
+      'nav.global': 'Global Awards', 'nav.regional': 'Regional Awards',
+      'nav.structure': 'Award Structure', 'nav.media': 'Media Gallery',
+      'nav.departmental': 'Departmental Awards',
+      'tab.h1': 'H1 Project Awards', 'tab.h2': 'H2 Project Awards',
+      'tab.individual': 'H2 Individual Awards',
+      'tab.q1': 'Q1 Project Awards', 'tab.q2': 'Q2 Project Awards',
+      'tab.q3': 'Q3 Project Awards', 'tab.q4': 'Q4 Project Awards',
+      'tab.bfcm': 'Q4 BFCM Stellar Contributors',
+      'btn.lang': '中文', 'btn.like': 'Like', 'btn.comment': 'Comment',
+      'btn.delete': 'Delete', 'btn.confirm': 'Confirm',
+      'label.members': 'Members', 'label.bonus': 'Bonus',
+      'label.department': 'Department', 'label.reason': 'Reason',
+      'placeholder.comment': 'Write a comment...',
+      'btn.send': 'Send', 'btn.delete.confirm': I18N.t('btn.delete.confirm'),
+      'no.data': 'No data available', 'no.comments': I18N.t('no.comments'),
+      'stats.projects': 'Projects', 'stats.members': 'Team Members',
+      'stats.individual': 'Individual Awards', 'stats.bonus': 'Total Bonus',
+      'search.placeholder': 'Search awards...',
+    },
+    zh: {
+      'nav.global': '全球奖项', 'nav.regional': '区域奖项',
+      'nav.structure': '奖项结构', 'nav.media': '媒体画廊',
+      'nav.departmental': '部门奖项',
+      'tab.h1': 'H1项目奖', 'tab.h2': 'H2项目奖',
+      'tab.individual': 'H2个人奖',
+      'tab.q1': 'Q1项目奖', 'tab.q2': 'Q2项目奖',
+      'tab.q3': 'Q3项目奖', 'tab.q4': 'Q4项目奖',
+      'tab.bfcm': 'Q4黑五杰出贡献',
+      'btn.lang': 'EN', 'btn.like': '点赞', 'btn.comment': '评论',
+      'btn.delete': '删除', 'btn.confirm': '确认',
+      'label.members': '成员', 'label.bonus': '奖金',
+      'label.department': '部门', 'label.reason': '获奖理由',
+      'placeholder.comment': '写评论...',
+      'btn.send': '发送', 'btn.delete.confirm': '删除这条评论？',
+      'no.data': '暂无数据', 'no.comments': '还没有评论，来第一个！',
+      'stats.projects': '项目数', 'stats.members': '团队成员',
+      'stats.individual': '个人奖', 'stats.bonus': '奖金总额',
+      'search.placeholder': '搜索奖项...',
+    }
+  },
+  t(key) { return (this.UI[this.lang] || this.UI.en)[key] || key; },
+  toggle() {
+    this.lang = this.lang === 'en' ? 'zh' : 'en';
+    localStorage.setItem('award_lang', this.lang);
+    location.reload();
+  },
+  dataPath(path) {
+    // Returns zh/ prefixed path when in Chinese mode
+    if (this.lang === 'zh') {
+      return path.replace('data/', 'data/zh/');
+    }
+    return path;
+  },
+  normalizeKeys(data) {
+    if (!data || typeof data !== 'object') return data;
+    const result = {};
+    for (const [key, val] of Object.entries(data)) {
+      const newKey = this.KEY_MAP[key] || key;
+      result[newKey] = val;
+    }
+    return result;
+  },
+  formatBonus(amount, currency) {
+    if (this.lang === 'zh') {
+      if (currency === 'USD' || (!currency && amount > 10000)) {
+        const cny = Math.round(amount * 7.1);
+        return `¥${cny.toLocaleString()}`;
+      }
+      return `¥${amount.toLocaleString()}`;
+    }
+    return `$${amount.toLocaleString()}`;
+  }
+};
 
 // ==================== Global Data Store ====================
 const AppData = {
@@ -237,19 +323,21 @@ async function loadData(level, region = null, year = null) {
     let dataFile;
     
     if (level === 'global') {
-      dataFile = 'data/global.json?v=20260528a';
+      dataFile = I18N.dataPath('data/global.json?v=20260529a');
     } else if (level === 'regional' && region) {
-      dataFile = 'data/' + region + '.json?v=20260528a';
+      dataFile = I18N.dataPath('data/' + region + '.json?v=20260529a');
     } else if (level === 'fs') {
-      dataFile = 'data/fs.json?v=20260528a';
+      dataFile = I18N.dataPath('data/fs.json?v=20260529a');
     } else if (level === 'pop') {
-      dataFile = 'data/pop.json?v=20260528a';
+      dataFile = I18N.dataPath('data/pop.json?v=20260529a');
     }
     
     const response = await fetch(dataFile);
     if (!response.ok) throw new Error(`Failed to load ${dataFile}`);
     
-    const data = await response.json();
+    let data = await response.json();
+    // Normalize Chinese keys to English when loading zh data
+    data = I18N.normalizeKeys(data);
     
     // 根据年份筛选数据
     const targetYear = year || AppData.currentYear || '2025';
@@ -318,7 +406,7 @@ async function loadData(level, region = null, year = null) {
 
 async function loadRankings(year = null) {
   try {
-    const response = await fetch('data/rankings.json?v=20260528a');
+    const response = await fetch(I18N.dataPath('data/rankings.json?v=20260529a'));
     if (!response.ok) throw new Error('Failed to load rankings');
     
     const data = await response.json();
@@ -1109,7 +1197,7 @@ async function deleteComment(btnEl, commentId) {
   const cardId = modal ? modal.dataset.cardId : '';
   
   // Confirm before delete
-  if (!confirm('Delete this comment?')) return;
+  if (!confirm(I18N.t('btn.delete.confirm'))) return;
   
   // If no commentId (localStorage mode), remove from DOM directly
   if (!commentId) {
@@ -1871,13 +1959,13 @@ function unwrapYearData(data, year) {
 async function loadSearchData() {
   try {
     const [global, us, eu, sea, latam, rankings, departmental] = await Promise.all([
-      fetch('data/global.json?v=20260528a').then(r => r.json()).catch(() => null),
-      fetch('data/us.json?v=20260528a').then(r => r.json()).catch(() => null),
-      fetch('data/eu.json?v=20260528a').then(r => r.json()).catch(() => null),
-      fetch('data/sea.json?v=20260528a').then(r => r.json()).catch(() => null),
-      fetch('data/latam.json?v=20260528a').then(r => r.json()).catch(() => null),
-      fetch('data/rankings.json?v=20260528a').then(r => r.json()).catch(() => null),
-      fetch('data/departmental.json?v=20260528a').then(r => r.json()).catch(() => null)
+      fetch(I18N.dataPath('data/global.json?v=20260529a')).then(r => r.json()).then(I18N.normalizeKeys.bind(I18N)).catch(() => null),
+      fetch(I18N.dataPath('data/us.json?v=20260529a')).then(r => r.json()).then(I18N.normalizeKeys.bind(I18N)).catch(() => null),
+      fetch(I18N.dataPath('data/eu.json?v=20260529a')).then(r => r.json()).then(I18N.normalizeKeys.bind(I18N)).catch(() => null),
+      fetch(I18N.dataPath('data/sea.json?v=20260529a')).then(r => r.json()).then(I18N.normalizeKeys.bind(I18N)).catch(() => null),
+      fetch(I18N.dataPath('data/latam.json?v=20260529a')).then(r => r.json()).then(I18N.normalizeKeys.bind(I18N)).catch(() => null),
+      fetch(I18N.dataPath('data/rankings.json?v=20260529a')).then(r => r.json()).then(I18N.normalizeKeys.bind(I18N)).catch(() => null),
+      fetch(I18N.dataPath('data/departmental.json?v=20260529a')).then(r => r.json()).then(I18N.normalizeKeys.bind(I18N)).catch(() => null)
     ]);
     
     const targetYear = AppData.currentYear || '2025';
@@ -2127,6 +2215,10 @@ if (isHomePage) {
   console.log('Home page detected - using page-specific initialization');
 } else {
   document.addEventListener('DOMContentLoaded', () => {
+    // Initialize language toggle
+    const langBtn = document.getElementById('langToggle');
+    if (langBtn) langBtn.textContent = I18N.t('btn.lang');
+    
     highlightNavigation();
     initYearNavigation();
     initRegionNavigation();
