@@ -1,4 +1,4 @@
-// MAIN.JS VERSION: 20260529b
+// MAIN.JS VERSION: 20260529c
 // TikTok Shop Stars Awards - Main JavaScript
 
 // ==================== Language System ====================
@@ -84,6 +84,120 @@ const I18N = {
       return `¥${amount.toLocaleString()}`;
     }
     return `$${amount.toLocaleString()}`;
+  },
+  // Apply language to all UI elements on the page
+  applyLanguage() {
+    const lang = this.lang;
+    // Navigation links (identical across all pages)
+    const navMap = {
+      'index.html': lang === 'zh' ? '首页' : 'Home',
+      'global.html': lang === 'zh' ? '全球' : 'Global',
+      'regional.html': lang === 'zh' ? '区域' : 'Regional',
+      'departmental.html': lang === 'zh' ? '部门' : 'Departmental',
+      'award-structure.html': lang === 'zh' ? '奖项结构' : 'Award Structure',
+      'media-gallery.html': lang === 'zh' ? '媒体' : 'Media Gallery',
+      'profile.html': lang === 'zh' ? '个人' : 'Profile',
+    };
+    document.querySelectorAll('.nav-item').forEach(a => {
+      const href = a.getAttribute('href');
+      if (navMap[href]) a.textContent = navMap[href];
+    });
+    // Language toggle button
+    const langBtn = document.getElementById('langToggle');
+    if (langBtn) langBtn.textContent = this.t('btn.lang');
+    // Page titles
+    const homeTitle = document.querySelector('.home-title');
+    if (homeTitle) {
+      const page = window.location.pathname.split('/').pop();
+      const titleMap = {
+        'global.html': lang === 'zh' ? '全球奖项' : 'Global Awards',
+        'regional.html': lang === 'zh' ? '区域奖项' : 'Regional Awards',
+        'index.html': lang === 'zh' ? '全球电商荣誉中心' : 'Global E-commerce Recognition Hub',
+        'departmental.html': lang === 'zh' ? '部门奖项' : 'Departmental Awards',
+      };
+      if (titleMap[page]) homeTitle.textContent = titleMap[page];
+    }
+    // Period buttons on global.html
+    document.querySelectorAll('.period-btn').forEach(btn => {
+      const period = btn.dataset.period;
+      const label = btn.querySelector('.period-label');
+      if (label && period === 'H1') {
+        label.textContent = lang === 'zh' ? '全球电商影响力项目' : 'Global E-commerce Impactful Projects';
+      } else if (label && period === 'H2') {
+        label.textContent = lang === 'zh' ? '全球电商奖项' : 'Global E-commerce Awards';
+      }
+    });
+    // Section titles that contain hardcoded English
+    document.querySelectorAll('.section-title, .section-title-main').forEach(el => {
+      const orig = el.textContent.trim();
+      const sectionMap = {
+        'Award Structure': '奖项结构',
+        'Awards Calendar 2025': '2025年奖项日历',
+        'Awards Calendar 2026': '2026年奖项日历',
+        'Media Gallery': '媒体画廊',
+        '🏆 Top 3': '🏆 前三名',
+      };
+      if (lang === 'zh' && sectionMap[orig]) {
+        el.textContent = sectionMap[orig];
+      } else if (lang === 'en') {
+        const reverseMap = {};
+        for (const [k, v] of Object.entries(sectionMap)) reverseMap[v] = k;
+        if (reverseMap[orig]) el.textContent = reverseMap[orig];
+      }
+    });
+    // Search placeholder
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) searchInput.placeholder = this.t('search.placeholder');
+    // Stat labels on index.html
+    const statLabelMap = {
+      'Global Projects': lang === 'zh' ? '全球项目' : 'Global Projects',
+      'Regional Projects': lang === 'zh' ? '区域项目' : 'Regional Projects',
+      'Individual Awards': lang === 'zh' ? '个人奖' : 'Individual Awards',
+      'Total Bonus': lang === 'zh' ? '奖金总额' : 'Total Bonus',
+      'Team Members': lang === 'zh' ? '团队成员' : 'Team Members',
+      'Regions': lang === 'zh' ? '区域数' : 'Regions',
+    };
+    document.querySelectorAll('.stat-label').forEach(el => {
+      const orig = el.textContent.trim();
+      if (statLabelMap[orig]) el.textContent = statLabelMap[orig];
+    });
+    // Modal title
+    const modalTitle = document.getElementById('modal-title');
+    if (modalTitle && modalTitle.textContent.trim() === 'Team Members') {
+      modalTitle.textContent = lang === 'zh' ? '团队成员' : 'Team Members';
+    }
+    // Regional page: title, coming soon, tab subtitles
+    const regionalTitle = document.querySelector('.regional-title');
+    if (regionalTitle && regionalTitle.textContent.trim() === 'Regional Awards') {
+      regionalTitle.textContent = lang === 'zh' ? '区域奖项' : 'Regional Awards';
+    }
+    const comingSoonTags = document.querySelectorAll('.coming-soon-tag');
+    comingSoonTags.forEach(el => {
+      if (el.textContent.includes('Coming Soon')) {
+        el.textContent = lang === 'zh' ? '· 即将推出' : '· Coming Soon';
+      }
+    });
+    // Award type tab subtitles
+    document.querySelectorAll('.btn-subtitle').forEach(el => {
+      const subMap = {
+        'Impactful XFN Projects': lang === 'zh' ? '跨职能影响力项目' : 'Impactful XFN Projects',
+        'Stellar Contributors': lang === 'zh' ? '杰出贡献者' : 'Stellar Contributors',
+        'Project Awards': lang === 'zh' ? '项目奖' : 'Project Awards',
+        'Contributors': lang === 'zh' ? '贡献者' : 'Contributors',
+      };
+      const orig = el.textContent.trim();
+      if (subMap[orig]) el.textContent = subMap[orig];
+    });
+    // Regional awards dynamic title
+    const regAwardsTitle = document.getElementById('regional-awards-title');
+    if (regAwardsTitle) {
+      const t = regAwardsTitle.textContent;
+      if (lang === 'zh') {
+        regAwardsTitle.textContent = t.replace('Regional Awards', '区域奖项');
+      } else {
+        regAwardsTitle.textContent = t.replace('区域奖项', 'Regional Awards');
+      }
+    }
   }
 };
 
@@ -323,13 +437,13 @@ async function loadData(level, region = null, year = null) {
     let dataFile;
     
     if (level === 'global') {
-      dataFile = I18N.dataPath('data/global.json?v=20260529a');
+      dataFile = I18N.dataPath('data/global.json?v=20260529c');
     } else if (level === 'regional' && region) {
-      dataFile = I18N.dataPath('data/' + region + '.json?v=20260529a');
+      dataFile = I18N.dataPath('data/' + region + '.json?v=20260529c');
     } else if (level === 'fs') {
-      dataFile = I18N.dataPath('data/fs.json?v=20260529a');
+      dataFile = I18N.dataPath('data/fs.json?v=20260529c');
     } else if (level === 'pop') {
-      dataFile = I18N.dataPath('data/pop.json?v=20260529a');
+      dataFile = I18N.dataPath('data/pop.json?v=20260529c');
     }
     
     const response = await fetch(dataFile);
@@ -406,7 +520,7 @@ async function loadData(level, region = null, year = null) {
 
 async function loadRankings(year = null) {
   try {
-    const response = await fetch(I18N.dataPath('data/rankings.json?v=20260529a'));
+    const response = await fetch(I18N.dataPath('data/rankings.json?v=20260529c'));
     if (!response.ok) throw new Error('Failed to load rankings');
     
     const data = await response.json();
@@ -1959,13 +2073,13 @@ function unwrapYearData(data, year) {
 async function loadSearchData() {
   try {
     const [global, us, eu, sea, latam, rankings, departmental] = await Promise.all([
-      fetch(I18N.dataPath('data/global.json?v=20260529a')).then(r => r.json()).then(I18N.normalizeKeys.bind(I18N)).catch(() => null),
-      fetch(I18N.dataPath('data/us.json?v=20260529a')).then(r => r.json()).then(I18N.normalizeKeys.bind(I18N)).catch(() => null),
-      fetch(I18N.dataPath('data/eu.json?v=20260529a')).then(r => r.json()).then(I18N.normalizeKeys.bind(I18N)).catch(() => null),
-      fetch(I18N.dataPath('data/sea.json?v=20260529a')).then(r => r.json()).then(I18N.normalizeKeys.bind(I18N)).catch(() => null),
-      fetch(I18N.dataPath('data/latam.json?v=20260529a')).then(r => r.json()).then(I18N.normalizeKeys.bind(I18N)).catch(() => null),
-      fetch(I18N.dataPath('data/rankings.json?v=20260529a')).then(r => r.json()).then(I18N.normalizeKeys.bind(I18N)).catch(() => null),
-      fetch(I18N.dataPath('data/departmental.json?v=20260529a')).then(r => r.json()).then(I18N.normalizeKeys.bind(I18N)).catch(() => null)
+      fetch(I18N.dataPath('data/global.json?v=20260529c')).then(r => r.json()).then(I18N.normalizeKeys.bind(I18N)).catch(() => null),
+      fetch(I18N.dataPath('data/us.json?v=20260529c')).then(r => r.json()).then(I18N.normalizeKeys.bind(I18N)).catch(() => null),
+      fetch(I18N.dataPath('data/eu.json?v=20260529c')).then(r => r.json()).then(I18N.normalizeKeys.bind(I18N)).catch(() => null),
+      fetch(I18N.dataPath('data/sea.json?v=20260529c')).then(r => r.json()).then(I18N.normalizeKeys.bind(I18N)).catch(() => null),
+      fetch(I18N.dataPath('data/latam.json?v=20260529c')).then(r => r.json()).then(I18N.normalizeKeys.bind(I18N)).catch(() => null),
+      fetch(I18N.dataPath('data/rankings.json?v=20260529c')).then(r => r.json()).then(I18N.normalizeKeys.bind(I18N)).catch(() => null),
+      fetch(I18N.dataPath('data/departmental.json?v=20260529c')).then(r => r.json()).then(I18N.normalizeKeys.bind(I18N)).catch(() => null)
     ]);
     
     const targetYear = AppData.currentYear || '2025';
@@ -2215,9 +2329,8 @@ if (isHomePage) {
   console.log('Home page detected - using page-specific initialization');
 } else {
   document.addEventListener('DOMContentLoaded', () => {
-    // Initialize language toggle
-    const langBtn = document.getElementById('langToggle');
-    if (langBtn) langBtn.textContent = I18N.t('btn.lang');
+    // Apply language to all UI elements
+    I18N.applyLanguage();
     
     highlightNavigation();
     initYearNavigation();
