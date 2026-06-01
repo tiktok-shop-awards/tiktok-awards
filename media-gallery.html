@@ -920,7 +920,7 @@
     // Load videos from JSON
     async function loadVideos() {
       try {
-        const response = await fetch(I18N.dataPath('data/media.json?v=20260529a'));
+        const response = await fetch('data/media.json?v=20260601a');
         if (response.ok) {
           videosData = await response.json();
           renderVideos();

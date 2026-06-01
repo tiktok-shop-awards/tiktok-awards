@@ -524,7 +524,7 @@
     // ===== Load Data =====
     async function loadAndRenderDepartmentalAwards() {
       try {
-        const response = await fetch(I18N.dataPath('data/departmental.json?v=20260529a'));
+        const response = await fetch('data/departmental.json?v=20260601a');
         if (!response.ok) throw new Error('Failed to load departmental data');
         departmentalData = await response.json();
       } catch (error) {
