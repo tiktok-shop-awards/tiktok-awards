@@ -375,22 +375,6 @@
     
     @keyframes spin { to { transform: rotate(360deg); } }
   
-.lang-toggle {
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.3);
-  color: #fff;
-  padding: 6px 14px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 600;
-  transition: all 0.2s;
-  white-space: nowrap;
-  margin-left: 12px;
-}
-.lang-toggle:hover {
-  background: rgba(255,255,255,0.2);
-}
 
 </style>
 </head>
@@ -416,7 +400,6 @@
           <a href="award-structure.html" class="nav-item">Award Structure & Timeline</a>
           <a href="media-gallery.html" class="nav-item">Media Gallery</a>
         </nav>
-          <button class="lang-toggle" onclick="I18N.toggle()" id="langToggle"></button>
       </div>
     </header>
 
@@ -543,7 +526,7 @@
 <script src="js/auth.js?v=20260527k"></script>
   <script src="js/auth-helper-v21.js?v=20260529a"></script>
   <script src="js/award-api.js?v=20260529a"></script>
-  <script src="js/main.js?v=20260529c"></script>
+  <script src="js/main.js?v=20260601a"></script>
   <script>
     // Global page specific initialization
     let currentHalf = 'H1';
