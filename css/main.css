@@ -452,6 +452,25 @@ img {
   margin-top: auto;
 }
 
+.podium-item.podium-tied {
+  height: auto;
+  min-height: 220px;
+}
+
+.podium-item.podium-tied .podium-rank {
+  font-size: 14px;
+  color: var(--accent-color);
+  letter-spacing: 0.5px;
+}
+
+.podium-item.podium-tied .podium-name {
+  font-size: 13px;
+  line-height: 1.5;
+  word-break: break-word;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
 /* ==================== Ranking List ==================== */
 .ranking-list {
   display: flex;

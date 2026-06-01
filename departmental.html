@@ -1,4 +1,4 @@
-<!-- v20260601a -->
+<!-- v20260601b -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -718,11 +718,12 @@
       }
 
       function renderTieCard(group) {
+        const names = group.people.map(p => p.name).join(', ');
         return `
-          <div class="podium-item ${getClass(group.rank)}">
+          <div class="podium-item ${getClass(group.rank)} podium-tied">
             <div class="podium-medal">${getMedal(group.rank)}</div>
-            <div class="podium-rank">#${group.rank}</div>
-            <div class="podium-name">${group.people.length} people tied</div>
+            <div class="podium-rank">Tied for #${group.rank}</div>
+            <div class="podium-name">${names}</div>
             <div class="podium-score">${group.score} pts</div>
           </div>`;
       }
@@ -740,7 +741,10 @@
       }
       // Center: rank1
       const r1 = topRanks.find(g => g.rank === 1);
-      if (r1) html += renderCard(r1.people[0], 1);
+      if (r1) {
+        if (r1.people.length === 1) html += renderCard(r1.people[0], 1);
+        else html += renderTieCard(r1);
+      }
       // Right: rank3
       const r3 = topRanks.find(g => g.rank === 3);
       if (r3) {
@@ -748,16 +752,6 @@
         else html += renderTieCard(r3);
       }
       html += '</div>';
-
-      // If rank1 has ties, show note below
-      if (r1 && r1.people.length > 1) {
-        const names = r1.people.map(p => p.name).join(', ');
-        html += `<div style="font-size:12px;color:var(--text-secondary);text-align:center;margin-top:8px;">🥇 Tied: ${names}</div>`;
-      }
-      if (r2 && r2.people.length > 1) {
-        const names = r2.people.map(p => p.name).join(', ');
-        html += `<div style="font-size:12px;color:var(--text-secondary);text-align:center;margin-top:4px;">🥈 Tied: ${names}</div>`;
-      }
 
       document.getElementById('dept-top3-podium').innerHTML = html;
     }
