@@ -1903,15 +1903,15 @@ async function loadSearchData() {
 // Hybrid matching: CJK uses substring, English uses word-boundary
 function matchesWord(text, searchTerm) {
   if (!text) return false;
-  const lower = text.toLowerCase();
-  const term = searchTerm.toLowerCase();
-  // CJK characters detected → substring matching (e.g. "朱" matches "朱家琦")
+  var lower = text.toLowerCase();
+  var term = searchTerm.toLowerCase();
+  // CJK: substring match
   if (/[一-鿿぀-ゟ゠-ヿ]/.test(term)) {
     return lower.includes(term);
   }
-  // Non-CJK → word-boundary matching (e.g. "Ads" matches "Ads" but not "Reads")
-  const escaped = term.replace(/[.*+?${}()|[\]\\]/g, '\\$&');
-  const regex = new RegExp('(^|[\s,;:\\-/_|.()\[\]{}])' + escaped + '($|[\s,;:\\-/_|.()\[\]{}])', 'i');
+  // Non-CJK: word-boundary match
+  var escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  var regex = new RegExp('(^|[\\s,;:\\-/_|.()\\[\\]{}])' + escaped + '($|[\\s,;:\\-/_|.()\\[\\]{}])', 'i');
   return regex.test(lower) || lower === term;
 }
 
