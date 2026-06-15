@@ -1941,10 +1941,8 @@ function performSearch(query, level = 'all') {
     allGlobalAwards.forEach(award => {
       const matchName = matchesWord(award.project_name, searchTerm);
       const matchMember = award.members?.some(m => matchesWord(m, searchTerm));
-      const matchDept = matchesWord(award.department, searchTerm);
-      const matchReason = matchesWord(award.reason, searchTerm);
       
-      if (matchName || matchMember || matchDept || matchReason) {
+      if (matchName || matchMember) {
         const dedupKey = `global|${award.project_name}`;
         if (!seenProjectNames.has(dedupKey)) {
           seenProjectNames.add(dedupKey);
@@ -1960,7 +1958,7 @@ function performSearch(query, level = 'all') {
             department: award.department,
             email: award.email || '',
             reason: award.reason,
-            matchSource: getMatchSource(matchName, matchDept, matchMember, matchReason),
+            matchSource: getMatchSource(matchName, false, matchMember, false),
             matchedMembers: matchedMembers,
             memberCount: award.members?.length || 0
           });
@@ -1982,9 +1980,8 @@ function performSearch(query, level = 'all') {
       allRegionalAwards.forEach(award => {
         const matchName = matchesWord(award.project_name, searchTerm);
         const matchMember = award.members?.some(m => matchesWord(m, searchTerm));
-        const matchDept = matchesWord(award.department, searchTerm);
         
-        if (matchName || matchMember || matchDept) {
+        if (matchName || matchMember) {
           const dedupKey = `regional-${region}|${award.project_name}`;
           if (!seenProjectNames.has(dedupKey)) {
             seenProjectNames.add(dedupKey);
@@ -1998,7 +1995,7 @@ function performSearch(query, level = 'all') {
               members: award.members,
               department: award.department,
               email: award.email || '',
-              matchSource: getMatchSource(matchName, matchDept, matchMember, false),
+              matchSource: getMatchSource(matchName, false, matchMember, false),
               matchedMembers: matchedMembers,
               memberCount: award.members?.length || 0
             });
@@ -2010,9 +2007,8 @@ function performSearch(query, level = 'all') {
       individualAwards.forEach(award => {
         if (award.winner_name) {
           const matchName = matchesWord(award.winner_name, searchTerm);
-          const matchDept = matchesWord(award.department, searchTerm);
           
-          if (matchName || matchDept) {
+          if (matchName) {
             results.push({
               type: 'Individual Award',
               level: `Regional - ${region.toUpperCase()}`,
@@ -2020,7 +2016,7 @@ function performSearch(query, level = 'all') {
               award: award.team_award,
               department: award.department,
               email: award.email || '',
-              matchSource: getMatchSource(matchName, matchDept, false, false)
+              matchSource: getMatchSource(matchName, false, false, false)
             });
           }
         }
@@ -2033,8 +2029,7 @@ function performSearch(query, level = 'all') {
     const rankings = searchData.rankings.top10 || [];
     rankings.forEach(r => {
       const matchName = matchesWord(r.name, searchTerm);
-      const matchDept = matchesWord(r.department || r.region, searchTerm);
-      if (matchName || matchDept) {
+      if (matchName) {
         results.push({
           type: 'Top Performer',
           level: `Rank #${r.rank}`,
@@ -2042,7 +2037,7 @@ function performSearch(query, level = 'all') {
           points: r.points,
           department: r.department || r.region || 'TikTok Shop',
           email: r.email || '',
-          matchSource: getMatchSource(matchName, matchDept, false, false)
+          matchSource: getMatchSource(matchName, false, false, false)
         });
       }
     });
@@ -2056,9 +2051,8 @@ function performSearch(query, level = 'all') {
       awards.forEach(award => {
         const matchName = matchesWord(award.winner_name, searchTerm);
         const matchMember = award.members?.some(m => matchesWord(typeof m === 'string' ? m : m.name || '', searchTerm));
-        const matchDept = matchesWord(award.department, searchTerm);
         
-        if (matchName || matchMember || matchDept) {
+        if (matchName || matchMember) {
           const dedupKey = `dept|${q}|${award.winner_name}|${award.department}`;
           if (!seenProjectNames.has(dedupKey)) {
             seenProjectNames.add(dedupKey);
@@ -2072,7 +2066,7 @@ function performSearch(query, level = 'all') {
               members: award.members,
               department: award.department,
               email: award.email || '',
-              matchSource: getMatchSource(matchName, matchDept, matchMember, false),
+              matchSource: getMatchSource(matchName, false, matchMember, false),
               matchedMembers: matchedMembers,
               memberCount: award.members?.length || 0
             });
