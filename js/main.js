@@ -1900,15 +1900,12 @@ async function loadSearchData() {
   }
 }
 
-// Word-boundary matching: matches searchTerm as a whole word/token
+// Substring matching: matches searchTerm as a substring of text
 function matchesWord(text, searchTerm) {
   if (!text) return false;
   const lower = text.toLowerCase();
   const term = searchTerm.toLowerCase();
-  // Use regex with word boundaries; treat non-alphanumeric chars as boundaries too
-  const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const regex = new RegExp('(^|[\\s,;:\\-/_|.()\\[\\]{}])' + escaped + '($|[\\s,;:\\-/_|.()\\[\\]{}])', 'i');
-  return regex.test(lower) || lower === term;
+  return lower.includes(term);
 }
 
 function performSearch(query, level = 'all') {
