@@ -1900,12 +1900,19 @@ async function loadSearchData() {
   }
 }
 
-// Substring matching: matches searchTerm as a substring of text
+// Hybrid matching: CJK uses substring, English uses word-boundary
 function matchesWord(text, searchTerm) {
   if (!text) return false;
   const lower = text.toLowerCase();
   const term = searchTerm.toLowerCase();
-  return lower.includes(term);
+  // CJK characters detected → substring matching (e.g. "朱" matches "朱家琦")
+  if (/[一-鿿぀-ゟ゠-ヿ]/.test(term)) {
+    return lower.includes(term);
+  }
+  // Non-CJK → word-boundary matching (e.g. "Ads" matches "Ads" but not "Reads")
+  const escaped = term.replace(/[.*+?${}()|[\]\\]/g, '\\$&');
+  const regex = new RegExp('(^|[\s,;:\\-/_|.()\[\]{}])' + escaped + '($|[\s,;:\\-/_|.()\[\]{}])', 'i');
+  return regex.test(lower) || lower === term;
 }
 
 function performSearch(query, level = 'all') {
