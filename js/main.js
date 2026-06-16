@@ -1861,6 +1861,7 @@ document.addEventListener('keydown', (e) => {
 
 // ==================== Search Functions ====================
 let searchData = null;
+let nameMap = null;
 
 // Unwrap year-based data structure: if data has year keys (e.g. {2025: {...}, 2026: {...}}), extract the target year; otherwise return as-is
 function unwrapYearData(data, year) {
@@ -1872,7 +1873,7 @@ function unwrapYearData(data, year) {
 // Load all search data from JSON files (renamed from initSearch to avoid override by page scripts)
 async function loadSearchData() {
   try {
-    const [global, us, eu, sea, latam, rankings, departmental, fs, pop] = await Promise.all([
+    const [global, us, eu, sea, latam, rankings, departmental, fs, pop, nameMapData] = await Promise.all([
       fetch('data/global.json?v=20260601a').then(r => r.json()).catch(() => null),
       fetch('data/us.json?v=20260601a').then(r => r.json()).catch(() => null),
       fetch('data/eu.json?v=20260601a').then(r => r.json()).catch(() => null),
@@ -1881,8 +1882,10 @@ async function loadSearchData() {
       fetch('data/rankings.json?v=20260601a').then(r => r.json()).catch(() => null),
       fetch('data/departmental.json?v=20260601a').then(r => r.json()).catch(() => null),
       fetch('data/fs.json?v=20260601a').then(r => r.json()).catch(() => null),
-      fetch('data/pop.json?v=20260601a').then(r => r.json()).catch(() => null)
+      fetch('data/pop.json?v=20260601a').then(r => r.json()).catch(() => null),
+      fetch('data/name-map.json?v=20260601a').then(r => r.json()).catch(() => null)
     ]);
+    nameMap = nameMapData || {};
     
     const targetYear = AppData.currentYear || '2025';
     searchData = {
