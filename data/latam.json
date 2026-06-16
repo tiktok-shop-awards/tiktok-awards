@@ -1,8 +1,8 @@
 {
   "2025": {
-    "H1项目奖": [],
-    "H2项目奖": [],
-    "H2个人奖": [
+    "H1 Project Awards": [],
+    "H2 Project Awards": [],
+    "H2 Individual Awards": [
       {
         "award_type": "H2个人奖",
         "period": "H2",
@@ -958,7 +958,8 @@
     ]
   },
   "2026": {
-    "Q1个人奖": [
+    "H1 Project Awards": [],
+    "Q1 Individual Awards": [
       {
         "award_type": "2026 Q1个人奖",
         "period": "2026 Q1",
@@ -1197,7 +1198,6 @@
           "Zhiwei Zhou"
         ]
       }
-    ],
-    "H1项目奖": []
+    ]
   }
 }
