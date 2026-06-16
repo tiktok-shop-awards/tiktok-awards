@@ -460,7 +460,7 @@
           <!-- Year Navigation - Centered -->
           <div class="year-nav-wrapper">
             <div class="year-nav-compact">
-              <button class="year-btn active" data-year="2025">2025</button>
+              <button class="year-btn" data-year="2025">2025</button>
               <button class="year-btn" data-year="2026" id="year-2026-btn">2026 <span class="coming-soon-tag" style="opacity: 0.6;">· Coming Soon</span></button>
             </div>
           </div>
@@ -793,7 +793,7 @@
     // Load and render regional data
     async function loadRegionalData(region, year = null) {
       const awardsContainer = document.getElementById('regional-awards');
-      const currentYear = year || AppData.currentYear || '2025';
+      const currentYear = year || AppData.currentYear || '2026';
       
       try {
         // For 2026 US+POP merge
@@ -850,7 +850,7 @@
     function initRegionNav() {
       const regionBtns = document.querySelectorAll('.region-btn');
       const urlRegion = getUrlParam('region') || 'us';
-      const urlYear = getUrlParam('year') || '2025';
+      const urlYear = getUrlParam('year') || '2026';
       currentRegion = urlRegion;
       
       console.log('initRegionNav: urlRegion=', urlRegion, 'currentRegion=', currentRegion, 'btns=', regionBtns.length);
@@ -940,7 +940,7 @@
       console.log('DOMContentLoaded fired');
       
       // Get year and region from URL
-      let urlYear = getUrlParam('year') || '2025';
+      let urlYear = getUrlParam('year') || '2026';
       let urlRegion = getUrlParam('region') || 'us';
       
       // 2026年只有LATAM和FS有独立数据，非LATAM/FS区域显示提示而不是跳转
