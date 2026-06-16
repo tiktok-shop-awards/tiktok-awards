@@ -188,7 +188,7 @@
       "bonus": "16666",
       "reason": "[NEEDS_TRANSLATION: fs.json]",
       "members": [
-        "刘祖兵"
+        "Harvey Liu"
       ],
       "currency": "CNY"
     },
@@ -542,7 +542,7 @@
       "bonus": "16666",
       "reason": "[US Tariff Response Initiative]\nSituation\nThe White House announced on April 2 that China-origin goods would no longer receive T86 de minimis exemption starting May 2. Due to volatile policy changes, average import tariff rates on Chinese e-commerce goods shifted four times within a month—from 0% to 75% to 125% to 166% to 55%—causing severe disruption to e-commerce platforms' operations and adaptability.\n\nTask\n- Ensure the platform continues normal operations post-tax reform, with no customs clearance bottlenecks and reasonable control of new tax costs and fulfillment cost reduction;\n- Control 95th percentile end-to-end delivery time within 15 days.\n\nAction\n- Rapidly established cross-team response group; GS merchant flow, cross-border logistics, product/R&D, and legal teams met continuously for 9 weeks with daily task cleanup;\n- Tracked Trump administration's volatile policies, adjusted product solutions 3 times, and urgently established new T01 and T11 customs clearance capabilities;\n- Monitored competitor dynamics daily;\n- Coordinated with treasury, finance, insurance, and other departments to complete platform import IOR qualification applications, customs duty bond purchases, and tax payment account setup;\n- Under the new customs clearance model, most platform imported goods involve PGA regulations from over 30 US government departments. Cross-functional teams built product qualification collection and exception handling processes from scratch;\n- Anticipated US Customs' stance on multi-package consolidated declarations and established product capability for consolidating $2,500 worth of goods per customs declaration;\n- Completed price adjustments on 4/25, initiated T86 order cutoff and warehouse clearance on 4/26, completed final T86 duty-free declaration for last batch of packages by noon on 5/1, switched to T11 customs declaration mode at midnight on 5/2, started first test orders on 5/3, and made collective decision to resume shipping on 5/7;\n- Warehouse completed exit and production shift adjustments: Initiated Jiangmen warehouse exit while ensuring future one-year business needs. In terms of production strategy, Huadu warehouse adjusted from 24H production to single shift (eliminated night shift), Labor Day/Dragon Boat Festival shutdown, etc., to achieve cost reduction.\n\nResult\n- Successfully completed US tax reform business transition on 5/2 with no business bottlenecks;\n- Daily average GMV recovered to $xxxM, with customs duty base reasonably optimized to xx% of sale price;\n- Customs declaration fee per package compressed from $2.62 to $0.013;\n- US end-to-end 95th percentile delivery time stabilized at approximately 13 days, outperforming competitors;\n- Warehouse savings: Jiangmen warehouse exit reduced operating costs by 39.33M RMB—Jiangmen exit achieved annual cost savings of approximately 34.5M RMB (warehouse rent reduced by ~4.26M RMB/month, utilities and transportation reduced by ~0.35M RMB/month) + 4.83M RMB recovered from equipment/materials. To ensure fulfillment experience, Huadu warehouse started single-shift production saving 1.6M RMB/month; warehouse outbound 95th percentile time extended 5-7H without impacting end-to-end delivery time; single-day shutdowns during Labor Day (5/2) and Dragon Boat Festival saved 0.5M RMB.",
       "members": [
-        "李威"
+        "LiWei"
       ],
       "currency": "CNY"
     },
@@ -926,7 +926,7 @@
       "bonus": "16666",
       "reason": "[US Tariff Response Initiative]\nSituation\nThe White House announced on April 2 that China-origin goods would no longer receive T86 de minimis exemption starting May 2. Due to volatile policy changes, average import tariff rates on Chinese e-commerce goods shifted four times within a month—from 0% to 75% to 125% to 166% to 55%—causing severe disruption to e-commerce platforms' operations and adaptability.\n\nTask\n- Ensure the platform continues normal operations post-tax reform, with no customs clearance bottlenecks and reasonable control of new tax costs and fulfillment cost reduction;\n- Control 95th percentile end-to-end delivery time within 15 days.\n\nAction\n- Rapidly established cross-team response group; GS merchant flow, cross-border logistics, product/R&D, and legal teams met continuously for 9 weeks with daily task cleanup;\n- Tracked Trump administration's volatile policies, adjusted product solutions 3 times, and urgently established new T01 and T11 customs clearance capabilities;\n- Monitored competitor dynamics daily;\n- Coordinated with treasury, finance, insurance, and other departments to complete platform import IOR qualification applications, customs duty bond purchases, and tax payment account setup;\n- Under the new customs clearance model, most platform imported goods involve PGA regulations from over 30 US government departments. Cross-functional teams built product qualification collection and exception handling processes from scratch;\n- Anticipated US Customs' stance on multi-package consolidated declarations and established product capability for consolidating $2,500 worth of goods per customs declaration;\n- Completed price adjustments on 4/25, initiated T86 order cutoff and warehouse clearance on 4/26, completed final T86 duty-free declaration for last batch of packages by noon on 5/1, switched to T11 customs declaration mode at midnight on 5/2, started first test orders on 5/3, and made collective decision to resume shipping on 5/7;\n- Warehouse completed exit and production shift adjustments: Initiated Jiangmen warehouse exit while ensuring future one-year business needs. In terms of production strategy, Huadu warehouse adjusted from 24H production to single shift (eliminated night shift), Labor Day/Dragon Boat Festival shutdown, etc., to achieve cost reduction.\n\nResult\n- Successfully completed US tax reform business transition on 5/2 with no business bottlenecks;\n- Daily average GMV recovered to $xxxM, with customs duty base reasonably optimized to xx% of sale price;\n- Customs declaration fee per package compressed from $2.62 to $0.013;\n- US end-to-end 95th percentile delivery time stabilized at approximately 13 days, outperforming competitors;\n- Warehouse savings: Jiangmen warehouse exit reduced operating costs by 39.33M RMB—Jiangmen exit achieved annual cost savings of approximately 34.5M RMB (warehouse rent reduced by ~4.26M RMB/month, utilities and transportation reduced by ~0.35M RMB/month) + 4.83M RMB recovered from equipment/materials. To ensure fulfillment experience, Huadu warehouse started single-shift production saving 1.6M RMB/month; warehouse outbound 95th percentile time extended 5-7H without impacting end-to-end delivery time; single-day shutdowns during Labor Day (5/2) and Dragon Boat Festival saved 0.5M RMB.",
       "members": [
-        "刘伟洋"
+        "Weiyang Liu"
       ],
       "currency": "CNY"
     },
@@ -1102,7 +1102,7 @@
       "bonus": "16666",
       "reason": "[FS Operations Efficiency (Buyers, Content Editors, Price Verification, Image Review, Operations)]\n\nProject background and challenges: Focused on business roles such as buyers, content editors, operations, and price verification, identifying efficiency pain points in work workflows and building/improving online product capabilities to enhance business efficiency. Core challenges:\n1) Long new product launch process, time-consuming: Under Full Service model, due to unique new product launch chain steps including product selection, content editing, image review, and quality inspection, when industry new product volumes aggressively increased, each role needed to invest significant effort in following up new products, and individual product launch time was lengthy;\n2) Low operations efficiency: Existence of numerous offline operational actions, such as buyers 1v1 following up with sellers on activity price negotiations, offline group chats connecting with sellers, manual product data analysis, etc.\n\nTarget achievement and results: Q2 completed buyer efficiency saving of 1,379 person-days/month, content editor efficiency saving of 678 person-days/month, image review efficiency saving of 162 person-days/month, operations efficiency saving of 88 person-days/month, totaling efficiency saving of 2,307 person-days/month; price verification efficiency improvement brought SPU cost saving of 20 RMB per item, efficiency improvement of 60%.\n1) New product launch automation: Algorithm product selection introduced in new product launch chain; product selection, image review, and content editing review stages have been automated. Non-JIT automated product launch time is 4.7 days (vs non-automated 8.6 days);\n2) Product sales improvement: Comprehensively optimized product selection-recommendation-setup-investment chain. Through major promotion automatic agreement registration & activity consolidation, early bird embedded product recommendation, etc., reduced industry price negotiation time. SEO title and image batch import improved product information optimization efficiency. Among them, new product T+30 early bird price negotiation rate increased from 35% to 62%, recommended product price negotiation 7-day sell-through rate improved by 2.9pp;\n3) Merchant management: Built Feishu robot automatic group creation capability, replacing manual offline group creation by recruitment/buyers. Introduced and optimized robot Q&A capability. Robot accuracy increased from 34% to 61%;\n4) Price verification: Established price verification form database, enabling automated/intelligent positioning and acquisition of BOM for similar products, further improving price verification data accuracy, consistency, and objectivity.",
       "members": [
-        "唐于佼"
+        "Judy Tang"
       ],
       "currency": "CNY"
     },
@@ -1294,7 +1294,7 @@
       "bonus": "16666",
       "reason": "[FS Operations Efficiency (Buyers, Content Editors, Price Verification, Image Review, Operations)]\n\nProject background and challenges: Focused on business roles such as buyers, content editors, operations, and price verification, identifying efficiency pain points in work workflows and building/improving online product capabilities to enhance business efficiency. Core challenges:\n1) Long new product launch process, time-consuming: Under Full Service model, due to unique new product launch chain steps including product selection, content editing, image review, and quality inspection, when industry new product volumes aggressively increased, each role needed to invest significant effort in following up new products, and individual product launch time was lengthy;\n2) Low operations efficiency: Existence of numerous offline operational actions, such as buyers 1v1 following up with sellers on activity price negotiations, offline group chats connecting with sellers, manual product data analysis, etc.\n\nTarget achievement and results: Q2 completed buyer efficiency saving of 1,379 person-days/month, content editor efficiency saving of 678 person-days/month, image review efficiency saving of 162 person-days/month, operations efficiency saving of 88 person-days/month, totaling efficiency saving of 2,307 person-days/month; price verification efficiency improvement brought SPU cost saving of 20 RMB per item, efficiency improvement of 60%.\n1) New product launch automation: Algorithm product selection introduced in new product launch chain; product selection, image review, and content editing review stages have been automated. Non-JIT automated product launch time is 4.7 days (vs non-automated 8.6 days);\n2) Product sales improvement: Comprehensively optimized product selection-recommendation-setup-investment chain. Through major promotion automatic agreement registration & activity consolidation, early bird embedded product recommendation, etc., reduced industry price negotiation time. SEO title and image batch import improved product information optimization efficiency. Among them, new product T+30 early bird price negotiation rate increased from 35% to 62%, recommended product price negotiation 7-day sell-through rate improved by 2.9pp;\n3) Merchant management: Built Feishu robot automatic group creation capability, replacing manual offline group creation by recruitment/buyers. Introduced and optimized robot Q&A capability. Robot accuracy increased from 34% to 61%;\n4) Price verification: Established price verification form database, enabling automated/intelligent positioning and acquisition of BOM for similar products, further improving price verification data accuracy, consistency, and objectivity.",
       "members": [
-        "马乐欣"
+        "Lexin Ma"
       ],
       "currency": "CNY"
     },
@@ -1326,7 +1326,7 @@
       "bonus": "16666",
       "reason": "[NEEDS_TRANSLATION: fs.json]",
       "members": [
-        "代丹阳"
+        "Danyang Dai"
       ],
       "currency": "CNY"
     },
@@ -1454,7 +1454,7 @@
       "bonus": "16666",
       "reason": "[NEEDS_TRANSLATION: fs.json]",
       "members": [
-        "周末燃"
+        "Moran Zhou"
       ],
       "currency": "CNY"
     },
@@ -1550,7 +1550,7 @@
       "bonus": "16666",
       "reason": "[NEEDS_TRANSLATION: fs.json]",
       "members": [
-        "李秋虹"
+        "Qiuhong Li"
       ],
       "currency": "CNY"
     },
@@ -2032,7 +2032,7 @@
       "bonus": "16666",
       "reason": "1. Project background and progress: With changes in stocking supply and business structure, sellers are shifting to smaller quantities and higher frequency stocking. After visiting sellers to understand needs, A-segment logistics collaborated with supply chain and product/tech to launch Yiwu and Wentai front warehouses, achieving industry belt receiving, quality inspection, and pre-sales. Completed 4 industry belt front warehouse operations, receiving proportion 30%.\n2. Project benefits:\nMore convenient stocking, increased new seller recruitment and JIT expansion: After front warehouse import, sellers have higher willingness for small batch stocking and JIT model. Jinhua front warehouse import promoted approximately 1,500 new sellers (about 33%), JIT increased from 6.9% to 12.3%.\nTime benefits, shortened available-for-sale duration by 20-30H: Front receiving and quality inspection capabilities shortened product available-for-sale duration and reduced out-of-stock rate.\nFaster JIT quality inspection exception handling: When front inspection produces exceptions, sellers have more response time. Proportion of quality inspection exceptions completed replenishment within 120H increased from 50.5% to 76.8%.\nFront warehouse import reduced Huadu warehouse area: Completed satellite warehouse exit (Conghua), reducing fixed costs by 1.2M RMB/month.",
       "members": [
-        "昌铁钢"
+        "Tiegang Chang"
       ],
       "currency": "CNY"
     },
@@ -2482,7 +2482,7 @@
       "bonus": "30000",
       "reason": "Normandy inventory BF content field transaction proportion 78%. Initially verified non-FS content field inventory feasibility through profiling and inventory inventory approach with focused investment, and efficiency significantly better. Found core key factors, laying foundation for 2026 non-FS two-inventory strategy.\n1. Content field product push completely linked to price, seller investment, industry product selection strategy, same style clusters. Focused on same inventory and GMV surge 8.7pp higher than market, sample ROI significantly better (US T28ROI vs market +0.75, UK +1.01, EU +0.74) and other dimensions demonstrate strategy effectiveness.\n2. Achieved linkage between product, campaign, and price three teams. Used one optimal inventory to obtain more country line resources.\n3. During process, refreshed cognition and iterated (content posting and sampling water-storage inflection points, mid-campaign timely chase-surge chain, risk products using AIGC investment, supply price price competitiveness not the most important factor, pre-campaign water-storage considering product price elasticity, seasonal category planning importance, etc.)",
       "members": [
-        "黎思翀"
+        "Sichong Li"
       ],
       "currency": "CNY"
     },
@@ -2770,7 +2770,7 @@
       "bonus": "30000",
       "reason": "[NEEDS_TRANSLATION: fs.json]",
       "members": [
-        "王瑶"
+        "Yao Wang"
       ],
       "currency": "CNY"
     },
@@ -2818,7 +2818,7 @@
       "bonus": "30000",
       "reason": "[NEEDS_TRANSLATION: fs.json]",
       "members": [
-        "刘子睿"
+        "Zirui Liu"
       ],
       "currency": "CNY"
     },
@@ -2834,7 +2834,7 @@
       "bonus": "30000",
       "reason": "[NEEDS_TRANSLATION: fs.json]",
       "members": [
-        "周末燃"
+        "Moran Zhou"
       ],
       "currency": "CNY"
     },
@@ -2914,7 +2914,7 @@
       "bonus": "30000",
       "reason": "[NEEDS_TRANSLATION: fs.json]",
       "members": [
-        "代丹阳"
+        "Danyang Dai"
       ],
       "currency": "CNY"
     },
@@ -3074,7 +3074,7 @@
       "bonus": "30000",
       "reason": "With the rapid development of AI technology, AIGC's scale and high-growth characteristics have potential to produce more sales content at lower cost, thereby driving performance growth. Q4 project team quickly tackled challenges, achieving FS business AIGC application breakthrough from 0 to 1:\n1. Best-seller product managed rate 0 -> 80%, prompt coverage 0 -> 90%, review success rate 50% -> 70%\n2. Sora 2 achieved 10,000 posts per day, and summarized several paradigms: UGC-like, TVC-like, AI-unique. Will continue optimizing richness and efficiency.\n3. Seller manual posting capability evolved to automatic posting, covering both image-text and video formats.\nThe above successes laid a good foundation for further optimizing AIGC quality, improving content efficiency, and expanding application scenarios in 2026.",
       "members": [
-        "刘子睿"
+        "Zirui Liu"
       ],
       "currency": "CNY"
     },
@@ -3202,7 +3202,7 @@
       "bonus": "30000",
       "reason": "With the rapid development of AI technology, AIGC's scale and high-growth characteristics have potential to produce more sales content at lower cost, thereby driving performance growth. Q4 project team quickly tackled challenges, achieving FS business AIGC application breakthrough from 0 to 1:\n1. Best-seller product managed rate 0 -> 80%, prompt coverage 0 -> 90%, review success rate 50% -> 70%\n2. Sora 2 achieved 10,000 posts per day, and summarized several paradigms: UGC-like, TVC-like, AI-unique. Will continue optimizing richness and efficiency.\n3. Seller manual posting capability evolved to automatic posting, covering both image-text and video formats.\nThe above successes laid a good foundation for further optimizing AIGC quality, improving content efficiency, and expanding application scenarios in 2026.",
       "members": [
-        "杨帆"
+        "Fan Yang"
       ],
       "currency": "CNY"
     },
@@ -3410,7 +3410,7 @@
       "bonus": "30000",
       "reason": "Background: In 2025 BF, various changes and challenges existed in tariffs and policies across countries. To ensure fulfillment stability during simultaneous sales surge in US, UK, EU four countries, MX, and JP eight countries, supply chain and logistics formulated full-chain fulfillment assurance plan to support platform campaign smooth progress.\nCampaign assurance results:\nCost control fully achieved: Through FS dimensional weight control, peak season capacity early lock, empty container fee reduction, seizing tax rate adjustments and last-mile cost control, achieved November logistics side cost fully on target.\nFull-chain fulfillment time met: Through chartered plane first-leg time control, handover link optimization, and card-shift scheduling control, achieved all countries full-chain time on target during campaign.\nCampaign stocking & inventory both exceeded expectations: Full-cycle daily average out-of-stock rate below 1%. Full-cycle daily average turnover improved 7 days vs same period last year.\nA-segment in/outbound and B-segment all-dimension plans met operational targets, supporting A/B-segment smooth fulfillment. A-segment in/outbound accuracy both met target and improved vs 2024. B-segment total net weight/split cargo type net weight weighted W+1 accuracy was continuously corrected based on target, and final accuracy all met target.",
       "members": [
-        "刘祖兵"
+        "Harvey Liu"
       ],
       "currency": "CNY"
     },
@@ -3570,7 +3570,7 @@
       "bonus": "30000",
       "reason": "Background: In 2025 BF, various changes and challenges existed in tariffs and policies across countries. To ensure fulfillment stability during simultaneous sales surge in US, UK, EU four countries, MX, and JP eight countries, supply chain and logistics formulated full-chain fulfillment assurance plan to support platform campaign smooth progress.\nCampaign assurance results:\nCost control fully achieved: Through FS dimensional weight control, peak season capacity early lock, empty container fee reduction, seizing tax rate adjustments and last-mile cost control, achieved November logistics side cost fully on target.\nFull-chain fulfillment time met: Through chartered plane first-leg time control, handover link optimization, and card-shift scheduling control, achieved all countries full-chain time on target during campaign.\nCampaign stocking & inventory both exceeded expectations: Full-cycle daily average out-of-stock rate below 1%. Full-cycle daily average turnover improved 7 days vs same period last year.\nA-segment in/outbound and B-segment all-dimension plans met operational targets, supporting A/B-segment smooth fulfillment. A-segment in/outbound accuracy both met target and improved vs 2024. B-segment total net weight/split cargo type net weight weighted W+1 accuracy was continuously corrected based on target, and final accuracy all met target.",
       "members": [
-        "郗广明"
+        "Evan Xi"
       ],
       "currency": "CNY"
     },
@@ -3634,7 +3634,7 @@
       "bonus": "30000",
       "reason": "Background: In 2025 BF, various changes and challenges existed in tariffs and policies across countries. To ensure fulfillment stability during simultaneous sales surge in US, UK, EU four countries, MX, and JP eight countries, supply chain and logistics formulated full-chain fulfillment assurance plan to support platform campaign smooth progress.\nCampaign assurance results:\nCost control fully achieved: Through FS dimensional weight control, peak season capacity early lock, empty container fee reduction, seizing tax rate adjustments and last-mile cost control, achieved November logistics side cost fully on target.\nFull-chain fulfillment time met: Through chartered plane first-leg time control, handover link optimization, and card-shift scheduling control, achieved all countries full-chain time on target during campaign.\nCampaign stocking & inventory both exceeded expectations: Full-cycle daily average out-of-stock rate below 1%. Full-cycle daily average turnover improved 7 days vs same period last year.\nA-segment in/outbound and B-segment all-dimension plans met operational targets, supporting A/B-segment smooth fulfillment. A-segment in/outbound accuracy both met target and improved vs 2024. B-segment total net weight/split cargo type net weight weighted W+1 accuracy was continuously corrected based on target, and final accuracy all met target.",
       "members": [
-        "邓雷"
+        "Eric Deng"
       ],
       "currency": "CNY"
     },
@@ -3698,7 +3698,7 @@
       "bonus": "30000",
       "reason": "Background: In 2025 BF, various changes and challenges existed in tariffs and policies across countries. To ensure fulfillment stability during simultaneous sales surge in US, UK, EU four countries, MX, and JP eight countries, supply chain and logistics formulated full-chain fulfillment assurance plan to support platform campaign smooth progress.\nCampaign assurance results:\nCost control fully achieved: Through FS dimensional weight control, peak season capacity early lock, empty container fee reduction, seizing tax rate adjustments and last-mile cost control, achieved November logistics side cost fully on target.\nFull-chain fulfillment time met: Through chartered plane first-leg time control, handover link optimization, and card-shift scheduling control, achieved all countries full-chain time on target during campaign.\nCampaign stocking & inventory both exceeded expectations: Full-cycle daily average out-of-stock rate below 1%. Full-cycle daily average turnover improved 7 days vs same period last year.\nA-segment in/outbound and B-segment all-dimension plans met operational targets, supporting A/B-segment smooth fulfillment. A-segment in/outbound accuracy both met target and improved vs 2024. B-segment total net weight/split cargo type net weight weighted W+1 accuracy was continuously corrected based on target, and final accuracy all met target.",
       "members": [
-        "阮泽凡"
+        "Zefan Ruan"
       ],
       "currency": "CNY"
     },
@@ -3970,7 +3970,7 @@
       "bonus": "30000",
       "reason": "During this BFCM major promotion, US & MX, UK & EU, and Japan achieved results beyond expectations under high target pressure and multiple uncertainties through close collaboration with all parties.\n\nUS & MX scale, profit, cost efficiency, and penetration all exceeded expectations:\nUS: Through pre-planning supply profiling and subsidy plan investigation and optimization, pushed autumn/winter, Christmas, premium selection and other special product assortments and pre-stocked to local warehouses. Targeted product assortment surge during promotion was significantly better than overall market average. Core product assortment surge +167%. Launched RCT experiment pre-promotion & subsidy reallocation for high price tier & price-sensitive products. Trade-off efficiency optimal at -20.6 after tariffs. High price tier trade-off even better at -26.1. Seller commercialization also achieved significantly better results.\nMexico: On top of US approach, Mexico added breakthrough in content supply direction. Through format incentives and targeted product assortment support, live streaming launch and GMV achieved historic breakthroughs vs baseline +924%.\n\nUK & EU through industry/supply chain/logistics/country and other party collaboration, achieved collaborative efficiency, ultimately achieving dual breakthroughs in scale and profit, setting new historical records (UK achieved first profitable BFCM, peak day GMV exceeded $10M; EU achieved higher scale with less loss):\nPrecise marketing tool combinations optimized tool investment structure. Significantly expanded commercialization scale drove overall market growth. New models fully invested (UK land transport, EU local service special products supported by green channel product assortment during BFCM, achieving land transport product AA surge +156%, local service launched and immediately got orders, building Spain emergency light hit products cumulative sales ~300 units); UK EU product strategy/marketing capability interconnection; AIGC capability actively promoted seller manual posting capability.\n\nJP full-period GMV surge 182% (short video and live streaming surged 249%/293% respectively), creating 3 historical new highs; number of hit products increased 135%.",
       "members": [
-        "郭俊馨"
+        "Junxin Guo"
       ],
       "currency": "CNY"
     },
@@ -4034,7 +4034,7 @@
       "bonus": "30000",
       "reason": "During this BFCM major promotion, US & MX, UK & EU, and Japan achieved results beyond expectations under high target pressure and multiple uncertainties through close collaboration with all parties.\n\nUS & MX scale, profit, cost efficiency, and penetration all exceeded expectations:\nUS: Through pre-planning supply profiling and subsidy plan investigation and optimization, pushed autumn/winter, Christmas, premium selection and other special product assortments and pre-stocked to local warehouses. Targeted product assortment surge during promotion was significantly better than overall market average. Core product assortment surge +167%. Launched RCT experiment pre-promotion & subsidy reallocation for high price tier & price-sensitive products. Trade-off efficiency optimal at -20.6 after tariffs. High price tier trade-off even better at -26.1. Seller commercialization also achieved significantly better results.\nMexico: On top of US approach, Mexico added breakthrough in content supply direction. Through format incentives and targeted product assortment support, live streaming launch and GMV achieved historic breakthroughs vs baseline +924%.\n\nUK & EU through industry/supply chain/logistics/country and other party collaboration, achieved collaborative efficiency, ultimately achieving dual breakthroughs in scale and profit, setting new historical records (UK achieved first profitable BFCM, peak day GMV exceeded $10M; EU achieved higher scale with less loss):\nPrecise marketing tool combinations optimized tool investment structure. Significantly expanded commercialization scale drove overall market growth. New models fully invested (UK land transport, EU local service special products supported by green channel product assortment during BFCM, achieving land transport product AA surge +156%, local service launched and immediately got orders, building Spain emergency light hit products cumulative sales ~300 units); UK EU product strategy/marketing capability interconnection; AIGC capability actively promoted seller manual posting capability.\n\nJP full-period GMV surge 182% (short video and live streaming surged 249%/293% respectively), creating 3 historical new highs; number of hit products increased 135%.",
       "members": [
-        "裴桐Kino"
+        "Kino Pei"
       ],
       "currency": "CNY"
     },
@@ -4130,7 +4130,7 @@
       "bonus": "30000",
       "reason": "During this BFCM major promotion, US & MX, UK & EU, and Japan achieved results beyond expectations under high target pressure and multiple uncertainties through close collaboration with all parties.\n\nUS & MX scale, profit, cost efficiency, and penetration all exceeded expectations:\nUS: Through pre-planning supply profiling and subsidy plan investigation and optimization, pushed autumn/winter, Christmas, premium selection and other special product assortments and pre-stocked to local warehouses. Targeted product assortment surge during promotion was significantly better than overall market average. Core product assortment surge +167%. Launched RCT experiment pre-promotion & subsidy reallocation for high price tier & price-sensitive products. Trade-off efficiency optimal at -20.6 after tariffs. High price tier trade-off even better at -26.1. Seller commercialization also achieved significantly better results.\nMexico: On top of US approach, Mexico added breakthrough in content supply direction. Through format incentives and targeted product assortment support, live streaming launch and GMV achieved historic breakthroughs vs baseline +924%.\n\nUK & EU through industry/supply chain/logistics/country and other party collaboration, achieved collaborative efficiency, ultimately achieving dual breakthroughs in scale and profit, setting new historical records (UK achieved first profitable BFCM, peak day GMV exceeded $10M; EU achieved higher scale with less loss):\nPrecise marketing tool combinations optimized tool investment structure. Significantly expanded commercialization scale drove overall market growth. New models fully invested (UK land transport, EU local service special products supported by green channel product assortment during BFCM, achieving land transport product AA surge +156%, local service launched and immediately got orders, building Spain emergency light hit products cumulative sales ~300 units); UK EU product strategy/marketing capability interconnection; AIGC capability actively promoted seller manual posting capability.\n\nJP full-period GMV surge 182% (short video and live streaming surged 249%/293% respectively), creating 3 historical new highs; number of hit products increased 135%.",
       "members": [
-        "郭一琳"
+        "Doris Guo"
       ],
       "currency": "CNY"
     },
@@ -4146,7 +4146,7 @@
       "bonus": "30000",
       "reason": "During this BFCM major promotion, US & MX, UK & EU, and Japan achieved results beyond expectations under high target pressure and multiple uncertainties through close collaboration with all parties.\n\nUS & MX scale, profit, cost efficiency, and penetration all exceeded expectations:\nUS: Through pre-planning supply profiling and subsidy plan investigation and optimization, pushed autumn/winter, Christmas, premium selection and other special product assortments and pre-stocked to local warehouses. Targeted product assortment surge during promotion was significantly better than overall market average. Core product assortment surge +167%. Launched RCT experiment pre-promotion & subsidy reallocation for high price tier & price-sensitive products. Trade-off efficiency optimal at -20.6 after tariffs. High price tier trade-off even better at -26.1. Seller commercialization also achieved significantly better results.\nMexico: On top of US approach, Mexico added breakthrough in content supply direction. Through format incentives and targeted product assortment support, live streaming launch and GMV achieved historic breakthroughs vs baseline +924%.\n\nUK & EU through industry/supply chain/logistics/country and other party collaboration, achieved collaborative efficiency, ultimately achieving dual breakthroughs in scale and profit, setting new historical records (UK achieved first profitable BFCM, peak day GMV exceeded $10M; EU achieved higher scale with less loss):\nPrecise marketing tool combinations optimized tool investment structure. Significantly expanded commercialization scale drove overall market growth. New models fully invested (UK land transport, EU local service special products supported by green channel product assortment during BFCM, achieving land transport product AA surge +156%, local service launched and immediately got orders, building Spain emergency light hit products cumulative sales ~300 units); UK EU product strategy/marketing capability interconnection; AIGC capability actively promoted seller manual posting capability.\n\nJP full-period GMV surge 182% (short video and live streaming surged 249%/293% respectively), creating 3 historical new highs; number of hit products increased 135%.",
       "members": [
-        "代丹阳"
+        "Danyang Dai"
       ],
       "currency": "CNY"
     },
@@ -4258,7 +4258,7 @@
       "bonus": "30000",
       "reason": "During this BFCM major promotion, US & MX, UK & EU, and Japan achieved results beyond expectations under high target pressure and multiple uncertainties through close collaboration with all parties.\n\nUS & MX scale, profit, cost efficiency, and penetration all exceeded expectations:\nUS: Through pre-planning supply profiling and subsidy plan investigation and optimization, pushed autumn/winter, Christmas, premium selection and other special product assortments and pre-stocked to local warehouses. Targeted product assortment surge during promotion was significantly better than overall market average. Core product assortment surge +167%. Launched RCT experiment pre-promotion & subsidy reallocation for high price tier & price-sensitive products. Trade-off efficiency optimal at -20.6 after tariffs. High price tier trade-off even better at -26.1. Seller commercialization also achieved significantly better results.\nMexico: On top of US approach, Mexico added breakthrough in content supply direction. Through format incentives and targeted product assortment support, live streaming launch and GMV achieved historic breakthroughs vs baseline +924%.\n\nUK & EU through industry/supply chain/logistics/country and other party collaboration, achieved collaborative efficiency, ultimately achieving dual breakthroughs in scale and profit, setting new historical records (UK achieved first profitable BFCM, peak day GMV exceeded $10M; EU achieved higher scale with less loss):\nPrecise marketing tool combinations optimized tool investment structure. Significantly expanded commercialization scale drove overall market growth. New models fully invested (UK land transport, EU local service special products supported by green channel product assortment during BFCM, achieving land transport product AA surge +156%, local service launched and immediately got orders, building Spain emergency light hit products cumulative sales ~300 units); UK EU product strategy/marketing capability interconnection; AIGC capability actively promoted seller manual posting capability.\n\nJP full-period GMV surge 182% (short video and live streaming surged 249%/293% respectively), creating 3 historical new highs; number of hit products increased 135%.",
       "members": [
-        "肖茗方"
+        "Mingfang Xiao"
       ],
       "currency": "CNY"
     },
@@ -4370,7 +4370,7 @@
       "bonus": "30000",
       "reason": "With the rapid development of AI technology, AIGC's scale and high-growth characteristics have potential to produce more sales content at lower cost, thereby driving performance growth. Q4 project team quickly tackled challenges, achieving FS business AIGC application breakthrough from 0 to 1:\n1. Best-seller product managed rate 0 -> 80%, prompt coverage 0 -> 90%, review success rate 50% -> 70%\n2. Sora 2 achieved 10,000 posts per day, and summarized several paradigms: UGC-like, TVC-like, AI-unique. Will continue optimizing richness and efficiency.\n3. Seller manual posting capability evolved to automatic posting, covering both image-text and video formats.\nThe above successes laid a good foundation for further optimizing AIGC quality, improving content efficiency, and expanding application scenarios in 2026.",
       "members": [
-        "黄万军"
+        "Wanjun Huang"
       ],
       "currency": "CNY"
     },
@@ -4468,7 +4468,7 @@
       "bonus": "5000",
       "reason": "During BF, data infrastructure sorting was meticulous, dashboard iteration was methodical. From September, assisted business in sorting and front-planning BF-required infrastructure. Used special project form to link with XFN to promote orderly BF dashboard iteration implementation. Systematically supported FS BF target tracking, key inventory performance, ROI monitoring and other practical module launches. Explored introducing Veda interpretation and other AI capabilities to expand dashboard information dimensions, helping operations monitor campaign more easily and efficiently, gaining wide internal and external recognition from FS campaign business.\nBusiness analysis demand support was rapid, providing insights for business strategy advancement. Pre-campaign completed autumn campaign industry performance attribution, marketing rule coverage exploration, and strong competition category identification analysis, consolidating cognitive foundation for BF strategy formulation. Mid-campaign, agile calculation of price-subsidy replacement efficiency helped business improve ROI through inter-inventory subsidy reallocation under limited subsidies. Post-campaign, conducted agile reviews around BF strategy ROI benefits, overseas warehouse performance and other core topics, outputting data insights to provide insight basis for 2026 target setting and strategy planning.",
       "members": [
-        "丁昱菲"
+        "Yufei Ding"
       ],
       "currency": "CNY"
     },
@@ -4564,7 +4564,7 @@
       "bonus": "5000",
       "reason": "1. Served as Black Friday UK Customs POC, exceeded 2025 BF C-segment target (95th percentile delivery time 37.2H, 48H achievement rate 98%), overall time reduced by 20H compared to 2024 campaign.\n2. Timely identified and decisively handled unexpected incidents at handover stage, such as last-mile outsourced driver misdelivering to warehouse, last-mile delays returning bulk pallets to customs broker, preventing major risks. During campaign, daily monitoring identified 59 abnormal events and resolved them promptly.\n3. Coordinated with mainline to solve UK capacity pressure during campaign, successfully ran EU T1 transfer to UK customs plan. Quickly handled transfer anomalies on Luxembourg LUX, Belgium LGG, and France XCR routes, smoothly ensuring 61 main waybills fulfillment.",
       "members": [
-        "邓雷"
+        "Eric Deng"
       ],
       "currency": "CNY"
     },

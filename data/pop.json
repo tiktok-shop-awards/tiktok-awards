@@ -15,15 +15,15 @@
         "谷子",
         "周欢",
         "陈涵",
-        "潘姿颖",
+        "Ziying Pan",
         "郭宥伽",
         "赵若禹",
         "赵洋",
-        "孙聪慧",
+        "Sylvia Sun",
         "赛德Cedrick",
         "曹一润",
         "寇乔蕙",
-        "徐瑞 Rosie",
+        "Rosie Xu",
         "郑冰",
         "张炯杰",
         "吴松林",
@@ -49,9 +49,9 @@
       "members": [
         "谷子",
         "周欢",
-        "潘姿颖",
+        "Ziying Pan",
         "Jason Yu",
-        "郄一潇",
+        "Yixiao Qie",
         "闫佳媛",
         "王震",
         "陈辰",
@@ -62,7 +62,7 @@
         "胡涵洋",
         "李云浩",
         "卢树炜",
-        "孙聪慧",
+        "Sylvia Sun",
         "赛德Cedrick",
         "吴松林",
         "邱雨晗",
@@ -116,12 +116,12 @@
         "史千一",
         "YangZhiyu",
         "倪伟豪",
-        "费子轩",
-        "刘一丝",
+        "Zixuan Fei",
+        "Yisi Liu",
         "徐辛怡",
         "乔浩",
         "李冠宏",
-        "许加祺 Elena Xu",
+        "Elena Xu",
         "孙鹏乐",
         "肖佳星",
         "张全斌",
@@ -129,16 +129,16 @@
         "李宇宸",
         "林弘毅",
         "王飞燕",
-        "高婷",
+        "Ting Gao",
         "李成祥 Gino",
         "周宇珠 Kris",
-        "任淑敏",
+        "Shumin Ren",
         "天云",
         "Jerry Hong",
         "张旭强 Matt",
         "范瑞真 Luna",
-        "于奇楠",
-        "沈佳栋"
+        "Qinan Yu",
+        "Jiadong Shen"
       ],
       "currency": "CNY"
     }
@@ -171,7 +171,7 @@
         "叶彦余",
         "史千一",
         "张思宇",
-        "刘一丝",
+        "Yisi Liu",
         "刘梦月",
         "徐辛怡",
         "李宛芸Joyce"
@@ -194,7 +194,7 @@
         "魏闻",
         "余鑫",
         "张淼",
-        "费子轩",
+        "Zixuan Fei",
         "刘雅婧Sylvia",
         "郑一然Paul",
         "张革伟"
@@ -224,7 +224,7 @@
         "Leo Zhou",
         "陈涵",
         "郑一然Paul",
-        "王娇玥",
+        "Jiao",
         "Chase Chen",
         "陈力",
         "杨瑾",
@@ -253,11 +253,11 @@
         "张婷婷",
         "朱雅楠",
         "Nicole Li",
-        "郭娜",
+        "Na Guo",
         "朱轲-Timothy",
         "杜倩文",
         "唐勇",
-        "童静",
+        "Jing Tong",
         "马添禹"
       ],
       "currency": "CNY"
@@ -278,15 +278,15 @@
         "宋雪娜",
         "曾大展",
         "李宛芸Joyce",
-        "褚芙玮",
+        "Fuwei Chu",
         "李清竹",
         "李冠宏",
-        "李家城",
+        "Kashing Li",
         "梅景怡",
         "Quanyi Liu",
         "Lester Sun",
         "邱雨晗",
-        "李秀钻",
+        "Xiuzuan Li",
         "王宇"
       ],
       "currency": "CNY"
@@ -306,13 +306,13 @@
         "王驰",
         "周玲玲",
         "刘青山",
-        "余晨",
+        "Chen Yu",
         "黄美雯",
         "帅成(Allison)",
-        "方逸知 Finn",
-        "赵溪月",
-        "张弛",
-        "郭利洁"
+        "Yizhi Fang (Finn)",
+        "Elena Zhao",
+        "Chi Zhang",
+        "Lijie Guo"
       ],
       "currency": "CNY"
     }
@@ -324,7 +324,7 @@
       "quarter": "Q4",
       "project_name": "POP Black Friday Individual Award",
       "team_award": "Black Friday Individual Award",
-      "winner_name": "林茜",
+      "winner_name": "Xi Lin",
       "email": "linxi.cicci@bytedance.com",
       "department": "Parallel",
       "region": "POP",
@@ -332,7 +332,7 @@
       "bonus": "5000",
       "reason": "1. Led UG-related collaboration, promoted single-voucher and CFP subsidy mechanisms, contributing GMV AB +5.3% to total market. Single-voucher solution improved subsidy ROI (iROAS) by 20%.\n2. Deeply participated in daily subsidy operations during campaign, responded quickly and efficiently to optimal subsidy strategy adjustments under different ROI/budget constraints for GMV targets.",
       "members": [
-        "林茜"
+        "Xi Lin"
       ],
       "currency": "CNY"
     },
@@ -342,7 +342,7 @@
       "quarter": "Q4",
       "project_name": "POP Black Friday Individual Award",
       "team_award": "Black Friday Individual Award",
-      "winner_name": "黄万军",
+      "winner_name": "Wanjun Huang",
       "email": "huangwanjun.2020@bytedance.com",
       "department": "产品研发和工程架构-Global E-Commerce-Global Selling-场景服务-营销运营",
       "region": "POP",
@@ -350,7 +350,7 @@
       "bonus": "5000",
       "reason": "During 2025 BF, Huang Wanjun served as GS-POP Technical POC. He coordinated and promoted POP collaboration mechanism and operations manual implementation, pre-sorted key links and capacity risks. During campaign, he responded frequently to Oncall and escalated hot issues, ensuring POP side zero major accidents and stable core seller experience, providing solid technical assurance for overall BF GMV growth.",
       "members": [
-        "黄万军"
+        "Wanjun Huang"
       ],
       "currency": "CNY"
     },
@@ -360,7 +360,7 @@
       "quarter": "Q4",
       "project_name": "POP Black Friday Individual Award",
       "team_award": "Black Friday Individual Award",
-      "winner_name": "高书林",
+      "winner_name": "Shulin Gao",
       "email": "gaoshulin@bytedance.com",
       "department": "Global E-Commerce-Product-US and Global Product-Seller Operations and Growth-Product Operations",
       "region": "POP",
@@ -368,7 +368,7 @@
       "bonus": "5000",
       "reason": "[NEEDS_TRANSLATION: pop.json]",
       "members": [
-        "高书林"
+        "Shulin Gao"
       ],
       "currency": "CNY"
     },
@@ -378,7 +378,7 @@
       "quarter": "Q4",
       "project_name": "POP Black Friday Individual Award",
       "team_award": "Black Friday Individual Award",
-      "winner_name": "闫潇晓",
+      "winner_name": "Xiaoxiao Yan",
       "email": "yanxiaoxiao.j@bytedance.com",
       "department": "Global E-Commerce-Product-Creator and Affiliate",
       "region": "POP",
@@ -386,7 +386,7 @@
       "bonus": "5000",
       "reason": "[NEEDS_TRANSLATION: pop.json]",
       "members": [
-        "闫潇晓"
+        "Xiaoxiao Yan"
       ],
       "currency": "CNY"
     },
@@ -396,7 +396,7 @@
       "quarter": "Q4",
       "project_name": "POP Black Friday Individual Award",
       "team_award": "Black Friday Individual Award",
-      "winner_name": "丁未未",
+      "winner_name": "Weiwei Ding",
       "email": "dingweiwei1@bytedance.com",
       "department": "Global E-Commerce-Data Science-Business Ecosystem Data Science-Seller and Platform",
       "region": "POP",
@@ -404,7 +404,7 @@
       "bonus": "5000",
       "reason": "Fully supported BF campaign. Pre-campaign: Built preparation strategy metric system from 0 to 1. Aligned with multiple parties, synchronized preparation progress and risks weekly. Rapidly launched pre-campaign preparation dashboard. Mid-campaign: Achieved full real-time campaign infrastructure capabilities. Quickly attributed and output suggestions around key business issues like low-surge industry attribution/content supply/product card diagnostics. Initially tried using AI tools for efficiency. Post-campaign: Deeply reviewed supply/content/ecology issues. First complete precipitation of business diagnosis attribution framework, efficiently and clearly locating key business issues.",
       "members": [
-        "丁未未"
+        "Weiwei Ding"
       ],
       "currency": "CNY"
     },
@@ -486,7 +486,7 @@
       "quarter": "Q4",
       "project_name": "POP Black Friday Individual Award",
       "team_award": "Black Friday Individual Award",
-      "winner_name": "赵溪月",
+      "winner_name": "Elena Zhao",
       "email": "zhaoxiyue.elena@bytedance.com",
       "department": "Global E-Commerce-Governance and Experience-US-Governance-Listing Governance",
       "region": "POP",
@@ -494,7 +494,7 @@
       "bonus": "5000",
       "reason": "[@赵溪月](https://s16-imfile-sg.feishucdn.com/static-resource/avatar/v3_00jp_90bd967b-3eef-4c43-9c69-994f486ea4hu_64.webp) is the main POC to drive the CCCU CCR improvement project with [@Ryan一帆](https://s16-imfile-sg.feishucdn.com/static-resource/avatar/v3_00sj_103e5416-1c13-4674-bcb1-b1a58c5e99hu_64.webp)and [@方逸知 Finn](https://s16-imfile-sg.feishucdn.com/static-resource/avatar/v2_07687a3c-e2f2-4d72-8b4b-7c8dc764faeg_64.webp). Both POP and GNE worked closely, conducted deep analysis, analyzed trade-off options and took quick actions. There is no perfect solution. Any action we take will impact GMV. In any case, both teams aligned and eventually we met targets for CCR without impacting GMV too much. ",
       "members": [
-        "赵溪月"
+        "Elena Zhao"
       ],
       "currency": "CNY"
     },
@@ -504,7 +504,7 @@
       "quarter": "Q4",
       "project_name": "POP Black Friday Individual Award",
       "team_award": "Black Friday Individual Award",
-      "winner_name": "刘菡姝",
+      "winner_name": "Hanshu Liu",
       "email": "liuhanshu.7@bytedance.com",
       "department": "Global E-commerce-US Operations Center-Strategy-Merchandise Strategy",
       "region": "POP",
@@ -512,7 +512,7 @@
       "bonus": "5000",
       "reason": "1. BF core inventory management and iteration: Responsible for BF core inventory strategy design, product selection, and mid-campaign replacement. Developed industry reporting rules focusing on key seller new products, trend products, BF exclusive bundles and other scenarios. Coordinated with POP BP to review reported products, handled industry over-reporting and collaboration communication. Ensured POP core inventory quality during BF, achieving POP core product daily average GMV $24.5M, market share 28.4%, surge 127.8%, 59.2pp higher than industry market. Incremental contribution to market 40%. Strictly controlled industry reporting access standards. POP BF period industry reported and approved 1200+ products, surge 122%, 53.4pp higher than industry market.\n\n2. BF pre and mid-campaign product operations\nRegistration catch-up: One week before BF, produced registration opportunity product list for industry distribution and key follow-up. Achieved POP pre-campaign one-week opportunity GMV new registration 9.4%, exceeded registration target.\nPre-stocking: From September, conducted rolling forecast of stocking volume for campaign key products, planned and followed up FBT warehouse and seller warehouse separately. By one week before BF, POP overall inventory stocking progress achieved 87.09%.\nOut-of-stock warning: Coordinated with field for overall inventory, event inventory and FBT inventory warning. Followed up single-point replenishment for high GMV loss products at industry side. Through warning, completed POP 253 key product mid-campaign replenishment, accounting for 59%, recovered GMV 18M+, accounting for market 1.13%.",
       "members": [
-        "刘菡姝"
+        "Hanshu Liu"
       ],
       "currency": "CNY"
     },
@@ -522,7 +522,7 @@
       "quarter": "Q4",
       "project_name": "POP Black Friday Individual Award",
       "team_award": "Black Friday Individual Award",
-      "winner_name": "徐月蔷",
+      "winner_name": "Abby Xu",
       "email": "xuyueqiang@bytedance.com",
       "department": "Global E-commerce-US Operations Center-Strategy-Merchandise Strategy",
       "region": "POP",
@@ -530,7 +530,7 @@
       "bonus": "5000",
       "reason": "1. Combined BF core products with trend new products/best-sellers/SKPP strategy to improve POP BF core product ratio. Incorporated price exemption applications during the process to boost POP product transactions and surge.\n2. POP core product ratio 45%, with strategic key products contributing 49% of increment | Uplift +103.0% (51pp higher than other products). Trend products contributed 48.9% of BF transactions | Uplift +76.0% (outperforming US market by 4pp); Supported price exemption for 51.3K products cumulatively, contributing 49.8% | Uplift +108.7%",
       "members": [
-        "徐月蔷"
+        "Abby Xu"
       ],
       "currency": "CNY"
     },
@@ -558,7 +558,7 @@
       "quarter": "Q4",
       "project_name": "POP Black Friday Individual Award",
       "team_award": "Black Friday Individual Award",
-      "winner_name": "王帅",
+      "winner_name": "Shuai Wang",
       "email": "wangshuai.0210@bytedance.com",
       "department": "供应链与物流-跨境物流运营-跨境B段物流运营-东南亚运营",
       "region": "POP",
@@ -566,7 +566,7 @@
       "bonus": "5000",
       "reason": "1. Continuous improvement in time and experience: Collaborated with customs to rapidly improve POP 4PL fulfillment time by building mainline consolidated main waybill declaration. Q4 average time achieved 12.86 days, improved nearly 3 days compared to Q3. CCR Q4 decreased 0.015% vs Q3. 4PL time and experience metrics both better than 3PL.\n2. Korea to US 3PL capability building: Supported industry to launch Korea to US small parcel direct mail 3PL mode for big seller product testing. Q4 completed testing and ran through the process.\n3. Waterway bill governance: For waterway bill issues, initiated 3PL to 4PL switch plan design at end of November. Coordinated with all logistics departments for comprehensive evaluation and output P&L plan, bottlenecks, and items requiring transformation.",
       "members": [
-        "王帅"
+        "Shuai Wang"
       ],
       "currency": "CNY"
     },
@@ -576,7 +576,7 @@
       "quarter": "Q4",
       "project_name": "POP Black Friday Individual Award",
       "team_award": "Black Friday Individual Award",
-      "winner_name": "李威",
+      "winner_name": "LiWei",
       "email": "way.li@bytedance.com",
       "department": "供应链与物流-跨境物流运营-国际关务运营",
       "region": "POP",
@@ -584,7 +584,7 @@
       "bonus": "5000",
       "reason": "1. Pre-campaign preparation: Coordinated with major B-end service providers to pre-stock quality customs clearance resources; during campaign, when encountering customs inspection or PGA review, coordinated daily with service providers to prioritize goods inspection and handover to last-mile. Campaign customs clearance time 74.6 hours, better than target.\n2. During campaign, reviewed over 45,000 tax bills, identified discrepancies exceeding $9,000 and adjusted POP seller taxes, effectively helping sellers reduce costs.",
       "members": [
-        "李威"
+        "LiWei"
       ],
       "currency": "CNY"
     }
