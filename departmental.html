@@ -559,8 +559,46 @@
     }
 
     // ===== Get Awards for a Specific Department =====
+    // Keyword mappings for fuzzy department matching (after dept names were standardized to full L1-L4 paths)
+    const DEPT_KEYWORDS = {
+      'ID Ops': ['Indonesia Operations', 'ID Ops'],
+      'MY Ops': ['Malaysia Operations', 'MY Ops'],
+      'PH Ops': ['Philippines Operations', 'PH Ops'],
+      'SG Ops': ['Singapore Operations', 'SG Ops'],
+      'TH Ops': ['Thailand Operations', 'TH Ops'],
+      'VN Ops': ['Vietnam Operations', 'VN Ops'],
+      'SEA Cross-border': ['SEA Cross-Border Operations', 'SEA Cross-border'],
+      'SEA Central': ['SEA Operations-Central'],
+      'SEA IMC': ['Integrated Marketing'],
+      'JP Operations': ['Japan Operations', 'JP Operations'],
+      'UK Operations': ['UK Operations'],
+      'EU Ops + EU Ops Center': ['EU Operations Center', 'EU Ops Center'],
+      'UK&EU&JP POP': ['Global Selling POP-Fashion', 'Global Selling POP-Creator'],
+      'US Ops + US Ops Center + GKA': ['US Operations', 'Core Shopping', 'US Logistics'],
+      'LATAM Operations': ['LATAM Product', 'LATAM Operations', 'Brazil Operations'],
+      'Global Selling Full Service': ['Global Selling Full Service'],
+      'Global Selling POP': ['Global Selling POP'],
+      'GNE': ['Governance and Experience'],
+      'Supply Chain and Logistics': ['Supply Chain and Logistics'],
+      'Product': ['Product-'],
+      'Design': ['Design-'],
+      'UG': ['User Growth', 'UG', 'User & Promotion Growth'],
+      'Data Science': ['Data Science'],
+      'User Research': ['User Research'],
+      'Strategic Readiness and Business Communication': ['Strategic Readiness'],
+      'Strategy Analytics & Resource Management': ['Strategy Analytics']
+    };
+
     function getAwardsForDept(deptFullName) {
       const allAwards = getAllAwardsForYear();
+      const keywords = DEPT_KEYWORDS[deptFullName];
+      if (keywords) {
+        return allAwards.filter(a => {
+          const dept = a.department || '';
+          return keywords.some(kw => dept.includes(kw));
+        });
+      }
+      // Fallback: exact match
       return allAwards.filter(a => a.department === deptFullName);
     }
 
