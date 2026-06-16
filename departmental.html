@@ -664,21 +664,24 @@
 
     // ===== Render Department Podium =====
     function renderDeptPodium(awards) {
-      // Calculate scores: individual award = bonus amount, team award = bonus / member count per person
+      // Calculate scores: Team Award = 3 pts per person, Individual Award = 1 pt
       const personScores = {};
       awards.forEach(a => {
         const members = a.members || [];
         const name = a.winner_name || 'Unknown';
-        const bonus = a.bonus || 0;
-        if (a.award_type === 'Departmental Award' && members.length > 1) {
+        const isTeamAward = a.award_type === 'Departmental Award';
+        const pts = isTeamAward ? 3 : 1;
+        if (isTeamAward && members.length > 0) {
           members.forEach(m => {
-            if (!personScores[m]) personScores[m] = { name: m, score: 0, email: '', department: a.department };
-            personScores[m].score += Math.round(bonus / members.length);
+            if (!personScores[m]) personScores[m] = { name: m, score: 0, awards: 0, email: '', department: a.department };
+            personScores[m].score += pts;
+            personScores[m].awards += 1;
             if (!personScores[m].email && a.email) personScores[m].email = a.email;
           });
         } else {
-          if (!personScores[name]) personScores[name] = { name: name, score: 0, email: '', department: a.department };
-          personScores[name].score += bonus;
+          if (!personScores[name]) personScores[name] = { name: name, score: 0, awards: 0, email: '', department: a.department };
+          personScores[name].score += pts;
+          personScores[name].awards += 1;
           if (!personScores[name].email && a.email) personScores[name].email = a.email;
         }
       });
