@@ -347,7 +347,7 @@
     },
     {
       "project_name": "DE/FR/IT/JP New Market Launch",
-      "department": "Product",
+      "department": "Business Product / RD",
       "region": "EU",
       "original_region": "EU+UK+JP (L2L + POP)",
       "bonus": "5000",
@@ -557,7 +557,7 @@
     },
     {
       "project_name": "DE/FR/IT/JP New Market Launch",
-      "department": "Product",
+      "department": "UK&EU Product",
       "region": "EU",
       "original_region": "EU+UK+JP (L2L + POP)",
       "bonus": "5000",
@@ -602,7 +602,7 @@
     },
     {
       "project_name": "DE/FR/IT/JP New Market Launch",
-      "department": "Product",
+      "department": "Recommend Product",
       "region": "EU",
       "original_region": "EU+UK+JP (L2L + POP)",
       "bonus": "5000",
@@ -617,7 +617,7 @@
     },
     {
       "project_name": "DE/FR/IT/JP New Market Launch",
-      "department": "Product",
+      "department": "UK&EU Product",
       "region": "EU",
       "original_region": "EU+UK+JP (L2L + POP)",
       "bonus": "5000",
@@ -722,7 +722,7 @@
     },
     {
       "project_name": "DE/FR/IT/JP New Market Launch",
-      "department": "Product",
+      "department": "GNE Product",
       "region": "EU",
       "original_region": "EU+UK+JP (L2L + POP)",
       "bonus": "5000",
@@ -947,7 +947,7 @@
     },
     {
       "project_name": "DE/FR/IT/JP New Market Launch",
-      "department": "Tech/RD",
+      "department": "Business Product / RD",
       "region": "EU",
       "original_region": "EU+UK+JP (L2L + POP)",
       "bonus": "5000",
@@ -1052,7 +1052,7 @@
     },
     {
       "project_name": "DE/FR/IT/JP New Market Launch",
-      "department": "Algo",
+      "department": "Data-Global E-Commerce-Recommendation",
       "region": "EU",
       "original_region": "EU+UK+JP (L2L + POP)",
       "bonus": "5000",
@@ -1067,7 +1067,7 @@
     },
     {
       "project_name": "DE/FR/IT/JP New Market Launch",
-      "department": "Algo",
+      "department": "TikTok-Data-E-Commerce",
       "region": "EU",
       "original_region": "EU+UK+JP (L2L + POP)",
       "bonus": "5000",
@@ -1082,7 +1082,7 @@
     },
     {
       "project_name": "DE/FR/IT/JP New Market Launch",
-      "department": "Algo",
+      "department": "Data-Global E-Commerce-Recommendation-Mall",
       "region": "EU",
       "original_region": "EU+UK+JP (L2L + POP)",
       "bonus": "5000",
@@ -1127,7 +1127,7 @@
     },
     {
       "project_name": "DE/FR/IT/JP New Market Launch",
-      "department": "CSM",
+      "department": "Business Product / RD",
       "region": "EU",
       "original_region": "EU+UK+JP (L2L + POP)",
       "bonus": "5000",
@@ -1142,7 +1142,7 @@
     },
     {
       "project_name": "DE/FR/IT/JP New Market Launch",
-      "department": "CSM",
+      "department": "Business Product / RD",
       "region": "EU",
       "original_region": "EU+UK+JP (L2L + POP)",
       "bonus": "5000",
@@ -1157,7 +1157,7 @@
     },
     {
       "project_name": "DE/FR/IT/JP New Market Launch",
-      "department": "CSM",
+      "department": "Business Product / RD",
       "region": "EU",
       "original_region": "EU+UK+JP (L2L + POP)",
       "bonus": "5000",
@@ -1217,7 +1217,7 @@
     },
     {
       "project_name": "DE/FR/IT/JP New Market Launch",
-      "department": "EU Ops",
+      "department": "EU Ops Center-Live",
       "region": "EU",
       "original_region": "EU+UK+JP (L2L + POP)",
       "bonus": "5000",
@@ -1307,7 +1307,7 @@
     },
     {
       "project_name": "DE/FR/IT/JP New Market Launch",
-      "department": "GNE",
+      "department": "Global E-Commerce-Governance and Experience",
       "region": "EU",
       "original_region": "EU+UK+JP (L2L + POP)",
       "bonus": "5000",
@@ -1337,7 +1337,7 @@
     },
     {
       "project_name": "DE/FR/IT/JP New Market Launch",
-      "department": "GNE",
+      "department": "GNE ops",
       "region": "EU",
       "original_region": "EU+UK+JP (L2L + POP)",
       "bonus": "5000",
@@ -1592,7 +1592,7 @@
     },
     {
       "project_name": "DE/FR/IT/JP New Market Launch",
-      "department": "SRBC",
+      "department": "Global E-Commerce-Strategic Readiness and Business Communication",
       "region": "EU",
       "original_region": "EU+UK+JP (L2L + POP)",
       "bonus": "5000",
@@ -1727,7 +1727,7 @@
     },
     {
       "project_name": "DE/FR/IT/JP New Market Launch",
-      "department": "Logistic",
+      "department": "Supply Chain and Logistics-Merchant Fulfillment Product",
       "region": "EU",
       "original_region": "EU+UK+JP (L2L + POP)",
       "bonus": "5000",
@@ -1982,7 +1982,7 @@
     },
     {
       "project_name": "Intra-EU",
-      "department": "DS",
+      "department": "Data Science",
       "region": "EU",
       "original_region": "EU+UK+JP (L2L + POP)",
       "bonus": "5000",
@@ -1997,7 +1997,7 @@
     },
     {
       "project_name": "Intra-EU",
-      "department": "DS",
+      "department": "Recommendation Data Science     **&nbsp;**",
       "region": "EU",
       "original_region": "EU+UK+JP (L2L + POP)",
       "bonus": "5000",
@@ -2102,7 +2102,7 @@
     },
     {
       "project_name": "Intra-EU",
-      "department": "GNE ops",
+      "department": "Global E-Commerce-Governance and Experience",
       "region": "EU",
       "original_region": "EU+UK+JP (L2L + POP)",
       "bonus": "5000",
@@ -2237,7 +2237,7 @@
     },
     {
       "project_name": "Intra-EU",
-      "department": "Design",
+      "department": "Design&L10N",
       "region": "EU",
       "original_region": "EU+UK+JP (L2L + POP)",
       "bonus": "5000",
@@ -2672,7 +2672,7 @@
     },
     {
       "project_name": "Expedited Launch of E-com Recommendation Systems in Newly Launched European Markets",
-      "department": "TikTok-Data-E-Commerce",
+      "department": "Data-Global E-Commerce-Recommendation",
       "region": "EU",
       "original_region": "EU+UK+JP (L2L + POP)",
       "bonus": "5000",
@@ -2759,7 +2759,7 @@
       ],
       "email": "siying.chen@bytedance.com",
       "reason": "This was the biggest and most successful UK campaign to date ($234M, +74% uplift), breaking our single-day GMV record on 28/11 reaching $36.4M. This was also the largest cross-functional effort in 2025 from teams across the globe to mobilise such a significant campaign that drove Nov, Dec and Q4 OKR completion.",
-      "department": "Logistics",
+      "department": "Supply Chain and Logistics",
       "award_type": "H2 Project Awards"
     },
     {
@@ -2774,7 +2774,7 @@
       ],
       "email": "litao.luffy@bytedance.com",
       "reason": "This was the biggest and most successful UK campaign to date ($234M, +74% uplift), breaking our single-day GMV record on 28/11 reaching $36.4M. This was also the largest cross-functional effort in 2025 from teams across the globe to mobilise such a significant campaign that drove Nov, Dec and Q4 OKR completion.",
-      "department": "Product",
+      "department": "UK&EU Product",
       "award_type": "H2 Project Awards"
     },
     {
@@ -2879,7 +2879,7 @@
       ],
       "email": "lexa.zhang@bytedance.com",
       "reason": "This was the biggest and most successful UK campaign to date ($234M, +74% uplift), breaking our single-day GMV record on 28/11 reaching $36.4M. This was also the largest cross-functional effort in 2025 from teams across the globe to mobilise such a significant campaign that drove Nov, Dec and Q4 OKR completion.",
-      "department": "HNE",
+      "department": "UK Ops",
       "award_type": "H2 Project Awards"
     },
     {
@@ -2894,7 +2894,7 @@
       ],
       "email": "hangkeyu@bytedance.com",
       "reason": "This was the biggest and most successful UK campaign to date ($234M, +74% uplift), breaking our single-day GMV record on 28/11 reaching $36.4M. This was also the largest cross-functional effort in 2025 from teams across the globe to mobilise such a significant campaign that drove Nov, Dec and Q4 OKR completion.",
-      "department": "Beauty",
+      "department": "UK Ops",
       "award_type": "H2 Project Awards"
     },
     {
@@ -2999,7 +2999,7 @@
       ],
       "email": "bridie.gilbert@bytedance.com",
       "reason": "This was the biggest and most successful UK campaign to date ($234M, +74% uplift), breaking our single-day GMV record on 28/11 reaching $36.4M. This was also the largest cross-functional effort in 2025 from teams across the globe to mobilise such a significant campaign that drove Nov, Dec and Q4 OKR completion.",
-      "department": "Campaign",
+      "department": "UK Operations",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3074,7 +3074,7 @@
       ],
       "email": "zhujiaqi.emily@bytedance.com",
       "reason": "This was the biggest and most successful UK campaign to date ($234M, +74% uplift), breaking our single-day GMV record on 28/11 reaching $36.4M. This was also the largest cross-functional effort in 2025 from teams across the globe to mobilise such a significant campaign that drove Nov, Dec and Q4 OKR completion.",
-      "department": "Algo",
+      "department": "Recommend Product",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3134,7 +3134,7 @@
       ],
       "email": "xichengjiang@bytedance.com",
       "reason": "This was the biggest and most successful UK campaign to date ($234M, +74% uplift), breaking our single-day GMV record on 28/11 reaching $36.4M. This was also the largest cross-functional effort in 2025 from teams across the globe to mobilise such a significant campaign that drove Nov, Dec and Q4 OKR completion.",
-      "department": "Shoptab",
+      "department": "UK&EU Shopping Center Ops",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3179,7 +3179,7 @@
       ],
       "email": "daidanyang@bytedance.com",
       "reason": "This was the biggest and most successful UK campaign to date ($234M, +74% uplift), breaking our single-day GMV record on 28/11 reaching $36.4M. This was also the largest cross-functional effort in 2025 from teams across the globe to mobilise such a significant campaign that drove Nov, Dec and Q4 OKR completion.",
-      "department": "GS-FS",
+      "department": "Global Selling Full Service",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3194,7 +3194,7 @@
       ],
       "email": "yisi@bytedance.com",
       "reason": "This was the biggest and most successful UK campaign to date ($234M, +74% uplift), breaking our single-day GMV record on 28/11 reaching $36.4M. This was also the largest cross-functional effort in 2025 from teams across the globe to mobilise such a significant campaign that drove Nov, Dec and Q4 OKR completion.",
-      "department": "GS-POP",
+      "department": "Global Selling POP",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3224,7 +3224,7 @@
       ],
       "email": "houyajie@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Ops",
+      "department": "Germany Ops",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3329,7 +3329,7 @@
       ],
       "email": "natalie.leutner@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Ops",
+      "department": "Germany Ops",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3359,7 +3359,7 @@
       ],
       "email": "gerard.ferreiro@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Ops",
+      "department": "EU Ops + EU Ops Center",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3374,7 +3374,7 @@
       ],
       "email": "lucia.garcia.madrid@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Ops",
+      "department": "Spain Ops",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3389,7 +3389,7 @@
       ],
       "email": "yue.wang01@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Ops",
+      "department": "Spain Ops",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3404,7 +3404,7 @@
       ],
       "email": "faye.liu@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Ops",
+      "department": "Spain Ops",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3419,7 +3419,7 @@
       ],
       "email": "chiara.zuppiroli@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Ops",
+      "department": "Italy Ops",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3464,7 +3464,7 @@
       ],
       "email": "laura.kuroki@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Ops",
+      "department": "France Ops",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3509,7 +3509,7 @@
       ],
       "email": "nan.peng@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Ops",
+      "department": "France Ops",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3524,7 +3524,7 @@
       ],
       "email": "katey.mcelroy@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Ops",
+      "department": "Ireland Ops",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3554,7 +3554,7 @@
       ],
       "email": "liuxueqing.vanessa@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Ops",
+      "department": "EU Ops-Central Campaign",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3569,7 +3569,7 @@
       ],
       "email": "sherrypan@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Ops",
+      "department": "EU Ops-Central Campaign",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3584,7 +3584,7 @@
       ],
       "email": "javier.manzanares@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Ops",
+      "department": "EU Ops-Central Campaign",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3614,7 +3614,7 @@
       ],
       "email": "caiyuchuan.leo@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Ops",
+      "department": "EU Ops-Central Campaign",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3629,7 +3629,7 @@
       ],
       "email": "chenyang.dayang@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Ops",
+      "department": "EU Ops + EU Ops Center",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3674,7 +3674,7 @@
       ],
       "email": "cailin.0630@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Ops",
+      "department": "UK&EU Shopping Center Ops",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3719,7 +3719,7 @@
       ],
       "email": "daidanyang@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Ops",
+      "department": "Global Selling Full Service",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3734,7 +3734,7 @@
       ],
       "email": "hsh@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Ops",
+      "department": "EU Ops Center-Live",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3749,7 +3749,7 @@
       ],
       "email": "pengsen.sam@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Ops",
+      "department": "EU Ops Center-Live",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3764,7 +3764,7 @@
       ],
       "email": "tracyshen@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Ops",
+      "department": "EU Ops Center-Live",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3809,7 +3809,7 @@
       ],
       "email": "liangjieli@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Ops",
+      "department": "EU Ops Center-Affiliate",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3824,7 +3824,7 @@
       ],
       "email": "xueyue.gunjan@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Ops",
+      "department": "EU Ops Center-Affiliate",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3839,7 +3839,7 @@
       ],
       "email": "agna.putri@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Ops",
+      "department": "EU Ops Center-MAI",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3884,7 +3884,7 @@
       ],
       "email": "neha.mashhood@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "GNE",
+      "department": "GNE ops",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3944,7 +3944,7 @@
       ],
       "email": "litao.luffy@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Product",
+      "department": "UK&EU Product",
       "award_type": "H2 Project Awards"
     },
     {
@@ -3959,7 +3959,7 @@
       ],
       "email": "yu.tian1@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Product",
+      "department": "UK&EU Product",
       "award_type": "H2 Project Awards"
     },
     {
@@ -4034,7 +4034,7 @@
       ],
       "email": "songxiaoyuan@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "RD",
+      "department": "Product RD and Infrastructure",
       "award_type": "H2 Project Awards"
     },
     {
@@ -4094,7 +4094,7 @@
       ],
       "email": "liujinyun.jy@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "RD",
+      "department": "Product RD and Infrastructure",
       "award_type": "H2 Project Awards"
     },
     {
@@ -4124,7 +4124,7 @@
       ],
       "email": "hedan.123@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Data Science",
+      "department": "Data Science UK+EU",
       "award_type": "H2 Project Awards"
     },
     {
@@ -4199,7 +4199,7 @@
       ],
       "email": "linying.eva@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Recommendation",
+      "department": "Recommendation PM",
       "award_type": "H2 Project Awards"
     },
     {
@@ -4214,7 +4214,7 @@
       ],
       "email": "zhujiaqi.emily@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Recommendation",
+      "department": "Recommend Product",
       "award_type": "H2 Project Awards"
     },
     {
@@ -4259,7 +4259,7 @@
       ],
       "email": "wangdong.08@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Recommendation",
+      "department": "Data-Global E-Commerce-Recommendation",
       "award_type": "H2 Project Awards"
     },
     {
@@ -4274,7 +4274,7 @@
       ],
       "email": "zhangchenyi.001@bytedance.com",
       "reason": "Strong business results:\nDrove +88% C-end GMV uplift with 117% target attainment across EU5 BFCM, while delivering a record-breaking €14.8M single-day GMV peak that remains unbeaten to date.\nDevelop repeatable mechanisms:\nBuilt and validated scalable, repeatable growth engines—anchored on creator-led short videos, campaign core product pool, reinforced by high-impact conversion levers (free shipping + price competitiveness), and powered by data-driven operations—unlocking step-change improvements in both efficiency and scale.\nBuilding up product & capability:\nScaled the “EU as One” model to ensure consistent, high-quality cross-market supply, while continuously evolving C-end product capabilities—establishing a structurally stronger foundation for conversion and long-term growth.",
-      "department": "Recommendation",
+      "department": "Recommendation MLE",
       "award_type": "H2 Project Awards"
     },
     {
@@ -4439,7 +4439,7 @@
       ],
       "email": "wangdong.08@bytedance.com",
       "reason": "Since H2 2025, short-video viewership in EU4 increased while GMV growth lagged. Business and Recommendation teams identified two issues: growth was driven by low-quality or abandoned content that failed to generate “effective supply,” and traffic allocation lacked supply elasticity. The teams redefined “effective supply” as the supply-side North Star, focusing cross-functional efforts on expanding it and improving its GMV leverage.\nDaily effective submissions increased from 18,400 in July to 55,400 in December (3x growth). Governance and Recommendation teams reduced exposure to low-quality content, lowering EU5 low-quality share by 4.85pt to 8.54%. With the groundwork of content quality initiatives, In Q4, recommendation team prioritized high GPM and high-engagement, high-transaction content. Our reversal tests confirmed a +32% surge in EU4 video GMV, contributing a massive +15.6% incremental GMV to EU TTS.\nThe project delivered measurable H2 growth and established a scalable mechanism aligning supply governance and traffic allocation. Teams shared ownership and collaborated efficiently to amplify impact.",
-      "department": "Recommendation MLE",
+      "department": "Data-Global E-Commerce-Recommendation",
       "award_type": "H2 Project Awards"
     },
     {
@@ -4454,7 +4454,7 @@
       ],
       "email": "dingwenxiang@bytedance.com",
       "reason": "Since H2 2025, short-video viewership in EU4 increased while GMV growth lagged. Business and Recommendation teams identified two issues: growth was driven by low-quality or abandoned content that failed to generate “effective supply,” and traffic allocation lacked supply elasticity. The teams redefined “effective supply” as the supply-side North Star, focusing cross-functional efforts on expanding it and improving its GMV leverage.\nDaily effective submissions increased from 18,400 in July to 55,400 in December (3x growth). Governance and Recommendation teams reduced exposure to low-quality content, lowering EU5 low-quality share by 4.85pt to 8.54%. With the groundwork of content quality initiatives, In Q4, recommendation team prioritized high GPM and high-engagement, high-transaction content. Our reversal tests confirmed a +32% surge in EU4 video GMV, contributing a massive +15.6% incremental GMV to EU TTS.\nThe project delivered measurable H2 growth and established a scalable mechanism aligning supply governance and traffic allocation. Teams shared ownership and collaborated efficiently to amplify impact.",
-      "department": "Recommendation DS",
+      "department": "Recommendation Data Science     **&nbsp;**",
       "award_type": "H2 Project Awards"
     },
     {
@@ -4469,7 +4469,7 @@
       ],
       "email": "jeremy.gao@bytedance.com",
       "reason": "Since H2 2025, short-video viewership in EU4 increased while GMV growth lagged. Business and Recommendation teams identified two issues: growth was driven by low-quality or abandoned content that failed to generate “effective supply,” and traffic allocation lacked supply elasticity. The teams redefined “effective supply” as the supply-side North Star, focusing cross-functional efforts on expanding it and improving its GMV leverage.\nDaily effective submissions increased from 18,400 in July to 55,400 in December (3x growth). Governance and Recommendation teams reduced exposure to low-quality content, lowering EU5 low-quality share by 4.85pt to 8.54%. With the groundwork of content quality initiatives, In Q4, recommendation team prioritized high GPM and high-engagement, high-transaction content. Our reversal tests confirmed a +32% surge in EU4 video GMV, contributing a massive +15.6% incremental GMV to EU TTS.\nThe project delivered measurable H2 growth and established a scalable mechanism aligning supply governance and traffic allocation. Teams shared ownership and collaborated efficiently to amplify impact.",
-      "department": "EMEA DS",
+      "department": "Data Science",
       "award_type": "H2 Project Awards"
     },
     {
@@ -4484,7 +4484,7 @@
       ],
       "email": "passion.chiang@bytedance.com",
       "reason": "Since H2 2025, short-video viewership in EU4 increased while GMV growth lagged. Business and Recommendation teams identified two issues: growth was driven by low-quality or abandoned content that failed to generate “effective supply,” and traffic allocation lacked supply elasticity. The teams redefined “effective supply” as the supply-side North Star, focusing cross-functional efforts on expanding it and improving its GMV leverage.\nDaily effective submissions increased from 18,400 in July to 55,400 in December (3x growth). Governance and Recommendation teams reduced exposure to low-quality content, lowering EU5 low-quality share by 4.85pt to 8.54%. With the groundwork of content quality initiatives, In Q4, recommendation team prioritized high GPM and high-engagement, high-transaction content. Our reversal tests confirmed a +32% surge in EU4 video GMV, contributing a massive +15.6% incremental GMV to EU TTS.\nThe project delivered measurable H2 growth and established a scalable mechanism aligning supply governance and traffic allocation. Teams shared ownership and collaborated efficiently to amplify impact.",
-      "department": "EMEA DS",
+      "department": "Data Science",
       "award_type": "H2 Project Awards"
     },
     {
@@ -4499,7 +4499,7 @@
       ],
       "email": "zhujiaqi.emily@bytedance.com",
       "reason": "Since H2 2025, short-video viewership in EU4 increased while GMV growth lagged. Business and Recommendation teams identified two issues: growth was driven by low-quality or abandoned content that failed to generate “effective supply,” and traffic allocation lacked supply elasticity. The teams redefined “effective supply” as the supply-side North Star, focusing cross-functional efforts on expanding it and improving its GMV leverage.\nDaily effective submissions increased from 18,400 in July to 55,400 in December (3x growth). Governance and Recommendation teams reduced exposure to low-quality content, lowering EU5 low-quality share by 4.85pt to 8.54%. With the groundwork of content quality initiatives, In Q4, recommendation team prioritized high GPM and high-engagement, high-transaction content. Our reversal tests confirmed a +32% surge in EU4 video GMV, contributing a massive +15.6% incremental GMV to EU TTS.\nThe project delivered measurable H2 growth and established a scalable mechanism aligning supply governance and traffic allocation. Teams shared ownership and collaborated efficiently to amplify impact.",
-      "department": "Recommendation PM",
+      "department": "Recommend Product",
       "award_type": "H2 Project Awards"
     },
     {
@@ -4664,7 +4664,7 @@
       ],
       "email": "weixiongye@bytedance.com",
       "reason": "Since H2 2025, short-video viewership in EU4 increased while GMV growth lagged. Business and Recommendation teams identified two issues: growth was driven by low-quality or abandoned content that failed to generate “effective supply,” and traffic allocation lacked supply elasticity. The teams redefined “effective supply” as the supply-side North Star, focusing cross-functional efforts on expanding it and improving its GMV leverage.\nDaily effective submissions increased from 18,400 in July to 55,400 in December (3x growth). Governance and Recommendation teams reduced exposure to low-quality content, lowering EU5 low-quality share by 4.85pt to 8.54%. With the groundwork of content quality initiatives, In Q4, recommendation team prioritized high GPM and high-engagement, high-transaction content. Our reversal tests confirmed a +32% surge in EU4 video GMV, contributing a massive +15.6% incremental GMV to EU TTS.\nThe project delivered measurable H2 growth and established a scalable mechanism aligning supply governance and traffic allocation. Teams shared ownership and collaborated efficiently to amplify impact.",
-      "department": "EU Operations",
+      "department": "Strategy/ Business analytics",
       "award_type": "H2 Project Awards"
     },
     {
@@ -4679,7 +4679,7 @@
       ],
       "email": "xiaohui.wang@bytedance.com",
       "reason": "Since H2 2025, short-video viewership in EU4 increased while GMV growth lagged. Business and Recommendation teams identified two issues: growth was driven by low-quality or abandoned content that failed to generate “effective supply,” and traffic allocation lacked supply elasticity. The teams redefined “effective supply” as the supply-side North Star, focusing cross-functional efforts on expanding it and improving its GMV leverage.\nDaily effective submissions increased from 18,400 in July to 55,400 in December (3x growth). Governance and Recommendation teams reduced exposure to low-quality content, lowering EU5 low-quality share by 4.85pt to 8.54%. With the groundwork of content quality initiatives, In Q4, recommendation team prioritized high GPM and high-engagement, high-transaction content. Our reversal tests confirmed a +32% surge in EU4 video GMV, contributing a massive +15.6% incremental GMV to EU TTS.\nThe project delivered measurable H2 growth and established a scalable mechanism aligning supply governance and traffic allocation. Teams shared ownership and collaborated efficiently to amplify impact.",
-      "department": "EU Operations",
+      "department": "EU Ops Center-Affiliate",
       "award_type": "H2 Project Awards"
     },
     {
@@ -4694,7 +4694,7 @@
       ],
       "email": "liangjieli@bytedance.com",
       "reason": "Since H2 2025, short-video viewership in EU4 increased while GMV growth lagged. Business and Recommendation teams identified two issues: growth was driven by low-quality or abandoned content that failed to generate “effective supply,” and traffic allocation lacked supply elasticity. The teams redefined “effective supply” as the supply-side North Star, focusing cross-functional efforts on expanding it and improving its GMV leverage.\nDaily effective submissions increased from 18,400 in July to 55,400 in December (3x growth). Governance and Recommendation teams reduced exposure to low-quality content, lowering EU5 low-quality share by 4.85pt to 8.54%. With the groundwork of content quality initiatives, In Q4, recommendation team prioritized high GPM and high-engagement, high-transaction content. Our reversal tests confirmed a +32% surge in EU4 video GMV, contributing a massive +15.6% incremental GMV to EU TTS.\nThe project delivered measurable H2 growth and established a scalable mechanism aligning supply governance and traffic allocation. Teams shared ownership and collaborated efficiently to amplify impact.",
-      "department": "EU Operations",
+      "department": "EU Ops Center-Affiliate",
       "award_type": "H2 Project Awards"
     },
     {
@@ -4739,14 +4739,14 @@
       ],
       "email": "harvey@bytedance.com",
       "reason": "Since H2 2025, short-video viewership in EU4 increased while GMV growth lagged. Business and Recommendation teams identified two issues: growth was driven by low-quality or abandoned content that failed to generate “effective supply,” and traffic allocation lacked supply elasticity. The teams redefined “effective supply” as the supply-side North Star, focusing cross-functional efforts on expanding it and improving its GMV leverage.\nDaily effective submissions increased from 18,400 in July to 55,400 in December (3x growth). Governance and Recommendation teams reduced exposure to low-quality content, lowering EU5 low-quality share by 4.85pt to 8.54%. With the groundwork of content quality initiatives, In Q4, recommendation team prioritized high GPM and high-engagement, high-transaction content. Our reversal tests confirmed a +32% surge in EU4 video GMV, contributing a massive +15.6% incremental GMV to EU TTS.\nThe project delivered measurable H2 growth and established a scalable mechanism aligning supply governance and traffic allocation. Teams shared ownership and collaborated efficiently to amplify impact.",
-      "department": "EU Operations",
+      "department": "Strategy/ Business analytics",
       "award_type": "H2 Project Awards"
     }
   ],
   "H2 Individual Awards": [
     {
       "project_name": "BFCM/Tokutoku Thanks Sale Stellar Contributors",
-      "department": "JP Ops",
+      "department": "JP Operations",
       "bonus": "700",
       "members": [
         "Toshikazu Handa"
@@ -4802,7 +4802,7 @@
     },
     {
       "project_name": "BFCM/Tokutoku Thanks Sale Stellar Contributors",
-      "department": "UK Ops",
+      "department": "Fashion",
       "bonus": "700",
       "members": [
         "Yancey Ding"
@@ -4830,7 +4830,7 @@
     },
     {
       "project_name": "BFCM/Tokutoku Thanks Sale Stellar Contributors",
-      "department": "UK Ops",
+      "department": "Campaign",
       "bonus": "700",
       "members": [
         "Freya Yuan"
@@ -4844,7 +4844,7 @@
     },
     {
       "project_name": "BFCM/Tokutoku Thanks Sale Stellar Contributors",
-      "department": "UK Ops",
+      "department": "UK Operations",
       "bonus": "700",
       "members": [
         "Bridie Gilbert"
@@ -4886,7 +4886,7 @@
     },
     {
       "project_name": "BFCM/Tokutoku Thanks Sale Stellar Contributors",
-      "department": "Spain Ops",
+      "department": "EU Ops + EU Ops Center",
       "bonus": "700",
       "members": [
         "Gerard Ferreiro"
@@ -4914,7 +4914,7 @@
     },
     {
       "project_name": "BFCM/Tokutoku Thanks Sale Stellar Contributors",
-      "department": "EU Ops Center",
+      "department": "EU Ops Center-Affiliate",
       "bonus": "700",
       "members": [
         "Miya Xue"

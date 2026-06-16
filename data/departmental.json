@@ -105,7 +105,7 @@
         "email": "wangxin.g@bytedance.com",
         "bonus": 500,
         "award_type": "Spot Bonus",
-        "department": "EU Ops + EU Ops Center",
+        "department": "EU Ops Center-Affiliate",
         "members": [
           "Gary Wang"
         ],
@@ -931,7 +931,7 @@
         "email": "huangdanlei@bytedance.com",
         "bonus": 500,
         "award_type": "Spot Bonus",
-        "department": "Product",
+        "department": "UK&EU Product",
         "members": [
           "Dana Huang"
         ],
@@ -987,7 +987,7 @@
         "email": "zhangbenli@bytedance.com",
         "bonus": 500,
         "award_type": "Spot Bonus",
-        "department": "Product",
+        "department": "Global E-Commerce-Product-LATAM Product",
         "members": [
           "Benli Zhang"
         ],
@@ -1141,7 +1141,7 @@
         "email": "tianhai.chang@bytedance.com",
         "bonus": 500,
         "award_type": "Spot Bonus",
-        "department": "UG",
+        "department": "User Growth",
         "members": [
           "Tianhai Chang"
         ],
@@ -1155,7 +1155,7 @@
         "email": "jinn.guo@bytedance.com",
         "bonus": 500,
         "award_type": "Spot Bonus",
-        "department": "Product",
+        "department": "User Product",
         "members": [
           "Jinn Guo"
         ],
@@ -1547,7 +1547,7 @@
         "email": "liujiaxin.77@bytedance.com",
         "bonus": 250,
         "award_type": "Spot Bonus",
-        "department": "Product",
+        "department": "Data Science",
         "members": [
           "柳佳欣"
         ],
@@ -1575,7 +1575,7 @@
         "email": "zhangjiali@bytedance.com",
         "bonus": 250,
         "award_type": "Spot Bonus",
-        "department": "UG",
+        "department": "User & Promotion Growth-SEA",
         "members": [
           "Jiali Zhang"
         ],
@@ -1603,7 +1603,7 @@
         "email": "yuzhou.tang@bytedance.com",
         "bonus": 250,
         "award_type": "Spot Bonus",
-        "department": "UG",
+        "department": "User Growth",
         "members": [
           "Yuzhou Tang"
         ],
@@ -1897,7 +1897,7 @@
         "email": "zhangling.99@bytedance.com",
         "bonus": 300,
         "award_type": "Spot Bonus",
-        "department": "Data Science",
+        "department": "Global E-Commerce-Data Science-SEA Data Science",
         "members": [
           "Ling Zhang"
         ],
@@ -2709,7 +2709,7 @@
         "email": "krati.agrawal@bytedance.com",
         "bonus": 68,
         "award_type": "Departmental Award",
-        "department": "Supply Chain and Logistics",
+        "department": "Supply Chain and Logistics- Operations",
         "members": [
           "Krati Agrawal"
         ],
@@ -2919,7 +2919,7 @@
         "email": "yiling.jiang@bytedance.com",
         "bonus": 68,
         "award_type": "Departmental Award",
-        "department": "Supply Chain and Logistics",
+        "department": "Supply Chain and Logistics- Product",
         "members": [
           "Frank Jiang"
         ],
@@ -2961,7 +2961,7 @@
         "email": "sohan.shinde@bytedance.com",
         "bonus": 68,
         "award_type": "Departmental Award",
-        "department": "Supply Chain and Logistics",
+        "department": "Supply Chain and Logistics- Product",
         "members": [
           "Sohan Shinde"
         ],
@@ -2975,7 +2975,7 @@
         "email": "chenwenyuan.muge@bytedance.com",
         "bonus": 68,
         "award_type": "Departmental Award",
-        "department": "Supply Chain and Logistics",
+        "department": "Supply Chain and Logistics- Product",
         "members": [
           "Flora Chen"
         ],
@@ -3255,7 +3255,7 @@
         "email": "xulibo.xlb@bytedance.com",
         "bonus": 500,
         "award_type": "Spot Bonus",
-        "department": "Supply Chain and Logistics",
+        "department": "Supply Chain and Logistics- Product",
         "members": [
           "Libo Xu"
         ],
@@ -3325,7 +3325,7 @@
         "email": "hexin.hx@bytedance.com",
         "bonus": 500,
         "award_type": "Spot Bonus",
-        "department": "Supply Chain and Logistics",
+        "department": "Supply Chain and Logistics- Operations",
         "members": [
           "Xin He"
         ],
