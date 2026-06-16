@@ -2,7 +2,7 @@
   "H1 Project Awards": [
     {
       "project_name": "SEA E-commerce Ads TR Improvement Joint-Project",
-      "department": "Data-Global E-Commerce-Content Recommendation",
+      "department": "Data-Global E-Commerce-Recommendation",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -17,7 +17,7 @@
     },
     {
       "project_name": "SEA E-commerce Ads TR Improvement Joint-Project",
-      "department": "Data-Global E-Commerce-Content Recommendation",
+      "department": "Data-Global E-Commerce-Recommendation-Video",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -32,7 +32,7 @@
     },
     {
       "project_name": "SEA E-commerce Ads TR Improvement Joint-Project",
-      "department": "Data-Global E-Commerce-Content Recommendation",
+      "department": "Data-Global E-Commerce-Recommendation-Live",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -47,7 +47,7 @@
     },
     {
       "project_name": "SEA E-commerce Ads TR Improvement Joint-Project",
-      "department": "Data-Global E-Commerce-Mall Recommendation",
+      "department": "Data-Global E-Commerce-Recommendation-Foundation",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -62,7 +62,7 @@
     },
     {
       "project_name": "SEA E-commerce Ads TR Improvement Joint-Project",
-      "department": "Data-Global E-Commerce-Mall Recommendation",
+      "department": "Data-Global E-Commerce-Recommendation-Mall",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -77,7 +77,7 @@
     },
     {
       "project_name": "SEA E-commerce Ads TR Improvement Joint-Project",
-      "department": "Data-Global E-Commerce-Mall Recommendation",
+      "department": "Data-Global E-Commerce-Recommendation",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -107,7 +107,7 @@
     },
     {
       "project_name": "SEA E-commerce Ads TR Improvement Joint-Project",
-      "department": "Data-Global E-Commerce-Mall Recommendation",
+      "department": "Data-Global E-Commerce-Recommendation-Live",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -122,7 +122,7 @@
     },
     {
       "project_name": "SEA E-commerce Ads TR Improvement Joint-Project",
-      "department": "Data-Arch-Global E-Commerce",
+      "department": "Data-Arch-Global E-commerce",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -137,7 +137,7 @@
     },
     {
       "project_name": "SEA E-commerce Ads TR Improvement Joint-Project",
-      "department": "Data-Arch-Global E-Commerce",
+      "department": "Data-Arch-Global E-commerce",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -152,7 +152,7 @@
     },
     {
       "project_name": "SEA E-commerce Ads TR Improvement Joint-Project",
-      "department": "Data-Architecture-Global E-Commerce-Content",
+      "department": "Data-Arch-Global E-commerce",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -227,7 +227,7 @@
     },
     {
       "project_name": "SEA E-commerce Ads TR Improvement Joint-Project",
-      "department": "Data-Arch-Global E-Commerce",
+      "department": "Data-Arch-Global E-commerce-Search",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -587,7 +587,7 @@
     },
     {
       "project_name": "SEA E-commerce Ads TR Improvement Joint-Project",
-      "department": "Global E-Commerce-Product-Global Business Mid-Platform-Finance Product",
+      "department": "Global E-Commerce-Product-Mid-Platform Product",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -617,7 +617,7 @@
     },
     {
       "project_name": "SEA E-commerce Ads TR Improvement Joint-Project",
-      "department": "Global E-Commerce-Product-SEA Product-Business Product",
+      "department": "Global E-Commerce-Product-Mid-Platform Product",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -632,7 +632,7 @@
     },
     {
       "project_name": "SEA E-commerce Ads TR Improvement Joint-Project",
-      "department": "Global E-Commerce-Product-SEA Product-Business Product",
+      "department": "Global E-Commerce-Product-SEA Product",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -647,7 +647,7 @@
     },
     {
       "project_name": "SEA E-commerce Ads TR Improvement Joint-Project",
-      "department": "SEA Ops",
+      "department": "Global E-Commerce-SEA Operations-Integrated Marketing",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -677,7 +677,7 @@
     },
     {
       "project_name": "COD Strategies and Models Optimization",
-      "department": "Data",
+      "department": "Data-Global E-Commerce-Supply Chain and Logistics",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -692,7 +692,7 @@
     },
     {
       "project_name": "COD Strategies and Models Optimization",
-      "department": "Data",
+      "department": "Data-Global E-Commerce-Supply Chain and Logistics",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -707,7 +707,7 @@
     },
     {
       "project_name": "COD Strategies and Models Optimization",
-      "department": "Data",
+      "department": "Data-Global E-Commerce-Supply Chain and Logistics",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -722,7 +722,7 @@
     },
     {
       "project_name": "COD Strategies and Models Optimization",
-      "department": "Data-Global E-Commerce-Supply Chain & Logistics",
+      "department": "Data-Global E-Commerce-Supply Chain and Logistics",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -737,7 +737,7 @@
     },
     {
       "project_name": "COD Strategies and Models Optimization",
-      "department": "Data",
+      "department": "Data-Global E-Commerce-Supply Chain and Logistics",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -752,7 +752,7 @@
     },
     {
       "project_name": "COD Strategies and Models Optimization",
-      "department": "Data",
+      "department": "Data-Global E-Commerce-Supply Chain and Logistics",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -767,7 +767,7 @@
     },
     {
       "project_name": "COD Strategies and Models Optimization",
-      "department": "Data",
+      "department": "Product RD and Infrastructure-Global E-Commerce-Lumen-AI Business",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -782,7 +782,7 @@
     },
     {
       "project_name": "COD Strategies and Models Optimization",
-      "department": "Data",
+      "department": "Product RD and Infrastructure-Global E-Commerce-Lumen-AI Platform",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -797,7 +797,7 @@
     },
     {
       "project_name": "COD Strategies and Models Optimization",
-      "department": "Data",
+      "department": "Product RD and Infrastructure-Global E-Commerce-Trading and Supply Chain&Logistics-Trading Fulfillment and Logistics Platform",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -812,7 +812,7 @@
     },
     {
       "project_name": "COD Strategies and Models Optimization",
-      "department": "Data",
+      "department": "Product RD and Infrastructure-Global E-Commerce-Trading and Supply Chain&Logistics-Trading Fulfillment and Logistics Platform",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -827,7 +827,7 @@
     },
     {
       "project_name": "COD Strategies and Models Optimization",
-      "department": "Global E-Commerce-Product-SEA Product-User Product",
+      "department": "Global E-Commerce-Product-SEA Product",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -842,7 +842,7 @@
     },
     {
       "project_name": "COD Strategies and Models Optimization",
-      "department": "SEA User Product",
+      "department": "Global E-Commerce-Product-Mid-Platform Product",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -857,7 +857,7 @@
     },
     {
       "project_name": "COD Strategies and Models Optimization",
-      "department": "User Growth",
+      "department": "Global E-Commerce-User Growth-SEA User Growth",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -887,7 +887,7 @@
     },
     {
       "project_name": "COD Strategies and Models Optimization",
-      "department": "SEA Business Product",
+      "department": "Global E-Commerce-Product-SEA Product",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -902,7 +902,7 @@
     },
     {
       "project_name": "COD Strategies and Models Optimization",
-      "department": "SEA Business Product",
+      "department": "Global E-Commerce-Product-SEA Product",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -917,7 +917,7 @@
     },
     {
       "project_name": "COD Strategies and Models Optimization",
-      "department": "Data Science",
+      "department": "Global E-Commerce-Data Science-User Product Data Science",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -962,7 +962,7 @@
     },
     {
       "project_name": "COD Strategies and Models Optimization",
-      "department": "Global E-Commerce-SEA Operations-Indonesia Operations-Special Projects",
+      "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -977,7 +977,7 @@
     },
     {
       "project_name": "COD Strategies and Models Optimization",
-      "department": "Philippines Ops",
+      "department": "Global E-Commerce-SEA Operations-Philippines Operations",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -992,7 +992,7 @@
     },
     {
       "project_name": "COD Strategies and Models Optimization",
-      "department": "Vietnam Ops",
+      "department": "Global E-Commerce-SEA Operations-Vietnam Operations",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1007,7 +1007,7 @@
     },
     {
       "project_name": "SEA Subsidy Efficiency Project",
-      "department": "SEA User Growth",
+      "department": "Global E-Commerce-User Growth-SEA User Growth",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1022,7 +1022,7 @@
     },
     {
       "project_name": "SEA Subsidy Efficiency Project",
-      "department": "SEA User Growth",
+      "department": "Global E-Commerce-User Growth-SEA User Growth",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1037,7 +1037,7 @@
     },
     {
       "project_name": "SEA Subsidy Efficiency Project",
-      "department": "User & Promotion Growth-SEA",
+      "department": "Global E-Commerce-User Growth-SEA User Growth",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1052,7 +1052,7 @@
     },
     {
       "project_name": "SEA Subsidy Efficiency Project",
-      "department": "SEA User Growth",
+      "department": "Global E-Commerce-User Growth-SEA User Growth",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1067,7 +1067,7 @@
     },
     {
       "project_name": "SEA Subsidy Efficiency Project",
-      "department": "SEA User Growth",
+      "department": "Global E-Commerce-User Growth-SEA User Growth",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1082,7 +1082,7 @@
     },
     {
       "project_name": "SEA Subsidy Efficiency Project",
-      "department": "SEA User Growth",
+      "department": "Global E-Commerce-User Growth-SEA User Growth",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1097,7 +1097,7 @@
     },
     {
       "project_name": "SEA Subsidy Efficiency Project",
-      "department": "SEA User Growth",
+      "department": "Global E-Commerce-User Growth-SEA User Growth",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1127,7 +1127,7 @@
     },
     {
       "project_name": "SEA Subsidy Efficiency Project",
-      "department": "SEA User Growth",
+      "department": "Global E-Commerce-Global Selling Full Service-UK & EU Operations",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1142,7 +1142,7 @@
     },
     {
       "project_name": "SEA Subsidy Efficiency Project",
-      "department": "Data",
+      "department": "Data-Global E-Commerce-User Growth",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1157,7 +1157,7 @@
     },
     {
       "project_name": "SEA Subsidy Efficiency Project",
-      "department": "Data",
+      "department": "Data-Global E-Commerce-User Growth",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1172,7 +1172,7 @@
     },
     {
       "project_name": "SEA Subsidy Efficiency Project",
-      "department": "Data",
+      "department": "Data-Global E-Commerce-User Growth",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1187,7 +1187,7 @@
     },
     {
       "project_name": "SEA Subsidy Efficiency Project",
-      "department": "Data",
+      "department": "Data-Global E-Commerce-User Growth",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1202,7 +1202,7 @@
     },
     {
       "project_name": "SEA Subsidy Efficiency Project",
-      "department": "Finance BP",
+      "department": "Finance BP-Global E-Commerce",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1217,7 +1217,7 @@
     },
     {
       "project_name": "SEA Subsidy Efficiency Project",
-      "department": "SEA Business Product",
+      "department": "Global E-Commerce-Product-SEA Product",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1232,7 +1232,7 @@
     },
     {
       "project_name": "SEA Subsidy Efficiency Project",
-      "department": "Strategy Analytics",
+      "department": "Global E-Commerce-Strategy Analytics & Resource Management-SEA",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1247,7 +1247,7 @@
     },
     {
       "project_name": "SEA Subsidy Efficiency Project",
-      "department": "SEA Data Science",
+      "department": "Global E-Commerce-Data Science-SEA Data Science",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1262,7 +1262,7 @@
     },
     {
       "project_name": "SEA Subsidy Efficiency Project",
-      "department": "SEA Data Science",
+      "department": "Global E-Commerce-Data Science-SEA Data Science",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1277,7 +1277,7 @@
     },
     {
       "project_name": "SEA Subsidy Efficiency Project",
-      "department": "SEA Ops-IMC",
+      "department": "Global E-Commerce-SEA Operations-Integrated Marketing",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1292,7 +1292,7 @@
     },
     {
       "project_name": "SEA Subsidy Efficiency Project",
-      "department": "SEA Ops-IMC",
+      "department": "Global E-Commerce-SEA Operations-Integrated Marketing",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1307,7 +1307,7 @@
     },
     {
       "project_name": "Supporting Indonesia Seller Center Integration",
-      "department": "Global Communications",
+      "department": "Global Communications-SEA",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1322,7 +1322,7 @@
     },
     {
       "project_name": "Supporting Indonesia Seller Center Integration",
-      "department": "Strategic Readiness and Business Communication",
+      "department": "Global E-Commerce-Strategic Readiness and Business Communication",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1367,7 +1367,7 @@
     },
     {
       "project_name": "Supporting Indonesia Seller Center Integration",
-      "department": "ID Integrated Marketing",
+      "department": "Global E-Commerce-SEA Operations-Integrated Marketing",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1382,7 +1382,7 @@
     },
     {
       "project_name": "Supporting Indonesia Seller Center Integration",
-      "department": "ID Integrated Marketing",
+      "department": "Global E-Commerce-SEA Operations-Integrated Marketing",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1397,7 +1397,7 @@
     },
     {
       "project_name": "Supporting Indonesia Seller Center Integration",
-      "department": "ID Integrated Marketing",
+      "department": "Global E-Commerce-SEA Operations-Integrated Marketing",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1412,7 +1412,7 @@
     },
     {
       "project_name": "Supporting Indonesia Seller Center Integration",
-      "department": "Indonesia Operations",
+      "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1427,7 +1427,7 @@
     },
     {
       "project_name": "Supporting Indonesia Seller Center Integration",
-      "department": "Indonesia Operations",
+      "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1442,7 +1442,7 @@
     },
     {
       "project_name": "Supporting Indonesia Seller Center Integration",
-      "department": "Product",
+      "department": "Global E-Commerce-Product-SEA Product",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1457,7 +1457,7 @@
     },
     {
       "project_name": "Supporting Indonesia Seller Center Integration",
-      "department": "GNE",
+      "department": "Global E-Commerce-Governance and Experience-Service and Support Center",
       "region": "SEA",
       "original_region": "SEA",
       "bonus": "5000",
@@ -1484,7 +1484,7 @@
       ],
       "email": "zhongchengming.zcm@bytedance.com",
       "reason": "In 2025 H2, SEA cross-border team faced significant regulatory and policy shifts across multiple markets, creating cost pressure and uncertainty for merchants.\nIn response, the business team partnered with Logistics, GR, Product, GNE, and other cross-functional teams to form a dedicated taskforce. Together, they quickly identified risks and opportunities, implemented systematic solutions, and supported merchants in adapting their operating models — stabilizing the foundation of the business at a critical moment.\nFinally, market share across multiple countries increased by 10–30 percentage points during the period of regulatory change. Beyond immediate results, the team also strengthened product capabilities and built scalable compliance response mechanisms for the future.\nThrough shared ownership, rapid decision-making, and true boundaryless collaboration, this team set a powerful example of what cross-functional partnership can achieve.",
-      "department": "SEA Operations-SEA Cross-Border Operations",
+      "department": "Global E-Commerce-SEA Operations-SEA Cross-Border Operations",
       "award_type": "H2 Project Awards"
     },
     {
@@ -1499,7 +1499,7 @@
       ],
       "email": "wangyingling@bytedance.com",
       "reason": "In 2025 H2, SEA cross-border team faced significant regulatory and policy shifts across multiple markets, creating cost pressure and uncertainty for merchants.\nIn response, the business team partnered with Logistics, GR, Product, GNE, and other cross-functional teams to form a dedicated taskforce. Together, they quickly identified risks and opportunities, implemented systematic solutions, and supported merchants in adapting their operating models — stabilizing the foundation of the business at a critical moment.\nFinally, market share across multiple countries increased by 10–30 percentage points during the period of regulatory change. Beyond immediate results, the team also strengthened product capabilities and built scalable compliance response mechanisms for the future.\nThrough shared ownership, rapid decision-making, and true boundaryless collaboration, this team set a powerful example of what cross-functional partnership can achieve.",
-      "department": "SEA Operations-SEA Cross-Border Operations",
+      "department": "Global E-Commerce-SEA Operations-SEA Cross-Border Operations",
       "award_type": "H2 Project Awards"
     },
     {
@@ -1514,7 +1514,7 @@
       ],
       "email": "zhaomengyu.claire@bytedance.com",
       "reason": "In 2025 H2, SEA cross-border team faced significant regulatory and policy shifts across multiple markets, creating cost pressure and uncertainty for merchants.\nIn response, the business team partnered with Logistics, GR, Product, GNE, and other cross-functional teams to form a dedicated taskforce. Together, they quickly identified risks and opportunities, implemented systematic solutions, and supported merchants in adapting their operating models — stabilizing the foundation of the business at a critical moment.\nFinally, market share across multiple countries increased by 10–30 percentage points during the period of regulatory change. Beyond immediate results, the team also strengthened product capabilities and built scalable compliance response mechanisms for the future.\nThrough shared ownership, rapid decision-making, and true boundaryless collaboration, this team set a powerful example of what cross-functional partnership can achieve.",
-      "department": "SEA Operations-SEA Cross-Border Operations",
+      "department": "Global E-Commerce-SEA Operations-SEA Cross-Border Operations",
       "award_type": "H2 Project Awards"
     },
     {
@@ -1529,7 +1529,7 @@
       ],
       "email": "brian.zhao@bytedance.com",
       "reason": "In 2025 H2, SEA cross-border team faced significant regulatory and policy shifts across multiple markets, creating cost pressure and uncertainty for merchants.\nIn response, the business team partnered with Logistics, GR, Product, GNE, and other cross-functional teams to form a dedicated taskforce. Together, they quickly identified risks and opportunities, implemented systematic solutions, and supported merchants in adapting their operating models — stabilizing the foundation of the business at a critical moment.\nFinally, market share across multiple countries increased by 10–30 percentage points during the period of regulatory change. Beyond immediate results, the team also strengthened product capabilities and built scalable compliance response mechanisms for the future.\nThrough shared ownership, rapid decision-making, and true boundaryless collaboration, this team set a powerful example of what cross-functional partnership can achieve.",
-      "department": "Supply Chain and Logistics-Cross Border Logistics Operations",
+      "department": "Supply Chain and Logistics-Cross border Logistics Operations",
       "award_type": "H2 Project Awards"
     },
     {
@@ -1544,7 +1544,7 @@
       ],
       "email": "stevenli@bytedance.com",
       "reason": "In 2025 H2, SEA cross-border team faced significant regulatory and policy shifts across multiple markets, creating cost pressure and uncertainty for merchants.\nIn response, the business team partnered with Logistics, GR, Product, GNE, and other cross-functional teams to form a dedicated taskforce. Together, they quickly identified risks and opportunities, implemented systematic solutions, and supported merchants in adapting their operating models — stabilizing the foundation of the business at a critical moment.\nFinally, market share across multiple countries increased by 10–30 percentage points during the period of regulatory change. Beyond immediate results, the team also strengthened product capabilities and built scalable compliance response mechanisms for the future.\nThrough shared ownership, rapid decision-making, and true boundaryless collaboration, this team set a powerful example of what cross-functional partnership can achieve.",
-      "department": "Strategic Readiness and Business Communication",
+      "department": "Global E-Commerce-Strategic Readiness and Business Communication",
       "award_type": "H2 Project Awards"
     },
     {
@@ -1559,7 +1559,7 @@
       ],
       "email": "yangyangpan@bytedance.com",
       "reason": "In 2025 H2, SEA cross-border team faced significant regulatory and policy shifts across multiple markets, creating cost pressure and uncertainty for merchants.\nIn response, the business team partnered with Logistics, GR, Product, GNE, and other cross-functional teams to form a dedicated taskforce. Together, they quickly identified risks and opportunities, implemented systematic solutions, and supported merchants in adapting their operating models — stabilizing the foundation of the business at a critical moment.\nFinally, market share across multiple countries increased by 10–30 percentage points during the period of regulatory change. Beyond immediate results, the team also strengthened product capabilities and built scalable compliance response mechanisms for the future.\nThrough shared ownership, rapid decision-making, and true boundaryless collaboration, this team set a powerful example of what cross-functional partnership can achieve.",
-      "department": "Product-SEA Product-User Product",
+      "department": "Global E-Commerce-Product-SEA Product",
       "award_type": "H2 Project Awards"
     },
     {
@@ -1574,7 +1574,7 @@
       ],
       "email": "zhangkunxuan@bytedance.com",
       "reason": "In 2025 H2, SEA cross-border team faced significant regulatory and policy shifts across multiple markets, creating cost pressure and uncertainty for merchants.\nIn response, the business team partnered with Logistics, GR, Product, GNE, and other cross-functional teams to form a dedicated taskforce. Together, they quickly identified risks and opportunities, implemented systematic solutions, and supported merchants in adapting their operating models — stabilizing the foundation of the business at a critical moment.\nFinally, market share across multiple countries increased by 10–30 percentage points during the period of regulatory change. Beyond immediate results, the team also strengthened product capabilities and built scalable compliance response mechanisms for the future.\nThrough shared ownership, rapid decision-making, and true boundaryless collaboration, this team set a powerful example of what cross-functional partnership can achieve.",
-      "department": "Supply Chain and Logistics-Cross Border Logistics Operations",
+      "department": "Supply Chain and Logistics-Fulfill by Tiktok and Global Selling Product",
       "award_type": "H2 Project Awards"
     },
     {
@@ -1589,7 +1589,7 @@
       ],
       "email": "zhulin.31@bytedance.com",
       "reason": "In 2025 H2, SEA cross-border team faced significant regulatory and policy shifts across multiple markets, creating cost pressure and uncertainty for merchants.\nIn response, the business team partnered with Logistics, GR, Product, GNE, and other cross-functional teams to form a dedicated taskforce. Together, they quickly identified risks and opportunities, implemented systematic solutions, and supported merchants in adapting their operating models — stabilizing the foundation of the business at a critical moment.\nFinally, market share across multiple countries increased by 10–30 percentage points during the period of regulatory change. Beyond immediate results, the team also strengthened product capabilities and built scalable compliance response mechanisms for the future.\nThrough shared ownership, rapid decision-making, and true boundaryless collaboration, this team set a powerful example of what cross-functional partnership can achieve.",
-      "department": "Product-Global Business Platform-Finance Product",
+      "department": "Global E-Commerce-Product-Mid-Platform Product",
       "award_type": "H2 Project Awards"
     },
     {
@@ -1619,7 +1619,7 @@
       ],
       "email": "gaowenyao@bytedance.com",
       "reason": "This project was jointly driven by the Philippines Operations, regional Logistics, User Growth, and Finance teams, focusing on the outer island markets of Visayas and Mindanao.\n- To ensure sustainable growth, the Philippines Operations led cross-functional collaboration with Logistics, UG, and Finance to develop a negotiation strategy with logistics partner J&T. The approach centered on securing cost reductions in exchange for committed order volume. This resulted in a special pricing agreement offering discounts on incremental orders in the outer islands.\n- In 2025 Q4, UG and Ops teams initiated experiments to increase shipping subsidies in the developing regions, achieving a significant uplift in GMV (+3.1%) and MAC (+4.6%), albeit with a cost increase of 1pt only. Based on this logic, PH Ops organized XFN to collaborate closely and planned negotiation strategy together with Logistic team.\n- Right after logistic team successfully drove and concluded \"volume-for-price\" strategy negotiations with their great expertees, UG team run out a zero-minimum-spend free shipping strategy. This initiative fueled a +25% WoW increase in outer islands orders, significantly strengthening TTS's market position in the developing regions. In December, costs were diluted significantly, and at the same time the initiative drove strong growth in both GMV and MAC. GMV control share +13.2pt MoM, and MAC control share +9pt MoM, both hitting historical highs.\n- Beyond short-term business impact, this project established a scalable “volume-for-price” mechanism, paving the way for broader adoption across SEA and enabling stronger pricing negotiations in the Philippines for 2026. It exemplifies seamless cross-functional collaboration, with teams jointly owning goals and delivering amplified impact.\n- Through data analysis, the team identified that the key gap in GMV and MAC market share lies in the outer islands. Complemented by in-depth user research, we confirmed that lower shipping fees are the primary user demand.",
-      "department": "SEA Operations",
+      "department": "Global E-Commerce-SEA Operations",
       "award_type": "H2 Project Awards"
     },
     {
@@ -1634,7 +1634,7 @@
       ],
       "email": "yijian001@bytedance.com",
       "reason": "This project was jointly driven by the Philippines Operations, regional Logistics, User Growth, and Finance teams, focusing on the outer island markets of Visayas and Mindanao.\n- To ensure sustainable growth, the Philippines Operations led cross-functional collaboration with Logistics, UG, and Finance to develop a negotiation strategy with logistics partner J&T. The approach centered on securing cost reductions in exchange for committed order volume. This resulted in a special pricing agreement offering discounts on incremental orders in the outer islands.\n- In 2025 Q4, UG and Ops teams initiated experiments to increase shipping subsidies in the developing regions, achieving a significant uplift in GMV (+3.1%) and MAC (+4.6%), albeit with a cost increase of 1pt only. Based on this logic, PH Ops organized XFN to collaborate closely and planned negotiation strategy together with Logistic team.\n- Right after logistic team successfully drove and concluded \"volume-for-price\" strategy negotiations with their great expertees, UG team run out a zero-minimum-spend free shipping strategy. This initiative fueled a +25% WoW increase in outer islands orders, significantly strengthening TTS's market position in the developing regions. In December, costs were diluted significantly, and at the same time the initiative drove strong growth in both GMV and MAC. GMV control share +13.2pt MoM, and MAC control share +9pt MoM, both hitting historical highs.\n- Beyond short-term business impact, this project established a scalable “volume-for-price” mechanism, paving the way for broader adoption across SEA and enabling stronger pricing negotiations in the Philippines for 2026. It exemplifies seamless cross-functional collaboration, with teams jointly owning goals and delivering amplified impact.\n- Through data analysis, the team identified that the key gap in GMV and MAC market share lies in the outer islands. Complemented by in-depth user research, we confirmed that lower shipping fees are the primary user demand.",
-      "department": "Supply Chain and Logistics",
+      "department": "Global E-Commerce-Supply Chain and Logistics",
       "award_type": "H2 Project Awards"
     },
     {
@@ -1664,7 +1664,7 @@
       ],
       "email": "raotianlin@bytedance.com",
       "reason": "This project was jointly driven by the Philippines Operations, regional Logistics, User Growth, and Finance teams, focusing on the outer island markets of Visayas and Mindanao.\n- To ensure sustainable growth, the Philippines Operations led cross-functional collaboration with Logistics, UG, and Finance to develop a negotiation strategy with logistics partner J&T. The approach centered on securing cost reductions in exchange for committed order volume. This resulted in a special pricing agreement offering discounts on incremental orders in the outer islands.\n- In 2025 Q4, UG and Ops teams initiated experiments to increase shipping subsidies in the developing regions, achieving a significant uplift in GMV (+3.1%) and MAC (+4.6%), albeit with a cost increase of 1pt only. Based on this logic, PH Ops organized XFN to collaborate closely and planned negotiation strategy together with Logistic team.\n- Right after logistic team successfully drove and concluded \"volume-for-price\" strategy negotiations with their great expertees, UG team run out a zero-minimum-spend free shipping strategy. This initiative fueled a +25% WoW increase in outer islands orders, significantly strengthening TTS's market position in the developing regions. In December, costs were diluted significantly, and at the same time the initiative drove strong growth in both GMV and MAC. GMV control share +13.2pt MoM, and MAC control share +9pt MoM, both hitting historical highs.\n- Beyond short-term business impact, this project established a scalable “volume-for-price” mechanism, paving the way for broader adoption across SEA and enabling stronger pricing negotiations in the Philippines for 2026. It exemplifies seamless cross-functional collaboration, with teams jointly owning goals and delivering amplified impact.\n- Through data analysis, the team identified that the key gap in GMV and MAC market share lies in the outer islands. Complemented by in-depth user research, we confirmed that lower shipping fees are the primary user demand.",
-      "department": "Strategy Analytics & Resource Management-Supply Chain & Logistics",
+      "department": "Global E-Commerce-Strategy Analytics & Resource Management-Supply Chain & Logistics",
       "award_type": "H2 Project Awards"
     },
     {
@@ -1679,7 +1679,7 @@
       ],
       "email": "haoyan.chong@bytedance.com",
       "reason": "This project was jointly driven by the Philippines Operations, regional Logistics, User Growth, and Finance teams, focusing on the outer island markets of Visayas and Mindanao.\n- To ensure sustainable growth, the Philippines Operations led cross-functional collaboration with Logistics, UG, and Finance to develop a negotiation strategy with logistics partner J&T. The approach centered on securing cost reductions in exchange for committed order volume. This resulted in a special pricing agreement offering discounts on incremental orders in the outer islands.\n- In 2025 Q4, UG and Ops teams initiated experiments to increase shipping subsidies in the developing regions, achieving a significant uplift in GMV (+3.1%) and MAC (+4.6%), albeit with a cost increase of 1pt only. Based on this logic, PH Ops organized XFN to collaborate closely and planned negotiation strategy together with Logistic team.\n- Right after logistic team successfully drove and concluded \"volume-for-price\" strategy negotiations with their great expertees, UG team run out a zero-minimum-spend free shipping strategy. This initiative fueled a +25% WoW increase in outer islands orders, significantly strengthening TTS's market position in the developing regions. In December, costs were diluted significantly, and at the same time the initiative drove strong growth in both GMV and MAC. GMV control share +13.2pt MoM, and MAC control share +9pt MoM, both hitting historical highs.\n- Beyond short-term business impact, this project established a scalable “volume-for-price” mechanism, paving the way for broader adoption across SEA and enabling stronger pricing negotiations in the Philippines for 2026. It exemplifies seamless cross-functional collaboration, with teams jointly owning goals and delivering amplified impact.\n- Through data analysis, the team identified that the key gap in GMV and MAC market share lies in the outer islands. Complemented by in-depth user research, we confirmed that lower shipping fees are the primary user demand.",
-      "department": "User & Promotion Growth-SEA",
+      "department": "Global E-Commerce-User Growth-SEA User Growth",
       "award_type": "H2 Project Awards"
     },
     {
@@ -1694,7 +1694,7 @@
       ],
       "email": "zhangjiali@bytedance.com",
       "reason": "This project was jointly driven by the Philippines Operations, regional Logistics, User Growth, and Finance teams, focusing on the outer island markets of Visayas and Mindanao.\n- To ensure sustainable growth, the Philippines Operations led cross-functional collaboration with Logistics, UG, and Finance to develop a negotiation strategy with logistics partner J&T. The approach centered on securing cost reductions in exchange for committed order volume. This resulted in a special pricing agreement offering discounts on incremental orders in the outer islands.\n- In 2025 Q4, UG and Ops teams initiated experiments to increase shipping subsidies in the developing regions, achieving a significant uplift in GMV (+3.1%) and MAC (+4.6%), albeit with a cost increase of 1pt only. Based on this logic, PH Ops organized XFN to collaborate closely and planned negotiation strategy together with Logistic team.\n- Right after logistic team successfully drove and concluded \"volume-for-price\" strategy negotiations with their great expertees, UG team run out a zero-minimum-spend free shipping strategy. This initiative fueled a +25% WoW increase in outer islands orders, significantly strengthening TTS's market position in the developing regions. In December, costs were diluted significantly, and at the same time the initiative drove strong growth in both GMV and MAC. GMV control share +13.2pt MoM, and MAC control share +9pt MoM, both hitting historical highs.\n- Beyond short-term business impact, this project established a scalable “volume-for-price” mechanism, paving the way for broader adoption across SEA and enabling stronger pricing negotiations in the Philippines for 2026. It exemplifies seamless cross-functional collaboration, with teams jointly owning goals and delivering amplified impact.\n- Through data analysis, the team identified that the key gap in GMV and MAC market share lies in the outer islands. Complemented by in-depth user research, we confirmed that lower shipping fees are the primary user demand.",
-      "department": "User & Promotion Growth-SEA",
+      "department": "Global E-Commerce-User Growth-SEA User Growth",
       "award_type": "H2 Project Awards"
     },
     {
@@ -1799,7 +1799,7 @@
       ],
       "email": "jidi.ng@bytedance.com",
       "reason": "**[Project Results]**\nFast delivery experience has become a key service capability for experience competition among multiple platforms, which can help platforms improve pre-purchase conversion and post-purchase satisfaction.\nSince January 2025, SEA's NDD penetration rate has increased by 6.5pt to 2x%, and the display rate of NDD tags has increased by 1x times to 2x%. Through A/B test verification, displaying a high proportion of NDD tags throughout the buyers' entire shopping lifecycle can drive pre-purchase conversion ***(Malaysia per capita GMV +0.47%, Indonesia per capita GMV +0.24%)***. Without significantly increasing costs, the NDD penetration rate has surpassed or aligned with competitors in each country.\nFast delivery experience has become a key service capability for multi-platforms in the competition of logistics experience, which can help platforms improve pre-purchase conversion and post-purchase satisfaction.\n**[Collaboration Highlights]**\nOrganized by the Logistics Team and collaborated with GNE, Industry, Logistics Operations, Product, Algorithm, R&D and IMC teams to clarify each party’s key objectives.\n- **Optimize Policies & Tools for Seller Shipping**\nSince H2 2025, NDD service has been expanded to all sellers. Via the new NDDR indicator, Seller Center notifications and NDD order priority sorting, we increased the same-day shipping rate of NDD orders by 5.6pt.\n- **Clarify NDD Routes & Optimize Next-day delivery rate**\nLogs team defined NDD routes with logistics providers, addressed all bottlenecks, and improved the next-day delivery rate by 4pt through more collection waves, streamlined transit routes and independent NDD packaging.\n- **Enhance Buyer Perception via Tag Display & Marketing**\nBoosting buyers' awareness of NDD by adding labels in all fields and using algorithms for dynamic display. We also launched twice UX marketing campaigns with IMC and logistics providers, achieving 10 million exposures to build long-term fast delivery awareness.\n- **Periodic Reviews for Strategy Implementation**\nWith clear responsibilities for each team, weekly XFN meetings aligned progress. Through 4-time strategy revolution, we improved NDD performance.",
-      "department": "Governance and Experience-SEA-Category Governance",
+      "department": "Global E-Commerce-Governance and Experience-SEA",
       "award_type": "H2 Project Awards"
     },
     {
@@ -1814,7 +1814,7 @@
       ],
       "email": "yanlinliang@bytedance.com",
       "reason": "**[Project Results]**\nFast delivery experience has become a key service capability for experience competition among multiple platforms, which can help platforms improve pre-purchase conversion and post-purchase satisfaction.\nSince January 2025, SEA's NDD penetration rate has increased by 6.5pt to 2x%, and the display rate of NDD tags has increased by 1x times to 2x%. Through A/B test verification, displaying a high proportion of NDD tags throughout the buyers' entire shopping lifecycle can drive pre-purchase conversion ***(Malaysia per capita GMV +0.47%, Indonesia per capita GMV +0.24%)***. Without significantly increasing costs, the NDD penetration rate has surpassed or aligned with competitors in each country.\nFast delivery experience has become a key service capability for multi-platforms in the competition of logistics experience, which can help platforms improve pre-purchase conversion and post-purchase satisfaction.\n**[Collaboration Highlights]**\nOrganized by the Logistics Team and collaborated with GNE, Industry, Logistics Operations, Product, Algorithm, R&D and IMC teams to clarify each party’s key objectives.\n- **Optimize Policies & Tools for Seller Shipping**\nSince H2 2025, NDD service has been expanded to all sellers. Via the new NDDR indicator, Seller Center notifications and NDD order priority sorting, we increased the same-day shipping rate of NDD orders by 5.6pt.\n- **Clarify NDD Routes & Optimize Next-day delivery rate**\nLogs team defined NDD routes with logistics providers, addressed all bottlenecks, and improved the next-day delivery rate by 4pt through more collection waves, streamlined transit routes and independent NDD packaging.\n- **Enhance Buyer Perception via Tag Display & Marketing**\nBoosting buyers' awareness of NDD by adding labels in all fields and using algorithms for dynamic display. We also launched twice UX marketing campaigns with IMC and logistics providers, achieving 10 million exposures to build long-term fast delivery awareness.\n- **Periodic Reviews for Strategy Implementation**\nWith clear responsibilities for each team, weekly XFN meetings aligned progress. Through 4-time strategy revolution, we improved NDD performance.",
-      "department": "SEA Operations-Vietnam Operations",
+      "department": "Global E-Commerce-SEA Operations-Vietnam Operations",
       "award_type": "H2 Project Awards"
     },
     {
@@ -1829,7 +1829,7 @@
       ],
       "email": "suntingting.ema@bytedance.com",
       "reason": "**[Project Results]**\nFast delivery experience has become a key service capability for experience competition among multiple platforms, which can help platforms improve pre-purchase conversion and post-purchase satisfaction.\nSince January 2025, SEA's NDD penetration rate has increased by 6.5pt to 2x%, and the display rate of NDD tags has increased by 1x times to 2x%. Through A/B test verification, displaying a high proportion of NDD tags throughout the buyers' entire shopping lifecycle can drive pre-purchase conversion ***(Malaysia per capita GMV +0.47%, Indonesia per capita GMV +0.24%)***. Without significantly increasing costs, the NDD penetration rate has surpassed or aligned with competitors in each country.\nFast delivery experience has become a key service capability for multi-platforms in the competition of logistics experience, which can help platforms improve pre-purchase conversion and post-purchase satisfaction.\n**[Collaboration Highlights]**\nOrganized by the Logistics Team and collaborated with GNE, Industry, Logistics Operations, Product, Algorithm, R&D and IMC teams to clarify each party’s key objectives.\n- **Optimize Policies & Tools for Seller Shipping**\nSince H2 2025, NDD service has been expanded to all sellers. Via the new NDDR indicator, Seller Center notifications and NDD order priority sorting, we increased the same-day shipping rate of NDD orders by 5.6pt.\n- **Clarify NDD Routes & Optimize Next-day delivery rate**\nLogs team defined NDD routes with logistics providers, addressed all bottlenecks, and improved the next-day delivery rate by 4pt through more collection waves, streamlined transit routes and independent NDD packaging.\n- **Enhance Buyer Perception via Tag Display & Marketing**\nBoosting buyers' awareness of NDD by adding labels in all fields and using algorithms for dynamic display. We also launched twice UX marketing campaigns with IMC and logistics providers, achieving 10 million exposures to build long-term fast delivery awareness.\n- **Periodic Reviews for Strategy Implementation**\nWith clear responsibilities for each team, weekly XFN meetings aligned progress. Through 4-time strategy revolution, we improved NDD performance.",
-      "department": "SEA Operations-Thailand Operations",
+      "department": "Global E-Commerce-SEA Operations-Thailand Operations",
       "award_type": "H2 Project Awards"
     },
     {
@@ -1844,7 +1844,7 @@
       ],
       "email": "heyunxin.01@bytedance.com",
       "reason": "**[Project Results]**\nFast delivery experience has become a key service capability for experience competition among multiple platforms, which can help platforms improve pre-purchase conversion and post-purchase satisfaction.\nSince January 2025, SEA's NDD penetration rate has increased by 6.5pt to 2x%, and the display rate of NDD tags has increased by 1x times to 2x%. Through A/B test verification, displaying a high proportion of NDD tags throughout the buyers' entire shopping lifecycle can drive pre-purchase conversion ***(Malaysia per capita GMV +0.47%, Indonesia per capita GMV +0.24%)***. Without significantly increasing costs, the NDD penetration rate has surpassed or aligned with competitors in each country.\nFast delivery experience has become a key service capability for multi-platforms in the competition of logistics experience, which can help platforms improve pre-purchase conversion and post-purchase satisfaction.\n**[Collaboration Highlights]**\nOrganized by the Logistics Team and collaborated with GNE, Industry, Logistics Operations, Product, Algorithm, R&D and IMC teams to clarify each party’s key objectives.\n- **Optimize Policies & Tools for Seller Shipping**\nSince H2 2025, NDD service has been expanded to all sellers. Via the new NDDR indicator, Seller Center notifications and NDD order priority sorting, we increased the same-day shipping rate of NDD orders by 5.6pt.\n- **Clarify NDD Routes & Optimize Next-day delivery rate**\nLogs team defined NDD routes with logistics providers, addressed all bottlenecks, and improved the next-day delivery rate by 4pt through more collection waves, streamlined transit routes and independent NDD packaging.\n- **Enhance Buyer Perception via Tag Display & Marketing**\nBoosting buyers' awareness of NDD by adding labels in all fields and using algorithms for dynamic display. We also launched twice UX marketing campaigns with IMC and logistics providers, achieving 10 million exposures to build long-term fast delivery awareness.\n- **Periodic Reviews for Strategy Implementation**\nWith clear responsibilities for each team, weekly XFN meetings aligned progress. Through 4-time strategy revolution, we improved NDD performance.",
-      "department": "SEA Operations - Indonesia Operations",
+      "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
       "award_type": "H2 Project Awards"
     },
     {
@@ -1859,7 +1859,7 @@
       ],
       "email": "chenjunhong.charl@bytedance.com",
       "reason": "**[Project Results]**\nFast delivery experience has become a key service capability for experience competition among multiple platforms, which can help platforms improve pre-purchase conversion and post-purchase satisfaction.\nSince January 2025, SEA's NDD penetration rate has increased by 6.5pt to 2x%, and the display rate of NDD tags has increased by 1x times to 2x%. Through A/B test verification, displaying a high proportion of NDD tags throughout the buyers' entire shopping lifecycle can drive pre-purchase conversion ***(Malaysia per capita GMV +0.47%, Indonesia per capita GMV +0.24%)***. Without significantly increasing costs, the NDD penetration rate has surpassed or aligned with competitors in each country.\nFast delivery experience has become a key service capability for multi-platforms in the competition of logistics experience, which can help platforms improve pre-purchase conversion and post-purchase satisfaction.\n**[Collaboration Highlights]**\nOrganized by the Logistics Team and collaborated with GNE, Industry, Logistics Operations, Product, Algorithm, R&D and IMC teams to clarify each party’s key objectives.\n- **Optimize Policies & Tools for Seller Shipping**\nSince H2 2025, NDD service has been expanded to all sellers. Via the new NDDR indicator, Seller Center notifications and NDD order priority sorting, we increased the same-day shipping rate of NDD orders by 5.6pt.\n- **Clarify NDD Routes & Optimize Next-day delivery rate**\nLogs team defined NDD routes with logistics providers, addressed all bottlenecks, and improved the next-day delivery rate by 4pt through more collection waves, streamlined transit routes and independent NDD packaging.\n- **Enhance Buyer Perception via Tag Display & Marketing**\nBoosting buyers' awareness of NDD by adding labels in all fields and using algorithms for dynamic display. We also launched twice UX marketing campaigns with IMC and logistics providers, achieving 10 million exposures to build long-term fast delivery awareness.\n- **Periodic Reviews for Strategy Implementation**\nWith clear responsibilities for each team, weekly XFN meetings aligned progress. Through 4-time strategy revolution, we improved NDD performance.",
-      "department": "SEA Operations-Malaysia Operations",
+      "department": "Global E-Commerce-SEA Operations-Malaysia Operations",
       "award_type": "H2 Project Awards"
     },
     {
@@ -1874,7 +1874,7 @@
       ],
       "email": "zayn.xu@bytedance.com",
       "reason": "**[Project Results]**\nFast delivery experience has become a key service capability for experience competition among multiple platforms, which can help platforms improve pre-purchase conversion and post-purchase satisfaction.\nSince January 2025, SEA's NDD penetration rate has increased by 6.5pt to 2x%, and the display rate of NDD tags has increased by 1x times to 2x%. Through A/B test verification, displaying a high proportion of NDD tags throughout the buyers' entire shopping lifecycle can drive pre-purchase conversion ***(Malaysia per capita GMV +0.47%, Indonesia per capita GMV +0.24%)***. Without significantly increasing costs, the NDD penetration rate has surpassed or aligned with competitors in each country.\nFast delivery experience has become a key service capability for multi-platforms in the competition of logistics experience, which can help platforms improve pre-purchase conversion and post-purchase satisfaction.\n**[Collaboration Highlights]**\nOrganized by the Logistics Team and collaborated with GNE, Industry, Logistics Operations, Product, Algorithm, R&D and IMC teams to clarify each party’s key objectives.\n- **Optimize Policies & Tools for Seller Shipping**\nSince H2 2025, NDD service has been expanded to all sellers. Via the new NDDR indicator, Seller Center notifications and NDD order priority sorting, we increased the same-day shipping rate of NDD orders by 5.6pt.\n- **Clarify NDD Routes & Optimize Next-day delivery rate**\nLogs team defined NDD routes with logistics providers, addressed all bottlenecks, and improved the next-day delivery rate by 4pt through more collection waves, streamlined transit routes and independent NDD packaging.\n- **Enhance Buyer Perception via Tag Display & Marketing**\nBoosting buyers' awareness of NDD by adding labels in all fields and using algorithms for dynamic display. We also launched twice UX marketing campaigns with IMC and logistics providers, achieving 10 million exposures to build long-term fast delivery awareness.\n- **Periodic Reviews for Strategy Implementation**\nWith clear responsibilities for each team, weekly XFN meetings aligned progress. Through 4-time strategy revolution, we improved NDD performance.",
-      "department": "SEA Operations-Philippines Operations",
+      "department": "Global E-Commerce-SEA Operations-Philippines Operations",
       "award_type": "H2 Project Awards"
     },
     {
@@ -1889,7 +1889,7 @@
       ],
       "email": "yangyangpan@bytedance.com",
       "reason": "**[Project Results]**\nFast delivery experience has become a key service capability for experience competition among multiple platforms, which can help platforms improve pre-purchase conversion and post-purchase satisfaction.\nSince January 2025, SEA's NDD penetration rate has increased by 6.5pt to 2x%, and the display rate of NDD tags has increased by 1x times to 2x%. Through A/B test verification, displaying a high proportion of NDD tags throughout the buyers' entire shopping lifecycle can drive pre-purchase conversion ***(Malaysia per capita GMV +0.47%, Indonesia per capita GMV +0.24%)***. Without significantly increasing costs, the NDD penetration rate has surpassed or aligned with competitors in each country.\nFast delivery experience has become a key service capability for multi-platforms in the competition of logistics experience, which can help platforms improve pre-purchase conversion and post-purchase satisfaction.\n**[Collaboration Highlights]**\nOrganized by the Logistics Team and collaborated with GNE, Industry, Logistics Operations, Product, Algorithm, R&D and IMC teams to clarify each party’s key objectives.\n- **Optimize Policies & Tools for Seller Shipping**\nSince H2 2025, NDD service has been expanded to all sellers. Via the new NDDR indicator, Seller Center notifications and NDD order priority sorting, we increased the same-day shipping rate of NDD orders by 5.6pt.\n- **Clarify NDD Routes & Optimize Next-day delivery rate**\nLogs team defined NDD routes with logistics providers, addressed all bottlenecks, and improved the next-day delivery rate by 4pt through more collection waves, streamlined transit routes and independent NDD packaging.\n- **Enhance Buyer Perception via Tag Display & Marketing**\nBoosting buyers' awareness of NDD by adding labels in all fields and using algorithms for dynamic display. We also launched twice UX marketing campaigns with IMC and logistics providers, achieving 10 million exposures to build long-term fast delivery awareness.\n- **Periodic Reviews for Strategy Implementation**\nWith clear responsibilities for each team, weekly XFN meetings aligned progress. Through 4-time strategy revolution, we improved NDD performance.",
-      "department": "Product-SEA Product-User Product",
+      "department": "Global E-Commerce-Product-SEA Product",
       "award_type": "H2 Project Awards"
     },
     {
@@ -1934,7 +1934,7 @@
       ],
       "email": "yaojing.55555@bytedance.com",
       "reason": "**[Project Results]**\nFast delivery experience has become a key service capability for experience competition among multiple platforms, which can help platforms improve pre-purchase conversion and post-purchase satisfaction.\nSince January 2025, SEA's NDD penetration rate has increased by 6.5pt to 2x%, and the display rate of NDD tags has increased by 1x times to 2x%. Through A/B test verification, displaying a high proportion of NDD tags throughout the buyers' entire shopping lifecycle can drive pre-purchase conversion ***(Malaysia per capita GMV +0.47%, Indonesia per capita GMV +0.24%)***. Without significantly increasing costs, the NDD penetration rate has surpassed or aligned with competitors in each country.\nFast delivery experience has become a key service capability for multi-platforms in the competition of logistics experience, which can help platforms improve pre-purchase conversion and post-purchase satisfaction.\n**[Collaboration Highlights]**\nOrganized by the Logistics Team and collaborated with GNE, Industry, Logistics Operations, Product, Algorithm, R&D and IMC teams to clarify each party’s key objectives.\n- **Optimize Policies & Tools for Seller Shipping**\nSince H2 2025, NDD service has been expanded to all sellers. Via the new NDDR indicator, Seller Center notifications and NDD order priority sorting, we increased the same-day shipping rate of NDD orders by 5.6pt.\n- **Clarify NDD Routes & Optimize Next-day delivery rate**\nLogs team defined NDD routes with logistics providers, addressed all bottlenecks, and improved the next-day delivery rate by 4pt through more collection waves, streamlined transit routes and independent NDD packaging.\n- **Enhance Buyer Perception via Tag Display & Marketing**\nBoosting buyers' awareness of NDD by adding labels in all fields and using algorithms for dynamic display. We also launched twice UX marketing campaigns with IMC and logistics providers, achieving 10 million exposures to build long-term fast delivery awareness.\n- **Periodic Reviews for Strategy Implementation**\nWith clear responsibilities for each team, weekly XFN meetings aligned progress. Through 4-time strategy revolution, we improved NDD performance.",
-      "department": "Product RD and Infrastructure-Global E-Commerce-Trading and Supply Chain&Logistics",
+      "department": "Product RD and Infrastructure-Global E-Commerce-Trading and Supply Chain&Logistics-4PL Logistics",
       "award_type": "H2 Project Awards"
     },
     {
@@ -1949,7 +1949,7 @@
       ],
       "email": "fangying.wade@bytedance.com",
       "reason": "**[Project Results]**\nFast delivery experience has become a key service capability for experience competition among multiple platforms, which can help platforms improve pre-purchase conversion and post-purchase satisfaction.\nSince January 2025, SEA's NDD penetration rate has increased by 6.5pt to 2x%, and the display rate of NDD tags has increased by 1x times to 2x%. Through A/B test verification, displaying a high proportion of NDD tags throughout the buyers' entire shopping lifecycle can drive pre-purchase conversion ***(Malaysia per capita GMV +0.47%, Indonesia per capita GMV +0.24%)***. Without significantly increasing costs, the NDD penetration rate has surpassed or aligned with competitors in each country.\nFast delivery experience has become a key service capability for multi-platforms in the competition of logistics experience, which can help platforms improve pre-purchase conversion and post-purchase satisfaction.\n**[Collaboration Highlights]**\nOrganized by the Logistics Team and collaborated with GNE, Industry, Logistics Operations, Product, Algorithm, R&D and IMC teams to clarify each party’s key objectives.\n- **Optimize Policies & Tools for Seller Shipping**\nSince H2 2025, NDD service has been expanded to all sellers. Via the new NDDR indicator, Seller Center notifications and NDD order priority sorting, we increased the same-day shipping rate of NDD orders by 5.6pt.\n- **Clarify NDD Routes & Optimize Next-day delivery rate**\nLogs team defined NDD routes with logistics providers, addressed all bottlenecks, and improved the next-day delivery rate by 4pt through more collection waves, streamlined transit routes and independent NDD packaging.\n- **Enhance Buyer Perception via Tag Display & Marketing**\nBoosting buyers' awareness of NDD by adding labels in all fields and using algorithms for dynamic display. We also launched twice UX marketing campaigns with IMC and logistics providers, achieving 10 million exposures to build long-term fast delivery awareness.\n- **Periodic Reviews for Strategy Implementation**\nWith clear responsibilities for each team, weekly XFN meetings aligned progress. Through 4-time strategy revolution, we improved NDD performance.",
-      "department": "Product RD and Infrastructure-Global E-Commerce-Trading and Supply Chain&Logistics",
+      "department": "Product RD and Infrastructure-Global E-Commerce-Trading and Supply Chain&Logistics-Trading Fulfillment and Logistics Platform",
       "award_type": "H2 Project Awards"
     },
     {
@@ -1994,7 +1994,7 @@
       ],
       "email": "liruitang@bytedance.com",
       "reason": "**[Project Results]**\nFast delivery experience has become a key service capability for experience competition among multiple platforms, which can help platforms improve pre-purchase conversion and post-purchase satisfaction.\nSince January 2025, SEA's NDD penetration rate has increased by 6.5pt to 2x%, and the display rate of NDD tags has increased by 1x times to 2x%. Through A/B test verification, displaying a high proportion of NDD tags throughout the buyers' entire shopping lifecycle can drive pre-purchase conversion ***(Malaysia per capita GMV +0.47%, Indonesia per capita GMV +0.24%)***. Without significantly increasing costs, the NDD penetration rate has surpassed or aligned with competitors in each country.\nFast delivery experience has become a key service capability for multi-platforms in the competition of logistics experience, which can help platforms improve pre-purchase conversion and post-purchase satisfaction.\n**[Collaboration Highlights]**\nOrganized by the Logistics Team and collaborated with GNE, Industry, Logistics Operations, Product, Algorithm, R&D and IMC teams to clarify each party’s key objectives.\n- **Optimize Policies & Tools for Seller Shipping**\nSince H2 2025, NDD service has been expanded to all sellers. Via the new NDDR indicator, Seller Center notifications and NDD order priority sorting, we increased the same-day shipping rate of NDD orders by 5.6pt.\n- **Clarify NDD Routes & Optimize Next-day delivery rate**\nLogs team defined NDD routes with logistics providers, addressed all bottlenecks, and improved the next-day delivery rate by 4pt through more collection waves, streamlined transit routes and independent NDD packaging.\n- **Enhance Buyer Perception via Tag Display & Marketing**\nBoosting buyers' awareness of NDD by adding labels in all fields and using algorithms for dynamic display. We also launched twice UX marketing campaigns with IMC and logistics providers, achieving 10 million exposures to build long-term fast delivery awareness.\n- **Periodic Reviews for Strategy Implementation**\nWith clear responsibilities for each team, weekly XFN meetings aligned progress. Through 4-time strategy revolution, we improved NDD performance.",
-      "department": "IMC",
+      "department": "Global E-Commerce-SEA Operations-Integrated Marketing",
       "award_type": "H2 Project Awards"
     },
     {
@@ -2009,7 +2009,7 @@
       ],
       "email": "yulu.doris@bytedance.com",
       "reason": "**[Project Results]**\nFast delivery experience has become a key service capability for experience competition among multiple platforms, which can help platforms improve pre-purchase conversion and post-purchase satisfaction.\nSince January 2025, SEA's NDD penetration rate has increased by 6.5pt to 2x%, and the display rate of NDD tags has increased by 1x times to 2x%. Through A/B test verification, displaying a high proportion of NDD tags throughout the buyers' entire shopping lifecycle can drive pre-purchase conversion ***(Malaysia per capita GMV +0.47%, Indonesia per capita GMV +0.24%)***. Without significantly increasing costs, the NDD penetration rate has surpassed or aligned with competitors in each country.\nFast delivery experience has become a key service capability for multi-platforms in the competition of logistics experience, which can help platforms improve pre-purchase conversion and post-purchase satisfaction.\n**[Collaboration Highlights]**\nOrganized by the Logistics Team and collaborated with GNE, Industry, Logistics Operations, Product, Algorithm, R&D and IMC teams to clarify each party’s key objectives.\n- **Optimize Policies & Tools for Seller Shipping**\nSince H2 2025, NDD service has been expanded to all sellers. Via the new NDDR indicator, Seller Center notifications and NDD order priority sorting, we increased the same-day shipping rate of NDD orders by 5.6pt.\n- **Clarify NDD Routes & Optimize Next-day delivery rate**\nLogs team defined NDD routes with logistics providers, addressed all bottlenecks, and improved the next-day delivery rate by 4pt through more collection waves, streamlined transit routes and independent NDD packaging.\n- **Enhance Buyer Perception via Tag Display & Marketing**\nBoosting buyers' awareness of NDD by adding labels in all fields and using algorithms for dynamic display. We also launched twice UX marketing campaigns with IMC and logistics providers, achieving 10 million exposures to build long-term fast delivery awareness.\n- **Periodic Reviews for Strategy Implementation**\nWith clear responsibilities for each team, weekly XFN meetings aligned progress. Through 4-time strategy revolution, we improved NDD performance.",
-      "department": "Central",
+      "department": "Global E-Commerce-SEA Operations-Central",
       "award_type": "H2 Project Awards"
     },
     {
@@ -2024,7 +2024,7 @@
       ],
       "email": "caifenpei@bytedance.com",
       "reason": "**[Project Results]**\nFast delivery experience has become a key service capability for experience competition among multiple platforms, which can help platforms improve pre-purchase conversion and post-purchase satisfaction.\nSince January 2025, SEA's NDD penetration rate has increased by 6.5pt to 2x%, and the display rate of NDD tags has increased by 1x times to 2x%. Through A/B test verification, displaying a high proportion of NDD tags throughout the buyers' entire shopping lifecycle can drive pre-purchase conversion ***(Malaysia per capita GMV +0.47%, Indonesia per capita GMV +0.24%)***. Without significantly increasing costs, the NDD penetration rate has surpassed or aligned with competitors in each country.\nFast delivery experience has become a key service capability for multi-platforms in the competition of logistics experience, which can help platforms improve pre-purchase conversion and post-purchase satisfaction.\n**[Collaboration Highlights]**\nOrganized by the Logistics Team and collaborated with GNE, Industry, Logistics Operations, Product, Algorithm, R&D and IMC teams to clarify each party’s key objectives.\n- **Optimize Policies & Tools for Seller Shipping**\nSince H2 2025, NDD service has been expanded to all sellers. Via the new NDDR indicator, Seller Center notifications and NDD order priority sorting, we increased the same-day shipping rate of NDD orders by 5.6pt.\n- **Clarify NDD Routes & Optimize Next-day delivery rate**\nLogs team defined NDD routes with logistics providers, addressed all bottlenecks, and improved the next-day delivery rate by 4pt through more collection waves, streamlined transit routes and independent NDD packaging.\n- **Enhance Buyer Perception via Tag Display & Marketing**\nBoosting buyers' awareness of NDD by adding labels in all fields and using algorithms for dynamic display. We also launched twice UX marketing campaigns with IMC and logistics providers, achieving 10 million exposures to build long-term fast delivery awareness.\n- **Periodic Reviews for Strategy Implementation**\nWith clear responsibilities for each team, weekly XFN meetings aligned progress. Through 4-time strategy revolution, we improved NDD performance.",
-      "department": "Central",
+      "department": "Global E-Commerce-SEA Operations-Central",
       "award_type": "H2 Project Awards"
     },
     {
@@ -2039,7 +2039,7 @@
       ],
       "email": "zhanghan.0411@bytedance.com",
       "reason": "**[Project Results]**\nFast delivery experience has become a key service capability for experience competition among multiple platforms, which can help platforms improve pre-purchase conversion and post-purchase satisfaction.\nSince January 2025, SEA's NDD penetration rate has increased by 6.5pt to 2x%, and the display rate of NDD tags has increased by 1x times to 2x%. Through A/B test verification, displaying a high proportion of NDD tags throughout the buyers' entire shopping lifecycle can drive pre-purchase conversion ***(Malaysia per capita GMV +0.47%, Indonesia per capita GMV +0.24%)***. Without significantly increasing costs, the NDD penetration rate has surpassed or aligned with competitors in each country.\nFast delivery experience has become a key service capability for multi-platforms in the competition of logistics experience, which can help platforms improve pre-purchase conversion and post-purchase satisfaction.\n**[Collaboration Highlights]**\nOrganized by the Logistics Team and collaborated with GNE, Industry, Logistics Operations, Product, Algorithm, R&D and IMC teams to clarify each party’s key objectives.\n- **Optimize Policies & Tools for Seller Shipping**\nSince H2 2025, NDD service has been expanded to all sellers. Via the new NDDR indicator, Seller Center notifications and NDD order priority sorting, we increased the same-day shipping rate of NDD orders by 5.6pt.\n- **Clarify NDD Routes & Optimize Next-day delivery rate**\nLogs team defined NDD routes with logistics providers, addressed all bottlenecks, and improved the next-day delivery rate by 4pt through more collection waves, streamlined transit routes and independent NDD packaging.\n- **Enhance Buyer Perception via Tag Display & Marketing**\nBoosting buyers' awareness of NDD by adding labels in all fields and using algorithms for dynamic display. We also launched twice UX marketing campaigns with IMC and logistics providers, achieving 10 million exposures to build long-term fast delivery awareness.\n- **Periodic Reviews for Strategy Implementation**\nWith clear responsibilities for each team, weekly XFN meetings aligned progress. Through 4-time strategy revolution, we improved NDD performance.",
-      "department": "Central",
+      "department": "Global E-Commerce-SEA Operations-Central",
       "award_type": "H2 Project Awards"
     },
     {
@@ -2234,7 +2234,7 @@
       ],
       "email": "samuel.sung@bytedance.com",
       "reason": "Driven by the strategic synergy between TTS SEA and PIPO (Global Payment) in 2025, the teams successfully achieved comprehensive coverage across all five Southeast Asian markets. Through initiatives such as co-funding with TTS Ops, optimizing checkout flow and adding entry points with TTS Product team, the cross-functional effort further improved BNPL penetration.\nMeanwhile, by transcending the limitations of the white-label model and pivoting to a Self-Operated + Risk-Sharing framework, we have achieved deeper control over user experience and risk management strategies. This paradigm combined with the deep collaboration between TTS and PIPO propelled the regional penetration rate from 3.07% (end of '24) to 6.32% (+122.48%), significantly outperforming our annual targets.",
-      "department": "Global E-Commerce-SEA Operations-Thailand Operations-Business analytics & New initiatives-Business Intelligence",
+      "department": "Global E-Commerce-SEA Operations-Thailand Operations",
       "award_type": "H2 Project Awards"
     },
     {
@@ -2249,7 +2249,7 @@
       ],
       "email": "zhaowenyuan.tracy@bytedance.com",
       "reason": "Driven by the strategic synergy between TTS SEA and PIPO (Global Payment) in 2025, the teams successfully achieved comprehensive coverage across all five Southeast Asian markets. Through initiatives such as co-funding with TTS Ops, optimizing checkout flow and adding entry points with TTS Product team, the cross-functional effort further improved BNPL penetration.\nMeanwhile, by transcending the limitations of the white-label model and pivoting to a Self-Operated + Risk-Sharing framework, we have achieved deeper control over user experience and risk management strategies. This paradigm combined with the deep collaboration between TTS and PIPO propelled the regional penetration rate from 3.07% (end of '24) to 6.32% (+122.48%), significantly outperforming our annual targets.",
-      "department": "Global E-Commerce-SEA Operations-Indonesia Operations-Special Projects",
+      "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
       "award_type": "H2 Project Awards"
     },
     {
@@ -2264,7 +2264,7 @@
       ],
       "email": "jonathan.low@bytedance.com",
       "reason": "Driven by the strategic synergy between TTS SEA and PIPO (Global Payment) in 2025, the teams successfully achieved comprehensive coverage across all five Southeast Asian markets. Through initiatives such as co-funding with TTS Ops, optimizing checkout flow and adding entry points with TTS Product team, the cross-functional effort further improved BNPL penetration.\nMeanwhile, by transcending the limitations of the white-label model and pivoting to a Self-Operated + Risk-Sharing framework, we have achieved deeper control over user experience and risk management strategies. This paradigm combined with the deep collaboration between TTS and PIPO propelled the regional penetration rate from 3.07% (end of '24) to 6.32% (+122.48%), significantly outperforming our annual targets.",
-      "department": "Global E-Commerce-SEA Operations-Malaysia Operations-Merchant Ecosystem Development",
+      "department": "Global E-Commerce-SEA Operations-Malaysia Operations",
       "award_type": "H2 Project Awards"
     },
     {
@@ -2279,7 +2279,7 @@
       ],
       "email": "gaosaixia@bytedance.com",
       "reason": "Driven by the strategic synergy between TTS SEA and PIPO (Global Payment) in 2025, the teams successfully achieved comprehensive coverage across all five Southeast Asian markets. Through initiatives such as co-funding with TTS Ops, optimizing checkout flow and adding entry points with TTS Product team, the cross-functional effort further improved BNPL penetration.\nMeanwhile, by transcending the limitations of the white-label model and pivoting to a Self-Operated + Risk-Sharing framework, we have achieved deeper control over user experience and risk management strategies. This paradigm combined with the deep collaboration between TTS and PIPO propelled the regional penetration rate from 3.07% (end of '24) to 6.32% (+122.48%), significantly outperforming our annual targets.",
-      "department": "Global E-Commerce-Product-SEA Product-User Product",
+      "department": "Global E-Commerce-Product-SEA Product",
       "award_type": "H2 Project Awards"
     },
     {
@@ -2316,7 +2316,7 @@
   "H2 Individual Awards": [
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "Ops-IMC",
+      "department": "Global E-Commerce-SEA Operations-Integrated Marketing",
       "bonus": "700",
       "members": [
         "Enzo Rojas"
@@ -2330,7 +2330,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "Ops-IMC",
+      "department": "Global E-Commerce-SEA Operations-Integrated Marketing",
       "bonus": "700",
       "members": [
         "Casey Liaw"
@@ -2344,7 +2344,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "Ops-IMC",
+      "department": "Global E-Commerce-SEA Operations-Integrated Marketing",
       "bonus": "700",
       "members": [
         "ณัฐพร ประวีณเมธ"
@@ -2358,7 +2358,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "Ops-IMC",
+      "department": "Global E-Commerce-SEA Operations-Integrated Marketing",
       "bonus": "700",
       "members": [
         "Angghita Dewi Nadhifa"
@@ -2372,7 +2372,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "Ops-Central",
+      "department": "Global E-Commerce-SEA Operations-Central",
       "bonus": "700",
       "members": [
         "Jacky Li"
@@ -2386,7 +2386,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "Ops-Cross Boarder",
+      "department": "Global E-Commerce-SEA Operations-SEA Cross-Border Operations",
       "bonus": "700",
       "members": [
         "Xuehe Zhang"
@@ -2400,7 +2400,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "ID Ops",
+      "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
       "bonus": "700",
       "members": [
         "Tio Darmawan"
@@ -2414,7 +2414,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "ID Ops",
+      "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
       "bonus": "700",
       "members": [
         "Beatrice Kezia Nedoda da Costa"
@@ -2428,7 +2428,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "ID Ops",
+      "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
       "bonus": "700",
       "members": [
         "Kario Teguh"
@@ -2442,7 +2442,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "ID Ops",
+      "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
       "bonus": "700",
       "members": [
         "Adwina Handari Paramita"
@@ -2456,7 +2456,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "ID Ops",
+      "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
       "bonus": "700",
       "members": [
         "Erwin Tanuwijaya"
@@ -2470,7 +2470,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "ID Ops",
+      "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
       "bonus": "700",
       "members": [
         "Haslia Asriningrum"
@@ -2484,7 +2484,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "ID Ops",
+      "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
       "bonus": "700",
       "members": [
         "Lay Ding"
@@ -2498,7 +2498,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "VN Ops",
+      "department": "Global E-Commerce-SEA Operations-Vietnam Operations",
       "bonus": "700",
       "members": [
         "Cù Nhiên Đằng"
@@ -2512,7 +2512,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "VN Ops",
+      "department": "Global E-Commerce-SEA Operations-Vietnam Operations",
       "bonus": "700",
       "members": [
         "Nguyen Ngoc (Mike)"
@@ -2526,7 +2526,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "VN Ops",
+      "department": "Global E-Commerce-SEA Operations-Vietnam Operations",
       "bonus": "700",
       "members": [
         "Ares Xu"
@@ -2540,7 +2540,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "VN Ops",
+      "department": "Global E-Commerce-SEA Operations-Vietnam Operations",
       "bonus": "700",
       "members": [
         "Kinh Văn Trung"
@@ -2568,7 +2568,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "MY Ops",
+      "department": "Global E-Commerce-SEA Operations-Malaysia Operations",
       "bonus": "700",
       "members": [
         "Nadhirah"
@@ -2582,7 +2582,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "MY Ops",
+      "department": "Global E-Commerce-SEA Operations-Malaysia Operations",
       "bonus": "700",
       "members": [
         "Zhung Tan"
@@ -2610,7 +2610,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "PH Ops",
+      "department": "Global E-Commerce-SEA Operations-Philippines Operations",
       "bonus": "700",
       "members": [
         "Benjamin John Miranda III"
@@ -2624,7 +2624,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "PH Ops",
+      "department": "Global E-Commerce-SEA Operations-Philippines Operations",
       "bonus": "700",
       "members": [
         "Nicole Abad"
@@ -2638,7 +2638,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "PH Ops",
+      "department": "Global E-Commerce-SEA Operations-Philippines Operations",
       "bonus": "700",
       "members": [
         "Andre Azcarraga"
@@ -2652,7 +2652,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "TH Ops",
+      "department": "Global E-Commerce-SEA Operations-Thailand Operations",
       "bonus": "700",
       "members": [
         "อนาอิส นุโส่ม"
@@ -2666,7 +2666,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "TH Ops",
+      "department": "Global E-Commerce-SEA Operations-Thailand Operations",
       "bonus": "700",
       "members": [
         "อุไรวรรณ ขัดเชียงแสน"
@@ -2680,7 +2680,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "TH Ops",
+      "department": "Global E-Commerce-SEA Operations-Thailand Operations",
       "bonus": "700",
       "members": [
         "Nuch Chunyanuch"
@@ -2694,7 +2694,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "TH Ops",
+      "department": "Global E-Commerce-SEA Operations-Thailand Operations",
       "bonus": "700",
       "members": [
         "Merin Chien"
@@ -2708,7 +2708,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "GNE",
+      "department": "Global E-Commerce-Governance and Experience-SEA",
       "bonus": "700",
       "members": [
         "Aaron Ng"
@@ -2722,7 +2722,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "GNE",
+      "department": "Global E-Commerce-Governance and Experience-SEA",
       "bonus": "700",
       "members": [
         "Queenie Loh"
@@ -2736,7 +2736,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "GNE",
+      "department": "Global E-Commerce-Governance and Experience-SEA",
       "bonus": "700",
       "members": [
         "Liang Leo Liang"
@@ -2750,7 +2750,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "Logistics",
+      "department": "Supply Chain and Logistics-Global Settlement",
       "bonus": "700",
       "members": [
         "Geska Dwi Putri Septiani"
@@ -2778,7 +2778,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "Logistics",
+      "department": "Supply Chain and Logistics-SEA Logistics Operations",
       "bonus": "700",
       "members": [
         "Yunus Adithya"
@@ -2792,7 +2792,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "Product",
+      "department": "Global E-Commerce-Product-SEA Product",
       "bonus": "700",
       "members": [
         "Shiyuan Li"
@@ -2806,7 +2806,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "Product",
+      "department": "Global E-Commerce-Product-SEA Product",
       "bonus": "700",
       "members": [
         "Aries Shao"
@@ -2820,7 +2820,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "Data Science",
+      "department": "Global E-Commerce-Data Science-SEA Data Science",
       "bonus": "700",
       "members": [
         "Shi Yue"
@@ -2834,7 +2834,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "User Resarch",
+      "department": "Global E-Commerce-User Research",
       "bonus": "700",
       "members": [
         "Kadek Nanda Puspasari"
@@ -2848,7 +2848,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "Design",
+      "department": "Global E-commerce-Design-SEA Product",
       "bonus": "700",
       "members": [
         "Jing She"
@@ -2876,7 +2876,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "Engineering (RD)",
+      "department": "Product RD and Infrastructure-Global E-Commerce-Service Architecture-Stability",
       "bonus": "700",
       "members": [
         "Peng Gao"
@@ -2890,7 +2890,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "Engineering (RD)",
+      "department": "Product RD and Infrastructure-Global E-Commerce-SEA-Customer Business",
       "bonus": "700",
       "members": [
         "yellow"
@@ -2904,7 +2904,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "Engineering (RD)",
+      "department": "Product RD and Infrastructure-Global E-Commerce-SEA-Customer Business",
       "bonus": "700",
       "members": [
         "Lingshan Ng"
@@ -2918,7 +2918,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "Engineering (RD)",
+      "department": "Product RD and Infrastructure-Global E-commerce-Quality Assurance-SEA",
       "bonus": "700",
       "members": [
         "Xiyan Wang"
@@ -2932,7 +2932,7 @@
     },
     {
       "project_name": "11.11 & 12.12 Stellar Contributors",
-      "department": "Engineering (RD)",
+      "department": "Product RD and Infrastructure-Global E-Commerce-SEA-Customer Business",
       "bonus": "700",
       "members": [
         "Yunxiang Zhang"
