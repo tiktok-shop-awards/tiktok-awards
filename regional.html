@@ -460,7 +460,7 @@
           <!-- Year Navigation - Centered -->
           <div class="year-nav-wrapper">
             <div class="year-nav-compact">
-              <button class="year-btn" data-year="2026" id="year-2026-btn">2026 <span class="coming-soon-tag" style="opacity: 0.6;">· Coming Soon</span></button>
+              <button class="year-btn" data-year="2026" id="year-2026-btn">2026 <span class="coming-soon-tag" style="opacity: 0.6;">· Updating</span></button>
               <button class="year-btn active" data-year="2025">2025</button>
             </div>
           </div>
@@ -647,11 +647,11 @@
       
       document.getElementById('region-name').textContent = regionNames[displayRegion] || regionNames[currentRegion];
       
-      // Update 2026 button "Coming Soon" tag based on region
+      // Update 2026 button "Updating" tag based on region
       const year2026Btn = document.getElementById('year-2026-btn');
       const comingSoonTag = year2026Btn ? year2026Btn.querySelector('.coming-soon-tag') : null;
       if (comingSoonTag) {
-        // In 2026, only LATAM has independent data, others show Coming Soon
+        // In 2026, only LATAM has independent data, others show Updating
         comingSoonTag.style.display = (currentRegion === 'latam' || currentRegion === 'fs') ? 'none' : 'inline';
       }
       
