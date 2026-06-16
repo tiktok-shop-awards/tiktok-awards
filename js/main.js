@@ -2030,7 +2030,7 @@ function performSearch(query, level = 'all') {
   
   // Search Rankings (only when level is 'all')
   if (level === 'all' && searchData.rankings) {
-    const rankings = searchData.rankings.top10 || [];
+    const rankings = searchData.rankings.top3 || [];
     rankings.forEach(r => {
       const matchName = matchesWord(r.name, searchTerm);
       if (matchName) {
