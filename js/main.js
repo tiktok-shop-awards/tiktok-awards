@@ -1908,13 +1908,24 @@ async function loadSearchData() {
 }
 
 // Hybrid matching: CJK uses substring, English uses word-boundary
+// Also supports Chinese->English cross-lookup via nameMap
 function matchesWord(text, searchTerm) {
   if (!text) return false;
   var lower = text.toLowerCase();
   var term = searchTerm.toLowerCase();
-  // CJK: substring match
+  // CJK: substring match + nameMap cross-lookup
   if (/[一-鿿぀-ゟ゠-ヿ]/.test(term)) {
-    return lower.includes(term);
+    if (lower.includes(term)) return true;
+    // Check if searchTerm matches any Chinese name in nameMap, then also match the English name
+    if (nameMap) {
+      for (var cn in nameMap) {
+        if (cn.includes(term) || term.includes(cn)) {
+          var en = nameMap[cn].toLowerCase();
+          if (lower.includes(en)) return true;
+        }
+      }
+    }
+    return false;
   }
   // Non-CJK: word-boundary match
   var escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
