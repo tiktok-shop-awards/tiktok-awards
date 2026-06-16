@@ -2030,20 +2030,23 @@ function performSearch(query, level = 'all') {
   
   // Search Rankings (only when level is 'all')
   if (level === 'all' && searchData.rankings) {
-    const rankings = searchData.rankings.top3 || [];
-    rankings.forEach(r => {
-      const matchName = matchesWord(r.name, searchTerm);
-      if (matchName) {
-        results.push({
-          type: 'Top Performer',
-          level: `Rank #${r.rank}`,
-          name: r.name,
-          points: r.points,
-          department: r.department || r.region || 'TikTok Shop',
-          email: r.email || '',
-          matchSource: getMatchSource(matchName, false, false, false)
-        });
-      }
+    Object.keys(searchData.rankings).forEach(key => {
+      const items = searchData.rankings[key];
+      if (!Array.isArray(items)) return;
+      items.forEach(r => {
+        const matchName = matchesWord(r.name, searchTerm);
+        if (matchName) {
+          results.push({
+            type: 'Top Performer',
+            level: `Rank #${r.rank || (items.indexOf(r) + 1)}`,
+            name: r.name,
+            points: r.points,
+            department: r.department || r.region || '',
+            email: r.email || '',
+            matchSource: getMatchSource(matchName, false, false, false)
+          });
+        }
+      });
     });
   }
   
