@@ -138,7 +138,7 @@ function updateYear2026Button() {
 function initYearNavigation() {
   const yearBtns = document.querySelectorAll('.year-btn');
   const page = window.location.pathname.split('/').pop();
-  const defaultYear = '2026';
+  const defaultYear = (page === '' || page === 'index.html') ? '2026' : '2025';
   const urlYear = getUrlParam('year') || defaultYear;
   
   AppData.currentYear = urlYear;
@@ -254,7 +254,7 @@ async function loadData(level, region = null, year = null) {
     // data normalized (keys already English)
     
     // 根据年份筛选数据
-    const targetYear = year || AppData.currentYear || '2026';
+    const targetYear = year || AppData.currentYear || '2025';
     
     // 检查数据是否是多年份结构
     const hasYearStructure = data['2025'] || data['2026'];
@@ -332,7 +332,7 @@ async function loadRankings(year = null) {
     }
     
     // 否则返回当前年份的数据
-    const currentYear = AppData.currentYear || '2026';
+    const currentYear = AppData.currentYear || '2025';
     return data[currentYear] || data['2025'];
   } catch (error) {
     console.error('Error loading rankings:', error);
@@ -418,7 +418,7 @@ function getAllIndividualAwards(data) {
 function getIndividualAwardsByQuarter(data, quarter) {
   if (!data) return [];
   // Support both legacy and year-based structure
-  const currentYear = AppData.currentYear || '2026';
+  const currentYear = AppData.currentYear || '2025';
   if (hasYearStructure(data)) {
     const yearData = data[currentYear];
     if (!yearData) return [];
@@ -751,7 +751,7 @@ function calculateRegionTop3FullYear(regionData, region) {
   if (!regionData) return [];
   
   let memberScores = {};
-  const currentYear = AppData.currentYear || '2026';
+  const currentYear = AppData.currentYear || '2025';
   
   const getSafeDept = (dept, reg, defaultVal) => {
     if (dept && dept !== 'undefined' && dept !== 'null' && dept !== '') return dept;
@@ -1591,7 +1591,7 @@ function renderRegionalAwards(data, containerId, period, region) {
   if (!container || !data) return;
   
   let html = '';
-  const currentYear = AppData.currentYear || '2026';
+  const currentYear = AppData.currentYear || '2025';
   
   // Q1/Q2/Q3/Q4: 区分 FS/POP (项目奖) 和 LATAM (个人奖)
   if (['Q1', 'Q2', 'Q3', 'Q4'].includes(period)) {
@@ -1887,7 +1887,7 @@ async function loadSearchData() {
     ]);
     nameMap = nameMapData || {};
     
-    const targetYear = AppData.currentYear || '2026';
+    const targetYear = AppData.currentYear || '2025';
     searchData = {
       global: unwrapYearData(global, targetYear),
       regional: {
