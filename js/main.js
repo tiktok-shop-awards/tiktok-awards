@@ -2085,7 +2085,10 @@ function renderSearchResults(results, containerId) {
     }
     let winnerLine = '';
     if (result.winner && result.winner !== result.name) {
-      winnerLine = `<div style="color: var(--text-secondary); font-size: 11px; margin-top: 2px;">👤 ${result.winner}</div>`;
+      const matchedStr = result.matchedMembers?.map(m => typeof m === 'string' ? m : m.name || '').join(', ') || '';
+      if (!matchedStr.includes(result.winner)) {
+        winnerLine = `<div style="color: var(--text-secondary); font-size: 11px; margin-top: 2px;">👤 ${result.winner}</div>`;
+      }
     }
     html += `
       <div class="search-result-item">
