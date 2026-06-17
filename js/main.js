@@ -2028,28 +2028,7 @@ function performSearch(query, level = 'all') {
     });
   }
   
-  // 5. Rankings (top10 includes top3, no need to search both)
-  if (level === 'all' && searchData.rankings) {
-    const rankingItems = searchData.rankings.top10 || searchData.rankings.top3 || [];
-    [rankingItems].forEach(items => {
-      if (!Array.isArray(items)) return;
-      items.forEach(r => {
-        if (matchesWord(r.name, searchTerm)) {
-          results.push({
-            type: 'Top Performer',
-            level: `Rank #${r.rank || (items.indexOf(r) + 1)}`,
-            name: r.name,
-            points: r.points,
-            department: r.department || r.region || '',
-            email: r.email || '',
-            matchSource: 3
-          });
-        }
-      });
-    });
-  }
-  
-  // 6. Departmental
+  // 5. Departmental
   if (searchData.departmental && (level === 'all' || level === 'departmental')) {
     ['Q1', 'Q2', 'Q3', 'Q4'].forEach(q => {
       const awards = searchData.departmental[q] || [];
