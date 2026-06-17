@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0a0a; color: #fff; font-family: -apple-system, 'Segoe UI', sans-serif; padding: 40px; max-width: 900px; margin: 0 auto; }
+h3 { color: #2ed0d6; margin-bottom: 20px; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; }
+h2 { font-size: 18px; margin-bottom: 12px; }
+.section { margin-bottom: 50px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 40px; }
+.scoring-note { font-size: 12px; color: #888; margin-bottom: 20px; }
+.scoring-note strong { color: #2ed0d6; }
+
+/* === Option A: Podium + Expandable List === */
+.podium { display: flex; justify-content: center; align-items: flex-end; gap: 16px; padding: 90px 0 20px; }
+.podium-item { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding: 20px; border-radius: 12px; background: rgba(255,255,255,0.05); width: 200px; border: 1px solid rgba(255,255,255,0.1); }
+.podium-item.first { height: 240px; background: linear-gradient(180deg, rgba(46,208,214,0.12) 0%, rgba(255,255,255,0.04) 100%); border-color: rgba(255,255,255,0.15); }
+.podium-item.second { height: 200px; background: linear-gradient(180deg, rgba(246,33,74,0.08) 0%, rgba(255,255,255,0.04) 100%); }
+.podium-item.third { height: 200px; background: linear-gradient(180deg, rgba(212,175,55,0.08) 0%, rgba(255,255,255,0.04) 100%); }
+.podium-medal { position: absolute; top: -55px; left: 50%; transform: translateX(-50%); font-size: 48px; }
+.podium-item.first .podium-medal { font-size: 60px; top: -65px; }
+.podium-rank { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+.podium-name { font-size: 15px; font-weight: 600; text-align: center; margin-bottom: 4px; }
+.podium-dept { font-size: 11px; color: #888; text-align: center; margin-bottom: 8px; max-width: 150px; line-height: 1.3; }
+.podium-score { font-size: 14px; font-weight: 600; color: #2ed0d6; padding: 4px 10px; background: rgba(46,208,214,0.1); border-radius: 4px; margin-top: auto; }
+
+/* Tied badge on podium */
+.tied-badge { font-size: 11px; color: #2ed0d6; background: rgba(46,208,214,0.1); padding: 2px 8px; border-radius: 10px; margin-bottom: 6px; }
+
+/* Expandable list */
+.tied-list { margin-top: 16px; }
+.tied-list-toggle { display: flex; align-items: center; justify-content: center; gap: 6px; background: rgba(46,208,214,0.08); border: 1px solid rgba(46,208,214,0.2); border-radius: 8px; padding: 8px 16px; cursor: pointer; color: #2ed0d6; font-size: 13px; font-weight: 500; transition: all 0.2s; }
+.tied-list-toggle:hover { background: rgba(46,208,214,0.15); }
+.tied-list-toggle .arrow { transition: transform 0.2s; }
+.tied-list-toggle.expanded .arrow { transform: rotate(180deg); }
+.tied-list-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.tied-list-content.expanded { max-height: 600px; }
+.tied-person { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 13px; }
+.tied-person:last-child { border-bottom: none; }
+.tied-person .name { font-weight: 500; }
+.tied-person .dept { color: #888; font-size: 11px; }
+.tied-person .score { color: #2ed0d6; font-weight: 600; font-size: 12px; }
+
+/* === Option B: Medal Table (no podium) === */
+.medal-table { width: 100%; border-collapse: collapse; }
+.medal-table th { text-align: left; padding: 10px 12px; font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.medal-table td { padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 13px; }
+.medal-table tr:hover td { background: rgba(255,255,255,0.03); }
+.medal-table .rank-cell { font-weight: 700; width: 50px; }
+.medal-table .name-cell { font-weight: 500; }
+.medal-table .dept-cell { color: #888; font-size: 11px; }
+.medal-table .score-cell { color: #2ed0d6; font-weight: 600; text-align: right; }
+.rank-1 { color: #FFD700; }
+.rank-2 { color: #C0C0C0; }
+.rank-3 { color: #CD7F32; }
+
+/* === Option C: Compact Cards Grid === */
+.rank-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; margin-top: 16px; }
+.rank-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px; text-align: center; transition: all 0.2s; }
+.rank-card:hover { background: rgba(46,208,214,0.08); border-color: rgba(46,208,214,0.2); }
+.rank-card .card-rank { font-size: 11px; color: #FFD700; font-weight: 700; margin-bottom: 4px; }
+.rank-card .card-name { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+.rank-card .card-dept { font-size: 10px; color: #888; margin-bottom: 6px; line-height: 1.3; }
+.rank-card .card-score { font-size: 12px; color: #2ed0d6; font-weight: 600; }
+.rank-card.top-rank { background: rgba(46,208,214,0.08); border-color: rgba(46,208,214,0.2); }
+</style>
+</head>
+<body>
+
+<!-- Option A: Podium + Expandable Tied List -->
+<div class="section">
+<h3>Option A: Podium + 可展开列表</h3>
+<h2>🌟 Global Top 3 Winners</h2>
+<p class="scoring-note"><strong>Scoring:</strong> Global = 5 pts | Regional = 3 pts | Departmental = 1 pt</p>
+
+<div class="podium">
+  <!-- No #2 or #3 since everyone is tied at #1 -->
+  <div class="podium-item first">
+    <div class="podium-medal">🥇</div>
+    <div class="tied-badge">15 tied</div>
+    <div class="podium-rank">#1</div>
+    <div class="podium-score">3 pts</div>
+  </div>
+</div>
+
+<div class="tied-list" style="max-width: 500px; margin: 0 auto;">
+  <div class="tied-list-toggle" onclick="this.classList.toggle('expanded'); this.querySelector('.arrow').textContent = this.classList.contains('expanded') ? '▲' : '▼'; document.getElementById('tied-content-a').classList.toggle('expanded');">
+    <span>View all 15 people tied for #1</span>
+    <span class="arrow">▼</span>
+  </div>
+  <div id="tied-content-a" class="tied-list-content">
+    <div class="tied-person"><span class="name">Jiaxin Liu</span><span class="dept">LATAM Logistics</span><span class="score">3 pts</span></div>
+    <div class="tied-person"><span class="name">Jiyuan Feng</span><span class="dept">Cross border Logistics</span><span class="score">3 pts</span></div>
+    <div class="tied-person"><span class="name">Jianguang Gao</span><span class="dept">LATAM Logistics Operations</span><span class="score">3 pts</span></div>
+    <div class="tied-person"><span class="name">Shixuan Gao</span><span class="dept">User Growth - LATAM</span><span class="score">3 pts</span></div>
+    <div class="tied-person"><span class="name">Herbie Huang</span><span class="dept">LATAM Governance</span><span class="score">3 pts</span></div>
+    <div class="tied-person"><span class="name">Alice Liu</span><span class="dept">Product - LATAM</span><span class="score">3 pts</span></div>
+    <div class="tied-person"><span class="name">Rafael Lozano</span><span class="dept">LATAM Operations</span><span class="score">3 pts</span></div>
+    <div class="tied-person"><span class="name">Alberto Montes</span><span class="dept">LATAM Campaign</span><span class="score">3 pts</span></div>
+    <div class="tied-person"><span class="name">Fernanda Forti Rossin</span><span class="dept">LATAM Product</span><span class="score">3 pts</span></div>
+    <div class="tied-person"><span class="name">Wangjiankang</span><span class="dept">LATAM Data</span><span class="score">3 pts</span></div>
+    <div class="tied-person"><span class="name">Hongdi Xu</span><span class="dept">LATAM Finance</span><span class="score">3 pts</span></div>
+    <div class="tied-person"><span class="name">Liping Chen</span><span class="dept">Product - LATAM</span><span class="score">3 pts</span></div>
+    <div class="tied-person"><span class="name">Noelle</span><span class="dept">Product - LATAM</span><span class="score">3 pts</span></div>
+    <div class="tied-person"><span class="name">Beatrice Vieira</span><span class="dept">Brazil Operations</span><span class="score">3 pts</span></div>
+    <div class="tied-person"><span class="name">Grazielle Passos</span><span class="dept">Brazil Operations</span><span class="score">3 pts</span></div>
+  </div>
+</div>
+</div>
+
+<!-- Option B: Table Style (no podium) -->
+<div class="section">
+<h3>Option B: 排行榜表格（去掉领奖台）</h3>
+<h2>🌟 Global Rankings</h2>
+<p class="scoring-note"><strong>Scoring:</strong> Global = 5 pts | Regional = 3 pts | Departmental = 1 pt</p>
+
+<table class="medal-table">
+  <thead>
+    <tr><th>Rank</th><th>Name</th><th>Department</th><th style="text-align:right">Points</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="rank-cell rank-1">🥇 #1</td><td class="name-cell">Jiaxin Liu</td><td class="dept-cell">LATAM Logistics</td><td class="score-cell">3 pts</td></tr>
+    <tr><td class="rank-cell rank-1">#1</td><td class="name-cell">Jiyuan Feng</td><td class="dept-cell">Cross border Logistics</td><td class="score-cell">3 pts</td></tr>
+    <tr><td class="rank-cell rank-1">#1</td><td class="name-cell">Jianguang Gao</td><td class="dept-cell">LATAM Logistics Operations</td><td class="score-cell">3 pts</td></tr>
+    <tr><td class="rank-cell rank-1">#1</td><td class="name-cell">Shixuan Gao</td><td class="dept-cell">User Growth - LATAM</td><td class="score-cell">3 pts</td></tr>
+    <tr><td class="rank-cell rank-1">#1</td><td class="name-cell">Herbie Huang</td><td class="dept-cell">LATAM Governance</td><td class="score-cell">3 pts</td></tr>
+    <tr><td class="rank-cell rank-1">#1</td><td class="name-cell">Alice Liu</td><td class="dept-cell">Product - LATAM</td><td class="score-cell">3 pts</td></tr>
+    <tr><td class="rank-cell rank-1">#1</td><td class="name-cell">Rafael Lozano</td><td class="dept-cell">LATAM Operations</td><td class="score-cell">3 pts</td></tr>
+    <tr><td class="rank-cell rank-1">#1</td><td class="name-cell">Alberto Montes</td><td class="dept-cell">LATAM Campaign</td><td class="score-cell">3 pts</td></tr>
+    <tr><td class="rank-cell rank-1">#1</td><td class="name-cell">Fernanda Forti Rossin</td><td class="dept-cell">LATAM Product</td><td class="score-cell">3 pts</td></tr>
+    <tr><td class="rank-cell rank-1">#1</td><td class="name-cell">Wangjiankang</td><td class="dept-cell">LATAM Data</td><td class="score-cell">3 pts</td></tr>
+    <tr><td class="rank-cell rank-1">#1</td><td class="name-cell">Hongdi Xu</td><td class="dept-cell">LATAM Finance</td><td class="score-cell">3 pts</td></tr>
+    <tr><td class="rank-cell rank-1">#1</td><td class="name-cell">Liping Chen</td><td class="dept-cell">Product - LATAM</td><td class="score-cell">3 pts</td></tr>
+    <tr><td class="rank-cell rank-1">#1</td><td class="name-cell">Noelle</td><td class="dept-cell">Product - LATAM</td><td class="score-cell">3 pts</td></tr>
+    <tr><td class="rank-cell rank-1">#1</td><td class="name-cell">Beatrice Vieira</td><td class="dept-cell">Brazil Operations</td><td class="score-cell">3 pts</td></tr>
+    <tr><td class="rank-cell rank-1">#1</td><td class="name-cell">Grazielle Passos</td><td class="dept-cell">Brazil Operations</td><td class="score-cell">3 pts</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- Option C: Podium + Card Grid -->
+<div class="section">
+<h3>Option C: 领奖台 + 卡片网格</h3>
+<h2>🌟 Global Top 3 Winners</h2>
+<p class="scoring-note"><strong>Scoring:</strong> Global = 5 pts | Regional = 3 pts | Departmental = 1 pt</p>
+
+<div class="podium">
+  <div class="podium-item first">
+    <div class="podium-medal">🥇</div>
+    <div class="tied-badge">15 tied</div>
+    <div class="podium-rank">#1</div>
+    <div class="podium-score">3 pts</div>
+  </div>
+</div>
+
+<div class="rank-grid">
+  <div class="rank-card top-rank"><div class="card-rank">🥇 #1</div><div class="card-name">Jiaxin Liu</div><div class="card-dept">LATAM Logistics</div><div class="card-score">3 pts</div></div>
+  <div class="rank-card top-rank"><div class="card-rank">🥇 #1</div><div class="card-name">Jiyuan Feng</div><div class="card-dept">Cross border Logistics</div><div class="card-score">3 pts</div></div>
+  <div class="rank-card top-rank"><div class="card-rank">🥇 #1</div><div class="card-name">Jianguang Gao</div><div class="card-dept">LATAM Logistics Ops</div><div class="card-score">3 pts</div></div>
+  <div class="rank-card top-rank"><div class="card-rank">🥇 #1</div><div class="card-name">Shixuan Gao</div><div class="card-dept">User Growth - LATAM</div><div class="card-score">3 pts</div></div>
+  <div class="rank-card top-rank"><div class="card-rank">🥇 #1</div><div class="card-name">Herbie Huang</div><div class="card-dept">LATAM Governance</div><div class="card-score">3 pts</div></div>
+  <div class="rank-card top-rank"><div class="card-rank">🥇 #1</div><div class="card-name">Alice Liu</div><div class="card-dept">Product - LATAM</div><div class="card-score">3 pts</div></div>
+  <div class="rank-card top-rank"><div class="card-rank">🥇 #1</div><div class="card-name">Rafael Lozano</div><div class="card-dept">LATAM Operations</div><div class="card-score">3 pts</div></div>
+  <div class="rank-card top-rank"><div class="card-rank">🥇 #1</div><div class="card-name">Alberto Montes</div><div class="card-dept">LATAM Campaign</div><div class="card-score">3 pts</div></div>
+  <div class="rank-card top-rank"><div class="card-rank">🥇 #1</div><div class="card-name">Fernanda Forti Rossin</div><div class="card-dept">LATAM Product</div><div class="card-score">3 pts</div></div>
+  <div class="rank-card top-rank"><div class="card-rank">🥇 #1</div><div class="card-name">Wangjiankang</div><div class="card-dept">LATAM Data</div><div class="card-score">3 pts</div></div>
+  <div class="rank-card top-rank"><div class="card-rank">🥇 #1</div><div class="card-name">Hongdi Xu</div><div class="card-dept">LATAM Finance</div><div class="card-score">3 pts</div></div>
+  <div class="rank-card top-rank"><div class="card-rank">🥇 #1</div><div class="card-name">Liping Chen</div><div class="card-dept">Product - LATAM</div><div class="card-score">3 pts</div></div>
+  <div class="rank-card top-rank"><div class="card-rank">🥇 #1</div><div class="card-name">Noelle</div><div class="card-dept">Product - LATAM</div><div class="card-score">3 pts</div></div>
+  <div class="rank-card top-rank"><div class="card-rank">🥇 #1</div><div class="card-name">Beatrice Vieira</div><div class="card-dept">Brazil Operations</div><div class="card-score">3 pts</div></div>
+  <div class="rank-card top-rank"><div class="card-rank">🥇 #1</div><div class="card-name">Grazielle Passos</div><div class="card-dept">Brazil Operations</div><div class="card-score">3 pts</div></div>
+</div>
+</div>
+
+</body>
+</html>
