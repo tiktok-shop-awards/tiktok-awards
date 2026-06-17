@@ -100,6 +100,18 @@
       box-shadow: 0 2px 12px rgba(246, 33, 74, 0.3);
     }
     
+    .region-btn .region-tag {
+      font-size: 9px;
+      font-weight: 600;
+      opacity: 0.7;
+      margin-left: 3px;
+      vertical-align: middle;
+    }
+    
+    .region-btn.active .region-tag {
+      opacity: 0.9;
+    }
+    
     /* Podium Section */
     .podium-section {
       margin-bottom: var(--spacing-xxl);
@@ -468,7 +480,7 @@
           <!-- Year Navigation - Centered -->
           <div class="year-nav-wrapper">
             <div class="year-nav-compact">
-              <button class="year-btn active" data-year="2026" id="year-2026-btn">2026 <span class="updating-badge">Updating</span></button>
+              <button class="year-btn active" data-year="2026" id="year-2026-btn">2026 <span class="updating-badge" title="2026 H1 awards will be evaluated in July, with results announced by end of July.">Results in Late July</span></button>
               <button class="year-btn" data-year="2025">2025</button>
             </div>
           </div>
@@ -476,13 +488,8 @@
 
         <!-- Region Navigation - Tab Style -->
         <div class="region-nav-wrapper">
-          <div class="region-nav">
-            <button class="region-btn active" data-region="us">US</button>
-            <button class="region-btn" data-region="eu">EU+UK+JP</button>
-            <button class="region-btn" data-region="sea">SEA</button>
-            <button class="region-btn" data-region="latam">LATAM</button>
-            <button class="region-btn" data-region="fs">FS</button>
-            <button class="region-btn" data-region="pop">POP</button>
+          <div class="region-nav" id="region-nav-bar">
+            <!-- Region buttons are dynamically rendered by renderRegionNav() based on year -->
           </div>
         </div>
 
@@ -630,37 +637,82 @@
     // Regional page specific initialization
     const regionNames = {
       us: 'US',
-      us_pop: 'US+POP',
+      us_pop: 'US (L2L+POP)',
       eu: 'EU+UK+JP',
+      eu_pop: 'EU+UK+POP (L2L+POP)',
       sea: 'SEA',
       latam: 'LATAM',
       fs: 'FS',
       pop: 'POP'
     };
     
-    let currentRegion = 'us';
+    // Region button configs per year
+    const regionButtons2026 = [
+      { region: 'sea', label: 'SEA' },
+      { region: 'us', label: 'US <span class="region-tag">L2L+POP</span>' },
+      { region: 'latam', label: 'LATAM' },
+      { region: 'fs', label: 'FS' },
+      { region: 'eu', label: 'EU+UK+POP <span class="region-tag">L2L+POP</span>' }
+    ];
+    const regionButtons2025 = [
+      { region: 'us', label: 'US' },
+      { region: 'eu', label: 'EU+UK+JP' },
+      { region: 'sea', label: 'SEA' },
+      { region: 'latam', label: 'LATAM' },
+      { region: 'fs', label: 'FS' },
+      { region: 'pop', label: 'POP' }
+    ];
+    
+    let currentRegion = 'sea'; // default for 2026
     let currentAwardType = 'H2 Project Awards';
     let regionalData = null;
     let allRegionalData = null; // Store all regional data for US+POP merge
+    
+    // Render region nav buttons based on year
+    function renderRegionNav(year, activeRegion) {
+      const navBar = document.getElementById('region-nav-bar');
+      if (!navBar) return;
+      const buttons = year === '2026' ? regionButtons2026 : regionButtons2025;
+      navBar.innerHTML = buttons.map(b => 
+        `<button class="region-btn${b.region === activeRegion ? ' active' : ''}" data-region="${b.region}">${b.label}</button>`
+      ).join('');
+      // Re-bind click events
+      navBar.querySelectorAll('.region-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const clickedRegion = btn.dataset.region;
+          if (year === '2026' && clickedRegion !== 'latam' && clickedRegion !== 'fs' && clickedRegion !== 'sea' && clickedRegion !== 'us' && clickedRegion !== 'eu') {
+            showToast('2026 data is not available yet for this region. Coming soon!');
+            return;
+          }
+          navBar.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentRegion = clickedRegion;
+          updateLabels();
+          loadRegionalData(currentRegion, year);
+        });
+      });
+    }
     
     // Update page labels and toggle visibility
     function updateLabels() {
       const currentYear = AppData.currentYear;
       let displayRegion = currentRegion;
       
-      // In 2026, US button becomes US+POP
+      // In 2026, US and EU buttons include POP data
       if (currentYear === '2026' && currentRegion === 'us') {
         displayRegion = 'us_pop';
+      } else if (currentYear === '2026' && currentRegion === 'eu') {
+        displayRegion = 'eu_pop';
       }
       
       document.getElementById('region-name').textContent = regionNames[displayRegion] || regionNames[currentRegion];
       
-      // Update 2026 button "Updating" tag based on region
+      // Update 2026 badge visibility: hide if region has data (latam, fs), show if pending
       const year2026Btn = document.getElementById('year-2026-btn');
       const updatingBadge = year2026Btn ? year2026Btn.querySelector('.updating-badge') : null;
       if (updatingBadge) {
-        // In 2026, only LATAM has independent data, others show Updating
-        updatingBadge.style.display = (currentRegion === 'latam') ? 'none' : 'inline';
+        const hasData = ['latam', 'fs'].includes(currentRegion);
+        updatingBadge.style.display = hasData ? 'none' : 'inline';
       }
       
       // Update regional awards title
@@ -826,6 +878,22 @@
             'H2 Project Awards': [...(usData?.['H2 Project Awards'] || []), ...(popData?.['H2 Project Awards'] || [])],
             'H2 Individual Awards': [...(usData?.['H2 Individual Awards'] || []), ...(popData?.['H2 Individual Awards'] || [])]
           };
+        } else if (currentYear === '2026' && region === 'eu') {
+          // 2026 EU+UK+POP merge
+          const [euData, popData] = await Promise.all([
+            loadData('regional', 'eu', currentYear),
+            loadData('pop')
+          ]);
+          regionalData = {
+            ...euData,
+            'Q1 Project Awards': [...(euData?.['Q1 Project Awards'] || []), ...(popData?.['Q1 Project Awards'] || [])],
+            'Q2 Project Awards': [...(euData?.['Q2 Project Awards'] || []), ...(popData?.['Q2 Project Awards'] || [])],
+            'Q3 Project Awards': [...(euData?.['Q3 Project Awards'] || []), ...(popData?.['Q3 Project Awards'] || [])],
+            'Q4 Project Awards': [...(euData?.['Q4 Project Awards'] || []), ...(popData?.['Q4 Project Awards'] || [])],
+            'H1 Project Awards': [...(euData?.['H1 Project Awards'] || []), ...(popData?.['H1 Project Awards'] || [])],
+            'H2 Project Awards': [...(euData?.['H2 Project Awards'] || []), ...(popData?.['H2 Project Awards'] || [])],
+            'H2 Individual Awards': [...(euData?.['H2 Individual Awards'] || []), ...(popData?.['H2 Individual Awards'] || [])]
+          };
         } else if (region === 'fs') {
           // FS 数据用 loadData('fs')，Q1+Q2→H1, Q3+Q4→H2
           const fsRaw = await loadData('fs');
@@ -869,41 +937,18 @@
     
     // Initialize region navigation
     function initRegionNav() {
-      const regionBtns = document.querySelectorAll('.region-btn');
-      const urlRegion = getUrlParam('region') || 'us';
       const urlYear = getUrlParam('year') || '2026';
+      let urlRegion = getUrlParam('region');
+      // Default region by year
+      if (!urlRegion) {
+        urlRegion = urlYear === '2026' ? 'sea' : 'us';
+      }
+      // In 2026, POP is not a valid standalone region
+      if (urlYear === '2026' && urlRegion === 'pop') {
+        urlRegion = 'us'; // POP data merged into US
+      }
       currentRegion = urlRegion;
-      
-      console.log('initRegionNav: urlRegion=', urlRegion, 'currentRegion=', currentRegion, 'btns=', regionBtns.length);
-      
-      regionBtns.forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.dataset.region === urlRegion) {
-          btn.classList.add('active');
-        }
-        
-        btn.addEventListener('click', () => {
-          const clickedRegion = btn.dataset.region;
-          
-          // 2026年只有LATAM和FS有独立数据，US点击时显示US+POP合并
-          if (urlYear === '2026' && clickedRegion !== 'latam' && clickedRegion !== 'fs') {
-            // Allow clicking US in 2026 (will show US+POP merge)
-            if (clickedRegion === 'us') {
-              // OK - this will merge US+POP
-            } else {
-              showToast('2026 data is not available yet for this region. Coming soon!');
-              return;
-            }
-          }
-          
-          console.log('Region clicked:', clickedRegion);
-          regionBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          currentRegion = clickedRegion;
-          updateLabels();
-          loadRegionalData(currentRegion, urlYear);
-        });
-      });
+      renderRegionNav(urlYear, currentRegion);
     }
     
     // Initialize award type toggle
@@ -962,15 +1007,18 @@
       
       // Get year and region from URL
       let urlYear = getUrlParam('year') || '2026';
-      let urlRegion = getUrlParam('region') || 'us';
-      
-      // 2026年只有LATAM和FS有独立数据，非LATAM/FS区域显示提示而不是跳转
-      if (urlYear === '2026' && urlRegion !== 'latam' && urlRegion !== 'fs' && urlRegion !== 'us') {
-        // Show alert and switch to LATAM for initial load only
-        showToast('2026 data is not available yet for this region. Switching to LATAM.');
-        urlRegion = 'latam';
-        const baseUrl = window.location.href.split('?')[0].replace(/\/[^\/]*$/, '/');
-        window.history.replaceState({}, '', `${baseUrl}regional.html?year=2026&region=latam`);
+      let urlRegion = getUrlParam('region');
+      // Default region by year
+      if (!urlRegion) {
+        urlRegion = urlYear === '2026' ? 'sea' : 'us';
+      }
+      // In 2026, POP is not a standalone region
+      if (urlYear === '2026' && urlRegion === 'pop') {
+        urlRegion = 'us';
+      }
+      // Validate region for the year
+      if (urlYear === '2026' && !['sea', 'us', 'latam', 'fs', 'eu'].includes(urlRegion)) {
+        urlRegion = 'sea';
       }
       
       AppData.currentYear = urlYear;
@@ -1031,15 +1079,18 @@
       // Handle year change without page reload
       window.addEventListener('yearChanged', async (e) => {
         const newYear = e.detail.year;
-        // 2026年：非LATAM/FS/US区域切换到LATAM
-        if (newYear === '2026' && !['latam', 'fs', 'us'].includes(currentRegion)) {
-          showToast('2026 data is not available yet for this region. Switching to LATAM.');
-          currentRegion = 'latam';
-          // Update region buttons
-          document.querySelectorAll('.region-btn').forEach(b => {
-            b.classList.toggle('active', b.dataset.region === 'latam');
-          });
+        // Re-render region nav for the new year
+        let activeRegion = currentRegion;
+        if (newYear === '2026') {
+          // In 2026, POP is not standalone; default to sea if current was pop
+          if (activeRegion === 'pop') activeRegion = 'us'; // POP merged into US
+          if (!['sea', 'us', 'latam', 'fs', 'eu'].includes(activeRegion)) activeRegion = 'sea';
+        } else {
+          // In 2025, all 6 regions are valid
+          if (!['us', 'eu', 'sea', 'latam', 'fs', 'pop'].includes(activeRegion)) activeRegion = 'us';
         }
+        currentRegion = activeRegion;
+        renderRegionNav(newYear, currentRegion);
         await loadRegionalData(currentRegion, newYear);
       });
     });
