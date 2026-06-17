@@ -5,19 +5,22 @@
         "name": "Dong Wang",
         "points": 17,
         "global_count": 1,
-        "regional_count": 4
+        "regional_count": 4,
+        "rank": 1
       },
       {
         "name": "Emily(Jiaqi) Zhu",
         "points": 15,
         "global_count": 0,
-        "regional_count": 5
+        "regional_count": 5,
+        "rank": 2
       },
       {
         "name": "Yong Tian",
         "points": 13,
         "global_count": 2,
-        "regional_count": 1
+        "regional_count": 1,
+        "rank": 3
       }
     ],
     "generated_at": "2026-04-16"
@@ -30,7 +33,8 @@
         "global_count": 0,
         "regional_count": 1,
         "region": "LATAM",
-        "department": "Supply Chain and Logistics"
+        "department": "Supply Chain and Logistics",
+        "rank": 1
       },
       {
         "name": "Jianguang Gao",
@@ -38,7 +42,8 @@
         "global_count": 0,
         "regional_count": 1,
         "region": "LATAM",
-        "department": "Supply Chain and Logistics"
+        "department": "Supply Chain and Logistics",
+        "rank": 1
       },
       {
         "name": "Shixuan Gao",
@@ -46,7 +51,8 @@
         "global_count": 0,
         "regional_count": 1,
         "region": "LATAM",
-        "department": "User & Promotion Growth"
+        "department": "User & Promotion Growth",
+        "rank": 1
       }
     ],
     "generated_at": "2026-04-22",
