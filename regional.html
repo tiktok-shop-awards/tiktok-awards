@@ -859,6 +859,9 @@
       if (awardsContainer) awardsContainer.classList.add('fading');
       
       try {
+        // Reset regionalData for each load to avoid stale data from previous region
+        regionalData = null;
+        
         // Helper: filter POP data by region based on department keywords
         function filterPopByRegion(popData, targetRegion) {
           if (!popData) return {};
