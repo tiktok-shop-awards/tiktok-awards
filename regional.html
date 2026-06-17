@@ -908,18 +908,22 @@
           const euPop = filterPopByRegion(popData, 'eu');
           regionalData = mergeRegionWithPop(euData, euPop);
         } else if (region === 'fs') {
-          // FS 数据用 loadData('fs')，Q1+Q2→H1, Q3+Q4→H2
-          const fsRaw = await loadData('fs');
-          if (fsRaw) {
-            regionalData = {
-              'H1 Project Awards': [...(fsRaw['Q1 Project Awards'] || []), ...(fsRaw['Q2 Project Awards'] || [])],
-              'H2 Project Awards': [...(fsRaw['Q3 Project Awards'] || []), ...(fsRaw['Q4 Project Awards'] || [])],
-              'H2 Individual Awards': fsRaw['H2 Individual Awards'] || []
-            };
+          // FS data only exists for 2025; 2026 has no FS data yet
+          if (currentYear === '2025') {
+            const fsRaw = await loadData('fs');
+            if (fsRaw) {
+              regionalData = {
+                'H1 Project Awards': [...(fsRaw['Q1 Project Awards'] || []), ...(fsRaw['Q2 Project Awards'] || [])],
+                'H2 Project Awards': [...(fsRaw['Q3 Project Awards'] || []), ...(fsRaw['Q4 Project Awards'] || [])],
+                'H2 Individual Awards': fsRaw['H2 Individual Awards'] || []
+              };
+            }
           }
         } else if (region === 'pop') {
-          // POP 数据用 loadData('pop')
-          regionalData = await loadData('pop');
+          // POP data only exists for 2025; 2026 POP is merged into US/EU regions
+          if (currentYear === '2025') {
+            regionalData = await loadData('pop');
+          }
         } else {
           regionalData = await loadData('regional', region, currentYear);
         }
