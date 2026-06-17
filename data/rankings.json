@@ -1,166 +1,113 @@
 {
-  "2025": {
-    "top3": [
-      {
-        "name": "Dong Wang",
-        "points": 17,
-        "global_count": 1,
-        "regional_count": 4,
-        "rank": 1
-      },
-      {
-        "name": "Emily(Jiaqi) Zhu",
-        "points": 15,
-        "global_count": 0,
-        "regional_count": 5,
-        "rank": 2
-      },
-      {
-        "name": "Yong Tian",
-        "points": 13,
-        "global_count": 2,
-        "regional_count": 1,
-        "rank": 3
-      }
-    ],
-    "generated_at": "2026-04-16"
-  },
   "2026": {
     "top3": [
       {
         "name": "Danyang Dai",
         "points": 18,
-        "global_count": 0,
-        "regional_count": 6,
-        "individual_count": 0,
+        "rank": 1,
         "department": "Global E-Commerce-Global Selling Full Service-UK & EU Operations",
-        "region": "EU",
-        "rank": 1
+        "email": "daidanyang@bytedance.com"
       },
       {
         "name": "Dong Wang",
         "points": 17,
-        "global_count": 1,
-        "regional_count": 4,
-        "individual_count": 0,
+        "rank": 2,
         "department": "Data-Global E-Commerce-Recommendation",
-        "region": "EU",
-        "rank": 2
+        "email": "wangdong.08@bytedance.com"
       },
       {
-        "name": "Emily(Jiaqi) Zhu",
-        "points": 15,
-        "global_count": 0,
-        "regional_count": 5,
-        "individual_count": 0,
-        "department": "Global E-Commerce-Product-Recommend Product",
-        "region": "EU",
-        "rank": 3
+        "name": "Yong Tian",
+        "points": 16,
+        "rank": 3,
+        "department": "Data-Global E-Commerce-Recommendation-Video",
+        "email": "tianyong.112@bytedance.com"
       }
     ],
     "top10": [
       {
         "name": "Danyang Dai",
         "points": 18,
-        "global_count": 0,
-        "regional_count": 6,
-        "individual_count": 0,
+        "rank": 1,
         "department": "Global E-Commerce-Global Selling Full Service-UK & EU Operations",
-        "region": "EU",
-        "rank": 1
+        "email": "daidanyang@bytedance.com"
       },
       {
         "name": "Dong Wang",
         "points": 17,
-        "global_count": 1,
-        "regional_count": 4,
-        "individual_count": 0,
+        "rank": 2,
         "department": "Data-Global E-Commerce-Recommendation",
-        "region": "EU",
-        "rank": 2
+        "email": "wangdong.08@bytedance.com"
+      },
+      {
+        "name": "Yong Tian",
+        "points": 16,
+        "rank": 3,
+        "department": "Data-Global E-Commerce-Recommendation-Video",
+        "email": "tianyong.112@bytedance.com"
       },
       {
         "name": "Emily(Jiaqi) Zhu",
         "points": 15,
-        "global_count": 0,
-        "regional_count": 5,
-        "individual_count": 0,
+        "rank": 4,
         "department": "Global E-Commerce-Product-Recommend Product",
-        "region": "EU",
-        "rank": 3
-      },
-      {
-        "name": "Kino Pei",
-        "points": 14,
-        "global_count": 1,
-        "regional_count": 3,
-        "individual_count": 0,
-        "department": "Global E-commerce-US Operations Center-Campaign",
-        "region": "US",
-        "rank": 4
+        "email": "zhujiaqi.emily@bytedance.com"
       },
       {
         "name": "Siyu Zhang",
         "points": 14,
-        "global_count": 1,
-        "regional_count": 3,
-        "individual_count": 0,
+        "rank": 5,
         "department": "Product RD and Infrastructure-Global E-Commerce-Trading and Supply Chain&Logistics-US Logistics",
-        "region": "US",
-        "rank": 4
+        "email": "siyu.zhang@bytedance.com"
       },
       {
-        "name": "Gordon Lee",
-        "points": 13,
-        "global_count": 2,
-        "regional_count": 1,
-        "individual_count": 0,
-        "department": "Data-Global E-Commerce-Search",
-        "region": "SEA",
-        "rank": 6
-      },
-      {
-        "name": "Jiwen Wang",
-        "points": 13,
-        "global_count": 2,
-        "regional_count": 1,
-        "individual_count": 0,
-        "department": "Data-Global E-Commerce-Recommendation-Video",
-        "region": "SEA",
-        "rank": 6
-      },
-      {
-        "name": "Kratos",
-        "points": 13,
-        "global_count": 2,
-        "regional_count": 1,
-        "individual_count": 0,
-        "department": "Global E-Commerce-Product-Search Product",
-        "region": "SEA",
-        "rank": 6
-      },
-      {
-        "name": "Shaowei Liu",
-        "points": 13,
-        "global_count": 2,
-        "regional_count": 1,
-        "individual_count": 0,
-        "department": "Data-Global E-Commerce-Recommendation",
-        "region": "SEA",
-        "rank": 6
+        "name": "Kino Pei",
+        "points": 14,
+        "rank": 5,
+        "department": "Global E-commerce-US Operations Center-Campaign",
+        "email": "peitong@bytedance.com"
       },
       {
         "name": "Xingyu Pan",
         "points": 13,
-        "global_count": 2,
-        "regional_count": 1,
-        "individual_count": 0,
+        "rank": 7,
         "department": "Data-Global E-Commerce-Recommendation-Live",
-        "region": "SEA",
-        "rank": 6
+        "email": "panxingyu.april@bytedance.com"
+      },
+      {
+        "name": "Shaowei Liu",
+        "points": 13,
+        "rank": 7,
+        "department": "Data-Global E-Commerce-Recommendation",
+        "email": "liushaowei.nphard@bytedance.com"
+      },
+      {
+        "name": "Jiwen Wang",
+        "points": 13,
+        "rank": 7,
+        "department": "Data-Global E-Commerce-Recommendation-Video",
+        "email": "wangjiwen.910@bytedance.com"
+      },
+      {
+        "name": "Gordon Lee",
+        "points": 13,
+        "rank": 7,
+        "department": "Data-Global E-Commerce-Search",
+        "email": "liguodun@bytedance.com"
+      },
+      {
+        "name": "Zexi Yu",
+        "points": 13,
+        "rank": 7,
+        "department": "Data-Global E-Commerce-Search",
+        "email": "yuzexi@bytedance.com"
+      },
+      {
+        "name": "Kratos",
+        "points": 13,
+        "rank": 7,
+        "department": "Global E-Commerce-Product-Search Product",
+        "email": "wangziang.kratos@bytedance.com"
       }
-    ],
-    "generated_at": "2026-04-22",
-    "note": "Currently only LATAM Q1 data available. Rankings will be updated as other regions complete their evaluations."
+    ]
   }
 }
