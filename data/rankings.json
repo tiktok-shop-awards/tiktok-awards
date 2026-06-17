@@ -28,31 +28,136 @@
   "2026": {
     "top3": [
       {
-        "name": "Jiyuan Feng",
-        "points": 3,
+        "name": "Danyang Dai",
+        "points": 18,
         "global_count": 0,
-        "regional_count": 1,
-        "region": "LATAM",
-        "department": "Supply Chain and Logistics",
+        "regional_count": 6,
+        "individual_count": 0,
+        "department": "Global E-Commerce-Global Selling Full Service-UK & EU Operations",
+        "region": "EU",
         "rank": 1
       },
       {
-        "name": "Jianguang Gao",
-        "points": 3,
+        "name": "Dong Wang",
+        "points": 17,
+        "global_count": 1,
+        "regional_count": 4,
+        "individual_count": 0,
+        "department": "Data-Global E-Commerce-Recommendation",
+        "region": "EU",
+        "rank": 2
+      },
+      {
+        "name": "Emily(Jiaqi) Zhu",
+        "points": 15,
         "global_count": 0,
-        "regional_count": 1,
-        "region": "LATAM",
-        "department": "Supply Chain and Logistics",
+        "regional_count": 5,
+        "individual_count": 0,
+        "department": "Global E-Commerce-Product-Recommend Product",
+        "region": "EU",
+        "rank": 3
+      }
+    ],
+    "top10": [
+      {
+        "name": "Danyang Dai",
+        "points": 18,
+        "global_count": 0,
+        "regional_count": 6,
+        "individual_count": 0,
+        "department": "Global E-Commerce-Global Selling Full Service-UK & EU Operations",
+        "region": "EU",
         "rank": 1
       },
       {
-        "name": "Shixuan Gao",
-        "points": 3,
+        "name": "Dong Wang",
+        "points": 17,
+        "global_count": 1,
+        "regional_count": 4,
+        "individual_count": 0,
+        "department": "Data-Global E-Commerce-Recommendation",
+        "region": "EU",
+        "rank": 2
+      },
+      {
+        "name": "Emily(Jiaqi) Zhu",
+        "points": 15,
         "global_count": 0,
+        "regional_count": 5,
+        "individual_count": 0,
+        "department": "Global E-Commerce-Product-Recommend Product",
+        "region": "EU",
+        "rank": 3
+      },
+      {
+        "name": "Kino Pei",
+        "points": 14,
+        "global_count": 1,
+        "regional_count": 3,
+        "individual_count": 0,
+        "department": "Global E-commerce-US Operations Center-Campaign",
+        "region": "US",
+        "rank": 4
+      },
+      {
+        "name": "Siyu Zhang",
+        "points": 14,
+        "global_count": 1,
+        "regional_count": 3,
+        "individual_count": 0,
+        "department": "Product RD and Infrastructure-Global E-Commerce-Trading and Supply Chain&Logistics-US Logistics",
+        "region": "US",
+        "rank": 4
+      },
+      {
+        "name": "Gordon Lee",
+        "points": 13,
+        "global_count": 2,
         "regional_count": 1,
-        "region": "LATAM",
-        "department": "User & Promotion Growth",
-        "rank": 1
+        "individual_count": 0,
+        "department": "Data-Global E-Commerce-Search",
+        "region": "SEA",
+        "rank": 6
+      },
+      {
+        "name": "Jiwen Wang",
+        "points": 13,
+        "global_count": 2,
+        "regional_count": 1,
+        "individual_count": 0,
+        "department": "Data-Global E-Commerce-Recommendation-Video",
+        "region": "SEA",
+        "rank": 6
+      },
+      {
+        "name": "Kratos",
+        "points": 13,
+        "global_count": 2,
+        "regional_count": 1,
+        "individual_count": 0,
+        "department": "Global E-Commerce-Product-Search Product",
+        "region": "SEA",
+        "rank": 6
+      },
+      {
+        "name": "Shaowei Liu",
+        "points": 13,
+        "global_count": 2,
+        "regional_count": 1,
+        "individual_count": 0,
+        "department": "Data-Global E-Commerce-Recommendation",
+        "region": "SEA",
+        "rank": 6
+      },
+      {
+        "name": "Xingyu Pan",
+        "points": 13,
+        "global_count": 2,
+        "regional_count": 1,
+        "individual_count": 0,
+        "department": "Data-Global E-Commerce-Recommendation-Live",
+        "region": "SEA",
+        "rank": 6
       }
     ],
     "generated_at": "2026-04-22",
