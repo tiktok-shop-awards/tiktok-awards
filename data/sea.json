@@ -532,9 +532,7 @@
       "original_region": "SEA",
       "bonus": "5000",
       "reason": "The e-commerce and monetisation teams focused on separate goals—GMV growth vs. revenue and Take Rate (TR). To unlock sustainable growth, the SEA E-commerce Ads TR Improvement Project aligned both objectives into a self-reinforcing cycle: grow revenue, reinvest in users and merchants, boost GMV, and repeat.\nThis was achieved through two major efforts: embedding ad value into the organic distribution system and fostering close cross-team collaboration. By introducing eCPM-based interventions across all traffic endpoints—from search to feeds—the project optimized recommendation logic for both user experience and platform profit. As a result, ad TR rose from 5.5% to 7.3%, while GMAX’s GMV share jumped from 32% to 49%, and income share from 70% to 88%—the fastest TR growth seen across all e-commerce platforms.\nImportantly, this was done without compromising GMV. In reverse experiments, ads ADVV increased by 14%, proving value-added traffic efficiency.\nThe project also laid the groundwork for long-term system unification: organic and ads systems are now converging with shared value signals, cutting redundant development and data costs.\nA “shared-metrics” culture underpins this success. The organic team now owns profitability as a KPI, while the ads team incorporates GMV and user experience into its goals. Advertising has evolved into a core business lever—integrated into merchant tools, creator incentives, payment systems, and even AM performance evaluations. OKRs across functions are fully aligned.\nThis project integrated monetisation and growth into one unified engine driving platform success.",
-      "members": [
-        "Ke Yan"
-      ],
+      "members": [],
       "period": "H1",
       "email": "yanke.39@bytedance.com",
       "team_award": "Impactful XFN Project",
@@ -2079,9 +2077,7 @@
       "region": "SEA",
       "original_region": "SEA",
       "team_award": "",
-      "members": [
-        "Song Chen"
-      ],
+      "members": [],
       "email": "chensong.cs@bytedance.com",
       "reason": "Driven by the strategic synergy between TTS SEA and PIPO (Global Payment) in 2025, the teams successfully achieved comprehensive coverage across all five Southeast Asian markets. Through initiatives such as co-funding with TTS Ops, optimizing checkout flow and adding entry points with TTS Product team, the cross-functional effort further improved BNPL penetration.\nMeanwhile, by transcending the limitations of the white-label model and pivoting to a Self-Operated + Risk-Sharing framework, we have achieved deeper control over user experience and risk management strategies. This paradigm combined with the deep collaboration between TTS and PIPO propelled the regional penetration rate from 3.07% (end of '24) to 6.32% (+122.48%), significantly outperforming our annual targets.",
       "department": "Global Payment-Financial Risk",
@@ -2169,9 +2165,7 @@
       "region": "SEA",
       "original_region": "SEA",
       "team_award": "",
-      "members": [
-        "Bowei Chen"
-      ],
+      "members": [],
       "email": "bowei.chen@bytedance.com",
       "reason": "Driven by the strategic synergy between TTS SEA and PIPO (Global Payment) in 2025, the teams successfully achieved comprehensive coverage across all five Southeast Asian markets. Through initiatives such as co-funding with TTS Ops, optimizing checkout flow and adding entry points with TTS Product team, the cross-functional effort further improved BNPL penetration.\nMeanwhile, by transcending the limitations of the white-label model and pivoting to a Self-Operated + Risk-Sharing framework, we have achieved deeper control over user experience and risk management strategies. This paradigm combined with the deep collaboration between TTS and PIPO propelled the regional penetration rate from 3.07% (end of '24) to 6.32% (+122.48%), significantly outperforming our annual targets.",
       "department": "Global Payment-UED-Design",

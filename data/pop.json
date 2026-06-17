@@ -14,11 +14,10 @@
       "members": [
         "Zi Gu",
         "Huan Zhou",
-        "陈涵",
         "Ziying Pan",
-        "郭宥伽",
-        "赵若禹",
-        "赵洋",
+        "Youjia Guo",
+        "Roy Zhao",
+        "Yang Zhao",
         "Sylvia Sun",
         "Cedrick Huang",
         "Yirun Cao",
@@ -54,10 +53,9 @@
         "Yixiao Qie",
         "Jiayuan Yan",
         "Zhen Wang",
-        "陈辰",
-        "王宇寒",
+        "Chen Chen",
+        "Yuhan Wang",
         "Sylvia Liu",
-        "陈涵",
         "Lee Li",
         "Hanyang Hu",
         "Yunhao Li",
@@ -66,7 +64,7 @@
         "Cedrick Huang",
         "Songlin Wu",
         "Margaret Qiu",
-        "张思宇"
+        "Siyu Zhang"
       ],
       "currency": "CNY"
     },
@@ -107,7 +105,7 @@
       "members": [
         "Millie Cheng",
         "Qing Chen",
-        "李瑶",
+        "Yao Li",
         "Ya You",
         "Alex Zeng",
         "Chongkang Huang",
@@ -125,7 +123,7 @@
         "Pengle Sun",
         "Jiaxing Xiao",
         "Robin Zhang",
-        "焦楠",
+        "Nan Jiao",
         "Yuchen Li",
         "James Hongyi Lin",
         "Feiyan Wang",
@@ -156,7 +154,7 @@
       "bonus": "16666",
       "reason": "[NEEDS_TRANSLATION: pop.json]",
       "members": [
-        "李瑶",
+        "Yao Li",
         "Ya You",
         "Qing Chen",
         "Millie Cheng",
@@ -164,13 +162,13 @@
         "Joseph Zhou",
         "Fengjiao Wang",
         "Haiyan Bao",
-        "王宇寒",
+        "Yuhan Wang",
         "Robin Zhang",
         "YangZhiyu",
         "Aaron Ni",
         "Megan Yeh",
         "Qianyi Shi",
-        "张思宇",
+        "Siyu Zhang",
         "Yisi Liu",
         "Mengyue Liu",
         "Cassie Xu",
@@ -197,7 +195,7 @@
         "Zixuan Fei",
         "Sylvia Liu",
         "Paul Zheng",
-        "张革伟"
+        "Gewei"
       ],
       "currency": "CNY"
     }
@@ -217,12 +215,11 @@
       "members": [
         "Lee Li",
         "James Hongyi Lin",
-        "赵洋",
+        "Yang Zhao",
         "Zhiyan Wang",
         "Limi",
         "Martin Zhu",
         "Leo Zhou",
-        "陈涵",
         "Paul Zheng",
         "Jiao",
         "Chase Chen",
@@ -244,11 +241,10 @@
       "bonus": "30000",
       "reason": "[NEEDS_TRANSLATION: pop.json]",
       "members": [
-        "赵洋",
+        "Yang Zhao",
         "Zhiyan Wang",
         "Limi",
         "Sylvia Liu",
-        "陈涵",
         "Jin Yang",
         "Tingting Zhang",
         "Yanan Zhu",
@@ -256,7 +252,7 @@
         "Na Guo",
         "Ke Zhu",
         "Qianwen Du",
-        "唐勇",
+        "Yong Tang",
         "Jing Tong",
         "Tianyu Ma"
       ],
@@ -310,7 +306,6 @@
         "Meiwen Huang",
         "帅成(Allison)",
         "Yizhi Fang (Finn)",
-        "Elena Zhao",
         "Chi Zhang",
         "Lijie Guo"
       ],
@@ -477,24 +472,6 @@
       "reason": "Business results: US merchant content POP share increased 0.7pp during BFCM. Merchant live streaming side, POP surge 44%, YoY +1.5x. Pre-promotion established by-merchant by-venue by-day target inventory system to ensure supply preparation. During promotion, established daily monitoring plan and incentive strategy dynamic adjustments. KLS live streaming rate maintained highest merchant streaming contribution, exceeding 90% of GMV performance. Short video side, mainly through posting tasks and GMV incremental challenge competitions to ensure growth, achieved surge 58%, YoY +2.8x.\n\nOperations efficiency: Pre-promotion integrated multi-party resources to form merchant streaming resource white paper. Optimized budget distribution mechanism and operations SOP. Reduced Live AM operation pain points and improved efficiency. During promotion, focused on budget efficiency. Achieved high incremental GMV leverage on high consumption rate basis. Achieved POP overall IBR performance better than overall market, maximizing resource value. Also responsible for organizing BFCM live streaming inventory-resources-data one-stop SOP solution. Collaborated with product to optimize efficiency.",
       "members": [
         "Winnie Wang"
-      ],
-      "currency": "CNY"
-    },
-    {
-      "award_type": "H2 Individual Awards",
-      "period": "H2",
-      "quarter": "Q4",
-      "project_name": "POP Black Friday Individual Award",
-      "team_award": "Black Friday Individual Award",
-      "winner_name": "Elena Zhao",
-      "email": "zhaoxiyue.elena@bytedance.com",
-      "department": "Global E-Commerce-Governance and Experience-US",
-      "region": "POP",
-      "original_region": "POP",
-      "bonus": "5000",
-      "reason": "[@赵溪月](https://s16-imfile-sg.feishucdn.com/static-resource/avatar/v3_00jp_90bd967b-3eef-4c43-9c69-994f486ea4hu_64.webp) is the main POC to drive the CCCU CCR improvement project with [@Ryan一帆](https://s16-imfile-sg.feishucdn.com/static-resource/avatar/v3_00sj_103e5416-1c13-4674-bcb1-b1a58c5e99hu_64.webp)and [@方逸知 Finn](https://s16-imfile-sg.feishucdn.com/static-resource/avatar/v2_07687a3c-e2f2-4d72-8b4b-7c8dc764faeg_64.webp). Both POP and GNE worked closely, conducted deep analysis, analyzed trade-off options and took quick actions. There is no perfect solution. Any action we take will impact GMV. In any case, both teams aligned and eventually we met targets for CCR without impacting GMV too much. ",
-      "members": [
-        "Elena Zhao"
       ],
       "currency": "CNY"
     },
