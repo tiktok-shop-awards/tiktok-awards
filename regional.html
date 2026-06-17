@@ -639,7 +639,7 @@
       us: 'US',
       us_pop: 'US (L2L+POP)',
       eu: 'EU+UK+JP',
-      eu_pop: 'EU+UK+POP (L2L+POP)',
+      eu_pop: 'UK/EU/JP (L2L+POP)',
       sea: 'SEA',
       latam: 'LATAM',
       fs: 'FS',
@@ -652,7 +652,7 @@
       { region: 'us', label: 'US <span class="region-tag">L2L+POP</span>' },
       { region: 'latam', label: 'LATAM' },
       { region: 'fs', label: 'FS' },
-      { region: 'eu', label: 'EU+UK+POP <span class="region-tag">L2L+POP</span>' }
+      { region: 'eu', label: 'UK/EU/JP <span class="region-tag">L2L+POP</span>' }
     ];
     const regionButtons2025 = [
       { region: 'us', label: 'US' },
@@ -859,41 +859,54 @@
       if (awardsContainer) awardsContainer.classList.add('fading');
       
       try {
-        // For 2026 US+POP merge
+        // Helper: filter POP data by region based on department keywords
+        function filterPopByRegion(popData, targetRegion) {
+          if (!popData) return {};
+          const result = {};
+          const usKeywords = ['US Operations', 'US Seller'];
+          const euKeywords = ['UK&EU&JP POP', 'UKEUJP POP', 'UK\u0026EU\u0026JP POP'];
+          for (const [awardKey, items] of Object.entries(popData)) {
+            if (!Array.isArray(items)) continue;
+            result[awardKey] = items.filter(item => {
+              const dept = item.department || '';
+              if (targetRegion === 'us') {
+                return usKeywords.some(kw => dept.includes(kw)) || (!euKeywords.some(kw => dept.includes(kw)) && !dept.includes('UK'));
+              } else if (targetRegion === 'eu') {
+                return euKeywords.some(kw => dept.includes(kw));
+              }
+              return true;
+            });
+          }
+          return result;
+        }
+        function mergeRegionWithPop(regionData, popFiltered) {
+          if (!regionData && !popFiltered) return null;
+          if (!popFiltered) return regionData;
+          if (!regionData) return popFiltered;
+          const allKeys = new Set([...Object.keys(regionData), ...Object.keys(popFiltered)]);
+          const merged = {};
+          for (const key of allKeys) {
+            merged[key] = [...(regionData[key] || []), ...(popFiltered[key] || [])];
+          }
+          return merged;
+        }
+        
+        // For 2026 US+POP merge (POP filtered to US-only entries)
         if (currentYear === '2026' && region === 'us') {
-          // Load both US and POP data
           const [usData, popData] = await Promise.all([
             loadData('regional', 'us', currentYear),
-            loadData('pop')  // POP 数据用 loadData('pop')
+            loadData('pop')
           ]);
-          
-          // Merge US and POP data
-          regionalData = {
-            ...usData,
-            'Q1 Project Awards': [...(usData?.['Q1 Project Awards'] || []), ...(popData?.['Q1 Project Awards'] || [])],
-            'Q2 Project Awards': [...(usData?.['Q2 Project Awards'] || []), ...(popData?.['Q2 Project Awards'] || [])],
-            'Q3 Project Awards': [...(usData?.['Q3 Project Awards'] || []), ...(popData?.['Q3 Project Awards'] || [])],
-            'Q4 Project Awards': [...(usData?.['Q4 Project Awards'] || []), ...(popData?.['Q4 Project Awards'] || [])],
-            'H1 Project Awards': [...(usData?.['H1 Project Awards'] || []), ...(popData?.['H1 Project Awards'] || [])],
-            'H2 Project Awards': [...(usData?.['H2 Project Awards'] || []), ...(popData?.['H2 Project Awards'] || [])],
-            'H2 Individual Awards': [...(usData?.['H2 Individual Awards'] || []), ...(popData?.['H2 Individual Awards'] || [])]
-          };
+          const usPop = filterPopByRegion(popData, 'us');
+          regionalData = mergeRegionWithPop(usData, usPop);
         } else if (currentYear === '2026' && region === 'eu') {
-          // 2026 EU+UK+POP merge
+          // 2026 EU+UK+POP merge (POP filtered to EU-only entries)
           const [euData, popData] = await Promise.all([
             loadData('regional', 'eu', currentYear),
             loadData('pop')
           ]);
-          regionalData = {
-            ...euData,
-            'Q1 Project Awards': [...(euData?.['Q1 Project Awards'] || []), ...(popData?.['Q1 Project Awards'] || [])],
-            'Q2 Project Awards': [...(euData?.['Q2 Project Awards'] || []), ...(popData?.['Q2 Project Awards'] || [])],
-            'Q3 Project Awards': [...(euData?.['Q3 Project Awards'] || []), ...(popData?.['Q3 Project Awards'] || [])],
-            'Q4 Project Awards': [...(euData?.['Q4 Project Awards'] || []), ...(popData?.['Q4 Project Awards'] || [])],
-            'H1 Project Awards': [...(euData?.['H1 Project Awards'] || []), ...(popData?.['H1 Project Awards'] || [])],
-            'H2 Project Awards': [...(euData?.['H2 Project Awards'] || []), ...(popData?.['H2 Project Awards'] || [])],
-            'H2 Individual Awards': [...(euData?.['H2 Individual Awards'] || []), ...(popData?.['H2 Individual Awards'] || [])]
-          };
+          const euPop = filterPopByRegion(popData, 'eu');
+          regionalData = mergeRegionWithPop(euData, euPop);
         } else if (region === 'fs') {
           // FS 数据用 loadData('fs')，Q1+Q2→H1, Q3+Q4→H2
           const fsRaw = await loadData('fs');
