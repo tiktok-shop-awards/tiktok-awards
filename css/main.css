@@ -269,6 +269,25 @@ img {
   opacity: 0.7;
 }
 
+.year-btn .updating-badge {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 600;
+  margin-left: 6px;
+  padding: 1px 6px;
+  border-radius: 3px;
+  background: rgba(255, 180, 0, 0.25);
+  color: #ffb400;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.year-btn.active .updating-badge {
+  background: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.85);
+}
+
 /* ==================== Region Navigation ==================== */
 .region-nav {
   display: flex;

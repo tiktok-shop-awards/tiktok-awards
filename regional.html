@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Regional Awards - Global E-commerce Recognition Hub</title>
-  <link rel="stylesheet" href="css/main.css?v=20260527k">
+  <link rel="stylesheet" href="css/main.css?v=20260617c">
   <style>
     /* ==================== Regional Page Specific Styles ==================== */
     .regional-header {
@@ -419,6 +419,14 @@
       }
     }
 
+    /* Smooth content transition on year/region switch */
+    #regional-awards {
+      transition: opacity 0.15s ease;
+    }
+    #regional-awards.fading {
+      opacity: 0.3;
+    }
+
   
 
 </style>
@@ -460,7 +468,7 @@
           <!-- Year Navigation - Centered -->
           <div class="year-nav-wrapper">
             <div class="year-nav-compact">
-              <button class="year-btn active" data-year="2026" id="year-2026-btn">2026 <span class="coming-soon-tag" style="opacity: 0.6;">· Updating</span></button>
+              <button class="year-btn active" data-year="2026" id="year-2026-btn">2026 <span class="updating-badge">Updating</span></button>
               <button class="year-btn" data-year="2025">2025</button>
             </div>
           </div>
@@ -617,7 +625,7 @@
 <script src="js/auth.js?v=20260527k"></script>
   <script src="js/auth-helper-v21.js?v=20260529a"></script>
   <script src="js/award-api.js?v=20260529a"></script>
-  <script src="js/main.js?v=20260617b"></script>
+  <script src="js/main.js?v=20260617c"></script>
   <script>
     // Regional page specific initialization
     const regionNames = {
@@ -649,10 +657,10 @@
       
       // Update 2026 button "Updating" tag based on region
       const year2026Btn = document.getElementById('year-2026-btn');
-      const comingSoonTag = year2026Btn ? year2026Btn.querySelector('.coming-soon-tag') : null;
-      if (comingSoonTag) {
+      const updatingBadge = year2026Btn ? year2026Btn.querySelector('.updating-badge') : null;
+      if (updatingBadge) {
         // In 2026, only LATAM has independent data, others show Updating
-        comingSoonTag.style.display = (currentRegion === 'latam' || currentRegion === 'fs') ? 'none' : 'inline';
+        updatingBadge.style.display = (currentRegion === 'latam') ? 'none' : 'inline';
       }
       
       // Update regional awards title
@@ -694,8 +702,8 @@
       const quarterButtons = document.getElementById('quarter-buttons');
       const h1IndividualButton = document.getElementById('h1-individual-button');
       
-      // FS/POP: 季度结构 (Q1/Q2/Q3/Q4 Project Awards)
-      const isQuarterRegion = currentRegion === 'fs' || currentRegion === 'pop';
+      // POP: 季度结构 (Q1/Q2/Q3/Q4 Project Awards)
+      const isQuarterRegion = currentRegion === 'pop';
       
       if (currentRegion === 'latam') {
         // LATAM: show appropriate buttons based on year
@@ -795,6 +803,9 @@
       const awardsContainer = document.getElementById('regional-awards');
       const currentYear = year || AppData.currentYear || '2026';
       
+      // Fade out content while loading
+      if (awardsContainer) awardsContainer.classList.add('fading');
+      
       try {
         // For 2026 US+POP merge
         if (currentYear === '2026' && region === 'us') {
@@ -816,8 +827,15 @@
             'H2 Individual Awards': [...(usData?.['H2 Individual Awards'] || []), ...(popData?.['H2 Individual Awards'] || [])]
           };
         } else if (region === 'fs') {
-          // FS 数据用 loadData('fs')
-          regionalData = await loadData('fs');
+          // FS 数据用 loadData('fs')，Q1+Q2→H1, Q3+Q4→H2
+          const fsRaw = await loadData('fs');
+          if (fsRaw) {
+            regionalData = {
+              'H1 Project Awards': [...(fsRaw['Q1 Project Awards'] || []), ...(fsRaw['Q2 Project Awards'] || [])],
+              'H2 Project Awards': [...(fsRaw['Q3 Project Awards'] || []), ...(fsRaw['Q4 Project Awards'] || [])],
+              'H2 Individual Awards': fsRaw['H2 Individual Awards'] || []
+            };
+          }
         } else if (region === 'pop') {
           // POP 数据用 loadData('pop')
           regionalData = await loadData('pop');
@@ -840,9 +858,12 @@
         } else {
           awardsContainer.innerHTML = '<div class="no-data-msg">No data available for this region.</div>';
         }
+        // Fade in after content loaded
+        if (awardsContainer) awardsContainer.classList.remove('fading');
       } catch (error) {
         console.error('Error loading regional data:', error);
         awardsContainer.innerHTML = '<div class="no-data-msg">No data available for this region.</div>';
+        if (awardsContainer) awardsContainer.classList.remove('fading');
       }
     }
     

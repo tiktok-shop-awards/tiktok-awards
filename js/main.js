@@ -114,7 +114,7 @@ function updateYear2026Button() {
   
   // Global页面：始终显示Updating
   if (page === 'global.html') {
-    year2026Btn.innerHTML = '2026 <span class="coming-soon-tag" style="opacity: 0.6;">· Updating</span>';
+    year2026Btn.innerHTML = '2026 <span class="updating-badge">Updating</span>';
     return;
   }
   
@@ -123,7 +123,7 @@ function updateYear2026Button() {
     if (AppData.currentRegion === 'latam') {
       year2026Btn.innerHTML = '2026';
     } else {
-      year2026Btn.innerHTML = '2026 <span class="coming-soon-tag" style="opacity: 0.6;">· Updating</span>';
+      year2026Btn.innerHTML = '2026 <span class="updating-badge">Updating</span>';
     }
     return;
   }
