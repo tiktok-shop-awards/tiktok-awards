@@ -1,5 +1,5 @@
 {
-  "2026": {
+  "2025": {
     "top3": [
       {
         "name": "Danyang Dai",
@@ -107,6 +107,222 @@
         "rank": 7,
         "department": "Global E-Commerce-Product-Search Product",
         "email": "wangziang.kratos@bytedance.com"
+      }
+    ]
+  },
+  "2026": {
+    "top3": [
+      {
+        "name": "Jiaxin Liu",
+        "points": 3,
+        "rank": 1,
+        "department": "Data Science",
+        "email": "liujiaxin.77@bytedance.com"
+      },
+      {
+        "name": "Jiyuan Feng",
+        "points": 3,
+        "rank": 1,
+        "department": "Supply Chain and Logistics-Cross border Logistics Operations",
+        "email": "fengjiyuan.33@bytedance.com"
+      },
+      {
+        "name": "Jianguang Gao",
+        "points": 3,
+        "rank": 1,
+        "department": "Supply Chain and Logistics-LATAM Logistics Operations",
+        "email": "gaojianguang@bytedance.com"
+      },
+      {
+        "name": "Shixuan Gao",
+        "points": 3,
+        "rank": 1,
+        "department": "Global E-Commerce-User Growth-LATAM User Growth",
+        "email": "gaoshixuan@bytedance.com"
+      },
+      {
+        "name": "Herbie Huang",
+        "points": 3,
+        "rank": 1,
+        "department": "Global E-Commerce-Governance and Experience-LATAM",
+        "email": "herbie.huang@bytedance.com"
+      },
+      {
+        "name": "Alice Liu",
+        "points": 3,
+        "rank": 1,
+        "department": "Global E-Commerce-Product-LATAM Product",
+        "email": "qianyuan.yuanyuan@bytedance.com"
+      },
+      {
+        "name": "Rafael Lozano",
+        "points": 3,
+        "rank": 1,
+        "department": "Global E-Commerce-Brazil Operations",
+        "email": "rafael.lozano@bytedance.com"
+      },
+      {
+        "name": "Alberto Montes",
+        "points": 3,
+        "rank": 1,
+        "department": "Global E-Commerce-Mexico Operations",
+        "email": "alberto.montes@bytedance.com"
+      },
+      {
+        "name": "Fernanda Forti Rossin",
+        "points": 3,
+        "rank": 1,
+        "department": "Global E-Commerce-Governance and Experience-Service and Support Center",
+        "email": "fernanda.forti@bytedance.com"
+      },
+      {
+        "name": "Wangjiankang",
+        "points": 3,
+        "rank": 1,
+        "department": "Global Payment",
+        "email": "wangjiankang.23@bytedance.com"
+      },
+      {
+        "name": "Hongdi Xu",
+        "points": 3,
+        "rank": 1,
+        "department": "Global E-Commerce-User Research",
+        "email": "hongdi.xu25@bytedance.com"
+      },
+      {
+        "name": "Yanxin Yang",
+        "points": 3,
+        "rank": 1,
+        "department": "Product RD and Infrastructure-Global E-Commerce-LATAM-Customer Business",
+        "email": "yangyanxin.0702@bytedance.com"
+      },
+      {
+        "name": "Wenzhe Zhang",
+        "points": 3,
+        "rank": 1,
+        "department": "Product RD and Infrastructure-Global E-Commerce-LATAM-Frontend",
+        "email": "zhangwenzhe.james@bytedance.com"
+      },
+      {
+        "name": "Qiang Zheng",
+        "points": 3,
+        "rank": 1,
+        "department": "Global E-commerce-Design-SEA Product",
+        "email": "zhengqiang.777@bytedance.com"
+      },
+      {
+        "name": "Zhiwei Zhou",
+        "points": 3,
+        "rank": 1,
+        "department": "Global E-Commerce-Product-Recommend Product",
+        "email": "zhouzhiwei.shirley@bytedance.com"
+      }
+    ],
+    "top10": [
+      {
+        "name": "Jiaxin Liu",
+        "points": 3,
+        "rank": 1,
+        "department": "Data Science",
+        "email": "liujiaxin.77@bytedance.com"
+      },
+      {
+        "name": "Jiyuan Feng",
+        "points": 3,
+        "rank": 1,
+        "department": "Supply Chain and Logistics-Cross border Logistics Operations",
+        "email": "fengjiyuan.33@bytedance.com"
+      },
+      {
+        "name": "Jianguang Gao",
+        "points": 3,
+        "rank": 1,
+        "department": "Supply Chain and Logistics-LATAM Logistics Operations",
+        "email": "gaojianguang@bytedance.com"
+      },
+      {
+        "name": "Shixuan Gao",
+        "points": 3,
+        "rank": 1,
+        "department": "Global E-Commerce-User Growth-LATAM User Growth",
+        "email": "gaoshixuan@bytedance.com"
+      },
+      {
+        "name": "Herbie Huang",
+        "points": 3,
+        "rank": 1,
+        "department": "Global E-Commerce-Governance and Experience-LATAM",
+        "email": "herbie.huang@bytedance.com"
+      },
+      {
+        "name": "Alice Liu",
+        "points": 3,
+        "rank": 1,
+        "department": "Global E-Commerce-Product-LATAM Product",
+        "email": "qianyuan.yuanyuan@bytedance.com"
+      },
+      {
+        "name": "Rafael Lozano",
+        "points": 3,
+        "rank": 1,
+        "department": "Global E-Commerce-Brazil Operations",
+        "email": "rafael.lozano@bytedance.com"
+      },
+      {
+        "name": "Alberto Montes",
+        "points": 3,
+        "rank": 1,
+        "department": "Global E-Commerce-Mexico Operations",
+        "email": "alberto.montes@bytedance.com"
+      },
+      {
+        "name": "Fernanda Forti Rossin",
+        "points": 3,
+        "rank": 1,
+        "department": "Global E-Commerce-Governance and Experience-Service and Support Center",
+        "email": "fernanda.forti@bytedance.com"
+      },
+      {
+        "name": "Wangjiankang",
+        "points": 3,
+        "rank": 1,
+        "department": "Global Payment",
+        "email": "wangjiankang.23@bytedance.com"
+      },
+      {
+        "name": "Hongdi Xu",
+        "points": 3,
+        "rank": 1,
+        "department": "Global E-Commerce-User Research",
+        "email": "hongdi.xu25@bytedance.com"
+      },
+      {
+        "name": "Yanxin Yang",
+        "points": 3,
+        "rank": 1,
+        "department": "Product RD and Infrastructure-Global E-Commerce-LATAM-Customer Business",
+        "email": "yangyanxin.0702@bytedance.com"
+      },
+      {
+        "name": "Wenzhe Zhang",
+        "points": 3,
+        "rank": 1,
+        "department": "Product RD and Infrastructure-Global E-Commerce-LATAM-Frontend",
+        "email": "zhangwenzhe.james@bytedance.com"
+      },
+      {
+        "name": "Qiang Zheng",
+        "points": 3,
+        "rank": 1,
+        "department": "Global E-commerce-Design-SEA Product",
+        "email": "zhengqiang.777@bytedance.com"
+      },
+      {
+        "name": "Zhiwei Zhou",
+        "points": 3,
+        "rank": 1,
+        "department": "Global E-Commerce-Product-Recommend Product",
+        "email": "zhouzhiwei.shirley@bytedance.com"
       }
     ]
   }
