@@ -811,9 +811,13 @@ function calculateRegionTop3FullYear(regionData, region) {
     });
   });
   
-  return Object.values(memberScores)
-    .sort((a, b) => b.score - a.score || b.awards - a.awards)
-    .slice(0, 3);
+  // Return all people tied at top 3 distinct scores (no hard slice)
+  const sorted = Object.values(memberScores).sort((a, b) => b.score - a.score || b.awards - a.awards);
+  if (sorted.length === 0) return [];
+  // Find top 3 distinct scores
+  const distinctScores = [...new Set(sorted.map(s => s.score))].sort((a, b) => b - a).slice(0, 3);
+  // Include everyone whose score is in top 3
+  return sorted.filter(s => distinctScores.includes(s.score));
 }
 
 // ==================== Render Functions ====================
@@ -834,16 +838,18 @@ function renderPodium(top3, containerId, title) {
   
   const getScore = (item) => item.score || item.points || 0;
   
-  // Calculate actual rank based on scores (ties get same rank)
-  const calculateRanks = (items) => {
-    const sortedScores = [...new Set(items.map(getScore))].sort((a, b) => b - a);
-    return items.map(item => {
-      const score = getScore(item);
-      return sortedScores.indexOf(score) + 1;
-    });
-  };
-  
-  const ranks = calculateRanks(top3);
+  // Group by score for tie handling
+  const rankedGroups = [];
+  let currentRank = 1;
+  const sorted = [...top3].sort((a, b) => getScore(b) - getScore(a));
+  for (let i = 0; i < sorted.length; i++) {
+    if (i > 0 && getScore(sorted[i]) < getScore(sorted[i-1])) currentRank = i + 1;
+    if (rankedGroups.length === 0 || rankedGroups[rankedGroups.length-1].rank !== currentRank) {
+      rankedGroups.push({ rank: currentRank, score: getScore(sorted[i]), people: [sorted[i]] });
+    } else {
+      rankedGroups[rankedGroups.length-1].people.push(sorted[i]);
+    }
+  }
   
   const getMedal = (rank) => {
     if (rank === 1) return '🥇';
@@ -852,44 +858,59 @@ function renderPodium(top3, containerId, title) {
     return '';
   };
   
-  const getPodiumClass = (rank) => {
+  const getClass = (rank) => {
     if (rank === 1) return 'first';
     if (rank === 2) return 'second';
     if (rank === 3) return 'third';
     return '';
   };
+
+  // Render single person card
+  function renderCard(person, rank) {
+    return `
+      <div class="podium-item ${getClass(rank)}">
+        <div class="podium-medal">${getMedal(rank)}</div>
+        <div class="podium-rank">#${rank}</div>
+        <div class="podium-name">${person.name}</div>
+        <div class="podium-dept">${getDept(person)}</div>
+        <div class="podium-score">${getScore(person)} pts</div>
+      </div>`;
+  }
   
-  let html = `
-    <div class="podium">
-      ${top3[1] ? `
-        <div class="podium-item ${getPodiumClass(ranks[1])}">
-          <div class="podium-medal">${getMedal(ranks[1])}</div>
-          <div class="podium-rank">#${ranks[1]}</div>
-          <div class="podium-name">${top3[1].name}</div>
-          <div class="podium-dept">${getDept(top3[1])}</div>
-          <div class="podium-score">${getScore(top3[1])} pts</div>
-        </div>
-      ` : ''}
-      ${top3[0] ? `
-        <div class="podium-item ${getPodiumClass(ranks[0])}">
-          <div class="podium-medal">${getMedal(ranks[0])}</div>
-          <div class="podium-rank">#${ranks[0]}</div>
-          <div class="podium-name">${top3[0].name}</div>
-          <div class="podium-dept">${getDept(top3[0])}</div>
-          <div class="podium-score">${getScore(top3[0])} pts</div>
-        </div>
-      ` : ''}
-      ${top3[2] ? `
-        <div class="podium-item ${getPodiumClass(ranks[2])}">
-          <div class="podium-medal">${getMedal(ranks[2])}</div>
-          <div class="podium-rank">#${ranks[2]}</div>
-          <div class="podium-name">${top3[2].name}</div>
-          <div class="podium-dept">${getDept(top3[2])}</div>
-          <div class="podium-score">${getScore(top3[2])} pts</div>
-        </div>
-      ` : ''}
-    </div>
-  `;
+  // Render tied group card (multiple people same rank)
+  function renderTiedCard(group) {
+    const names = group.people.map(p => p.name).join(', ');
+    return `
+      <div class="podium-item ${getClass(group.rank)} podium-tied">
+        <div class="podium-medal">${getMedal(group.rank)}</div>
+        <div class="podium-rank">Tied for #${group.rank}</div>
+        <div class="podium-name">${names}</div>
+        <div class="podium-score">${group.score} pts</div>
+      </div>`;
+  }
+  
+  // Build podium layout: #2 left, #1 center, #3 right
+  let html = '<div class="podium">';
+  const r2 = rankedGroups.find(g => g.rank === 2);
+  const r1 = rankedGroups.find(g => g.rank === 1);
+  const r3 = rankedGroups.find(g => g.rank === 3);
+  
+  // Left: #2
+  if (r2) {
+    if (r2.people.length === 1) html += renderCard(r2.people[0], 2);
+    else html += renderTiedCard(r2);
+  }
+  // Center: #1
+  if (r1) {
+    if (r1.people.length === 1) html += renderCard(r1.people[0], 1);
+    else html += renderTiedCard(r1);
+  }
+  // Right: #3
+  if (r3) {
+    if (r3.people.length === 1) html += renderCard(r3.people[0], 3);
+    else html += renderTiedCard(r3);
+  }
+  html += '</div>';
   
   container.innerHTML = html;
 }
