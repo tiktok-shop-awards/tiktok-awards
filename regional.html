@@ -944,6 +944,7 @@
           // Load like/comment interactions from API
           loadAllCardInteractions();
         } else {
+          document.getElementById('regional-top3').innerHTML = '';
           awardsContainer.innerHTML = '<div class="no-data-msg">No data available for this region.</div>';
         }
         // Fade in after content loaded
