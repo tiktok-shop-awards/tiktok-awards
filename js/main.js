@@ -1937,10 +1937,9 @@ function performSearch(query, level = 'all') {
   if (!query || !searchData) return [];
   
   const results = [];
-  const seenProjectNames = new Set(); // for dedup by project_name
+  const seenKeys = new Set();
   const searchTerm = query.toLowerCase().trim();
   
-  // Match source weights: 1=project name (highest), 2=department, 3=member, 4=reason (lowest)
   function getMatchSource(matchName, matchDept, matchMember, matchReason) {
     let source = Infinity;
     if (matchName) source = Math.min(source, 1);
@@ -1950,106 +1949,92 @@ function performSearch(query, level = 'all') {
     return source === Infinity ? 4 : source;
   }
   
-  // Search Global awards (level: 'global' or 'all')
-  if (searchData.global && (level === 'all' || level === 'global')) {
-    const h1Awards = searchData.global['H1 Project Awards'] || [];
-    const h2Awards = searchData.global['H2 Project Awards'] || [];
-    const allGlobalAwards = [...h1Awards, ...h2Awards];
-    
-    allGlobalAwards.forEach(award => {
+  // Generic award search - works with any data source
+  function searchAwardArray(awards, opts) {
+    if (!awards || !Array.isArray(awards)) return;
+    const isIndividual = opts.isIndividual || /Individual/i.test(opts.key || '');
+    awards.forEach(award => {
       const matchName = matchesWord(award.project_name, searchTerm);
-      const matchMember = award.members?.some(m => matchesWord(m, searchTerm));
+      const matchWinner = award.winner_name && matchesWord(award.winner_name, searchTerm);
+      const matchMember = award.members?.some(m => matchesWord(typeof m === 'string' ? m : m.name || '', searchTerm)) || false;
+      const matchDept = matchesWord(award.department, searchTerm);
       
-      if (matchName || matchMember) {
-        const dedupKey = `global|${award.project_name}`;
-        if (!seenProjectNames.has(dedupKey)) {
-          seenProjectNames.add(dedupKey);
-          // Find matched members
-          const matchedMembers = matchMember ? award.members?.filter(m => matchesWord(m, searchTerm)) || [] : [];
-          results.push({
-            type: 'Project Award',
-            level: 'Global',
-            period: award.period || 'H1/H2',
-            name: award.project_name,
-            award: award.team_award,
-            members: award.members,
-            department: award.department,
-            email: award.email || '',
-            reason: award.reason,
-            matchSource: getMatchSource(matchName, false, matchMember, false),
-            matchedMembers: matchedMembers,
-            memberCount: award.members?.length || 0
-          });
-        }
+      if (matchName || matchWinner || matchMember || matchDept) {
+        const winnerName = award.winner_name || (award.members && award.members[0] ? (typeof award.members[0] === 'string' ? award.members[0] : award.members[0].name) : '');
+        const dedupKey = isIndividual 
+          ? `${opts.level}|${opts.key}|${winnerName}`
+          : `${opts.level}|${award.project_name}`;
+        if (seenKeys.has(dedupKey)) return;
+        seenKeys.add(dedupKey);
+        
+        const matchedMembers = matchMember ? award.members?.filter(m => matchesWord(typeof m === 'string' ? m : m.name || '', searchTerm)) || [] : [];
+        
+        results.push({
+          type: isIndividual ? 'Individual Award' : 'Project Award',
+          level: opts.level,
+          period: award.period || (opts.key || '').replace(/ (Project|Individual) Awards/g, ''),
+          name: award.project_name || winnerName,
+          award: award.team_award || award.award_type || '',
+          winner: winnerName || '',
+          members: award.members,
+          department: award.department || '',
+          email: award.email || '',
+          reason: award.reason,
+          matchSource: getMatchSource(matchName, matchDept, matchWinner || matchMember, false),
+          matchedMembers: matchedMembers,
+          memberCount: award.members?.length || 0
+        });
       }
     });
   }
   
-  // Search Regional awards (level: 'regional' or 'all')
+  // Get all award keys from a data object (any structure)
+  function getAwardKeys(data) {
+    if (!data || typeof data !== 'object') return [];
+    return Object.keys(data).filter(k => 
+      (/Project Awards|Individual Awards/.test(k) || /^(Q[1-4]|H1|H2)$/.test(k)) && Array.isArray(data[k])
+    );
+  }
+  
+  // 1. Global
+  if (searchData.global && (level === 'all' || level === 'global')) {
+    getAwardKeys(searchData.global).forEach(key => {
+      searchAwardArray(searchData.global[key], { level: 'Global', key });
+    });
+  }
+  
+  // 2. Regional (us, eu, sea, latam)
   if (level === 'all' || level === 'regional') {
     ['us', 'eu', 'sea', 'latam'].forEach(region => {
       const data = searchData.regional[region];
       if (!data) return;
-      
-      const h1Awards = data['H1 Project Awards'] || [];
-      const h2Awards = data['H2 Project Awards'] || [];
-      const allRegionalAwards = [...h1Awards, ...h2Awards];
-      
-      allRegionalAwards.forEach(award => {
-        const matchName = matchesWord(award.project_name, searchTerm);
-        const matchMember = award.members?.some(m => matchesWord(m, searchTerm));
-        
-        if (matchName || matchMember) {
-          const dedupKey = `regional-${region}|${award.project_name}`;
-          if (!seenProjectNames.has(dedupKey)) {
-            seenProjectNames.add(dedupKey);
-            const matchedMembers = matchMember ? award.members?.filter(m => matchesWord(m, searchTerm)) || [] : [];
-            results.push({
-              type: 'Project Award',
-              level: `Regional - ${region.toUpperCase()}`,
-              period: award.period || 'H1/H2',
-              name: award.project_name,
-              award: award.team_award,
-              members: award.members,
-              department: award.department,
-              email: award.email || '',
-              matchSource: getMatchSource(matchName, false, matchMember, false),
-              matchedMembers: matchedMembers,
-              memberCount: award.members?.length || 0
-            });
-          }
-        }
-      });
-      
-      const individualAwards = data['H2 Individual Awards'] || [];
-      individualAwards.forEach(award => {
-        if (award.winner_name) {
-          const matchName = matchesWord(award.winner_name, searchTerm);
-          
-          if (matchName) {
-            results.push({
-              type: 'Individual Award',
-              level: `Regional - ${region.toUpperCase()}`,
-              name: award.winner_name,
-              award: award.team_award,
-              department: award.department,
-              email: award.email || '',
-              matchSource: getMatchSource(matchName, false, false, false)
-            });
-          }
-        }
+      getAwardKeys(data).forEach(key => {
+        searchAwardArray(data[key], { level: `Regional - ${region.toUpperCase()}`, key });
       });
     });
   }
   
-  // Search Rankings (only when level is 'all')
+  // 3. FS
+  if (searchData.fs && (level === 'all' || level === 'fs')) {
+    getAwardKeys(searchData.fs).forEach(key => {
+      searchAwardArray(searchData.fs[key], { level: 'FS', key });
+    });
+  }
+  
+  // 4. POP
+  if (searchData.pop && (level === 'all' || level === 'pop')) {
+    getAwardKeys(searchData.pop).forEach(key => {
+      searchAwardArray(searchData.pop[key], { level: 'POP', key });
+    });
+  }
+  
+  // 5. Rankings (top3 + top10)
   if (level === 'all' && searchData.rankings) {
-    Object.keys(searchData.rankings).forEach(key => {
+    ['top3', 'top10'].forEach(key => {
       const items = searchData.rankings[key];
       if (!Array.isArray(items)) return;
       items.forEach(r => {
-        const matchName = matchesWord(r.name, searchTerm);
-        if (matchName) {
+        if (matchesWord(r.name, searchTerm)) {
           results.push({
             type: 'Top Performer',
             level: `Rank #${r.rank || (items.indexOf(r) + 1)}`,
@@ -2057,37 +2042,37 @@ function performSearch(query, level = 'all') {
             points: r.points,
             department: r.department || r.region || '',
             email: r.email || '',
-            matchSource: getMatchSource(matchName, false, false, false)
+            matchSource: 3
           });
         }
       });
     });
   }
   
-  // Search Departmental awards (level: 'departmental' or 'all')
+  // 6. Departmental
   if (searchData.departmental && (level === 'all' || level === 'departmental')) {
-    const quarters = ['Q1', 'Q2', 'Q3', 'Q4'];
-    quarters.forEach(q => {
+    ['Q1', 'Q2', 'Q3', 'Q4'].forEach(q => {
       const awards = searchData.departmental[q] || [];
       awards.forEach(award => {
-        const matchName = matchesWord(award.winner_name, searchTerm);
-        const matchMember = award.members?.some(m => matchesWord(typeof m === 'string' ? m : m.name || '', searchTerm));
+        const matchWinner = award.winner_name && matchesWord(award.winner_name, searchTerm);
+        const matchMember = award.members?.some(m => matchesWord(typeof m === 'string' ? m : m.name || '', searchTerm)) || false;
         
-        if (matchName || matchMember) {
+        if (matchWinner || matchMember) {
           const dedupKey = `dept|${q}|${award.winner_name}|${award.department}`;
-          if (!seenProjectNames.has(dedupKey)) {
-            seenProjectNames.add(dedupKey);
+          if (!seenKeys.has(dedupKey)) {
+            seenKeys.add(dedupKey);
             const matchedMembers = matchMember ? award.members?.filter(m => matchesWord(typeof m === 'string' ? m : m.name || '', searchTerm)) || [] : [];
             results.push({
               type: award.award_type || 'Departmental Award',
               level: 'Departmental',
               period: q,
-              name: award.winner_name,
+              name: award.award_name || award.winner_name,
               award: award.award_type,
+              winner: award.winner_name,
               members: award.members,
               department: award.department,
               email: award.email || '',
-              matchSource: getMatchSource(matchName, false, matchMember, false),
+              matchSource: getMatchSource(matchWinner, false, matchMember, false),
               matchedMembers: matchedMembers,
               memberCount: award.members?.length || 0
             });
@@ -2097,114 +2082,10 @@ function performSearch(query, level = 'all') {
     });
   }
   
-
-  // Search FS awards
-  if (searchData.fs && (level === 'all' || level === 'fs')) {
-    const quarters = ['Q1 Project Awards', 'Q2 Project Awards', 'Q3 Project Awards', 'Q4 Project Awards'];
-    quarters.forEach(q => {
-      const awards = searchData.fs[q] || [];
-      awards.forEach(award => {
-        const matchName = matchesWord(award.project_name, searchTerm);
-        const matchMember = award.members?.some(m => matchesWord(typeof m === 'string' ? m : m.name || m, searchTerm));
-        if (matchName || matchMember) {
-          const dedupKey = `fs|${q}|${award.project_name}`;
-          if (!seenProjectNames.has(dedupKey)) {
-            seenProjectNames.add(dedupKey);
-            const matchedMembers = matchMember ? award.members?.filter(m => matchesWord(typeof m === 'string' ? m : m.name || m, searchTerm)) || [] : [];
-            results.push({
-              type: award.award_type || 'Project Award',
-              level: 'FS',
-              period: award.period || q,
-              name: award.project_name,
-              award: award.team_award,
-              members: award.members,
-              department: award.department,
-              email: award.email || '',
-              reason: award.reason,
-              matchSource: getMatchSource(matchName, false, matchMember, false),
-              matchedMembers: matchedMembers,
-              memberCount: award.members?.length || 0
-            });
-          }
-        }
-      });
-    });
-    const fsIndividual = searchData.fs['H2 Individual Awards'] || [];
-    fsIndividual.forEach(award => {
-      const matchName = matchesWord(award.winner_name, searchTerm);
-      const matchMember = award.members?.some(m => matchesWord(typeof m === 'string' ? m : m.name || m, searchTerm));
-      if (matchName || matchMember) {
-        results.push({
-          type: 'Individual Award',
-          level: 'FS',
-          period: award.period || 'H2',
-          name: award.winner_name || award.project_name,
-          award: award.team_award,
-          department: award.department,
-          email: award.email || '',
-          matchSource: getMatchSource(matchName, false, matchMember, false),
-          matchedMembers: matchMember ? award.members?.filter(m => matchesWord(typeof m === 'string' ? m : m.name || m, searchTerm)) || [] : []
-        });
-      }
-    });
-  }
-
-  // Search POP awards
-  if (searchData.pop && (level === 'all' || level === 'pop')) {
-    const quarters = ['Q1 Project Awards', 'Q2 Project Awards', 'Q3 Project Awards', 'Q4 Project Awards'];
-    quarters.forEach(q => {
-      const awards = searchData.pop[q] || [];
-      awards.forEach(award => {
-        const matchName = matchesWord(award.project_name, searchTerm);
-        const matchMember = award.members?.some(m => matchesWord(typeof m === 'string' ? m : m.name || m, searchTerm));
-        if (matchName || matchMember) {
-          const dedupKey = `pop|${q}|${award.project_name}`;
-          if (!seenProjectNames.has(dedupKey)) {
-            seenProjectNames.add(dedupKey);
-            const matchedMembers = matchMember ? award.members?.filter(m => matchesWord(typeof m === 'string' ? m : m.name || m, searchTerm)) || [] : [];
-            results.push({
-              type: award.award_type || 'Project Award',
-              level: 'POP',
-              period: award.period || q,
-              name: award.project_name,
-              award: award.team_award,
-              members: award.members,
-              department: award.department,
-              email: award.email || '',
-              reason: award.reason,
-              matchSource: getMatchSource(matchName, false, matchMember, false),
-              matchedMembers: matchedMembers,
-              memberCount: award.members?.length || 0
-            });
-          }
-        }
-      });
-    });
-    const popIndividual = searchData.pop['H2 Individual Awards'] || [];
-    popIndividual.forEach(award => {
-      const matchName = matchesWord(award.winner_name, searchTerm);
-      const matchMember = award.members?.some(m => matchesWord(typeof m === 'string' ? m : m.name || m, searchTerm));
-      if (matchName || matchMember) {
-        results.push({
-          type: 'Individual Award',
-          level: 'POP',
-          period: award.period || 'H2',
-          name: award.winner_name || award.project_name,
-          award: award.team_award,
-          department: award.department,
-          email: award.email || '',
-          matchSource: getMatchSource(matchName, false, matchMember, false),
-          matchedMembers: matchMember ? award.members?.filter(m => matchesWord(typeof m === 'string' ? m : m.name || m, searchTerm)) || [] : []
-        });
-      }
-    });
-  }
-
-  // Sort by matchSource (ascending: lower = higher priority)
   results.sort((a, b) => a.matchSource - b.matchSource);
-  
   return results;
 }
+
 
 function renderSearchResults(results, containerId) {
   const container = document.getElementById(containerId);
@@ -2217,12 +2098,15 @@ function renderSearchResults(results, containerId) {
   
   let html = '';
   results.slice(0, 20).forEach(result => {
-    // For member-matched results, show only matched members + total team size
     let memberLine = '';
-    if (result.matchSource === 3 && result.matchedMembers && result.matchedMembers.length > 0) {
+    if (result.type === 'Project Award' && result.matchedMembers && result.matchedMembers.length > 0) {
       const matchedNames = result.matchedMembers.map(m => typeof m === 'string' ? m : m.name || '').join(', ');
       const total = result.memberCount || (result.members?.length || 0);
       memberLine = `<div style="color: var(--text-secondary); font-size: 11px; margin-top: 2px;">👤 ${matchedNames}${total > result.matchedMembers.length ? ` (team of ${total})` : ''}</div>`;
+    }
+    let winnerLine = '';
+    if (result.winner && result.winner !== result.name) {
+      winnerLine = `<div style="color: var(--text-secondary); font-size: 11px; margin-top: 2px;">👤 ${result.winner}</div>`;
     }
     html += `
       <div class="search-result-item">
@@ -2233,10 +2117,13 @@ function renderSearchResults(results, containerId) {
           <span style="color: var(--text-secondary); font-size: 12px;">${result.level}</span>
           ${result.period ? `<span style="color: var(--accent-color); font-size: 11px;">${result.period}</span>` : ''}
         </div>
+        
         <div style="font-weight: 600; margin-bottom: 4px;">${result.name}</div>
+        
         <div style="color: var(--accent-color); font-size: 14px;">${result.award || (result.points ? result.points + ' pts' : '')}</div>
-        ${result.email ? `<div style="color: var(--text-secondary); font-size: 11px;">✉ ${result.email}</div>` : ''}
+        ${result.department ? `<div style="color: var(--text-secondary); font-size: 11px;">🏢 ${result.department}</div>` : ''}
         ${memberLine}
+        ${winnerLine}
       </div>
     `;
   });
