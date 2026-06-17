@@ -2028,10 +2028,10 @@ function performSearch(query, level = 'all') {
     });
   }
   
-  // 5. Rankings (top3 + top10)
+  // 5. Rankings (top10 includes top3, no need to search both)
   if (level === 'all' && searchData.rankings) {
-    ['top3', 'top10'].forEach(key => {
-      const items = searchData.rankings[key];
+    const rankingItems = searchData.rankings.top10 || searchData.rankings.top3 || [];
+    [rankingItems].forEach(items => {
       if (!Array.isArray(items)) return;
       items.forEach(r => {
         if (matchesWord(r.name, searchTerm)) {
