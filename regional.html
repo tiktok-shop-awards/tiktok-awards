@@ -438,6 +438,13 @@
     #regional-awards.fading {
       opacity: 0.3;
     }
+    /* Content wrapper for smooth transition */
+    .content-wrapper {
+      transition: opacity 0.2s ease;
+    }
+    .content-wrapper.fading {
+      opacity: 0;
+    }
 
   
 
@@ -501,6 +508,7 @@
         </div>
         <div id="search-results" class="search-results-section"></div>
 
+        <div class="content-wrapper" id="content-wrapper">
         <!-- Regional Top 3 Podium -->
         <section class="podium-section">
           <h2 class="section-title-main">
@@ -573,6 +581,8 @@
         <section class="awards-section">
           <div id="regional-awards"></div>
         </section>
+
+        </div><!-- end content-wrapper -->
 
       </div>
     </main>
@@ -853,10 +863,11 @@
     // Load and render regional data
     async function loadRegionalData(region, year = null) {
       const awardsContainer = document.getElementById('regional-awards');
+      const contentWrapper = document.getElementById('content-wrapper');
       const currentYear = year || AppData.currentYear || '2026';
       
       // Fade out content while loading
-      if (awardsContainer) awardsContainer.classList.add('fading');
+      if (contentWrapper) contentWrapper.classList.add('fading');
       
       try {
         // Reset regionalData for each load to avoid stale data from previous region
@@ -948,11 +959,11 @@
           awardsContainer.innerHTML = '<div class="no-data-msg">No data available for this region.</div>';
         }
         // Fade in after content loaded
-        if (awardsContainer) awardsContainer.classList.remove('fading');
+        if (contentWrapper) contentWrapper.classList.remove('fading');
       } catch (error) {
         console.error('Error loading regional data:', error);
         awardsContainer.innerHTML = '<div class="no-data-msg">No data available for this region.</div>';
-        if (awardsContainer) awardsContainer.classList.remove('fading');
+        if (contentWrapper) contentWrapper.classList.remove('fading');
       }
     }
     
