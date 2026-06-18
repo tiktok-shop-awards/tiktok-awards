@@ -929,7 +929,7 @@
     // Load videos from JSON
     async function loadVideos() {
       try {
-        const response = await fetch('data/media.json?v=20260618f', { cache: 'no-store' });
+        const response = await fetch('data/media.json?v=20260618g', { cache: 'no-store' });
         if (response.ok) {
           videosData = await response.json();
           console.log('[MediaGallery] Loaded', videosData.videos.length, 'videos from JSON');
@@ -951,8 +951,8 @@
             type: "featured",
             source: "feishu",
             url: "https://bytedance.larkoffice.com/file/Cc0rbwAHmo04Srx9SdqcqQhOnrg",
-            duration: "50mins",
-            badge: "Featured",
+            duration: "",
+            badge: "",
             thumbnail: "images/video-cover-featured.png"
           },
           {
@@ -963,7 +963,7 @@
             source: "feishu",
             url: "https://bytedance.larkoffice.com/wiki/NE8vwnpxviljgXkj63Kcn5hin2c",
             duration: "",
-            badge: "New",
+            badge: "",
             thumbnail: "images/video-cover-lunch-ep01.jpeg"
           },
           {
@@ -974,7 +974,7 @@
             source: "feishu",
             url: "https://bytedance.larkoffice.com/wiki/A5oNwXjYfiiOQMkOGiqcB4Nfnwb",
             duration: "",
-            badge: "New",
+            badge: "",
             thumbnail: "images/video-cover-lunch-ep02.jpeg"
           }
         ]
