@@ -863,7 +863,7 @@
       return currency === 'CNY' ? amt / EXCHANGE_RATE : amt;
     }
     
-    function renderHomeStats(globalData, regionalData, fsData, popData, year = '2025') {
+    function renderHomeStats(globalData, regionalData, fsData, popData, year = '2025', departmentalData = null) {
       // ========== HomePage 统计规则（重要！）==========
       // 1. Global Projects: Global数据的项目奖去重后数量
       // 2. Regional Projects: US+EU+SEA+LATAM+FS+POP 项目奖去重后数量总和
@@ -1010,6 +1010,23 @@
         allIndividualAwards.push(...indivAwards);
       }
       
+      // 5. Departmental data (individual spot bonuses)
+      let deptIndividualCount = 0;
+      let deptBonusUSD = 0;
+      if (departmentalData) {
+        const allDeptAwards = [
+          ...(departmentalData['Q1'] || []),
+          ...(departmentalData['Q2'] || []),
+          ...(departmentalData['Q3'] || []),
+          ...(departmentalData['Q4'] || [])
+        ];
+        deptIndividualCount = allDeptAwards.length;
+        deptBonusUSD = allDeptAwards.reduce((sum, a) =>
+          sum + convertToUSD(a.bonus, a.currency), 0);
+        totalBonusUSD += deptBonusUSD;
+        teamMemberCount += allDeptAwards.filter(a => a.members).reduce((sum, a) => sum + a.members.length, 0);
+      }
+      
       // Individual Awards 计数和奖金
       individualAwards = allIndividualAwards.length;
       const individualBonusUSD = allIndividualAwards.reduce((sum, a) => 
@@ -1111,7 +1128,7 @@
         AppData.currentYear = urlYear;
         
         // Load all data for stats (Q1 + Q2 + Q3 + Q4 + FS + POP)
-        const [rankingsData, global, us, eu, sea, latam, fs, pop] = await Promise.all([
+        const [rankingsData, global, us, eu, sea, latam, fs, pop, departmental] = await Promise.all([
           loadRankings(urlYear),
           loadData('global', null, urlYear),
           loadData('regional', 'us', urlYear),
@@ -1119,7 +1136,8 @@
           loadData('regional', 'sea', urlYear),
           loadData('regional', 'latam', urlYear),
           loadData('fs'),
-          loadData('pop')
+          loadData('pop'),
+          loadData('departmental', null, urlYear)
         ]);
         
         // Build member to department mapping from all data
@@ -1170,7 +1188,7 @@
         
         // Calculate and render stats
         // 注意：Global Projects 只包含 globalData 本身，FS 和 POP 的项目计入 Regional Projects
-        renderHomeStats(global, { us, eu, sea, latam, fs: fs, pop: pop }, fs, pop, urlYear);
+        renderHomeStats(global, { us, eu, sea, latam, fs: fs, pop: pop }, fs, pop, urlYear, departmental);
         
       } catch (error) {
         console.error('Error loading home page data:', error);
