@@ -301,6 +301,13 @@
       gap: var(--spacing-lg);
     }
     
+    /* Video Grid - 3 equal columns */
+    .video-grid-3col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-lg);
+    }
+    
     /* Video Card */
     .video-card {
       background: var(--bg-card);
@@ -425,7 +432,6 @@
     
     /* Featured Award Video */
     .award-video-card {
-      max-width: 480px;
     }
     
     .award-video-card .video-thumbnail {
@@ -858,30 +864,17 @@
         </h1>
         
         <!-- Upload Section -->
-        <!-- Award Video Section -->
-        <section class="video-section" id="featuredSection">
-          <div class="section-header">
-            <h2 class="section-title">
-              <span class="icon">🏆</span>
-              Award Video
-            </h2>
-          </div>
-          <p class="section-description">Highlights from the 2026 H1 Global E-commerce All-hands Award Ceremony</p>
-          
-          <div id="featuredVideo"></div>
-        </section>
-
-        <!-- Lunch Takeaways Section -->
-        <section class="video-section" id="lunchTakeawaysSection">
+        <!-- Videos Section - 3 equal columns -->
+        <section class="video-section">
           <div class="section-header">
             <h2 class="section-title">
               <span class="icon">🎬</span>
-              Lunch Takeaways
+              Videos
             </h2>
           </div>
-          <p class="section-description">Lunch Takeaways Global E-commerce Special Edition</p>
+          <p class="section-description">Award ceremony highlights & Lunch Takeaways series</p>
           
-          <div id="lunchGrid" class="video-grid"></div>
+          <div id="videoGrid" class="video-grid-3col"></div>
         </section>
 
       </div>
@@ -964,22 +957,11 @@
     
     // Render videos
     function renderVideos() {
-      const featuredContainer = document.getElementById('featuredVideo');
-      const lunchGrid = document.getElementById('lunchGrid');
+      const gridContainer = document.getElementById('videoGrid');
       
-      const featured = videosData.videos.filter(v => v.type === 'featured');
-      const lunchVideos = videosData.videos.filter(v => v.type === 'regular');
-      
-      // Render featured video
-      if (featured.length > 0) {
-        featuredContainer.innerHTML = renderVideoCard(featured[0], true);
-      } else {
-        featuredContainer.innerHTML = '';
-      }
-      
-      // Render Lunch Takeaways grid
-      if (lunchVideos.length > 0) {
-        lunchGrid.innerHTML = lunchVideos.map(v => renderVideoCard(v)).join('');
+      // Render all videos in 3-column grid
+      if (videosData.videos.length > 0) {
+        gridContainer.innerHTML = videosData.videos.map(v => renderVideoCard(v)).join('');
       }
       
       // Add click handlers
