@@ -871,6 +871,19 @@
           <div id="featuredVideo"></div>
         </section>
 
+        <!-- Lunch Takeaways Section -->
+        <section class="video-section" id="lunchTakeawaysSection">
+          <div class="section-header">
+            <h2 class="section-title">
+              <span class="icon">🎬</span>
+              Lunch Takeaways
+            </h2>
+          </div>
+          <p class="section-description">Lunch Takeaways Global E-commerce Special Edition</p>
+          
+          <div id="lunchGrid" class="video-grid"></div>
+        </section>
+
       </div>
     </main>
 
@@ -952,11 +965,10 @@
     // Render videos
     function renderVideos() {
       const featuredContainer = document.getElementById('featuredVideo');
-      const gridContainer = document.getElementById('videoGrid');
-      const emptyState = document.getElementById('emptyState');
+      const lunchGrid = document.getElementById('lunchGrid');
       
       const featured = videosData.videos.filter(v => v.type === 'featured');
-      const others = videosData.videos.filter(v => v.type !== 'featured');
+      const lunchVideos = videosData.videos.filter(v => v.type === 'regular');
       
       // Render featured video
       if (featured.length > 0) {
@@ -965,22 +977,9 @@
         featuredContainer.innerHTML = '';
       }
       
-      // Filter videos based on current filter
-      let filteredVideos = others;
-      if (currentFilter === 'local') {
-        filteredVideos = others.filter(v => v.source === 'local' || v.source === 'volcengine');
-      } else if (currentFilter === 'feishu') {
-        filteredVideos = others.filter(v => v.source === 'feishu');
-      }
-      
-      // Render grid
-      if (filteredVideos.length > 0) {
-        gridContainer.innerHTML = filteredVideos.map(v => renderVideoCard(v)).join('');
-        gridContainer.style.display = 'grid';
-        emptyState.style.display = 'none';
-      } else {
-        gridContainer.style.display = 'none';
-        emptyState.style.display = 'block';
+      // Render Lunch Takeaways grid
+      if (lunchVideos.length > 0) {
+        lunchGrid.innerHTML = lunchVideos.map(v => renderVideoCard(v)).join('');
       }
       
       // Add click handlers
