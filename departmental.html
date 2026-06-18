@@ -893,7 +893,7 @@
         const badgeLabel = award.award_type === 'Departmental Award' ? 'Team Award' : award.award_type;
         const quarter = award._quarter || '';
         const memberCount = (award.members && award.members.length) || 0;
-        const memberInfo = memberCount > 0 ? `Team of ${memberCount}` : 'Individual';
+        const memberInfo = memberCount > 1 ? `Team of ${memberCount}` : '';
         const bonus = formatCurrency(award.bonus, award.currency);
         const name = award.winner_name || 'Unknown';
         const email = award.email || '';
@@ -913,7 +913,7 @@
               <span class="card-icon">👤</span>
               <span class="card-title">${name}</span>
             </div>
-            <div class="card-meta">${department}${email ? ' · ' + email : ''}${quarter ? ' · ' + quarter + ' 2026' : ''} · ${memberInfo}</div>
+            <div class="card-meta">${department}${email ? ' · ' + email : ''}${quarter ? ' · ' + quarter + ' 2026' : ''}${memberInfo ? ' · ' + memberInfo : ''}</div>
             <div class="card-body">
               <div class="card-award">
                 <span class="card-award-name">${icon} ${badgeLabel}</span>
