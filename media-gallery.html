@@ -929,30 +929,56 @@
     // Load videos from JSON
     async function loadVideos() {
       try {
-        const response = await fetch('data/media.json?v=20260618f');
+        const response = await fetch('data/media.json?v=20260618f', { cache: 'no-store' });
         if (response.ok) {
           videosData = await response.json();
+          console.log('[MediaGallery] Loaded', videosData.videos.length, 'videos from JSON');
           renderVideos();
           updateStats();
+          return;
         }
       } catch (error) {
-        console.log('Using default video data');
-        // Default data if JSON fails to load
-        videosData = {
-          videos: [
-            {
-              id: "featured-2026",
-              title: "All Hands 颁奖典礼 (50p)",
-              description: "2026 H1 Global E-commerce All-hands Award Ceremony Highlights",
-              type: "featured",
-              source: "feishu",
-              url: "https://bytedance.larkoffice.com/file/Cc0rbwAHmo04Srx9SdqcqQhOnrg",
-              duration: "",
-              badge: "",
-              thumbnail: "images/video-cover-featured.png"
-            }
-          ]
-        };
+        console.log('[MediaGallery] JSON fetch failed:', error);
+      }
+      // Fallback data if JSON fails to load
+      console.log('[MediaGallery] Using fallback data');
+      videosData = {
+        videos: [
+          {
+            id: "featured-2026",
+            title: "All Hands 颁奖典礼 (50p)",
+            description: "2026 H1 Global E-commerce All-hands Award Ceremony Highlights",
+            type: "featured",
+            source: "feishu",
+            url: "https://bytedance.larkoffice.com/file/Cc0rbwAHmo04Srx9SdqcqQhOnrg",
+            duration: "50mins",
+            badge: "Featured",
+            thumbnail: "images/video-cover-featured.png"
+          },
+          {
+            id: "lunch-takeaways-ep01",
+            title: "Lunch Takeaways EP01",
+            description: "Lunch Takeaways Global E-commerce Special Edition EP01",
+            type: "regular",
+            source: "feishu",
+            url: "https://bytedance.larkoffice.com/wiki/NE8vwnpxviljgXkj63Kcn5hin2c",
+            duration: "",
+            badge: "New",
+            thumbnail: "images/video-cover-lunch-ep01.jpeg"
+          },
+          {
+            id: "lunch-takeaways-ep02",
+            title: "Lunch Takeaways EP02",
+            description: "Lunch Takeaways Global E-commerce Special Edition EP02",
+            type: "regular",
+            source: "feishu",
+            url: "https://bytedance.larkoffice.com/wiki/A5oNwXjYfiiOQMkOGiqcB4Nfnwb",
+            duration: "",
+            badge: "New",
+            thumbnail: "images/video-cover-lunch-ep02.jpeg"
+          }
+        ]
+      };
         renderVideos();
         updateStats();
       }
