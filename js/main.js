@@ -1539,7 +1539,8 @@ function renderGlobalAwards(data, containerId, half) {
     const key = award.project_name;
     if (!projectGroups[key]) {
       projectGroups[key] = {
-        project_name: award.project_name,
+        project_name: award.project_english_name || award.project_name,
+        project_english_name: award.project_english_name || '',
         team_award: award.team_award,
         bonus: award.bonus,
         reason: award.reason,
@@ -1597,7 +1598,7 @@ function renderGlobalAwards(data, containerId, half) {
             <button class="comment-btn" onclick="showCommentsModal('${cardId}', '${project.project_name.replace(/'/g, "\\'")}', 'Global Project Award')">
               💬 Comment
             </button>
-            <button class="share-btn" data-project="${project.project_name.replace(/'/g, "\\'")}" data-award="${awardName}" data-bonus="${project.bonus || ''}" data-reason="${(reasonText || '').replace(/'/g, "\\'").replace(/"/g, '&quot;')}" data-members='${JSON.stringify(project.members).replace(/'/g, "&#39;")}' onclick="showShareModalFromBtn(this)">
+            <button class="share-btn" data-project="${(project.project_english_name || project.project_name).replace(/'/g, "\\'")}" data-award="${awardName}" data-bonus="${project.bonus || ''}" data-reason="${(reasonText || '').replace(/'/g, "\\'").replace(/"/g, '&quot;')}" data-members='${JSON.stringify(project.members).replace(/'/g, "&#39;")}' onclick="showShareModalFromBtn(this)">
               📤 Share
             </button>
           </div>
@@ -1692,7 +1693,8 @@ function renderProjectCards(awards, region, half) {
     const key = award.project_name;
     if (!projectGroups[key]) {
       projectGroups[key] = {
-        project_name: award.project_name,
+        project_name: award.project_english_name || award.project_name,
+        project_english_name: award.project_english_name || '',
         team_award: award.team_award,
         bonus: award.bonus,
         reason: award.reason,
@@ -1748,7 +1750,7 @@ function renderProjectCards(awards, region, half) {
             <button class="comment-btn" onclick="showCommentsModal('${cardId}', '${project.project_name.replace(/'/g, "\\'")}', 'Regional Project Award')">
               💬 Comment
             </button>
-            <button class="share-btn" data-project="${project.project_name.replace(/'/g, "\\'")}" data-award="${awardName}" data-bonus="${project.bonus || ''}" data-reason="${(reasonText || '').replace(/'/g, "\\'").replace(/"/g, '&quot;')}" data-members='${JSON.stringify(project.members).replace(/'/g, "&#39;")}' onclick="showShareModalFromBtn(this)">
+            <button class="share-btn" data-project="${(project.project_english_name || project.project_name).replace(/'/g, "\\'")}" data-award="${awardName}" data-bonus="${project.bonus || ''}" data-reason="${(reasonText || '').replace(/'/g, "\\'").replace(/"/g, '&quot;')}" data-members='${JSON.stringify(project.members).replace(/'/g, "&#39;")}' onclick="showShareModalFromBtn(this)">
               📤 Share
             </button>
           </div>
