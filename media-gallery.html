@@ -303,9 +303,12 @@
     
     /* Video Grid - 3 equal columns */
     .video-grid-3col {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
       gap: var(--spacing-lg);
+    }
+    .video-grid-3col > * {
+      flex: 1;
+      min-width: 0;
     }
     
     /* Video Card */
@@ -926,7 +929,7 @@
     // Load videos from JSON
     async function loadVideos() {
       try {
-        const response = await fetch('data/media.json?v=20260618b');
+        const response = await fetch('data/media.json?v=20260618f');
         if (response.ok) {
           videosData = await response.json();
           renderVideos();
