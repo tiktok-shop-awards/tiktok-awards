@@ -11,6 +11,30 @@
       "badge": "Featured",
       "uploadedAt": "2026-04-17",
       "thumbnail": "images/video-cover-featured.png"
+    },
+    {
+      "id": "lunch-takeaways-ep01",
+      "title": "Lunch Takeaways EP01",
+      "description": "Lunch Takeaways Global E-commerce Special Edition EP01",
+      "type": "regular",
+      "source": "feishu",
+      "url": "https://bytedance.larkoffice.com/wiki/NE8vwnpxviljgXkj63Kcn5hin2c",
+      "duration": "",
+      "badge": "New",
+      "uploadedAt": "2026-06-18",
+      "thumbnail": ""
+    },
+    {
+      "id": "lunch-takeaways-ep02",
+      "title": "Lunch Takeaways EP02",
+      "description": "Lunch Takeaways Global E-commerce Special Edition EP02",
+      "type": "regular",
+      "source": "feishu",
+      "url": "https://bytedance.larkoffice.com/wiki/A5oNwXjYfiiOQMkOGiqcB4Nfnwb",
+      "duration": "",
+      "badge": "New",
+      "uploadedAt": "2026-06-18",
+      "thumbnail": ""
     }
   ]
 }
