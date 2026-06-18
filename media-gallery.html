@@ -297,7 +297,7 @@
     /* Video Grid */
     .video-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
       gap: var(--spacing-lg);
     }
     
@@ -425,7 +425,7 @@
     
     /* Featured Award Video */
     .award-video-card {
-      max-width: 280px;
+      max-width: 480px;
     }
     
     .award-video-card .video-thumbnail {
@@ -1048,7 +1048,7 @@
       // External video: wrap in <a> tag for native link behavior (avoids popup blocker)
       if (isExternal) {
         return `
-          <a href="${video.url}" target="_blank" rel="noopener noreferrer" class="${cardClass}" data-video-id="${video.id}" style="text-decoration: none; color: inherit; display: block; max-width: 280px;">
+          <a href="${video.url}" target="_blank" rel="noopener noreferrer" class="${cardClass}" data-video-id="${video.id}" style="text-decoration: none; color: inherit; display: block;">
             ${cardContent}
           </a>
         `;
@@ -1056,7 +1056,7 @@
       
       // Local video: use div (click opens modal player)
       return `
-        <div class="${cardClass}" data-video-id="${video.id}" ${isFeatured ? 'style="max-width: 280px;"' : ''}>
+        <div class="${cardClass}" data-video-id="${video.id}">
           ${cardContent}
         </div>
       `;
