@@ -32,25 +32,71 @@ function setUrlParam(param, value) {
 }
 
 // Toast notification (replaces alert for non-blocking messages)
-function showToast(message, duration = 3000) {
+function showToast(message, duration = 3500) {
   // Remove existing toast if any
   const existingToast = document.getElementById('app-toast');
   if (existingToast) existingToast.remove();
 
-  const toast = document.createElement('div');
-  toast.id = 'app-toast';
-  toast.style.cssText = `
-    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-    background: rgba(0,0,0,0.85); color: #fff; padding: 12px 28px;
-    border-radius: 8px; font-size: 14px; z-index: 10000;
-    transition: opacity 0.3s ease; pointer-events: none;
+  const overlay = document.createElement('div');
+  overlay.id = 'app-toast';
+  overlay.style.cssText = `
+    position: fixed; inset: 0; z-index: 10000;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+    transition: opacity 0.3s ease;
+    animation: toastFadeIn 0.3s ease forwards;
   `;
-  toast.textContent = message;
-  document.body.appendChild(toast);
+
+  const card = document.createElement('div');
+  card.style.cssText = `
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border: 1px solid rgba(255,180,0,0.3);
+    border-radius: 16px; padding: 28px 40px;
+    text-align: center; max-width: 420px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 60px rgba(255,180,0,0.1);
+  `;
+
+  const icon = document.createElement('div');
+  icon.style.cssText = `
+    font-size: 36px; margin-bottom: 12px;
+    animation: toastPulse 1.5s ease-in-out infinite;
+  `;
+  icon.textContent = '⏳';
+
+  const text = document.createElement('div');
+  text.style.cssText = `
+    color: #fff; font-size: 16px; font-weight: 500;
+    line-height: 1.5; letter-spacing: 0.3px;
+  `;
+  text.textContent = message;
+
+  card.appendChild(icon);
+  card.appendChild(text);
+  overlay.appendChild(card);
+  document.body.appendChild(overlay);
+
+  // Add animation keyframes if not already present
+  if (!document.getElementById('toast-keyframes')) {
+    const style = document.createElement('style');
+    style.id = 'toast-keyframes';
+    style.textContent = `
+      @keyframes toastFadeIn { from { opacity: 0; } to { opacity: 1; } }
+      @keyframes toastPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+    `;
+    document.head.appendChild(style);
+  }
+
+  // Click to dismiss
+  overlay.addEventListener('click', () => {
+    overlay.style.opacity = '0';
+    setTimeout(() => overlay.remove(), 300);
+  });
 
   setTimeout(() => {
-    toast.style.opacity = '0';
-    setTimeout(() => toast.remove(), 300);
+    if (overlay.parentNode) {
+      overlay.style.opacity = '0';
+      setTimeout(() => overlay.remove(), 300);
+    }
   }, duration);
 }
 
