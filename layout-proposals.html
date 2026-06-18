@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Media Gallery Layout Proposals</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0a0a0a; color: #fff; font-family: -apple-system, sans-serif; padding: 40px; }
+  h1 { text-align: center; margin-bottom: 60px; font-size: 28px; color: #FF2D55; }
+  
+  .proposal { margin-bottom: 80px; }
+  .proposal-label { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: #FFD60A; }
+  .proposal-desc { font-size: 14px; color: #888; margin-bottom: 24px; }
+  .proposal-frame { 
+    background: #111; border-radius: 16px; padding: 32px; 
+    border: 1px solid rgba(255,255,255,0.1);
+    max-width: 1200px; margin: 0 auto;
+    min-height: 500px;
+  }
+
+  /* Common card style */
+  .card {
+    background: #1a1a1a; border-radius: 12px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+    cursor: pointer; transition: all 0.3s;
+  }
+  .card:hover { border-color: #FF2D55; transform: translateY(-2px); }
+  .card-thumb {
+    aspect-ratio: 16/9; background: linear-gradient(135deg, #2a1a3e, #1a2a4e, #3a1a2e);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .card-thumb .play { width: 48px; height: 48px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .card-thumb .play::after { content: '▶'; font-size: 18px; color: #fff; margin-left: 3px; }
+  .card-badge {
+    position: absolute; top: 10px; left: 10px; background: #FF2D55; color: #fff;
+    font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px;
+  }
+  .card-info { padding: 14px 16px; }
+  .card-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .card-subtitle { font-size: 12px; color: #888; margin-bottom: 6px; }
+  .card-link { font-size: 11px; color: #666; }
+
+  .section-title { font-size: 16px; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .section-subtitle { font-size: 13px; color: #888; margin-bottom: 20px; }
+
+  /* ===== Proposal A: Left big + Right stack ===== */
+  .layout-a { display: flex; gap: 24px; }
+  .layout-a .left { flex: 1.2; }
+  .layout-a .right { flex: 0.8; display: flex; flex-direction: column; gap: 24px; }
+  .layout-a .left .card-thumb { aspect-ratio: 16/9; }
+  .layout-a .right .card-thumb { aspect-ratio: 16/9; }
+
+  /* ===== Proposal B: Top full + Bottom 2-col ===== */
+  .layout-b { display: flex; flex-direction: column; gap: 24px; }
+  .layout-b .top { }
+  .layout-b .top .card-thumb { aspect-ratio: 21/9; }
+  .layout-b .bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+  /* ===== Proposal C: 3 equal columns ===== */
+  .layout-c { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+</style>
+</head>
+<body>
+<h1>Media Gallery Layout Proposals</h1>
+
+<!-- Proposal A -->
+<div class="proposal">
+  <div class="proposal-label">Proposal A — Left big + Right stack</div>
+  <div class="proposal-desc">Award Video占左边大卡，Lunch Takeaways两个叠在右边，一屏展示完毕</div>
+  <div class="proposal-frame">
+    <div class="layout-a">
+      <div class="left">
+        <div class="section-title">🏆 Award Video</div>
+        <div class="section-subtitle">Highlights from the 2026 H1 Global E-commerce All-hands Award Ceremony</div>
+        <div class="card">
+          <div class="card-thumb">
+            <span class="card-badge">Featured</span>
+            <div class="play"></div>
+          </div>
+          <div class="card-info">
+            <div class="card-title">All Hands 颁奖典礼 (50p)</div>
+            <div class="card-subtitle">2026 H1 Global E-commerce All-hands Award Ceremony Highlights</div>
+            <div class="card-link">↗ Opens in Feishu</div>
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <div>
+          <div class="section-title">🎬 Lunch Takeaways</div>
+          <div class="section-subtitle">Global E-commerce Special Edition</div>
+        </div>
+        <div class="card">
+          <div class="card-thumb">
+            <span class="card-badge" style="background:#30D158">New</span>
+            <div class="play"></div>
+          </div>
+          <div class="card-info">
+            <div class="card-title">Lunch Takeaways EP01</div>
+            <div class="card-subtitle">Global E-commerce Special Edition EP01</div>
+            <div class="card-link">↗ Opens in Feishu</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-thumb">
+            <span class="card-badge" style="background:#30D158">New</span>
+            <div class="play"></div>
+          </div>
+          <div class="card-info">
+            <div class="card-title">Lunch Takeaways EP02</div>
+            <div class="card-subtitle">Global E-commerce Special Edition EP02</div>
+            <div class="card-link">↗ Opens in Feishu</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Proposal B -->
+<div class="proposal">
+  <div class="proposal-label">Proposal B — Top wide + Bottom 2-col</div>
+  <div class="proposal-desc">Award Video横跨顶部宽卡，Lunch Takeaways两列并排底部</div>
+  <div class="proposal-frame">
+    <div class="layout-b">
+      <div class="top">
+        <div class="section-title">🏆 Award Video</div>
+        <div class="section-subtitle">Highlights from the 2026 H1 Global E-commerce All-hands Award Ceremony</div>
+        <div class="card">
+          <div class="card-thumb">
+            <span class="card-badge">Featured</span>
+            <div class="play"></div>
+          </div>
+          <div class="card-info">
+            <div class="card-title">All Hands 颁奖典礼 (50p)</div>
+            <div class="card-subtitle">2026 H1 Global E-commerce All-hands Award Ceremony Highlights</div>
+            <div class="card-link">↗ Opens in Feishu</div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom">
+        <div>
+          <div class="section-title">🎬 Lunch Takeaways</div>
+          <div class="section-subtitle">Global E-commerce Special Edition</div>
+          <div class="card">
+            <div class="card-thumb">
+              <span class="card-badge" style="background:#30D158">New</span>
+              <div class="play"></div>
+            </div>
+            <div class="card-info">
+              <div class="card-title">Lunch Takeaways EP01</div>
+              <div class="card-subtitle">Global E-commerce Special Edition EP01</div>
+              <div class="card-link">↗ Opens in Feishu</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="section-title" style="visibility:hidden">🎬</div>
+          <div class="section-subtitle" style="visibility:hidden">.</div>
+          <div class="card">
+            <div class="card-thumb">
+              <span class="card-badge" style="background:#30D158">New</span>
+              <div class="play"></div>
+            </div>
+            <div class="card-info">
+              <div class="card-title">Lunch Takeaways EP02</div>
+              <div class="card-subtitle">Global E-commerce Special Edition EP02</div>
+              <div class="card-link">↗ Opens in Feishu</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Proposal C -->
+<div class="proposal">
+  <div class="proposal-label">Proposal C — 3 equal columns</div>
+  <div class="proposal-desc">三个视频等宽并排，统一section标题，最简洁</div>
+  <div class="proposal-frame">
+    <div class="section-title">🎬 Videos</div>
+    <div class="section-subtitle">Award ceremony highlights & Lunch Takeaways series</div>
+    <div class="layout-c">
+      <div class="card">
+        <div class="card-thumb">
+          <span class="card-badge">Featured</span>
+          <div class="play"></div>
+        </div>
+        <div class="card-info">
+          <div class="card-title">All Hands 颁奖典礼 (50p)</div>
+          <div class="card-subtitle">2026 H1 Global E-commerce All-hands Award Ceremony Highlights</div>
+          <div class="card-link">↗ Opens in Feishu</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-thumb">
+          <span class="card-badge" style="background:#30D158">New</span>
+          <div class="play"></div>
+        </div>
+        <div class="card-info">
+          <div class="card-title">Lunch Takeaways EP01</div>
+          <div class="card-subtitle">Global E-commerce Special Edition EP01</div>
+          <div class="card-link">↗ Opens in Feishu</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-thumb">
+          <span class="card-badge" style="background:#30D158">New</span>
+          <div class="play"></div>
+        </div>
+        <div class="card-info">
+          <div class="card-title">Lunch Takeaways EP02</div>
+          <div class="card-subtitle">Global E-commerce Special Edition EP02</div>
+          <div class="card-link">↗ Opens in Feishu</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
