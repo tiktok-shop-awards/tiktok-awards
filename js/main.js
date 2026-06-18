@@ -847,7 +847,7 @@ function renderPodium(top3, containerId, title) {
   let currentRank = 1;
   const sorted = [...top3].sort((a, b) => getScore(b) - getScore(a));
   for (let i = 0; i < sorted.length; i++) {
-    if (i > 0 && getScore(sorted[i]) < getScore(sorted[i-1])) currentRank = i + 1;
+    if (i > 0 && getScore(sorted[i]) < getScore(sorted[i-1])) currentRank = rankedGroups.length + 1;
     if (rankedGroups.length === 0 || rankedGroups[rankedGroups.length-1].rank !== currentRank) {
       rankedGroups.push({ rank: currentRank, score: getScore(sorted[i]), people: [sorted[i]] });
     } else {
