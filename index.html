@@ -1010,7 +1010,7 @@
         allIndividualAwards.push(...indivAwards);
       }
       
-      // 5. Departmental data (individual spot bonuses)
+      // 5. Departmental data: Spot Bonus → Individual Awards, Departmental Award → Team Members
       let deptIndividualCount = 0;
       let deptBonusUSD = 0;
       if (departmentalData) {
@@ -1020,15 +1020,21 @@
           ...(departmentalData['Q3'] || []),
           ...(departmentalData['Q4'] || [])
         ];
-        deptIndividualCount = allDeptAwards.length;
+        // Split: Spot Bonus is individual award, Departmental Award is team award
+        const spotBonuses = allDeptAwards.filter(a => a.award_type === 'Spot Bonus');
+        const deptAwards = allDeptAwards.filter(a => a.award_type !== 'Spot Bonus');
+        // Spot Bonus → Individual Awards
+        deptIndividualCount = spotBonuses.length;
+        // Departmental Award → Team Members
+        teamMemberCount += deptAwards.filter(a => a.members).reduce((sum, a) => sum + a.members.length, 0);
+        // Bonus: both types count
         deptBonusUSD = allDeptAwards.reduce((sum, a) =>
           sum + convertToUSD(a.bonus, a.currency), 0);
         totalBonusUSD += deptBonusUSD;
-        teamMemberCount += allDeptAwards.filter(a => a.members).reduce((sum, a) => sum + a.members.length, 0);
       }
       
-      // Individual Awards 计数和奖金
-      individualAwards = allIndividualAwards.length;
+      // Individual Awards 计数和奖金 (including Spot Bonus from departmental)
+      individualAwards = allIndividualAwards.length + deptIndividualCount;
       const individualBonusUSD = allIndividualAwards.reduce((sum, a) => 
         sum + convertToUSD(a.bonus, a.currency), 0);
       totalBonusUSD += individualBonusUSD;
