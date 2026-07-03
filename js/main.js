@@ -1510,6 +1510,10 @@ async function downloadPoster() {
       throw new Error('html2canvas library not loaded');
     }
     
+    // Hide preview during capture to avoid visual flash
+    const previewContainer = document.getElementById('poster-preview');
+    if (previewContainer) previewContainer.style.visibility = 'hidden';
+
     // Temporarily remove transform for accurate html2canvas capture
     const savedTransform = posterContent.style.transform;
     const savedTransformOrigin = posterContent.style.transformOrigin;
@@ -1548,6 +1552,8 @@ async function downloadPoster() {
     // Restore transform for preview
     posterContent.style.transform = savedTransform;
     posterContent.style.transformOrigin = savedTransformOrigin;
+    // Show preview again
+    if (previewContainer) previewContainer.style.visibility = 'visible';
     
     // Convert to image and download
     const link = document.createElement('a');
@@ -1556,6 +1562,9 @@ async function downloadPoster() {
     link.click();
   } catch (error) {
     console.error('Error generating poster:', error);
+    // Restore preview visibility on error
+    const previewContainer = document.getElementById('poster-preview');
+    if (previewContainer) previewContainer.style.visibility = 'visible';
     alert('Failed to generate poster. Please try again.');
   }
 }
