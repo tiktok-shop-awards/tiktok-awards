@@ -1409,34 +1409,36 @@ function showShareModal(projectName, teamAward, bonus, reason, members) {
   const posterSizeClass = (reason && reason.length > 1500) ? 'poster-long-content' : '';
   
   posterPreview.innerHTML = `
-    <div class="poster-container ${posterSizeClass}" id="poster-content">
-      <div class="poster-gradient"></div>
-      <div class="poster-header">
-        <div class="poster-brand">Global E-commerce Recognition Hub</div>
-      </div>
-      <div class="poster-divider"></div>
-      <div class="poster-center">
-        <div class="poster-award-type">${teamAward || 'Global Excellence Award'}</div>
-        <div class="poster-project-name">${projectName}</div>
-        <div class="poster-bonus">${formatCurrency(bonus)}</div>
-        <div class="poster-bonus-label">Award Bonus</div>
-      </div>
-      <div class="poster-body">
-        <div class="poster-reason-section">
-          <div class="poster-section-label">Project Highlights</div>
-          <div class="poster-reason">${reason || 'Outstanding contribution to the team'}</div>
+    <div id="poster-wrapper" style="overflow:hidden;position:relative;">
+      <div class="poster-container ${posterSizeClass}" id="poster-content">
+        <div class="poster-gradient"></div>
+        <div class="poster-header">
+          <div class="poster-brand">Global E-commerce Recognition Hub</div>
         </div>
-        <div class="poster-members-section">
-          <div class="poster-section-label">Team Members</div>
-          <div class="${membersClass}">
-            ${memberList}
+        <div class="poster-divider"></div>
+        <div class="poster-center">
+          <div class="poster-award-type">${teamAward || 'Global Excellence Award'}</div>
+          <div class="poster-project-name">${projectName}</div>
+          <div class="poster-bonus">${formatCurrency(bonus)}</div>
+          <div class="poster-bonus-label">Award Bonus</div>
+        </div>
+        <div class="poster-body">
+          <div class="poster-reason-section">
+            <div class="poster-section-label">Project Highlights</div>
+            <div class="poster-reason">${reason || 'Outstanding contribution to the team'}</div>
+          </div>
+          <div class="poster-members-section">
+            <div class="poster-section-label">Team Members</div>
+            <div class="${membersClass}">
+              ${memberList}
+            </div>
           </div>
         </div>
-      </div>
-      <img class="poster-corner-icon" src="${SHOPPING_BAG_ICON}" />
-      <div class="poster-footer">
-        <div class="poster-footer-line"></div>
-        <div class="poster-brand-footer">TikTok Shop</div>
+        <img class="poster-corner-icon" src="${SHOPPING_BAG_ICON}" />
+        <div class="poster-footer">
+          <div class="poster-footer-line"></div>
+          <div class="poster-brand-footer">TikTok Shop</div>
+        </div>
       </div>
     </div>
   `;
@@ -1447,11 +1449,8 @@ function showShareModal(projectName, teamAward, bonus, reason, members) {
   // Now measure and scale the poster preview
   const preview = document.getElementById('poster-preview');
   const posterEl = preview ? preview.querySelector('.poster-container') : null;
-  if (posterEl && preview) {
-    const modalContent = modal.querySelector('.modal-content');
-    const availableWidth = modalContent ? Math.min(modalContent.clientWidth - 48, 652) : 652;
-    const scale = availableWidth / 2560;
-    
+  const wrapper = document.getElementById('poster-wrapper');
+  if (posterEl && preview && wrapper) {
     // Reset transform to measure true dimensions
     posterEl.style.transform = 'none';
     posterEl.style.width = '2560px';
@@ -1460,19 +1459,32 @@ function showShareModal(projectName, teamAward, bonus, reason, members) {
     void posterEl.offsetHeight;
     
     const actualHeight = posterEl.scrollHeight;
+    const modalContent = modal.querySelector('.modal-content');
+    const availableWidth = modalContent ? Math.min(modalContent.clientWidth - 48, 652) : 652;
+    const maxPreviewH = Math.floor(window.innerHeight * 0.55);
+    
+    // Calculate scale to fit width, and also check if height fits
+    const scaleW = availableWidth / 2560;
+    const scaledH = Math.ceil(actualHeight * scaleW);
+    // If scaled height exceeds max, reduce scale to fit height too
+    const scale = scaledH > maxPreviewH ? Math.min(scaleW, maxPreviewH / actualHeight) : scaleW;
+    const scaledWidth = Math.round(2560 * scale);
     const scaledHeight = Math.ceil(actualHeight * scale);
     
-    // Apply scale
+    // Apply scale to poster
     posterEl.style.transform = 'scale(' + scale + ')';
     posterEl.style.transformOrigin = 'top left';
     
-    // Set preview container to match scaled poster dimensions
-    const maxPreviewH = Math.floor(window.innerHeight * 0.55);
-    const displayHeight = Math.min(scaledHeight, maxPreviewH);
-    preview.style.height = displayHeight + 'px';
-    preview.style.width = availableWidth + 'px';
+    // Set wrapper to exactly the scaled poster dimensions (clips the 2560px layout box)
+    wrapper.style.width = scaledWidth + 'px';
+    wrapper.style.height = scaledHeight + 'px';
+    wrapper.style.overflow = scaledHeight > maxPreviewH ? 'auto' : 'hidden';
+    
+    // Reset preview to match wrapper size
+    preview.style.width = scaledWidth + 'px';
+    preview.style.height = scaledHeight + 'px';
     preview.style.position = 'relative';
-    preview.style.overflow = scaledHeight > maxPreviewH ? 'auto' : 'hidden';
+    preview.style.overflow = 'hidden';
     preview.style.margin = '0 auto';
     preview.style.display = 'block';
   }
@@ -1493,16 +1505,9 @@ async function downloadPoster() {
   }
   
   try {
-    // Check if html2canvas is available
+    // Check if html2canvas is available (should be pre-loaded locally)
     if (typeof html2canvas === 'undefined') {
-      // Try loading dynamically
-      await new Promise((resolve, reject) => {
-        const script = document.createElement('script');
-        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
-        script.onload = resolve;
-        script.onerror = reject;
-        document.head.appendChild(script);
-      });
+      throw new Error('html2canvas library not loaded');
     }
     
     // Temporarily remove transform for accurate html2canvas capture
