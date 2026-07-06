@@ -283,15 +283,15 @@ async function loadData(level, region = null, year = null) {
     let dataFile;
     
     if (level === 'global') {
-      dataFile = 'data/global.json?v=20260618d';
+      dataFile = 'data/global.json?v=20260706a';
     } else if (level === 'regional' && region) {
-      dataFile = 'data/' + region + '.json?v=20260618d';
+      dataFile = 'data/' + region + '.json?v=20260706a';
     } else if (level === 'fs') {
-      dataFile = 'data/fs.json?v=20260618d';
+      dataFile = 'data/fs.json?v=20260706a';
     } else if (level === 'pop') {
-      dataFile = 'data/pop.json?v=20260618d';
+      dataFile = 'data/pop.json?v=20260706a';
     } else if (level === 'departmental') {
-      dataFile = 'data/departmental.json?v=20260618d';
+      dataFile = 'data/departmental.json?v=20260706a';
     }
     
     const response = await fetch(dataFile);
@@ -370,7 +370,7 @@ async function loadData(level, region = null, year = null) {
 
 async function loadRankings(year = null) {
   try {
-    const response = await fetch('data/rankings.json?v=20260618d');
+    const response = await fetch('data/rankings.json?v=20260706a');
     if (!response.ok) throw new Error('Failed to load rankings');
     
     const data = await response.json();
@@ -1957,36 +1957,60 @@ function unwrapYearData(data, year) {
     return data; // No year structure, return as-is
 }
 
+// Merge all years' data into a flat object (for search: search across all years)
+function mergeAllYears(data) {
+    if (!data || typeof data !== 'object') return null;
+    // Check if data has year structure (keys are 4-digit years)
+    const keys = Object.keys(data);
+    const hasYearStructure = keys.some(k => /^\d{4}$/.test(k));
+    if (!hasYearStructure) return data; // No year structure, return as-is
+    
+    // Merge all years' award arrays
+    const merged = {};
+    keys.forEach(year => {
+        const yearData = data[year];
+        if (yearData && typeof yearData === 'object') {
+            Object.keys(yearData).forEach(awardKey => {
+                if (Array.isArray(yearData[awardKey])) {
+                    if (!merged[awardKey]) merged[awardKey] = [];
+                    merged[awardKey] = merged[awardKey].concat(yearData[awardKey]);
+                }
+            });
+        }
+    });
+    return merged;
+}
+
 // Load all search data from JSON files (renamed from initSearch to avoid override by page scripts)
 async function loadSearchData() {
   try {
     const [global, us, eu, sea, latam, rankings, departmental, fs, pop, nameMapData] = await Promise.all([
-      fetch('data/global.json?v=20260618d').then(r => r.json()).catch(() => null),
-      fetch('data/us.json?v=20260618d').then(r => r.json()).catch(() => null),
-      fetch('data/eu.json?v=20260618d').then(r => r.json()).catch(() => null),
-      fetch('data/sea.json?v=20260618d').then(r => r.json()).catch(() => null),
-      fetch('data/latam.json?v=20260618d').then(r => r.json()).catch(() => null),
-      fetch('data/rankings.json?v=20260618d').then(r => r.json()).catch(() => null),
-      fetch('data/departmental.json?v=20260618d').then(r => r.json()).catch(() => null),
-      fetch('data/fs.json?v=20260618d').then(r => r.json()).catch(() => null),
-      fetch('data/pop.json?v=20260618d').then(r => r.json()).catch(() => null),
-      fetch('data/name-map.json?v=20260618d').then(r => r.json()).catch(() => null)
+      fetch('data/global.json?v=20260706a').then(r => r.json()).catch(() => null),
+      fetch('data/us.json?v=20260706a').then(r => r.json()).catch(() => null),
+      fetch('data/eu.json?v=20260706a').then(r => r.json()).catch(() => null),
+      fetch('data/sea.json?v=20260706a').then(r => r.json()).catch(() => null),
+      fetch('data/latam.json?v=20260706a').then(r => r.json()).catch(() => null),
+      fetch('data/rankings.json?v=20260706a').then(r => r.json()).catch(() => null),
+      fetch('data/departmental.json?v=20260706a').then(r => r.json()).catch(() => null),
+      fetch('data/fs.json?v=20260706a').then(r => r.json()).catch(() => null),
+      fetch('data/pop.json?v=20260706a').then(r => r.json()).catch(() => null),
+      fetch('data/name-map.json?v=20260706a').then(r => r.json()).catch(() => null)
     ]);
     nameMap = nameMapData || {};
     
-    const targetYear = AppData.currentYear || '2025';
+    // Search data includes ALL years (not filtered by current year)
     searchData = {
-      global: unwrapYearData(global, targetYear),
+      global: mergeAllYears(global),
       regional: {
-        us: unwrapYearData(us, targetYear),
-        eu: unwrapYearData(eu, targetYear),
-        sea: unwrapYearData(sea, targetYear),
-        latam: unwrapYearData(latam, targetYear)
+        us: mergeAllYears(us),
+        eu: mergeAllYears(eu),
+        sea: mergeAllYears(sea),
+        latam: mergeAllYears(latam)
       },
-      rankings: unwrapYearData(rankings, targetYear),
-      departmental: unwrapYearData(departmental, targetYear),
-      fs: unwrapYearData(fs, targetYear),
-      pop: unwrapYearData(pop, targetYear)
+      rankings: mergeAllYears(rankings),
+      departmental: mergeAllYears(departmental),
+      fs: mergeAllYears(fs),
+      pop: mergeAllYears(pop)
     };
     console.log("[Search] Data loaded successfully - global:", !!searchData.global, "H1 count:", searchData.global?.['H1 Project Awards']?.length, "H2 count:", searchData.global?.['H2 Project Awards']?.length);
   } catch (error) {
