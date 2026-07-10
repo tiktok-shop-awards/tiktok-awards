@@ -655,7 +655,7 @@
   <script src="js/auth-helper-v21.js?v=20260529a"></script>
   <script src="js/award-api.js?v=20260529a"></script>
   <script src="js/html2canvas.min.js"></script>
-  <script src="js/main.js?v=20260710b"></script>
+  <script src="js/main.js?v=20260710c"></script>
   <script>
     // Regional page specific initialization
     const regionNames = {
@@ -786,12 +786,19 @@
         quarterToggle.style.display = 'block';
         
         if (currentYear === '2026') {
-          // 2026: show Q1 Individual Awards button only
+          // 2026: show Q1 + Q2 Individual Awards buttons
           quarterButtons.style.display = 'none';
-          h1IndividualButton.style.display = 'block';
-          h1IndividualButton.innerHTML = '<button class="award-type-btn active" data-type="Q1 Individual Awards">Q1<span class="btn-subtitle">Stellar Contributors</span></button>';
-          if (!['Q1 Individual Awards'].includes(currentAwardType)) {
+          h1IndividualButton.style.display = 'flex';
+          h1IndividualButton.innerHTML = '<button class="award-type-btn" data-type="Q1 Individual Awards">Q1<span class="btn-subtitle">Stellar Contributors</span></button><button class="award-type-btn" data-type="Q2 Individual Awards">Q2<span class="btn-subtitle">Stellar Contributors</span></button>';
+          // Set active button
+          h1IndividualButton.querySelectorAll('.award-type-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.type === currentAwardType);
+          });
+          if (!['Q1 Individual Awards', 'Q2 Individual Awards'].includes(currentAwardType)) {
             currentAwardType = 'Q1 Individual Awards';
+            h1IndividualButton.querySelectorAll('.award-type-btn').forEach(b => {
+              b.classList.toggle('active', b.dataset.type === currentAwardType);
+            });
           }
         } else {
           // 2025 and earlier: show Q buttons
@@ -1045,6 +1052,30 @@
           }
         });
       });
+      
+      // Event delegation for dynamically created LATAM 2026 buttons (Q1/Q2 Individual Awards)
+      const quarterToggleEl = document.getElementById('quarter-toggle');
+      if (quarterToggleEl) {
+        quarterToggleEl.addEventListener('click', (e) => {
+          const btn = e.target.closest('.award-type-btn');
+          if (!btn) return;
+          if (currentRegion !== 'latam') return;
+          const h1Container = document.getElementById('h1-individual-button');
+          if (!h1Container || !h1Container.contains(btn)) return;
+          
+          h1Container.querySelectorAll('.award-type-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentAwardType = btn.dataset.type;
+          AppData.currentLatamQuarter = currentAwardType;
+          
+          if (regionalData) {
+            const top3 = calculateRegionTop3FullYear(regionalData, currentRegion);
+            renderPodium(top3, 'regional-top3');
+            renderRegionalAwards(regionalData, 'regional-awards', currentAwardType, currentRegion);
+            loadAllCardInteractions();
+          }
+        });
+      }
     }
     
     document.addEventListener('DOMContentLoaded', async () => {

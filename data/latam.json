@@ -1198,6 +1198,229 @@
           "Zhiwei Zhou"
         ]
       }
+    ],
+    "Q2 Individual Awards": [
+      {
+        "award_type": "2026 Q2个人奖",
+        "period": "2026 Q2",
+        "quarter": "Q2",
+        "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q2",
+        "team_award": "Stellar Contributors",
+        "winner_name": "Dave Barrón",
+        "email": "david.barron@bytedance.com",
+        "department": "",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Barrón Q2 2026 was one of the most demanding quarters for LATAM moderation — new BPO sites coming online and quality that left no room for error. Dave Barrón was at the center of it. In six weeks, he designed and deployed over nine training programs across five BPO sites, certifying cohorts of up to 81 moderators at a time, and achieved the moderation quality measure above 97% for every single site\n\nIn addition, he processed over 200 PBR change requests across five verticals — Content, Listing, IPR, Seller, and Appeals — at a pace of three to four updates per business day, keeping the policy layer synchronized with every operational shift.  And throughout all of it, he was already building the next layer: using AI tools and Juren-based automation to generate training content faster, scale program delivery without adding headcount, and make the entire training infrastructure more resilient",
+        "members": [
+          "Dave Barrón"
+        ]
+      },
+      {
+        "award_type": "2026 Q2个人奖",
+        "period": "2026 Q2",
+        "quarter": "Q2",
+        "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q2",
+        "team_award": "Stellar Contributors",
+        "winner_name": "Lucas Calle",
+        "email": "lucas.calle@bytedance.com",
+        "department": "",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Calle At the end of Q1, Lucas stepped into a new challenge as strategy and SOP PM for the Brazil Competitor Core Seller program. He rapidly built scalable operating processes, partnered closely with BPO teams, and later supported the successful rollout of the Mexico program through onsite enablement and training.\n\nLucas played a key role in scaling the BPO operation, contributing to the onboarding of 850+ core sellers and helping increase the overall onboarding rate from 27% to 32%. He also designed and optimized scalable BPO operating and training models, increasing weekly productivity by 2.4x (34→80 sellers/week) while significantly improving operational efficiency through lead segmentation, SOP optimization, performance management, and continuous process improvements.\n\nLucas consistently demonstrates bytestyles of Always Day 1, Be ambitious and bold, Deliver on every commitment, making him highly deserving of this recognition",
+        "members": [
+          "Lucas Calle"
+        ]
+      },
+      {
+        "award_type": "2026 Q2个人奖",
+        "period": "2026 Q2",
+        "quarter": "Q2",
+        "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q2",
+        "team_award": "Stellar Contributors",
+        "winner_name": "Shawn Li",
+        "email": "shawn.li@bytedance.com",
+        "department": "",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Brazil logistics experience has been facing continuous challenge on quality, in particular, Ageing & Lost. Carrier partners has been trying to optimize but with limited improvement. TTS needs to optimize the quality quickly, otherwise, big loss to GMV and consumer experience\n\nShawn and LATAM logistics data team, not only dived deep into data: analyzed fine-granular data, and identified root cause of ageing & lost, by segment and by statation; developed key quality metrics along the entire journey; but also worked closely with operation, and even extensively with carrier partners' organization to expose issues and work out solution faster.\n\nAs a result, Brazil has seen significant improvement in Aging & Lost, for key carriers and for market overall, from Oct 25 1.9% to status quo 0.6-0.7%, top 2 carrier reducing from 1.6%/0.86% to 0.55%/0.26% (though \"stable\" becoming even more critical now!)",
+        "members": [
+          "Shawn Li"
+        ]
+      },
+      {
+        "award_type": "2026 Q2个人奖",
+        "period": "2026 Q2",
+        "quarter": "Q2",
+        "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q2",
+        "team_award": "Stellar Contributors",
+        "winner_name": "王一舟",
+        "email": "crixus.wang@bytedance.com",
+        "department": "",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "S/T - 巴西单量增长迅速，但本地主要合作伙伴iMile经历本地团队组织变动，时效和质量指标未达预期，对末派网点疏于管理\nA - 快速和服务商新的管理团队建立了联系和信任，明确了激进地优化目标，对揽收、末派核心运营问题，协同服务商优化运营流程和方案，并通过现场复核确认方案落地执行\nR - iMile的X日达达成率从3月底75.1%提升至大促前87.1%，Aging&lost从3月底0.96%降低至0.26%",
+        "members": [
+          "王一舟"
+        ]
+      },
+      {
+        "award_type": "2026 Q2个人奖",
+        "period": "2026 Q2",
+        "quarter": "Q2",
+        "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q2",
+        "team_award": "Stellar Contributors",
+        "winner_name": "刘晗月",
+        "email": "liuhanyue@bytedance.com",
+        "department": "",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "晗月作为拉美综搜POC，积极推进拉美综搜优化，结合拉美搜索市场区域特性，逐层拆解问题，最终实现H1拉美综搜累计AB+24%，目标达成率达240%。\n主要通过生成式混排、U2I召回、精排复杂化、粗精一体、拉美视频补召回、拉美视频扶持等带来。最终实现拉美搜索GMV占比大盘BR 19.4%->24.3%；\nMX27%>30%。H1拉美搜索整体增速快于大盘，成为全场景增速最快场景。",
+        "members": [
+          "刘晗月"
+        ]
+      },
+      {
+        "award_type": "2026 Q2个人奖",
+        "period": "2026 Q2",
+        "quarter": "Q2",
+        "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q2",
+        "team_award": "Stellar Contributors",
+        "winner_name": "马莎",
+        "email": "masha.18@bytedance.com",
+        "department": "",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Masha 在质量提升项目中主导了 LATAM 市场视觉原则的定义工作。从 LATAM 频道页改版入手，她通过大量视觉探索和多轮内部讨论，形成了一套涵盖布局、色彩和字体的完整设计原则，有效解决了信息过载和视觉风格老旧的问题。\n这套原则在实践中成效显著。以 PDP banner 设计为例，直接应用了她在渐变色和信息层级方面的规范，在表现力与高质感之间实现了平衡。Masha 将抽象概念转化为具体设计规则的能力，为项目树立了关键的审美标准。\n设计改版在频道页取得了以下成果：\n-巴西站购物标签 GMV +1%，ARPU +0.93%，已于 4 月 15 日全量上线。\n-频道页：BR的商城GMV+1%，arpu+0.93%，MX波动，4.15已推全\n-商品详情页：MX大盘GMV+1.86%，CO+1.66%，PDP加立购率+1.9%；BR大盘GMV+1.36%，CO+1.32%，PDP加立购率+1.95%\n-购物车：关键指标稳定，已推全",
+        "members": [
+          "马莎"
+        ]
+      },
+      {
+        "award_type": "2026 Q2个人奖",
+        "period": "2026 Q2",
+        "quarter": "Q2",
+        "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q2",
+        "team_award": "Stellar Contributors",
+        "winner_name": "万质情",
+        "email": "erikawan@bytedance.com",
+        "department": "",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Erika作为拉美UG团队-物流补贴/价卡/收费策略负责人，在有成员流失、新同学培训、业务压力加大的背景下，保持求真务实、通过分析找到业务空间；高质高量完成业绩目标。具体结果：\n\n1）墨西哥物流补贴：完成两次策略迭代，1次券补，1次价卡。累计：大盘GMV+8.2%，主单+9.4%，毛补贴+2.5pp；大盘MAC uplift3月到6月:34.9%→40.7%，+5.8pp\n2）巴西物流补贴：4、5月分别完成1次策略迭代。累计：大盘GMV+6.3%，单量+8.2%，毛补贴率+1.9pp；大盘MAC uplift3月到6月：34.7%→42.5%，+7.8pp\n3）配合物流团队进行单量扩展，完成2轮中资服务商拓展城市的价卡对标SHP降价，共记35个城市、调控单量\n4) 优化区域TR，带动ROI优化，区域交易TR 5月 vs 1月提升3.8pp（墨西哥+1.6pp/巴西+4.6pp)",
+        "members": [
+          "万质情"
+        ]
+      },
+      {
+        "award_type": "2026 Q2个人奖",
+        "period": "2026 Q2",
+        "quarter": "Q2",
+        "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q2",
+        "team_award": "Stellar Contributors",
+        "winner_name": "辛艳楠",
+        "email": "xinyannan@bytedance.com",
+        "department": "",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Yannan Xin has made remarkable contributions to merchant supply operations in Mexico.\n1. She built end-to-end seller management and transfer policy for Mexico from scratch. Aligned with local market characteristics and business development stages, she clarified operational priorities for all teams through segmented category management, reasonable bandwidth caps, MAI graduation transfer protocols, and high-priority merchant transfer mechanisms.\n2. She spearheaded the launch of the MX competitor core sellers, conducting extensive work covering lead sourcing, lead distribution, and streamlining end-to-end BPO workflows, leading to a growing trend of the seller onboarding rate.\n3. She collaborated with DS, DE,and product teams to develop and refine visual performance dashboards, enabling transparent visualization of each team's performance contribution against target frameworks.\n 4. Beyond merchant supply, she also established standardized transfer rules and target frameworks for creator management, empowering the creator team to better hit their performance goals.",
+        "members": [
+          "辛艳楠"
+        ]
+      },
+      {
+        "award_type": "2026 Q2个人奖",
+        "period": "2026 Q2",
+        "quarter": "Q2",
+        "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q2",
+        "team_award": "Stellar Contributors",
+        "winner_name": "王勉之",
+        "email": "wangmianzhi@bytedance.com",
+        "department": "",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "背景\n    拉美开国一年， 随着业务发展，物流配送体验问题逐渐突出，特别以DNR例，LATAM 4PL DNR 整体达 0.45%，其中BR一度高达 0.53%；物流DNR 类物流客诉占比近 50%~60%， 大量包裹\"显示妥投但买家实际未收\"。异常履约持续推高赔付与纠纷，BR相关赔付与物流体验压力较为突出。\n\n目标\n    围绕拉美，尤其BR DNR 高发与赔付压力，技术侧搭建\"问题识别—归因下钻—方案上线—效果验证\"专项治理机制，既要压降 DNR 与异常赔付，也要沉淀可复用治理能力，支撑后续市场规模化复制。\n\n行动\n1. 技术联合业务推进服务商补齐 POD、签收坐标、小件员 ID 等核心要素；\n2.推进上线签收电子围栏能力、BR危险区预识别能力、Top 站点/小件员监控预警，配合业务侧的处罚能力；\n3.将售后 DNR 赔付、轨迹、地理信息纳入统一指标体系，与PSO，业务形成形成双周闭环运营机制。\n4. 沉淀标准化本地物流履约配送十个核心质量健康度指标。统一本地物流市场配送数据集的口径与数据源，消除重复建设、降低数据成本，同步提升数据运营质量。\n\n成果\n1. BR 市场 DNR 从 Q1 的 0.53%【全球本地物流市场Top3】 治理至 Q2 的 0.35%左右的水位（环比 -22.4%），DNR 物流责赔付下降 4.1%。商家进线数目从Q1周均600+降至周均300+。\n2. MX市场DNR稳定在 0.16% 低位；",
+        "members": [
+          "王勉之"
+        ]
+      },
+      {
+        "award_type": "2026 Q2个人奖",
+        "period": "2026 Q2",
+        "quarter": "Q2",
+        "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q2",
+        "team_award": "Stellar Contributors",
+        "winner_name": "王一川",
+        "email": "wangyichuan@bytedance.com",
+        "department": "",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "作为拉美电商视频推荐方向的POC，带领方向几位同学在26年上半年做出来了显著的gmv收益，其中Q1季度反转all GMV +3.5%、Rec Video GMV +15.35%，Q2季度累计all GMV +1.65%（仅统计all指标置信实验）、Rec Video GMV +21.67%。在召回模型优化、算力优化、粗/精/混全链路VT一致性治理、大混排V容器切换、混排多题材PK分治理、潜客DNC优化、流量成本优化等方面均取得了不错的上线收益，同时供给侧不断优化冷启动机制和效率，并控制AIGC内容扶持双高内容，在做好供给生态方面也做出来不错的成绩。稳定性方面，上半年也做了很多基建工作，针对新开国，升级引入分国家发车实验监控+checker报警拦截、视频粗/精/混链路多维度的VT监控、一致性性监控，大幅提升问题发现、排查的效率及线上稳定性，问题排查发现&止损周期从平均2~5天缩短至1天左右，实验&上线类事故率降低至0",
+        "members": [
+          "王一川"
+        ]
+      },
+      {
+        "award_type": "2026 Q2个人奖",
+        "period": "2026 Q2",
+        "quarter": "Q2",
+        "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q2",
+        "team_award": "Stellar Contributors",
+        "winner_name": "Juan Carlos Casillas",
+        "email": "juan.casillas@bytedance.com",
+        "department": "",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Juan Carlos Casillas 作为墨西哥支付 BD，Q2 牵头墨西哥电商支付渠道成本优化，系统性推进银行卡与钱包（Mercado Pago）两大核心支付方式的降本，推动 MX Payin 整体费率于 26 年 4 月优化至 2.11%，较 25 年底下降 37bps、较上线初期累计优化 ~100bps，整体费率已略优于竞品，为 TTS 拉美业务的健康增长与盈利能力提升提供了直接支撑。\n\n关键进展：\n- 银行卡（卡交易）：牵头完成税抵扣、渠道降费、渠道分流调整等多项优化，银行卡成本已基本追平竞品。墨西哥银行卡成本存在明确监管要求及公开披露，各家差异较小；在此监管约束下仍将成本压至与竞品持平水平，体现了扎实的渠道谈判与落地执行能力。\n- Mercado Pago（钱包）：延续并深化 Q1 落地的 Mercado Pago 渠道直连项目，Q2 直连占比已提升至 100%，MP 成本下降 ~100bps+，替代原 Ebanx 间连模式后进一步释放降本与链路稳定性收益。\n\nWay of working：\n在监管约束强、渠道结构复杂的墨西哥市场，Juan 通过精细化的渠道策略与跨职能协同，在压力下高效落地多项降本举措，实现整体费率领先竞品，充分契合本奖项的评选标准。",
+        "members": [
+          "Juan Carlos Casillas"
+        ]
+      },
+      {
+        "award_type": "2026 Q2个人奖",
+        "period": "2026 Q2",
+        "quarter": "Q2",
+        "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q2",
+        "team_award": "Stellar Contributors",
+        "winner_name": "Gabriela Pereira",
+        "email": "gabriela.pereira@bytedance.com",
+        "department": "",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Gabriela Pereira was fundamental in Q2 in helping build our team’s creator strategy, especially in the absence of a dedicated Creator POC. She single-handedly organized our creator matchmaking event, bringing together 500+ top creators and 30 brands, which helped accelerate creator-seller collaboration across the category.\nAs a direct result of this initiative, we were able to generate several strong creator-seller matches, including the collaboration between Maicon and Delta Ecom, which alone drove $420K in GMV in June for coats.\nShe delivered this impact while continuing to grow her own managed brands. Notably, she helped revive the collaboration with Naraka and Insider, supporting their growth into Top 20 Fashion brands. Overall, Gabriela demonstrated strong ownership beyond her core AM scope, proactively filling a critical gap for the team and creating measurable business impact through creator-led growth.",
+        "members": [
+          "Gabriela Pereira"
+        ]
+      },
+      {
+        "award_type": "2026 Q2个人奖",
+        "period": "2026 Q2",
+        "quarter": "Q2",
+        "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q2",
+        "team_award": "Stellar Contributors",
+        "winner_name": "Karina Ayala",
+        "email": "karina.ayala@bytedance.com",
+        "department": "",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "- Strategic Outperformance: Karina consistently exceeded her GMV and T3+ targets, achieving 132% to goal in Q1 and reaching 53K daily GMV in June with an impressive 26 T3+ sellers in her portfolio. These achievements are the direct result of her strategic, data-driven approach to seller management rather than chance.\n- \"Grow Together\" Mentality: Going beyond her individual success, Karina proactively shared her successful management templates and strategic frameworks with the wider group. Alongside her intern, she also introduced advanced AI practices to the team, demonstrating a strong commitment to collective growth and shared success.\n- Logistics SME & Crisis Management: As the Subject Matter Expert (SME) for logistics, she cultivated strong cross-functional partnerships. During the Hot Sale Estafeta incident, she effectively navigated the challenges faced by our highly impacted team. By clearly communicating the 3-wave solution, she successfully minimized the potential impact on OVL.",
+        "members": [
+          "Karina Ayala"
+        ]
+      }
     ]
   }
 }

@@ -283,15 +283,15 @@ async function loadData(level, region = null, year = null) {
     let dataFile;
     
     if (level === 'global') {
-      dataFile = 'data/global.json?v=20260710b';
+      dataFile = 'data/global.json?v=20260710c';
     } else if (level === 'regional' && region) {
-      dataFile = 'data/' + region + '.json?v=20260710b';
+      dataFile = 'data/' + region + '.json?v=20260710c';
     } else if (level === 'fs') {
-      dataFile = 'data/fs.json?v=20260710b';
+      dataFile = 'data/fs.json?v=20260710c';
     } else if (level === 'pop') {
-      dataFile = 'data/pop.json?v=20260710b';
+      dataFile = 'data/pop.json?v=20260710c';
     } else if (level === 'departmental') {
-      dataFile = 'data/departmental.json?v=20260710b';
+      dataFile = 'data/departmental.json?v=20260710c';
     }
     
     const response = await fetch(dataFile);
@@ -370,7 +370,7 @@ async function loadData(level, region = null, year = null) {
 
 async function loadRankings(year = null) {
   try {
-    const response = await fetch('data/rankings.json?v=20260710b');
+    const response = await fetch('data/rankings.json?v=20260710c');
     if (!response.ok) throw new Error('Failed to load rankings');
     
     const data = await response.json();
@@ -472,6 +472,12 @@ function getIndividualAwardsByQuarter(data, quarter) {
   if (hasYearStructure(data)) {
     const yearData = data[currentYear];
     if (!yearData) return [];
+    // 2026+ structure: Q1/Q2 Individual Awards keys
+    const quarterKey = quarter + ' Individual Awards';
+    if (yearData[quarterKey]) {
+      return yearData[quarterKey];
+    }
+    // Legacy: H2 Individual Awards with quarter field
     const allIndividual = yearData['H2 Individual Awards'] || [];
     return allIndividual.filter(a => a.quarter === quarter || a.period === quarter);
   }
@@ -557,6 +563,13 @@ function getQ1IndividualAwardsYear(data, year) {
   return yearData['Q1 Individual Awards'] || [];
 }
 
+// Get Q2 individual awards (year-based structure, for LATAM 2026)
+function getQ2IndividualAwardsYear(data, year) {
+  const yearData = getYearData(data, year);
+  if (!yearData) return [];
+  return yearData['Q2 Individual Awards'] || [];
+}
+
 // Get H2 individual awards (year-based structure)
 function getH2IndividualAwardsYear(data, year) {
   const yearData = getYearData(data, year);
@@ -571,6 +584,8 @@ function getLatamIndividualAwards(data, year, period) {
   
   if (period === 'Q1 Individual Awards') {
     return yearData['Q1 Individual Awards'] || [];
+  } else if (period === 'Q2 Individual Awards') {
+    return yearData['Q2 Individual Awards'] || [];
   } else if (period === 'H2 Individual Awards') {
     return yearData['H2 Individual Awards'] || [];
   }
@@ -585,6 +600,9 @@ function getAvailableLatamPeriods(data, year) {
   const periods = [];
   if (yearData['Q1 Individual Awards'] && yearData['Q1 Individual Awards'].length > 0) {
     periods.push('Q1 Individual Awards');
+  }
+  if (yearData['Q2 Individual Awards'] && yearData['Q2 Individual Awards'].length > 0) {
+    periods.push('Q2 Individual Awards');
   }
   if (yearData['H2 Individual Awards'] && yearData['H2 Individual Awards'].length > 0) {
     periods.push('H2 Individual Awards');
@@ -817,8 +835,10 @@ function calculateRegionTop3FullYear(regionData, region) {
   let allIndividualAwards = [];
   if (region === 'latam') {
     if (currentYear === '2026') {
-      // 2026: use Q1 Individual Awards
-      allIndividualAwards = getQ1IndividualAwardsYear(regionData, currentYear);
+      // 2026: use Q1 + Q2 Individual Awards
+      allIndividualAwards = getQ1IndividualAwardsYear(regionData, currentYear).concat(
+        getQ2IndividualAwardsYear(regionData, currentYear)
+      );
     } else {
       // 2025: use Q1-Q4 quarters
       allIndividualAwards = getIndividualAwardsByQuarter(regionData, 'Q1').concat(
@@ -1710,12 +1730,20 @@ function renderRegionalAwards(data, containerId, period, region) {
       html = renderIndividualCards(individualAwards, region, 'Q4 BFCM');
     }
   } else if (period === 'Q1 Individual Awards') {
-    // LATAM H1 individual awards (2026)
-    const h1Awards = getQ1IndividualAwardsYear(data, currentYear);
-    if (h1Awards.length === 0) {
-      html = `<div class="no-data-msg">No H1 individual awards available for LATAM ${currentYear}</div>`;
+    // LATAM Q1 individual awards (2026)
+    const q1Awards = getQ1IndividualAwardsYear(data, currentYear);
+    if (q1Awards.length === 0) {
+      html = `<div class="no-data-msg">No Q1 individual awards available for LATAM ${currentYear}</div>`;
     } else {
-      html = renderIndividualCards(h1Awards, region, 'H1');
+      html = renderIndividualCards(q1Awards, region, 'Q1');
+    }
+  } else if (period === 'Q2 Individual Awards') {
+    // LATAM Q2 individual awards (2026)
+    const q2Awards = getQ2IndividualAwardsYear(data, currentYear);
+    if (q2Awards.length === 0) {
+      html = `<div class="no-data-msg">No Q2 individual awards available for LATAM ${currentYear}</div>`;
+    } else {
+      html = renderIndividualCards(q2Awards, region, 'Q2');
     }
   } else if (period === 'H1 Project Awards') {
     const h1Awards = getH1ProjectAwardsYear(data, currentYear);
@@ -1985,16 +2013,16 @@ function mergeAllYears(data) {
 async function loadSearchData() {
   try {
     const [global, us, eu, sea, latam, rankings, departmental, fs, pop, nameMapData] = await Promise.all([
-      fetch('data/global.json?v=20260710b').then(r => r.json()).catch(() => null),
-      fetch('data/us.json?v=20260710b').then(r => r.json()).catch(() => null),
-      fetch('data/eu.json?v=20260710b').then(r => r.json()).catch(() => null),
-      fetch('data/sea.json?v=20260710b').then(r => r.json()).catch(() => null),
-      fetch('data/latam.json?v=20260710b').then(r => r.json()).catch(() => null),
-      fetch('data/rankings.json?v=20260710b').then(r => r.json()).catch(() => null),
-      fetch('data/departmental.json?v=20260710b').then(r => r.json()).catch(() => null),
-      fetch('data/fs.json?v=20260710b').then(r => r.json()).catch(() => null),
-      fetch('data/pop.json?v=20260710b').then(r => r.json()).catch(() => null),
-      fetch('data/name-map.json?v=20260710b').then(r => r.json()).catch(() => null)
+      fetch('data/global.json?v=20260710c').then(r => r.json()).catch(() => null),
+      fetch('data/us.json?v=20260710c').then(r => r.json()).catch(() => null),
+      fetch('data/eu.json?v=20260710c').then(r => r.json()).catch(() => null),
+      fetch('data/sea.json?v=20260710c').then(r => r.json()).catch(() => null),
+      fetch('data/latam.json?v=20260710c').then(r => r.json()).catch(() => null),
+      fetch('data/rankings.json?v=20260710c').then(r => r.json()).catch(() => null),
+      fetch('data/departmental.json?v=20260710c').then(r => r.json()).catch(() => null),
+      fetch('data/fs.json?v=20260710c').then(r => r.json()).catch(() => null),
+      fetch('data/pop.json?v=20260710c').then(r => r.json()).catch(() => null),
+      fetch('data/name-map.json?v=20260710c').then(r => r.json()).catch(() => null)
     ]);
     nameMap = nameMapData || {};
     
