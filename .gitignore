@@ -1,2 +1,5 @@
 employee_data/
 build_translation_v3.py
+.feishu_cli/
+.feishu_cli.backup/
+.feishu-cli/
