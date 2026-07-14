@@ -352,8 +352,28 @@ async function loadData(level, region = null, year = null) {
     
     if (hasYearStructure) {
       // 多年份数据结构：返回对应年份数据
-      if (data[targetYear]) {
-        const yearData = data[targetYear];
+      let yearData = data[targetYear];
+      
+      // 检查是否是2026年且数据为空（所有数组长度为0），回退到2025
+      if (targetYear === '2026' && yearData && data['2025']) {
+        const isEmpty = Object.values(yearData).every(arr => !Array.isArray(arr) || arr.length === 0);
+        if (isEmpty) {
+          yearData = data['2025'];
+        }
+      }
+      
+      if (yearData) {
+        if (level === 'global') {
+          AppData.global = yearData;
+        } else if (level === 'regional') {
+          AppData.regional[region] = yearData;
+        } else if (level === 'departmental') {
+          AppData.departmental = yearData;
+        }
+        return yearData;
+      } else if (targetYear === '2026' && data['2025']) {
+        // 2026数据不存在，回退到2025
+        yearData = data['2025'];
         if (level === 'global') {
           AppData.global = yearData;
         } else if (level === 'regional') {
