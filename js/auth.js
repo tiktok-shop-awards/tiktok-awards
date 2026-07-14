@@ -1,7 +1,8 @@
 /**
- * Feishu Auth v5 - Gate with lk_target_url deep link
- * 1. External browser: gate + redirect to Feishu app with lk_target_url
- * 2. In Feishu: show content (Feishu opens the exact target URL directly)
+ * Feishu Auth v6 - Gate with dual applink strategy
+ * Uses both web_app/open (lk_target_url) and web_url/open for maximum compatibility
+ * 1. External browser: gate + redirect to Feishu with target URL
+ * 2. In Feishu: show content
  */
 document.addEventListener('DOMContentLoaded', function() {
   var ua = navigator.userAgent;
@@ -11,7 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // External browser → gate
     var APP_ID = 'cli_a968a864a0f89bdd';
     var currentUrl = window.location.href;
-    var applink = 'https://applink.feishu.cn/client/web_app/open?appId=' + APP_ID + '&lk_target_url=' + encodeURIComponent(currentUrl);
+    // Primary: web_url/open (directly opens URL in Feishu WebView, no app routing)
+    var applink = 'https://applink.feishu.cn/client/web_url/open?url=' + encodeURIComponent(currentUrl) + '&mode=appCenter';
 
     var overlay = document.getElementById('auth-overlay');
     if (!overlay) {
