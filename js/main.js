@@ -401,7 +401,7 @@ function getQ1ProjectAwards(data) {
   }
   // Legacy: H1 Project Awards中quarter为Q1的
   const h1Awards = data['H1 Project Awards'] || [];
-  return h1Awards.filter(a => a.quarter === 'Q1' || a.period === 'Q1');
+  return h1Awards.filter(a => a.quarter === 'Q1' || a.period === 'Q1' || a.period === 'H1');
 }
 
 // Get Q2 project awards
@@ -411,7 +411,7 @@ function getQ2ProjectAwards(data) {
     return data['Q2 Project Awards'];
   }
   const h1Awards = data['H1 Project Awards'] || [];
-  return h1Awards.filter(a => a.quarter === 'Q2' || a.period === 'Q2');
+  return h1Awards.filter(a => a.quarter === 'Q2' || a.period === 'Q2' || a.period === 'H1');
 }
 
 // Get Q3 project awards
@@ -421,7 +421,7 @@ function getQ3ProjectAwards(data) {
     return data['Q3 Project Awards'];
   }
   const h2Awards = data['H2 Project Awards'] || [];
-  return h2Awards.filter(a => a.quarter === 'Q3' || a.period === 'Q3');
+  return h2Awards.filter(a => a.quarter === 'Q3' || a.period === 'Q3' || a.period === 'H2');
 }
 
 // Get Q4 project awards
@@ -431,7 +431,7 @@ function getQ4ProjectAwards(data) {
     return data['Q4 Project Awards'];
   }
   const h2Awards = data['H2 Project Awards'] || [];
-  return h2Awards.filter(a => a.quarter === 'Q4' || a.period === 'Q4');
+  return h2Awards.filter(a => a.quarter === 'Q4' || a.period === 'Q4' || a.period === 'H2');
 }
 
 // Legacy support: Get H1 project awards (Q1 + Q2)
@@ -455,7 +455,7 @@ function getH2ProjectAwards(data) {
 // Combine all project awards into single array
 function getAllProjectAwards(data) {
   if (!data) return [];
-  return [...getQ1ProjectAwards(data), ...getQ2ProjectAwards(data), ...getQ3ProjectAwards(data), ...getQ4ProjectAwards(data)];
+  return [...getH1ProjectAwards(data), ...getH2ProjectAwards(data)];
 }
 
 // Get all individual awards
