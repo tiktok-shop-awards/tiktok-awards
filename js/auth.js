@@ -1,23 +1,17 @@
 /**
- * Feishu Auth v4 - Gate with deep link restoration
- * 1. External browser: gate + save target URL + redirect to Feishu app
- * 2. In Feishu with ?from=otherApp: restore saved URL and navigate back
- * 3. In Feishu normally: show content
+ * Feishu Auth v5 - Gate with lk_target_url deep link
+ * 1. External browser: gate + redirect to Feishu app with lk_target_url
+ * 2. In Feishu: show content (Feishu opens the exact target URL directly)
  */
 document.addEventListener('DOMContentLoaded', function() {
   var ua = navigator.userAgent;
   var isInFeishu = /Lark|Feishu/i.test(ua);
-  var urlParams = new URLSearchParams(window.location.search);
-  var fromOtherApp = urlParams.get('from') === 'otherApp';
 
   if (!isInFeishu) {
     // External browser → gate
     var APP_ID = 'cli_a968a864a0f89bdd';
-    var currentUrl = window.location.pathname + window.location.hash;
-    try { localStorage.setItem('feishu_redirect_url', currentUrl); } catch(e) {}
-
-    var applink = 'https://applink.feishu.cn/client/web_app/open?appId=' + APP_ID;
-    console.log('[FeishuAuth] External browser, saved URL:', currentUrl, 'redirecting to Feishu app');
+    var currentUrl = window.location.href;
+    var applink = 'https://applink.feishu.cn/client/web_app/open?appId=' + APP_ID + '&lk_target_url=' + encodeURIComponent(currentUrl);
 
     var overlay = document.getElementById('auth-overlay');
     if (!overlay) {
@@ -32,19 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     return;
   }
 
-  // In Feishu
-  if (fromOtherApp) {
-    // Came via Feishu app link → restore original deep link
-    var savedUrl = null;
-    try { savedUrl = localStorage.getItem('feishu_redirect_url'); localStorage.removeItem('feishu_redirect_url'); } catch(e) {}
-    if (savedUrl) {
-      console.log('[FeishuAuth] Restoring deep link:', savedUrl);
-      window.location.replace(savedUrl);
-      return;
-    }
-  }
-
-  // Normal: show content
+  // In Feishu → show content
   console.log('[FeishuAuth] In Feishu, showing content');
   var overlay = document.getElementById('auth-overlay');
   if (overlay) overlay.style.display = 'none';
