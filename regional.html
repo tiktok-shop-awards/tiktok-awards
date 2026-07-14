@@ -714,7 +714,7 @@
         displayRegion = 'eu_pop';
       }
       
-      document.getElementById('region-name').textContent = regionNames[displayRegion] || regionNames[currentRegion];
+      // region-name element was removed; title is updated via regional-awards-title below
       
       // Update 2026 badge visibility: hide if region has data (latam, fs), show if pending
       const year2026Btn = document.getElementById('year-2026-btn');
