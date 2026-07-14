@@ -491,6 +491,14 @@ img {
   letter-spacing: 0.5px;
 }
 
+.podium-rank-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: -4px;
+  margin-bottom: var(--spacing-xs);
+}
+
 .podium-item.podium-tied .podium-name {
   font-size: 13px;
   line-height: 1.5;
