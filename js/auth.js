@@ -11,7 +11,7 @@ const FeishuAuth = {
 
     if (!isInFeishu) {
       // External browser → redirect to open in Feishu app
-      var applink = 'https://applink.feishu.cn/client/web_app/open?appId=' + this.APP_ID + '&' + window.location.search.substring(1);
+      var applink = 'https://applink.feishu.cn/client/web_app/open?appId=' + this.APP_ID + window.location.hash;
       console.log('[FeishuAuth] External browser, redirecting to Feishu app');
       
       var overlay = document.getElementById('auth-overlay');

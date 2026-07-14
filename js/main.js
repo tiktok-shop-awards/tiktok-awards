@@ -21,26 +21,28 @@ const AppData = {
 
 // ==================== Utility Functions ====================
 function getUrlParam(param) {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(param);
+  const hash = window.location.hash.substring(1);
+  const hashParams = new URLSearchParams(hash);
+  return hashParams.get(param);
 }
 
 function setUrlParam(param, value) {
-  const url = new URL(window.location.href);
-  url.searchParams.set(param, value);
-  window.history.replaceState({}, '', url);
+  const hashParams = new URLSearchParams(window.location.hash.substring(1));
+  hashParams.set(param, value);
+  window.history.replaceState({}, '', window.location.pathname + '#' + hashParams.toString());
 }
 
 function setUrlParams(params) {
-  const url = new URL(window.location.href);
+  const hashParams = new URLSearchParams(window.location.hash.substring(1));
   for (const [k, v] of Object.entries(params)) {
     if (v === null || v === undefined || v === '') {
-      url.searchParams.delete(k);
+      hashParams.delete(k);
     } else {
-      url.searchParams.set(k, v);
+      hashParams.set(k, v);
     }
   }
-  window.history.replaceState({}, '', url);
+  const hashStr = hashParams.toString();
+  window.history.replaceState({}, '', window.location.pathname + (hashStr ? '#' + hashStr : ''));
 }
 
 // Toast notification (replaces alert for non-blocking messages)
@@ -295,15 +297,15 @@ async function loadData(level, region = null, year = null) {
     let dataFile;
     
     if (level === 'global') {
-      dataFile = 'data/global.json?v=20260714g';
+      dataFile = 'data/global.json?v=20260714i';
     } else if (level === 'regional' && region) {
-      dataFile = 'data/' + region + '.json?v=20260714g';
+      dataFile = 'data/' + region + '.json?v=20260714i';
     } else if (level === 'fs') {
-      dataFile = 'data/fs.json?v=20260714g';
+      dataFile = 'data/fs.json?v=20260714i';
     } else if (level === 'pop') {
-      dataFile = 'data/pop.json?v=20260714g';
+      dataFile = 'data/pop.json?v=20260714i';
     } else if (level === 'departmental') {
-      dataFile = 'data/departmental.json?v=20260714g';
+      dataFile = 'data/departmental.json?v=20260714i';
     }
     
     const response = await fetch(dataFile);
@@ -382,7 +384,7 @@ async function loadData(level, region = null, year = null) {
 
 async function loadRankings(year = null) {
   try {
-    const response = await fetch('data/rankings.json?v=20260714g');
+    const response = await fetch('data/rankings.json?v=20260714i');
     if (!response.ok) throw new Error('Failed to load rankings');
     
     const data = await response.json();
@@ -2038,16 +2040,16 @@ function mergeAllYears(data) {
 async function loadSearchData() {
   try {
     const [global, us, eu, sea, latam, rankings, departmental, fs, pop, nameMapData] = await Promise.all([
-      fetch('data/global.json?v=20260714g').then(r => r.json()).catch(() => null),
-      fetch('data/us.json?v=20260714g').then(r => r.json()).catch(() => null),
-      fetch('data/eu.json?v=20260714g').then(r => r.json()).catch(() => null),
-      fetch('data/sea.json?v=20260714g').then(r => r.json()).catch(() => null),
-      fetch('data/latam.json?v=20260714g').then(r => r.json()).catch(() => null),
-      fetch('data/rankings.json?v=20260714g').then(r => r.json()).catch(() => null),
-      fetch('data/departmental.json?v=20260714g').then(r => r.json()).catch(() => null),
-      fetch('data/fs.json?v=20260714g').then(r => r.json()).catch(() => null),
-      fetch('data/pop.json?v=20260714g').then(r => r.json()).catch(() => null),
-      fetch('data/name-map.json?v=20260714g').then(r => r.json()).catch(() => null)
+      fetch('data/global.json?v=20260714i').then(r => r.json()).catch(() => null),
+      fetch('data/us.json?v=20260714i').then(r => r.json()).catch(() => null),
+      fetch('data/eu.json?v=20260714i').then(r => r.json()).catch(() => null),
+      fetch('data/sea.json?v=20260714i').then(r => r.json()).catch(() => null),
+      fetch('data/latam.json?v=20260714i').then(r => r.json()).catch(() => null),
+      fetch('data/rankings.json?v=20260714i').then(r => r.json()).catch(() => null),
+      fetch('data/departmental.json?v=20260714i').then(r => r.json()).catch(() => null),
+      fetch('data/fs.json?v=20260714i').then(r => r.json()).catch(() => null),
+      fetch('data/pop.json?v=20260714i').then(r => r.json()).catch(() => null),
+      fetch('data/name-map.json?v=20260714i').then(r => r.json()).catch(() => null)
     ]);
     nameMap = nameMapData || {};
     
