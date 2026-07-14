@@ -983,7 +983,7 @@ function renderPodium(top3, containerId, title) {
     return `
       <div class="podium-item ${getClass(group.rank)} podium-tied">
         <div class="podium-medal">${getMedal(group.rank)}</div>
-        <div class="podium-rank">Tied for #${group.rank} (${total} people)</div>
+        <div class="podium-rank">Tied for ${group.rank} (${total} people)</div>
         <div class="podium-name">${nameHtml}</div>
         ${noteHtml}
         <div class="podium-score">${group.score} pts</div>
