@@ -530,9 +530,21 @@
     // ===== Load Data =====
     async function loadAndRenderDepartmentalAwards() {
       try {
-        const response = await fetch('data/departmental.json?v=20260601a');
-        if (!response.ok) throw new Error('Failed to load departmental data');
-        departmentalData = await response.json();
+        // Load manifest first, then fetch chunked files
+        const manifestResp = await fetch('data/manifest.json?v=20260714z');
+        const manifest = await manifestResp.json();
+        const deptMap = manifest['departmental'] || {};
+        departmentalData = {};
+        for (const year of Object.keys(deptMap)) {
+          departmentalData[year] = {};
+          for (const quarter of Object.keys(deptMap[year])) {
+            const files = deptMap[year][quarter];
+            const chunks = await Promise.all(
+              files.map(f => fetch('data/' + f + '?v=20260714z').then(r => r.json()))
+            );
+            departmentalData[year][quarter] = chunks.flat();
+          }
+        }
       } catch (error) {
         console.error('Error loading departmental awards:', error);
         departmentalData = {};
