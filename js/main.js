@@ -283,15 +283,15 @@ async function loadData(level, region = null, year = null) {
     let dataFile;
     
     if (level === 'global') {
-      dataFile = 'data/global.json?v=20260714a';
+      dataFile = 'data/global.json?v=20260714b';
     } else if (level === 'regional' && region) {
-      dataFile = 'data/' + region + '.json?v=20260714a';
+      dataFile = 'data/' + region + '.json?v=20260714b';
     } else if (level === 'fs') {
-      dataFile = 'data/fs.json?v=20260714a';
+      dataFile = 'data/fs.json?v=20260714b';
     } else if (level === 'pop') {
-      dataFile = 'data/pop.json?v=20260714a';
+      dataFile = 'data/pop.json?v=20260714b';
     } else if (level === 'departmental') {
-      dataFile = 'data/departmental.json?v=20260714a';
+      dataFile = 'data/departmental.json?v=20260714b';
     }
     
     const response = await fetch(dataFile);
@@ -370,7 +370,7 @@ async function loadData(level, region = null, year = null) {
 
 async function loadRankings(year = null) {
   try {
-    const response = await fetch('data/rankings.json?v=20260714a');
+    const response = await fetch('data/rankings.json?v=20260714b');
     if (!response.ok) throw new Error('Failed to load rankings');
     
     const data = await response.json();
@@ -649,9 +649,26 @@ function calculateGlobalTop3FullYear(globalData) {
     });
   });
   
-  return Object.values(memberScores)
-    .sort((a, b) => b.score - a.score || b.awards - a.awards)
-    .slice(0, 3);
+  const sorted = Object.values(memberScores)
+    .filter(p => p.score > 0)
+    .sort((a, b) => b.score - a.score || b.awards - a.awards);
+
+  // Group by distinct score levels, take top 3 levels, max 3 people per level
+  const result = [];
+  let currentScore = null;
+  let countInLevel = 0;
+  let levelsUsed = 0;
+  for (const person of sorted) {
+    if (person.score !== currentScore) {
+      currentScore = person.score;
+      countInLevel = 0;
+      levelsUsed++;
+    }
+    if (levelsUsed > 3) break;
+    countInLevel++;
+    if (countInLevel <= 3) result.push(person);
+  }
+  return result;
 }
 
 // Calculate FULL YEAR Top 10 for Global (combining H1 + H2)
@@ -2013,16 +2030,16 @@ function mergeAllYears(data) {
 async function loadSearchData() {
   try {
     const [global, us, eu, sea, latam, rankings, departmental, fs, pop, nameMapData] = await Promise.all([
-      fetch('data/global.json?v=20260714a').then(r => r.json()).catch(() => null),
-      fetch('data/us.json?v=20260714a').then(r => r.json()).catch(() => null),
-      fetch('data/eu.json?v=20260714a').then(r => r.json()).catch(() => null),
-      fetch('data/sea.json?v=20260714a').then(r => r.json()).catch(() => null),
-      fetch('data/latam.json?v=20260714a').then(r => r.json()).catch(() => null),
-      fetch('data/rankings.json?v=20260714a').then(r => r.json()).catch(() => null),
-      fetch('data/departmental.json?v=20260714a').then(r => r.json()).catch(() => null),
-      fetch('data/fs.json?v=20260714a').then(r => r.json()).catch(() => null),
-      fetch('data/pop.json?v=20260714a').then(r => r.json()).catch(() => null),
-      fetch('data/name-map.json?v=20260714a').then(r => r.json()).catch(() => null)
+      fetch('data/global.json?v=20260714b').then(r => r.json()).catch(() => null),
+      fetch('data/us.json?v=20260714b').then(r => r.json()).catch(() => null),
+      fetch('data/eu.json?v=20260714b').then(r => r.json()).catch(() => null),
+      fetch('data/sea.json?v=20260714b').then(r => r.json()).catch(() => null),
+      fetch('data/latam.json?v=20260714b').then(r => r.json()).catch(() => null),
+      fetch('data/rankings.json?v=20260714b').then(r => r.json()).catch(() => null),
+      fetch('data/departmental.json?v=20260714b').then(r => r.json()).catch(() => null),
+      fetch('data/fs.json?v=20260714b').then(r => r.json()).catch(() => null),
+      fetch('data/pop.json?v=20260714b').then(r => r.json()).catch(() => null),
+      fetch('data/name-map.json?v=20260714b').then(r => r.json()).catch(() => null)
     ]);
     nameMap = nameMapData || {};
     
