@@ -21,28 +21,32 @@ const AppData = {
 
 // ==================== Utility Functions ====================
 function getUrlParam(param) {
-  const hash = window.location.hash.substring(1);
-  const hashParams = new URLSearchParams(hash);
+  // Read from query string first (survives Feishu WebView), then hash as fallback
+  var qp = new URLSearchParams(window.location.search);
+  var val = qp.get(param);
+  if (val !== null && val !== undefined && val !== '') return val;
+  var hash = window.location.hash.substring(1);
+  var hashParams = new URLSearchParams(hash);
   return hashParams.get(param);
 }
 
 function setUrlParam(param, value) {
-  const hashParams = new URLSearchParams(window.location.hash.substring(1));
-  hashParams.set(param, value);
-  window.history.replaceState({}, '', window.location.pathname + '#' + hashParams.toString());
+  var qp = new URLSearchParams(window.location.search);
+  qp.set(param, value);
+  window.history.replaceState({}, '', window.location.pathname + '?' + qp.toString());
 }
 
 function setUrlParams(params) {
-  const hashParams = new URLSearchParams(window.location.hash.substring(1));
-  for (const [k, v] of Object.entries(params)) {
-    if (v === null || v === undefined || v === '') {
-      hashParams.delete(k);
+  var qp = new URLSearchParams(window.location.search);
+  for (var k in params) {
+    if (params[k] === null || params[k] === undefined || params[k] === '') {
+      qp.delete(k);
     } else {
-      hashParams.set(k, v);
+      qp.set(k, params[k]);
     }
   }
-  const hashStr = hashParams.toString();
-  window.history.replaceState({}, '', window.location.pathname + (hashStr ? '#' + hashStr : ''));
+  var qs = qp.toString();
+  window.history.replaceState({}, '', window.location.pathname + (qs ? '?' + qs : ''));
 }
 
 // Toast notification (replaces alert for non-blocking messages)
