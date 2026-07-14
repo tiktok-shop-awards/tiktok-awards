@@ -301,21 +301,35 @@ async function loadData(level, region = null, year = null) {
     let dataFile;
     
     if (level === 'global') {
-      dataFile = 'data/global.json?v=20260714y';
+      dataFile = 'data/global.json.gz?v=20260714y';
     } else if (level === 'regional' && region) {
-      dataFile = 'data/' + region + '.json?v=20260714y';
+      dataFile = 'data/' + region + '.json.gz?v=20260714y';
     } else if (level === 'fs') {
-      dataFile = 'data/fs.json?v=20260714y';
+      dataFile = 'data/fs.json.gz?v=20260714y';
     } else if (level === 'pop') {
       dataFile = 'data/pop.json?v=20260714y';
     } else if (level === 'departmental') {
-      dataFile = 'data/departmental.json?v=20260714y';
+      dataFile = 'data/departmental.json.gz?v=20260714y';
     }
     
     const response = await fetch(dataFile);
     if (!response.ok) throw new Error(`Failed to load ${dataFile}`);
     
-    let data = await response.json();
+    
+    // Decompress gzip if needed
+    const isGzipped = dataFile.endsWith('.gz');
+    let data;
+    if (isGzipped) {
+      const blob = await response.blob();
+      const ds = new DecompressionStream('gzip');
+      const decompressedStream = blob.stream().pipeThrough(ds);
+      const decompressedBlob = await new Response(decompressedStream).blob();
+      const text = await decompressedBlob.text();
+      data = JSON.parse(text);
+    } else {
+      data = await response.json();
+    }
+
     // Normalize Chinese keys to English when loading zh data
     // data normalized (keys already English)
     
