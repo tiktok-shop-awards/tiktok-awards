@@ -520,6 +520,17 @@
       });
 
       await loadAndRenderDepartmentalAwards();
+
+      // Deep link: auto-open department if specified in URL
+      const urlDept = getUrlParam('dept');
+      if (urlDept) {
+        const urlQuarter = getUrlParam('quarter') || 'all';
+        // Check if this dept exists in DEPT_GROUPS
+        const deptExists = DEPT_GROUPS.some(g => g.departments.some(d => d.name === urlDept));
+        if (deptExists) {
+          openDept(urlDept, urlQuarter);
+        }
+      }
     });
 
     // ===== Load Data =====
@@ -671,9 +682,9 @@
     }
 
     // ===== Open Department Detail =====
-    function openDept(deptName) {
+    function openDept(deptName, quarter = 'all') {
       currentDeptName = deptName;
-      currentDeptQuarter = 'all';
+      currentDeptQuarter = quarter;
       currentDeptAwardType = 'all';
       deptSearchQuery = '';
 
@@ -685,11 +696,12 @@
       const searchInput = document.getElementById('dept-search-input');
       if (searchInput) searchInput.value = '';
 
-      // Reset quarter tabs
+      // Set quarter tabs
       document.querySelectorAll('#dept-quarter-tabs .quarter-tab').forEach(tab => {
-        tab.classList.toggle('active', tab.dataset.quarter === 'all');
+        tab.classList.toggle('active', tab.dataset.quarter === quarter);
       });
 
+      setUrlParams({ dept: deptName, quarter: quarter });
       renderDeptDetailView();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -699,6 +711,7 @@
       currentDeptName = '';
       document.getElementById('dept-list-view').classList.remove('hidden');
       document.getElementById('dept-detail').classList.remove('active');
+      setUrlParams({ dept: null, quarter: null });
     }
 
     // ===== Render Department Podium =====
@@ -952,6 +965,7 @@
           document.querySelectorAll('#dept-quarter-tabs .quarter-tab').forEach(t => t.classList.remove('active'));
           tab.classList.add('active');
           currentDeptQuarter = tab.dataset.quarter;
+          setUrlParam('quarter', currentDeptQuarter);
           renderDeptDetailView();
         });
       });

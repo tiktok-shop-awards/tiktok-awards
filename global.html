@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Global Awards - Global E-commerce Recognition Hub</title>
-  <link rel="stylesheet" href="css/main.css?v=20260714f">
+  <link rel="stylesheet" href="css/main.css?v=20260714g">
   <style>
     /* ==================== Global Page Specific Styles ==================== */
     .home-header {
@@ -531,12 +531,18 @@
   <script src="js/main.js?v=20260710c"></script>
   <script>
     // Global page specific initialization
-    let currentHalf = 'H1';
+    let currentHalf = getUrlParam('period') || 'H1';
     let globalData = null;
     
     // Period toggle handler
     function initPeriodToggle() {
       const periodBtns = document.querySelectorAll('.period-btn');
+      
+      // Set initial active state from URL
+      periodBtns.forEach(b => {
+        b.classList.toggle('active', b.dataset.period === currentHalf);
+      });
+      setUrlParam('period', currentHalf);
       
       periodBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -547,6 +553,7 @@
           btn.classList.add('active');
           
           currentHalf = period;
+          setUrlParam('period', currentHalf);
           
           if (globalData) {
             renderGlobalAwards(globalData, 'global-awards', currentHalf);

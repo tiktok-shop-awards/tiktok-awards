@@ -687,8 +687,8 @@
       { region: 'pop', label: 'POP' }
     ];
     
-    let currentRegion = 'sea'; // default for 2026
-    let currentAwardType = 'H2 Project Awards';
+    let currentRegion = getUrlParam('region') || 'sea'; // default for 2026
+    let currentAwardType = getUrlParam('period') || 'H2 Project Awards';
     let regionalData = null;
     let allRegionalData = null; // Store all regional data for US+POP merge
     
@@ -711,6 +711,7 @@
           navBar.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
           currentRegion = clickedRegion;
+          setUrlParams({ region: currentRegion, period: currentAwardType });
           updateLabels();
           loadRegionalData(currentRegion, year);
         });
@@ -1017,6 +1018,7 @@
           typeBtns.forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
           currentAwardType = btn.dataset.type;
+          setUrlParams({ region: currentRegion, period: currentAwardType });
           
           updateLabels();
           
@@ -1044,6 +1046,7 @@
           btn.classList.add('active');
           currentAwardType = btn.dataset.type; // Q1, Q2, Q3, Q4, Q4 Individual Awards
           AppData.currentLatamQuarter = currentAwardType;
+          setUrlParams({ region: currentRegion, period: currentAwardType });
           
           if (regionalData) {
             const top3 = calculateRegionTop3FullYear(regionalData, currentRegion);
@@ -1068,6 +1071,7 @@
           btn.classList.add('active');
           currentAwardType = btn.dataset.type;
           AppData.currentLatamQuarter = currentAwardType;
+          setUrlParams({ region: currentRegion, period: currentAwardType });
           
           if (regionalData) {
             const top3 = calculateRegionTop3FullYear(regionalData, currentRegion);
