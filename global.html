@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Global Awards - Global E-commerce Recognition Hub</title>
-  <link rel="stylesheet" href="css/main.css?v=20260714h">
+  <link rel="stylesheet" href="css/main.css?v=20260714i">
   <style>
     /* ==================== Global Page Specific Styles ==================== */
     .home-header {
@@ -419,19 +419,8 @@
           </div>
         </section>
 
-        <!-- Top 3 Podium Section with Inline Search -->
+        <!-- Search Section -->
         <section class="podium-section">
-          <div class="section-header">
-            <h2 class="section-title mb-3" style="font-size: 20px; margin: 0;">
-              <span class="icon">🥇</span>
-              Global Top 3 Winners (Full Year Rankings)
-            </h2>
-          </div>
-          
-          <!-- Scoring Rule Note -->
-          <p style="font-size: 12px; color: var(--text-secondary); margin: 0 0 var(--spacing-md) 0;">
-            <strong>Scoring:</strong> Global Award = 5 pts
-          </p>
           
           <!-- Inline Search - Left aligned -->
           <div class="inline-search" style="margin: 0 0 var(--spacing-lg) 0; justify-content: flex-start;">
@@ -443,8 +432,6 @@
           <!-- Search Results -->
           <div id="search-results" class="search-results-section"></div>
           
-          <!-- Podium (Top 3) -->
-          <div id="global-top3"></div>
         </section>
 
         <!-- Page Title -->
@@ -528,7 +515,7 @@
   <script src="js/auth-helper-v21.js?v=20260529a"></script>
   <script src="js/award-api.js?v=20260529a"></script>
   <script src="js/html2canvas.min.js"></script>
-  <script src="js/main.js?v=20260714s"></script>
+  <script src="js/main.js?v=20260714t"></script>
   <script>
     // Global page specific initialization
     let currentHalf = getUrlParam('period') || 'H1';
@@ -649,10 +636,6 @@
         }
         
         if (globalData) {
-          // Calculate and render FULL YEAR Top 3
-          const top3 = calculateGlobalTop3FullYear(globalData);
-          renderPodium(top3, 'global-top3');
-          
           // Render awards by default (H1)
           console.log('Calling renderGlobalAwards with half:', currentHalf);
           renderGlobalAwards(globalData, 'global-awards', currentHalf);
@@ -674,15 +657,11 @@
         try {
           globalData = await loadData('global', null, newYear);
           if (globalData) {
-            // Re-render full year Top 3
-            const top3 = calculateGlobalTop3FullYear(globalData);
-            renderPodium(top3, 'global-top3');
             // Re-render awards with current half
             renderGlobalAwards(globalData, 'global-awards', currentHalf);
             // Reload interactions for new cards
             loadAllCardInteractions();
           } else {
-            document.getElementById('global-top3').innerHTML = '';
             document.getElementById('global-awards').innerHTML = '<div class="no-data-msg">No global awards available for ' + newYear + '.</div>';
           }
         } catch (err) {

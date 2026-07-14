@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Regional Awards - Global E-commerce Recognition Hub</title>
-  <link rel="stylesheet" href="css/main.css?v=20260714h">
+  <link rel="stylesheet" href="css/main.css?v=20260714i">
   <style>
     /* ==================== Regional Page Specific Styles ==================== */
     .regional-header {
@@ -520,22 +520,6 @@
         <div id="search-results" class="search-results-section"></div>
 
         <div class="content-wrapper" id="content-wrapper">
-        <!-- Regional Top 3 Podium -->
-        <section class="podium-section">
-          <h2 class="section-title-main">
-            <span id="region-icon">🏆</span>
-            <span id="region-name">US</span> Top 3 Winners (Full Year Rankings)
-          </h2>
-          
-          <!-- Scoring Rule Note -->
-          <p class="scoring-note">
-            <strong>Scoring:</strong> Regional Award = 3 pts
-          </p>
-          
-          <p class="ranking-notice">📊 The data is still being updated. As the current data volume is relatively limited, tied rankings may occur at this stage. Thank you for your understanding!</p>
-          
-          <div id="regional-top3"></div>
-        </section>
 
         <!-- Dynamic Regional Awards Title -->
         <h2 class="regional-awards-title" id="regional-awards-title">US Regional Awards</h2>
@@ -656,7 +640,7 @@
   <script src="js/auth-helper-v21.js?v=20260529a"></script>
   <script src="js/award-api.js?v=20260529a"></script>
   <script src="js/html2canvas.min.js"></script>
-  <script src="js/main.js?v=20260714s"></script>
+  <script src="js/main.js?v=20260714t"></script>
   <script>
     // Regional page specific initialization
     const regionNames = {
@@ -967,17 +951,11 @@
         if (regionalData) {
           // Update page title
           updateLabels();
-          
-          // Calculate and render Top 3 (Full Year Rankings - all award types combined)
-          const top3 = calculateRegionTop3FullYear(regionalData, region);
-          renderPodium(top3, 'regional-top3');
-          
           // Render all awards
           renderRegionalAwards(regionalData, 'regional-awards', currentAwardType, region);
           // Load like/comment interactions from API
           loadAllCardInteractions();
         } else {
-          document.getElementById('regional-top3').innerHTML = '';
           awardsContainer.innerHTML = '<div class="no-data-msg">No data available for this region.</div>';
         }
         // Fade in after content loaded
@@ -1025,8 +1003,6 @@
           console.log('Rendering awards for:', currentAwardType, 'hasData:', !!regionalData);
           if (regionalData) {
             try {
-              const top3 = calculateRegionTop3FullYear(regionalData, currentRegion);
-              renderPodium(top3, 'regional-top3');
               renderRegionalAwards(regionalData, 'regional-awards', currentAwardType, currentRegion);
               loadAllCardInteractions();
             } catch (e) {
@@ -1049,8 +1025,6 @@
           setUrlParams({ region: currentRegion, period: currentAwardType });
           
           if (regionalData) {
-            const top3 = calculateRegionTop3FullYear(regionalData, currentRegion);
-            renderPodium(top3, 'regional-top3');
             renderRegionalAwards(regionalData, 'regional-awards', currentAwardType, currentRegion);
             loadAllCardInteractions();
           }
@@ -1074,8 +1048,6 @@
           setUrlParams({ region: currentRegion, period: currentAwardType });
           
           if (regionalData) {
-            const top3 = calculateRegionTop3FullYear(regionalData, currentRegion);
-            renderPodium(top3, 'regional-top3');
             renderRegionalAwards(regionalData, 'regional-awards', currentAwardType, currentRegion);
             loadAllCardInteractions();
           }
