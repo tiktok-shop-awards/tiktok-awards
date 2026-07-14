@@ -970,7 +970,7 @@ function renderPodium(top3, containerId, title) {
   
   // Render tied group card (multiple people same rank)
   function renderTiedCard(group) {
-    const SHOW_ALL_THRESHOLD = 999;
+    const SHOW_ALL_THRESHOLD = 40;
     const total = group.people.length;
     let nameHtml;
     let noteHtml = '';
