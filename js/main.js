@@ -296,57 +296,82 @@ function initDeptNavigation() {
 }
 
 // ==================== Data Loading Functions ====================
+// Cache for manifest
+let _manifestCache = null;
+const CHUNK_VERSION = '20260714z';
+
+async function loadManifest() {
+  if (_manifestCache) return _manifestCache;
+  const resp = await fetch('data/manifest.json?v=' + CHUNK_VERSION);
+  if (!resp.ok) throw new Error('Failed to load manifest');
+  _manifestCache = await resp.json();
+  return _manifestCache;
+}
+
+async function loadChunkedFile(baseName) {
+  const manifest = await loadManifest();
+  const fileMap = manifest[baseName];
+  if (!fileMap) throw new Error('No manifest entry for ' + baseName);
+
+  const hasYearStructure = Object.keys(fileMap).some(k => /^\d{4}$/.test(k));
+
+  if (hasYearStructure) {
+    // Year-based: { '2026': { Q1: [files], Q2: [files] } }
+    const result = {};
+    for (const year of Object.keys(fileMap)) {
+      result[year] = {};
+      for (const period of Object.keys(fileMap[year])) {
+        const files = fileMap[year][period];
+        const chunks = await Promise.all(
+          files.map(f => fetch('data/' + f + '?v=' + CHUNK_VERSION).then(r => r.json()))
+        );
+        result[year][period] = chunks.flat();
+      }
+    }
+    return result;
+  } else {
+    // Flat: { 'H1 Project Awards': [files], ... }
+    const result = {};
+    for (const period of Object.keys(fileMap)) {
+      const files = fileMap[period];
+      const chunks = await Promise.all(
+        files.map(f => fetch('data/' + f + '?v=' + CHUNK_VERSION).then(r => r.json()))
+      );
+      result[period] = chunks.flat();
+    }
+    return result;
+  }
+}
+
 async function loadData(level, region = null, year = null) {
   try {
-    let dataFile;
-    
-    if (level === 'global') {
-      dataFile = 'data/global.json.gz?v=20260714y';
-    } else if (level === 'regional' && region) {
-      dataFile = 'data/' + region + '.json.gz?v=20260714y';
-    } else if (level === 'fs') {
-      dataFile = 'data/fs.json.gz?v=20260714y';
-    } else if (level === 'pop') {
-      dataFile = 'data/pop.json?v=20260714y';
-    } else if (level === 'departmental') {
-      dataFile = 'data/departmental.json.gz?v=20260714y';
-    }
-    
-    const response = await fetch(dataFile);
-    if (!response.ok) throw new Error(`Failed to load ${dataFile}`);
-    
-    
-    // Decompress gzip if needed
-    const isGzipped = dataFile.endsWith('.gz');
     let data;
-    if (isGzipped) {
-      const blob = await response.blob();
-      const ds = new DecompressionStream('gzip');
-      const decompressedStream = blob.stream().pipeThrough(ds);
-      const decompressedBlob = await new Response(decompressedStream).blob();
-      const text = await decompressedBlob.text();
-      data = JSON.parse(text);
+
+    if (level === 'pop') {
+      const resp = await fetch('data/pop.json?v=' + CHUNK_VERSION);
+      if (!resp.ok) throw new Error('Failed to load pop.json');
+      data = await resp.json();
+    } else if (level === 'regional' && region && !['us','eu','sea'].includes(region)) {
+      // latam and other small regions: load directly
+      const resp = await fetch('data/' + region + '.json?v=' + CHUNK_VERSION);
+      if (!resp.ok) throw new Error('Failed to load ' + region + '.json');
+      data = await resp.json();
     } else {
-      data = await response.json();
+      // Split files: global, us, eu, sea, fs, departmental
+      let baseName;
+      if (level === 'global') baseName = 'global';
+      else if (level === 'regional') baseName = region;
+      else if (level === 'fs') baseName = 'fs';
+      else if (level === 'departmental') baseName = 'departmental';
+      else throw new Error('Unknown level: ' + level);
+
+      data = await loadChunkedFile(baseName);
     }
 
-    // Normalize Chinese keys to English when loading zh data
-    // data normalized (keys already English)
-    
-    // 根据年份筛选数据
     const targetYear = year || AppData.currentYear || '2025';
-    
-    // 检查数据是否是多年份结构
     const hasYearStructure = data['2025'] || data['2026'];
-    
-    // ========== 数据年份规则（重要！）==========
-    // - FS/POP: 只有2025年数据，无年份结构，2026年返回null
-    // - US/EU/SEA/LATAM/Global: 有多年份结构（2025/2026），按年份返回对应数据
-    // - 没有年份结构的数据文件：视为2025年数据，2026年返回null
-    // ==========================================
-    
+
     if (level === 'fs') {
-      // FS数据只有2025年，无年份结构
       if (targetYear === '2025') {
         AppData.regional.fs = data;
         return data;
@@ -355,7 +380,6 @@ async function loadData(level, region = null, year = null) {
       }
     }
     if (level === 'pop') {
-      // POP数据只有2025年，无年份结构
       if (targetYear === '2025') {
         AppData.regional.pop = data;
         return data;
@@ -363,19 +387,17 @@ async function loadData(level, region = null, year = null) {
         return null;
       }
     }
-    
+
     if (hasYearStructure) {
-      // 多年份数据结构：返回对应年份数据
       let yearData = data[targetYear];
-      
-      // 检查是否是2026年且数据为空（所有数组长度为0），回退到2025
+
       if (targetYear === '2026' && yearData && data['2025']) {
         const isEmpty = Object.values(yearData).every(arr => !Array.isArray(arr) || arr.length === 0);
         if (isEmpty) {
           yearData = data['2025'];
         }
       }
-      
+
       if (yearData) {
         if (level === 'global') {
           AppData.global = yearData;
@@ -386,7 +408,6 @@ async function loadData(level, region = null, year = null) {
         }
         return yearData;
       } else if (targetYear === '2026' && data['2025']) {
-        // 2026数据不存在，回退到2025
         yearData = data['2025'];
         if (level === 'global') {
           AppData.global = yearData;
@@ -397,12 +418,9 @@ async function loadData(level, region = null, year = null) {
         }
         return yearData;
       } else {
-        // 请求的年份不存在，返回null
         return null;
       }
     } else {
-      // 非多年份结构：直接返回数据（假设是2025年数据）
-      // 2025年或2026年都返回数据（因为2026数据还没准备好，用2025数据代替）
       if (targetYear === '2025' || targetYear === '2026') {
         if (level === 'global') {
           AppData.global = data;
@@ -420,9 +438,10 @@ async function loadData(level, region = null, year = null) {
   }
 }
 
+
 async function loadRankings(year = null) {
   try {
-    const response = await fetch('data/rankings.json?v=20260714x');
+    const response = await fetch('data/rankings.json?v=20260714z');
     if (!response.ok) throw new Error('Failed to load rankings');
     
     const data = await response.json();
@@ -2078,20 +2097,19 @@ function mergeAllYears(data) {
 async function loadSearchData() {
   try {
     const [global, us, eu, sea, latam, rankings, departmental, fs, pop, nameMapData] = await Promise.all([
-      fetch('data/global.json?v=20260714x').then(r => r.json()).catch(() => null),
-      fetch('data/us.json?v=20260714x').then(r => r.json()).catch(() => null),
-      fetch('data/eu.json?v=20260714x').then(r => r.json()).catch(() => null),
-      fetch('data/sea.json?v=20260714x').then(r => r.json()).catch(() => null),
-      fetch('data/latam.json?v=20260714x').then(r => r.json()).catch(() => null),
-      fetch('data/rankings.json?v=20260714x').then(r => r.json()).catch(() => null),
-      fetch('data/departmental.json?v=20260714x').then(r => r.json()).catch(() => null),
-      fetch('data/fs.json?v=20260714x').then(r => r.json()).catch(() => null),
-      fetch('data/pop.json?v=20260714x').then(r => r.json()).catch(() => null),
-      fetch('data/name-map.json?v=20260714x').then(r => r.json()).catch(() => null)
+      loadChunkedFile('global').catch(() => null),
+      loadChunkedFile('us').catch(() => null),
+      loadChunkedFile('eu').catch(() => null),
+      loadChunkedFile('sea').catch(() => null),
+      fetch('data/latam.json?v=' + CHUNK_VERSION).then(r => r.json()).catch(() => null),
+      fetch('data/rankings.json?v=' + CHUNK_VERSION).then(r => r.json()).catch(() => null),
+      loadChunkedFile('departmental').catch(() => null),
+      loadChunkedFile('fs').catch(() => null),
+      fetch('data/pop.json?v=' + CHUNK_VERSION).then(r => r.json()).catch(() => null),
+      fetch('data/name-map.json?v=' + CHUNK_VERSION).then(r => r.json()).catch(() => null)
     ]);
     nameMap = nameMapData || {};
-    
-    // Search data includes ALL years (not filtered by current year)
+
     searchData = {
       global: mergeAllYears(global),
       regional: {
@@ -2110,6 +2128,7 @@ async function loadSearchData() {
     console.error('Error loading search data:', error);
   }
 }
+
 
 // Hybrid matching: CJK uses substring, English uses word-boundary
 // Also supports Chinese->English cross-lookup via nameMap

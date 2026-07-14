@@ -1,0 +1,95 @@
+{
+  "us": {
+    "H1 Project Awards": [
+      "us_h1-project-awards.json"
+    ],
+    "H2 Project Awards": [
+      "us_h2-project-awards_p1.json",
+      "us_h2-project-awards_p2.json"
+    ],
+    "H2 Individual Awards": [
+      "us_h2-individual-awards.json"
+    ]
+  },
+  "eu": {
+    "H1 Project Awards": [
+      "eu_h1-project-awards_p1.json",
+      "eu_h1-project-awards_p2.json",
+      "eu_h1-project-awards_p3.json",
+      "eu_h1-project-awards_p4.json"
+    ],
+    "H2 Project Awards": [
+      "eu_h2-project-awards_p1.json",
+      "eu_h2-project-awards_p2.json"
+    ],
+    "H2 Individual Awards": [
+      "eu_h2-individual-awards.json"
+    ]
+  },
+  "sea": {
+    "H1 Project Awards": [
+      "sea_h1-project-awards_p1.json",
+      "sea_h1-project-awards_p2.json"
+    ],
+    "H2 Project Awards": [
+      "sea_h2-project-awards.json"
+    ],
+    "H2 Individual Awards": [
+      "sea_h2-individual-awards.json"
+    ]
+  },
+  "global": {
+    "H1 Project Awards": [
+      "global_h1-project-awards_p1.json",
+      "global_h1-project-awards_p2.json",
+      "global_h1-project-awards_p3.json",
+      "global_h1-project-awards_p4.json"
+    ],
+    "H2 Project Awards": [
+      "global_h2-project-awards_p1.json",
+      "global_h2-project-awards_p2.json",
+      "global_h2-project-awards_p3.json",
+      "global_h2-project-awards_p4.json"
+    ],
+    "H2 Individual Awards": [
+      "global_h2-individual-awards.json"
+    ]
+  },
+  "fs": {
+    "Q1 Project Awards": [
+      "fs_q1-project-awards.json"
+    ],
+    "Q2 Project Awards": [
+      "fs_q2-project-awards_p1.json",
+      "fs_q2-project-awards_p2.json"
+    ],
+    "Q3 Project Awards": [
+      "fs_q3-project-awards.json"
+    ],
+    "Q4 Project Awards": [
+      "fs_q4-project-awards_p1.json",
+      "fs_q4-project-awards_p2.json"
+    ],
+    "H2 Individual Awards": [
+      "fs_h2-individual-awards.json"
+    ]
+  },
+  "departmental": {
+    "2026": {
+      "Q1": [
+        "departmental_2026_q1_p1.json",
+        "departmental_2026_q1_p2.json",
+        "departmental_2026_q1_p3.json"
+      ],
+      "Q2": [
+        "departmental_2026_q2.json"
+      ],
+      "Q3": [
+        "departmental_2026_q3.json"
+      ],
+      "Q4": [
+        "departmental_2026_q4.json"
+      ]
+    }
+  }
+}
