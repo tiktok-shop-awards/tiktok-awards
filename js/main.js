@@ -283,15 +283,15 @@ async function loadData(level, region = null, year = null) {
     let dataFile;
     
     if (level === 'global') {
-      dataFile = 'data/global.json?v=20260714c';
+      dataFile = 'data/global.json?v=20260714d';
     } else if (level === 'regional' && region) {
-      dataFile = 'data/' + region + '.json?v=20260714c';
+      dataFile = 'data/' + region + '.json?v=20260714d';
     } else if (level === 'fs') {
-      dataFile = 'data/fs.json?v=20260714c';
+      dataFile = 'data/fs.json?v=20260714d';
     } else if (level === 'pop') {
-      dataFile = 'data/pop.json?v=20260714c';
+      dataFile = 'data/pop.json?v=20260714d';
     } else if (level === 'departmental') {
-      dataFile = 'data/departmental.json?v=20260714c';
+      dataFile = 'data/departmental.json?v=20260714d';
     }
     
     const response = await fetch(dataFile);
@@ -370,7 +370,7 @@ async function loadData(level, region = null, year = null) {
 
 async function loadRankings(year = null) {
   try {
-    const response = await fetch('data/rankings.json?v=20260714c');
+    const response = await fetch('data/rankings.json?v=20260714d');
     if (!response.ok) throw new Error('Failed to load rankings');
     
     const data = await response.json();
@@ -952,16 +952,20 @@ function renderPodium(top3, containerId, title) {
   
   // Render tied group card (multiple people same rank)
   function renderTiedCard(group) {
-    const MAX_NAMES = 5;
+    const SHOW_ALL_THRESHOLD = 20;
     const total = group.people.length;
-    const displayNames = group.people.slice(0, MAX_NAMES).map(p => p.name).join(', ');
-    const moreText = total > MAX_NAMES ? ` and ${total - MAX_NAMES} more` : '';
+    let nameHtml;
+    if (total <= SHOW_ALL_THRESHOLD) {
+      nameHtml = group.people.map(p => p.name).join(', ');
+    } else {
+      nameHtml = `${total} people`;
+    }
     return `
       <div class="podium-item ${getClass(group.rank)} podium-tied">
         <div class="podium-medal">${getMedal(group.rank)}</div>
         <div class="podium-rank">Tied for #${group.rank}</div>
-        <div class="podium-name">${displayNames}${moreText}</div>
-        <div class="podium-score">${group.score} pts · ${total} people</div>
+        <div class="podium-name">${nameHtml}</div>
+        <div class="podium-score">${group.score} pts</div>
       </div>`;
   }
   
@@ -2019,16 +2023,16 @@ function mergeAllYears(data) {
 async function loadSearchData() {
   try {
     const [global, us, eu, sea, latam, rankings, departmental, fs, pop, nameMapData] = await Promise.all([
-      fetch('data/global.json?v=20260714c').then(r => r.json()).catch(() => null),
-      fetch('data/us.json?v=20260714c').then(r => r.json()).catch(() => null),
-      fetch('data/eu.json?v=20260714c').then(r => r.json()).catch(() => null),
-      fetch('data/sea.json?v=20260714c').then(r => r.json()).catch(() => null),
-      fetch('data/latam.json?v=20260714c').then(r => r.json()).catch(() => null),
-      fetch('data/rankings.json?v=20260714c').then(r => r.json()).catch(() => null),
-      fetch('data/departmental.json?v=20260714c').then(r => r.json()).catch(() => null),
-      fetch('data/fs.json?v=20260714c').then(r => r.json()).catch(() => null),
-      fetch('data/pop.json?v=20260714c').then(r => r.json()).catch(() => null),
-      fetch('data/name-map.json?v=20260714c').then(r => r.json()).catch(() => null)
+      fetch('data/global.json?v=20260714d').then(r => r.json()).catch(() => null),
+      fetch('data/us.json?v=20260714d').then(r => r.json()).catch(() => null),
+      fetch('data/eu.json?v=20260714d').then(r => r.json()).catch(() => null),
+      fetch('data/sea.json?v=20260714d').then(r => r.json()).catch(() => null),
+      fetch('data/latam.json?v=20260714d').then(r => r.json()).catch(() => null),
+      fetch('data/rankings.json?v=20260714d').then(r => r.json()).catch(() => null),
+      fetch('data/departmental.json?v=20260714d').then(r => r.json()).catch(() => null),
+      fetch('data/fs.json?v=20260714d').then(r => r.json()).catch(() => null),
+      fetch('data/pop.json?v=20260714d').then(r => r.json()).catch(() => null),
+      fetch('data/name-map.json?v=20260714d').then(r => r.json()).catch(() => null)
     ]);
     nameMap = nameMapData || {};
     
