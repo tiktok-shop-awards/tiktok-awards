@@ -301,15 +301,15 @@ async function loadData(level, region = null, year = null) {
     let dataFile;
     
     if (level === 'global') {
-      dataFile = 'data/global.json?v=20260714x';
+      dataFile = 'https://raw.githubusercontent.com/tiktok-shop-awards/tiktok-awards/gh-pages/data/global.json?v=20260714x';
     } else if (level === 'regional' && region) {
-      dataFile = 'data/' + region + '.json?v=20260714x';
+      dataFile = 'https://raw.githubusercontent.com/tiktok-shop-awards/tiktok-awards/gh-pages/data/' + region + '.json?v=20260714x';
     } else if (level === 'fs') {
-      dataFile = 'data/fs.json?v=20260714x';
+      dataFile = 'https://raw.githubusercontent.com/tiktok-shop-awards/tiktok-awards/gh-pages/data/fs.json?v=20260714x';
     } else if (level === 'pop') {
-      dataFile = 'data/pop.json?v=20260714x';
+      dataFile = 'https://raw.githubusercontent.com/tiktok-shop-awards/tiktok-awards/gh-pages/data/pop.json?v=20260714x';
     } else if (level === 'departmental') {
-      dataFile = 'data/departmental.json?v=20260714x';
+      dataFile = 'https://raw.githubusercontent.com/tiktok-shop-awards/tiktok-awards/gh-pages/data/departmental.json?v=20260714x';
     }
     
     const response = await fetch(dataFile);
