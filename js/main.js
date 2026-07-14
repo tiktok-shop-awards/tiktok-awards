@@ -388,8 +388,8 @@ async function loadData(level, region = null, year = null) {
       }
     } else {
       // 非多年份结构：直接返回数据（假设是2025年数据）
-      // 只有2025年时才返回数据，2026年返回null
-      if (targetYear === '2025') {
+      // 2025年或2026年都返回数据（因为2026数据还没准备好，用2025数据代替）
+      if (targetYear === '2025' || targetYear === '2026') {
         if (level === 'global') {
           AppData.global = data;
         } else if (level === 'regional') {
