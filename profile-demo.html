@@ -78,18 +78,29 @@
     <h2>Profile Card Demo</h2>
     <p style="color:#666;font-size:14px;">点击成员头像/姓名，测试飞书个人名片弹出功能</p>
     
+    <h3 style="color:#555;font-size:14px;margin-top:24px;margin-bottom:8px;">方案1：AppLink 跳转（推荐，任意环境可用）</h3>
+    <a href="https://applink.feishu.cn/client/user_profile?uid_type=union_id&uid=on_f4a148202fb0e21e0fa12c294d8f1c02" style="text-decoration:none;color:inherit;display:block;">
+      <div class="member">
+        <div class="avatar">HR</div>
+        <div class="info">
+          <div class="name">Hilda Rusli （点击试）</div>
+          <div class="email">hilda.rusli@bytedance.com</div>
+        </div>
+      </div>
+    </a>
+
+    <h3 style="color:#555;font-size:14px;margin-top:24px;margin-bottom:8px;">方案2：JSAPI enterProfile（需飞书内置浏览器）</h3>
     <div class="member" id="member1">
       <div class="avatar">HR</div>
       <div class="info">
-        <div class="name">Hilda Rusli</div>
+        <div class="name">Hilda Rusli （点击试）</div>
         <div class="email">hilda.rusli@bytedance.com</div>
       </div>
     </div>
 
-    <div class="status" id="status">状态：等待点击测试...</div>
+    <div class="status" id="status">状态：等待测试...</div>
     
     <div class="hint">
-      ⚠️ 请在飞书内打开此页面测试<br>
       union_id: on_f4a148202fb0e21e0fa12c294d8f1c02<br>
       APP_ID: cli_a968a864a0f89bdd
     </div>
