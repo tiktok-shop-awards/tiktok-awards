@@ -2023,12 +2023,9 @@ function showMembersModal(projectName, members) {
   members.forEach((member, idx) => {
     const name = member.name || member;
     const email = member.email || '';
-    const hasOpenId = email ? !!OPEN_ID_MAP[email.toLowerCase()] : false;
-    const clickable = hasOpenId ? 'member-item-clickable' : '';
-    const onclickAttr = hasOpenId ? `onclick="openUserProfile('${email.toLowerCase()}')"` : '';
     membersHtml += `
-      <div class="member-item ${clickable}" ${onclickAttr} data-email="${email}">
-        <div class="member-name">${name}${hasOpenId ? ' <span style="font-size:10px;color:#3370ff;">↗</span>' : ''}</div>
+      <div class="member-item" data-email="${email}">
+        <div class="member-name">${name}</div>
         <div class="member-email">${email}</div>
       </div>
     `;
@@ -2037,31 +2034,6 @@ function showMembersModal(projectName, members) {
   
   modalBody.innerHTML = membersHtml;
   modal.classList.add('active');
-}
-
-// Open Feishu user profile via AppLink (works inside Feishu without JSSDK auth)
-// Uses open_id (from push bot app, cross-app should work for AppLink since it's tenant-level)
-const OPEN_ID_MAP = {
-  'hilda.rusli@bytedance.com': 'ou_41d78f6704956b075a0a5ed96d54f045'
-};
-
-function openUserProfile(email) {
-  const openId = OPEN_ID_MAP[email.toLowerCase()];
-  if (!openId) {
-    console.log('[Profile] No open_id found for:', email);
-    return;
-  }
-  
-  // AppLink 在飞书内直接走原生路由，不会跳浏览器
-  // 先试个人名片页，不行再fallback到聊天页
-  const profileUrl = 'https://applink.feishu.cn/client/contact/detail?openId=' + openId;
-  const chatUrl = 'https://applink.feishu.cn/client/chat/open?openId=' + openId;
-  
-  console.log('[Profile] Opening profile via AppLink:', profileUrl);
-  
-  // 先尝试打开个人名片页
-  // 如果路径不对，飞书会处理fallback，至少能确认AppLink机制本身可用
-  window.location.href = profileUrl;
 }
 
 function closeModal() {
