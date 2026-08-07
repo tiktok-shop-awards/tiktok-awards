@@ -2139,13 +2139,35 @@ window.showDebug = _toggleDebugPanel;
  */
 function initFeishuJssdk() {
   if (_jssdkPromise) return _jssdkPromise;
+  // If tt is not loaded yet, dynamically inject the SDK script
   if (typeof window.tt === 'undefined') {
-    _jssdkPromise = Promise.reject('h5sdk not loaded');
+    _debugLog('JSSDK: tt not found, injecting SDK script dynamically...');
+    _jssdkPromise = new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = 'https://lf-scm-cn.feishucdn.com/lark/op/h5-js-sdk-1.5.48.js';
+      script.onload = () => {
+        _debugLog('JSSDK: SDK script loaded successfully');
+        // Re-check and proceed with config
+        if (typeof window.tt === 'undefined') {
+          reject(new Error('h5sdk still not loaded after script injection'));
+          return;
+        }
+        _doJssdkConfig().then(resolve).catch(reject);
+      };
+      script.onerror = () => reject(new Error('Failed to load Feishu JSSDK script'));
+      document.head.appendChild(script);
+    });
     return _jssdkPromise;
   }
 
+  // SDK is already loaded, proceed directly to config
+  _jssdkPromise = _doJssdkConfig();
+  return _jssdkPromise;
+}
+
+function _doJssdkConfig() {
   const currentUrl = window.location.href.split('#')[0];
-  _jssdkPromise = fetch(
+  return fetch(
     `https://da1e5fb0.aipa.bytedance.net/api/jssdk_config?url=${encodeURIComponent(currentUrl)}`
   )
     .then(res => {
@@ -2160,7 +2182,7 @@ function initFeishuJssdk() {
         _debugLog('JSSDK: ERROR - no signature in response');
         throw new Error('No signature in response. Full data: ' + JSON.stringify(data));
       }
-      _debugLog('JSSDK: calling h5sdk.config with appId=' + (configData.appId || configData.app_id || 'cli_a968a864a0f89bdd'));
+      _debugLog('JSSDK: calling tt.config with appId=' + (configData.appId || configData.app_id || 'cli_a968a864a0f89bdd'));
       return new Promise((resolve, reject) => {
         window.tt.config({
           appId: configData.appId || configData.app_id || 'cli_a968a864a0f89bdd',
@@ -2186,8 +2208,6 @@ function initFeishuJssdk() {
       _jssdkPromise = null;
       throw err;
     });
-
-  return _jssdkPromise;
 }
 
 /**
