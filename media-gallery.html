@@ -932,7 +932,7 @@
     // Load videos from JSON
     async function loadVideos() {
       try {
-        const response = await fetch('data/media.json?v=20260618g', { cache: 'no-store' });
+        const response = await fetch('data/media.json?v=20260807', { cache: 'no-store' });
         if (response.ok) {
           videosData = await response.json();
           console.log('[MediaGallery] Loaded', videosData.videos.length, 'videos from JSON');
