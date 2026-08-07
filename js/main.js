@@ -2140,15 +2140,15 @@ window.showDebug = _toggleDebugPanel;
 function initFeishuJssdk() {
   if (_jssdkPromise) return _jssdkPromise;
   // If tt is not loaded yet, dynamically inject the SDK script
-  if (typeof window.tt === 'undefined') {
-    _debugLog('JSSDK: tt not found, injecting SDK script dynamically...');
+  if (typeof window.h5sdk === 'undefined') {
+    _debugLog('JSSDK: h5sdk not found, injecting SDK script dynamically...');
     _jssdkPromise = new Promise((resolve, reject) => {
       const script = document.createElement('script');
       script.src = 'https://lf-scm-cn.feishucdn.com/lark/op/h5-js-sdk-1.5.48.js';
       script.onload = () => {
         _debugLog('JSSDK: SDK script loaded successfully');
         // Re-check and proceed with config
-        if (typeof window.tt === 'undefined') {
+        if (typeof window.h5sdk === 'undefined') {
           reject(new Error('h5sdk still not loaded after script injection'));
           return;
         }
@@ -2182,9 +2182,9 @@ function _doJssdkConfig() {
         _debugLog('JSSDK: ERROR - no signature in response');
         throw new Error('No signature in response. Full data: ' + JSON.stringify(data));
       }
-      _debugLog('JSSDK: calling tt.config with appId=' + (configData.appId || configData.app_id || 'cli_a968a864a0f89bdd'));
+      _debugLog('JSSDK: calling h5sdk.config with appId=' + (configData.appId || configData.app_id || 'cli_a968a864a0f89bdd'));
       return new Promise((resolve, reject) => {
-        window.tt.config({
+        window.h5sdk.config({
           appId: configData.appId || configData.app_id || 'cli_a968a864a0f89bdd',
           timestamp: configData.timestamp,
           nonceStr: configData.nonceStr || configData.noncestr || configData.nonce_str,
@@ -2263,9 +2263,9 @@ function _doOpenProfile(unionId) {
 
 function _tryEnterProfile(openId) {
   try {
-    if (window.tt.biz?.user?.enterProfile) {
+    if (window.h5sdk.biz?.user?.enterProfile) {
       _debugLog('Profile: calling enterProfile with openid=' + openId);
-      window.tt.biz.user.enterProfile({
+      window.h5sdk.biz.user.enterProfile({
         openid: openId,
         onSuccess: () => _debugLog('Profile: enterProfile SUCCESS'),
         onFail: (err) => {
@@ -2285,9 +2285,9 @@ function _tryEnterProfile(openId) {
 
 function _tryOpenDetailFallback(openId) {
   try {
-    if (window.tt.biz?.user?.openDetail) {
+    if (window.h5sdk.biz?.user?.openDetail) {
       _debugLog('Profile: trying openDetail');
-      window.tt.biz.user.openDetail({
+      window.h5sdk.biz.user.openDetail({
         openid: openId,
         onSuccess: () => _debugLog('Profile: openDetail SUCCESS'),
         onFail: (err) => {
@@ -2297,7 +2297,7 @@ function _tryOpenDetailFallback(openId) {
       });
     } else {
       _debugLog('Profile: openDetail also not available');
-      _showProfileError('enterProfile API not available.\n\nwindow.tt.biz.user.enterProfile is undefined.\nJSSDK may not be loaded or config failed.');
+      _showProfileError('enterProfile API not available.\n\nwindow.h5sdk.biz.user.enterProfile is undefined.\nJSSDK may not be loaded or config failed.');
     }
   } catch (e) {
     _debugLog('Profile: openDetail error: ' + e.message);
