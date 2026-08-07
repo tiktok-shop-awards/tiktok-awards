@@ -2023,12 +2023,12 @@ function showMembersModal(projectName, members) {
   members.forEach((member, idx) => {
     const name = member.name || member;
     const email = member.email || '';
-    const unionId = email ? UNION_ID_MAP[email.toLowerCase()] : null;
-    const clickable = unionId ? 'member-item-clickable' : '';
-    const onclickAttr = unionId ? `onclick="openUserProfile('${unionId}')"` : '';
+    const hasOpenId = email ? !!OPEN_ID_MAP[email.toLowerCase()] : false;
+    const clickable = hasOpenId ? 'member-item-clickable' : '';
+    const onclickAttr = hasOpenId ? `onclick="openUserProfile('${email.toLowerCase()}')"` : '';
     membersHtml += `
       <div class="member-item ${clickable}" ${onclickAttr} data-email="${email}">
-        <div class="member-name">${name}${unionId ? ' <span style="font-size:10px;color:#3370ff;">↗</span>' : ''}</div>
+        <div class="member-name">${name}${hasOpenId ? ' <span style="font-size:10px;color:#3370ff;">↗</span>' : ''}</div>
         <div class="member-email">${email}</div>
       </div>
     `;
@@ -2039,88 +2039,29 @@ function showMembersModal(projectName, members) {
   modal.classList.add('active');
 }
 
-// Open Feishu user profile card
-function openUserProfile(unionId) {
-  const isInFeishu = /Lark|Feishu/i.test(navigator.userAgent);
-  
-  if (!isInFeishu) {
-    alert('请在飞书客户端内打开此页面以查看个人名片');
+// Open Feishu user profile via AppLink (works inside Feishu without JSSDK auth)
+// Uses open_id (from push bot app, cross-app should work for AppLink since it's tenant-level)
+const OPEN_ID_MAP = {
+  'hilda.rusli@bytedance.com': 'ou_41d78f6704956b075a0a5ed96d54f045'
+};
+
+function openUserProfile(email) {
+  const openId = OPEN_ID_MAP[email.toLowerCase()];
+  if (!openId) {
+    console.log('[Profile] No open_id found for:', email);
     return;
   }
   
-  // Wait for h5sdk ready then call enterProfile
-  const callEnterProfile = function() {
-    // Method 1: tt.enterProfile
-    if (window.tt && window.tt.enterProfile) {
-      console.log('[Profile] calling tt.enterProfile with union_id:', unionId);
-      window.tt.enterProfile({
-        uid: unionId,
-        uidType: 2,  // 2 = union_id (try numeric type)
-        success: function(res) {
-          console.log('[Profile] tt.enterProfile success:', JSON.stringify(res));
-        },
-        fail: function(err) {
-          console.log('[Profile] tt.enterProfile fail:', JSON.stringify(err));
-          tryWithStringType();
-        }
-      });
-    } else {
-      console.log('[Profile] tt.enterProfile not available');
-      tryWithStringType();
-    }
-  };
+  // AppLink 在飞书内直接走原生路由，不会跳浏览器
+  // 先试个人名片页，不行再fallback到聊天页
+  const profileUrl = 'https://applink.feishu.cn/client/contact/detail?openId=' + openId;
+  const chatUrl = 'https://applink.feishu.cn/client/chat/open?openId=' + openId;
   
-  const tryWithStringType = function() {
-    if (window.tt && window.tt.enterProfile) {
-      window.tt.enterProfile({
-        uid: unionId,
-        uidType: 'union_id',
-        success: function(res) {
-          console.log('[Profile] tt.enterProfile (string type) success:', JSON.stringify(res));
-        },
-        fail: function(err) {
-          console.log('[Profile] tt.enterProfile (string type) fail:', JSON.stringify(err));
-          tryH5sdkCall();
-        }
-      });
-    } else {
-      tryH5sdkCall();
-    }
-  };
+  console.log('[Profile] Opening profile via AppLink:', profileUrl);
   
-  const tryH5sdkCall = function() {
-    if (window.h5sdk && window.h5sdk.call) {
-      window.h5sdk.call('biz.util.enterProfile', {
-        uid: unionId,
-        uid_type: 'union_id'
-      }, function(res) {
-        console.log('[Profile] h5sdk.call success:', JSON.stringify(res));
-      }, function(err) {
-        console.log('[Profile] h5sdk.call fail:', JSON.stringify(err));
-        showProfileDebugInfo(err);
-      });
-    } else {
-      console.log('[Profile] No JSAPI method available');
-      showProfileDebugInfo({error: 'no_jsapi'});
-    }
-  };
-  
-  const showProfileDebugInfo = function(err) {
-    const info = '无法弹出名片\n\n' +
-      '环境: ' + (isInFeishu ? '飞书内' : '外部浏览器') + '\n' +
-      'tt.enterProfile: ' + (window.tt && window.tt.enterProfile ? '可用' : '不可用') + '\n' +
-      'h5sdk.call: ' + (window.h5sdk && window.h5sdk.call ? '可用' : '不可用') + '\n' +
-      '错误: ' + JSON.stringify(err);
-    alert(info);
-  };
-  
-  if (window.h5sdk && window.h5sdk.ready) {
-    window.h5sdk.ready(function() {
-      callEnterProfile();
-    });
-  } else {
-    callEnterProfile();
-  }
+  // 先尝试打开个人名片页
+  // 如果路径不对，飞书会处理fallback，至少能确认AppLink机制本身可用
+  window.location.href = profileUrl;
 }
 
 function closeModal() {
