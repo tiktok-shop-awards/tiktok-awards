@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Card Demo</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .member {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .member:hover {
+      background: #f0f0f0;
+    }
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      font-size: 18px;
+    }
+    .info .name {
+      font-weight: 600;
+      font-size: 16px;
+      color: #333;
+    }
+    .info .email {
+      font-size: 13px;
+      color: #999;
+      margin-top: 2px;
+    }
+    h2 {
+      margin-top: 0;
+      color: #333;
+    }
+    .status {
+      margin-top: 16px;
+      padding: 12px;
+      background: #f9f9f9;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #666;
+      white-space: pre-wrap;
+    }
+    .hint {
+      font-size: 12px;
+      color: #999;
+      margin-top: 16px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Profile Card Demo</h2>
+    <p style="color:#666;font-size:14px;">点击成员头像/姓名，测试飞书个人名片弹出功能</p>
+    
+    <div class="member" id="member1">
+      <div class="avatar">HR</div>
+      <div class="info">
+        <div class="name">Hilda Rusli</div>
+        <div class="email">hilda.rusli@bytedance.com</div>
+      </div>
+    </div>
+
+    <div class="status" id="status">状态：等待点击测试...</div>
+    
+    <div class="hint">
+      ⚠️ 请在飞书内打开此页面测试<br>
+      union_id: on_f4a148202fb0e21e0fa12c294d8f1c02<br>
+      APP_ID: cli_a968a864a0f89bdd
+    </div>
+  </div>
+
+  <script src="https://lf-scm-cn.feishucdn.com/lark/op/h5-js-sdk-1.5.44.js"></script>
+  <script>
+    const APP_ID = 'cli_a968a864a0f89bdd';
+    const UNION_ID = 'on_f4a148202fb0e21e0fa12c294d8f1c02';
+    const statusEl = document.getElementById('status');
+    
+    function setStatus(msg) {
+      statusEl.textContent = '状态：' + msg;
+      console.log('[Demo]', msg);
+    }
+
+    // Check if in Feishu
+    const isInFeishu = /Lark|Feishu/i.test(navigator.userAgent);
+    setStatus('环境检测：' + (isInFeishu ? '飞书内置浏览器 ✓' : '外部浏览器（无法弹名片）'));
+
+    // Init JSSDK
+    if (window.h5sdk && window.h5sdk.ready) {
+      window.h5sdk.ready(() => {
+        setStatus('JSSDK ready，等待点击...');
+        
+        // Config with all JSAPIs we need
+        window.h5sdk.config({
+          appId: APP_ID,
+          jsApiList: ['biz.util.enterProfile', 'device.geolocation.get'],
+          success: function(res) {
+            setStatus('config 成功 ✓');
+          },
+          fail: function(err) {
+            setStatus('config 失败: ' + JSON.stringify(err));
+          }
+        });
+      });
+    } else {
+      setStatus('JSSDK 未加载');
+    }
+
+    // Click handler
+    document.getElementById('member1').addEventListener('click', function() {
+      if (!isInFeishu) {
+        setStatus('❌ 当前不是飞书环境，无法弹出名片\n请在飞书内打开此页面测试');
+        return;
+      }
+      
+      setStatus('尝试调用 enterProfile...\nunion_id=' + UNION_ID);
+      
+      try {
+        // Method 1: tt.enterProfile
+        if (window.tt && window.tt.enterProfile) {
+          window.tt.enterProfile({
+            uid: UNION_ID,
+            uidType: 'union_id',
+            success: function(res) {
+              setStatus('✅ enterProfile 调用成功\n' + JSON.stringify(res));
+            },
+            fail: function(err) {
+              setStatus('❌ enterProfile 失败\n' + JSON.stringify(err));
+              // Try alternative method
+              tryEnterProfileV2();
+            }
+          });
+        } else {
+          setStatus('tt.enterProfile 不可用，尝试其他方式...');
+          tryEnterProfileV2();
+        }
+      } catch(e) {
+        setStatus('异常: ' + e.message);
+      }
+    });
+
+    function tryEnterProfileV2() {
+      // Method 2: h5sdk call
+      try {
+        if (window.h5sdk && window.h5sdk.call) {
+          window.h5sdk.call('biz.util.enterProfile', {
+            uid: UNION_ID,
+            uid_type: 'union_id'
+          }, function(res) {
+            setStatus('✅ h5sdk.call 成功\n' + JSON.stringify(res));
+          }, function(err) {
+            setStatus('❌ h5sdk.call 失败\n' + JSON.stringify(err));
+          });
+        } else {
+          setStatus('h5sdk.call 不可用');
+        }
+      } catch(e) {
+        setStatus('v2 异常: ' + e.message);
+      }
+    }
+  </script>
+</body>
+</html>
