@@ -767,6 +767,15 @@ img {
   border-radius: var(--radius-md);
   background: var(--bg-dark);
   margin-bottom: var(--spacing-sm);
+  transition: background 0.2s;
+}
+
+.member-item-clickable {
+  cursor: pointer;
+}
+
+.member-item-clickable:hover {
+  background: var(--bg-hover);
 }
 
 .member-name {

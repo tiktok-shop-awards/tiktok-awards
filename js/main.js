@@ -2005,6 +2005,11 @@ function renderIndividualCards(awards, region, half) {
 }
 
 // ==================== Modal Functions ====================
+// union_id mapping for profile card (demo - will be populated fully later)
+const UNION_ID_MAP = {
+  'hilda.rusli@bytedance.com': 'on_f4a148202fb0e21e0fa12c294d8f1c02'
+};
+
 function showMembersModal(projectName, members) {
   const modal = document.getElementById('members-modal');
   const modalTitle = document.getElementById('modal-title');
@@ -2015,12 +2020,15 @@ function showMembersModal(projectName, members) {
   modalTitle.textContent = projectName;
   
   let membersHtml = '<div class="members-list">';
-  members.forEach(member => {
+  members.forEach((member, idx) => {
     const name = member.name || member;
     const email = member.email || '';
+    const unionId = email ? UNION_ID_MAP[email.toLowerCase()] : null;
+    const clickable = unionId ? 'member-item-clickable' : '';
+    const onclickAttr = unionId ? `onclick="openUserProfile('${unionId}', '${idx}')"` : '';
     membersHtml += `
-      <div class="member-item">
-        <div class="member-name">${name}</div>
+      <div class="member-item ${clickable}" ${onclickAttr} data-email="${email}">
+        <div class="member-name">${name}${unionId ? ' <span style="font-size:10px;color:#3370ff;">↗</span>' : ''}</div>
         <div class="member-email">${email}</div>
       </div>
     `;
@@ -2029,6 +2037,41 @@ function showMembersModal(projectName, members) {
   
   modalBody.innerHTML = membersHtml;
   modal.classList.add('active');
+}
+
+// Open Feishu user profile card via JSAPI
+function openUserProfile(unionId, idx) {
+  const isInFeishu = /Lark|Feishu/i.test(navigator.userAgent);
+  if (!isInFeishu) {
+    // Try applink fallback
+    window.open('https://applink.feishu.cn/client/user_profile?uid_type=union_id&uid=' + unionId, '_blank');
+    return;
+  }
+  
+  // Use Feishu JSAPI enterProfile
+  if (window.tt && window.tt.enterProfile) {
+    window.tt.enterProfile({
+      uid: unionId,
+      uidType: 'union_id',
+      fail: function(err) {
+        console.warn('enterProfile failed, trying h5sdk.call:', JSON.stringify(err));
+        if (window.h5sdk && window.h5sdk.call) {
+          window.h5sdk.call('biz.util.enterProfile', {
+            uid: unionId,
+            uid_type: 'union_id'
+          });
+        }
+      }
+    });
+  } else if (window.h5sdk && window.h5sdk.call) {
+    window.h5sdk.call('biz.util.enterProfile', {
+      uid: unionId,
+      uid_type: 'union_id'
+    });
+  } else {
+    // Fallback to applink
+    window.open('https://applink.feishu.cn/client/user_profile?uid_type=union_id&uid=' + unionId, '_blank');
+  }
 }
 
 function closeModal() {
