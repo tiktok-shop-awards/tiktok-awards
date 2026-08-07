@@ -2139,7 +2139,7 @@ window.showDebug = _toggleDebugPanel;
  */
 function initFeishuJssdk() {
   if (_jssdkPromise) return _jssdkPromise;
-  if (typeof window.h5sdk === 'undefined') {
+  if (typeof window.tt === 'undefined') {
     _jssdkPromise = Promise.reject('h5sdk not loaded');
     return _jssdkPromise;
   }
@@ -2162,7 +2162,7 @@ function initFeishuJssdk() {
       }
       _debugLog('JSSDK: calling h5sdk.config with appId=' + (configData.appId || configData.app_id || 'cli_a968a864a0f89bdd'));
       return new Promise((resolve, reject) => {
-        window.h5sdk.config({
+        window.tt.config({
           appId: configData.appId || configData.app_id || 'cli_a968a864a0f89bdd',
           timestamp: configData.timestamp,
           nonceStr: configData.nonceStr || configData.noncestr || configData.nonce_str,
@@ -2243,9 +2243,9 @@ function _doOpenProfile(unionId) {
 
 function _tryEnterProfile(openId) {
   try {
-    if (window.h5sdk.biz?.user?.enterProfile) {
+    if (window.tt.biz?.user?.enterProfile) {
       _debugLog('Profile: calling enterProfile with openid=' + openId);
-      window.h5sdk.biz.user.enterProfile({
+      window.tt.biz.user.enterProfile({
         openid: openId,
         onSuccess: () => _debugLog('Profile: enterProfile SUCCESS'),
         onFail: (err) => {
@@ -2265,9 +2265,9 @@ function _tryEnterProfile(openId) {
 
 function _tryOpenDetailFallback(openId) {
   try {
-    if (window.h5sdk.biz?.user?.openDetail) {
+    if (window.tt.biz?.user?.openDetail) {
       _debugLog('Profile: trying openDetail');
-      window.h5sdk.biz.user.openDetail({
+      window.tt.biz.user.openDetail({
         openid: openId,
         onSuccess: () => _debugLog('Profile: openDetail SUCCESS'),
         onFail: (err) => {
@@ -2277,7 +2277,7 @@ function _tryOpenDetailFallback(openId) {
       });
     } else {
       _debugLog('Profile: openDetail also not available');
-      _showProfileError('enterProfile API not available.\n\nwindow.h5sdk.biz.user.enterProfile is undefined.\nJSSDK may not be loaded or config failed.');
+      _showProfileError('enterProfile API not available.\n\nwindow.tt.biz.user.enterProfile is undefined.\nJSSDK may not be loaded or config failed.');
     }
   } catch (e) {
     _debugLog('Profile: openDetail error: ' + e.message);
