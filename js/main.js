@@ -2025,7 +2025,7 @@ function showMembersModal(projectName, members) {
     const email = member.email || '';
     const unionId = email ? UNION_ID_MAP[email.toLowerCase()] : null;
     const clickable = unionId ? 'member-item-clickable' : '';
-    const onclickAttr = unionId ? `onclick="openUserProfile('${unionId}', '${idx}')"` : '';
+    const onclickAttr = unionId ? `onclick="openUserProfile('${unionId}')"` : '';
     membersHtml += `
       <div class="member-item ${clickable}" ${onclickAttr} data-email="${email}">
         <div class="member-name">${name}${unionId ? ' <span style="font-size:10px;color:#3370ff;">↗</span>' : ''}</div>
@@ -2039,38 +2039,87 @@ function showMembersModal(projectName, members) {
   modal.classList.add('active');
 }
 
-// Open Feishu user profile card via JSAPI
-function openUserProfile(unionId, idx) {
+// Open Feishu user profile card
+function openUserProfile(unionId) {
   const isInFeishu = /Lark|Feishu/i.test(navigator.userAgent);
+  
   if (!isInFeishu) {
-    // Try applink fallback
-    window.open('https://applink.feishu.cn/client/user_profile?uid_type=union_id&uid=' + unionId, '_blank');
+    alert('请在飞书客户端内打开此页面以查看个人名片');
     return;
   }
   
-  // Use Feishu JSAPI enterProfile
-  if (window.tt && window.tt.enterProfile) {
-    window.tt.enterProfile({
-      uid: unionId,
-      uidType: 'union_id',
-      fail: function(err) {
-        console.warn('enterProfile failed, trying h5sdk.call:', JSON.stringify(err));
-        if (window.h5sdk && window.h5sdk.call) {
-          window.h5sdk.call('biz.util.enterProfile', {
-            uid: unionId,
-            uid_type: 'union_id'
-          });
+  // Wait for h5sdk ready then call enterProfile
+  const callEnterProfile = function() {
+    // Method 1: tt.enterProfile
+    if (window.tt && window.tt.enterProfile) {
+      console.log('[Profile] calling tt.enterProfile with union_id:', unionId);
+      window.tt.enterProfile({
+        uid: unionId,
+        uidType: 2,  // 2 = union_id (try numeric type)
+        success: function(res) {
+          console.log('[Profile] tt.enterProfile success:', JSON.stringify(res));
+        },
+        fail: function(err) {
+          console.log('[Profile] tt.enterProfile fail:', JSON.stringify(err));
+          tryWithStringType();
         }
-      }
-    });
-  } else if (window.h5sdk && window.h5sdk.call) {
-    window.h5sdk.call('biz.util.enterProfile', {
-      uid: unionId,
-      uid_type: 'union_id'
+      });
+    } else {
+      console.log('[Profile] tt.enterProfile not available');
+      tryWithStringType();
+    }
+  };
+  
+  const tryWithStringType = function() {
+    if (window.tt && window.tt.enterProfile) {
+      window.tt.enterProfile({
+        uid: unionId,
+        uidType: 'union_id',
+        success: function(res) {
+          console.log('[Profile] tt.enterProfile (string type) success:', JSON.stringify(res));
+        },
+        fail: function(err) {
+          console.log('[Profile] tt.enterProfile (string type) fail:', JSON.stringify(err));
+          tryH5sdkCall();
+        }
+      });
+    } else {
+      tryH5sdkCall();
+    }
+  };
+  
+  const tryH5sdkCall = function() {
+    if (window.h5sdk && window.h5sdk.call) {
+      window.h5sdk.call('biz.util.enterProfile', {
+        uid: unionId,
+        uid_type: 'union_id'
+      }, function(res) {
+        console.log('[Profile] h5sdk.call success:', JSON.stringify(res));
+      }, function(err) {
+        console.log('[Profile] h5sdk.call fail:', JSON.stringify(err));
+        showProfileDebugInfo(err);
+      });
+    } else {
+      console.log('[Profile] No JSAPI method available');
+      showProfileDebugInfo({error: 'no_jsapi'});
+    }
+  };
+  
+  const showProfileDebugInfo = function(err) {
+    const info = '无法弹出名片\n\n' +
+      '环境: ' + (isInFeishu ? '飞书内' : '外部浏览器') + '\n' +
+      'tt.enterProfile: ' + (window.tt && window.tt.enterProfile ? '可用' : '不可用') + '\n' +
+      'h5sdk.call: ' + (window.h5sdk && window.h5sdk.call ? '可用' : '不可用') + '\n' +
+      '错误: ' + JSON.stringify(err);
+    alert(info);
+  };
+  
+  if (window.h5sdk && window.h5sdk.ready) {
+    window.h5sdk.ready(function() {
+      callEnterProfile();
     });
   } else {
-    // Fallback to applink
-    window.open('https://applink.feishu.cn/client/user_profile?uid_type=union_id&uid=' + unionId, '_blank');
+    callEnterProfile();
   }
 }
 
