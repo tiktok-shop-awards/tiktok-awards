@@ -2267,6 +2267,8 @@ function _tryEnterProfile(openId) {
       _debugLog('Profile: calling enterProfile with openid=' + openId);
       window.h5sdk.biz.user.enterProfile({
         openid: openId,
+        openId: openId,
+        open_id: openId,
         onSuccess: () => _debugLog('Profile: enterProfile SUCCESS'),
         onFail: (err) => {
           _debugLog('Profile: enterProfile fail: ' + JSON.stringify(err));
@@ -2289,6 +2291,8 @@ function _tryOpenDetailFallback(openId) {
       _debugLog('Profile: trying openDetail');
       window.h5sdk.biz.user.openDetail({
         openid: openId,
+        openId: openId,
+        open_id: openId,
         onSuccess: () => _debugLog('Profile: openDetail SUCCESS'),
         onFail: (err) => {
           _debugLog('Profile: openDetail fail: ' + JSON.stringify(err));
