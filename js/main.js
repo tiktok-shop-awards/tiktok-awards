@@ -2042,6 +2042,79 @@ function showMembersModal(projectName, members) {
 // ==================== Feishu JSSDK Config & Profile Card ====================
 let _jssdkReady = false;
 let _jssdkPromise = null;
+let _debugLogPanel = null;
+let _debugLogLines = [];
+
+/**
+ * Lightweight debug logger - shows an on-page floating panel.
+ * Used for debugging in Feishu client where dev tools are not available.
+ * Press `Ctrl+Shift+D` (or type `showDebug()` in console) to toggle.
+ */
+function _debugLog(msg) {
+  const time = new Date().toLocaleTimeString();
+  const line = `[${time}] ${msg}`;
+  _debugLogLines.push(line);
+  if (_debugLogLines.length > 50) _debugLogLines.shift();
+  // Also log to console for desktop debugging
+  console.log('[DEBUG]', msg);
+  // Update panel if visible
+  if (_debugLogPanel && _debugLogPanel.style.display !== 'none') {
+    const content = _debugLogPanel.querySelector('.debug-content');
+    if (content) {
+      content.textContent = _debugLogLines.join('\n');
+      content.scrollTop = content.scrollHeight;
+    }
+  }
+}
+
+function _toggleDebugPanel() {
+  if (!_debugLogPanel) {
+    _debugLogPanel = document.createElement('div');
+    _debugLogPanel.style.cssText = 'position:fixed;right:10px;bottom:10px;width:320px;max-height:300px;background:#1a1a2e;color:#0f0;border:1px solid #333;border-radius:8px;z-index:99999;font-family:monospace;font-size:12px;overflow:hidden;';
+    _debugLogPanel.innerHTML = `
+      <div style="padding:6px 10px;background:#16213e;border-bottom:1px solid #333;cursor:move;display:flex;justify-content:space-between;user-select:none;">
+        <span>Debug Log</span>
+        <span style="cursor:pointer;" onclick="this.parentElement.parentElement.style.display='none'">✕</span>
+      </div>
+      <div class="debug-content" style="padding:6px 10px;overflow-y:auto;max-height:260px;white-space:pre-wrap;word-break:break-all;"></div>
+    `;
+    document.body.appendChild(_debugLogPanel);
+    // Make draggable
+    const header = _debugLogPanel.querySelector('div');
+    let isDragging = false, startX, startY, origX, origY;
+    header.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      startX = e.clientX; startY = e.clientY;
+      const rect = _debugLogPanel.getBoundingClientRect();
+      origX = rect.left; origY = rect.top;
+      e.preventDefault();
+    });
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      _debugLogPanel.style.right = 'auto';
+      _debugLogPanel.style.left = (origX + e.clientX - startX) + 'px';
+      _debugLogPanel.style.top = (origY + e.clientY - startY) + 'px';
+    });
+    document.addEventListener('mouseup', () => { isDragging = false; });
+    // Populate existing logs
+    const content = _debugLogPanel.querySelector('.debug-content');
+    content.innerHTML = _debugLogLines.map(l => escapeHtml(l)).join('<br>');
+    content.scrollTop = content.scrollHeight;
+  } else {
+    _debugLogPanel.style.display = _debugLogPanel.style.display === 'none' ? 'block' : 'none';
+  }
+}
+
+// Keyboard shortcut: Ctrl+Shift+D to toggle debug panel
+document.addEventListener('keydown', (e) => {
+  if (e.ctrlKey && e.shiftKey && (e.key === 'D' || e.key === 'd')) {
+    e.preventDefault();
+    _toggleDebugPanel();
+  }
+});
+
+// Also expose globally for manual triggering
+window.showDebug = _toggleDebugPanel;
 
 /**
  * Initialize Feishu H5 JSSDK with signature from AIPA backend.
@@ -2063,13 +2136,14 @@ function initFeishuJssdk() {
       return res.json();
     })
     .then(data => {
-      console.log('[JSSDK] server response:', data);
+      _debugLog('JSSDK: server response received');
       // Handle various response formats: flat, {data: {...}}, {result: {...}}, {data: {data: {...}}}
       const configData = data?.data?.data || data?.data || data?.result || data;
-      console.log('[JSSDK] using config:', configData);
       if (!configData || !configData.signature) {
+        _debugLog('JSSDK: ERROR - no signature in response');
         throw new Error('No signature in response. Full data: ' + JSON.stringify(data));
       }
+      _debugLog('JSSDK: calling h5sdk.config with appId=' + (configData.appId || configData.app_id || 'cli_a968a864a0f89bdd'));
       return new Promise((resolve, reject) => {
         window.h5sdk.config({
           appId: configData.appId || configData.app_id || 'cli_a968a864a0f89bdd',
@@ -2078,19 +2152,19 @@ function initFeishuJssdk() {
           signature: configData.signature,
           jsApiList: ['biz.user.enterProfile', 'biz.user.openDetail'],
           onSuccess: () => {
-            console.log('[JSSDK] config success');
+            _debugLog('JSSDK: config SUCCESS');
             _jssdkReady = true;
             resolve();
           },
           onFail: (err) => {
-            console.warn('[JSSDK] config failed:', err);
+            _debugLog('JSSDK: config FAILED - ' + JSON.stringify(err));
             reject(err);
           }
         });
       });
     })
     .catch(err => {
-      console.warn('[JSSDK] init failed:', err);
+      _debugLog('JSSDK: init failed - ' + err.message);
       // Reset so we can retry
       _jssdkPromise = null;
       throw err;
@@ -2114,54 +2188,75 @@ function openFeishuProfile(unionId) {
   _doOpenProfile(unionId);
 }
 
+/**
+ * Convert union_id to open_id via AIPA backend.
+ * Required because enterProfile only accepts open_id of the current H5 app.
+ */
+function _unionIdToOpenId(unionId) {
+  return fetch(
+    `https://da1e5fb0.aipa.bytedance.net/api/union_to_open?union_id=${encodeURIComponent(unionId)}`
+  )
+    .then(res => {
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json();
+    })
+    .then(data => {
+      const openId = data?.data?.open_id || data?.open_id || data?.data?.openId || data?.openId;
+      if (!openId) throw new Error('No open_id in response: ' + JSON.stringify(data));
+      return openId;
+    });
+}
+
 function _doOpenProfile(unionId) {
-  // Try enterProfile first (newer API), fallback to openDetail
+  _debugLog('Profile: converting union_id to open_id...');
+  _unionIdToOpenId(unionId)
+    .then(openId => {
+      _debugLog('Profile: got open_id=' + openId);
+      _tryEnterProfile(openId);
+    })
+    .catch(err => {
+      _debugLog('Profile: ID convert failed: ' + err.message);
+      // Fallback: try directly with union_id (in case some client versions accept it)
+      _tryEnterProfile(unionId);
+    });
+}
+
+function _tryEnterProfile(openId) {
   try {
     if (window.h5sdk.biz?.user?.enterProfile) {
-      console.log('[Profile] trying enterProfile with union_id');
+      _debugLog('Profile: calling enterProfile with openid=' + openId);
       window.h5sdk.biz.user.enterProfile({
-        userId: unionId,
-        userIdType: 'union_id',
-        onSuccess: () => console.log('[Profile] enterProfile success'),
+        openid: openId,
+        onSuccess: () => _debugLog('Profile: enterProfile SUCCESS'),
         onFail: (err) => {
-          console.warn('[Profile] enterProfile failed, trying openDetail:', err);
-          _tryOpenDetail(unionId);
+          _debugLog('Profile: enterProfile fail: ' + JSON.stringify(err));
+          _tryOpenDetailFallback(openId);
         }
       });
     } else {
-      console.log('[Profile] enterProfile not available, trying openDetail');
-      _tryOpenDetail(unionId);
+      _debugLog('Profile: enterProfile API not available');
+      _tryOpenDetailFallback(openId);
     }
   } catch (e) {
-    console.warn('[Profile] enterProfile error:', e);
-    _tryOpenDetail(unionId);
+    _debugLog('Profile: enterProfile error: ' + e.message);
+    _tryOpenDetailFallback(openId);
   }
 }
 
-function _tryOpenDetail(unionId) {
+function _tryOpenDetailFallback(openId) {
   try {
     if (window.h5sdk.biz?.user?.openDetail) {
-      console.log('[Profile] trying openDetail with union_id');
+      _debugLog('Profile: trying openDetail');
       window.h5sdk.biz.user.openDetail({
-        userId: unionId,
-        userIdType: 'union_id',
-        onSuccess: () => console.log('[Profile] openDetail success'),
-        onFail: (err) => console.warn('[Profile] openDetail failed:', err)
+        openid: openId,
+        onSuccess: () => _debugLog('Profile: openDetail SUCCESS'),
+        onFail: (err) => _debugLog('Profile: openDetail fail: ' + JSON.stringify(err))
       });
     } else {
-      console.warn('[Profile] openDetail also not available');
-      // Try tt namespace as last resort
-      if (window.tt?.openUserProfile) {
-        console.log('[Profile] trying tt.openUserProfile');
-        window.tt.openUserProfile({
-          userId: unionId,
-          success: () => console.log('[Profile] tt.openUserProfile success'),
-          fail: (err) => console.warn('[Profile] tt.openUserProfile failed:', err)
-        });
-      }
+      _debugLog('Profile: openDetail also not available');
     }
   } catch (e) {
-    console.warn('[Profile] openDetail error:', e);
+    _debugLog('Profile: openDetail error: ' + e.message);
   }
 }
 
