@@ -2063,14 +2063,20 @@ function initFeishuJssdk() {
       return res.json();
     })
     .then(data => {
-      const configData = data.data || data; // handle both {data: {...}} and flat response
+      console.log('[JSSDK] server response:', data);
+      // Handle various response formats: flat, {data: {...}}, {result: {...}}, {data: {data: {...}}}
+      const configData = data?.data?.data || data?.data || data?.result || data;
+      console.log('[JSSDK] using config:', configData);
+      if (!configData || !configData.signature) {
+        throw new Error('No signature in response. Full data: ' + JSON.stringify(data));
+      }
       return new Promise((resolve, reject) => {
         window.h5sdk.config({
-          appId: configData.appId,
+          appId: configData.appId || configData.app_id || 'cli_a968a864a0f89bdd',
           timestamp: configData.timestamp,
-          nonceStr: configData.nonceStr,
+          nonceStr: configData.nonceStr || configData.noncestr || configData.nonce_str,
           signature: configData.signature,
-          jsApiList: ['biz.user.enterProfile'],
+          jsApiList: ['biz.user.enterProfile', 'biz.user.openDetail'],
           onSuccess: () => {
             console.log('[JSSDK] config success');
             _jssdkReady = true;
@@ -2109,15 +2115,53 @@ function openFeishuProfile(unionId) {
 }
 
 function _doOpenProfile(unionId) {
+  // Try enterProfile first (newer API), fallback to openDetail
   try {
-    window.h5sdk.biz.user.enterProfile({
-      userId: unionId,
-      userIdType: 'union_id',
-      onSuccess: () => console.log('[Profile] enterProfile success'),
-      onFail: (err) => console.warn('[Profile] enterProfile failed:', err)
-    });
+    if (window.h5sdk.biz?.user?.enterProfile) {
+      console.log('[Profile] trying enterProfile with union_id');
+      window.h5sdk.biz.user.enterProfile({
+        userId: unionId,
+        userIdType: 'union_id',
+        onSuccess: () => console.log('[Profile] enterProfile success'),
+        onFail: (err) => {
+          console.warn('[Profile] enterProfile failed, trying openDetail:', err);
+          _tryOpenDetail(unionId);
+        }
+      });
+    } else {
+      console.log('[Profile] enterProfile not available, trying openDetail');
+      _tryOpenDetail(unionId);
+    }
   } catch (e) {
     console.warn('[Profile] enterProfile error:', e);
+    _tryOpenDetail(unionId);
+  }
+}
+
+function _tryOpenDetail(unionId) {
+  try {
+    if (window.h5sdk.biz?.user?.openDetail) {
+      console.log('[Profile] trying openDetail with union_id');
+      window.h5sdk.biz.user.openDetail({
+        userId: unionId,
+        userIdType: 'union_id',
+        onSuccess: () => console.log('[Profile] openDetail success'),
+        onFail: (err) => console.warn('[Profile] openDetail failed:', err)
+      });
+    } else {
+      console.warn('[Profile] openDetail also not available');
+      // Try tt namespace as last resort
+      if (window.tt?.openUserProfile) {
+        console.log('[Profile] trying tt.openUserProfile');
+        window.tt.openUserProfile({
+          userId: unionId,
+          success: () => console.log('[Profile] tt.openUserProfile success'),
+          fail: (err) => console.warn('[Profile] tt.openUserProfile failed:', err)
+        });
+      }
+    }
+  } catch (e) {
+    console.warn('[Profile] openDetail error:', e);
   }
 }
 
