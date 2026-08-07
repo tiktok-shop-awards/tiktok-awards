@@ -2116,6 +2116,23 @@ document.addEventListener('keydown', (e) => {
 // Also expose globally for manual triggering
 window.showDebug = _toggleDebugPanel;
 
+// Tap logo 5 times to toggle debug panel (for Feishu in-app browser where keyboard shortcuts are blocked)
+(function() {
+  let tapCount = 0;
+  let tapTimer = null;
+  document.addEventListener('click', (e) => {
+    const logo = e.target.closest('.logo, .logo-icon, .logo-text, .logo-subtitle, .logo-content');
+    if (!logo) return;
+    tapCount++;
+    clearTimeout(tapTimer);
+    tapTimer = setTimeout(() => { tapCount = 0; }, 2000);
+    if (tapCount >= 5) {
+      tapCount = 0;
+      _toggleDebugPanel();
+    }
+  });
+})();
+
 /**
  * Initialize Feishu H5 JSSDK with signature from AIPA backend.
  * Returns a promise that resolves when config succeeds.
