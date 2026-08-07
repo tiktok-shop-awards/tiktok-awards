@@ -2023,8 +2023,11 @@ function showMembersModal(projectName, members) {
   members.forEach((member, idx) => {
     const name = member.name || member;
     const email = member.email || '';
+    const unionId = email ? UNION_ID_MAP[email.toLowerCase()] : null;
+    const clickable = unionId ? 'member-item-clickable' : '';
+    const onclickAttr = unionId ? `onclick="openFeishuProfile('${unionId}')"` : '';
     membersHtml += `
-      <div class="member-item" data-email="${email}">
+      <div class="member-item ${clickable}" ${onclickAttr} data-email="${email}">
         <div class="member-name">${name}</div>
         <div class="member-email">${email}</div>
       </div>
@@ -2034,6 +2037,88 @@ function showMembersModal(projectName, members) {
   
   modalBody.innerHTML = membersHtml;
   modal.classList.add('active');
+}
+
+// ==================== Feishu JSSDK Config & Profile Card ====================
+let _jssdkReady = false;
+let _jssdkPromise = null;
+
+/**
+ * Initialize Feishu H5 JSSDK with signature from AIPA backend.
+ * Returns a promise that resolves when config succeeds.
+ */
+function initFeishuJssdk() {
+  if (_jssdkPromise) return _jssdkPromise;
+  if (typeof window.h5sdk === 'undefined') {
+    _jssdkPromise = Promise.reject('h5sdk not loaded');
+    return _jssdkPromise;
+  }
+
+  const currentUrl = window.location.href.split('#')[0];
+  _jssdkPromise = fetch(
+    `https://da1e5fb0.aipa.bytedance.net/api/jssdk_config?url=${encodeURIComponent(currentUrl)}`
+  )
+    .then(res => {
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json();
+    })
+    .then(data => {
+      const configData = data.data || data; // handle both {data: {...}} and flat response
+      return new Promise((resolve, reject) => {
+        window.h5sdk.config({
+          appId: configData.appId,
+          timestamp: configData.timestamp,
+          nonceStr: configData.nonceStr,
+          signature: configData.signature,
+          jsApiList: ['biz.user.enterProfile'],
+          onSuccess: () => {
+            console.log('[JSSDK] config success');
+            _jssdkReady = true;
+            resolve();
+          },
+          onFail: (err) => {
+            console.warn('[JSSDK] config failed:', err);
+            reject(err);
+          }
+        });
+      });
+    })
+    .catch(err => {
+      console.warn('[JSSDK] init failed:', err);
+      // Reset so we can retry
+      _jssdkPromise = null;
+      throw err;
+    });
+
+  return _jssdkPromise;
+}
+
+/**
+ * Open Feishu native profile card for a user.
+ * @param {string} unionId - user's union_id
+ */
+function openFeishuProfile(unionId) {
+  if (!_jssdkReady) {
+    console.log('[Profile] JSSDK not ready, initializing...');
+    initFeishuJssdk()
+      .then(() => _doOpenProfile(unionId))
+      .catch(err => console.warn('[Profile] Cannot open: JSSDK init failed', err));
+    return;
+  }
+  _doOpenProfile(unionId);
+}
+
+function _doOpenProfile(unionId) {
+  try {
+    window.h5sdk.biz.user.enterProfile({
+      userId: unionId,
+      userIdType: 'union_id',
+      onSuccess: () => console.log('[Profile] enterProfile success'),
+      onFail: (err) => console.warn('[Profile] enterProfile failed:', err)
+    });
+  } catch (e) {
+    console.warn('[Profile] enterProfile error:', e);
+  }
 }
 
 function closeModal() {
