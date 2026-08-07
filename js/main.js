@@ -2199,7 +2199,10 @@ function openFeishuProfile(unionId) {
     console.log('[Profile] JSSDK not ready, initializing...');
     initFeishuJssdk()
       .then(() => _doOpenProfile(unionId))
-      .catch(err => console.warn('[Profile] Cannot open: JSSDK init failed', err));
+      .catch(err => {
+        console.warn('[Profile] Cannot open: JSSDK init failed', err);
+        _showProfileError('JSSDK init failed.\n\n' + (err?.message || JSON.stringify(err)));
+      });
     return;
   }
   _doOpenProfile(unionId);
@@ -2267,14 +2270,24 @@ function _tryOpenDetailFallback(openId) {
       window.h5sdk.biz.user.openDetail({
         openid: openId,
         onSuccess: () => _debugLog('Profile: openDetail SUCCESS'),
-        onFail: (err) => _debugLog('Profile: openDetail fail: ' + JSON.stringify(err))
+        onFail: (err) => {
+          _debugLog('Profile: openDetail fail: ' + JSON.stringify(err));
+          _showProfileError('All methods failed.\n\nenterProfile + openDetail both failed.\nLast error: ' + JSON.stringify(err));
+        }
       });
     } else {
       _debugLog('Profile: openDetail also not available');
+      _showProfileError('enterProfile API not available.\n\nwindow.h5sdk.biz.user.enterProfile is undefined.\nJSSDK may not be loaded or config failed.');
     }
   } catch (e) {
     _debugLog('Profile: openDetail error: ' + e.message);
+    _showProfileError('openDetail error: ' + e.message);
   }
+}
+
+function _showProfileError(msg) {
+  _debugLog('Profile: FATAL - ' + msg);
+  alert('Profile Error\n\n' + msg);
 }
 
 function closeModal() {
