@@ -2023,8 +2023,11 @@ function showMembersModal(projectName, members) {
   members.forEach((member, idx) => {
     const name = member.name || member;
     const email = member.email || '';
+    const unionId = email ? UNION_ID_MAP[email.toLowerCase()] : null;
+    const clickable = unionId ? 'member-item-clickable' : '';
+    const onclickAttr = unionId ? `onclick="openFeishuProfile('${unionId}')"` : '';
     membersHtml += `
-      <div class="member-item" data-email="${email}">
+      <div class="member-item ${clickable}" ${onclickAttr} data-email="${email}">
         <div class="member-name">${name}</div>
         <div class="member-email">${email}</div>
       </div>
