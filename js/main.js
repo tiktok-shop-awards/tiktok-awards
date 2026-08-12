@@ -2176,6 +2176,9 @@ function _doJssdkConfig() {
     })
     .then(data => {
       _debugLog('JSSDK: server response received');
+      // Save full response for debugging (includes _debug field with app_id etc.)
+      window.__profileDebug = window.__profileDebug || {};
+      window.__profileDebug.jssdkConfigResponse = data;
       // Handle various response formats: flat, {data: {...}}, {result: {...}}, {data: {data: {...}}}
       const configData = data?.data?.data || data?.data || data?.result || data;
       if (!configData || !configData.signature) {
@@ -2197,6 +2200,8 @@ function _doJssdkConfig() {
           },
           onFail: (err) => {
             _debugLog('JSSDK: config FAILED - ' + JSON.stringify(err));
+            window.__profileDebug = window.__profileDebug || {};
+            window.__profileDebug.configError = err;
             reject(err);
           }
         });
@@ -2241,6 +2246,8 @@ function _unionIdToOpenId(unionId) {
       return res.json();
     })
     .then(data => {
+      window.__profileDebug = window.__profileDebug || {};
+      window.__profileDebug.unionToOpenResponse = data;
       const openId = data?.data?.open_id || data?.open_id || data?.data?.openId || data?.openId;
       if (!openId) throw new Error('No open_id in response: ' + JSON.stringify(data));
       return openId;
@@ -2272,6 +2279,8 @@ function _tryEnterProfile(openId) {
         onSuccess: () => _debugLog('Profile: enterProfile SUCCESS'),
         onFail: (err) => {
           _debugLog('Profile: enterProfile fail: ' + JSON.stringify(err));
+          window.__profileDebug = window.__profileDebug || {};
+          window.__profileDebug.enterProfileError = err;
           _tryOpenDetailFallback(openId);
         }
       });
@@ -2296,6 +2305,8 @@ function _tryOpenDetailFallback(openId) {
         onSuccess: () => _debugLog('Profile: openDetail SUCCESS'),
         onFail: (err) => {
           _debugLog('Profile: openDetail fail: ' + JSON.stringify(err));
+          window.__profileDebug = window.__profileDebug || {};
+          window.__profileDebug.openDetailError = err;
           _showProfileError('All methods failed.\n\nenterProfile + openDetail both failed.\nLast error: ' + JSON.stringify(err));
         }
       });
@@ -2311,7 +2322,21 @@ function _tryOpenDetailFallback(openId) {
 
 function _showProfileError(msg) {
   _debugLog('Profile: FATAL - ' + msg);
-  alert('Profile Error\n\n' + msg);
+  let debugInfo = '';
+  const d = window.__profileDebug || {};
+  if (d.jssdkConfigResponse?._debug) {
+    debugInfo += '\n\n[jssdk_config _debug]\n' + JSON.stringify(d.jssdkConfigResponse._debug, null, 2);
+  }
+  if (d.unionToOpenResponse?._debug) {
+    debugInfo += '\n\n[union_to_open _debug]\n' + JSON.stringify(d.unionToOpenResponse._debug, null, 2);
+  }
+  if (d.jssdkConfigResponse?.app_id || d.jssdkConfigResponse?.data?.app_id) {
+    debugInfo += '\n\n[jssdk_config app_id] ' + (d.jssdkConfigResponse.app_id || d.jssdkConfigResponse.data?.app_id || 'N/A');
+  }
+  if (d.unionToOpenResponse?.app_id || d.unionToOpenResponse?.data?.app_id) {
+    debugInfo += '\n[union_to_open app_id] ' + (d.unionToOpenResponse.app_id || d.unionToOpenResponse.data?.app_id || 'N/A');
+  }
+  alert('Profile Error\n\n' + msg + debugInfo);
 }
 
 function closeModal() {
