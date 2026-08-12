@@ -2242,12 +2242,22 @@ function _unionIdToOpenId(unionId) {
     `https://da1e5fb0.aipa.bytedance.net/api/union_to_open?union_id=${encodeURIComponent(unionId)}`
   )
     .then(res => {
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      return res.json();
+      // Read body even on error status so we can see the error details
+      return res.json().then(data => {
+        window.__profileDebug = window.__profileDebug || {};
+        window.__profileDebug.unionToOpenResponse = data;
+        window.__profileDebug.unionToOpenStatus = res.status;
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}: ` + JSON.stringify(data));
+        }
+        return data;
+      }).catch(jsonErr => {
+        // If JSON parse fails, just throw the HTTP error
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        throw jsonErr;
+      });
     })
     .then(data => {
-      window.__profileDebug = window.__profileDebug || {};
-      window.__profileDebug.unionToOpenResponse = data;
       const openId = data?.data?.open_id || data?.open_id || data?.data?.openId || data?.openId;
       if (!openId) throw new Error('No open_id in response: ' + JSON.stringify(data));
       return openId;
@@ -2327,14 +2337,14 @@ function _showProfileError(msg) {
   if (d.jssdkConfigResponse?._debug) {
     debugInfo += '\n\n[jssdk_config _debug]\n' + JSON.stringify(d.jssdkConfigResponse._debug, null, 2);
   }
-  if (d.unionToOpenResponse?._debug) {
-    debugInfo += '\n\n[union_to_open _debug]\n' + JSON.stringify(d.unionToOpenResponse._debug, null, 2);
+  if (d.unionToOpenResponse) {
+    debugInfo += '\n\n[union_to_open response]\n' + JSON.stringify(d.unionToOpenResponse, null, 2);
   }
   if (d.jssdkConfigResponse?.app_id || d.jssdkConfigResponse?.data?.app_id) {
     debugInfo += '\n\n[jssdk_config app_id] ' + (d.jssdkConfigResponse.app_id || d.jssdkConfigResponse.data?.app_id || 'N/A');
   }
-  if (d.unionToOpenResponse?.app_id || d.unionToOpenResponse?.data?.app_id) {
-    debugInfo += '\n[union_to_open app_id] ' + (d.unionToOpenResponse.app_id || d.unionToOpenResponse.data?.app_id || 'N/A');
+  if (d.enterProfileError) {
+    debugInfo += '\n\n[enterProfile error] ' + JSON.stringify(d.enterProfileError);
   }
   alert('Profile Error\n\n' + msg + debugInfo);
 }
