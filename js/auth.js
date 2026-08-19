@@ -49,9 +49,9 @@ document.addEventListener('DOMContentLoaded', function() {
       btn.style.fontWeight = '600';
       btn.style.cursor = 'pointer';
       btn.onclick = function() {
-        // Open the Feishu H5 app (mentor's app, full-employee available)
-        // web_app/open with appCenter mode works on all Feishu 3.20+ clients
-        var applink = 'https://applink.feishu.cn/client/web_app/open?appId=' + FeishuAuthHelper.APP_ID;
+        // Open current page in Feishu WebView, embedded in appCenter tab
+        var currentUrl = window.location.origin + window.location.pathname;
+        var applink = 'https://applink.feishu.cn/client/web_url/open?mode=appCenter&url=' + encodeURIComponent(currentUrl);
         window.location.href = applink;
       };
       overlay.appendChild(btn);
