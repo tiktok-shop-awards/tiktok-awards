@@ -1981,6 +1981,11 @@ function renderIndividualCards(awards, region, half) {
         }
       }
       
+      // For LATAM region, use the dedicated individual award name
+      if (region === 'latam') {
+        awardName = 'Global E-commerce LATAM Stellar Contributor';
+      }
+      
       html += `
         <div class="card individual-card" data-card-id="${cardId}">
           <div class="card-header">
