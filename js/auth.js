@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
       btn.style.cursor = 'pointer';
       btn.onclick = function() {
         // Open H5 app directly via web_app applink
-        var applink = 'https://applink.feishu.cn/client/web_app/open?app_id=' + FeishuAuthHelper.APP_ID;
+        var applink = 'https://applink.feishu.cn/client/web_app/open?appId=' + FeishuAuthHelper.APP_ID;
         window.location.href = applink;
       };
       overlay.appendChild(btn);
