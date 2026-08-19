@@ -49,8 +49,9 @@ document.addEventListener('DOMContentLoaded', function() {
       btn.style.fontWeight = '600';
       btn.style.cursor = 'pointer';
       btn.onclick = function() {
-        // Open H5 app directly via web_app applink
-        var applink = 'https://applink.feishu.cn/client/web_app/open?appId=' + FeishuAuthHelper.APP_ID;
+        // Open current page in Feishu embedded browser via web_url applink
+        var currentUrl = window.location.origin + window.location.pathname;
+        var applink = 'https://applink.feishu.cn/client/web_url/open?mode=window&url=' + encodeURIComponent(currentUrl);
         window.location.href = applink;
       };
       overlay.appendChild(btn);
