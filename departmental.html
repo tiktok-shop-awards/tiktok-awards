@@ -806,9 +806,7 @@
         const quarter = award._quarter || '';
         const memberCount = (award.members && award.members.length) || 0;
         const memberInfo = memberCount > 1 ? `Team of ${memberCount}` : '';
-        // Spot Bonus is always CNY (override data field)
-        const displayCurrency = (award.award_type === 'Spot Bonus') ? 'CNY' : (award.currency || 'USD');
-        const bonus = formatCurrency(award.bonus, displayCurrency);
+        const bonus = formatCurrency(award.bonus, award.currency);
         const name = award.winner_name || 'Unknown';
         const email = award.email || '';
         const department = award.department || '';
