@@ -79,7 +79,7 @@
     }
     .dept-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       gap: 12px;
     }
     .dept-card {
@@ -114,6 +114,8 @@
       font-weight: 600;
       color: #fff;
       margin-bottom: 6px;
+      line-height: 1.4;
+      word-break: break-word;
     }
     .dept-card-stats {
       font-size: 12px;
@@ -668,7 +670,7 @@
           const stats = computeDeptStats(awards);
 
           html += `<div class="dept-card" onclick="openDept('${dept.fullName.replace(/'/g, "\\'")}')">`;
-          html += `<div class="dept-card-name">${dept.name}</div>`;
+          html += `<div class="dept-card-name">${dept.fullName}</div>`;
           if (hasData && stats.awardCount > 0) {
             html += `<div class="dept-card-stats"><span>${stats.awardCount}</span> awards · <span>${formatBonusShort(stats.totalBonus, stats.dominantCurrency)}</span></div>`;
           } else {
