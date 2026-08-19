@@ -1470,10 +1470,13 @@ function showShareModalFromBtn(btn) {
   const bonus = btn.dataset.bonus;
   const reason = btn.dataset.reason;
   const members = JSON.parse(btn.dataset.members || '[]');
-  showShareModal(projectName, teamAward, bonus, reason, members);
+  const awardType = btn.dataset.awardType || 'project';
+  showShareModal(projectName, teamAward, bonus, reason, members, awardType);
 }
 
-function showShareModal(projectName, teamAward, bonus, reason, members) {
+function showShareModal(projectName, teamAward, bonus, reason, members, awardType) {
+  awardType = awardType || 'project';
+  const membersLabel = awardType === 'individual' ? 'Winner' : 'Team Members';
   console.log('showShareModal called:', { projectName, teamAward, bonus });
   
   const modal = document.getElementById('share-modal');
@@ -1529,7 +1532,7 @@ function showShareModal(projectName, teamAward, bonus, reason, members) {
             <div class="poster-reason">${reason || 'Outstanding contribution to the team'}</div>
           </div>
           <div class="poster-members-section">
-            <div class="poster-section-label">Team Members</div>
+            <div class="poster-section-label">${membersLabel}</div>
             <div class="${membersClass}">
               ${memberList}
             </div>
@@ -2010,7 +2013,7 @@ function renderIndividualCards(awards, region, half) {
               <button class="comment-btn" onclick="showCommentsModal('${cardId}', '${memberNameStr.replace(/'/g, "\\'")}', 'Individual Award')">
                 💬 Comment
               </button>
-              <button class="share-btn" data-project="${memberNameStr.replace(/'/g, "\\'")}" data-award="${awardName}" data-bonus="${award.bonus || ''}" data-reason="${(reasonText || '').replace(/'/g, "\\'").replace(/"/g, '&quot;')}" data-members='${JSON.stringify([{name: memberNameStr, email: award.email || ''}]).replace(/'/g, "&#39;")}' onclick="showShareModalFromBtn(this)">
+              <button class="share-btn" data-award-type="individual" data-project="${memberNameStr.replace(/'/g, "\\'")}" data-award="${awardName}" data-bonus="${award.bonus || ''}" data-reason="${(reasonText || '').replace(/'/g, "\\'").replace(/"/g, '&quot;')}" data-members='${JSON.stringify([{name: memberNameStr, email: award.email || ''}]).replace(/'/g, "&#39;")}' onclick="showShareModalFromBtn(this)">
                 📤 Share
               </button>
             </div>
