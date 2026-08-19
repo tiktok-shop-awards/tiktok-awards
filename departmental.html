@@ -843,7 +843,7 @@
                 <button class="comment-btn" onclick="showCommentsModal('${cardId}', '${safeName}', '${badgeLabel}')">
                   💬 Comment
                 </button>
-                <button class="share-btn" data-project="${safeName}" data-award="${badgeLabel}" data-bonus="${award.bonus || ''}" data-reason="${reasonText.replace(/'/g, "\\'").replace(/"/g, '&quot;')}" data-members='${JSON.stringify([{name: name, email: email}]).replace(/'/g, "&#39;")}' onclick="showShareModalFromBtn(this)">
+                <button class="share-btn" data-award-type="${award.award_type === 'Departmental Award' ? 'project' : 'individual'}" data-project="${safeName}" data-award="${badgeLabel}" data-bonus="${award.bonus || ''}" data-reason="${reasonText.replace(/'/g, "\\'").replace(/"/g, '&quot;')}" data-members='${JSON.stringify([{name: name, email: email}]).replace(/'/g, "&#39;")}' onclick="showShareModalFromBtn(this)">
                   📤 Share
                 </button>
               </div>
