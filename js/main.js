@@ -1516,9 +1516,6 @@ function showShareModal(projectName, teamAward, bonus, reason, members) {
     <div id="poster-wrapper" style="overflow:hidden;position:relative;">
       <div class="poster-container ${posterSizeClass}" id="poster-content">
         <div class="poster-gradient"></div>
-        <div class="poster-header">
-          <div class="poster-brand">Global E-commerce Recognition Hub</div>
-        </div>
         <div class="poster-divider"></div>
         <div class="poster-center">
           <div class="poster-award-type">${teamAward || 'Global Excellence Award'}</div>
