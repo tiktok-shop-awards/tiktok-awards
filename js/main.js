@@ -121,13 +121,13 @@ function showToast(message, duration = 3500) {
 function formatCurrency(amount, currency = 'USD') {
   if (!amount) return 'TBD';
   
-  const symbol = currency === 'CNY' ? '¥' : '$';
+  const symbol = (currency === 'CNY' || currency === 'RMB') ? '¥' : '$';
   return symbol + Number(amount).toLocaleString();
 }
 
 function formatBonus(amount, currency = 'USD') {
   if (!amount || amount === 0) return 'TBD';
-  const symbol = currency === 'CNY' ? '¥' : '$';
+  const symbol = (currency === 'CNY' || currency === 'RMB') ? '¥' : '$';
   if (amount >= 1000000) {
     return symbol + (amount / 1000000).toFixed(1) + 'M';
   }
