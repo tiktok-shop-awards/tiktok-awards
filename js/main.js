@@ -1614,9 +1614,17 @@ async function downloadPoster() {
       throw new Error('html2canvas library not loaded');
     }
     
-    // Hide preview during capture to avoid visual flash
+    // Reduce preview opacity during capture to avoid visual flash
+    // Note: do NOT use visibility:hidden — html2canvas inherits it and captures pure black
     const previewContainer = document.getElementById('poster-preview');
-    if (previewContainer) previewContainer.style.visibility = 'hidden';
+    const savedOpacity = previewContainer ? previewContainer.style.opacity : '';
+    const savedOverflow = previewContainer ? previewContainer.style.overflow : '';
+    const savedWidth = previewContainer ? previewContainer.style.width : '';
+    if (previewContainer) {
+      previewContainer.style.opacity = '0.01';
+      previewContainer.style.overflow = 'visible';
+      previewContainer.style.width = 'auto';
+    }
 
     // Temporarily remove transform for accurate html2canvas capture
     const savedTransform = posterContent.style.transform;
@@ -1656,8 +1664,12 @@ async function downloadPoster() {
     // Restore transform for preview
     posterContent.style.transform = savedTransform;
     posterContent.style.transformOrigin = savedTransformOrigin;
-    // Show preview again
-    if (previewContainer) previewContainer.style.visibility = 'visible';
+    // Restore preview
+    if (previewContainer) {
+      previewContainer.style.opacity = savedOpacity;
+      previewContainer.style.overflow = savedOverflow;
+      previewContainer.style.width = savedWidth;
+    }
     
     // Convert to image and download
     const link = document.createElement('a');
@@ -1666,9 +1678,15 @@ async function downloadPoster() {
     link.click();
   } catch (error) {
     console.error('Error generating poster:', error);
-    // Restore preview visibility on error
-    const previewContainer = document.getElementById('poster-preview');
-    if (previewContainer) previewContainer.style.visibility = 'visible';
+    // Restore preview on error
+    posterContent.style.transform = savedTransform;
+    posterContent.style.transformOrigin = savedTransformOrigin;
+    const previewContainer2 = document.getElementById('poster-preview');
+    if (previewContainer2) {
+      previewContainer2.style.opacity = savedOpacity;
+      previewContainer2.style.overflow = savedOverflow;
+      previewContainer2.style.width = savedWidth;
+    }
     alert('Failed to generate poster. Please try again.');
   }
 }
