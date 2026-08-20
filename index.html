@@ -1204,7 +1204,11 @@
           if (urlYear === '2026' && rankingsData.note) {
             const podiumSection = document.getElementById('top3-podium');
             if (podiumSection) {
+              // 清除已有的note（防止重复渲染）
+              const existingNote = podiumSection.parentElement.querySelector('.ranking-note');
+              if (existingNote) existingNote.remove();
               const noteDiv = document.createElement('div');
+              noteDiv.className = 'ranking-note';
               noteDiv.style.cssText = 'text-align: center; margin-top: 16px; font-size: 12px; color: var(--text-secondary);';
               noteDiv.innerHTML = `<em>${rankingsData.note}</em>`;
               podiumSection.parentElement.appendChild(noteDiv);
