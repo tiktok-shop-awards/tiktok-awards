@@ -290,18 +290,22 @@
       display: none;
     }
 
-    /* 底部 */
+    /* 底部 - 固定在边框内 */
     .poster-v2-footer {
+      position: absolute;
+      left: 56px;
+      right: 56px;
+      bottom: 52px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 3;
-      margin-top: auto;
+      z-index: 5;
     }
     .poster-v2-logo {
-      height: 48px;
+      height: 44px;
       width: auto;
       opacity: 0.9;
+      display: block;
     }
     .poster-v2-footer-brand {
       font-size: 18px;
