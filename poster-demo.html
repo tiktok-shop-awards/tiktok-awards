@@ -32,15 +32,17 @@
       overflow: hidden;
       border-radius: 8px;
       box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      position: relative;
     }
-    .poster-scaler .poster-container {
+    .poster-scaler .poster-v2-container {
       transform-origin: top left;
+      display: block;
     }
 
     /* ===== NEW POSTER LAYOUT v2 ===== */
     .poster-v2-container {
       width: 2560px;
-      min-height: 960px;
+      height: 960px;
       background: linear-gradient(160deg, #0a1628 0%, #03060d 40%, #000000 100%);
       position: relative;
       overflow: hidden;
@@ -49,6 +51,9 @@
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
+    }
+    .poster-v2-container.tall {
+      height: 1280px;
     }
 
     /* 装饰边框 */
@@ -368,7 +373,7 @@
     <div class="demo-title">版本B · 百人项目 (100 people)</div>
     <div class="demo-subtitle">五列网格铺满人名，形成"人名墙"气势；项目名与奖金区保持不变</div>
     <div class="poster-scaler" id="scaler-2">
-      <div class="poster-v2-container" style="min-height: 1200px;">
+      <div class="poster-v2-container tall">
         <div class="corner-br"></div>
 
         <div class="poster-v2-top">
@@ -442,24 +447,30 @@
     wall.appendChild(div);
   });
 
-  // Scale posters to fit viewport
+  // Scale posters to fit viewport width
   function scalePoster(id) {
     const scaler = document.getElementById(id);
     const poster = scaler.querySelector('.poster-v2-container');
     const scale = scaler.clientWidth / 2560;
     poster.style.transform = `scale(${scale})`;
-    // Set scaler height to match scaled content
+    // Use the poster's defined height (fixed) times scale
     const h = poster.offsetHeight * scale;
     scaler.style.height = h + 'px';
   }
 
+  function scaleAll() {
+    scalePoster('scaler-1');
+    scalePoster('scaler-2');
+  }
+
+  // Wait for fonts & layout
   window.addEventListener('load', () => {
-    scalePoster('scaler-1');
-    scalePoster('scaler-2');
+    setTimeout(scaleAll, 50);
   });
+  let resizeTimer;
   window.addEventListener('resize', () => {
-    scalePoster('scaler-1');
-    scalePoster('scaler-2');
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(scaleAll, 100);
   });
 </script>
 
