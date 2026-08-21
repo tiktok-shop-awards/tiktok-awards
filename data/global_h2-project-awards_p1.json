@@ -754,7 +754,7 @@
     "bonus": "30000",
     "period": "H2",
     "members": [
-      "陈思旭"
+      "Iris Chen"
     ],
     "reason": "In the early stages, U.S. merchants and partners had concerns about GMV Max, stemming from both product gaps and misunderstandings.\nFollowing in-depth discussions with Mason in Zhuhai in June, the team conducted focused GMV Max Q&A sessions, multiple rounds of communication, and joint research to distinguish product gaps from [misunderstandings.By](http://misunderstandings.By) September, GMV Max revenue penetration reached 95%, allowing us to successfully phase out ROI1. This transparent cross-functional collaboration built the trust needed for our next breakthrough.\nIn Q4, with a \"Deliver the Mission\" mindset, we achieved a global first by bundling GMV Max with US BFCM. This drove GMV Max GMV penetration from 65% to 81%, and the non-FS takerate reached 18% during peak campaign. These results validated our product’s value and successfully met the ambitious goal of Margin 2 breakeven in the U.S. market.",
     "email": "chensixu.iris@bytedance.com",
@@ -917,7 +917,7 @@
     "bonus": "30000",
     "period": "H2",
     "members": [
-      "陈思宇"
+      "Siyu Chen"
     ],
     "reason": "[Background] Some US POP merchants used unpaid postage labels (UPO) to avoid shipping costs and gain unfair price advantages. This led to unhealthy competition and serious user experience issues once USPS stopped deliveries and charged customers. The platform needed decisive governance to restore fairness and protect user trust.[Challenges]Governance could impact short-term GMV but inaction would harm user experience.UPO detection relied on delayed and limited USPS signals, making suspected cases harder to handle.Policy rollout timing conflicted with holiday and Black Friday preparations.[Strategy] A three-phase, tiered rollout ultimately restricted 3PL usage across merchants:Phase 1: Full 3PL ban for confirmed UPO violators.Phase 2: Restrictions of seller shipping with USPS for high-risk merchants.Phase 3: POP-wide 3PL restriction (except those not accepted by TT shipping)[Impact]UPO signals reduced from 3,900 weekly orders to zero.Postage-related cancellation rate dropped from 22.34% to 4.63%.190K merchants transitioned from 3PL in Q4.Official logistics penetration rose from 13.5% to 92.1% (+78.6pp).Ultra-low-price competition declined significantly.The initiative restored fair competition, protected user trust during Black Friday, and accelerated official logistics scale and capability upgrades.[Reflection] Early warning signals appeared in July, but action was delayed due to GMV concerns. Going forward, risks must be identified and addressed earlier to better balance growth and user experience.",
     "email": "siyuchen.17@bytedance.com",
