@@ -1702,11 +1702,6 @@ async function downloadPoster() {
         if (clonedPoster) {
           // Remove pseudo-element borders (html2canvas renders them on top of text)
           clonedPoster.classList.add('poster-no-decorations');
-          // Ensure gradient stays behind text
-          // v2 uses CSS gradient on container, no separate gradient element
-          if (gradient) {
-            gradient.style.zIndex = '-1';
-          }
           // Ensure all text elements are above overlays
           clonedPoster.querySelectorAll('.poster-v2-top, .poster-v2-body, .poster-v2-footer, .poster-v2-divider, .poster-v2-corner-br').forEach(function(el) {
             el.style.position = 'relative';
@@ -1716,14 +1711,15 @@ async function downloadPoster() {
       }
     });
 
-    // Restore transform for preview
+    // Restore transform and preview state
     posterContent.style.transform = savedTransform;
     posterContent.style.transformOrigin = savedTransformOrigin;
+    posterContent.style.width = '2560px';
     // Restore preview
     if (previewContainer) {
-      previewContainer.style.opacity = savedOpacity;
-      previewContainer.style.overflow = savedOverflow;
-      previewContainer.style.width = savedWidth;
+      previewContainer.style.opacity = '';
+      previewContainer.style.overflow = '';
+      previewContainer.style.width = '';
     }
     
     // Convert to image and download
@@ -1734,13 +1730,16 @@ async function downloadPoster() {
   } catch (error) {
     console.error('Error generating poster:', error);
     // Restore preview on error
-    posterContent.style.transform = savedTransform;
-    posterContent.style.transformOrigin = savedTransformOrigin;
+    try {
+      posterContent.style.transform = savedTransform;
+      posterContent.style.transformOrigin = savedTransformOrigin;
+      posterContent.style.width = '2560px';
+    } catch(e) {}
     const previewContainer2 = document.getElementById('poster-preview');
     if (previewContainer2) {
-      previewContainer2.style.opacity = savedOpacity;
-      previewContainer2.style.overflow = savedOverflow;
-      previewContainer2.style.width = savedWidth;
+      previewContainer2.style.opacity = '';
+      previewContainer2.style.overflow = '';
+      previewContainer2.style.width = '';
     }
     alert('Failed to generate poster. Please try again.');
   }
