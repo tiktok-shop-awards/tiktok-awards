@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Poster Layout Demo</title>
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 40px;
+      background: #1a1a2e;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    .demo-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+    }
+    .demo-title {
+      color: #fff;
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .demo-subtitle {
+      color: rgba(255,255,255,0.6);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    .poster-scaler {
+      width: 100%;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    }
+    .poster-scaler .poster-container {
+      transform-origin: top left;
+    }
+
+    /* ===== NEW POSTER LAYOUT v2 ===== */
+    .poster-v2-container {
+      width: 2560px;
+      min-height: 960px;
+      background: linear-gradient(160deg, #0a1628 0%, #03060d 40%, #000000 100%);
+      position: relative;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      padding: 80px 100px 60px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 装饰边框 */
+    .poster-v2-container::before {
+      content: '';
+      position: absolute;
+      top: 32px; left: 32px; right: 32px; bottom: 32px;
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      pointer-events: none;
+      z-index: 1;
+    }
+    /* 四角装饰 */
+    .poster-v2-container::after {
+      content: '';
+      position: absolute;
+      top: 24px; left: 24px;
+      width: 60px; height: 60px;
+      border-top: 3px solid #d4af37;
+      border-left: 3px solid #d4af37;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .poster-v2-container .corner-br {
+      position: absolute;
+      bottom: 24px; right: 24px;
+      width: 60px; height: 60px;
+      border-bottom: 3px solid #d4af37;
+      border-right: 3px solid #d4af37;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* 顶部 */
+    .poster-v2-top {
+      z-index: 3;
+    }
+    .poster-v2-brand {
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 5px;
+      color: rgba(212, 175, 55, 0.8);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .poster-v2-title {
+      font-size: 72px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.15;
+      letter-spacing: 0.5px;
+      margin-bottom: 24px;
+      max-width: 1800px;
+    }
+    .poster-v2-title-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 60px;
+    }
+    .poster-v2-bonus {
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .poster-v2-bonus-num {
+      font-size: 56px;
+      font-weight: 800;
+      color: #d4af37;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .poster-v2-bonus-label {
+      font-size: 18px;
+      letter-spacing: 3px;
+      color: rgba(212, 175, 55, 0.6);
+      text-transform: uppercase;
+    }
+
+    .poster-v2-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, #d4af37 0%, rgba(212,175,55,0.1) 60%);
+      margin: 0 0 40px 0;
+    }
+
+    /* 主体内容区 */
+    .poster-v2-body {
+      display: flex;
+      flex-direction: row;
+      gap: 80px;
+      z-index: 3;
+      flex: 1;
+      padding-bottom: 40px;
+    }
+    .poster-v2-reason {
+      flex: 1.2;
+      display: flex;
+      flex-direction: column;
+    }
+    .poster-v2-members-section {
+      flex: 0.8;
+      display: flex;
+      flex-direction: column;
+    }
+    .poster-v2-section-label {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: #d4af37;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .poster-v2-section-label .count {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      color: rgba(212, 175, 55, 0.6);
+    }
+    .poster-v2-reason-text {
+      font-size: 17px;
+      color: rgba(255, 255, 255, 0.78);
+      line-height: 1.8;
+      flex: 1;
+    }
+
+    /* 成员区 - 自适应 */
+    .poster-v2-members {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 单人模式 */
+    .poster-v2-members.mode-single {
+      justify-content: center;
+    }
+    .poster-v2-members.mode-single .member-name {
+      font-size: 64px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .poster-v2-members.mode-single .member-dept {
+      font-size: 20px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 8px;
+    }
+    .poster-v2-members.mode-single .member-role {
+      font-size: 16px;
+      color: rgba(212, 175, 55, 0.7);
+      letter-spacing: 1px;
+    }
+
+    /* 少量模式 (2-5人) */
+    .poster-v2-members.mode-few {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      align-content: start;
+    }
+    .poster-v2-members.mode-few .member-item {
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    }
+    .poster-v2-members.mode-few .member-name {
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .poster-v2-members.mode-few .member-dept {
+      font-size: 15px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* 中等模式 (6-20人) */
+    .poster-v2-members.mode-medium {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px 32px;
+      align-content: start;
+    }
+    .poster-v2-members.mode-medium .member-item {
+      padding: 6px 0;
+    }
+    .poster-v2-members.mode-medium .member-name {
+      font-size: 18px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+    }
+    .poster-v2-members.mode-medium .member-dept {
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* 多人模式 (21-50人) */
+    .poster-v2-members.mode-many {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px 20px;
+      align-content: start;
+    }
+    .poster-v2-members.mode-many .member-item {
+      padding: 2px 0;
+    }
+    .poster-v2-members.mode-many .member-name {
+      font-size: 15px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.85);
+    }
+    .poster-v2-members.mode-many .member-dept {
+      display: none;
+    }
+
+    /* 百人模式 (50+人) */
+    .poster-v2-members.mode-wall {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px 16px;
+      align-content: start;
+    }
+    .poster-v2-members.mode-wall .member-item {
+      padding: 0;
+    }
+    .poster-v2-members.mode-wall .member-name {
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.75);
+    }
+    .poster-v2-members.mode-wall .member-dept {
+      display: none;
+    }
+
+    /* 底部 */
+    .poster-v2-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 3;
+      margin-top: auto;
+    }
+    .poster-v2-logo {
+      width: 48px;
+      height: 48px;
+      opacity: 0.8;
+      /* placeholder */
+      color: #fff;
+      font-size: 28px;
+      font-weight: 900;
+    }
+    .poster-v2-footer-brand {
+      font-size: 18px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 3px;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="demo-wrap">
+
+  <!-- 1 person -->
+  <div>
+    <div class="demo-title">版本A · 单人奖 (1 person)</div>
+    <div class="demo-subtitle">大字号突出获奖者，留白充足，有分量感</div>
+    <div class="poster-scaler" id="scaler-1">
+      <div class="poster-v2-container">
+        <div class="corner-br"></div>
+
+        <div class="poster-v2-top">
+          <div class="poster-v2-brand">Global E-Commerce · Impactful Projects Award</div>
+          <div class="poster-v2-title-row">
+            <div class="poster-v2-title">US FBT Cost<br>Efficiency Project</div>
+            <div class="poster-v2-bonus">
+              <div class="poster-v2-bonus-num">$30,000</div>
+              <div class="poster-v2-bonus-label">Award Bonus</div>
+            </div>
+          </div>
+          <div class="poster-v2-divider"></div>
+        </div>
+
+        <div class="poster-v2-body">
+          <div class="poster-v2-reason">
+            <div class="poster-v2-section-label">Project Highlights</div>
+            <div class="poster-v2-reason-text">
+              1. Successfully launched the FBT (Fulfillment by TikTok) cost optimization initiative across US operations, achieving a 23% reduction in per-order fulfillment costs within Q1 2026.<br><br>
+              2. Led cross-functional collaboration between operations, product, and finance teams to redesign packaging strategies and optimize warehouse picking routes, resulting in annualized savings of $4.2M.<br><br>
+              3. Pioneered the dynamic routing algorithm rollout, which improved last-mile delivery efficiency by 18% while maintaining SLA compliance at 98.5%.
+            </div>
+          </div>
+
+          <div class="poster-v2-members-section">
+            <div class="poster-v2-section-label">Winner<span class="count">· 1 person</span></div>
+            <div class="poster-v2-members mode-single">
+              <div class="member-name">Lydia Cui</div>
+              <div class="member-dept">Strategy Analytics & Resource Management</div>
+              <div class="member-role">PROJECT LEAD</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="poster-v2-footer">
+          <div class="poster-v2-logo">🛍</div>
+          <div class="poster-v2-footer-brand">TikTok Shop</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 100 people -->
+  <div>
+    <div class="demo-title">版本B · 百人项目 (100 people)</div>
+    <div class="demo-subtitle">五列网格铺满人名，形成"人名墙"气势；项目名与奖金区保持不变</div>
+    <div class="poster-scaler" id="scaler-2">
+      <div class="poster-v2-container" style="min-height: 1200px;">
+        <div class="corner-br"></div>
+
+        <div class="poster-v2-top">
+          <div class="poster-v2-brand">Global E-Commerce · Impactful Projects Award</div>
+          <div class="poster-v2-title-row">
+            <div class="poster-v2-title">US FBT Cost<br>Efficiency Project</div>
+            <div class="poster-v2-bonus">
+              <div class="poster-v2-bonus-num">$30,000</div>
+              <div class="poster-v2-bonus-label">Award Bonus</div>
+            </div>
+          </div>
+          <div class="poster-v2-divider"></div>
+        </div>
+
+        <div class="poster-v2-body">
+          <div class="poster-v2-reason">
+            <div class="poster-v2-section-label">Project Highlights</div>
+            <div class="poster-v2-reason-text">
+              1. Successfully launched the FBT (Fulfillment by TikTok) cost optimization initiative across US operations, achieving a 23% reduction in per-order fulfillment costs within Q1 2026.<br><br>
+              2. Led cross-functional collaboration between operations, product, and finance teams to redesign packaging strategies and optimize warehouse picking routes, resulting in annualized savings of $4.2M.<br><br>
+              3. Pioneered the dynamic routing algorithm rollout, which improved last-mile delivery efficiency by 18% while maintaining SLA compliance at 98.5%.
+            </div>
+          </div>
+
+          <div class="poster-v2-members-section">
+            <div class="poster-v2-section-label">Team Members<span class="count">· 100 people</span></div>
+            <div class="poster-v2-members mode-wall" id="members-wall">
+              <!-- JS will fill -->
+            </div>
+          </div>
+        </div>
+
+        <div class="poster-v2-footer">
+          <div class="poster-v2-logo">🛍</div>
+          <div class="poster-v2-footer-brand">TikTok Shop</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Fill 100 names
+  const wall = document.getElementById('members-wall');
+  const names = [
+    'Lydia Cui', 'Amy Zhang', 'Bob Wang', 'Carol Li', 'David Chen',
+    'Emma Liu', 'Frank Wu', 'Grace Sun', 'Henry Zhou', 'Ivy Huang',
+    'Jack Lin', 'Kelly Xu', 'Leo Yang', 'Mia Zhao', 'Nick Qian',
+    'Olivia Sun', 'Peter Li', 'Queen Wang', 'Ryan Chen', 'Sophia Liu',
+    'Tom Zhang', 'Uma Huang', 'Victor Wu', 'Wendy Zhou', 'Xander Sun',
+    'Yuki Yang', 'Zack Qian', 'Alice Zhao', 'Ben Chen', 'Chloe Liu',
+    'Dylan Wang', 'Eva Li', 'Felix Zhang', 'Gina Chen', 'Harry Wu',
+    'Iris Wang', 'Jason Liu', 'Kathy Chen', 'Leo Zhang', 'Mona Li',
+    'Nathan Wang', 'Olivia Chen', 'Paul Zhang', 'Quinn Liu', 'Rose Wang',
+    'Sam Chen', 'Tina Li', 'Ulysses Zhang', 'Vera Wang', 'Will Chen',
+    'Xena Liu', 'Yoyo Zhang', 'Zane Wang', 'Aaron Li', 'Bella Chen',
+    'Caleb Zhang', 'Daisy Wang', 'Ethan Liu', 'Fiona Chen', 'George Li',
+    'Helen Zhang', 'Ivan Wang', 'Julia Chen', 'Kevin Liu', 'Luna Zhang',
+    'Mason Wang', 'Nora Chen', 'Oscar Li', 'Penny Zhang', 'Quincy Wang',
+    'Rachel Chen', 'Stan Li', 'Tracy Zhang', 'Umar Wang', 'Vicky Chen',
+    'Wayne Liu', 'Xin Zhang', 'Yolanda Wang', 'Zara Chen', 'Adam Li',
+    'Betty Zhang', 'Carl Wang', 'Diana Chen', 'Eric Liu', 'Fanny Zhang',
+    'Gary Wang', 'Hannah Chen', 'Ian Li', 'Jenny Zhang', 'Ken Wang',
+    'Lisa Chen', 'Mike Liu', 'Nina Zhang', 'Owen Wang', 'Peggy Chen'
+  ];
+  names.forEach(name => {
+    const div = document.createElement('div');
+    div.className = 'member-item';
+    div.innerHTML = `<div class="member-name">${name}</div>`;
+    wall.appendChild(div);
+  });
+
+  // Scale posters to fit viewport
+  function scalePoster(id) {
+    const scaler = document.getElementById(id);
+    const poster = scaler.querySelector('.poster-v2-container');
+    const scale = scaler.clientWidth / 2560;
+    poster.style.transform = `scale(${scale})`;
+    // Set scaler height to match scaled content
+    const h = poster.offsetHeight * scale;
+    scaler.style.height = h + 'px';
+  }
+
+  window.addEventListener('load', () => {
+    scalePoster('scaler-1');
+    scalePoster('scaler-2');
+  });
+  window.addEventListener('resize', () => {
+    scalePoster('scaler-1');
+    scalePoster('scaler-2');
+  });
+</script>
+
+</body>
+</html>
