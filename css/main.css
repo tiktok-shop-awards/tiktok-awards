@@ -1372,6 +1372,287 @@ img {
   letter-spacing: 3px;
 }
 
+/* ===== NEW POSTER LAYOUT v2 ===== */
+.poster-v2-container {
+  width: 2560px;
+  min-height: 960px;
+  background: linear-gradient(160deg, #0a1628 0%, #03060d 40%, #000000 100%);
+  position: relative;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  padding: 80px 100px 100px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 装饰边框 */
+.poster-v2-container::before {
+  content: '';
+  position: absolute;
+  top: 32px; left: 32px; right: 32px; bottom: 32px;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  pointer-events: none;
+  z-index: 1;
+}
+/* 左上金色角标 */
+.poster-v2-container::after {
+  content: '';
+  position: absolute;
+  top: 24px; left: 24px;
+  width: 60px; height: 60px;
+  border-top: 3px solid #d4af37;
+  border-left: 3px solid #d4af37;
+  pointer-events: none;
+  z-index: 2;
+}
+.poster-v2-container .poster-v2-corner-br {
+  position: absolute;
+  bottom: 24px; right: 24px;
+  width: 60px; height: 60px;
+  border-bottom: 3px solid #d4af37;
+  border-right: 3px solid #d4af37;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* 顶部 */
+.poster-v2-top {
+  z-index: 3;
+}
+.poster-v2-brand {
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 5px;
+  color: rgba(212, 175, 55, 0.8);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.poster-v2-title {
+  font-size: 72px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.15;
+  letter-spacing: 0.5px;
+  margin-bottom: 24px;
+  max-width: 1800px;
+}
+.poster-v2-title-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 60px;
+}
+.poster-v2-bonus {
+  text-align: right;
+  flex-shrink: 0;
+}
+.poster-v2-bonus-num {
+  font-size: 56px;
+  font-weight: 800;
+  color: #d4af37;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.poster-v2-bonus-label {
+  font-size: 18px;
+  letter-spacing: 3px;
+  color: rgba(212, 175, 55, 0.6);
+  text-transform: uppercase;
+}
+
+.poster-v2-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, #d4af37 0%, rgba(212,175,55,0.1) 60%);
+  margin: 0 0 40px 0;
+}
+
+/* 主体内容区 */
+.poster-v2-body {
+  display: flex;
+  flex-direction: row;
+  gap: 80px;
+  z-index: 3;
+  flex: 1;
+}
+.poster-v2-reason {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+}
+.poster-v2-members-section {
+  flex: 0.8;
+  display: flex;
+  flex-direction: column;
+}
+.poster-v2-section-label {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: #d4af37;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.poster-v2-section-label .count {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: rgba(212, 175, 55, 0.6);
+}
+.poster-v2-reason-text {
+  font-size: 17px;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.8;
+  flex: 1;
+}
+.poster-v2-reason-text strong {
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 700;
+}
+
+/* 成员区 - 自适应 */
+.poster-v2-members {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 单人模式 */
+.poster-v2-members.mode-single {
+  justify-content: center;
+}
+.poster-v2-members.mode-single .member-name {
+  font-size: 64px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+.poster-v2-members.mode-single .member-dept {
+  font-size: 20px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 8px;
+}
+.poster-v2-members.mode-single .member-role {
+  font-size: 16px;
+  color: rgba(212, 175, 55, 0.7);
+  letter-spacing: 1px;
+}
+
+/* 少量模式 (2-5人) */
+.poster-v2-members.mode-few {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-content: start;
+}
+.poster-v2-members.mode-few .member-item {
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+.poster-v2-members.mode-few .member-name {
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.poster-v2-members.mode-few .member-dept {
+  font-size: 15px;
+  color: rgba(255,255,255,0.5);
+}
+
+/* 中等模式 (6-20人) */
+.poster-v2-members.mode-medium {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 32px;
+  align-content: start;
+}
+.poster-v2-members.mode-medium .member-item {
+  padding: 6px 0;
+}
+.poster-v2-members.mode-medium .member-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+}
+.poster-v2-members.mode-medium .member-dept {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+}
+
+/* 多人模式 (21-50人) */
+.poster-v2-members.mode-many {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px 20px;
+  align-content: start;
+}
+.poster-v2-members.mode-many .member-item {
+  padding: 2px 0;
+}
+.poster-v2-members.mode-many .member-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+}
+.poster-v2-members.mode-many .member-dept {
+  display: none;
+}
+
+/* 百人模式 (50+人) */
+.poster-v2-members.mode-wall {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px 16px;
+  align-content: start;
+}
+.poster-v2-members.mode-wall .member-item {
+  padding: 0;
+}
+.poster-v2-members.mode-wall .member-name {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.75);
+}
+.poster-v2-members.mode-wall .member-dept {
+  display: none;
+}
+
+/* 底部 - 固定在边框内 */
+.poster-v2-footer {
+  position: absolute;
+  left: 56px;
+  right: 56px;
+  bottom: 52px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 5;
+}
+.poster-v2-logo {
+  height: 44px;
+  width: auto;
+  opacity: 0.9;
+  display: block;
+}
+.poster-v2-footer-brand {
+  font-size: 18px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 3px;
+}
+
+/* Remove pseudo-element borders for html2canvas capture */
+.poster-v2-container.poster-no-decorations::before,
+.poster-v2-container.poster-no-decorations::after {
+  display: none;
+}
+
 /* ==================== Like Button ==================== */
 .like-btn {
   display: flex;
