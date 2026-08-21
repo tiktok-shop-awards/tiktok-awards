@@ -1585,7 +1585,7 @@ function showShareModal(projectName, teamAward, bonus, reason, members, awardTyp
         <div class="poster-v2-body">
           <div class="poster-v2-reason">
             <div class="poster-v2-section-label">Project Highlights</div>
-            <div class="poster-v2-reason-text">${reason || 'Outstanding contribution to the team'}</div>
+            <div class="poster-v2-reason-text">${formatReason(reason)}</div>
           </div>
           <div class="poster-v2-members-section">
             <div class="poster-v2-section-label">${membersLabel}${membersCountLabel}</div>
@@ -1654,6 +1654,20 @@ function closeShareModal() {
   if (modal) {
     modal.classList.remove('active');
   }
+}
+
+function formatReason(text) {
+  if (!text) return 'Outstanding contribution to the team';
+  // Escape HTML first to prevent XSS
+  let escaped = text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+  // Convert markdown bold **text** to <strong>
+  escaped = escaped.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  // Convert line breaks to <br>
+  escaped = escaped.replace(/\n/g, '<br>');
+  return escaped;
 }
 
 async function downloadPoster() {
@@ -1820,7 +1834,7 @@ function renderGlobalAwards(data, containerId, half) {
           </div>
           <div class="card-amount">${formatCurrency(project.bonus)}</div>
           <div class="card-reason-scroll">
-            ${reasonText}
+            ${formatReason(reasonText)}
           </div>
         </div>
         <div class="card-footer">
@@ -1980,7 +1994,7 @@ function renderProjectCards(awards, region, half) {
           </div>
           <div class="card-amount">${formatCurrency(project.bonus, project.currency)}</div>
           <div class="card-reason-scroll">
-            ${reasonText}
+            ${formatReason(reasonText)}
           </div>
         </div>
         <div class="card-footer">
@@ -2056,7 +2070,7 @@ function renderIndividualCards(awards, region, half) {
             </div>
             <div class="card-amount">${formatCurrency(award.bonus, currency)}</div>
             <div class="card-reason-scroll">
-              ${reasonText}
+              ${formatReason(reasonText)}
             </div>
           </div>
           <div class="card-footer">
