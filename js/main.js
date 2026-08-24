@@ -2559,10 +2559,21 @@ function matchesWord(text, searchTerm) {
     }
     return false;
   }
-  // Non-CJK: word-boundary match
+  // Non-CJK: word-boundary match + nameMap reverse lookup (English->Chinese)
   var escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   var regex = new RegExp('(^|[\\s,;:\\-/_|.()\\[\\]{}])' + escaped + '($|[\\s,;:\\-/_|.()\\[\\]{}])', 'i');
-  return regex.test(lower) || lower === term;
+  if (regex.test(lower) || lower === term) return true;
+  // Reverse lookup: if searchTerm matches an English name in nameMap, also match Chinese name in text
+  if (nameMap) {
+    for (var en in nameMap) {
+      if (/[^ -~]/.test(en)) continue; // skip non-ASCII keys (Chinese keys)
+      if (en.toLowerCase() === term || regex.test(en.toLowerCase())) {
+        var cn = nameMap[en];
+        if (lower.includes(cn.toLowerCase())) return true;
+      }
+    }
+  }
+  return false;
 }
 
 function performSearch(query, level = 'all') {
