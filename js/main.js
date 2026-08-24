@@ -416,24 +416,7 @@ async function loadData(level, region = null, year = null) {
     if (hasYearStructure) {
       let yearData = data[targetYear];
 
-      if (targetYear === '2026' && yearData && data['2025']) {
-        const isEmpty = Object.values(yearData).every(arr => !Array.isArray(arr) || arr.length === 0);
-        if (isEmpty) {
-          yearData = data['2025'];
-        }
-      }
-
-      if (yearData) {
-        if (level === 'global') {
-          AppData.global = yearData;
-        } else if (level === 'regional') {
-          AppData.regional[region] = yearData;
-        } else if (level === 'departmental') {
-          AppData.departmental = yearData;
-        }
-        return yearData;
-      } else if (targetYear === '2026' && data['2025']) {
-        yearData = data['2025'];
+||      if (yearData) {
         if (level === 'global') {
           AppData.global = yearData;
         } else if (level === 'regional') {
@@ -446,16 +429,29 @@ async function loadData(level, region = null, year = null) {
         return null;
       }
     } else {
-      if (targetYear === '2025' || targetYear === '2026') {
-        if (level === 'global') {
-          AppData.global = data;
-        } else if (level === 'regional') {
-          AppData.regional[region] = data;
+      // Flat structure: filter records by targetYear using period field
+      const filtered = {};
+      for (const key of Object.keys(data)) {
+        if (Array.isArray(data[key])) {
+          filtered[key] = data[key].filter(item => {
+            const itemYear = (item.period && item.period.startsWith(targetYear + ' ')) ?
+              item.period.substring(0, 4) : null;
+            return itemYear === targetYear;
+          });
+        } else {
+          filtered[key] = data[key];
         }
-        return data;
-      } else {
-        return null;
       }
+      // Check if any non-empty arrays exist
+      const hasData = Object.values(filtered).some(v => Array.isArray(v) && v.length > 0);
+      if (!hasData) return null;
+
+      if (level === 'global') {
+        AppData.global = filtered;
+      } else if (level === 'regional') {
+        AppData.regional[region] = filtered;
+      }
+      return filtered;
     }
   } catch (error) {
     console.error('Error loading data:', error);
