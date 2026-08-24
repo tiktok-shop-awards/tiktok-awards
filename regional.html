@@ -498,7 +498,7 @@
           <!-- Year Navigation - Centered -->
           <div class="year-nav-wrapper">
             <div class="year-nav-compact">
-              <button class="year-btn active" data-year="2026" id="year-2026-btn">2026 <span class="updating-badge" title="2026 H1 awards will be evaluated in July, with results announced by end of July.">Results in Late July</span></button>
+              <button class="year-btn active" data-year="2026" id="year-2026-btn">2026 <span class="updating-badge">Updating</span></button>
               <button class="year-btn" data-year="2025">2025</button>
             </div>
           </div>
@@ -948,6 +948,25 @@
           regionalData = await loadData('regional', region, currentYear);
         }
         
+        // Auto-fallback: if default 2026 has no data and user didn't manually pick a year,
+        // automatically switch to the most recent year with data
+        const hasYearInUrl = !!getUrlParam('year');
+        if (!regionalData && currentYear === '2026' && !hasYearInUrl) {
+          // Fall back to 2025
+          AppData.currentYear = '2025';
+          setUrlParam('year', '2025');
+          // Update year button active state
+          document.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
+          const y2025Btn = document.querySelector('.year-btn[data-year="2025"]');
+          if (y2025Btn) y2025Btn.classList.add('active');
+          updateYear2026Button();
+          // Re-render region nav for 2025
+          renderRegionNav('2025', region);
+          // Reload with 2025 data
+          await loadRegionalData(region, '2025');
+          return;
+        }
+
         if (regionalData) {
           // Update page title
           updateLabels();
