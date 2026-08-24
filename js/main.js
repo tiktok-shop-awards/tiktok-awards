@@ -416,24 +416,7 @@ async function loadData(level, region = null, year = null) {
     if (hasYearStructure) {
       let yearData = data[targetYear];
 
-      if (targetYear === '2026' && yearData && data['2025']) {
-        const isEmpty = Object.values(yearData).every(arr => !Array.isArray(arr) || arr.length === 0);
-        if (isEmpty) {
-          yearData = data['2025'];
-        }
-      }
-
       if (yearData) {
-        if (level === 'global') {
-          AppData.global = yearData;
-        } else if (level === 'regional') {
-          AppData.regional[region] = yearData;
-        } else if (level === 'departmental') {
-          AppData.departmental = yearData;
-        }
-        return yearData;
-      } else if (targetYear === '2026' && data['2025']) {
-        yearData = data['2025'];
         if (level === 'global') {
           AppData.global = yearData;
         } else if (level === 'regional') {
