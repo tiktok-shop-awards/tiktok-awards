@@ -429,13 +429,28 @@ async function loadData(level, region = null, year = null) {
         return null;
       }
     } else {
+      // Flat structure (US/EU/SEA/Global): filter records by targetYear using period field
       if (targetYear === '2025' || targetYear === '2026') {
-        if (level === 'global') {
-          AppData.global = data;
-        } else if (level === 'regional') {
-          AppData.regional[region] = data;
+        const filtered = {};
+        for (const key of Object.keys(data)) {
+          if (Array.isArray(data[key])) {
+            filtered[key] = data[key].filter(item =>
+              item.period && item.period.startsWith(targetYear + ' ')
+            );
+          } else {
+            filtered[key] = data[key];
+          }
         }
-        return data;
+        // Check if any non-empty arrays exist
+        const hasData = Object.values(filtered).some(v => Array.isArray(v) && v.length > 0);
+        if (!hasData) return null;
+
+        if (level === 'global') {
+          AppData.global = filtered;
+        } else if (level === 'regional') {
+          AppData.regional[region] = filtered;
+        }
+        return filtered;
       } else {
         return null;
       }
