@@ -970,6 +970,38 @@
         if (regionalData) {
           // Update page title
           updateLabels();
+          
+          // Auto-adjust currentAwardType: if the current tab has no data,
+          // switch to the most recent tab that has data
+          const hasYearInUrl2 = !!getUrlParam('period');
+          if (!hasYearInUrl2) {
+            const hasCurrentData = regionalData[currentAwardType] &&
+              Array.isArray(regionalData[currentAwardType]) &&
+              regionalData[currentAwardType].length > 0;
+            if (!hasCurrentData) {
+              // Priority order: most recent first
+              let priority = [];
+              if (region === 'latam') {
+                priority = ['Q2 Individual Awards', 'Q1 Individual Awards'];
+              } else if (isQuarterRegion) {
+                priority = ['Q4 Individual Awards', 'Q4', 'Q3', 'Q2', 'Q1'];
+              } else {
+                priority = ['H2 Individual Awards', 'H2 Project Awards', 'H1 Project Awards'];
+              }
+              for (const type of priority) {
+                if (regionalData[type] && Array.isArray(regionalData[type]) && regionalData[type].length > 0) {
+                  currentAwardType = type;
+                  // Update tab active state
+                  document.querySelectorAll('#award-type-wrapper .award-type-btn, #quarter-toggle .award-type-btn, #quarter-buttons .award-type-btn, #h1-individual-button .award-type-btn').forEach(b => {
+                    b.classList.toggle('active', b.dataset.type === currentAwardType);
+                  });
+                  setUrlParam('period', currentAwardType);
+                  break;
+                }
+              }
+            }
+          }
+          
           // Render all awards
           renderRegionalAwards(regionalData, 'regional-awards', currentAwardType, region);
           // Load like/comment interactions from API
