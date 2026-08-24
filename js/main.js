@@ -19,6 +19,31 @@ const AppData = {
   currentLatamQuarter: 'Q1' // For LATAM individual awards: Q1 | Q2 | Q3 | Q4
 };
 
+// ==================== Helper Functions for Year-Prefixed Period/Award Type ====================
+// Records in 2025+ data have year-prefixed period and award_type values (e.g. "2025 H1", "2025 H1 Project Awards").
+// These helpers extract the base key (e.g. "H1", "H1 Project Awards") from such values.
+// They are backward-compatible: if the value has no year prefix, it's returned as-is.
+
+function getPeriodKey(period) {
+  if (!period) return period;
+  // Match "YYYY " prefix at the start and strip it
+  const match = period.match(/^\d{4}\s+(.*)$/);
+  return match ? match[1] : period;
+}
+
+function getAwardTypeKey(awardType) {
+  if (!awardType) return awardType;
+  const match = awardType.match(/^\d{4}\s+(.*)$/);
+  return match ? match[1] : awardType;
+}
+
+// Extract year from a period/award_type string, returns empty string if no year prefix
+function getYearFromPeriod(period) {
+  if (!period) return '';
+  const match = period.match(/^(\d{4})\s+/);
+  return match ? match[1] : '';
+}
+
 // ==================== Utility Functions ====================
 function getUrlParam(param) {
   // Read from query string first (survives Feishu WebView), then hash as fallback
@@ -472,7 +497,7 @@ function getQ1ProjectAwards(data) {
   }
   // Legacy: H1 Project Awards中quarter为Q1的
   const h1Awards = data['H1 Project Awards'] || [];
-  return h1Awards.filter(a => a.quarter === 'Q1' || a.period === 'Q1' || a.period === 'H1');
+  return h1Awards.filter(a => a.quarter === 'Q1' || getPeriodKey(a.period) === 'Q1' || getPeriodKey(a.period) === 'H1');
 }
 
 // Get Q2 project awards
@@ -482,7 +507,7 @@ function getQ2ProjectAwards(data) {
     return data['Q2 Project Awards'];
   }
   const h1Awards = data['H1 Project Awards'] || [];
-  return h1Awards.filter(a => a.quarter === 'Q2' || a.period === 'Q2' || a.period === 'H1');
+  return h1Awards.filter(a => a.quarter === 'Q2' || getPeriodKey(a.period) === 'Q2' || getPeriodKey(a.period) === 'H1');
 }
 
 // Get Q3 project awards
@@ -492,7 +517,7 @@ function getQ3ProjectAwards(data) {
     return data['Q3 Project Awards'];
   }
   const h2Awards = data['H2 Project Awards'] || [];
-  return h2Awards.filter(a => a.quarter === 'Q3' || a.period === 'Q3' || a.period === 'H2');
+  return h2Awards.filter(a => a.quarter === 'Q3' || getPeriodKey(a.period) === 'Q3' || getPeriodKey(a.period) === 'H2');
 }
 
 // Get Q4 project awards
@@ -502,7 +527,7 @@ function getQ4ProjectAwards(data) {
     return data['Q4 Project Awards'];
   }
   const h2Awards = data['H2 Project Awards'] || [];
-  return h2Awards.filter(a => a.quarter === 'Q4' || a.period === 'Q4' || a.period === 'H2');
+  return h2Awards.filter(a => a.quarter === 'Q4' || getPeriodKey(a.period) === 'Q4' || getPeriodKey(a.period) === 'H2');
 }
 
 // Legacy support: Get H1 project awards (Q1 + Q2)
@@ -556,7 +581,7 @@ function getIndividualAwardsByQuarter(data, quarter) {
   
   // Legacy: H2 Individual Awards with quarter/period field matching
   const allIndividual = yearData['H2 Individual Awards'] || [];
-  return allIndividual.filter(a => a.quarter === quarter || a.period === quarter);
+  return allIndividual.filter(a => a.quarter === quarter || getPeriodKey(a.period) === quarter);
 }
 
 // ==================== Helper Functions for Year-based Data Structure ====================
@@ -584,7 +609,7 @@ function getQ1ProjectAwardsYear(data, year) {
   if (!yearData) return [];
   if (yearData['Q1 Project Awards']) return yearData['Q1 Project Awards'];
   const h1Awards = yearData['H1 Project Awards'] || [];
-  return h1Awards.filter(a => a.quarter === 'Q1' || a.period === 'Q1');
+  return h1Awards.filter(a => a.quarter === 'Q1' || getPeriodKey(a.period) === 'Q1');
 }
 
 // Get Q2 project awards (year-based structure)
@@ -593,7 +618,7 @@ function getQ2ProjectAwardsYear(data, year) {
   if (!yearData) return [];
   if (yearData['Q2 Project Awards']) return yearData['Q2 Project Awards'];
   const h1Awards = yearData['H1 Project Awards'] || [];
-  return h1Awards.filter(a => a.quarter === 'Q2' || a.period === 'Q2');
+  return h1Awards.filter(a => a.quarter === 'Q2' || getPeriodKey(a.period) === 'Q2');
 }
 
 // Get Q3 project awards (year-based structure)
@@ -602,7 +627,7 @@ function getQ3ProjectAwardsYear(data, year) {
   if (!yearData) return [];
   if (yearData['Q3 Project Awards']) return yearData['Q3 Project Awards'];
   const h2Awards = yearData['H2 Project Awards'] || [];
-  return h2Awards.filter(a => a.quarter === 'Q3' || a.period === 'Q3');
+  return h2Awards.filter(a => a.quarter === 'Q3' || getPeriodKey(a.period) === 'Q3');
 }
 
 // Get Q4 project awards (year-based structure)
@@ -611,7 +636,7 @@ function getQ4ProjectAwardsYear(data, year) {
   if (!yearData) return [];
   if (yearData['Q4 Project Awards']) return yearData['Q4 Project Awards'];
   const h2Awards = yearData['H2 Project Awards'] || [];
-  return h2Awards.filter(a => a.quarter === 'Q4' || a.period === 'Q4');
+  return h2Awards.filter(a => a.quarter === 'Q4' || getPeriodKey(a.period) === 'Q4');
 }
 
 // Legacy support: Get H1 project awards (year-based structure)
@@ -1872,6 +1897,8 @@ function renderRegionalAwards(data, containerId, period, region) {
   let html = '';
   const currentYear = AppData.currentYear || '2025';
   
+  const NO_DATA = '<div class="no-data-msg">No data available for this region.</div>';
+
   // Q1/Q2/Q3/Q4: 区分 FS/POP (项目奖) 和 LATAM (个人奖)
   if (['Q1', 'Q2', 'Q3', 'Q4'].includes(period)) {
     const isQuarterProjectRegion = region === 'fs' || region === 'pop';
@@ -1881,7 +1908,7 @@ function renderRegionalAwards(data, containerId, period, region) {
       const quarterKey = `${period} Project Awards`;
       const quarterAwards = data[quarterKey] || [];
       if (quarterAwards.length === 0) {
-        html = `<div class="no-data-msg">No ${period} project awards available</div>`;
+        html = NO_DATA;
       } else {
         html = renderProjectCards(quarterAwards, region, period);
       }
@@ -1889,7 +1916,7 @@ function renderRegionalAwards(data, containerId, period, region) {
       // LATAM: 显示季度个人奖
       const quarterAwards = getIndividualAwardsByQuarter(data, period);
       if (quarterAwards.length === 0) {
-        html = `<div class="no-data-msg">No ${period} individual awards available for LATAM</div>`;
+        html = NO_DATA;
       } else {
         html = renderIndividualCards(quarterAwards, region, period);
       }
@@ -1898,7 +1925,7 @@ function renderRegionalAwards(data, containerId, period, region) {
     // FS/POP Q4 BFCM个人奖 (H2 Individual Awards)
     const individualAwards = data['H2 Individual Awards'] || [];
     if (individualAwards.length === 0) {
-      html = '<div class="no-data-msg">No Q4 BFCM Stellar Contributors available</div>';
+      html = NO_DATA;
     } else {
       html = renderIndividualCards(individualAwards, region, 'Q4 BFCM');
     }
@@ -1906,7 +1933,7 @@ function renderRegionalAwards(data, containerId, period, region) {
     // LATAM Q1 individual awards (2026)
     const q1Awards = getQ1IndividualAwardsYear(data, currentYear);
     if (q1Awards.length === 0) {
-      html = `<div class="no-data-msg">No Q1 individual awards available for LATAM ${currentYear}</div>`;
+      html = NO_DATA;
     } else {
       html = renderIndividualCards(q1Awards, region, 'Q1');
     }
@@ -1914,21 +1941,21 @@ function renderRegionalAwards(data, containerId, period, region) {
     // LATAM Q2 individual awards (2026)
     const q2Awards = getQ2IndividualAwardsYear(data, currentYear);
     if (q2Awards.length === 0) {
-      html = `<div class="no-data-msg">No Q2 individual awards available for LATAM ${currentYear}</div>`;
+      html = NO_DATA;
     } else {
       html = renderIndividualCards(q2Awards, region, 'Q2');
     }
   } else if (period === 'H1 Project Awards') {
     const h1Awards = getH1ProjectAwardsYear(data, currentYear);
     if (h1Awards.length === 0) {
-      html = '<div class="no-data-msg">No H1 project awards available for this region</div>';
+      html = NO_DATA;
     } else {
       html = renderProjectCards(h1Awards, region, 'H1');
     }
   } else if (period === 'H2 Project Awards') {
     const h2Awards = getH2ProjectAwardsYear(data, currentYear);
     if (h2Awards.length === 0) {
-      html = '<div class="no-data-msg">No H2 project awards available for this region</div>';
+      html = NO_DATA;
     } else {
       html = renderProjectCards(h2Awards, region, 'H2');
     }
@@ -1936,7 +1963,7 @@ function renderRegionalAwards(data, containerId, period, region) {
     // Non-LATAM individual awards or LATAM 2025 H2 individual
     const individualAwards = getH2IndividualAwardsYear(data, currentYear);
     if (individualAwards.length === 0) {
-      html = '<div class="no-data-msg">No individual awards (Stellar Contributors) available for this region</div>';
+      html = NO_DATA;
     } else {
       html = renderIndividualCards(individualAwards, region, 'H2');
     }

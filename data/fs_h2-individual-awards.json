@@ -1,1 +1,162 @@
-[{"award_type":"H2 Individual Awards","period":"H2","quarter":"Q4","project_name":"FS Black Friday Star","team_award":"Individual Award","department":"Data-Global E-Commerce-Supply Chain & Logistics","region":"FS","original_region":"FS","bonus":"5000","reason":"刘凌玄同学责任心强、专业扎实，在本次FS黑五大促中牵头算法定价托管工作，为US/UK双区域业务目标达成提供核心技术支持。大促前他提前规划并组织团队优化核心模块效率，前置上线潜在需求，既提升了定价算法效率，又保障了系统调用稳定，为高频调价筑牢基础（实现黑五各市场稳定调价30余次），确保价格及时响应市场变化，有效承接大促业务运营目标。业务成果方面贡献尤为突出，UK市场上，主导核心货盘算法覆盖优化，全周期平均GMV覆盖率72.16% & 峰值79.92%，直接助力UK实现“首个盈利黑五”（目标完成度116% & Margin3.4%），核心货盘达成“规模+利润”双达标；同步支撑US市场算法策略落地，核心货盘覆盖率69.11% & 峰值83.24%，为区域盈利增长提供可靠技术护航。本次黑五，他带领团队实现算法定价“覆盖度+收益性”双提升，充分发挥负责人引领作用，是大促突出贡献者，特此提名。","members":["Lingxuan Liu"],"currency":"CNY"},{"award_type":"H2 Individual Awards","period":"H2","quarter":"Q4","project_name":"FS Black Friday Star","team_award":"Individual Award","department":"Data-Global E-Commerce-Supply Chain & Logistics","region":"FS","original_region":"FS","bonus":"5000","reason":"熙凤在9月末开始为大促准备，focus在商品全链路成长的预算分配策略开发和实验上，牵头梳理已有FS货补、包邮、投广能力进行协同，设计了一套创新的多策略预算分配、策略上下游感知机制，让单点的多策略做功变成了联合策略优化机制，在利润约束下有效提升了黑五期间大盘冷启动成功商品数，也提供了一种新的FS业务经营托管模式、逐步也会推广到FS爆品孵化/TTS领域。此外也支持了全托管自动化选款和流量协同选品。\n1.全链路成长：推进了多次单策略、联合策略打包、预算分配实验，跑通了US全链路新品成长的孵化体系、在黑五前完成验证，利润约束下取得冷启动成功商品数的指标提升。 \n（1）[包邮+货补]信号互相传递优化打包策略，新品冷启成功率+3.55%，已推全。//推动各方，做实验设计 \n（2）[包邮+货补+投流]信号互相传递优化打包策略，新品冷启成功率 +3.35%，已推全。//推动各方，做实验设计 \n（3）重新分配包邮、货补、投流预算策略，新品冷启成功率 +7.72%，能力验证正向、待产品化后推全。//独立开发\n2.全托管自动化选款：Q4对于自动化选品模型进行进一步迭代，T+7动销率+9.47%（显著），已推全。\n3.搜推流量选品：0单品短期GMV预测模型引入UK/EU搜索0-1扶持链路，FS动销新品 +11.2%，已推全。","members":["Xifeng Wang"],"currency":"CNY"},{"award_type":"H2 Individual Awards","period":"H2","quarter":"Q4","project_name":"FS Black Friday Star","team_award":"Individual Award","department":"Global E-Commerce-Data Science-Global Selling Full Service Data Science","region":"FS","original_region":"FS","bonus":"5000","reason":"黑五期间数据基建梳理细致，看板迭代有条不紊。9月起协助业务梳理并前置规划黑五所需基建，以专项形式联动XFN推动黑五看板迭代有序落地；系统性支撑了FS黑五目标追踪、重点货盘表现、钱效监控等实用模块上线，并探索引入veda解读等AI能力拓宽看板信息维度，帮助运营更省心省力促间盯盘，获得FS大促业务方内外部广泛认可；\n业务分析需求支持火速，帮助业务策略推进提供洞察依据。促前完成秋促行业表现归因、营销规则覆盖探查及强竞争类目识别等分析，为黑五策略制定夯实认知基础；促中针对价补置换效率敏捷测算，帮助业务在补贴有限的前提下通过货盘间补贴腾挪提升钱效；促后围绕黑五策略钱效收益、海外仓表现等核心议题开展敏捷复盘并输出数据洞察，为26年目标制定策略规划等提供洞察依据。","members":["Yufei Ding"],"currency":"CNY"},{"award_type":"H2 Individual Awards","period":"H2","quarter":"Q4","project_name":"FS Black Friday Star","team_award":"Individual Award","department":"Product R&D and Engineering-Global E-Commerce-LATAM-Consumer Business","region":"FS","original_region":"FS","bonus":"5000","reason":"李昊作为 GS 黑五 FS 侧核心 POC，牵头FS核心链路治理与 SLA 梳理，推动FS整体保障方案、压测方案及数据资产模板沉淀，大促前完成多轮演练与风险排查；大促期间确保FS链路持续稳定运行，零事故、无主责高等级问题，显著提升大促场景下的保障能力，推动保障流程更加标准化。","members":["Hao Li"],"currency":"CNY"},{"award_type":"H2 Individual Awards","period":"H2","quarter":"Q4","project_name":"FS Black Friday Star","team_award":"Individual Award","department":"Global E-Commerce-Product-Global Business Platform-Seller Product","region":"FS","original_region":"FS","bonus":"5000","reason":"在 2025 年黑五价格及损益保障项目中，沈嘉禾通过损益 Agent 的前置建设与价格联动，显著提升损益风险识别与响应能力，为业务有效挽回资损并保障大促稳定运行。\n损益风险前置与预警能力建设： 推动损益 Agent 在实时性、准确度及主动预警上的升级，黑五前新增 15 条有效预警策略，Agent 访问 PV 较日常提升 575%（100->675），UV 上涨 100%（20->39），保障黑五期间损益风险可感知、可预警。\n关键链路自动处置与协同提效： 联动价格产品，结合价格仿真与 bad case 一键修复能力，形成从异常识别到系统处置的闭环，显著缩短处置链路、抑制资损扩散。\n可量化的资损挽回成果： 黑五期间损益异常预警商品覆盖 37 万，系统自动处置 1150 个商品，直接挽回资损 59,738 $/日（涨价比例*近7天GMV），其余商品经业务判断后爆品处置率达 65%。","members":["Jiahe Shen"],"currency":"CNY"},{"award_type":"H2 Individual Awards","period":"H2","quarter":"Q4","project_name":"FS Black Friday Star","team_award":"Individual Award","department":"Global E-Commerce-Product-Global Business Platform-Seller Product","region":"FS","original_region":"FS","bonus":"5000","reason":"2025 年黑五备货项目中，刘薇围绕需求保障、稳定性保障、产品增量三大主线作出卓越产品贡献：\n1. 需求保障与价值贡献：保障黑五供应链需求上线，上线国家维度需求计划能力，升级 US 海外仓多仓备货策略；落地大促 SS 上下限能力，保障周转天数 28.8 天， SA 缺货率 0.39%，缺货损失降低15 万美金/天；S&OP B段计划支撑多角色在线高效协同与业务实时纠偏，9～12 月帮助业务降低B段舱位采买费用2387万。⁠\n2. 保障自动补货链路的稳定性：①黑五前期，专门开展了供应链全链路产品稳定性风险盘点，以加强黑五系统稳定性，黑五对比年中促问题下降 80%（8->2)；②面对黑五数据高峰期间，出现上游数据延迟的突发事件，迅速组织应急小组，以T-1数据兜底，确保了自动下单的准时执行，并推动建立了SLA保障机制；\n3. 产品增量贡献：搭建内容场销量激增 SKU 识别逻辑与看板，推动内容场销量激增识别标签上线；优化缺货预警联动自动跟单架构，解决预警来源混乱、策略与清单不一致问题，同步保障缺货率与周转天数达标。","members":["Wei Liu"],"currency":"CNY"},{"award_type":"H2 Individual Awards","period":"H2","quarter":"Q4","project_name":"FS Black Friday Star","team_award":"Individual Award","department":"Supply Chain & Logistics-Cross-border Logistics Ops-Mid-end-QC & Experience","region":"FS","original_region":"FS","bonus":"5000","reason":"作为黑五大促PMO，在促前与FS/POP前台各自建立项目组，并拉齐物流运营内部，组建黑五大促前后的协同和各项指标输入输出；\n过程中做好项目前后台的会议联动，积极推进产品需求、业务需求如us组套项目等异常的沟通\n在黑五期间，能够坦诚清晰有理有节，关于指标和过程中异常，及时同步商流和物流做好相应联动和支持；针对各国家线/业务团队物流服务问题，推进各质控及运营团队做好可解释可说明等。\n促后能够准备组织各团队做好有效有沉淀有思考的复盘。","members":["Yuanfan Zhu"],"currency":"CNY"},{"award_type":"H2 Individual Awards","period":"H2","quarter":"Q4","project_name":"FS Black Friday Star","team_award":"Individual Award","department":"Supply Chain & Logistics-Cross-border Logistics Ops-Mid-end","region":"FS","original_region":"FS","bonus":"5000","reason":"在目前没有系统能力支持的场景下，且在年初US关税政策调整、年末大促黑五单量变化、市场舱位走势波动的场景下，仍然能够保持积极的状态，呈现敢于承担、极致体验和长期主义的价值观，不断的提升自己。\n1、敢于承担：在自己本职工作的基础上，能够主动搭建延展性的模型，包括对应的逻辑、数据的提取路径等等，并建立前后端高效产能协同机制，包括M+1预测、W+1预测、T0预测，通过机制的建立，供团队其他成员学习和借鉴，帮助团队一起提升效率。\n2、极致体验：不局限于目标的达成，主动对模型进行优化，包括各个节点的增加、by day的预测、尾程的预测等等，从各个环节、各个维度推进预测准确性的提升。黑五大促中与国家线&供应链深度协同，促中小时级对齐补贴操作策略，针对性的进行舱位敏捷调整及风险预警，保障预测准确度：黑五全周期预测达成率102%，准确率93%（同比24年黑五提升9% ）；BY周预测准确率分别为91%||96%||95%||96%||89%，提供的关键的据给到业务做决策，保障了舱位履约稳定及成本可控。工作成绩得到关联团队的一致认可。\n3、长期主义：从事预测工作3年+，指标持续提升。并坚持长期主义，所有工作会考虑长久的适用性，并形成使用方法，能够长期不同场景下的需求。","members":["Yana Zhong"],"currency":"CNY"},{"award_type":"H2 Individual Awards","period":"H2","quarter":"Q4","project_name":"FS Black Friday Star","team_award":"Individual Award","department":"Supply Chain & Logistics-Cross-border Logistics Ops-International Customs Ops","region":"FS","original_region":"FS","bonus":"5000","reason":"1.担任黑五UK关务POC，超预期达成2025年黑五C段目标（95分位时效37.2H, 48H达成率98%），整体时效较24年大促缩短20H。\n2.及时识别果断处置交接段突发异常，如尾程的外包司机误送仓库、尾程迟滞返还清关行大批量托盘等，防范重大风险发生。大促期内日维度监控，识别异常事件59起并及时解决。\n3.大促期配合干线解决UK运力压力，跑通欧洲T1转关到UK的关务方案。期间快速处理卢森堡LUX、比利时LGG、法国XCR三条线路的转关异常，平稳保障61个主单履约。","members":["Eric Deng"],"currency":"CNY"},{"award_type":"H2 Individual Awards","period":"H2","quarter":"Q4","project_name":"FS Black Friday Star","team_award":"Individual Award","department":"Supply Chain & Logistics-Cross-border Logistics Ops-Cross-border Leg A Logistics Ops-Warehouse Ops","region":"FS","original_region":"FS","bonus":"5000","reason":"该同学执行力强，敢打敢拼，结果交付扎实，所属入库部四季度整体运营平稳，履约达成良好：JIT及紧急单入库-上架及时率保持在99%+水平，收货-上架平均保持在4H左右，物流责缺货率控制在0.001%内。黑五保障突破极限，超预期达成，在整体入库超极限产能126%的前提下，以身作则，带领整个团队超70%的同学持续奋战超20天未休确保正常先进先出滚动生产，构建分层保障机制，高效应对自送/货拉拉订单享受“绿通”高优保障通道，实现\"随到随卸\"；平台物流动态适配车辆所拉货物JIT/紧急订单占比情况排序清理，尤其极高峰11月31日-8日期间优先保障JIT订单送仓卸车,确保核心订单履约时效,取得成效显著。\n持续的订单结构变化和订单爆发新模式下主动摸清规律并沉淀：JIT由年初的件均占比3%左右一年内升至黑五巅峰24%+；单均件数由常态8左右，跌至低谷的5件；之前促销“先备后售”到黑五的“边售边补”，且JIT绝对值在回货高峰也成高峰；应对模式规律迭代：入库人力前期约一周逐步储备，过程中低峰快速老员工排休，临时工学习练手，高峰时全力冲刺，实现人效和时效的同步“高峰”；随货量峰值后JIT高峰持续人力则持续出勤，人效持续达成。","members":["Xianxing Xu"],"currency":"CNY"}]
+[
+  {
+    "award_type": "2025 H2 Individual Awards",
+    "period": "2025 H2",
+    "quarter": "Q4",
+    "project_name": "FS 2025 H2 Black Friday Star",
+    "team_award": "Individual Award",
+    "department": "Data-Global E-Commerce-Supply Chain & Logistics",
+    "region": "FS",
+    "original_region": "FS",
+    "bonus": "5000",
+    "reason": "刘凌玄同学责任心强、专业扎实，在本次FS黑五大促中牵头算法定价托管工作，为US/UK双区域业务目标达成提供核心技术支持。大促前他提前规划并组织团队优化核心模块效率，前置上线潜在需求，既提升了定价算法效率，又保障了系统调用稳定，为高频调价筑牢基础（实现黑五各市场稳定调价30余次），确保价格及时响应市场变化，有效承接大促业务运营目标。业务成果方面贡献尤为突出，UK市场上，主导核心货盘算法覆盖优化，全周期平均GMV覆盖率72.16% & 峰值79.92%，直接助力UK实现“首个盈利黑五”（目标完成度116% & Margin3.4%），核心货盘达成“规模+利润”双达标；同步支撑US市场算法策略落地，核心货盘覆盖率69.11% & 峰值83.24%，为区域盈利增长提供可靠技术护航。本次黑五，他带领团队实现算法定价“覆盖度+收益性”双提升，充分发挥负责人引领作用，是大促突出贡献者，特此提名。",
+    "members": [
+      "Lingxuan Liu"
+    ],
+    "currency": "CNY"
+  },
+  {
+    "award_type": "2025 H2 Individual Awards",
+    "period": "2025 H2",
+    "quarter": "Q4",
+    "project_name": "FS 2025 H2 Black Friday Star",
+    "team_award": "Individual Award",
+    "department": "Data-Global E-Commerce-Supply Chain & Logistics",
+    "region": "FS",
+    "original_region": "FS",
+    "bonus": "5000",
+    "reason": "熙凤在9月末开始为大促准备，focus在商品全链路成长的预算分配策略开发和实验上，牵头梳理已有FS货补、包邮、投广能力进行协同，设计了一套创新的多策略预算分配、策略上下游感知机制，让单点的多策略做功变成了联合策略优化机制，在利润约束下有效提升了黑五期间大盘冷启动成功商品数，也提供了一种新的FS业务经营托管模式、逐步也会推广到FS爆品孵化/TTS领域。此外也支持了全托管自动化选款和流量协同选品。\n1.全链路成长：推进了多次单策略、联合策略打包、预算分配实验，跑通了US全链路新品成长的孵化体系、在黑五前完成验证，利润约束下取得冷启动成功商品数的指标提升。 \n（1）[包邮+货补]信号互相传递优化打包策略，新品冷启成功率+3.55%，已推全。//推动各方，做实验设计 \n（2）[包邮+货补+投流]信号互相传递优化打包策略，新品冷启成功率 +3.35%，已推全。//推动各方，做实验设计 \n（3）重新分配包邮、货补、投流预算策略，新品冷启成功率 +7.72%，能力验证正向、待产品化后推全。//独立开发\n2.全托管自动化选款：Q4对于自动化选品模型进行进一步迭代，T+7动销率+9.47%（显著），已推全。\n3.搜推流量选品：0单品短期GMV预测模型引入UK/EU搜索0-1扶持链路，FS动销新品 +11.2%，已推全。",
+    "members": [
+      "Xifeng Wang"
+    ],
+    "currency": "CNY"
+  },
+  {
+    "award_type": "2025 H2 Individual Awards",
+    "period": "2025 H2",
+    "quarter": "Q4",
+    "project_name": "FS 2025 H2 Black Friday Star",
+    "team_award": "Individual Award",
+    "department": "Global E-Commerce-Data Science-Global Selling Full Service Data Science",
+    "region": "FS",
+    "original_region": "FS",
+    "bonus": "5000",
+    "reason": "黑五期间数据基建梳理细致，看板迭代有条不紊。9月起协助业务梳理并前置规划黑五所需基建，以专项形式联动XFN推动黑五看板迭代有序落地；系统性支撑了FS黑五目标追踪、重点货盘表现、钱效监控等实用模块上线，并探索引入veda解读等AI能力拓宽看板信息维度，帮助运营更省心省力促间盯盘，获得FS大促业务方内外部广泛认可；\n业务分析需求支持火速，帮助业务策略推进提供洞察依据。促前完成秋促行业表现归因、营销规则覆盖探查及强竞争类目识别等分析，为黑五策略制定夯实认知基础；促中针对价补置换效率敏捷测算，帮助业务在补贴有限的前提下通过货盘间补贴腾挪提升钱效；促后围绕黑五策略钱效收益、海外仓表现等核心议题开展敏捷复盘并输出数据洞察，为26年目标制定策略规划等提供洞察依据。",
+    "members": [
+      "Yufei Ding"
+    ],
+    "currency": "CNY"
+  },
+  {
+    "award_type": "2025 H2 Individual Awards",
+    "period": "2025 H2",
+    "quarter": "Q4",
+    "project_name": "FS 2025 H2 Black Friday Star",
+    "team_award": "Individual Award",
+    "department": "Product R&D and Engineering-Global E-Commerce-LATAM-Consumer Business",
+    "region": "FS",
+    "original_region": "FS",
+    "bonus": "5000",
+    "reason": "李昊作为 GS 黑五 FS 侧核心 POC，牵头FS核心链路治理与 SLA 梳理，推动FS整体保障方案、压测方案及数据资产模板沉淀，大促前完成多轮演练与风险排查；大促期间确保FS链路持续稳定运行，零事故、无主责高等级问题，显著提升大促场景下的保障能力，推动保障流程更加标准化。",
+    "members": [
+      "Hao Li"
+    ],
+    "currency": "CNY"
+  },
+  {
+    "award_type": "2025 H2 Individual Awards",
+    "period": "2025 H2",
+    "quarter": "Q4",
+    "project_name": "FS 2025 H2 Black Friday Star",
+    "team_award": "Individual Award",
+    "department": "Global E-Commerce-Product-Global Business Platform-Seller Product",
+    "region": "FS",
+    "original_region": "FS",
+    "bonus": "5000",
+    "reason": "在 2025 年黑五价格及损益保障项目中，沈嘉禾通过损益 Agent 的前置建设与价格联动，显著提升损益风险识别与响应能力，为业务有效挽回资损并保障大促稳定运行。\n损益风险前置与预警能力建设： 推动损益 Agent 在实时性、准确度及主动预警上的升级，黑五前新增 15 条有效预警策略，Agent 访问 PV 较日常提升 575%（100->675），UV 上涨 100%（20->39），保障黑五期间损益风险可感知、可预警。\n关键链路自动处置与协同提效： 联动价格产品，结合价格仿真与 bad case 一键修复能力，形成从异常识别到系统处置的闭环，显著缩短处置链路、抑制资损扩散。\n可量化的资损挽回成果： 黑五期间损益异常预警商品覆盖 37 万，系统自动处置 1150 个商品，直接挽回资损 59,738 $/日（涨价比例*近7天GMV），其余商品经业务判断后爆品处置率达 65%。",
+    "members": [
+      "Jiahe Shen"
+    ],
+    "currency": "CNY"
+  },
+  {
+    "award_type": "2025 H2 Individual Awards",
+    "period": "2025 H2",
+    "quarter": "Q4",
+    "project_name": "FS 2025 H2 Black Friday Star",
+    "team_award": "Individual Award",
+    "department": "Global E-Commerce-Product-Global Business Platform-Seller Product",
+    "region": "FS",
+    "original_region": "FS",
+    "bonus": "5000",
+    "reason": "2025 年黑五备货项目中，刘薇围绕需求保障、稳定性保障、产品增量三大主线作出卓越产品贡献：\n1. 需求保障与价值贡献：保障黑五供应链需求上线，上线国家维度需求计划能力，升级 US 海外仓多仓备货策略；落地大促 SS 上下限能力，保障周转天数 28.8 天， SA 缺货率 0.39%，缺货损失降低15 万美金/天；S&OP B段计划支撑多角色在线高效协同与业务实时纠偏，9～12 月帮助业务降低B段舱位采买费用2387万。⁠\n2. 保障自动补货链路的稳定性：①黑五前期，专门开展了供应链全链路产品稳定性风险盘点，以加强黑五系统稳定性，黑五对比年中促问题下降 80%（8->2)；②面对黑五数据高峰期间，出现上游数据延迟的突发事件，迅速组织应急小组，以T-1数据兜底，确保了自动下单的准时执行，并推动建立了SLA保障机制；\n3. 产品增量贡献：搭建内容场销量激增 SKU 识别逻辑与看板，推动内容场销量激增识别标签上线；优化缺货预警联动自动跟单架构，解决预警来源混乱、策略与清单不一致问题，同步保障缺货率与周转天数达标。",
+    "members": [
+      "Wei Liu"
+    ],
+    "currency": "CNY"
+  },
+  {
+    "award_type": "2025 H2 Individual Awards",
+    "period": "2025 H2",
+    "quarter": "Q4",
+    "project_name": "FS 2025 H2 Black Friday Star",
+    "team_award": "Individual Award",
+    "department": "Supply Chain & Logistics-Cross-border Logistics Ops-Mid-end-QC & Experience",
+    "region": "FS",
+    "original_region": "FS",
+    "bonus": "5000",
+    "reason": "作为黑五大促PMO，在促前与FS/POP前台各自建立项目组，并拉齐物流运营内部，组建黑五大促前后的协同和各项指标输入输出；\n过程中做好项目前后台的会议联动，积极推进产品需求、业务需求如us组套项目等异常的沟通\n在黑五期间，能够坦诚清晰有理有节，关于指标和过程中异常，及时同步商流和物流做好相应联动和支持；针对各国家线/业务团队物流服务问题，推进各质控及运营团队做好可解释可说明等。\n促后能够准备组织各团队做好有效有沉淀有思考的复盘。",
+    "members": [
+      "Yuanfan Zhu"
+    ],
+    "currency": "CNY"
+  },
+  {
+    "award_type": "2025 H2 Individual Awards",
+    "period": "2025 H2",
+    "quarter": "Q4",
+    "project_name": "FS 2025 H2 Black Friday Star",
+    "team_award": "Individual Award",
+    "department": "Supply Chain & Logistics-Cross-border Logistics Ops-Mid-end",
+    "region": "FS",
+    "original_region": "FS",
+    "bonus": "5000",
+    "reason": "在目前没有系统能力支持的场景下，且在年初US关税政策调整、年末大促黑五单量变化、市场舱位走势波动的场景下，仍然能够保持积极的状态，呈现敢于承担、极致体验和长期主义的价值观，不断的提升自己。\n1、敢于承担：在自己本职工作的基础上，能够主动搭建延展性的模型，包括对应的逻辑、数据的提取路径等等，并建立前后端高效产能协同机制，包括M+1预测、W+1预测、T0预测，通过机制的建立，供团队其他成员学习和借鉴，帮助团队一起提升效率。\n2、极致体验：不局限于目标的达成，主动对模型进行优化，包括各个节点的增加、by day的预测、尾程的预测等等，从各个环节、各个维度推进预测准确性的提升。黑五大促中与国家线&供应链深度协同，促中小时级对齐补贴操作策略，针对性的进行舱位敏捷调整及风险预警，保障预测准确度：黑五全周期预测达成率102%，准确率93%（同比24年黑五提升9% ）；BY周预测准确率分别为91%||96%||95%||96%||89%，提供的关键的据给到业务做决策，保障了舱位履约稳定及成本可控。工作成绩得到关联团队的一致认可。\n3、长期主义：从事预测工作3年+，指标持续提升。并坚持长期主义，所有工作会考虑长久的适用性，并形成使用方法，能够长期不同场景下的需求。",
+    "members": [
+      "Yana Zhong"
+    ],
+    "currency": "CNY"
+  },
+  {
+    "award_type": "2025 H2 Individual Awards",
+    "period": "2025 H2",
+    "quarter": "Q4",
+    "project_name": "FS 2025 H2 Black Friday Star",
+    "team_award": "Individual Award",
+    "department": "Supply Chain & Logistics-Cross-border Logistics Ops-International Customs Ops",
+    "region": "FS",
+    "original_region": "FS",
+    "bonus": "5000",
+    "reason": "1.担任黑五UK关务POC，超预期达成2025年黑五C段目标（95分位时效37.2H, 48H达成率98%），整体时效较24年大促缩短20H。\n2.及时识别果断处置交接段突发异常，如尾程的外包司机误送仓库、尾程迟滞返还清关行大批量托盘等，防范重大风险发生。大促期内日维度监控，识别异常事件59起并及时解决。\n3.大促期配合干线解决UK运力压力，跑通欧洲T1转关到UK的关务方案。期间快速处理卢森堡LUX、比利时LGG、法国XCR三条线路的转关异常，平稳保障61个主单履约。",
+    "members": [
+      "Eric Deng"
+    ],
+    "currency": "CNY"
+  },
+  {
+    "award_type": "2025 H2 Individual Awards",
+    "period": "2025 H2",
+    "quarter": "Q4",
+    "project_name": "FS 2025 H2 Black Friday Star",
+    "team_award": "Individual Award",
+    "department": "Supply Chain & Logistics-Cross-border Logistics Ops-Cross-border Leg A Logistics Ops-Warehouse Ops",
+    "region": "FS",
+    "original_region": "FS",
+    "bonus": "5000",
+    "reason": "该同学执行力强，敢打敢拼，结果交付扎实，所属入库部四季度整体运营平稳，履约达成良好：JIT及紧急单入库-上架及时率保持在99%+水平，收货-上架平均保持在4H左右，物流责缺货率控制在0.001%内。黑五保障突破极限，超预期达成，在整体入库超极限产能126%的前提下，以身作则，带领整个团队超70%的同学持续奋战超20天未休确保正常先进先出滚动生产，构建分层保障机制，高效应对自送/货拉拉订单享受“绿通”高优保障通道，实现\"随到随卸\"；平台物流动态适配车辆所拉货物JIT/紧急订单占比情况排序清理，尤其极高峰11月31日-8日期间优先保障JIT订单送仓卸车,确保核心订单履约时效,取得成效显著。\n持续的订单结构变化和订单爆发新模式下主动摸清规律并沉淀：JIT由年初的件均占比3%左右一年内升至黑五巅峰24%+；单均件数由常态8左右，跌至低谷的5件；之前促销“先备后售”到黑五的“边售边补”，且JIT绝对值在回货高峰也成高峰；应对模式规律迭代：入库人力前期约一周逐步储备，过程中低峰快速老员工排休，临时工学习练手，高峰时全力冲刺，实现人效和时效的同步“高峰”；随货量峰值后JIT高峰持续人力则持续出勤，人效持续达成。",
+    "members": [
+      "Xianxing Xu"
+    ],
+    "currency": "CNY"
+  }
+]
