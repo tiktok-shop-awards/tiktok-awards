@@ -538,21 +538,24 @@ function getAllIndividualAwards(data) {
 // Get individual awards by quarter (for LATAM)
 function getIndividualAwardsByQuarter(data, quarter) {
   if (!data) return [];
-  // Support both legacy and year-based structure
+  // Support: already-unwrapped year data (e.g. from loadData which returns data[year]),
+  // full year-based structure (data["2025"]), or legacy flat structure
   const currentYear = AppData.currentYear || '2025';
+  let yearData = data;
+  
+  // If data has top-level year keys, unwrap to target year
   if (hasYearStructure(data)) {
-    const yearData = data[currentYear];
-    if (!yearData) return [];
-    // 2026+ structure: Q1/Q2 Individual Awards keys
-    const quarterKey = quarter + ' Individual Awards';
-    if (yearData[quarterKey]) {
-      return yearData[quarterKey];
-    }
-    // Legacy: H2 Individual Awards with quarter field
-    const allIndividual = yearData['H2 Individual Awards'] || [];
-    return allIndividual.filter(a => a.quarter === quarter || a.period === quarter);
+    yearData = data[currentYear] || {};
   }
-  const allIndividual = data['H2 Individual Awards'] || [];
+  
+  // Direct quarter key (LATAM 2025/2026 format: "Q1 Individual Awards", etc.)
+  const quarterKey = quarter + ' Individual Awards';
+  if (yearData[quarterKey] && yearData[quarterKey].length > 0) {
+    return yearData[quarterKey];
+  }
+  
+  // Legacy: H2 Individual Awards with quarter/period field matching
+  const allIndividual = yearData['H2 Individual Awards'] || [];
   return allIndividual.filter(a => a.quarter === quarter || a.period === quarter);
 }
 
