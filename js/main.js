@@ -1,4 +1,4 @@
-// MAIN.JS VERSION: 20260601a
+// MAIN.JS VERSION: 20260904a
 // TikTok Shop Stars Awards - Main JavaScript
 
 // ==================== Global Data Store ====================
@@ -319,7 +319,7 @@ function initDeptNavigation() {
 // ==================== Data Loading Functions ====================
 // Cache for manifest
 let _manifestCache = null;
-const CHUNK_VERSION = '20260714z';
+const CHUNK_VERSION = '20260904a';
 
 async function loadManifest() {
   if (_manifestCache) return _manifestCache;
