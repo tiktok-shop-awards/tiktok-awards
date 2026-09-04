@@ -227,7 +227,7 @@ function updateYear2026Button() {
 function initYearNavigation() {
   const yearBtns = document.querySelectorAll('.year-btn');
   const page = window.location.pathname.split('/').pop();
-  const defaultYear = (page === '' || page === 'index.html' || page === 'regional.html' || page === 'departmental.html') ? '2026' : '2025';
+  const defaultYear = (page === '' || page === 'index.html' || page === 'regional.html' || page === 'departmental.html' || page === 'global.html') ? '2026' : '2025';
   const urlYear = getUrlParam('year') || defaultYear;
   
   AppData.currentYear = urlYear;
