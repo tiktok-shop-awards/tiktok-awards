@@ -113,3774 +113,980 @@
   "2026": {
     "top3": [
       {
-        "name": "Jiyuan Feng",
-        "points": 3,
+        "name": "Biying Wu",
+        "points": 6,
         "rank": 1,
-        "department": "Supply Chain and Logistics-Cross border Logistics Operations",
-        "region": "LATAM"
-      },
-      {
-        "name": "Jianguang Gao",
-        "points": 3,
-        "rank": 1,
-        "department": "Supply Chain and Logistics-LATAM Logistics Operations",
-        "region": "LATAM"
-      },
-      {
-        "name": "Shixuan Gao",
-        "points": 3,
-        "rank": 1,
-        "department": "Global E-Commerce-User Growth-LATAM User Growth",
-        "region": "LATAM"
-      },
-      {
-        "name": "Herbie Huang",
-        "points": 3,
-        "rank": 1,
-        "department": "Global E-Commerce-Governance and Experience-LATAM",
-        "region": "LATAM"
-      },
-      {
-        "name": "Alice Liu",
-        "points": 3,
-        "rank": 1,
-        "department": "Global E-Commerce-Product-LATAM Product",
-        "region": "LATAM"
-      },
-      {
-        "name": "Rafael Lozano",
-        "points": 3,
-        "rank": 1,
-        "department": "Global E-Commerce-Brazil Operations",
-        "region": "LATAM"
-      },
-      {
-        "name": "Alberto Montes",
-        "points": 3,
-        "rank": 1,
-        "department": "Global E-Commerce-Mexico Operations",
-        "region": "LATAM"
-      },
-      {
-        "name": "Fernanda Forti Rossin",
-        "points": 3,
-        "rank": 1,
-        "department": "Global E-Commerce-Governance and Experience-Service and Support Center",
-        "region": "LATAM"
-      },
-      {
-        "name": "Wangjiankang",
-        "points": 3,
-        "rank": 1,
-        "department": "Global Payment",
-        "region": "LATAM"
-      },
-      {
-        "name": "Hongdi Xu",
-        "points": 3,
-        "rank": 1,
-        "department": "Global E-Commerce-User Research",
-        "region": "LATAM"
-      },
-      {
-        "name": "Yanxin Yang",
-        "points": 3,
-        "rank": 1,
-        "department": "Product RD and Infrastructure-Global E-Commerce-LATAM-Customer Business",
-        "region": "LATAM"
-      },
-      {
-        "name": "Wenzhe Zhang",
-        "points": 3,
-        "rank": 1,
-        "department": "Product RD and Infrastructure-Global E-Commerce-LATAM-Frontend",
-        "region": "LATAM"
-      },
-      {
-        "name": "Qiang Zheng",
-        "points": 3,
-        "rank": 1,
-        "department": "Global E-commerce-Design-SEA Product",
-        "region": "LATAM"
-      },
-      {
-        "name": "Zhiwei Zhou",
-        "points": 3,
-        "rank": 1,
-        "department": "Global E-Commerce-Product-Recommend Product",
-        "region": "LATAM"
-      },
-      {
-        "name": "Jiaxin Liu",
-        "points": 3,
-        "rank": 1,
-        "department": "Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Sylvia Sun",
-        "points": 2,
-        "rank": 2,
-        "department": "PH Ops",
-        "region": "Global"
-      },
-      {
-        "name": "Weiye Xiao",
-        "points": 2,
-        "rank": 2,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Qiuhong Li",
-        "points": 2,
-        "rank": 2,
-        "department": "Global E-Commerce-Global Selling Full Service-Fashion",
-        "region": "Global"
-      },
-      {
-        "name": "Zirui Liu",
-        "points": 2,
-        "rank": 2,
-        "department": "Global E-Commerce-Global Selling Full Service-Fashion",
-        "region": "Global"
-      },
-      {
-        "name": "Alex",
-        "points": 2,
-        "rank": 2,
-        "department": "Global E-Commerce-Global Selling Full Service-Multi-Category",
-        "region": "Global"
-      },
-      {
-        "name": "Liting Xu",
-        "points": 2,
-        "rank": 2,
-        "department": "Global E-Commerce-User Growth-AMS User Growth",
-        "region": "Global"
-      },
-      {
-        "name": "Jonathan",
-        "points": 2,
-        "rank": 2,
-        "department": "Global E-Commerce-User Growth-AMS User Growth",
-        "region": "Global"
-      },
-      {
-        "name": "Yixiao Zhang",
-        "points": 2,
-        "rank": 2,
-        "department": "Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Kyle Zhang",
-        "points": 2,
-        "rank": 2,
-        "department": "Global E-Commerce-Data Science-Search & Recommendation Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Hu Tang",
-        "points": 2,
-        "rank": 2,
-        "department": "Global E-Commerce-Product-Recommend Product",
-        "region": "Global"
-      },
-      {
-        "name": "Hanzhao Yan",
-        "points": 2,
-        "rank": 2,
-        "department": "Global E-Commerce-Product-Recommend Product",
-        "region": "Global"
-      },
-      {
-        "name": "Sophia",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Central",
-        "region": "Global"
-      },
-      {
-        "name": "Dang Phat",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Integrated Marketing",
-        "region": "Global"
-      },
-      {
-        "name": "Raidah Malik",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Integrated Marketing",
-        "region": "Global"
-      },
-      {
-        "name": "Wallace Khor",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Integrated Marketing",
-        "region": "Global"
-      },
-      {
-        "name": "Sarah Natasha",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Integrated Marketing",
-        "region": "Global"
-      },
-      {
-        "name": "Yinan Wang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Integrated Marketing",
-        "region": "Global"
-      },
-      {
-        "name": "Gerard Ferreiro",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Spain Operations-Industry-Home Living, Electronics & FMCG",
-        "region": "Global"
-      },
-      {
-        "name": "Gary Wang",
-        "points": 1,
-        "rank": 3,
-        "department": "EU Ops Center-Affiliate",
-        "region": "Global"
-      },
-      {
-        "name": "Clément Billaudeau",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-France Operations-Industry",
-        "region": "Global"
-      },
-      {
-        "name": "Saniah Ahmed",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Germany Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Alessandro Sfingi",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Italy Operations-Industry",
-        "region": "Global"
-      },
-      {
-        "name": "Dayang CHEN",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-EU Operations Center-Central Campaign",
-        "region": "Global"
-      },
-      {
-        "name": "Greta He",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-EU Operations Center-Affiliate",
-        "region": "Global"
-      },
-      {
-        "name": "Vivian Lo",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-EU Operations Center-MAI",
-        "region": "Global"
-      },
-      {
-        "name": "Joey Li",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-EU Operations Center-Business Planning & Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Bridie Gilbert",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-UK Operations-Campaign",
-        "region": "Global"
-      },
-      {
-        "name": "Zongli Yang",
-        "points": 1,
-        "rank": 3,
-        "department": "UK Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Thoa Chu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Vietnam Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Patricia Cheng",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Vietnam Operations",
-        "region": "Global"
-      },
-      {
-        "name": "An Nguyen",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Vietnam Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Lingzi Wei",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Vietnam Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Aria Nguyen",
-        "points": 1,
-        "rank": 3,
-        "department": "VN Ops",
-        "region": "Global"
-      },
-      {
-        "name": "Kỳ Duyên",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Vietnam Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Skyler Chen",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Vietnam Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Nguyen Thanh",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Vietnam Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Leo",
-        "points": 1,
-        "rank": 3,
-        "department": "VN Ops",
-        "region": "Global"
-      },
-      {
-        "name": "Jin Huy",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Vietnam Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Casey Thanh Vo",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Vietnam Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Bui Heidi",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Vietnam Operations",
-        "region": "Global"
-      },
-      {
-        "name": "AJ Peralta",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Philippines Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Justine Agbanlog",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Philippines Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Hansen Sun",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Governance and Experience-EMEA",
-        "region": "Global"
-      },
-      {
-        "name": "Jack Liao",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Governance and Experience-EMEA",
-        "region": "Global"
-      },
-      {
-        "name": "Deep Kaur",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Governance and Experience-EMEA",
-        "region": "Global"
-      },
-      {
-        "name": "Elsie Ren",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Nan Cai",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Qifeng Wu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Long Zhu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Haichao Chen",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Na Guo",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Aaron Wang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Yizhi Wang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Comma Chen",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Yang Cao",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Xiao Han",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Congyu Bi",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Qi Peng",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "En Dai",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Zhiqiang Zhang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Jing Tong",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Fashion",
-        "region": "Global"
-      },
-      {
-        "name": "Yixiao Qie",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Jinlan Hu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Creator",
-        "region": "Global"
-      },
-      {
-        "name": "Shengli Zou",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-US-Core Shopping and Experience",
-        "region": "Global"
-      },
-      {
-        "name": "Qiming Cui",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-US-Core Shopping and Experience",
-        "region": "Global"
-      },
-      {
-        "name": "Yanze Li",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-Customer Service Platform-Data Analysis",
-        "region": "Global"
-      },
-      {
-        "name": "Xiaoyan Wang",
-        "points": 1,
-        "rank": 3,
-        "department": "Data-Data Platform-Data BP of Generalized TikTok-Global E-Commerce",
-        "region": "Global"
-      },
-      {
-        "name": "David Sui",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-PMO",
-        "region": "Global"
-      },
-      {
-        "name": "Shibo Wang",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-US-Core Shopping and Experience",
-        "region": "Global"
-      },
-      {
-        "name": "Sumin Yu",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-Lumen",
-        "region": "Global"
-      },
-      {
-        "name": "Jun Chu",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-Lumen",
-        "region": "Global"
-      },
-      {
-        "name": "Lexin Ma",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Mid-Platform Product",
-        "region": "Global"
-      },
-      {
-        "name": "Kashing Li",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Mid-Platform Product",
-        "region": "Global"
-      },
-      {
-        "name": "Dana Huang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-UK&EU Product",
-        "region": "Global"
-      },
-      {
-        "name": "Hao Hu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-UK&EU Product",
-        "region": "Global"
-      },
-      {
-        "name": "Ariel Fu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-UK&EU Product",
-        "region": "Global"
-      },
-      {
-        "name": "Nhat Le",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-SEA Product",
-        "region": "Global"
-      },
-      {
-        "name": "Benli Zhang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-LATAM Product",
-        "region": "Global"
-      },
-      {
-        "name": "Jingyi Zhu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-LATAM Product",
-        "region": "Global"
-      },
-      {
-        "name": "Xiaoyu Feng",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Governance Product",
-        "region": "Global"
-      },
-      {
-        "name": "Yinlan Zhao",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Governance Product",
-        "region": "Global"
-      },
-      {
-        "name": "Melody (Meng) Tong",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-Customer Service Platform-Product",
-        "region": "Global"
-      },
-      {
-        "name": "Coco Huang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Design-Creator and Affiliate Product",
-        "region": "Global"
-      },
-      {
-        "name": "Q (Qu Zhuqing)",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-commerce-Design-SEA Product",
-        "region": "Global"
-      },
-      {
-        "name": "Xiaojuan Fang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-commerce-Design-Creative",
-        "region": "Global"
-      },
-      {
-        "name": "Yi Wu",
-        "points": 1,
-        "rank": 3,
-        "department": "Design",
-        "region": "Global"
-      },
-      {
-        "name": "Jun Dong",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Design-User Product-AMS&Europe",
-        "region": "Global"
-      },
-      {
-        "name": "Jiahuan Huang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-User Growth-SEA User Growth",
-        "region": "Global"
-      },
-      {
-        "name": "Tianhai Chang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-User Growth-LATAM User Growth",
-        "region": "Global"
-      },
-      {
-        "name": "Jinn Guo",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-User Product",
-        "region": "Global"
-      },
-      {
-        "name": "Zhen Wu",
-        "points": 1,
-        "rank": 3,
-        "department": "UG",
-        "region": "Global"
-      },
-      {
-        "name": "Mengting He",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-User Growth-EMEA User Growth",
-        "region": "Global"
-      },
-      {
-        "name": "August Li",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Mid-Platform Product",
-        "region": "Global"
-      },
-      {
-        "name": "Yumei Teng",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Mid-Platform Product",
-        "region": "Global"
-      },
-      {
-        "name": "Yelun Liu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Mid-Platform Product",
-        "region": "Global"
-      },
-      {
-        "name": "Valerie Yang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Creator Affiliate and US Seller Growth",
-        "region": "Global"
-      },
-      {
-        "name": "Allen Tian",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Mid-Platform Product",
-        "region": "Global"
-      },
-      {
-        "name": "Aria Dai",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Creator Affiliate and US Seller Growth",
-        "region": "Global"
-      },
-      {
-        "name": "Jacky Shan",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-User Product",
-        "region": "Global"
-      },
-      {
-        "name": "Ryan Yin",
-        "points": 1,
-        "rank": 3,
-        "department": "Product",
-        "region": "Global"
-      },
-      {
-        "name": "Rui Zhao",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Recommend Product",
-        "region": "Global"
-      },
-      {
-        "name": "Chunyan Jiang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Recommend Product",
-        "region": "Global"
-      },
-      {
-        "name": "Jiahe Li",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Search Product",
-        "region": "Global"
-      },
-      {
-        "name": "Huier Huangjia",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Search Product",
-        "region": "Global"
-      },
-      {
-        "name": "Luyao Sun",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-SEA Product",
-        "region": "Global"
-      },
-      {
-        "name": "Lia Song",
-        "points": 1,
-        "rank": 3,
-        "department": "Product",
-        "region": "Global"
-      },
-      {
-        "name": "Silver Lau",
-        "points": 1,
-        "rank": 3,
-        "department": "Product",
-        "region": "Global"
-      },
-      {
-        "name": "Naida Wang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-PMO",
-        "region": "Global"
-      },
-      {
-        "name": "Shaw",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-User Product",
-        "region": "Global"
-      },
-      {
-        "name": "Julia Ji",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Governance Product",
-        "region": "Global"
-      },
-      {
-        "name": "Hongjin Yang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Design-Creator and Affiliate Product",
-        "region": "Global"
-      },
-      {
-        "name": "Chenxi Guo",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-commerce-Design-SEA Product",
-        "region": "Global"
-      },
-      {
-        "name": "Mandy Zheng",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Design-User Product-AMS&Europe",
-        "region": "Global"
-      },
-      {
-        "name": "Haoxin Weng",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-commerce-Design-GNE & New Markets",
-        "region": "Global"
-      },
-      {
-        "name": "Zhexin Chen",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-User Product",
-        "region": "Global"
-      },
-      {
-        "name": "Jieyi Chen",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Mid-Platform Product",
-        "region": "Global"
-      },
-      {
-        "name": "Yijia Sun",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Mid-Platform Product",
-        "region": "Global"
-      },
-      {
-        "name": "Eamonn",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Search Product",
-        "region": "Global"
-      },
-      {
-        "name": "Jiali Zhang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-User Growth-SEA User Growth",
-        "region": "Global"
-      },
-      {
-        "name": "Scarlett Si",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-User Growth-SEA User Growth",
-        "region": "Global"
-      },
-      {
-        "name": "Yuzhou Tang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-User Growth-LATAM User Growth",
-        "region": "Global"
-      },
-      {
-        "name": "Xinhao Wu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Creator Affiliate and US Seller Growth",
-        "region": "Global"
-      },
-      {
-        "name": "Serena Wu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-User Product",
-        "region": "Global"
-      },
-      {
-        "name": "Ming Xue",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-SEA Cross-Border Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Ting Zhuang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Thailand Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Louis Nippit",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Thailand Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Fah Amonrat",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Thailand Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Yu-Hsiang Cheng (Johnny)",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Thailand Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Claire Pattarapol",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Thailand Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Allan Huang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Thailand Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Kawfang Thanaboriboon",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Thailand Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Minghe Liu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-AMS Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Siran Fan",
-        "points": 1,
-        "rank": 3,
-        "department": "Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Emily Li",
-        "points": 1,
-        "rank": 3,
-        "department": "Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Claire Yang",
-        "points": 1,
-        "rank": 3,
-        "department": "Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Jin Luo",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-Search & Recommendation Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Xiaoyu Zhou",
-        "points": 1,
-        "rank": 3,
-        "department": "Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Yujue Wang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-Search & Recommendation Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Boyao Li",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-AMS Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Rianna Beaton",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-EMEA Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Harvey Liu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-Global Selling Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Ling Zhang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-SEA Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Shiyun Zhang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-Search & Recommendation Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Qile Wang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-SEA Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Jialing Shi",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-AMS Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Yiyang Fan",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-Search & Recommendation Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Lin Zhou",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-AMS Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Duncan Wu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-Business Product Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Bingqian Si",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-Business Product Data Science",
-        "region": "Global"
+        "department": "UXR",
+        "email": "biying.wu@bytedance.com"
       },
       {
         "name": "Danchen Wu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-Business Product Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Xiran Liang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-User Product Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Ruowei Wang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-AMS Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Corrina Zhang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-AMS Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Nina Xiang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-AMS Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Penny Pan",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-AMS Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Hua Wei",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-AMS Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Max Li",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-AMS Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Afiifah Sembiring",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Ruth Claudia Thamrin",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Gerry Rivaldy Muhammad Nugraha",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Roro Ayu Kusumowardhani",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Shiddiq Nabawi",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Angghita Jelinna",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Jessica Angela",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Monica Permatasari",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Zuljuhdi Nasution",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Hylda Aulia",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Majid Amrullah",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Levina Rorimpandey",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Sudiyanti Tammy Rizkillah",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Andrika Istofaina",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Devika Clara",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Arrum Kartika Vidiasari",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Wilma Dewasuti",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Johannes Sidabutar",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Clarissa Amellia Wardhana",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Rachel Ding",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Sandy Yang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Xinyi Liu",
-        "points": 1,
-        "rank": 3,
-        "department": "ID Ops",
-        "region": "Global"
-      },
-      {
-        "name": "Yufei Han",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Vivien Li",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Arti Rikaningsih",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Mengyan Zhang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling Full Service-Fashion",
-        "region": "Global"
-      },
-      {
-        "name": "Moran Zhou",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling Full Service-Fashion",
-        "region": "Global"
-      },
-      {
-        "name": "Xuanye Wang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling Full Service-Fashion",
-        "region": "Global"
-      },
-      {
-        "name": "Qiwei Tan",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling Full Service-Fashion",
-        "region": "Global"
-      },
-      {
-        "name": "Gin",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling Full Service-Fashion",
-        "region": "Global"
-      },
-      {
-        "name": "Huaying Li",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling Full Service-Multi-Category",
-        "region": "Global"
-      },
-      {
-        "name": "Sichong Li",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling Full Service-Multi-Category",
-        "region": "Global"
-      },
-      {
-        "name": "Fan Yang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling Full Service-Multi-Category",
-        "region": "Global"
-      },
-      {
-        "name": "Mingfang Xiao",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling Full Service-UK & EU Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Xiaoshan Chen",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling Full Service-Stylish Womenswear & Accessories",
-        "region": "Global"
-      },
-      {
-        "name": "Judy Tang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling Full Service-Merchandise Operations and Planning",
-        "region": "Global"
-      },
-      {
-        "name": "Krati Agrawal",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-US Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Iris Malik",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-US Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Erin Tochihara",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-US Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Yiqin Yuan",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-Trading and Supply Chain&Logistics-US Logistics",
-        "region": "Global"
-      },
-      {
-        "name": "Johann Choy",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-Trading and Supply Chain&Logistics-Supply Chain",
-        "region": "Global"
-      },
-      {
-        "name": "Darren Hsu",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-Trading and Supply Chain&Logistics-US Logistics",
-        "region": "Global"
-      },
-      {
-        "name": "Keat Kok",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Settlement and Customer Service Product",
-        "region": "Global"
-      },
-      {
-        "name": "Louis Liu",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-Trading and Supply Chain&Logistics-Trading Fulfillment and Logistics Platform",
-        "region": "Global"
-      },
-      {
-        "name": "Thomas Hillzere",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-Trading and Supply Chain&Logistics-US Logistics",
-        "region": "Global"
-      },
-      {
-        "name": "FNU Pushkar",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-Trading and Supply Chain&Logistics-US Logistics",
-        "region": "Global"
-      },
-      {
-        "name": "Chuanyun Li",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-Trading and Supply Chain&Logistics-US Logistics",
-        "region": "Global"
-      },
-      {
-        "name": "Xuejun Dong",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-Trading and Supply Chain&Logistics-Warehousing",
-        "region": "Global"
-      },
-      {
-        "name": "Ben Hua",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-Trading and Supply Chain&Logistics-Warehousing",
-        "region": "Global"
-      },
-      {
-        "name": "Shawn Sun",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-Trading and Supply Chain&Logistics-Supply Chain",
-        "region": "Global"
-      },
-      {
-        "name": "Jing Wang",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics",
-        "region": "Global"
-      },
-      {
-        "name": "Frank Jiang",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Fulfill by Tiktok and Global Selling Product",
-        "region": "Global"
-      },
-      {
-        "name": "Ishtiaqe Noor",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Merchant Fulfillment Product",
-        "region": "Global"
-      },
-      {
-        "name": "Nikita Lamba",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Merchant Fulfillment Product",
-        "region": "Global"
-      },
-      {
-        "name": "Sohan Shinde",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Fulfill by Tiktok and Global Selling Product",
-        "region": "Global"
-      },
-      {
-        "name": "Flora Chen",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Fulfill by Tiktok and Global Selling Product",
-        "region": "Global"
-      },
-      {
-        "name": "Amaan Virani",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Fulfill by Tiktok and Global Selling Product",
-        "region": "Global"
-      },
-      {
-        "name": "Viresh Singh",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Fulfill by Tiktok and Global Selling Product",
-        "region": "Global"
-      },
-      {
-        "name": "Jun Zhang",
-        "points": 1,
-        "rank": 3,
-        "department": "JP Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Toshikazu Handa",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Japan Operations-Industry-Multiple Categories",
-        "region": "Global"
-      },
-      {
-        "name": "Febriandani chaerul",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-SEA Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Zoe Li",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-SEA Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Libin Lei",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Cross border Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Kean Shentu",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Cross border Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Yingxi Gu",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Cross border Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Eric Deng",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Cross border Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Chenghui Yao",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Cross border Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Guoqiang Deng",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Cross border Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Jean Chong",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Global Settlement",
-        "region": "Global"
-      },
-      {
-        "name": "Yingyin Lu",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Logistics Services Excellence",
-        "region": "Global"
-      },
-      {
-        "name": "Jocelyn Zeng",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Logistics Services Excellence",
-        "region": "Global"
-      },
-      {
-        "name": "Oliver Lai",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Logistics Services Excellence",
-        "region": "Global"
-      },
-      {
-        "name": "George Zhao",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Global Procurement",
-        "region": "Global"
-      },
-      {
-        "name": "Yue Yang",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics",
-        "region": "Global"
-      },
-      {
-        "name": "Celine Wu",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Merchant Fulfillment Product",
-        "region": "Global"
-      },
-      {
-        "name": "Libo Xu",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Fulfill by Tiktok and Global Selling Product",
-        "region": "Global"
-      },
-      {
-        "name": "Grace Gao",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Europe Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Zack Zhang",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-US Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Oliver Huang",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-US Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Yuqi Ji",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics",
-        "region": "Global"
-      },
-      {
-        "name": "Xin He",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-US Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Jasmine Liu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Singapore Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Kiri",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Malaysia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Qusairy Seman",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Malaysia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Sabrina Low",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Malaysia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Afrina Zulkifli",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Malaysia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Raja Nur Qaisara",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Malaysia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Edward Yap",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Malaysia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Hor Chee Sim",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Malaysia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Yelena Yeong",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Malaysia Operations",
-        "region": "Global"
+        "points": 6,
+        "rank": 1,
+        "department": "DS",
+        "email": "wudanchen.02@bytedance.com"
       },
       {
         "name": "Derrick Siew",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Malaysia Operations",
-        "region": "Global"
+        "points": 6,
+        "rank": 1,
+        "department": "Global E-Commerce-SEA Operations-Malaysia Operations-Customer Experience & Shoptab Growth-Assortment Growth",
+        "email": "derrick.siew@bytedance.com"
       },
       {
-        "name": "Faye Zhang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Malaysia Operations",
-        "region": "Global"
+        "name": "Jacky Shan",
+        "points": 6,
+        "rank": 1,
+        "department": "Product",
+        "email": "shanjiaqi.226@bytedance.com"
       },
       {
-        "name": "Mantong Lin",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Strategy Analytics & Resource Management",
-        "region": "Global"
+        "name": "Ling Zhang",
+        "points": 6,
+        "rank": 1,
+        "department": "Global E-Commerce-Data Science",
+        "email": "zhangling.99@bytedance.com"
       },
       {
-        "name": "Yuna Chen",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Strategy Analytics & Resource Management-LATAM",
-        "region": "Global"
+        "name": "Luyao Sun",
+        "points": 6,
+        "rank": 1,
+        "department": "Global E-Commerce-Product",
+        "email": "scarlettsun.25@bytedance.com"
       },
       {
-        "name": "Vivian Hu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Strategy Analytics & Resource Management-US",
-        "region": "Global"
-      },
-      {
-        "name": "Jeanson Shi",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Strategy Analytics & Resource Management-SEA",
-        "region": "Global"
-      },
-      {
-        "name": "Biying Wu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-User Research",
-        "region": "Global"
+        "name": "Yiyang Fan",
+        "points": 6,
+        "rank": 1,
+        "department": "Data Science",
+        "email": "yiyangfan@bytedance.com"
       }
     ],
     "top10": [
       {
-        "name": "Jiyuan Feng",
-        "points": 3,
+        "name": "Biying Wu",
+        "points": 6,
         "rank": 1,
-        "department": "Supply Chain and Logistics-Cross border Logistics Operations",
-        "region": "LATAM"
-      },
-      {
-        "name": "Jianguang Gao",
-        "points": 3,
-        "rank": 1,
-        "department": "Supply Chain and Logistics-LATAM Logistics Operations",
-        "region": "LATAM"
-      },
-      {
-        "name": "Shixuan Gao",
-        "points": 3,
-        "rank": 1,
-        "department": "Global E-Commerce-User Growth-LATAM User Growth",
-        "region": "LATAM"
-      },
-      {
-        "name": "Herbie Huang",
-        "points": 3,
-        "rank": 1,
-        "department": "Global E-Commerce-Governance and Experience-LATAM",
-        "region": "LATAM"
-      },
-      {
-        "name": "Alice Liu",
-        "points": 3,
-        "rank": 1,
-        "department": "Global E-Commerce-Product-LATAM Product",
-        "region": "LATAM"
-      },
-      {
-        "name": "Rafael Lozano",
-        "points": 3,
-        "rank": 1,
-        "department": "Global E-Commerce-Brazil Operations",
-        "region": "LATAM"
-      },
-      {
-        "name": "Alberto Montes",
-        "points": 3,
-        "rank": 1,
-        "department": "Global E-Commerce-Mexico Operations",
-        "region": "LATAM"
-      },
-      {
-        "name": "Fernanda Forti Rossin",
-        "points": 3,
-        "rank": 1,
-        "department": "Global E-Commerce-Governance and Experience-Service and Support Center",
-        "region": "LATAM"
-      },
-      {
-        "name": "Wangjiankang",
-        "points": 3,
-        "rank": 1,
-        "department": "Global Payment",
-        "region": "LATAM"
-      },
-      {
-        "name": "Hongdi Xu",
-        "points": 3,
-        "rank": 1,
-        "department": "Global E-Commerce-User Research",
-        "region": "LATAM"
-      },
-      {
-        "name": "Yanxin Yang",
-        "points": 3,
-        "rank": 1,
-        "department": "Product RD and Infrastructure-Global E-Commerce-LATAM-Customer Business",
-        "region": "LATAM"
-      },
-      {
-        "name": "Wenzhe Zhang",
-        "points": 3,
-        "rank": 1,
-        "department": "Product RD and Infrastructure-Global E-Commerce-LATAM-Frontend",
-        "region": "LATAM"
-      },
-      {
-        "name": "Qiang Zheng",
-        "points": 3,
-        "rank": 1,
-        "department": "Global E-commerce-Design-SEA Product",
-        "region": "LATAM"
-      },
-      {
-        "name": "Zhiwei Zhou",
-        "points": 3,
-        "rank": 1,
-        "department": "Global E-Commerce-Product-Recommend Product",
-        "region": "LATAM"
-      },
-      {
-        "name": "Jiaxin Liu",
-        "points": 3,
-        "rank": 1,
-        "department": "Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Sylvia Sun",
-        "points": 2,
-        "rank": 2,
-        "department": "PH Ops",
-        "region": "Global"
-      },
-      {
-        "name": "Weiye Xiao",
-        "points": 2,
-        "rank": 2,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Qiuhong Li",
-        "points": 2,
-        "rank": 2,
-        "department": "Global E-Commerce-Global Selling Full Service-Fashion",
-        "region": "Global"
-      },
-      {
-        "name": "Zirui Liu",
-        "points": 2,
-        "rank": 2,
-        "department": "Global E-Commerce-Global Selling Full Service-Fashion",
-        "region": "Global"
-      },
-      {
-        "name": "Alex",
-        "points": 2,
-        "rank": 2,
-        "department": "Global E-Commerce-Global Selling Full Service-Multi-Category",
-        "region": "Global"
-      },
-      {
-        "name": "Liting Xu",
-        "points": 2,
-        "rank": 2,
-        "department": "Global E-Commerce-User Growth-AMS User Growth",
-        "region": "Global"
-      },
-      {
-        "name": "Jonathan",
-        "points": 2,
-        "rank": 2,
-        "department": "Global E-Commerce-User Growth-AMS User Growth",
-        "region": "Global"
-      },
-      {
-        "name": "Yixiao Zhang",
-        "points": 2,
-        "rank": 2,
-        "department": "Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Kyle Zhang",
-        "points": 2,
-        "rank": 2,
-        "department": "Global E-Commerce-Data Science-Search & Recommendation Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Hu Tang",
-        "points": 2,
-        "rank": 2,
-        "department": "Global E-Commerce-Product-Recommend Product",
-        "region": "Global"
-      },
-      {
-        "name": "Hanzhao Yan",
-        "points": 2,
-        "rank": 2,
-        "department": "Global E-Commerce-Product-Recommend Product",
-        "region": "Global"
-      },
-      {
-        "name": "Sophia",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Central",
-        "region": "Global"
-      },
-      {
-        "name": "Dang Phat",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Integrated Marketing",
-        "region": "Global"
-      },
-      {
-        "name": "Raidah Malik",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Integrated Marketing",
-        "region": "Global"
-      },
-      {
-        "name": "Wallace Khor",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Integrated Marketing",
-        "region": "Global"
-      },
-      {
-        "name": "Sarah Natasha",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Integrated Marketing",
-        "region": "Global"
-      },
-      {
-        "name": "Yinan Wang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Integrated Marketing",
-        "region": "Global"
-      },
-      {
-        "name": "Gerard Ferreiro",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Spain Operations-Industry-Home Living, Electronics & FMCG",
-        "region": "Global"
-      },
-      {
-        "name": "Gary Wang",
-        "points": 1,
-        "rank": 3,
-        "department": "EU Ops Center-Affiliate",
-        "region": "Global"
-      },
-      {
-        "name": "Clément Billaudeau",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-France Operations-Industry",
-        "region": "Global"
-      },
-      {
-        "name": "Saniah Ahmed",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Germany Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Alessandro Sfingi",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Italy Operations-Industry",
-        "region": "Global"
-      },
-      {
-        "name": "Dayang CHEN",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-EU Operations Center-Central Campaign",
-        "region": "Global"
-      },
-      {
-        "name": "Greta He",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-EU Operations Center-Affiliate",
-        "region": "Global"
-      },
-      {
-        "name": "Vivian Lo",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-EU Operations Center-MAI",
-        "region": "Global"
-      },
-      {
-        "name": "Joey Li",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-EU Operations Center-Business Planning & Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Bridie Gilbert",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-UK Operations-Campaign",
-        "region": "Global"
-      },
-      {
-        "name": "Zongli Yang",
-        "points": 1,
-        "rank": 3,
-        "department": "UK Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Thoa Chu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Vietnam Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Patricia Cheng",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Vietnam Operations",
-        "region": "Global"
-      },
-      {
-        "name": "An Nguyen",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Vietnam Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Lingzi Wei",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Vietnam Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Aria Nguyen",
-        "points": 1,
-        "rank": 3,
-        "department": "VN Ops",
-        "region": "Global"
-      },
-      {
-        "name": "Kỳ Duyên",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Vietnam Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Skyler Chen",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Vietnam Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Nguyen Thanh",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Vietnam Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Leo",
-        "points": 1,
-        "rank": 3,
-        "department": "VN Ops",
-        "region": "Global"
-      },
-      {
-        "name": "Jin Huy",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Vietnam Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Casey Thanh Vo",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Vietnam Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Bui Heidi",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Vietnam Operations",
-        "region": "Global"
-      },
-      {
-        "name": "AJ Peralta",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Philippines Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Justine Agbanlog",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Philippines Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Hansen Sun",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Governance and Experience-EMEA",
-        "region": "Global"
-      },
-      {
-        "name": "Jack Liao",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Governance and Experience-EMEA",
-        "region": "Global"
-      },
-      {
-        "name": "Deep Kaur",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Governance and Experience-EMEA",
-        "region": "Global"
-      },
-      {
-        "name": "Elsie Ren",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Nan Cai",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Qifeng Wu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Long Zhu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Haichao Chen",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Na Guo",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Aaron Wang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Yizhi Wang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Comma Chen",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Yang Cao",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Xiao Han",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Congyu Bi",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Qi Peng",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "En Dai",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Zhiqiang Zhang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Jing Tong",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Fashion",
-        "region": "Global"
-      },
-      {
-        "name": "Yixiao Qie",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Category Management",
-        "region": "Global"
-      },
-      {
-        "name": "Jinlan Hu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling POP-Creator",
-        "region": "Global"
-      },
-      {
-        "name": "Shengli Zou",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-US-Core Shopping and Experience",
-        "region": "Global"
-      },
-      {
-        "name": "Qiming Cui",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-US-Core Shopping and Experience",
-        "region": "Global"
-      },
-      {
-        "name": "Yanze Li",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-Customer Service Platform-Data Analysis",
-        "region": "Global"
-      },
-      {
-        "name": "Xiaoyan Wang",
-        "points": 1,
-        "rank": 3,
-        "department": "Data-Data Platform-Data BP of Generalized TikTok-Global E-Commerce",
-        "region": "Global"
-      },
-      {
-        "name": "David Sui",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-PMO",
-        "region": "Global"
-      },
-      {
-        "name": "Shibo Wang",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-US-Core Shopping and Experience",
-        "region": "Global"
-      },
-      {
-        "name": "Sumin Yu",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-Lumen",
-        "region": "Global"
-      },
-      {
-        "name": "Jun Chu",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-Lumen",
-        "region": "Global"
-      },
-      {
-        "name": "Lexin Ma",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Mid-Platform Product",
-        "region": "Global"
-      },
-      {
-        "name": "Kashing Li",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Mid-Platform Product",
-        "region": "Global"
-      },
-      {
-        "name": "Dana Huang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-UK&EU Product",
-        "region": "Global"
-      },
-      {
-        "name": "Hao Hu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-UK&EU Product",
-        "region": "Global"
-      },
-      {
-        "name": "Ariel Fu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-UK&EU Product",
-        "region": "Global"
-      },
-      {
-        "name": "Nhat Le",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-SEA Product",
-        "region": "Global"
-      },
-      {
-        "name": "Benli Zhang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-LATAM Product",
-        "region": "Global"
-      },
-      {
-        "name": "Jingyi Zhu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-LATAM Product",
-        "region": "Global"
-      },
-      {
-        "name": "Xiaoyu Feng",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Governance Product",
-        "region": "Global"
-      },
-      {
-        "name": "Yinlan Zhao",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Governance Product",
-        "region": "Global"
-      },
-      {
-        "name": "Melody (Meng) Tong",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-Customer Service Platform-Product",
-        "region": "Global"
-      },
-      {
-        "name": "Coco Huang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Design-Creator and Affiliate Product",
-        "region": "Global"
-      },
-      {
-        "name": "Q (Qu Zhuqing)",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-commerce-Design-SEA Product",
-        "region": "Global"
-      },
-      {
-        "name": "Xiaojuan Fang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-commerce-Design-Creative",
-        "region": "Global"
-      },
-      {
-        "name": "Yi Wu",
-        "points": 1,
-        "rank": 3,
-        "department": "Design",
-        "region": "Global"
-      },
-      {
-        "name": "Jun Dong",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Design-User Product-AMS&Europe",
-        "region": "Global"
-      },
-      {
-        "name": "Jiahuan Huang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-User Growth-SEA User Growth",
-        "region": "Global"
-      },
-      {
-        "name": "Tianhai Chang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-User Growth-LATAM User Growth",
-        "region": "Global"
-      },
-      {
-        "name": "Jinn Guo",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-User Product",
-        "region": "Global"
-      },
-      {
-        "name": "Zhen Wu",
-        "points": 1,
-        "rank": 3,
-        "department": "UG",
-        "region": "Global"
-      },
-      {
-        "name": "Mengting He",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-User Growth-EMEA User Growth",
-        "region": "Global"
-      },
-      {
-        "name": "August Li",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Mid-Platform Product",
-        "region": "Global"
-      },
-      {
-        "name": "Yumei Teng",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Mid-Platform Product",
-        "region": "Global"
-      },
-      {
-        "name": "Yelun Liu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Mid-Platform Product",
-        "region": "Global"
-      },
-      {
-        "name": "Valerie Yang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Creator Affiliate and US Seller Growth",
-        "region": "Global"
-      },
-      {
-        "name": "Allen Tian",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Mid-Platform Product",
-        "region": "Global"
-      },
-      {
-        "name": "Aria Dai",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Creator Affiliate and US Seller Growth",
-        "region": "Global"
-      },
-      {
-        "name": "Jacky Shan",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-User Product",
-        "region": "Global"
-      },
-      {
-        "name": "Ryan Yin",
-        "points": 1,
-        "rank": 3,
-        "department": "Product",
-        "region": "Global"
-      },
-      {
-        "name": "Rui Zhao",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Recommend Product",
-        "region": "Global"
-      },
-      {
-        "name": "Chunyan Jiang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Recommend Product",
-        "region": "Global"
-      },
-      {
-        "name": "Jiahe Li",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Search Product",
-        "region": "Global"
-      },
-      {
-        "name": "Huier Huangjia",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Search Product",
-        "region": "Global"
-      },
-      {
-        "name": "Luyao Sun",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-SEA Product",
-        "region": "Global"
-      },
-      {
-        "name": "Lia Song",
-        "points": 1,
-        "rank": 3,
-        "department": "Product",
-        "region": "Global"
-      },
-      {
-        "name": "Silver Lau",
-        "points": 1,
-        "rank": 3,
-        "department": "Product",
-        "region": "Global"
-      },
-      {
-        "name": "Naida Wang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-PMO",
-        "region": "Global"
-      },
-      {
-        "name": "Shaw",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-User Product",
-        "region": "Global"
-      },
-      {
-        "name": "Julia Ji",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Governance Product",
-        "region": "Global"
-      },
-      {
-        "name": "Hongjin Yang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Design-Creator and Affiliate Product",
-        "region": "Global"
-      },
-      {
-        "name": "Chenxi Guo",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-commerce-Design-SEA Product",
-        "region": "Global"
-      },
-      {
-        "name": "Mandy Zheng",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Design-User Product-AMS&Europe",
-        "region": "Global"
-      },
-      {
-        "name": "Haoxin Weng",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-commerce-Design-GNE & New Markets",
-        "region": "Global"
-      },
-      {
-        "name": "Zhexin Chen",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-User Product",
-        "region": "Global"
-      },
-      {
-        "name": "Jieyi Chen",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Mid-Platform Product",
-        "region": "Global"
-      },
-      {
-        "name": "Yijia Sun",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Mid-Platform Product",
-        "region": "Global"
-      },
-      {
-        "name": "Eamonn",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Search Product",
-        "region": "Global"
-      },
-      {
-        "name": "Jiali Zhang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-User Growth-SEA User Growth",
-        "region": "Global"
-      },
-      {
-        "name": "Scarlett Si",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-User Growth-SEA User Growth",
-        "region": "Global"
-      },
-      {
-        "name": "Yuzhou Tang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-User Growth-LATAM User Growth",
-        "region": "Global"
-      },
-      {
-        "name": "Xinhao Wu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-Creator Affiliate and US Seller Growth",
-        "region": "Global"
-      },
-      {
-        "name": "Serena Wu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Product-User Product",
-        "region": "Global"
-      },
-      {
-        "name": "Ming Xue",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-SEA Cross-Border Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Ting Zhuang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Thailand Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Louis Nippit",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Thailand Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Fah Amonrat",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Thailand Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Yu-Hsiang Cheng (Johnny)",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Thailand Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Claire Pattarapol",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Thailand Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Allan Huang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Thailand Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Kawfang Thanaboriboon",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Thailand Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Minghe Liu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-AMS Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Siran Fan",
-        "points": 1,
-        "rank": 3,
-        "department": "Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Emily Li",
-        "points": 1,
-        "rank": 3,
-        "department": "Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Claire Yang",
-        "points": 1,
-        "rank": 3,
-        "department": "Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Jin Luo",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-Search & Recommendation Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Xiaoyu Zhou",
-        "points": 1,
-        "rank": 3,
-        "department": "Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Yujue Wang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-Search & Recommendation Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Boyao Li",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-AMS Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Rianna Beaton",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-EMEA Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Harvey Liu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-Global Selling Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Ling Zhang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-SEA Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Shiyun Zhang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-Search & Recommendation Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Qile Wang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-SEA Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Jialing Shi",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-AMS Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Yiyang Fan",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-Search & Recommendation Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Lin Zhou",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-AMS Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Duncan Wu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-Business Product Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Bingqian Si",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-Business Product Data Science",
-        "region": "Global"
+        "department": "UXR",
+        "email": "biying.wu@bytedance.com"
       },
       {
         "name": "Danchen Wu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-Business Product Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Xiran Liang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-User Product Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Ruowei Wang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-AMS Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Corrina Zhang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-AMS Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Nina Xiang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-AMS Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Penny Pan",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-AMS Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Hua Wei",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-AMS Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Max Li",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Data Science-AMS Data Science",
-        "region": "Global"
-      },
-      {
-        "name": "Afiifah Sembiring",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Ruth Claudia Thamrin",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Gerry Rivaldy Muhammad Nugraha",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Roro Ayu Kusumowardhani",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Shiddiq Nabawi",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Angghita Jelinna",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Jessica Angela",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Monica Permatasari",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Zuljuhdi Nasution",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Hylda Aulia",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Majid Amrullah",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Levina Rorimpandey",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Sudiyanti Tammy Rizkillah",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Andrika Istofaina",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Devika Clara",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Arrum Kartika Vidiasari",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Wilma Dewasuti",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Johannes Sidabutar",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Clarissa Amellia Wardhana",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Rachel Ding",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Sandy Yang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Xinyi Liu",
-        "points": 1,
-        "rank": 3,
-        "department": "ID Ops",
-        "region": "Global"
-      },
-      {
-        "name": "Yufei Han",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Vivien Li",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Arti Rikaningsih",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Indonesia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Mengyan Zhang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling Full Service-Fashion",
-        "region": "Global"
-      },
-      {
-        "name": "Moran Zhou",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling Full Service-Fashion",
-        "region": "Global"
-      },
-      {
-        "name": "Xuanye Wang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling Full Service-Fashion",
-        "region": "Global"
-      },
-      {
-        "name": "Qiwei Tan",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling Full Service-Fashion",
-        "region": "Global"
-      },
-      {
-        "name": "Gin",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling Full Service-Fashion",
-        "region": "Global"
-      },
-      {
-        "name": "Huaying Li",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling Full Service-Multi-Category",
-        "region": "Global"
-      },
-      {
-        "name": "Sichong Li",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling Full Service-Multi-Category",
-        "region": "Global"
-      },
-      {
-        "name": "Fan Yang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling Full Service-Multi-Category",
-        "region": "Global"
-      },
-      {
-        "name": "Mingfang Xiao",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling Full Service-UK & EU Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Xiaoshan Chen",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling Full Service-Stylish Womenswear & Accessories",
-        "region": "Global"
-      },
-      {
-        "name": "Judy Tang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Global Selling Full Service-Merchandise Operations and Planning",
-        "region": "Global"
-      },
-      {
-        "name": "Krati Agrawal",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-US Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Iris Malik",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-US Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Erin Tochihara",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-US Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Yiqin Yuan",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-Trading and Supply Chain&Logistics-US Logistics",
-        "region": "Global"
-      },
-      {
-        "name": "Johann Choy",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-Trading and Supply Chain&Logistics-Supply Chain",
-        "region": "Global"
-      },
-      {
-        "name": "Darren Hsu",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-Trading and Supply Chain&Logistics-US Logistics",
-        "region": "Global"
-      },
-      {
-        "name": "Keat Kok",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Settlement and Customer Service Product",
-        "region": "Global"
-      },
-      {
-        "name": "Louis Liu",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-Trading and Supply Chain&Logistics-Trading Fulfillment and Logistics Platform",
-        "region": "Global"
-      },
-      {
-        "name": "Thomas Hillzere",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-Trading and Supply Chain&Logistics-US Logistics",
-        "region": "Global"
-      },
-      {
-        "name": "FNU Pushkar",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-Trading and Supply Chain&Logistics-US Logistics",
-        "region": "Global"
-      },
-      {
-        "name": "Chuanyun Li",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-Trading and Supply Chain&Logistics-US Logistics",
-        "region": "Global"
-      },
-      {
-        "name": "Xuejun Dong",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-Trading and Supply Chain&Logistics-Warehousing",
-        "region": "Global"
-      },
-      {
-        "name": "Ben Hua",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-Trading and Supply Chain&Logistics-Warehousing",
-        "region": "Global"
-      },
-      {
-        "name": "Shawn Sun",
-        "points": 1,
-        "rank": 3,
-        "department": "Product RD and Infrastructure-Global E-Commerce-Trading and Supply Chain&Logistics-Supply Chain",
-        "region": "Global"
-      },
-      {
-        "name": "Jing Wang",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics",
-        "region": "Global"
-      },
-      {
-        "name": "Frank Jiang",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Fulfill by Tiktok and Global Selling Product",
-        "region": "Global"
-      },
-      {
-        "name": "Ishtiaqe Noor",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Merchant Fulfillment Product",
-        "region": "Global"
-      },
-      {
-        "name": "Nikita Lamba",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Merchant Fulfillment Product",
-        "region": "Global"
-      },
-      {
-        "name": "Sohan Shinde",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Fulfill by Tiktok and Global Selling Product",
-        "region": "Global"
-      },
-      {
-        "name": "Flora Chen",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Fulfill by Tiktok and Global Selling Product",
-        "region": "Global"
-      },
-      {
-        "name": "Amaan Virani",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Fulfill by Tiktok and Global Selling Product",
-        "region": "Global"
-      },
-      {
-        "name": "Viresh Singh",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Fulfill by Tiktok and Global Selling Product",
-        "region": "Global"
-      },
-      {
-        "name": "Jun Zhang",
-        "points": 1,
-        "rank": 3,
-        "department": "JP Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Toshikazu Handa",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Japan Operations-Industry-Multiple Categories",
-        "region": "Global"
-      },
-      {
-        "name": "Febriandani chaerul",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-SEA Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Zoe Li",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-SEA Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Libin Lei",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Cross border Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Kean Shentu",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Cross border Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Yingxi Gu",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Cross border Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Eric Deng",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Cross border Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Chenghui Yao",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Cross border Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Guoqiang Deng",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Cross border Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Jean Chong",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Global Settlement",
-        "region": "Global"
-      },
-      {
-        "name": "Yingyin Lu",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Logistics Services Excellence",
-        "region": "Global"
-      },
-      {
-        "name": "Jocelyn Zeng",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Logistics Services Excellence",
-        "region": "Global"
-      },
-      {
-        "name": "Oliver Lai",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Logistics Services Excellence",
-        "region": "Global"
-      },
-      {
-        "name": "George Zhao",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Global Procurement",
-        "region": "Global"
-      },
-      {
-        "name": "Yue Yang",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics",
-        "region": "Global"
-      },
-      {
-        "name": "Celine Wu",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Merchant Fulfillment Product",
-        "region": "Global"
-      },
-      {
-        "name": "Libo Xu",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Fulfill by Tiktok and Global Selling Product",
-        "region": "Global"
-      },
-      {
-        "name": "Grace Gao",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-Europe Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Zack Zhang",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-US Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Oliver Huang",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-US Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Yuqi Ji",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics",
-        "region": "Global"
-      },
-      {
-        "name": "Xin He",
-        "points": 1,
-        "rank": 3,
-        "department": "Supply Chain and Logistics-US Logistics Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Jasmine Liu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Singapore Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Kiri",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Malaysia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Qusairy Seman",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Malaysia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Sabrina Low",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Malaysia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Afrina Zulkifli",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Malaysia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Raja Nur Qaisara",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Malaysia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Edward Yap",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Malaysia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Hor Chee Sim",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Malaysia Operations",
-        "region": "Global"
-      },
-      {
-        "name": "Yelena Yeong",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Malaysia Operations",
-        "region": "Global"
+        "points": 6,
+        "rank": 1,
+        "department": "DS",
+        "email": "wudanchen.02@bytedance.com"
       },
       {
         "name": "Derrick Siew",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Malaysia Operations",
-        "region": "Global"
+        "points": 6,
+        "rank": 1,
+        "department": "Global E-Commerce-SEA Operations-Malaysia Operations-Customer Experience & Shoptab Growth-Assortment Growth",
+        "email": "derrick.siew@bytedance.com"
       },
       {
-        "name": "Faye Zhang",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-SEA Operations-Malaysia Operations",
-        "region": "Global"
+        "name": "Jacky Shan",
+        "points": 6,
+        "rank": 1,
+        "department": "Product",
+        "email": "shanjiaqi.226@bytedance.com"
       },
       {
-        "name": "Mantong Lin",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Strategy Analytics & Resource Management",
-        "region": "Global"
+        "name": "Ling Zhang",
+        "points": 6,
+        "rank": 1,
+        "department": "Global E-Commerce-Data Science",
+        "email": "zhangling.99@bytedance.com"
       },
       {
-        "name": "Yuna Chen",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Strategy Analytics & Resource Management-LATAM",
-        "region": "Global"
+        "name": "Luyao Sun",
+        "points": 6,
+        "rank": 1,
+        "department": "Global E-Commerce-Product",
+        "email": "scarlettsun.25@bytedance.com"
       },
       {
-        "name": "Vivian Hu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Strategy Analytics & Resource Management-US",
-        "region": "Global"
+        "name": "Yiyang Fan",
+        "points": 6,
+        "rank": 1,
+        "department": "Data Science",
+        "email": "yiyangfan@bytedance.com"
       },
       {
-        "name": "Jeanson Shi",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-Strategy Analytics & Resource Management-SEA",
-        "region": "Global"
+        "name": "Andrew Xie",
+        "points": 5,
+        "rank": 8,
+        "department": "Logistics",
+        "email": "zhaonanxie@bytedance.com"
       },
       {
-        "name": "Biying Wu",
-        "points": 1,
-        "rank": 3,
-        "department": "Global E-Commerce-User Research",
-        "region": "Global"
+        "name": "Annie Evans",
+        "points": 5,
+        "rank": 8,
+        "department": "US Ops- CP",
+        "email": "annieevans@bytedance.com"
+      },
+      {
+        "name": "April(Xueyun) Ji",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Monetization Product and Technology",
+        "email": "jixueyun@bytedance.com"
+      },
+      {
+        "name": "Cancan Huang",
+        "points": 5,
+        "rank": 8,
+        "department": "Product",
+        "email": "huangcancan@bytedance.com"
+      },
+      {
+        "name": "Cathy Mei",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Payment-Financial Service",
+        "email": "meiyue@bytedance.com"
+      },
+      {
+        "name": "Chao Zhang",
+        "points": 5,
+        "rank": 8,
+        "department": "Tech",
+        "email": "zhangchao.yingxuan@bytedance.com"
+      },
+      {
+        "name": "Charlotte Chen",
+        "points": 5,
+        "rank": 8,
+        "department": "Global E-Commerce-SEA Operations-Malaysia Operations-Customer Experience & Shoptab Growth-Customer Experience",
+        "email": "chenjunhong.charl@bytedance.com"
+      },
+      {
+        "name": "Christal Chin",
+        "points": 5,
+        "rank": 8,
+        "department": "Global E-Commerce-SEA Operations-Integrated Marketing-Malaysia",
+        "email": "christal.chin@bytedance.com"
+      },
+      {
+        "name": "Chunyan Xia",
+        "points": 5,
+        "rank": 8,
+        "department": "Product",
+        "email": "xiachunyan@bytedance.com"
+      },
+      {
+        "name": "Cooper",
+        "points": 5,
+        "rank": 8,
+        "department": "US Ops- Non CP",
+        "email": "chengchuanchi@bytedance.com"
+      },
+      {
+        "name": "Cora",
+        "points": 5,
+        "rank": 8,
+        "department": "Strategy",
+        "email": "chenyue.321@bytedance.com"
+      },
+      {
+        "name": "Darry",
+        "points": 5,
+        "rank": 8,
+        "department": "Global E-Commerce-Product",
+        "email": "duanrui.darry@bytedance.com"
+      },
+      {
+        "name": "Dianbang Hou",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Payment-Financial Risk-SEA BNPL Strategy",
+        "email": "dianbang.hou@bytedance.com"
+      },
+      {
+        "name": "Edward Chen",
+        "points": 5,
+        "rank": 8,
+        "department": "US Ops- Non CP",
+        "email": "edward.chen@bytedance.com"
+      },
+      {
+        "name": "Effy",
+        "points": 5,
+        "rank": 8,
+        "department": "PH Ops",
+        "email": "zhangyiran.carol@bytedance.com"
+      },
+      {
+        "name": "Evan DeCuire",
+        "points": 5,
+        "rank": 8,
+        "department": "US Ops- Non CP",
+        "email": "evan.decuire@bytedance.com"
+      },
+      {
+        "name": "Fei Hsiung",
+        "points": 5,
+        "rank": 8,
+        "department": "ID Ops",
+        "email": "fei.hsiung@bytedance.com"
+      },
+      {
+        "name": "Feifei Tang",
+        "points": 5,
+        "rank": 8,
+        "department": "US Ops- Non CP",
+        "email": "tangfeifei.01@bytedance.com"
+      },
+      {
+        "name": "Francis Feng",
+        "points": 5,
+        "rank": 8,
+        "department": "SEA Ops - Cross-boarder",
+        "email": "fengjiahao.1018@bytedance.com"
+      },
+      {
+        "name": "Frank Wu",
+        "points": 5,
+        "rank": 8,
+        "department": "Tech",
+        "email": "frankwu@bytedance.com"
+      },
+      {
+        "name": "Gen",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Monetization Product and Technology",
+        "email": "hugen@bytedance.com"
+      },
+      {
+        "name": "Grace Ha",
+        "points": 5,
+        "rank": 8,
+        "department": "US Ops- Non CP",
+        "email": "grace.ha@bytedance.com"
+      },
+      {
+        "name": "Guojun Wu",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Monetization Product and Technology",
+        "email": "wuguojun.wu@bytedance.com"
+      },
+      {
+        "name": "Haley Chau",
+        "points": 5,
+        "rank": 8,
+        "department": "US Ops- Non CP",
+        "email": "haley.chau@bytedance.com"
+      },
+      {
+        "name": "Haotong Ma",
+        "points": 5,
+        "rank": 8,
+        "department": "Strategy",
+        "email": "mahaotong.111@bytedance.com"
+      },
+      {
+        "name": "Hongqian Su (粟虹倩)",
+        "points": 5,
+        "rank": 8,
+        "department": "US Ops- Non CP",
+        "email": "hongqian.su@bytedance.com"
+      },
+      {
+        "name": "Hui Shi Tjan",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Business Solutions",
+        "email": "tjan.huishi@bytedance.com"
+      },
+      {
+        "name": "Ibrahim Lari",
+        "points": 5,
+        "rank": 8,
+        "department": "US Ops- CP",
+        "email": "ibrahim.lari@bytedance.com"
+      },
+      {
+        "name": "Iris Chen",
+        "points": 5,
+        "rank": 8,
+        "department": "VN Ops",
+        "email": "chenjunran@bytedance.com"
+      },
+      {
+        "name": "Iris Wang",
+        "points": 5,
+        "rank": 8,
+        "department": "US Ops- Non CP",
+        "email": "iris.ytwang@bytedance.com"
+      },
+      {
+        "name": "Jackson Yin",
+        "points": 5,
+        "rank": 8,
+        "department": "US Ops- Non CP",
+        "email": "jackson.yin@bytedance.com"
+      },
+      {
+        "name": "Jacky Li",
+        "points": 5,
+        "rank": 8,
+        "department": "SEA Ops - Central",
+        "email": "lijiaqi.kk@bytedance.com"
+      },
+      {
+        "name": "Jaraline Ong",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Payment-Financial Service-SEA Consumer Financing",
+        "email": "jaraline.ong@bytedance.com"
+      },
+      {
+        "name": "Jasper Zhao",
+        "points": 5,
+        "rank": 8,
+        "department": "MY Ops",
+        "email": "jianpeng.zhao@bytedance.com"
+      },
+      {
+        "name": "Jerilyn Tan",
+        "points": 5,
+        "rank": 8,
+        "department": "SG Ops",
+        "email": "jerilyn.tancy@bytedance.com"
+      },
+      {
+        "name": "Jia Yi Foo",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Monetization Product and Technology",
+        "email": "jiayi.foo@bytedance.com"
+      },
+      {
+        "name": "Jie Yang",
+        "points": 5,
+        "rank": 8,
+        "department": "Rec Product",
+        "email": "yangjie.kory@bytedance.com"
+      },
+      {
+        "name": "Jing Zhou",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Monetization Product and Technology",
+        "email": "zhoujing.jenny@bytedance.com"
+      },
+      {
+        "name": "Jingyi Zhou",
+        "points": 5,
+        "rank": 8,
+        "department": "Design",
+        "email": "zhoujingyi.rebecca@bytedance.com"
+      },
+      {
+        "name": "Jinyao Zhou",
+        "points": 5,
+        "rank": 8,
+        "department": "GNE",
+        "email": "jinyaoz.brian@bytedance.com"
+      },
+      {
+        "name": "Jonathan Low",
+        "points": 5,
+        "rank": 8,
+        "department": "Global E-Commerce-SEA Operations-Malaysia Operations-Customer Experience & Shoptab Growth-Customer Experience",
+        "email": "jonathan.low@bytedance.com"
+      },
+      {
+        "name": "Josie Yu",
+        "points": 5,
+        "rank": 8,
+        "department": "Product",
+        "email": "yujiaping@bytedance.com"
+      },
+      {
+        "name": "Jourdan",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Business Solutions",
+        "email": "zhanghao.jourdan@bytedance.com"
+      },
+      {
+        "name": "Junsha X/Sally",
+        "points": 5,
+        "rank": 8,
+        "department": "TH Ops",
+        "email": "xiejunsha@bytedance.com"
+      },
+      {
+        "name": "Kade Percy",
+        "points": 5,
+        "rank": 8,
+        "department": "US Ops- Non CP",
+        "email": "kade.percy@bytedance.com"
+      },
+      {
+        "name": "Kayla Xie",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Monetization Product and Technology",
+        "email": "xietingting.0322@bytedance.com"
+      },
+      {
+        "name": "Lan Yao",
+        "points": 5,
+        "rank": 8,
+        "department": "SEA Ops - IMC",
+        "email": "yaolan.2857@bytedance.com"
+      },
+      {
+        "name": "Lela Yuan",
+        "points": 5,
+        "rank": 8,
+        "department": "US Ops- CP",
+        "email": "lela.yuan@bytedance.com"
+      },
+      {
+        "name": "LiLi Qian",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Monetization Product and Technology",
+        "email": "qianlili@bytedance.com"
+      },
+      {
+        "name": "Lili Guo",
+        "points": 5,
+        "rank": 8,
+        "department": "US Ops- Non CP",
+        "email": "guolili.2022@bytedance.com"
+      },
+      {
+        "name": "Lin Huang",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Monetization Product and Technology",
+        "email": "huanglin.2@bytedance.com"
+      },
+      {
+        "name": "Linda Zhu",
+        "points": 5,
+        "rank": 8,
+        "department": "US Ops- CP",
+        "email": "linda.zhu@bytedance.com"
+      },
+      {
+        "name": "Lori",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Payment-Financial Service-SEA BNPL Growth Operations",
+        "email": "louyue.lori@bytedance.com"
+      },
+      {
+        "name": "Lucien Tian",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Monetization Product and Technology",
+        "email": "luxintian@bytedance.com"
+      },
+      {
+        "name": "Michael He",
+        "points": 5,
+        "rank": 8,
+        "department": "US Ops- Non CP",
+        "email": "dingyuanhe@bytedance.com"
+      },
+      {
+        "name": "Min Qian",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Monetization Product and Technology",
+        "email": "qianmin.1004@bytedance.com"
+      },
+      {
+        "name": "Mingman Yuan",
+        "points": 5,
+        "rank": 8,
+        "department": "GNE",
+        "email": "mingmanyuan@bytedance.com"
+      },
+      {
+        "name": "Nur Aisya Binti Rosly",
+        "points": 5,
+        "rank": 8,
+        "department": "Global E-Commerce-SEA Operations-Integrated Marketing-Malaysia",
+        "email": "aisyarosly@bytedance.com"
+      },
+      {
+        "name": "Ocean(Xueqian) Liu",
+        "points": 5,
+        "rank": 8,
+        "department": "Tech",
+        "email": "xueqian.liu@bytedance.com"
+      },
+      {
+        "name": "Qin Wang",
+        "points": 5,
+        "rank": 8,
+        "department": "Design",
+        "email": "wangqin.0210@bytedance.com"
+      },
+      {
+        "name": "Rae Ma",
+        "points": 5,
+        "rank": 8,
+        "department": "Rec Product",
+        "email": "mazhimin.rae@bytedance.com"
+      },
+      {
+        "name": "Ran Zhang",
+        "points": 5,
+        "rank": 8,
+        "department": "Product",
+        "email": "zhangran.rachel@bytedance.com"
+      },
+      {
+        "name": "Raoli Zhang",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Monetization Product and Technology",
+        "email": "zhangraoli@bytedance.com"
+      },
+      {
+        "name": "Raphael Luo",
+        "points": 5,
+        "rank": 8,
+        "department": "SEA Ops - IMC",
+        "email": "luozerong@bytedance.com"
+      },
+      {
+        "name": "Ray Gi Teo",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Payment-Financial Service-SEA BNPL Growth Operations",
+        "email": "raygi.teo@bytedance.com"
+      },
+      {
+        "name": "Renee Chen",
+        "points": 5,
+        "rank": 8,
+        "department": "US Ops- Non CP",
+        "email": "renee.chen@bytedance.com"
+      },
+      {
+        "name": "Robert Tan",
+        "points": 5,
+        "rank": 8,
+        "department": "Global E-Commerce-SEA Operations-Malaysia Operations-Electronics-Category and Account Management",
+        "email": "robert.tan@bytedance.com"
+      },
+      {
+        "name": "Roby Liu",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Business Solutions",
+        "email": "liushijun@bytedance.com"
+      },
+      {
+        "name": "Ruchao Cai",
+        "points": 5,
+        "rank": 8,
+        "department": "Global E-Commerce-SEA Operations-Integrated Marketing-Vietnam",
+        "email": "cairuchao@bytedance.com"
+      },
+      {
+        "name": "Rui Fu",
+        "points": 5,
+        "rank": 8,
+        "department": "Global E-Commerce-Product",
+        "email": "furui.1014@bytedance.com"
+      },
+      {
+        "name": "Rui Wen Lau",
+        "points": 5,
+        "rank": 8,
+        "department": "GNE",
+        "email": "ruiwen.lau@bytedance.com"
+      },
+      {
+        "name": "Ruorong Xu",
+        "points": 5,
+        "rank": 8,
+        "department": "Logistics",
+        "email": "xuruorong@bytedance.com"
+      },
+      {
+        "name": "Shadow",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Monetization Product and Technology",
+        "email": "shadow.luo@bytedance.com"
+      },
+      {
+        "name": "Shirley LIU",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Business Solutions",
+        "email": "liutong.310@bytedance.com"
+      },
+      {
+        "name": "Shuning Sun",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Business Solutions",
+        "email": "sunshuning.03@bytedance.com"
+      },
+      {
+        "name": "Shuo Huang",
+        "points": 5,
+        "rank": 8,
+        "department": "US Ops- Non CP",
+        "email": "huangshuo.123@bytedance.com"
+      },
+      {
+        "name": "Sia Shi",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Business Solutions",
+        "email": "shiyao.sia@bytedance.com"
+      },
+      {
+        "name": "Sixu Chen",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Monetization Product and Technology",
+        "email": "chensixu.iris@bytedance.com"
+      },
+      {
+        "name": "Siyi Huang",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Business Solutions",
+        "email": "huangsiyi.ann143@bytedance.com"
+      },
+      {
+        "name": "Song Lu",
+        "points": 5,
+        "rank": 8,
+        "department": "GNE",
+        "email": "song.lu@bytedance.com"
+      },
+      {
+        "name": "Stanleigh Jenkins Pingguan",
+        "points": 5,
+        "rank": 8,
+        "department": "Global E-Commerce-SEA Operations-Integrated Marketing-Malaysia",
+        "email": "stanleigh.pingguan@bytedance.com"
+      },
+      {
+        "name": "Stella Wu",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Monetization Product and Technology",
+        "email": "wuleqi@bytedance.com"
+      },
+      {
+        "name": "Stella Yang",
+        "points": 5,
+        "rank": 8,
+        "department": "Finance BP-Global E-Commerce",
+        "email": "yangsurong.stella@bytedance.com"
+      },
+      {
+        "name": "Stephen Zou",
+        "points": 5,
+        "rank": 8,
+        "department": "SEA Ops - Central",
+        "email": "zougansheng@bytedance.com"
+      },
+      {
+        "name": "Susie Xu",
+        "points": 5,
+        "rank": 8,
+        "department": "Algo",
+        "email": "xuxi.susie@bytedance.com"
+      },
+      {
+        "name": "Sydney Zhou",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Payment-Financial Service-SEA BNPL Growth Operations",
+        "email": "sydney.zhou1@bytedance.com"
+      },
+      {
+        "name": "Tang Tang",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Payment-Financial Risk-SEA BNPL Strategy",
+        "email": "tangtang.1@bytedance.com"
+      },
+      {
+        "name": "Tina Xu",
+        "points": 5,
+        "rank": 8,
+        "department": "US Ops- CP",
+        "email": "xutong.qr@bytedance.com"
+      },
+      {
+        "name": "Troy Chen",
+        "points": 5,
+        "rank": 8,
+        "department": "US Ops- Non CP",
+        "email": "chenyaoyang@bytedance.com"
+      },
+      {
+        "name": "Vera Yang",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Monetization Product and Technology",
+        "email": "yangwanzhi@bytedance.com"
+      },
+      {
+        "name": "Veronica Ju",
+        "points": 5,
+        "rank": 8,
+        "department": "Global E-Commerce-SEA Operations-Integrated Marketing-Malaysia",
+        "email": "jumengshi@bytedance.com"
+      },
+      {
+        "name": "Veronica Qu",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Business Solutions",
+        "email": "qubingzhou@bytedance.com"
+      },
+      {
+        "name": "Wanxu Xu",
+        "points": 5,
+        "rank": 8,
+        "department": "Product",
+        "email": "xuwanxu.vivi@bytedance.com"
+      },
+      {
+        "name": "Wei (微) Wong-Haney",
+        "points": 5,
+        "rank": 8,
+        "department": "UXR",
+        "email": "wei.wonghaney@bytedance.com"
+      },
+      {
+        "name": "Weijian Qiu",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Monetization Product and Technology",
+        "email": "qiuweijian@bytedance.com"
+      },
+      {
+        "name": "William Li",
+        "points": 5,
+        "rank": 8,
+        "department": "US Ops- Non CP",
+        "email": "william.li@bytedance.com"
+      },
+      {
+        "name": "Winnie Wang",
+        "points": 5,
+        "rank": 8,
+        "department": "US Ops- Non CP",
+        "email": "wangyu.winnie2@bytedance.com"
+      },
+      {
+        "name": "Winston .S",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Payment-Financial Service-SEA Consumer Financing",
+        "email": "winston@bytedance.com"
+      },
+      {
+        "name": "Xiangyu(Barry)",
+        "points": 5,
+        "rank": 8,
+        "department": "Tech",
+        "email": "zhaoxiangyu.go@bytedance.com"
+      },
+      {
+        "name": "Xiao Yang",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Monetization Product and Technology",
+        "email": "yangxiao.sean@bytedance.com"
+      },
+      {
+        "name": "Xiaofang Wang",
+        "points": 5,
+        "rank": 8,
+        "department": "Product",
+        "email": "wangxiaofang.may@bytedance.com"
+      },
+      {
+        "name": "Xiaolong Zhang",
+        "points": 5,
+        "rank": 8,
+        "department": "Data-国际电商",
+        "email": "zhangxiaolong.sqq@bytedance.com"
+      },
+      {
+        "name": "Xiaomeng Pan",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Monetization Product and Technology",
+        "email": "panxiaomeng@bytedance.com"
+      },
+      {
+        "name": "Xin Liu",
+        "points": 5,
+        "rank": 8,
+        "department": "Tech",
+        "email": "liuxin.staraway@bytedance.com"
+      },
+      {
+        "name": "Xingyu Pan",
+        "points": 5,
+        "rank": 8,
+        "department": "Data-国际电商",
+        "email": "panxingyu.april@bytedance.com"
+      },
+      {
+        "name": "Yan Huang",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Payment-Financial Service-SEA Consumer Financing",
+        "email": "huangyan.h@bytedance.com"
+      },
+      {
+        "name": "Yanran Liang",
+        "points": 5,
+        "rank": 8,
+        "department": "UG",
+        "email": "yanranliang@bytedance.com"
+      },
+      {
+        "name": "Yaqin Zhuo",
+        "points": 5,
+        "rank": 8,
+        "department": "Product",
+        "email": "zhuoyaqin@bytedance.com"
+      },
+      {
+        "name": "Yilin Gu",
+        "points": 5,
+        "rank": 8,
+        "department": "UG",
+        "email": "guyilin@bytedance.com"
+      },
+      {
+        "name": "Yiming Song",
+        "points": 5,
+        "rank": 8,
+        "department": "US Ops- Non CP",
+        "email": "songyiming.jason@bytedance.com"
+      },
+      {
+        "name": "Yixun Sun",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Monetization Product and Technology",
+        "email": "sunyixun.syx@bytedance.com"
+      },
+      {
+        "name": "Yu Peng",
+        "points": 5,
+        "rank": 8,
+        "department": "Tech",
+        "email": "pengyu.pengyu@bytedance.com"
+      },
+      {
+        "name": "Yue Yang",
+        "points": 5,
+        "rank": 8,
+        "department": "DS",
+        "email": "yangyue.luna@bytedance.com"
+      },
+      {
+        "name": "Yuke Qin",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Monetization Product and Technology",
+        "email": "qinyuke.qyk@bytedance.com"
+      },
+      {
+        "name": "Yun Chen",
+        "points": 5,
+        "rank": 8,
+        "department": "Tech",
+        "email": "chenyun.2048@bytedance.com"
+      },
+      {
+        "name": "Yuqi Ji",
+        "points": 5,
+        "rank": 8,
+        "department": "Tech",
+        "email": "jiyuqi.h@bytedance.com"
+      },
+      {
+        "name": "Yuying Xu",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Payment-Financial Service",
+        "email": ""
+      },
+      {
+        "name": "Zefan Xie",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Monetization Product and Technology",
+        "email": "xiezefan@bytedance.com"
+      },
+      {
+        "name": "Zewen Fei",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Monetization Product and Technology",
+        "email": "zewen.fei@bytedance.com"
+      },
+      {
+        "name": "Zhenqi He",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Business Solutions",
+        "email": "hezhenqi@bytedance.com"
+      },
+      {
+        "name": "Zhujun Li",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Monetization Product and Technology",
+        "email": "lizhujun.777@bytedance.com"
+      },
+      {
+        "name": "Ziyang Chen",
+        "points": 5,
+        "rank": 8,
+        "department": "US Ops- Non CP",
+        "email": "zchen@bytedance.com"
+      },
+      {
+        "name": "Zoe Zhao",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Monetization Product and Technology",
+        "email": "zhaozhuyun@bytedance.com"
+      },
+      {
+        "name": "gigi Gao",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Payment-Financial Service-SEA BNPL Growth Operations",
+        "email": "gaoxuan.gao@bytedance.com"
+      },
+      {
+        "name": "孙诗棠",
+        "points": 5,
+        "rank": 8,
+        "department": "Global Monetization Product and Technology",
+        "email": ""
       }
-    ],
-    "note": "Data is still being updated. Current rankings reflect LATAM Q1 and Departmental Q1 results only."
+    ]
   }
 }

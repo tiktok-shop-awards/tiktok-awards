@@ -201,9 +201,9 @@ function updateYear2026Button() {
     return;
   }
   
-  // Global页面：始终显示Updating
+  // Global页面：2026数据已上线
   if (page === 'global.html') {
-    year2026Btn.innerHTML = '2026 <span class="updating-badge">Updating</span>';
+    year2026Btn.innerHTML = '2026';
     return;
   }
   
@@ -248,11 +248,7 @@ function initYearNavigation() {
       // 如果点击的是当前已选中的年份，不做任何操作
       if (targetYear === AppData.currentYear) return;
       
-      // Global 页面不允许选择 2026
-      if (page === 'global.html' && targetYear === '2026') {
-        showToast('2026 data is not available yet. Updating!');
-        return;
-      }
+      // Global 页面2026已开放
       
       // 无刷新切换：更新URL参数
       setUrlParam('year', targetYear);
