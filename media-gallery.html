@@ -1189,18 +1189,21 @@
     }
     
     // Setup modal
-    // Open URL in external/system browser (not Feishu's embedded webview)
+    // Open video URL reliably across all environments
     function openInExternalBrowser(url) {
-      // Try Feishu H5 SDK to force open in system browser
-      if (window.tt && typeof window.tt.invoke === 'function') {
-        window.tt.invoke('openExternalBrowser', { url: url });
-        return;
-      }
-      // Fallback: try window.open
-      const newWin = window.open(url, '_blank');
-      // If popup was blocked, try navigating directly
-      if (!newWin || newWin.closed) {
+      const isInFeishu = /Lark|Feishu/i.test(navigator.userAgent);
+      if (isInFeishu) {
+        // In Feishu (any mode: full webview, sidebar, 订阅号独立页面):
+        // Direct navigation is the most reliable method.
+        // SDK openExternalBrowser doesn't work in 订阅号 constrained webview,
+        // and window.open only opens in sidebar (invisible to user).
         window.location.href = url;
+      } else {
+        // In system browser: open in new tab
+        const newWin = window.open(url, '_blank');
+        if (!newWin || newWin.closed) {
+          window.location.href = url;
+        }
       }
     }
 

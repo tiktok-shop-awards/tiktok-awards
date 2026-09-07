@@ -319,7 +319,7 @@ function initDeptNavigation() {
 // ==================== Data Loading Functions ====================
 // Cache for manifest
 let _manifestCache = null;
-const CHUNK_VERSION = '20260907c';
+const CHUNK_VERSION = '20260907d';
 
 async function loadManifest() {
   if (_manifestCache) return _manifestCache;
