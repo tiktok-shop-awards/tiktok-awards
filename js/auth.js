@@ -1,7 +1,7 @@
 /**
- * Feishu Auth v9.2 - Strict gate, silent auth in Feishu
+ * Feishu Auth v10.0 - Relaxed mobile auth
  * Browser access blocked, only Feishu embedded browser allowed
- * In Feishu: silent auth, no loading overlay shown on success
+ * In Feishu: try SDK auth; if fails, fall back to local user ID (no hard block)
  * In browser: show "Open in Feishu" screen
  */
 document.addEventListener('DOMContentLoaded', function() {
@@ -17,8 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
       var parsed = JSON.parse(cached);
       if (parsed.userId && parsed.userId.startsWith('ou_')) {
         console.log('[FeishuAuth] Cached Feishu user, showing content');
-        if (overlay) overlay.style.display = 'none';
-        if (content) content.style.display = 'block';
+        hideOverlay();
         return;
       }
       sessionStorage.removeItem('feishu_user');
@@ -29,62 +28,24 @@ document.addEventListener('DOMContentLoaded', function() {
   var isInFeishu = /Lark|Feishu/i.test(navigator.userAgent);
   if (!isInFeishu) {
     console.log('[FeishuAuth] Not in Feishu, access denied');
-    if (overlay) overlay.style.display = 'flex';
-    if (content) content.style.display = 'none';
-    if (titleEl) titleEl.textContent = '请从飞书内打开';
-    if (descEl) {
-      descEl.innerHTML = '本页面仅支持飞书客户端内访问，请点击下方按钮在飞书中打开';
-    }
-    // Add "Open in Feishu" button
-    if (overlay) {
-      var btn = document.createElement('button');
-      btn.textContent = '在飞书中打开';
-      btn.style.marginTop = '20px';
-      btn.style.padding = '10px 24px';
-      btn.style.borderRadius = '8px';
-      btn.style.border = 'none';
-      btn.style.background = '#3370ff';
-      btn.style.color = '#fff';
-      btn.style.fontSize = '14px';
-      btn.style.fontWeight = '600';
-      btn.style.cursor = 'pointer';
-      btn.onclick = function() {
-        // Open current page in Feishu WebView, embedded in appCenter tab
-        var currentUrl = window.location.origin + window.location.pathname;
-        var applink = 'https://applink.feishu.cn/client/web_url/open?mode=appCenter&url=' + encodeURIComponent(currentUrl);
-        window.location.href = applink;
-      };
-      overlay.appendChild(btn);
-    }
+    showFeishuOnlyBlock();
     return;
   }
 
-  // Step 3: In Feishu, silent auth — no loading overlay, show error only on failure
-  console.log('[FeishuAuth] In Feishu, starting silent SDK auth');
+  // Step 3: In Feishu, try SDK auth with fallback
+  console.log('[FeishuAuth] In Feishu, starting SDK auth with fallback');
 
-  var timedOut = false;
-  var timeoutId = setTimeout(function() {
-    timedOut = true;
-    showError('验证超时，请下拉刷新页面重试');
-  }, 20000);
+  // Safety timeout: after 6 seconds, always show content with fallback user
+  var safetyTimeout = setTimeout(function() {
+    console.log('[FeishuAuth] Safety timeout: falling back to local user');
+    fallbackToLocalUser();
+  }, 6000);
 
-  function showContent() {
-    clearTimeout(timeoutId);
-    if (timedOut) return;
-    if (overlay) overlay.style.display = 'none';
-    if (content) content.style.display = 'block';
-    console.log('[FeishuAuth] Auth success, showing content');
-  }
-
-  function showError(msg) {
-    clearTimeout(timeoutId);
-    if (timedOut) return;
-    if (titleEl) titleEl.textContent = '身份验证失败';
-    if (descEl) descEl.textContent = msg || '请下拉刷新页面重试';
-    // Show overlay with error message, hide content
-    if (overlay) overlay.style.display = 'flex';
-    if (content) content.style.display = 'none';
-    console.log('[FeishuAuth] Auth failed:', msg);
+  var done = false;
+  function finishAuth() {
+    if (done) return;
+    done = true;
+    clearTimeout(safetyTimeout);
   }
 
   // Load JSSDK
@@ -92,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
     return new Promise(function(resolve, reject) {
       if (window.h5sdk || window.tt) { resolve(); return; }
       var s = document.createElement('script');
-      s.src = 'https://lf-scm-cn.feishucdn.com/lark/op/h5-js-sdk-1.5.44.js';
+      s.src = 'https://lf-scm-cn.feishucdn.com/lark/op/h5-js-sdk-1.5.48.js';
       s.onload = function() { resolve(); };
       s.onerror = function(e) { reject(e); };
       document.head.appendChild(s);
@@ -108,25 +69,41 @@ document.addEventListener('DOMContentLoaded', function() {
       doAuth();
     }
   }).catch(function() {
-    showError('SDK加载失败，请刷新重试');
+    console.warn('[FeishuAuth] SDK load failed, falling back');
+    finishAuth();
+    fallbackToLocalUser();
   });
 
   function doAuth() {
     if (!window.tt || !window.tt.requestAuthCode) {
-      showError('当前环境不支持飞书授权');
+      console.warn('[FeishuAuth] tt.requestAuthCode not available, falling back');
+      finishAuth();
+      fallbackToLocalUser();
       return;
     }
+
+    // Set a 10s timeout for the auth request itself
+    var authTimeout = setTimeout(function() {
+      console.warn('[FeishuAuth] requestAuthCode timed out, falling back');
+      finishAuth();
+      fallbackToLocalUser();
+    }, 10000);
+
     window.tt.requestAuthCode({
       appId: FeishuAuthHelper.APP_ID,
       success: function(res) {
+        clearTimeout(authTimeout);
         if (!res.code) {
-          showError('未获取到授权码');
+          console.warn('[FeishuAuth] No auth code, falling back');
+          finishAuth();
+          fallbackToLocalUser();
           return;
         }
         fetch(FeishuAuthHelper.AIPA_LOGIN, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ code: res.code })
+          body: JSON.stringify({ code: res.code }),
+          signal: AbortSignal.timeout(8000)
         }).then(function(r) {
           if (r.ok) return r.json();
           throw new Error('HTTP ' + r.status);
@@ -137,20 +114,79 @@ document.addEventListener('DOMContentLoaded', function() {
             if (uid) {
               var user = { userId: uid, username: name };
               sessionStorage.setItem('feishu_user', JSON.stringify(user));
-              showContent();
+              console.log('[FeishuAuth] Auth success:', uid);
+              finishAuth();
+              hideOverlay();
             } else {
-              showError('未获取到用户信息');
+              console.warn('[FeishuAuth] No user ID in response, falling back');
+              finishAuth();
+              fallbackToLocalUser();
             }
           } else {
-            showError(data.message || '验证失败');
+            console.warn('[FeishuAuth] Auth API returned failure, falling back');
+            finishAuth();
+            fallbackToLocalUser();
           }
         }).catch(function(e) {
-          showError('服务器验证失败：' + e.message);
+          console.warn('[FeishuAuth] Auth request failed:', e.message, ', falling back');
+          finishAuth();
+          fallbackToLocalUser();
         });
       },
       fail: function(err) {
-        showError('授权失败，请刷新重试');
+        clearTimeout(authTimeout);
+        console.warn('[FeishuAuth] requestAuthCode fail:', JSON.stringify(err), ', falling back');
+        finishAuth();
+        fallbackToLocalUser();
       }
     });
+  }
+
+  // --- Helper functions ---
+
+  function hideOverlay() {
+    if (overlay) overlay.style.display = 'none';
+    if (content) content.style.display = 'block';
+  }
+
+  function fallbackToLocalUser() {
+    // Generate a local user ID for fallback (same as auth-helper-v21.js)
+    var uid = localStorage.getItem('award_uid');
+    if (!uid) {
+      uid = 'u_' + Date.now().toString(36) + Math.random().toString(36).substring(2, 6);
+      localStorage.setItem('award_uid', uid);
+    }
+    var user = { userId: uid, username: '' };
+    sessionStorage.setItem('feishu_user', JSON.stringify(user));
+    console.log('[FeishuAuth] Using fallback local user:', uid);
+    hideOverlay();
+  }
+
+  function showFeishuOnlyBlock() {
+    if (overlay) overlay.style.display = 'flex';
+    if (content) content.style.display = 'none';
+    if (titleEl) titleEl.textContent = '请从飞书内打开';
+    if (descEl) {
+      descEl.innerHTML = '本页面仅支持飞书客户端内访问，请点击下方按钮在飞书中打开';
+    }
+    if (overlay) {
+      var btn = document.createElement('button');
+      btn.textContent = '在飞书中打开';
+      btn.style.marginTop = '20px';
+      btn.style.padding = '10px 24px';
+      btn.style.borderRadius = '8px';
+      btn.style.border = 'none';
+      btn.style.background = '#3370ff';
+      btn.style.color = '#fff';
+      btn.style.fontSize = '14px';
+      btn.style.fontWeight = '600';
+      btn.style.cursor = 'pointer';
+      btn.onclick = function() {
+        var currentUrl = window.location.origin + window.location.pathname;
+        var applink = 'https://applink.feishu.cn/client/web_url/open?mode=appCenter&url=' + encodeURIComponent(currentUrl);
+        window.location.href = applink;
+      };
+      overlay.appendChild(btn);
+    }
   }
 });
