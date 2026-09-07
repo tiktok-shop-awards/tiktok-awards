@@ -911,7 +911,7 @@
   <script src="https://lf1-cdn-tos.bytegoofy.com/goofy/lark/op/h5-js-sdk-1.5.16.js"></script>
   <script src="js/auth.js?v=20260714z"></script>
   <script src="js/auth-helper-v21.js?v=20260529a"></script>
-  <script src="js/main.js?v=20260714z"></script>
+  <script src="js/main.js?v=20260907a"></script>
   <script>
     // Video data
     let videosData = {
@@ -1008,12 +1008,16 @@
       
       // Add click handlers
       document.querySelectorAll('.video-card').forEach(card => {
-        // Skip <a> tags - they already have href for native link behavior
-        if (card.tagName === 'A') return;
         card.addEventListener('click', () => {
           const videoId = card.dataset.videoId;
           const video = videosData.videos.find(v => v.id === videoId);
-          if (video) {
+          if (!video) return;
+          
+          const isExternal = video.source === 'feishu' || video.source === 'external';
+          if (isExternal) {
+            // Open in external browser (force system browser, not Feishu sidebar)
+            openInExternalBrowser(video.url);
+          } else {
             openModal(video);
           }
         });
@@ -1069,16 +1073,7 @@
         </div>
       `;
       
-      // External video: wrap in <a> tag for native link behavior (avoids popup blocker)
-      if (isExternal) {
-        return `
-          <a href="${video.url}" target="_blank" rel="noopener noreferrer" class="${cardClass}" data-video-id="${video.id}" style="text-decoration: none; color: inherit; display: block;">
-            ${cardContent}
-          </a>
-        `;
-      }
-      
-      // Local video: use div (click opens modal player)
+      // All videos use <div> - external links open in system browser via JS
       return `
         <div class="${cardClass}" data-video-id="${video.id}">
           ${cardContent}
@@ -1194,6 +1189,21 @@
     }
     
     // Setup modal
+    // Open URL in external/system browser (not Feishu's embedded webview)
+    function openInExternalBrowser(url) {
+      // Try Feishu H5 SDK to force open in system browser
+      if (window.tt && typeof window.tt.invoke === 'function') {
+        window.tt.invoke('openExternalBrowser', { url: url });
+        return;
+      }
+      // Fallback: try window.open
+      const newWin = window.open(url, '_blank');
+      // If popup was blocked, try navigating directly
+      if (!newWin || newWin.closed) {
+        window.location.href = url;
+      }
+    }
+
     function setupModal() {
       const modal = document.getElementById('videoModal');
       modal.addEventListener('click', (e) => {
@@ -1226,18 +1236,18 @@
           </video>
         `;
       } else {
-        // External link (feishu, etc.)
+        // External link (feishu, etc.) - open in system browser
         container.innerHTML = `
           <div class="modal-external-link">
-            <a href="${video.url}" target="_blank" rel="noopener noreferrer">
+            <a href="javascript:void(0)" onclick="openInExternalBrowser('${video.url}')">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
                 <polyline points="15 3 21 3 21 9"/>
                 <line x1="10" y1="14" x2="21" y2="3"/>
               </svg>
-              Open Video in Feishu
+              Open Video in Browser
             </a>
-            <p>This video is hosted on Feishu. Click above to watch it in a new tab.</p>
+            <p>This video is hosted externally. Click above to open it in your browser.</p>
           </div>
         `;
       }
