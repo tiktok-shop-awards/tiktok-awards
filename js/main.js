@@ -187,41 +187,11 @@ function highlightNavigation() {
   }
 }
 
-// 更新2026年份按钮的Updating标签
+// 更新2026年份按钮 - 所有页面统一显示"2026"，不再显示Updating标签
 function updateYear2026Button() {
   const year2026Btn = document.getElementById('year-2026-btn');
   if (!year2026Btn) return;
-  
-  const page = window.location.pathname.split('/').pop();
-  
-  // HomePage和Regional页面（LATAM区域）：2026按钮可点击，不显示Updating
-  if (page === 'index.html' || page === '' || page === '/') {
-    // HomePage：2026年有LATAM数据，所以可以点击
-    year2026Btn.innerHTML = '2026';
-    return;
-  }
-  
-  // Global页面：2026数据已上线
-  if (page === 'global.html') {
-    year2026Btn.innerHTML = '2026';
-    return;
-  }
-  
-  // Regional页面：只有LATAM区域不显示Updating
-  if (page === 'regional.html') {
-    if (AppData.currentRegion === 'latam') {
-      year2026Btn.innerHTML = '2026';
-    } else {
-      year2026Btn.innerHTML = '2026 <span class="updating-badge">Updating</span>';
-    }
-    return;
-  }
-  
-  // Departmental页面：2026可用，不显示Updating
-  if (page === 'departmental.html') {
-    year2026Btn.innerHTML = '2026';
-    return;
-  }
+  year2026Btn.innerHTML = '2026';
 }
 
 function initYearNavigation() {

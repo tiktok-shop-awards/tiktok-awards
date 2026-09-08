@@ -518,7 +518,7 @@
           <!-- Year Navigation - Centered -->
           <div class="year-nav-wrapper">
             <div class="year-nav-compact">
-              <button class="year-btn active" data-year="2026" id="year-2026-btn">2026 <span class="updating-badge">Updating</span></button>
+              <button class="year-btn active" data-year="2026" id="year-2026-btn">2026</button>
               <button class="year-btn" data-year="2025">2025</button>
             </div>
           </div>
@@ -736,13 +736,7 @@
       
       // region-name element was removed; title is updated via regional-awards-title below
       
-      // Update 2026 badge visibility: hide if region has data (latam, fs), show if pending
-      const year2026Btn = document.getElementById('year-2026-btn');
-      const updatingBadge = year2026Btn ? year2026Btn.querySelector('.updating-badge') : null;
-      if (updatingBadge) {
-        const hasData = ['latam', 'fs'].includes(currentRegion);
-        updatingBadge.style.display = hasData ? 'none' : 'inline';
-      }
+      // Update 2026 badge - removed (data now available)
       
       // Update regional awards title
       const titleEl = document.getElementById('regional-awards-title');
