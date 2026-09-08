@@ -892,7 +892,11 @@
         }
         
         // Only reset if coming from LATAM (Q1-Q4 or H1 Individual Awards)
-        if (['Q1', 'Q2', 'Q3', 'Q4', 'H1 Individual Awards', 'Q1 Project Awards', 'Q3 Project Awards'].includes(currentAwardType)) {
+        // For FS 2026, always default to H1 Project Awards (H2 has no data yet)
+        if (currentRegion === 'fs' && currentYear === '2026') {
+          currentAwardType = 'H1 Project Awards';
+          setUrlParam('period', currentAwardType);
+        } else if (['Q1', 'Q2', 'Q3', 'Q4', 'H1 Individual Awards', 'Q1 Project Awards', 'Q3 Project Awards'].includes(currentAwardType)) {
           currentAwardType = 'H2 Project Awards';
         }
         document.querySelectorAll('#award-type-wrapper .award-type-btn').forEach(b => {
