@@ -393,7 +393,10 @@ async function loadData(level, region = null, year = null) {
     const hasYearStructure = data['2025'] || data['2026'];
 
     if (level === 'fs') {
-      if (targetYear === '2025') {
+      if (hasYearStructure && data[targetYear]) {
+        AppData.regional.fs = data;
+        return data[targetYear];
+      } else if (targetYear === '2025') {
         AppData.regional.fs = data;
         return data;
       } else {

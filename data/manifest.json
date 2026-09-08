@@ -56,23 +56,27 @@
     ]
   },
   "fs": {
-    "Q1 Project Awards": [
-      "fs_q1-project-awards.json"
-    ],
-    "Q2 Project Awards": [
-      "fs_q2-project-awards_p1.json",
-      "fs_q2-project-awards_p2.json"
-    ],
-    "Q3 Project Awards": [
-      "fs_q3-project-awards.json"
-    ],
-    "Q4 Project Awards": [
-      "fs_q4-project-awards_p1.json",
-      "fs_q4-project-awards_p2.json"
-    ],
-    "H2 Individual Awards": [
-      "fs_h2-individual-awards.json"
-    ]
+    "2025": {
+      "Q1": [
+        "fs_q1-project-awards.json"
+      ],
+      "Q2": [
+        "fs_q2-project-awards_p1.json",
+        "fs_q2-project-awards_p2.json"
+      ],
+      "Q3": [
+        "fs_q3-project-awards.json"
+      ],
+      "Q4": [
+        "fs_q4-project-awards_p1.json",
+        "fs_q4-project-awards_p2.json"
+      ]
+    },
+    "2026": {
+      "H1": [
+        "fs_h1-project-awards_2026.json"
+      ]
+    }
   },
   "departmental": {
     "2026": {

@@ -832,32 +832,47 @@
           b.classList.toggle('active', b.dataset.type === currentAwardType);
         });
       } else if (isQuarterRegion) {
-        // FS/POP: 季度结构，显示Q1-Q4 Project Awards + Q4 BFCM个人奖按钮
-        awardTypeWrapper.style.display = 'none';
-        quarterToggle.style.display = 'flex';
-        quarterButtons.style.display = 'inline-flex';
-        h1IndividualButton.style.display = 'none';
-        
-        // 更新季度按钮文字 - 对齐US的H1/H2 Project Awards样式
-        const quarterBtns = document.querySelectorAll('#quarter-buttons .award-type-btn');
-        quarterBtns.forEach(btn => {
-          const q = btn.dataset.type;
-          if (q === 'Q4 Individual Awards') {
-            // Q4 BFCM按钮保持个人奖样式
-            btn.style.display = '';
-          } else if (q) {
-            btn.innerHTML = `${q}<span class="btn-subtitle">Project Awards</span>`;
-            btn.style.display = '';
+        // FS 2026: use H1/H2 buttons like other regions
+        if (currentRegion === 'fs' && currentYear === '2026') {
+          awardTypeWrapper.style.display = 'block';
+          quarterToggle.style.display = 'none';
+          
+          const h1Btn = document.querySelector('#award-type-wrapper .award-type-btn[data-type="H1 Project Awards"]');
+          const h2Btn = document.querySelector('#award-type-wrapper .award-type-btn[data-type="H2 Project Awards"]');
+          if (h1Btn) h1Btn.innerHTML = 'H1<span class="btn-subtitle">Project Awards</span>';
+          if (h2Btn) h2Btn.innerHTML = 'H2<span class="btn-subtitle">Project Awards</span>';
+          
+          if (!['H1 Project Awards', 'H2 Project Awards'].includes(currentAwardType)) {
+            currentAwardType = 'H1 Project Awards';
           }
-        });
-        
-        // 默认显示Q1
-        if (!['Q1', 'Q2', 'Q3', 'Q4', 'Q4 Individual Awards'].includes(currentAwardType)) {
-          currentAwardType = 'Q1';
+          document.querySelectorAll('#award-type-wrapper .award-type-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.type === currentAwardType);
+          });
+        } else {
+          // FS 2025 and POP: 季度结构，显示Q1-Q4 Project Awards + Q4 BFCM个人奖按钮
+          awardTypeWrapper.style.display = 'none';
+          quarterToggle.style.display = 'flex';
+          quarterButtons.style.display = 'inline-flex';
+          h1IndividualButton.style.display = 'none';
+          
+          const quarterBtns = document.querySelectorAll('#quarter-buttons .award-type-btn');
+          quarterBtns.forEach(btn => {
+            const q = btn.dataset.type;
+            if (q === 'Q4 Individual Awards') {
+              btn.style.display = '';
+            } else if (q) {
+              btn.innerHTML = `${q}<span class="btn-subtitle">Project Awards</span>`;
+              btn.style.display = '';
+            }
+          });
+          
+          if (!['Q1', 'Q2', 'Q3', 'Q4', 'Q4 Individual Awards'].includes(currentAwardType)) {
+            currentAwardType = 'Q1';
+          }
+          document.querySelectorAll('#quarter-toggle .award-type-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.type === currentAwardType);
+          });
         }
-        document.querySelectorAll('#quarter-toggle .award-type-btn').forEach(b => {
-          b.classList.toggle('active', b.dataset.type === currentAwardType);
-        });
       } else {
         // Non-LATAM: show H1/H2 buttons, hide Q buttons
         awardTypeWrapper.style.display = 'block';
@@ -948,14 +963,20 @@
           const euPop = filterPopByRegion(popData, 'eu');
           regionalData = mergeRegionWithPop(euData, euPop);
         } else if (region === 'fs') {
-          // FS data only exists for 2025; 2026 has no FS data yet
-          if (currentYear === '2025') {
-            const fsRaw = await loadData('fs');
-            if (fsRaw) {
+          const fsRaw = await loadData('fs', null, currentYear);
+          if (fsRaw) {
+            if (currentYear === '2025') {
+              // 2025 uses Q1-Q4 structure
               regionalData = {
                 'H1 Project Awards': [...(fsRaw['Q1 Project Awards'] || []), ...(fsRaw['Q2 Project Awards'] || [])],
                 'H2 Project Awards': [...(fsRaw['Q3 Project Awards'] || []), ...(fsRaw['Q4 Project Awards'] || [])],
                 'H2 Individual Awards': fsRaw['H2 Individual Awards'] || []
+              };
+            } else {
+              // 2026+ uses H1/H2 structure directly from year-based manifest
+              regionalData = {
+                'H1 Project Awards': fsRaw['H1'] || [],
+                'H2 Project Awards': fsRaw['H2'] || []
               };
             }
           }
