@@ -777,8 +777,8 @@
       const quarterButtons = document.getElementById('quarter-buttons');
       const h1IndividualButton = document.getElementById('h1-individual-button');
       
-      // POP: 季度结构 (Q1/Q2/Q3/Q4 Project Awards)
-      const isQuarterRegion = currentRegion === 'pop';
+      // POP/FS 2025: 季度结构 (Q1/Q2/Q3/Q4 Project Awards)
+      const isQuarterRegion = currentRegion === 'pop' || (currentRegion === 'fs' && currentYear === '2025');
       
       if (currentRegion === 'latam') {
         // LATAM: show appropriate buttons based on year
@@ -964,10 +964,12 @@
           const fsRaw = await loadData('fs', null, currentYear);
           if (fsRaw) {
             if (currentYear === '2025') {
-              // 2025 uses Q1-Q4 structure
+              // 2025 uses Q1-Q4 structure, keys are Q1/Q2/Q3/Q4 from manifest
               regionalData = {
-                'H1 Project Awards': [...(fsRaw['Q1 Project Awards'] || []), ...(fsRaw['Q2 Project Awards'] || [])],
-                'H2 Project Awards': [...(fsRaw['Q3 Project Awards'] || []), ...(fsRaw['Q4 Project Awards'] || [])],
+                'Q1 Project Awards': fsRaw['Q1'] || [],
+                'Q2 Project Awards': fsRaw['Q2'] || [],
+                'Q3 Project Awards': fsRaw['Q3'] || [],
+                'Q4 Project Awards': fsRaw['Q4'] || [],
                 'H2 Individual Awards': fsRaw['H2 Individual Awards'] || []
               };
             } else {
