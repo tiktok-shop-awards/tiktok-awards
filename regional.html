@@ -547,11 +547,11 @@
         <!-- Award Type Toggle - For Non-LATAM Regions -->
         <div class="award-type-wrapper" id="award-type-wrapper">
           <div class="award-type-toggle">
-            <button class="award-type-btn" data-type="H1 Project Awards">
+            <button class="award-type-btn active" data-type="H1 Project Awards">
               H1
               <span class="btn-subtitle">Impactful XFN Projects</span>
             </button>
-            <button class="award-type-btn active" data-type="H2 Project Awards">
+            <button class="award-type-btn" data-type="H2 Project Awards">
               H2
               <span class="btn-subtitle">Impactful XFN Projects</span>
             </button>
@@ -692,7 +692,7 @@
     ];
     
     let currentRegion = getUrlParam('region') || 'sea'; // default for 2026
-    let currentAwardType = getUrlParam('period') || 'H2 Project Awards';
+    let currentAwardType = getUrlParam('period') || 'H1 Project Awards';
     let regionalData = null;
     let allRegionalData = null; // Store all regional data for US+POP merge
     
