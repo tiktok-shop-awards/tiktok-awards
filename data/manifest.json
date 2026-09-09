@@ -13,10 +13,7 @@
   },
   "eu": {
     "H1 Project Awards": [
-      "eu_h1-project-awards_p1.json",
-      "eu_h1-project-awards_p2.json",
-      "eu_h1-project-awards_p3.json",
-      "eu_h1-project-awards_p4.json"
+      "eu_h1-project-awards.json"
     ],
     "H2 Project Awards": [
       "eu_h2-project-awards_p1.json",
@@ -28,8 +25,7 @@
   },
   "sea": {
     "H1 Project Awards": [
-      "sea_h1-project-awards_p1.json",
-      "sea_h1-project-awards_p2.json"
+      "sea_h1-project-awards.json"
     ],
     "H2 Project Awards": [
       "sea_h2-project-awards.json"
