@@ -241,7 +241,7 @@ function initYearNavigation() {
 
 function initRegionNavigation() {
   const regionBtns = document.querySelectorAll('.region-btn');
-  const urlRegion = getUrlParam('region') || 'us';
+  const urlRegion = getUrlParam('region') || 'sea';
   
   AppData.currentRegion = urlRegion;
   
