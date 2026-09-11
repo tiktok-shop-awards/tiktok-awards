@@ -1111,6 +1111,27 @@
         indivCount: allIndividualAwards.length
       });
     }
+
+    // Normalize FS year-based data for Home summary statistics.
+    // FS data is loaded from manifest as { H1: [...] } for 2026 and { Q1: [...], Q2: [...] } for 2025,
+    // while the Home summary counter expects standard award keys such as "H1 Project Awards".
+    function normalizeFsDataForHomeStats(fsData, year) {
+      if (!fsData) return fsData;
+      if (year === '2026') {
+        return {
+          'H1 Project Awards': fsData['H1'] || fsData['H1 Project Awards'] || [],
+          'H2 Project Awards': fsData['H2'] || fsData['H2 Project Awards'] || [],
+          'H2 Individual Awards': fsData['H2 Individual Awards'] || []
+        };
+      }
+      return {
+        'Q1 Project Awards': fsData['Q1'] || fsData['Q1 Project Awards'] || [],
+        'Q2 Project Awards': fsData['Q2'] || fsData['Q2 Project Awards'] || [],
+        'Q3 Project Awards': fsData['Q3'] || fsData['Q3 Project Awards'] || [],
+        'Q4 Project Awards': fsData['Q4'] || fsData['Q4 Project Awards'] || [],
+        'H2 Individual Awards': fsData['H2 Individual Awards'] || []
+      };
+    }
     
     function formatBonus(amount, currency = 'USD') {
       if (!amount || amount === 0) return 'TBD';
@@ -1165,10 +1186,11 @@
           loadData('pop'),
           loadData('departmental', null, urlYear)
         ]);
+        const fsForStats = normalizeFsDataForHomeStats(fs, urlYear);
         
         // Build member to department mapping from all data
         const memberDeptMap = {};
-        const allData = [global, us, eu, sea, latam, fs, pop];
+        const allData = [global, us, eu, sea, latam, fsForStats, pop];
         allData.forEach(data => {
           if (!data) return;
           const allAwards = [
@@ -1205,7 +1227,7 @@
         
         // Calculate and render stats
         // 注意：Global Projects 只包含 globalData 本身，FS 和 POP 的项目计入 Regional Projects
-        renderHomeStats(global, { us, eu, sea, latam, fs: fs, pop: pop }, fs, pop, urlYear, departmental);
+        renderHomeStats(global, { us, eu, sea, latam, fs: fsForStats, pop: pop }, fsForStats, pop, urlYear, departmental);
         
       } catch (error) {
         console.error('Error loading home page data:', error);
