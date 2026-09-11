@@ -776,6 +776,13 @@
       const quarterToggle = document.getElementById('quarter-toggle');
       const quarterButtons = document.getElementById('quarter-buttons');
       const h1IndividualButton = document.getElementById('h1-individual-button');
+      const h1ProjectTab = document.querySelector('#award-type-wrapper .award-type-btn[data-type="H1 Project Awards"]');
+      const h2ProjectTab = document.querySelector('#award-type-wrapper .award-type-btn[data-type="H2 Project Awards"]');
+      const is2026H1OnlyRegion = currentYear === '2026' && ['sea', 'us', 'eu', 'fs'].includes(currentRegion);
+      
+      [h1ProjectTab, h2ProjectTab, h2IndivTab].forEach(btn => {
+        if (btn) btn.style.display = '';
+      });
       
       // POP/FS 2025: 季度结构 (Q1/Q2/Q3/Q4 Project Awards)
       const isQuarterRegion = currentRegion === 'pop' || (currentRegion === 'fs' && currentYear === '2025');
@@ -893,6 +900,21 @@
         } else if (['Q1', 'Q2', 'Q3', 'Q4', 'H1 Individual Awards', 'Q1 Project Awards', 'Q3 Project Awards'].includes(currentAwardType)) {
           currentAwardType = 'H2 Project Awards';
         }
+        document.querySelectorAll('#award-type-wrapper .award-type-btn').forEach(b => {
+          b.classList.toggle('active', b.dataset.type === currentAwardType);
+        });
+      }
+      
+      if (is2026H1OnlyRegion) {
+        if (h1ProjectTab) h1ProjectTab.style.display = '';
+        if (h2ProjectTab) h2ProjectTab.style.display = 'none';
+        if (h2IndivTab) h2IndivTab.style.display = 'none';
+        
+        if (currentAwardType !== 'H1 Project Awards') {
+          currentAwardType = 'H1 Project Awards';
+          setUrlParam('period', currentAwardType);
+        }
+        
         document.querySelectorAll('#award-type-wrapper .award-type-btn').forEach(b => {
           b.classList.toggle('active', b.dataset.type === currentAwardType);
         });
@@ -1026,6 +1048,8 @@
                 priority = ['Q2 Individual Awards', 'Q1 Individual Awards'];
               } else if (isQuarterRegion) {
                 priority = ['Q4 Individual Awards', 'Q4', 'Q3', 'Q2', 'Q1'];
+              } else if (currentYear === '2026' && ['sea', 'us', 'eu', 'fs'].includes(region)) {
+                priority = ['H1 Project Awards'];
               } else {
                 priority = ['H2 Individual Awards', 'H2 Project Awards', 'H1 Project Awards'];
               }
