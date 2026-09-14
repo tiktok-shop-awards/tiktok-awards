@@ -1,7 +1,7 @@
 /**
- * Feishu Auth v10.0 - Relaxed mobile auth
- * Browser access blocked, only Feishu embedded browser allowed
- * In Feishu: try SDK auth; if fails, fall back to local user ID (no hard block)
+ * Feishu Auth v11.0 - Strict Feishu auth
+ * Browser access blocked, only Feishu embedded browser allowed.
+ * In Feishu: content is shown only after cli_a968a864a0f89bdd auth succeeds.
  * In browser: show "Open in Feishu" screen
  */
 document.addEventListener('DOMContentLoaded', function() {
@@ -32,14 +32,15 @@ document.addEventListener('DOMContentLoaded', function() {
     return;
   }
 
-  // Step 3: In Feishu, try SDK auth with fallback
-  console.log('[FeishuAuth] In Feishu, starting SDK auth with fallback');
+  // Step 3: In Feishu, require SDK auth success
+  console.log('[FeishuAuth] In Feishu, starting strict SDK auth');
 
-  // Safety timeout: after 6 seconds, always show content with fallback user
+  // Safety timeout: if auth hangs, block access instead of falling back.
   var safetyTimeout = setTimeout(function() {
-    console.log('[FeishuAuth] Safety timeout: falling back to local user');
-    fallbackToLocalUser();
-  }, 6000);
+    console.warn('[FeishuAuth] Safety timeout: auth did not complete');
+    finishAuth();
+    showAccessDenied('飞书授权超时，请刷新页面后重试。');
+  }, 15000);
 
   var done = false;
   function finishAuth() {
@@ -69,24 +70,24 @@ document.addEventListener('DOMContentLoaded', function() {
       doAuth();
     }
   }).catch(function() {
-    console.warn('[FeishuAuth] SDK load failed, falling back');
+    console.warn('[FeishuAuth] SDK load failed');
     finishAuth();
-    fallbackToLocalUser();
+    showAccessDenied('飞书 SDK 加载失败，请确认在飞书客户端内打开。');
   });
 
   function doAuth() {
     if (!window.tt || !window.tt.requestAuthCode) {
-      console.warn('[FeishuAuth] tt.requestAuthCode not available, falling back');
+      console.warn('[FeishuAuth] tt.requestAuthCode not available');
       finishAuth();
-      fallbackToLocalUser();
+      showAccessDenied('无法获取飞书授权能力，请从飞书应用内重新打开。');
       return;
     }
 
     // Set a 10s timeout for the auth request itself
     var authTimeout = setTimeout(function() {
-      console.warn('[FeishuAuth] requestAuthCode timed out, falling back');
+      console.warn('[FeishuAuth] requestAuthCode timed out');
       finishAuth();
-      fallbackToLocalUser();
+      showAccessDenied('飞书授权超时，请刷新页面后重试。');
     }, 10000);
 
     window.tt.requestAuthCode({
@@ -94,9 +95,9 @@ document.addEventListener('DOMContentLoaded', function() {
       success: function(res) {
         clearTimeout(authTimeout);
         if (!res.code) {
-          console.warn('[FeishuAuth] No auth code, falling back');
+          console.warn('[FeishuAuth] No auth code');
           finishAuth();
-          fallbackToLocalUser();
+          showAccessDenied('未获取到飞书授权码，请从飞书应用内重新打开。');
           return;
         }
         fetch(FeishuAuthHelper.AIPA_LOGIN, {
@@ -111,33 +112,33 @@ document.addEventListener('DOMContentLoaded', function() {
           if (data.success && data.data) {
             var uid = data.data.user_id || data.data.open_id || data.data.id || data.data.userId || '';
             var name = data.data.username || data.data.name || data.data.en_name || '';
-            if (uid) {
+            if (uid && uid.startsWith('ou_')) {
               var user = { userId: uid, username: name };
               sessionStorage.setItem('feishu_user', JSON.stringify(user));
               console.log('[FeishuAuth] Auth success:', uid);
               finishAuth();
               hideOverlay();
             } else {
-              console.warn('[FeishuAuth] No user ID in response, falling back');
+              console.warn('[FeishuAuth] No valid Feishu open_id in response');
               finishAuth();
-              fallbackToLocalUser();
+              showAccessDenied('未获取到有效的飞书用户身份，请确认你有权限访问该应用。');
             }
           } else {
-            console.warn('[FeishuAuth] Auth API returned failure, falling back');
+            console.warn('[FeishuAuth] Auth API returned failure');
             finishAuth();
-            fallbackToLocalUser();
+            showAccessDenied('飞书身份校验未通过，暂无法访问该页面。');
           }
         }).catch(function(e) {
-          console.warn('[FeishuAuth] Auth request failed:', e.message, ', falling back');
+          console.warn('[FeishuAuth] Auth request failed:', e.message);
           finishAuth();
-          fallbackToLocalUser();
+          showAccessDenied('飞书身份校验失败，请稍后重试或联系管理员。');
         });
       },
       fail: function(err) {
         clearTimeout(authTimeout);
-        console.warn('[FeishuAuth] requestAuthCode fail:', JSON.stringify(err), ', falling back');
+        console.warn('[FeishuAuth] requestAuthCode fail:', JSON.stringify(err));
         finishAuth();
-        fallbackToLocalUser();
+        showAccessDenied('飞书授权失败，请确认你正在使用字节内部飞书账号访问。');
       }
     });
   }
@@ -147,19 +148,6 @@ document.addEventListener('DOMContentLoaded', function() {
   function hideOverlay() {
     if (overlay) overlay.style.display = 'none';
     if (content) content.style.display = 'block';
-  }
-
-  function fallbackToLocalUser() {
-    // Generate a local user ID for fallback (same as auth-helper-v21.js)
-    var uid = localStorage.getItem('award_uid');
-    if (!uid) {
-      uid = 'u_' + Date.now().toString(36) + Math.random().toString(36).substring(2, 6);
-      localStorage.setItem('award_uid', uid);
-    }
-    var user = { userId: uid, username: '' };
-    sessionStorage.setItem('feishu_user', JSON.stringify(user));
-    console.log('[FeishuAuth] Using fallback local user:', uid);
-    hideOverlay();
   }
 
   function showFeishuOnlyBlock() {
@@ -182,11 +170,21 @@ document.addEventListener('DOMContentLoaded', function() {
       btn.style.fontWeight = '600';
       btn.style.cursor = 'pointer';
       btn.onclick = function() {
-        var currentUrl = window.location.origin + window.location.pathname;
+        var currentUrl = window.location.href;
         var applink = 'https://applink.feishu.cn/client/web_url/open?mode=appCenter&url=' + encodeURIComponent(currentUrl);
         window.location.href = applink;
       };
       overlay.appendChild(btn);
+    }
+  }
+
+  function showAccessDenied(message) {
+    sessionStorage.removeItem('feishu_user');
+    if (overlay) overlay.style.display = 'flex';
+    if (content) content.style.display = 'none';
+    if (titleEl) titleEl.textContent = '暂无访问权限';
+    if (descEl) {
+      descEl.innerHTML = message || '仅限通过字节内部飞书应用授权后访问。';
     }
   }
 });
