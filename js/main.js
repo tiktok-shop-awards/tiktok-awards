@@ -1123,10 +1123,6 @@ async function toggleLike(cardId, awardType, awardName) {
     // API mode
     try {
       const user = await getCurrentUser();
-      if (!user || !user.userId) {
-        showToast('请先通过飞书完成授权后再操作');
-        return;
-      }
       const result = await AwardAPI.toggleLike(cardId, user.userId);
       if (result) {
         updateLikeDisplay(cardId, result.liked, result.like_count);
@@ -1222,10 +1218,6 @@ async function _loadCommentsForModal(cardId) {
   if (await _isApiMode()) {
     try {
       const user = await getCurrentUser();
-      if (!user || !user.userId) {
-        commentList.innerHTML = '<div class="no-comments">请通过飞书授权后查看评论。</div>';
-        return;
-      }
       const data = await AwardAPI.getAwardData(cardId, user.userId);
       if (data && data.comments) {
         _renderComments(commentList, data.comments, true);
@@ -1369,10 +1361,6 @@ async function submitComment() {
   if (await _isApiMode()) {
     try {
       const user = await getCurrentUser();
-      if (!user || !user.userId) {
-        alert('请先通过飞书完成授权后再评论。');
-        return;
-      }
       const result = await AwardAPI.addComment(cardId, user.userId, user.username, text);
       if (result) {
         commentInput.value = '';
@@ -1439,7 +1427,6 @@ async function loadAllCardInteractions() {
   }
   
   const user = await getCurrentUser();
-  if (!user || !user.userId) return;
   const cards = document.querySelectorAll('[data-card-id]');
   if (cards.length === 0) return;
   

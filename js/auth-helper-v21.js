@@ -1,6 +1,6 @@
 /**
- * Feishu Auth Helper v22 - Strict Feishu user identity
- * Flow: sessionStorage → URL code → SDK requestAuthCode → null
+ * Feishu Auth Helper v21 - Robust user ID extraction + clean production
+ * Flow: sessionStorage → URL code → SDK requestAuthCode → fallback
  * Fix: _loginWithCode tries multiple field names for user ID (user_id, open_id, id)
  */
 const FeishuAuthHelper = {
@@ -54,8 +54,8 @@ const FeishuAuthHelper = {
       }
     }
 
-    // Step 4: Strict mode blocks anonymous/local fallback
-    return null;
+    // Step 4: Fallback
+    return this._getFallbackUser();
   },
 
   _loadJSSDK() {
@@ -104,12 +104,12 @@ const FeishuAuthHelper = {
           // Try multiple field names for user ID - AIPA might return different keys
           var uid = data.data.user_id || data.data.open_id || data.data.id || data.data.userId || '';
           var name = data.data.username || data.data.name || data.data.en_name || '';
-          if (uid && uid.startsWith('ou_')) {
+          if (uid) {
             this._user = { userId: uid, username: name };
             sessionStorage.setItem('feishu_user', JSON.stringify(this._user));
             return this._user;
           }
-          console.warn('[Auth] AIPA returned no valid Feishu open_id. Data:', JSON.stringify(data.data));
+          console.warn('[Auth] AIPA returned no user ID field. Data:', JSON.stringify(data.data));
         }
       } else {
         console.warn('[Auth] AIPA HTTP error:', res.status);
@@ -118,5 +118,15 @@ const FeishuAuthHelper = {
       console.warn('[Auth] Login failed:', e.message);
     }
     return null;
+  },
+
+  _getFallbackUser() {
+    var uid = localStorage.getItem('award_uid');
+    if (!uid) {
+      uid = 'u_' + Date.now().toString(36) + Math.random().toString(36).substring(2, 6);
+      localStorage.setItem('award_uid', uid);
+    }
+    this._user = { userId: uid, username: '' };
+    return this._user;
   }
 };

@@ -202,7 +202,7 @@ const AwardAPI = {
 /**
  * Get current user info for API calls
  * - In Feishu: use h5sdk/tt to get open_id and name
- * - Strict mode: no anonymous/local fallback
+ * - In external browser: use dev fallback
  * - Also check FeishuAuth.userInfo if available
  */
 const AwardUser = {
@@ -215,7 +215,12 @@ const AwardUser = {
     if (typeof FeishuAuthHelper !== 'undefined') {
       this._cachedUser = await FeishuAuthHelper.getUser();
     } else {
-      this._cachedUser = null;
+      var uid = localStorage.getItem('award_uid');
+      if (!uid) {
+        uid = 'u_' + Date.now().toString(36) + Math.random().toString(36).substring(2, 6);
+        localStorage.setItem('award_uid', uid);
+      }
+      this._cachedUser = { userId: uid, username: '' };
     }
     return this._cachedUser;
   },
