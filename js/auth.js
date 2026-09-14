@@ -1,7 +1,7 @@
 /**
- * Feishu Auth v10.0 - Relaxed mobile auth
+ * Feishu Auth v10.1 - Warm-up retry mobile auth
  * Browser access blocked, only Feishu embedded browser allowed
- * In Feishu: try SDK auth; if fails, fall back to local user ID (no hard block)
+ * In Feishu: wait for SDK, retry auth/login, then fall back to local user ID (no hard block)
  * In browser: show "Open in Feishu" screen
  */
 document.addEventListener('DOMContentLoaded', function() {
@@ -32,14 +32,16 @@ document.addEventListener('DOMContentLoaded', function() {
     return;
   }
 
-  // Step 3: In Feishu, try SDK auth with fallback
-  console.log('[FeishuAuth] In Feishu, starting SDK auth with fallback');
+  // Step 3: In Feishu, try SDK auth with warm-up retries
+  console.log('[FeishuAuth] In Feishu, starting SDK auth with retries');
+  if (titleEl) titleEl.textContent = '正在验证飞书身份';
+  if (descEl) descEl.innerHTML = '首次打开可能需要几秒钟，请稍候...';
 
-  // Safety timeout: after 6 seconds, always show content with fallback user
+  // Safety timeout: after 30 seconds, show content with fallback user
   var safetyTimeout = setTimeout(function() {
     console.log('[FeishuAuth] Safety timeout: falling back to local user');
     fallbackToLocalUser();
-  }, 6000);
+  }, 30000);
 
   var done = false;
   function finishAuth() {
@@ -48,8 +50,12 @@ document.addEventListener('DOMContentLoaded', function() {
     clearTimeout(safetyTimeout);
   }
 
+  function delay(ms) {
+    return new Promise(function(resolve) { setTimeout(resolve, ms); });
+  }
+
   // Load JSSDK
-  function loadJSSDK() {
+  function loadJSSDKOnce() {
     return new Promise(function(resolve, reject) {
       if (window.h5sdk || window.tt) { resolve(); return; }
       var s = document.createElement('script');
@@ -60,7 +66,56 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  loadJSSDK().then(function() {
+  async function loadJSSDKWithRetry(maxAttempts) {
+    for (var i = 1; i <= maxAttempts; i++) {
+      try {
+        await loadJSSDKOnce();
+        return true;
+      } catch (e) {
+        console.warn('[FeishuAuth] SDK load attempt failed:', i);
+        if (i < maxAttempts) await delay(800 * i);
+      }
+    }
+    return !!(window.h5sdk || window.tt);
+  }
+
+  function waitForAuthApi(timeoutMs) {
+    return new Promise(function(resolve) {
+      var start = Date.now();
+      (function check() {
+        if (window.tt && window.tt.requestAuthCode) {
+          resolve(true);
+          return;
+        }
+        if (Date.now() - start >= timeoutMs) {
+          resolve(false);
+          return;
+        }
+        setTimeout(check, 300);
+      })();
+    });
+  }
+
+  async function loginWithCode(code, maxAttempts) {
+    for (var i = 1; i <= maxAttempts; i++) {
+      try {
+        var r = await fetch(FeishuAuthHelper.AIPA_LOGIN, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code: code }),
+          signal: AbortSignal.timeout(12000)
+        });
+        if (r.ok) return await r.json();
+        console.warn('[FeishuAuth] Auth API HTTP error:', r.status, 'attempt:', i);
+      } catch (e) {
+        console.warn('[FeishuAuth] Auth request failed:', e.message, 'attempt:', i);
+      }
+      if (i < maxAttempts) await delay(900 * i);
+    }
+    return null;
+  }
+
+  loadJSSDKWithRetry(3).then(function() {
     if (window.h5sdk && window.h5sdk.ready) {
       window.h5sdk.ready(function() {
         doAuth();
@@ -69,75 +124,81 @@ document.addEventListener('DOMContentLoaded', function() {
       doAuth();
     }
   }).catch(function() {
-    console.warn('[FeishuAuth] SDK load failed, falling back');
+    console.warn('[FeishuAuth] SDK load failed after retries, falling back');
     finishAuth();
     fallbackToLocalUser();
   });
 
-  function doAuth() {
-    if (!window.tt || !window.tt.requestAuthCode) {
-      console.warn('[FeishuAuth] tt.requestAuthCode not available, falling back');
+  async function doAuth() {
+    var authApiReady = await waitForAuthApi(12000);
+    if (!authApiReady) {
+      console.warn('[FeishuAuth] tt.requestAuthCode not available after waiting, falling back');
       finishAuth();
       fallbackToLocalUser();
       return;
     }
 
-    // Set a 10s timeout for the auth request itself
-    var authTimeout = setTimeout(function() {
-      console.warn('[FeishuAuth] requestAuthCode timed out, falling back');
-      finishAuth();
-      fallbackToLocalUser();
-    }, 10000);
+    requestAuthCodeWithRetry(1);
+  }
 
+  function requestAuthCodeWithRetry(attempt) {
+    if (done) return;
+    var maxAttempts = 3;
+    var authTimeout = setTimeout(function() {
+      console.warn('[FeishuAuth] requestAuthCode timed out, attempt:', attempt);
+      if (attempt < maxAttempts) {
+        requestAuthCodeWithRetry(attempt + 1);
+      } else {
+        finishAuth();
+        fallbackToLocalUser();
+      }
+    }, 12000);
+    
     window.tt.requestAuthCode({
       appId: FeishuAuthHelper.APP_ID,
-      success: function(res) {
+      success: async function(res) {
         clearTimeout(authTimeout);
         if (!res.code) {
-          console.warn('[FeishuAuth] No auth code, falling back');
-          finishAuth();
-          fallbackToLocalUser();
-          return;
-        }
-        fetch(FeishuAuthHelper.AIPA_LOGIN, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ code: res.code }),
-          signal: AbortSignal.timeout(8000)
-        }).then(function(r) {
-          if (r.ok) return r.json();
-          throw new Error('HTTP ' + r.status);
-        }).then(function(data) {
-          if (data.success && data.data) {
-            var uid = data.data.user_id || data.data.open_id || data.data.id || data.data.userId || '';
-            var name = data.data.username || data.data.name || data.data.en_name || '';
-            if (uid) {
-              var user = { userId: uid, username: name };
-              sessionStorage.setItem('feishu_user', JSON.stringify(user));
-              console.log('[FeishuAuth] Auth success:', uid);
-              finishAuth();
-              hideOverlay();
-            } else {
-              console.warn('[FeishuAuth] No user ID in response, falling back');
-              finishAuth();
-              fallbackToLocalUser();
-            }
+          console.warn('[FeishuAuth] No auth code, attempt:', attempt);
+          if (attempt < maxAttempts) {
+            setTimeout(function() { requestAuthCodeWithRetry(attempt + 1); }, 600);
           } else {
-            console.warn('[FeishuAuth] Auth API returned failure, falling back');
             finishAuth();
             fallbackToLocalUser();
           }
-        }).catch(function(e) {
-          console.warn('[FeishuAuth] Auth request failed:', e.message, ', falling back');
+          return;
+        }
+        var data = await loginWithCode(res.code, 2);
+        if (done) return;
+        if (data && data.success && data.data) {
+          var uid = data.data.user_id || data.data.open_id || data.data.id || data.data.userId || '';
+          var name = data.data.username || data.data.name || data.data.en_name || '';
+          if (uid) {
+            var user = { userId: uid, username: name };
+            sessionStorage.setItem('feishu_user', JSON.stringify(user));
+            console.log('[FeishuAuth] Auth success:', uid);
+            finishAuth();
+            hideOverlay();
+          } else {
+            console.warn('[FeishuAuth] No user ID in response, falling back');
+            finishAuth();
+            fallbackToLocalUser();
+          }
+        } else {
+          console.warn('[FeishuAuth] Auth API returned failure after retries, falling back');
           finishAuth();
           fallbackToLocalUser();
-        });
+        }
       },
       fail: function(err) {
         clearTimeout(authTimeout);
-        console.warn('[FeishuAuth] requestAuthCode fail:', JSON.stringify(err), ', falling back');
-        finishAuth();
-        fallbackToLocalUser();
+        console.warn('[FeishuAuth] requestAuthCode fail:', JSON.stringify(err), 'attempt:', attempt);
+        if (attempt < maxAttempts) {
+          setTimeout(function() { requestAuthCodeWithRetry(attempt + 1); }, 600);
+        } else {
+          finishAuth();
+          fallbackToLocalUser();
+        }
       }
     });
   }
@@ -182,7 +243,7 @@ document.addEventListener('DOMContentLoaded', function() {
       btn.style.fontWeight = '600';
       btn.style.cursor = 'pointer';
       btn.onclick = function() {
-        var currentUrl = window.location.origin + window.location.pathname;
+        var currentUrl = window.location.href;
         var applink = 'https://applink.feishu.cn/client/web_url/open?mode=appCenter&url=' + encodeURIComponent(currentUrl);
         window.location.href = applink;
       };

@@ -1,6 +1,6 @@
 /**
- * Feishu Auth Helper v21 - Robust user ID extraction + clean production
- * Flow: sessionStorage → URL code → SDK requestAuthCode → fallback
+ * Feishu Auth Helper v21.1 - Robust user ID extraction + warm-up retry
+ * Flow: sessionStorage → URL code → SDK requestAuthCode with retry → fallback
  * Fix: _loginWithCode tries multiple field names for user ID (user_id, open_id, id)
  */
 const FeishuAuthHelper = {
@@ -38,8 +38,8 @@ const FeishuAuthHelper = {
     var isInFeishu = /Lark|Feishu/i.test(navigator.userAgent);
     if (isInFeishu) {
       try {
-        await this._loadJSSDK();
-        await new Promise(r => setTimeout(r, 500));
+        await this._loadJSSDKWithRetry(3);
+        await this._waitForAuthApi(12000);
         if (window.h5sdk || window.tt) {
           if (window.h5sdk && window.h5sdk.error) {
             window.h5sdk.error(function(err) {
@@ -69,20 +69,55 @@ const FeishuAuthHelper = {
     });
   },
 
+  async _loadJSSDKWithRetry(maxAttempts) {
+    for (let i = 1; i <= maxAttempts; i++) {
+      try {
+        await this._loadJSSDK();
+        return true;
+      } catch (e) {
+        console.warn('[Auth] SDK load attempt failed:', i);
+        if (i < maxAttempts) await new Promise(r => setTimeout(r, 800 * i));
+      }
+    }
+    return !!(window.h5sdk || window.tt);
+  },
+
+  _waitForAuthApi(timeoutMs) {
+    return new Promise(resolve => {
+      const start = Date.now();
+      const check = () => {
+        if (window.tt && window.tt.requestAuthCode) {
+          resolve(true);
+          return;
+        }
+        if (Date.now() - start >= timeoutMs) {
+          resolve(false);
+          return;
+        }
+        setTimeout(check, 300);
+      };
+      check();
+    });
+  },
+
   async _trySDKAuth() {
     try {
-      if (!window.tt) return null;
+      if (!window.tt || !window.tt.requestAuthCode) return null;
       if (window.h5sdk && window.h5sdk.ready) {
         await new Promise(r => window.h5sdk.ready(() => r()));
       }
-      var code = await new Promise(r => {
-        window.tt.requestAuthCode({
-          appId: this.APP_ID,
-          success: res => r(res.code),
-          fail: err => { console.warn('[Auth] requestAuthCode fail:', JSON.stringify(err)); r(null); }
+      for (let attempt = 1; attempt <= 3; attempt++) {
+        var code = await new Promise(r => {
+          var timeout = setTimeout(() => r(null), 12000);
+          window.tt.requestAuthCode({
+            appId: this.APP_ID,
+            success: res => { clearTimeout(timeout); r(res.code); },
+            fail: err => { clearTimeout(timeout); console.warn('[Auth] requestAuthCode fail:', JSON.stringify(err), 'attempt:', attempt); r(null); }
+          });
         });
-      });
-      if (code) return await this._loginWithCode(code);
+        if (code) return await this._loginWithCode(code);
+        if (attempt < 3) await new Promise(r => setTimeout(r, 600));
+      }
     } catch (e) {
       console.warn('[Auth] SDK auth error:', e.message);
     }
@@ -90,32 +125,35 @@ const FeishuAuthHelper = {
   },
 
   async _loginWithCode(code) {
-    try {
-      const res = await fetch(this.AIPA_LOGIN, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code: code }),
-        signal: AbortSignal.timeout(8000)
-      });
-      if (res.ok) {
-        const data = await res.json();
-        console.log('[Auth] AIPA response:', JSON.stringify(data));
-        if (data.success && data.data) {
-          // Try multiple field names for user ID - AIPA might return different keys
-          var uid = data.data.user_id || data.data.open_id || data.data.id || data.data.userId || '';
-          var name = data.data.username || data.data.name || data.data.en_name || '';
-          if (uid) {
-            this._user = { userId: uid, username: name };
-            sessionStorage.setItem('feishu_user', JSON.stringify(this._user));
-            return this._user;
+    for (let attempt = 1; attempt <= 2; attempt++) {
+      try {
+        const res = await fetch(this.AIPA_LOGIN, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code: code }),
+          signal: AbortSignal.timeout(12000)
+        });
+        if (res.ok) {
+          const data = await res.json();
+          console.log('[Auth] AIPA response:', JSON.stringify(data));
+          if (data.success && data.data) {
+            // Try multiple field names for user ID - AIPA might return different keys
+            var uid = data.data.user_id || data.data.open_id || data.data.id || data.data.userId || '';
+            var name = data.data.username || data.data.name || data.data.en_name || '';
+            if (uid) {
+              this._user = { userId: uid, username: name };
+              sessionStorage.setItem('feishu_user', JSON.stringify(this._user));
+              return this._user;
+            }
+            console.warn('[Auth] AIPA returned no user ID field. Data:', JSON.stringify(data.data));
           }
-          console.warn('[Auth] AIPA returned no user ID field. Data:', JSON.stringify(data.data));
+        } else {
+          console.warn('[Auth] AIPA HTTP error:', res.status, 'attempt:', attempt);
         }
-      } else {
-        console.warn('[Auth] AIPA HTTP error:', res.status);
+      } catch (e) {
+        console.warn('[Auth] Login failed:', e.message, 'attempt:', attempt);
       }
-    } catch (e) {
-      console.warn('[Auth] Login failed:', e.message);
+      if (attempt < 2) await new Promise(r => setTimeout(r, 900));
     }
     return null;
   },
