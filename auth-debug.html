@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>飞书鉴权调试页</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b1020;
+      --card: rgba(255, 255, 255, 0.08);
+      --card-border: rgba(255, 255, 255, 0.14);
+      --text: #f6f7fb;
+      --muted: #a8b0c3;
+      --ok: #39d98a;
+      --warn: #ffd166;
+      --bad: #ff6b6b;
+      --blue: #4c8dff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(76, 141, 255, 0.28), transparent 32rem),
+        radial-gradient(circle at bottom right, rgba(255, 107, 107, 0.16), transparent 28rem),
+        var(--bg);
+      padding: 24px;
+    }
+
+    main {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .card {
+      margin-top: 18px;
+      padding: 18px;
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      background: var(--card);
+      backdrop-filter: blur(12px);
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .row:last-child { border-bottom: 0; }
+
+    .label {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .value {
+      font-size: 14px;
+      overflow-wrap: anywhere;
+      white-space: pre-wrap;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      background: rgba(255,255,255,0.10);
+    }
+
+    .ok { color: var(--ok); }
+    .warn { color: var(--warn); }
+    .bad { color: var(--bad); }
+
+    button {
+      margin-top: 14px;
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 14px;
+      color: white;
+      background: var(--blue);
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    pre {
+      margin: 0;
+      max-height: 360px;
+      overflow: auto;
+      color: #e6e9f2;
+      background: rgba(0,0,0,0.24);
+      border-radius: 12px;
+      padding: 14px;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 16px; }
+      .row { grid-template-columns: 1fr; gap: 4px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>飞书鉴权调试页</h1>
+    <p>这个页面只用于排查“内部员工可见”问题，不展示奖项数据。请分别用内部飞书账号和外部飞书账号打开，把结果截图发给我即可。</p>
+
+    <section class="card">
+      <div class="row">
+        <div class="label">当前状态</div>
+        <div class="value"><span id="status" class="status warn">检测中...</span></div>
+      </div>
+      <div class="row">
+        <div class="label">当前页面地址</div>
+        <div id="current-url" class="value"></div>
+      </div>
+      <div class="row">
+        <div class="label">是否飞书环境</div>
+        <div id="is-feishu" class="value"></div>
+      </div>
+      <div class="row">
+        <div class="label">飞书 SDK 状态</div>
+        <div id="sdk-status" class="value">待检测</div>
+      </div>
+      <div class="row">
+        <div class="label">授权码状态</div>
+        <div id="code-status" class="value">待检测</div>
+      </div>
+      <div class="row">
+        <div class="label">AIPA 登录接口</div>
+        <div id="api-status" class="value">待检测</div>
+      </div>
+      <div class="row">
+        <div class="label">内部员工判断</div>
+        <div id="internal-status" class="value">待检测</div>
+      </div>
+      <button id="copy-report">复制调试结果</button>
+    </section>
+
+    <section class="card">
+      <h2>后台返回内容</h2>
+      <pre id="raw-response">等待 AIPA 返回...</pre>
+    </section>
+  </main>
+
+  <script>
+    const APP_ID = 'cli_a968a864a0f89bdd';
+    const AIPA_LOGIN = 'https://da1e5fb0.aipa.bytedance.net/api/auth/login';
+    const report = {
+      url: location.href,
+      userAgent: navigator.userAgent,
+      isFeishu: /Lark|Feishu/i.test(navigator.userAgent),
+      sdk: 'pending',
+      authCode: 'pending',
+      api: 'pending',
+      internal: 'pending',
+      response: null
+    };
+
+    const $ = (id) => document.getElementById(id);
+
+    function setText(id, text) {
+      $(id).textContent = text;
+    }
+
+    function setStatus(text, cls) {
+      const el = $('status');
+      el.textContent = text;
+      el.className = 'status ' + cls;
+    }
+
+    function mask(value) {
+      if (!value || typeof value !== 'string') return value;
+      if (value.length <= 10) return value.slice(0, 2) + '***';
+      return value.slice(0, 6) + '...' + value.slice(-4);
+    }
+
+    function sanitize(obj) {
+      if (!obj || typeof obj !== 'object') return obj;
+      if (Array.isArray(obj)) return obj.map(sanitize);
+      const out = {};
+      for (const [key, value] of Object.entries(obj)) {
+        const lower = key.toLowerCase();
+        if (lower.includes('token') || lower.includes('code')) {
+          out[key] = '[已隐藏]';
+        } else if (lower.includes('id') || lower.includes('email') || lower.includes('name') || lower.includes('user')) {
+          out[key] = typeof value === 'string' ? mask(value) : sanitize(value);
+        } else {
+          out[key] = sanitize(value);
+        }
+      }
+      return out;
+    }
+
+    function getInternalStatus(data) {
+      if (!data || !data.data) return false;
+      const d = data.data;
+      const candidates = [
+        d.is_internal,
+        d.isInternal,
+        d.internal,
+        d.is_byte_internal,
+        d.isByteInternal,
+        d.is_bytdance_internal,
+        d.isByteDanceInternal,
+        d.byte_internal,
+        d.bytedance_internal
+      ];
+      for (const v of candidates) {
+        if (v === true || v === 'true' || v === 1 || v === '1') return true;
+        if (v === false || v === 'false' || v === 0 || v === '0') return false;
+      }
+      if (data.code === 'FORBIDDEN' || data.code === 'NOT_INTERNAL' || data.code === 'UNAUTHORIZED') return false;
+      return 'missing';
+    }
+
+    function loadJSSDK() {
+      return new Promise((resolve, reject) => {
+        if (window.h5sdk || window.tt) {
+          resolve();
+          return;
+        }
+        const script = document.createElement('script');
+        script.src = 'https://lf-scm-cn.feishucdn.com/lark/op/h5-js-sdk-1.5.48.js';
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+    }
+
+    function waitForAuthApi(timeoutMs) {
+      return new Promise((resolve) => {
+        const start = Date.now();
+        const timer = setInterval(() => {
+          if (window.tt && window.tt.requestAuthCode) {
+            clearInterval(timer);
+            resolve(true);
+          } else if (Date.now() - start > timeoutMs) {
+            clearInterval(timer);
+            resolve(false);
+          }
+        }, 300);
+      });
+    }
+
+    function requestCode() {
+      return new Promise((resolve) => {
+        const timeout = setTimeout(() => resolve(null), 12000);
+        window.tt.requestAuthCode({
+          appId: APP_ID,
+          success: (res) => {
+            clearTimeout(timeout);
+            resolve(res && res.code ? res.code : null);
+          },
+          fail: (err) => {
+            clearTimeout(timeout);
+            report.authCode = 'fail: ' + JSON.stringify(err);
+            resolve(null);
+          }
+        });
+      });
+    }
+
+    async function login(code) {
+      const res = await fetch(AIPA_LOGIN, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code }),
+        signal: AbortSignal.timeout(12000)
+      });
+      const text = await res.text();
+      let data = null;
+      try { data = JSON.parse(text); } catch (_) { data = { raw: text }; }
+      return { status: res.status, ok: res.ok, data };
+    }
+
+    async function run() {
+      setText('current-url', location.href);
+      setText('is-feishu', report.isFeishu ? '是，当前在飞书/Lark 环境中' : '否，当前不是飞书/Lark 环境');
+
+      if (!report.isFeishu) {
+        setStatus('不是飞书环境', 'bad');
+        setText('sdk-status', '未检测，因为当前不是飞书环境');
+        setText('code-status', '未获取');
+        setText('api-status', '未调用');
+        setText('internal-status', '无法判断');
+        $('raw-response').textContent = JSON.stringify(sanitize(report), null, 2);
+        return;
+      }
+
+      try {
+        await loadJSSDK();
+        report.sdk = 'loaded';
+        setText('sdk-status', '已加载飞书 SDK');
+      } catch (e) {
+        report.sdk = 'load failed: ' + e.message;
+        setStatus('SDK 加载失败', 'bad');
+        setText('sdk-status', report.sdk);
+        $('raw-response').textContent = JSON.stringify(sanitize(report), null, 2);
+        return;
+      }
+
+      const ready = await waitForAuthApi(12000);
+      if (!ready) {
+        report.authCode = 'tt.requestAuthCode 未准备好';
+        setStatus('授权能力不可用', 'bad');
+        setText('code-status', report.authCode);
+        $('raw-response').textContent = JSON.stringify(sanitize(report), null, 2);
+        return;
+      }
+
+      const code = await requestCode();
+      if (!code) {
+        setStatus('授权码获取失败', 'bad');
+        setText('code-status', report.authCode || '未拿到授权码');
+        $('raw-response').textContent = JSON.stringify(sanitize(report), null, 2);
+        return;
+      }
+      report.authCode = '已获取，长度 ' + code.length;
+      setText('code-status', report.authCode);
+
+      try {
+        const result = await login(code);
+        report.api = 'HTTP ' + result.status;
+        report.response = result.data;
+        setText('api-status', report.api);
+        $('raw-response').textContent = JSON.stringify(sanitize(result.data), null, 2);
+
+        const internal = getInternalStatus(result.data);
+        report.internal = internal;
+        if (internal === true) {
+          setStatus('内部员工通过', 'ok');
+          setText('internal-status', 'AIPA 返回了可识别的内部员工通过字段');
+        } else if (internal === 'missing') {
+          setStatus('缺少内部字段', 'warn');
+          setText('internal-status', 'AIPA 登录成功，但没有返回 is_internal / isInternal 等内部员工判断字段');
+        } else {
+          setStatus('未通过内部校验', 'bad');
+          setText('internal-status', 'AIPA 返回失败，或返回了非内部员工状态');
+        }
+      } catch (e) {
+        report.api = '调用失败：' + e.message;
+        setStatus('AIPA 调用失败', 'bad');
+        setText('api-status', report.api);
+        $('raw-response').textContent = JSON.stringify(sanitize(report), null, 2);
+      }
+    }
+
+    $('copy-report').addEventListener('click', async () => {
+      const text = JSON.stringify(sanitize(report), null, 2);
+      try {
+        await navigator.clipboard.writeText(text);
+        alert('调试结果已复制');
+      } catch (_) {
+        alert('复制失败，请直接截图发给我');
+      }
+    });
+
+    run();
+  </script>
+</body>
+</html>
