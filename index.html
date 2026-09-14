@@ -870,7 +870,7 @@
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
   <script src="js/award-api.js?v=20260914uv"></script>
   <script src="js/html2canvas.min.js"></script>
-  <script src="js/main.js?v=20260914useu"></script>
+  <script src="js/main.js?v=20260914latamind"></script>
   <script>
     // Render Home Stats - Now includes Q1/Q2/Q3/Q4 data for FS/POP and all regional data
     // IMPORTANT: Project awards are counted by unique project, not by member records
@@ -948,6 +948,9 @@
       
       // 收集所有个人奖
       const allIndividualAwards = [];
+      const individualAwardKeys = year === '2025'
+        ? ['H2 Individual Awards', 'Q1 Individual Awards', 'Q2 Individual Awards', 'Q3 Individual Awards', 'Q4 Individual Awards']
+        : ['H2 Individual Awards', 'Q1 Individual Awards'];
       
       regions.forEach(region => {
         let regionData = regionalData[region];
@@ -964,7 +967,10 @@
             'H1 Project Awards': [...(usData['H1 Project Awards'] || []), ...(popData2['H1 Project Awards'] || [])],
             'H2 Project Awards': [...(usData['H2 Project Awards'] || []), ...(popData2['H2 Project Awards'] || [])],
             'H2 Individual Awards': [...(usData['H2 Individual Awards'] || []), ...(popData2['H2 Individual Awards'] || [])],
-            'Q1 Individual Awards': [...(usData['Q1 Individual Awards'] || []), ...(popData2['Q1 Individual Awards'] || [])]
+            'Q1 Individual Awards': [...(usData['Q1 Individual Awards'] || []), ...(popData2['Q1 Individual Awards'] || [])],
+            'Q2 Individual Awards': [...(usData['Q2 Individual Awards'] || []), ...(popData2['Q2 Individual Awards'] || [])],
+            'Q3 Individual Awards': [...(usData['Q3 Individual Awards'] || []), ...(popData2['Q3 Individual Awards'] || [])],
+            'Q4 Individual Awards': [...(usData['Q4 Individual Awards'] || []), ...(popData2['Q4 Individual Awards'] || [])]
           };
         }
         
@@ -984,10 +990,7 @@
           teamMemberCount += projResult.members;
           
           // Individual awards
-          const indivAwards = [
-            ...(regionData['H2 Individual Awards'] || []),
-            ...(regionData['Q1 Individual Awards'] || [])
-          ];
+          const indivAwards = individualAwardKeys.flatMap(key => regionData[key] || []);
           allIndividualAwards.push(...indivAwards);
         }
       });
@@ -1007,7 +1010,7 @@
         totalBonusUSD += result.projBonus;
         teamMemberCount += result.members;
         
-        const indivAwards = [...(fsData['H2 Individual Awards'] || []), ...(fsData['Q1 Individual Awards'] || [])];
+        const indivAwards = individualAwardKeys.flatMap(key => fsData[key] || []);
         allIndividualAwards.push(...indivAwards);
       }
       
@@ -1026,7 +1029,7 @@
         totalBonusUSD += result.projBonus;
         teamMemberCount += result.members;
         
-        const indivAwards = [...(popData['H2 Individual Awards'] || []), ...(popData['Q1 Individual Awards'] || [])];
+        const indivAwards = individualAwardKeys.flatMap(key => popData[key] || []);
         allIndividualAwards.push(...indivAwards);
       }
       
