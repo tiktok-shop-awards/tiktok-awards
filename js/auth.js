@@ -1,8 +1,8 @@
 /**
- * Feishu Auth v10.2 - Warm-up retry + optional internal-only test mode
- * Browser access blocked, only Feishu embedded browser allowed
- * In Feishu: wait for SDK, retry auth/login, then fall back to local user ID (no hard block)
- * Add ?internal_only=1 to test strict ByteDance internal access without affecting normal links
+ * Feishu Auth v11.0 - ByteDance internal-only access
+ * Browser access blocked, only Feishu embedded browser allowed.
+ * In Feishu: wait for SDK, retry auth/login, then allow only AIPA-confirmed internal users.
+ * Add ?auth_debug=1 on global.html to debug auth without running normal page auth.
  * In browser: show "Open in Feishu" screen
  */
 document.addEventListener('DOMContentLoaded', function() {
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('[FeishuAuth] Auth debug mode enabled, skip normal page auth');
     return;
   }
-  var internalOnlyMode = params.get('internal_only') === '1';
+  var internalOnlyMode = true;
 
   // Step 1: Check if already cached (real Feishu user only)
   try {
@@ -41,6 +41,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Step 3: In Feishu, try SDK auth with warm-up retries
   console.log('[FeishuAuth] In Feishu, starting SDK auth with retries');
+  if (overlay) overlay.style.display = 'flex';
+  if (content) content.style.display = 'none';
   if (titleEl) titleEl.textContent = '正在验证飞书身份';
   if (descEl) descEl.innerHTML = '首次打开可能需要几秒钟，请稍候...';
 
@@ -232,7 +234,23 @@ document.addEventListener('DOMContentLoaded', function() {
   // --- Helper functions ---
 
   function getInternalStatus(data) {
-    if (!data || !data.data) return false;
+    if (!data) return false;
+    var topLevelCandidates = [
+      data.is_internal,
+      data.isInternal,
+      data.internal,
+      data.is_byte_internal,
+      data.isByteInternal,
+      data.is_bytdance_internal,
+      data.isByteDanceInternal,
+      data.byte_internal,
+      data.bytedance_internal
+    ];
+    for (var t = 0; t < topLevelCandidates.length; t++) {
+      if (topLevelCandidates[t] === true || topLevelCandidates[t] === 'true' || topLevelCandidates[t] === 1 || topLevelCandidates[t] === '1') return true;
+      if (topLevelCandidates[t] === false || topLevelCandidates[t] === 'false' || topLevelCandidates[t] === 0 || topLevelCandidates[t] === '0') return false;
+    }
+    if (!data.data) return false;
     var d = data.data;
     var candidates = [
       d.is_internal,
