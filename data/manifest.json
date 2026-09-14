@@ -1,27 +1,44 @@
 {
   "us": {
-    "H1 Project Awards": [
-      "us_h1-project-awards.json"
-    ],
-    "H2 Project Awards": [
-      "us_h2-project-awards_p1.json",
-      "us_h2-project-awards_p2.json"
-    ],
-    "H2 Individual Awards": [
-      "us_h2-individual-awards.json"
-    ]
+    "2025": {
+      "H1 Project Awards": [
+        "us_h1-project-awards_2025.json"
+      ],
+      "H2 Project Awards": [
+        "us_h2-project-awards_p1.json",
+        "us_h2-project-awards_p2.json"
+      ],
+      "H2 Individual Awards": [
+        "us_h2-individual-awards.json"
+      ]
+    },
+    "2026": {
+      "H1 Project Awards": [
+        "us_h1-project-awards.json"
+      ]
+    }
   },
   "eu": {
-    "H1 Project Awards": [
-      "eu_h1-project-awards.json"
-    ],
-    "H2 Project Awards": [
-      "eu_h2-project-awards_p1.json",
-      "eu_h2-project-awards_p2.json"
-    ],
-    "H2 Individual Awards": [
-      "eu_h2-individual-awards.json"
-    ]
+    "2025": {
+      "H1 Project Awards": [
+        "eu_h1-project-awards_p1.json",
+        "eu_h1-project-awards_p2.json",
+        "eu_h1-project-awards_p3.json",
+        "eu_h1-project-awards_p4.json"
+      ],
+      "H2 Project Awards": [
+        "eu_h2-project-awards_p1.json",
+        "eu_h2-project-awards_p2.json"
+      ],
+      "H2 Individual Awards": [
+        "eu_h2-individual-awards.json"
+      ]
+    },
+    "2026": {
+      "H1 Project Awards": [
+        "eu_h1-project-awards.json"
+      ]
+    }
   },
   "sea": {
     "2025": {
