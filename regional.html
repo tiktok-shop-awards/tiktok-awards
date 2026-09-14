@@ -690,9 +690,61 @@
       { region: 'fs', label: 'FS' },
       { region: 'pop', label: 'POP' }
     ];
+
+    const validRegionsByYear = {
+      '2026': ['sea', 'us', 'latam', 'fs', 'eu'],
+      '2025': ['us', 'eu', 'sea', 'latam', 'fs', 'pop']
+    };
+
+    function getDefaultRegionForYear(year) {
+      return year === '2026' ? 'sea' : 'us';
+    }
+
+    function normalizeRegionForYear(region, year) {
+      let normalizedRegion = region || getDefaultRegionForYear(year);
+      if (year === '2026' && normalizedRegion === 'pop') {
+        normalizedRegion = 'us';
+      }
+      const validRegions = validRegionsByYear[year] || validRegionsByYear['2026'];
+      if (!validRegions.includes(normalizedRegion)) {
+        normalizedRegion = getDefaultRegionForYear(year);
+      }
+      return normalizedRegion;
+    }
+
+    function normalizeAwardTypeForRegion(region, year, awardType) {
+      const requestedType = awardType || 'H1 Project Awards';
+      if (year === '2026' && ['sea', 'us', 'eu', 'fs'].includes(region)) {
+        return 'H1 Project Awards';
+      }
+      if (region === 'latam') {
+        if (year === '2026') {
+          return ['Q1 Individual Awards', 'Q2 Individual Awards'].includes(requestedType)
+            ? requestedType
+            : 'Q1 Individual Awards';
+        }
+        return ['Q1', 'Q2', 'Q3', 'Q4'].includes(requestedType) ? requestedType : 'Q1';
+      }
+      if (region === 'pop' || (region === 'fs' && year === '2025')) {
+        return ['Q1', 'Q2', 'Q3', 'Q4', 'Q4 Individual Awards'].includes(requestedType)
+          ? requestedType
+          : 'Q1';
+      }
+      return ['H1 Project Awards', 'H2 Project Awards', 'H2 Individual Awards'].includes(requestedType)
+        ? requestedType
+        : 'H1 Project Awards';
+    }
+
+    function getInitialRegionalState() {
+      const year = getUrlParam('year') || '2026';
+      const region = normalizeRegionForYear(getUrlParam('region'), year);
+      const period = normalizeAwardTypeForRegion(region, year, getUrlParam('period'));
+      return { year, region, period };
+    }
     
-    let currentRegion = getUrlParam('region') || 'sea'; // default for 2026
-    let currentAwardType = getUrlParam('period') || 'H1 Project Awards';
+    const initialRegionalState = getInitialRegionalState();
+    let currentRegion = initialRegionalState.region;
+    let currentAwardType = initialRegionalState.period;
     let regionalData = null;
     let allRegionalData = null; // Store all regional data for US+POP merge
     
@@ -715,7 +767,8 @@
           navBar.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
           currentRegion = clickedRegion;
-          setUrlParams({ region: currentRegion, period: currentAwardType });
+          currentAwardType = normalizeAwardTypeForRegion(currentRegion, year, currentAwardType);
+          setUrlParams({ year, region: currentRegion, period: currentAwardType });
           updateLabels();
           loadRegionalData(currentRegion, year);
         });
@@ -1085,16 +1138,8 @@
     
     // Initialize region navigation
     function initRegionNav() {
-      const urlYear = getUrlParam('year') || '2026';
-      let urlRegion = getUrlParam('region');
-      // Default region by year
-      if (!urlRegion) {
-        urlRegion = urlYear === '2026' ? 'sea' : 'us';
-      }
-      // In 2026, POP is not a valid standalone region
-      if (urlYear === '2026' && urlRegion === 'pop') {
-        urlRegion = 'us'; // POP data merged into US
-      }
+      const urlYear = AppData.currentYear || getUrlParam('year') || '2026';
+      const urlRegion = normalizeRegionForYear(getUrlParam('region') || currentRegion, urlYear);
       currentRegion = urlRegion;
       renderRegionNav(urlYear, currentRegion);
     }
@@ -1112,7 +1157,7 @@
           typeBtns.forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
           currentAwardType = btn.dataset.type;
-          setUrlParams({ region: currentRegion, period: currentAwardType });
+          setUrlParams({ year: AppData.currentYear, region: currentRegion, period: currentAwardType });
           
           updateLabels();
           
@@ -1138,7 +1183,7 @@
           btn.classList.add('active');
           currentAwardType = btn.dataset.type; // Q1, Q2, Q3, Q4, Q4 Individual Awards
           AppData.currentLatamQuarter = currentAwardType;
-          setUrlParams({ region: currentRegion, period: currentAwardType });
+          setUrlParams({ year: AppData.currentYear, region: currentRegion, period: currentAwardType });
           
           if (regionalData) {
             renderRegionalAwards(regionalData, 'regional-awards', currentAwardType, currentRegion);
@@ -1161,7 +1206,7 @@
           btn.classList.add('active');
           currentAwardType = btn.dataset.type;
           AppData.currentLatamQuarter = currentAwardType;
-          setUrlParams({ region: currentRegion, period: currentAwardType });
+          setUrlParams({ year: AppData.currentYear, region: currentRegion, period: currentAwardType });
           
           if (regionalData) {
             renderRegionalAwards(regionalData, 'regional-awards', currentAwardType, currentRegion);
@@ -1174,24 +1219,15 @@
     document.addEventListener('DOMContentLoaded', async () => {
       console.log('DOMContentLoaded fired');
       
-      // Get year and region from URL
-      let urlYear = getUrlParam('year') || '2026';
-      let urlRegion = getUrlParam('region');
-      // Default region by year
-      if (!urlRegion) {
-        urlRegion = urlYear === '2026' ? 'sea' : 'us';
-      }
-      // In 2026, POP is not a standalone region
-      if (urlYear === '2026' && urlRegion === 'pop') {
-        urlRegion = 'us';
-      }
-      // Validate region for the year
-      if (urlYear === '2026' && !['sea', 'us', 'latam', 'fs', 'eu'].includes(urlRegion)) {
-        urlRegion = 'sea';
-      }
+      // Get year, region, and period from URL, then normalize them for deep links.
+      const initialState = getInitialRegionalState();
+      let urlYear = initialState.year;
+      let urlRegion = initialState.region;
       
       AppData.currentYear = urlYear;
       currentRegion = urlRegion;
+      currentAwardType = initialState.period;
+      setUrlParams({ year: urlYear, region: currentRegion, period: currentAwardType });
       
       // Initialize navigation
       highlightNavigation();
@@ -1249,16 +1285,10 @@
       window.addEventListener('yearChanged', async (e) => {
         const newYear = e.detail.year;
         // Re-render region nav for the new year
-        let activeRegion = currentRegion;
-        if (newYear === '2026') {
-          // In 2026, POP is not standalone; default to sea if current was pop
-          if (activeRegion === 'pop') activeRegion = 'us'; // POP merged into US
-          if (!['sea', 'us', 'latam', 'fs', 'eu'].includes(activeRegion)) activeRegion = 'sea';
-        } else {
-          // In 2025, all 6 regions are valid
-          if (!['us', 'eu', 'sea', 'latam', 'fs', 'pop'].includes(activeRegion)) activeRegion = 'us';
-        }
+        let activeRegion = normalizeRegionForYear(currentRegion, newYear);
         currentRegion = activeRegion;
+        currentAwardType = normalizeAwardTypeForRegion(currentRegion, newYear, currentAwardType);
+        setUrlParams({ year: newYear, region: currentRegion, period: currentAwardType });
         renderRegionNav(newYear, currentRegion);
         await loadRegionalData(currentRegion, newYear);
       });
