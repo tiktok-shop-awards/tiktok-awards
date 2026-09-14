@@ -2753,6 +2753,47 @@ function renderSearchResults(results, containerId) {
   container.innerHTML = html;
 }
 
+// ==================== Mobile Menu ====================
+function initMobileMenu() {
+  const headerInner = document.querySelector('.header-inner');
+  const nav = document.querySelector('.top-nav');
+  const logo = document.querySelector('.logo');
+  if (!headerInner || !nav || document.querySelector('.mobile-menu-toggle')) return;
+
+  const activeItem = nav.querySelector('.nav-item.active');
+  const currentLabel = activeItem ? activeItem.textContent.trim() : 'Menu';
+
+  const toggle = document.createElement('button');
+  toggle.type = 'button';
+  toggle.className = 'mobile-menu-toggle';
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.innerHTML = `<span class="mobile-menu-current">${currentLabel}</span><span class="mobile-menu-icon">☰</span>`;
+
+  if (logo && logo.parentNode === headerInner) {
+    headerInner.insertBefore(toggle, logo.nextSibling);
+  } else {
+    headerInner.insertBefore(toggle, nav);
+  }
+
+  toggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('mobile-nav-open');
+    toggle.classList.toggle('active', isOpen);
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  nav.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', () => {
+      nav.classList.remove('mobile-nav-open');
+      toggle.classList.remove('active');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initMobileMenu();
+});
+
 // ==================== Initialize ====================
 const isHomePage = document.getElementById('top3-podium');
 
