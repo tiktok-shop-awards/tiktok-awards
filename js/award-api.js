@@ -1,4 +1,4 @@
-// AWARD-API.JS VERSION: 20250520a
+// AWARD-API.JS VERSION: 20260914uv
 // TikTok Shop Stars Awards - AIPA Backend API Module
 // Replaces localStorage for likes and comments with backend API
 
@@ -194,6 +194,68 @@ const AwardAPI = {
    */
   resetAvailabilityCheck() {
     this._apiAvailable = null;
+  },
+
+  /**
+   * Report one page view while preserving the existing PV behavior.
+   * Adds stable visitor/user identifiers so the backend can calculate UV.
+   */
+  async reportPageView(page) {
+    if (sessionStorage.getItem('pageview_reported')) return;
+    sessionStorage.setItem('pageview_reported', '1');
+
+    const user = await this._waitForCachedFeishuUser(10000);
+    const visitorId = this._getStableVisitorId();
+    const payload = {
+      page: page || window.location.pathname,
+      timestamp: Date.now(),
+      visitor_id: visitorId
+    };
+
+    if (user && user.userId) {
+      payload.user_id = user.userId;
+      payload.open_id = user.userId;
+      payload.is_internal = user.isInternal === true;
+    }
+
+    return fetch(`${this.BASE_URL}/api/pageview`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(() => {});
+  },
+
+  _waitForCachedFeishuUser(timeoutMs) {
+    return new Promise(resolve => {
+      const start = Date.now();
+      const readUser = () => {
+        try {
+          const cached = sessionStorage.getItem('feishu_user');
+          if (cached) {
+            const parsed = JSON.parse(cached);
+            if (parsed && parsed.userId && parsed.userId.startsWith('ou_')) {
+              resolve(parsed);
+              return;
+            }
+          }
+        } catch (e) {}
+        if (Date.now() - start >= timeoutMs) {
+          resolve(null);
+          return;
+        }
+        setTimeout(readUser, 250);
+      };
+      readUser();
+    });
+  },
+
+  _getStableVisitorId() {
+    let visitorId = localStorage.getItem('award_visitor_id');
+    if (!visitorId) {
+      visitorId = 'v_' + Date.now().toString(36) + Math.random().toString(36).substring(2, 10);
+      localStorage.setItem('award_visitor_id', visitorId);
+    }
+    return visitorId;
   }
 };
 

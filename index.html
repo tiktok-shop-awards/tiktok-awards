@@ -645,7 +645,7 @@
     }
     .stats-panel-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
     .stats-panel-item {
@@ -868,7 +868,7 @@
   <script src="https://lf-scm-cn.feishucdn.com/lark/op/h5-js-sdk-1.5.48.js"></script>
   <script src="js/auth.js?v=20260914internalonly"></script>
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
-  <script src="js/award-api.js?v=20260529a"></script>
+  <script src="js/award-api.js?v=20260914uv"></script>
   <script src="js/html2canvas.min.js"></script>
   <script src="js/main.js?v=20260907c"></script>
   <script>
@@ -1406,12 +1406,13 @@ document.addEventListener('DOMContentLoaded', function() {
   // Load stats data
   async function loadStats() {
     const pvEl = document.getElementById('statsPageViews');
+    const uvEl = document.getElementById('statsUniqueVisitors');
     const likesEl = document.getElementById('statsLikes');
     const commentsEl = document.getElementById('statsComments');
     const footerEl = document.getElementById('statsFooter');
     
     // Reset
-    [pvEl, likesEl, commentsEl].forEach(el => {
+    [pvEl, uvEl, likesEl, commentsEl].forEach(el => {
       el.textContent = '-';
       el.classList.add('loading');
     });
@@ -1426,9 +1427,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const data = await res.json();
         const stats = data.data || data;
         pvEl.textContent = formatNum(stats.page_views || stats.visits || 0);
+        const uvValue = stats.unique_visitors ?? stats.uv ?? stats.unique_users ?? stats.visitors_unique;
+        uvEl.textContent = uvValue === undefined || uvValue === null ? '-' : formatNum(uvValue);
         likesEl.textContent = formatNum(stats.total_likes || 0);
         commentsEl.textContent = formatNum(stats.total_comments || 0);
-        [pvEl, likesEl, commentsEl].forEach(el => el.classList.remove('loading'));
+        [pvEl, uvEl, likesEl, commentsEl].forEach(el => el.classList.remove('loading'));
         footerEl.textContent = 'Updated ' + new Date().toLocaleTimeString();
 
         return;
@@ -1458,9 +1461,10 @@ document.addEventListener('DOMContentLoaded', function() {
     localStorage.setItem('page_views', pv.toString());
     
     pvEl.textContent = pv;
+    uvEl.textContent = '-';
     likesEl.textContent = likes || '-';
     commentsEl.textContent = '-';
-    [pvEl, likesEl, commentsEl].forEach(el => el.classList.remove('loading'));
+    [pvEl, uvEl, likesEl, commentsEl].forEach(el => el.classList.remove('loading'));
     footerEl.textContent = 'Local data only · Not shared across users';
   }
   
@@ -1470,14 +1474,9 @@ document.addEventListener('DOMContentLoaded', function() {
     return n.toString();
   }
   
-  // Report page view on load (once per session)
-  if (!sessionStorage.getItem('pageview_reported')) {
-    sessionStorage.setItem('pageview_reported', '1');
-    fetch('https://da1e5fb0.aipa.bytedance.net/api/pageview', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ page: window.location.pathname, timestamp: Date.now() })
-    }).catch(() => {});
+  // Report page view on load (once per session). PV is unchanged; user_id enables backend UV counting.
+  if (typeof AwardAPI !== 'undefined' && AwardAPI.reportPageView) {
+    AwardAPI.reportPageView(window.location.pathname);
   }
 });
 
@@ -1501,6 +1500,10 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="stats-panel-item">
       <div class="stats-panel-value loading" id="statsPageViews">-</div>
       <div class="stats-panel-label">Visits</div>
+    </div>
+    <div class="stats-panel-item">
+      <div class="stats-panel-value loading" id="statsUniqueVisitors">-</div>
+      <div class="stats-panel-label">Unique Visitors</div>
     </div>
     <div class="stats-panel-item">
       <div class="stats-panel-value loading" id="statsLikes">-</div>
