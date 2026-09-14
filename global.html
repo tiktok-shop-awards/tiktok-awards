@@ -531,7 +531,7 @@
     </div>
   </div>
 
-<script src="js/auth.js?v=20260914internaltest"></script>
+<script src="js/auth.js?v=20260914globaldebug"></script>
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
   <script src="js/award-api.js?v=20260529a"></script>
   <script src="js/html2canvas.min.js"></script>
@@ -540,6 +540,7 @@
     // Global page specific initialization
     let currentHalf = getUrlParam('period') || 'H1';
     let globalData = null;
+    const isAuthDebugMode = new URLSearchParams(window.location.search).get('auth_debug') === '1';
     
     // Period toggle handler
     function initPeriodToggle() {
@@ -571,6 +572,10 @@
     }
     
     document.addEventListener('DOMContentLoaded', async () => {
+      if (isAuthDebugMode) {
+        runGlobalAuthDebug();
+        return;
+      }
       // Search handlers - always bind regardless of data loading errors (Bug 4 fix)
       const searchInput = document.getElementById('search-input');
       const searchBtn = document.getElementById('search-btn');
@@ -690,6 +695,246 @@
         }
       });
     });
+
+    function setDebugReportText(report) {
+      const raw = document.getElementById('debug-raw-response');
+      if (raw) raw.textContent = JSON.stringify(report, null, 2);
+    }
+
+    function maskDebugValue(value) {
+      if (!value || typeof value !== 'string') return value;
+      if (value.length <= 10) return value.slice(0, 2) + '***';
+      return value.slice(0, 6) + '...' + value.slice(-4);
+    }
+
+    function sanitizeDebugObject(obj) {
+      if (!obj || typeof obj !== 'object') return obj;
+      if (Array.isArray(obj)) return obj.map(sanitizeDebugObject);
+      const out = {};
+      Object.keys(obj).forEach(key => {
+        const lower = key.toLowerCase();
+        const value = obj[key];
+        if (lower.includes('token') || lower === 'code') {
+          out[key] = '[已隐藏]';
+        } else if (lower.includes('id') || lower.includes('email') || lower.includes('name') || lower.includes('user')) {
+          out[key] = typeof value === 'string' ? maskDebugValue(value) : sanitizeDebugObject(value);
+        } else {
+          out[key] = sanitizeDebugObject(value);
+        }
+      });
+      return out;
+    }
+
+    function getDebugInternalStatus(data) {
+      if (!data || !data.data) return false;
+      const d = data.data;
+      const candidates = [
+        d.is_internal,
+        d.isInternal,
+        d.internal,
+        d.is_byte_internal,
+        d.isByteInternal,
+        d.is_bytdance_internal,
+        d.isByteDanceInternal,
+        d.byte_internal,
+        d.bytedance_internal
+      ];
+      for (const v of candidates) {
+        if (v === true || v === 'true' || v === 1 || v === '1') return true;
+        if (v === false || v === 'false' || v === 0 || v === '0') return false;
+      }
+      if (data.code === 'FORBIDDEN' || data.code === 'NOT_INTERNAL' || data.code === 'UNAUTHORIZED') return false;
+      return 'missing';
+    }
+
+    function renderGlobalAuthDebugShell() {
+      document.body.innerHTML = `
+        <main style="max-width:920px;margin:0 auto;padding:24px;color:#f6f7fb;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+          <h1 style="font-size:28px;margin:0 0 8px;">飞书鉴权调试页</h1>
+          <p style="color:#a8b0c3;line-height:1.7;">这个调试页挂在 global.html 下，不影响正式页面。请分别用内部飞书和外部飞书打开，把结果截图发给我。</p>
+          <section style="margin-top:18px;padding:18px;border:1px solid rgba(255,255,255,.14);border-radius:18px;background:rgba(255,255,255,.08);">
+            ${[
+              ['当前状态', '<span id="debug-status" style="display:inline-flex;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.12);color:#ffd166;font-weight:700;">检测中...</span>'],
+              ['当前页面地址', '<span id="debug-url"></span>'],
+              ['是否飞书环境', '<span id="debug-feishu"></span>'],
+              ['飞书 SDK 状态', '<span id="debug-sdk">待检测</span>'],
+              ['授权码状态', '<span id="debug-code">待检测</span>'],
+              ['AIPA 登录接口', '<span id="debug-api">待检测</span>'],
+              ['内部员工判断', '<span id="debug-internal">待检测</span>']
+            ].map(([label, value]) => `
+              <div style="display:grid;grid-template-columns:210px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08);">
+                <div style="color:#a8b0c3;font-size:14px;">${label}</div>
+                <div style="font-size:14px;overflow-wrap:anywhere;white-space:pre-wrap;">${value}</div>
+              </div>
+            `).join('')}
+            <button id="debug-copy" style="margin-top:14px;border:0;border-radius:10px;padding:10px 14px;color:#fff;background:#4c8dff;cursor:pointer;font-weight:700;">复制调试结果</button>
+          </section>
+          <section style="margin-top:18px;padding:18px;border:1px solid rgba(255,255,255,.14);border-radius:18px;background:rgba(255,255,255,.08);">
+            <h2 style="margin:0 0 12px;font-size:18px;">后台返回内容</h2>
+            <pre id="debug-raw-response" style="margin:0;max-height:360px;overflow:auto;color:#e6e9f2;background:rgba(0,0,0,.24);border-radius:12px;padding:14px;white-space:pre-wrap;overflow-wrap:anywhere;">等待 AIPA 返回...</pre>
+          </section>
+        </main>
+      `;
+      document.body.style.margin = '0';
+      document.body.style.minHeight = '100vh';
+      document.body.style.background = 'radial-gradient(circle at top left, rgba(76,141,255,.28), transparent 32rem), radial-gradient(circle at bottom right, rgba(255,107,107,.16), transparent 28rem), #0b1020';
+    }
+
+    function setDebugStatus(text, color) {
+      const el = document.getElementById('debug-status');
+      if (!el) return;
+      el.textContent = text;
+      el.style.color = color || '#ffd166';
+    }
+
+    function loadDebugJSSDK() {
+      return new Promise((resolve, reject) => {
+        if (window.h5sdk || window.tt) return resolve();
+        const script = document.createElement('script');
+        script.src = 'https://lf-scm-cn.feishucdn.com/lark/op/h5-js-sdk-1.5.48.js';
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+    }
+
+    function waitForDebugAuthApi(timeoutMs) {
+      return new Promise(resolve => {
+        const start = Date.now();
+        const timer = setInterval(() => {
+          if (window.tt && window.tt.requestAuthCode) {
+            clearInterval(timer);
+            resolve(true);
+          } else if (Date.now() - start > timeoutMs) {
+            clearInterval(timer);
+            resolve(false);
+          }
+        }, 300);
+      });
+    }
+
+    function requestDebugCode() {
+      return new Promise(resolve => {
+        const timeout = setTimeout(() => resolve({ code: null, error: 'timeout' }), 12000);
+        window.tt.requestAuthCode({
+          appId: 'cli_a968a864a0f89bdd',
+          success: res => {
+            clearTimeout(timeout);
+            resolve({ code: res && res.code ? res.code : null, error: null });
+          },
+          fail: err => {
+            clearTimeout(timeout);
+            resolve({ code: null, error: err });
+          }
+        });
+      });
+    }
+
+    async function loginDebugCode(code) {
+      const res = await fetch('https://da1e5fb0.aipa.bytedance.net/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code }),
+        signal: AbortSignal.timeout(12000)
+      });
+      const text = await res.text();
+      let data = null;
+      try { data = JSON.parse(text); } catch (_) { data = { raw: text }; }
+      return { status: res.status, ok: res.ok, data };
+    }
+
+    async function runGlobalAuthDebug() {
+      renderGlobalAuthDebugShell();
+      const report = {
+        url: location.href,
+        userAgent: navigator.userAgent,
+        isFeishu: /Lark|Feishu/i.test(navigator.userAgent),
+        sdk: 'pending',
+        authCode: 'pending',
+        api: 'pending',
+        internal: 'pending',
+        response: null
+      };
+
+      document.getElementById('debug-url').textContent = location.href;
+      document.getElementById('debug-feishu').textContent = report.isFeishu ? '是，当前在飞书/Lark 环境中' : '否，当前不是飞书/Lark 环境';
+
+      if (!report.isFeishu) {
+        setDebugStatus('不是飞书环境', '#ff6b6b');
+        document.getElementById('debug-sdk').textContent = '未检测，因为当前不是飞书环境';
+        document.getElementById('debug-code').textContent = '未获取';
+        document.getElementById('debug-api').textContent = '未调用';
+        document.getElementById('debug-internal').textContent = '无法判断';
+        setDebugReportText(sanitizeDebugObject(report));
+        return;
+      }
+
+      try {
+        await loadDebugJSSDK();
+        report.sdk = 'loaded';
+        document.getElementById('debug-sdk').textContent = '已加载飞书 SDK';
+      } catch (e) {
+        report.sdk = 'load failed: ' + e.message;
+        setDebugStatus('SDK 加载失败', '#ff6b6b');
+        document.getElementById('debug-sdk').textContent = report.sdk;
+        setDebugReportText(sanitizeDebugObject(report));
+        return;
+      }
+
+      const ready = await waitForDebugAuthApi(12000);
+      if (!ready) {
+        report.authCode = 'tt.requestAuthCode 未准备好';
+        setDebugStatus('授权能力不可用', '#ff6b6b');
+        document.getElementById('debug-code').textContent = report.authCode;
+        setDebugReportText(sanitizeDebugObject(report));
+        return;
+      }
+
+      const codeResult = await requestDebugCode();
+      if (!codeResult.code) {
+        report.authCode = 'fail: ' + JSON.stringify(codeResult.error);
+        setDebugStatus('授权码获取失败', '#ff6b6b');
+        document.getElementById('debug-code').textContent = report.authCode;
+        setDebugReportText(sanitizeDebugObject(report));
+        return;
+      }
+      report.authCode = '已获取，长度 ' + codeResult.code.length;
+      document.getElementById('debug-code').textContent = report.authCode;
+
+      try {
+        const result = await loginDebugCode(codeResult.code);
+        report.api = 'HTTP ' + result.status;
+        report.response = result.data;
+        document.getElementById('debug-api').textContent = report.api;
+        document.getElementById('debug-raw-response').textContent = JSON.stringify(sanitizeDebugObject(result.data), null, 2);
+        const internal = getDebugInternalStatus(result.data);
+        report.internal = internal;
+        if (internal === true) {
+          setDebugStatus('内部员工通过', '#39d98a');
+          document.getElementById('debug-internal').textContent = 'AIPA 返回了可识别的内部员工通过字段';
+        } else if (internal === 'missing') {
+          setDebugStatus('缺少内部字段', '#ffd166');
+          document.getElementById('debug-internal').textContent = 'AIPA 登录成功，但没有返回 is_internal / isInternal 等内部员工判断字段';
+        } else {
+          setDebugStatus('未通过内部校验', '#ff6b6b');
+          document.getElementById('debug-internal').textContent = 'AIPA 返回失败，或返回了非内部员工状态';
+        }
+      } catch (e) {
+        report.api = '调用失败：' + e.message;
+        setDebugStatus('AIPA 调用失败', '#ff6b6b');
+        document.getElementById('debug-api').textContent = report.api;
+        setDebugReportText(sanitizeDebugObject(report));
+      }
+
+      document.getElementById('debug-copy').addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(JSON.stringify(sanitizeDebugObject(report), null, 2));
+          alert('调试结果已复制');
+        } catch (_) {
+          alert('复制失败，请直接截图发给我');
+        }
+      });
+    }
   </script>
 
 

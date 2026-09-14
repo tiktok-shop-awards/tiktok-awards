@@ -11,6 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
   var titleEl = document.getElementById('auth-title');
   var descEl = document.getElementById('auth-desc');
   var params = new URLSearchParams(window.location.search);
+  if (params.get('auth_debug') === '1') {
+    console.log('[FeishuAuth] Auth debug mode enabled, skip normal page auth');
+    return;
+  }
   var internalOnlyMode = params.get('internal_only') === '1';
 
   // Step 1: Check if already cached (real Feishu user only)
