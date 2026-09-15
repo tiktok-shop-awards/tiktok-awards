@@ -3641,3 +3641,68 @@ img {
 .poster-container.poster-long-content .poster-brand-footer {
   font-size: 18px;
 }
+
+/* ==================== Final Mobile Override: Departmental Search Bar ==================== */
+@media (max-width: 768px) {
+  .dept-search {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin: 0 0 18px !important;
+  }
+
+  .dept-search .search-input {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    padding: 0 14px !important;
+    border-radius: 14px !important;
+    font-size: 14px !important;
+    box-sizing: border-box !important;
+  }
+
+  .dept-search .search-btn {
+    width: auto !important;
+    min-width: 96px !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    padding: 0 16px !important;
+    border-radius: 14px !important;
+    font-size: 14px !important;
+    white-space: nowrap !important;
+    box-sizing: border-box !important;
+  }
+
+  .dept-search .search-clear {
+    position: absolute !important;
+    right: 112px !important;
+    top: 8px !important;
+    width: 28px !important;
+    height: 28px !important;
+    min-height: 28px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .dept-search {
+    grid-template-columns: minmax(0, 1fr) 84px !important;
+    gap: 7px !important;
+  }
+
+  .dept-search .search-btn {
+    min-width: 84px !important;
+    padding: 0 10px !important;
+    font-size: 13px !important;
+  }
+
+  .dept-search .search-clear {
+    right: 98px !important;
+  }
+}
