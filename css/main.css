@@ -3642,6 +3642,44 @@ img {
   font-size: 18px;
 }
 
+/* ==================== Final Mobile Override: Unified Page Background ==================== */
+@media (max-width: 768px) {
+  html,
+  body {
+    min-height: 100%;
+    background:
+      radial-gradient(circle at 15% 0%, rgba(46, 208, 214, 0.14), transparent 28%),
+      radial-gradient(circle at 90% 8%, rgba(246, 33, 74, 0.10), transparent 24%),
+      #050506 !important;
+    background-attachment: fixed !important;
+  }
+
+  .page-wrapper,
+  .main-content,
+  .content-wrapper,
+  .regional-header,
+  .home-header,
+  .podium-section,
+  .awards-section,
+  .ranking-section,
+  .department-grid-section,
+  .media-section {
+    background: transparent !important;
+  }
+
+  .main-content {
+    min-height: calc(100vh - 98px);
+  }
+
+  .region-nav-wrapper,
+  .year-nav-wrapper,
+  .award-type-wrapper,
+  #quarter-toggle,
+  #award-type-wrapper {
+    background: transparent !important;
+  }
+}
+
 /* ==================== Final Mobile Override: Departmental Search Bar ==================== */
 @media (max-width: 768px) {
   .dept-search {
