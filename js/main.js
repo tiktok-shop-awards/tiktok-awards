@@ -289,7 +289,7 @@ function initDeptNavigation() {
 // ==================== Data Loading Functions ====================
 // Cache for manifest
 let _manifestCache = null;
-const CHUNK_VERSION = 'member-add-official-v2';
+const CHUNK_VERSION = 'member-add-official-v3';
 
 async function loadManifest() {
   if (_manifestCache) return _manifestCache;
@@ -1796,8 +1796,11 @@ function renderGlobalAwards(data, containerId, half) {
       };
     }
     award.members.forEach(m => {
-      if (!projectGroups[key].members.find(mem => mem.name === m)) {
-        projectGroups[key].members.push({ name: m, email: award.email });
+      const memberName = typeof m === 'string' ? m : (m && (m.name || m.winner_name)) || '';
+      const memberEmail = typeof m === 'object' && m ? (m.email || award.email || '') : (award.email || '');
+      const memberKey = `${memberName}__${memberEmail}`.toLowerCase();
+      if (memberName && !projectGroups[key].members.find(mem => `${mem.name}__${mem.email || ''}`.toLowerCase() === memberKey)) {
+        projectGroups[key].members.push({ name: memberName, email: memberEmail });
       }
     });
   });

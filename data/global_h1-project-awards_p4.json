@@ -4,1286 +4,840 @@
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Winnie Wang",
-      "Jie Yang",
-      "Liang Gao",
-      "汤非非",
-      "Grace Ha",
-      "Haley Chau",
-      "陈耀阳",
-      "Kade Percy",
-      "黄硕",
-      "郭力荔",
-      "Jackson Yin",
-      "Hongqian Su (粟虹倩)",
-      "Michael He",
-      "Evan DeCuire",
-      "Renee Chen",
-      "程传炽 Cooper",
-      "Ziyang Chen",
-      "William Li",
-      "Edward Chen",
-      "Iris Wang",
-      "宋一鸣",
-      "许彤",
-      "Lela Yuan",
-      "Ibrahim Lari",
-      "Linda Zhu",
-      "Annie Evans",
-      "卓亚琴",
-      "夏春艳",
-      "单佳齐",
-      "赵煜",
-      "徐丸絮",
-      "严泽钰",
-      "黄灿灿",
-      "张然",
-      "曾国梁",
-      "Chao Zhang",
-      "陈云",
-      "Xiangyu(Barry)",
-      "Frank Wu",
-      "Xin Liu",
-      "Yu Peng",
-      "季雨琦",
-      "Ocean(Xueqian) Liu",
-      "梁嫣然",
-      "顾伊琳",
-      "Qin Wang",
-      "Jingyi Zhou",
-      "罗微",
-      "朱琳",
-      "侯亚琼",
-      "马志敏",
-      "杨洁",
-      "许茜",
-      "Song Lu",
-      "Jinyao Zhou",
-      "Mingman Yuan",
-      "Rui Wen Lau",
-      "徐若蓉",
-      "谢照男",
-      "Wei (微) Wong-Haney",
-      "Biying Wu",
-      "马昊桐",
-      "陈悦",
-      "Danchen Wu",
-      "Yue Yang",
-      "范一洋"
+      "Winnie Wang"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "wangyu.winnie2@bytedance.com",
     "department": "US Ops- Non CP",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Winnie Wang": "wangyu.winnie2@bytedance.com",
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com",
-      "汤非非": "tangfeifei.01@bytedance.com",
-      "Grace Ha": "grace.ha@bytedance.com",
-      "Haley Chau": "haley.chau@bytedance.com",
-      "陈耀阳": "chenyaoyang@bytedance.com",
-      "Kade Percy": "kade.percy@bytedance.com",
-      "黄硕": "huangshuo.123@bytedance.com",
-      "郭力荔": "guolili.2022@bytedance.com",
-      "Jackson Yin": "jackson.yin@bytedance.com",
-      "Hongqian Su (粟虹倩)": "hongqian.su@bytedance.com",
-      "Michael He": "dingyuanhe@bytedance.com",
-      "Evan DeCuire": "evan.decuire@bytedance.com",
-      "Renee Chen": "renee.chen@bytedance.com",
-      "程传炽 Cooper": "chengchuanchi@bytedance.com",
-      "Ziyang Chen": "zchen@bytedance.com",
-      "William Li": "william.li@bytedance.com",
-      "Edward Chen": "edward.chen@bytedance.com",
-      "Iris Wang": "iris.ytwang@bytedance.com",
-      "宋一鸣": "songyiming.jason@bytedance.com",
-      "许彤": "xutong.qr@bytedance.com",
-      "Lela Yuan": "lela.yuan@bytedance.com",
-      "Ibrahim Lari": "ibrahim.lari@bytedance.com",
-      "Linda Zhu": "linda.zhu@bytedance.com",
-      "Annie Evans": "annieevans@bytedance.com",
-      "卓亚琴": "zhuoyaqin@bytedance.com",
-      "夏春艳": "xiachunyan@bytedance.com",
-      "单佳齐": "shanjiaqi.226@bytedance.com",
-      "赵煜": "zhaoyu.chao@bytedance.com",
-      "徐丸絮": "xuwanxu.vivi@bytedance.com",
-      "严泽钰": "yanzeyu.0510@bytedance.com",
-      "黄灿灿": "huangcancan@bytedance.com",
-      "张然": "zhangran.rachel@bytedance.com",
-      "曾国梁": "zengguoliang.926@bytedance.com",
-      "Chao Zhang": "zhangchao.yingxuan@bytedance.com",
-      "陈云": "chenyun.2048@bytedance.com",
-      "Xiangyu(Barry)": "zhaoxiangyu.go@bytedance.com",
-      "Frank Wu": "frankwu@bytedance.com",
-      "Xin Liu": "liuxin.staraway@bytedance.com",
-      "Yu Peng": "pengyu.pengyu@bytedance.com",
-      "季雨琦": "jiyuqi.h@bytedance.com",
-      "Ocean(Xueqian) Liu": "xueqian.liu@bytedance.com",
-      "梁嫣然": "yanranliang@bytedance.com",
-      "顾伊琳": "guyilin@bytedance.com",
-      "Qin Wang": "wangqin.0210@bytedance.com",
-      "Jingyi Zhou": "zhoujingyi.rebecca@bytedance.com",
-      "罗微": "luowei.vv@bytedance.com",
-      "朱琳": "zhulin.jolin@bytedance.com",
-      "侯亚琼": "houyaqiong@bytedance.com",
-      "马志敏": "mazhimin.rae@bytedance.com",
-      "杨洁": "yangjie.kory@bytedance.com",
-      "许茜": "xuxi.susie@bytedance.com",
-      "Song Lu": "song.lu@bytedance.com",
-      "Jinyao Zhou": "jinyaoz.brian@bytedance.com",
-      "Mingman Yuan": "mingmanyuan@bytedance.com",
-      "Rui Wen Lau": "ruiwen.lau@bytedance.com",
-      "徐若蓉": "xuruorong@bytedance.com",
-      "谢照男": "zhaonanxie@bytedance.com",
-      "Wei (微) Wong-Haney": "wei.wonghaney@bytedance.com",
-      "Biying Wu": "biying.wu@bytedance.com",
-      "马昊桐": "mahaotong.111@bytedance.com",
-      "陈悦": "chenyue.321@bytedance.com",
-      "Danchen Wu": "wudanchen.02@bytedance.com",
-      "Yue Yang": "yangyue.luna@bytedance.com",
-      "范一洋": "yiyangfan@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Feifei Tang",
-      "Jie Yang",
+      "Jie Yang"
+    ],
+    "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
+    "email": "yangjie.summer@bytedance.com",
+    "department": "US Ops- Non CP",
+    "team_award": "Global E-Commerce Impactful Projects Award",
+    "region": "Global",
+    "award_type": "2026 H1 Project Awards"
+  },
+  {
+    "project_name": "US Live Auction",
+    "bonus": "30000",
+    "period": "2026 H1",
+    "members": [
       "Liang Gao"
+    ],
+    "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
+    "email": "gaoliang.zhuoyi@bytedance.com",
+    "department": "US Ops- Non CP",
+    "team_award": "Global E-Commerce Impactful Projects Award",
+    "region": "Global",
+    "award_type": "2026 H1 Project Awards"
+  },
+  {
+    "project_name": "US Live Auction",
+    "bonus": "30000",
+    "period": "2026 H1",
+    "members": [
+      "Feifei Tang"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "tangfeifei.01@bytedance.com",
     "department": "US Ops- Non CP",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Grace Ha",
-      "Jie Yang",
-      "Liang Gao"
+      "Grace Ha"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "grace.ha@bytedance.com",
     "department": "US Ops- Non CP",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Haley Chau",
-      "Jie Yang",
-      "Liang Gao"
+      "Haley Chau"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "haley.chau@bytedance.com",
     "department": "US Ops- Non CP",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Troy Chen",
-      "Jie Yang",
-      "Liang Gao"
+      "Troy Chen"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "chenyaoyang@bytedance.com",
     "department": "US Ops- Non CP",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Kade Percy",
-      "Jie Yang",
-      "Liang Gao"
+      "Kade Percy"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "kade.percy@bytedance.com",
     "department": "US Ops- Non CP",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Shuo Huang",
-      "Jie Yang",
-      "Liang Gao"
+      "Shuo Huang"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "huangshuo.123@bytedance.com",
     "department": "US Ops- Non CP",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Lili Guo",
-      "Jie Yang",
-      "Liang Gao"
+      "Lili Guo"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "guolili.2022@bytedance.com",
     "department": "US Ops- Non CP",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Jackson Yin",
-      "Jie Yang",
-      "Liang Gao"
+      "Jackson Yin"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "jackson.yin@bytedance.com",
     "department": "US Ops- Non CP",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Hongqian Su (粟虹倩)",
-      "Jie Yang",
-      "Liang Gao"
+      "Hongqian Su (粟虹倩)"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "hongqian.su@bytedance.com",
     "department": "US Ops- Non CP",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Michael He",
-      "Jie Yang",
-      "Liang Gao"
+      "Michael He"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "dingyuanhe@bytedance.com",
     "department": "US Ops- Non CP",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Evan DeCuire",
-      "Jie Yang",
-      "Liang Gao"
+      "Evan DeCuire"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "evan.decuire@bytedance.com",
     "department": "US Ops- Non CP",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Renee Chen",
-      "Jie Yang",
-      "Liang Gao"
+      "Renee Chen"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "renee.chen@bytedance.com",
     "department": "US Ops- Non CP",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Cooper",
-      "Jie Yang",
-      "Liang Gao"
+      "Cooper"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "chengchuanchi@bytedance.com",
     "department": "US Ops- Non CP",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Ziyang Chen",
-      "Jie Yang",
-      "Liang Gao"
+      "Ziyang Chen"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "zchen@bytedance.com",
     "department": "US Ops- Non CP",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "William Li",
-      "Jie Yang",
-      "Liang Gao"
+      "William Li"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "william.li@bytedance.com",
     "department": "US Ops- Non CP",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Edward Chen",
-      "Jie Yang",
-      "Liang Gao"
+      "Edward Chen"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "edward.chen@bytedance.com",
     "department": "US Ops- Non CP",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Iris Wang",
-      "Jie Yang",
-      "Liang Gao"
+      "Iris Wang"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "iris.ytwang@bytedance.com",
     "department": "US Ops- Non CP",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Yiming Song",
-      "Jie Yang",
-      "Liang Gao"
+      "Yiming Song"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "songyiming.jason@bytedance.com",
     "department": "US Ops- Non CP",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Lela Yuan",
-      "Jie Yang",
-      "Liang Gao"
+      "Lela Yuan"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "lela.yuan@bytedance.com",
     "department": "US Ops- CP",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Ibrahim Lari",
-      "Jie Yang",
-      "Liang Gao"
+      "Ibrahim Lari"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "ibrahim.lari@bytedance.com",
     "department": "US Ops- CP",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Linda Zhu",
-      "Jie Yang",
-      "Liang Gao"
+      "Linda Zhu"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "linda.zhu@bytedance.com",
     "department": "US Ops- CP",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Annie Evans",
-      "Jie Yang",
-      "Liang Gao"
+      "Annie Evans"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "annieevans@bytedance.com",
     "department": "US Ops- CP",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Yaqin Zhuo",
-      "Jie Yang",
-      "Liang Gao"
+      "Yaqin Zhuo"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "zhuoyaqin@bytedance.com",
     "department": "Product",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Chunyan Xia",
-      "Jie Yang",
-      "Liang Gao"
+      "Chunyan Xia"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "xiachunyan@bytedance.com",
     "department": "Product",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Jacky Shan",
-      "Jie Yang",
-      "Liang Gao"
+      "Jacky Shan"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "shanjiaqi.226@bytedance.com",
     "department": "Product",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Wanxu Xu",
-      "Jie Yang",
-      "Liang Gao"
+      "Wanxu Xu"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "xuwanxu.vivi@bytedance.com",
     "department": "Product",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Chao Zhang",
-      "Jie Yang",
-      "Liang Gao"
+      "Chao Zhang"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "zhangchao.yingxuan@bytedance.com",
     "department": "Tech",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Yun Chen",
-      "Jie Yang",
-      "Liang Gao"
+      "Yun Chen"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "chenyun.2048@bytedance.com",
     "department": "Tech",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Xiangyu(Barry)",
-      "Jie Yang",
-      "Liang Gao"
+      "Xiangyu(Barry)"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "zhaoxiangyu.go@bytedance.com",
     "department": "Tech",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Frank Wu",
-      "Jie Yang",
-      "Liang Gao"
+      "Frank Wu"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "frankwu@bytedance.com",
     "department": "Tech",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Xin Liu",
-      "Jie Yang",
-      "Liang Gao"
+      "Xin Liu"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "liuxin.staraway@bytedance.com",
     "department": "Tech",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Yu Peng",
-      "Jie Yang",
-      "Liang Gao"
+      "Yu Peng"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "pengyu.pengyu@bytedance.com",
     "department": "Tech",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Yanran Liang",
-      "Jie Yang",
-      "Liang Gao"
+      "Yanran Liang"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "yanranliang@bytedance.com",
     "department": "UG",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Yilin Gu",
-      "Jie Yang",
-      "Liang Gao"
+      "Yilin Gu"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "guyilin@bytedance.com",
     "department": "UG",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Qin Wang",
-      "Jie Yang",
-      "Liang Gao"
+      "Qin Wang"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "wangqin.0210@bytedance.com",
     "department": "Design",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Jingyi Zhou",
-      "Jie Yang",
-      "Liang Gao"
+      "Jingyi Zhou"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "zhoujingyi.rebecca@bytedance.com",
     "department": "Design",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Rae Ma",
-      "Jie Yang",
-      "Liang Gao"
+      "Rae Ma"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "mazhimin.rae@bytedance.com",
     "department": "Rec Product",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Jie Yang",
-      "Liang Gao"
+      "Jie Yang"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "yangjie.kory@bytedance.com",
     "department": "Rec Product",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Yiyang Fan",
-      "Jie Yang",
-      "Liang Gao"
+      "Yiyang Fan"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "yiyangfan@bytedance.com",
     "department": "Data Science",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Susie Xu",
-      "Jie Yang",
-      "Liang Gao"
+      "Susie Xu"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "xuxi.susie@bytedance.com",
     "department": "Algo",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Song Lu",
-      "Jie Yang",
-      "Liang Gao"
+      "Song Lu"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "song.lu@bytedance.com",
     "department": "GNE",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Jinyao Zhou",
-      "Jie Yang",
-      "Liang Gao"
+      "Jinyao Zhou"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "jinyaoz.brian@bytedance.com",
     "department": "GNE",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Mingman Yuan",
-      "Jie Yang",
-      "Liang Gao"
+      "Mingman Yuan"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "mingmanyuan@bytedance.com",
     "department": "GNE",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Rui Wen Lau",
-      "Jie Yang",
-      "Liang Gao"
+      "Rui Wen Lau"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "ruiwen.lau@bytedance.com",
     "department": "GNE",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Ruorong Xu",
-      "Jie Yang",
-      "Liang Gao"
+      "Ruorong Xu"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "xuruorong@bytedance.com",
     "department": "Logistics",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Andrew Xie",
-      "Jie Yang",
-      "Liang Gao"
+      "Andrew Xie"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "zhaonanxie@bytedance.com",
     "department": "Logistics",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Wei (微) Wong-Haney",
-      "Jie Yang",
-      "Liang Gao"
+      "Wei (微) Wong-Haney"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "wei.wonghaney@bytedance.com",
     "department": "UXR",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Biying Wu",
-      "Jie Yang",
-      "Liang Gao"
+      "Biying Wu"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "biying.wu@bytedance.com",
     "department": "UXR",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Haotong Ma",
-      "Jie Yang",
-      "Liang Gao"
+      "Haotong Ma"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "mahaotong.111@bytedance.com",
     "department": "Strategy",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Cora",
-      "Jie Yang",
-      "Liang Gao"
+      "Cora"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "chenyue.321@bytedance.com",
     "department": "Strategy",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Danchen Wu",
-      "Jie Yang",
-      "Liang Gao"
+      "Danchen Wu"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "wudanchen.02@bytedance.com",
     "department": "DS",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Yue Yang",
-      "Jie Yang",
-      "Liang Gao"
+      "Yue Yang"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "yangyue.luna@bytedance.com",
     "department": "DS",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Yuqi Ji",
-      "Jie Yang",
-      "Liang Gao"
+      "Yuqi Ji"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "jiyuqi.h@bytedance.com",
     "department": "Tech",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Ocean(Xueqian) Liu",
-      "Jie Yang",
-      "Liang Gao"
+      "Ocean(Xueqian) Liu"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "xueqian.liu@bytedance.com",
     "department": "Tech",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Cancan Huang",
-      "Jie Yang",
-      "Liang Gao"
+      "Cancan Huang"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "huangcancan@bytedance.com",
     "department": "Product",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Ran Zhang",
-      "Jie Yang",
-      "Liang Gao"
+      "Ran Zhang"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "zhangran.rachel@bytedance.com",
     "department": "Product",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "US Live Auction",
     "bonus": "30000",
     "period": "2026 H1",
     "members": [
-      "Tina Xu",
-      "Jie Yang",
-      "Liang Gao"
+      "Tina Xu"
     ],
     "reason": "Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution.",
     "email": "xutong.qr@bytedance.com",
     "department": "US Ops- CP",
     "team_award": "Global E-Commerce Impactful Projects Award",
     "region": "Global",
-    "award_type": "2026 H1 Project Awards",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "award_type": "2026 H1 Project Awards"
   },
   {
     "project_name": "SEA LIVE Ads Project",
@@ -2008,16 +1562,10 @@
     "region": "Global",
     "award_type": "2026 H1 Project Awards",
     "members": [
-      "Yaqiong Hou",
-      "Jie Yang",
-      "Liang Gao"
+      "Yaqiong Hou"
     ],
     "email": "houyaqiong@bytedance.com",
-    "department": "Design",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "department": "Design"
   },
   {
     "project_name": "US Live Auction",
@@ -2028,16 +1576,10 @@
     "region": "Global",
     "award_type": "2026 H1 Project Awards",
     "members": [
-      "Wei Luo",
-      "Jie Yang",
-      "Liang Gao"
+      "Wei Luo"
     ],
     "email": "luowei.vv@bytedance.com",
-    "department": "Design",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "department": "Design"
   },
   {
     "project_name": "US Live Auction",
@@ -2048,16 +1590,10 @@
     "region": "Global",
     "award_type": "2026 H1 Project Awards",
     "members": [
-      "Lin Zhu",
-      "Jie Yang",
-      "Liang Gao"
+      "Lin Zhu"
     ],
     "email": "zhulin.jolin@bytedance.com",
-    "department": "Design",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "department": "Design"
   },
   {
     "project_name": "US Live Auction",
@@ -2068,16 +1604,10 @@
     "region": "Global",
     "award_type": "2026 H1 Project Awards",
     "members": [
-      "Zoe Yan",
-      "Jie Yang",
-      "Liang Gao"
+      "Zoe Yan"
     ],
     "email": "yanzeyu.0510@bytedance.com",
-    "department": "Product",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "department": "Product"
   },
   {
     "project_name": "US Live Auction",
@@ -2088,16 +1618,10 @@
     "region": "Global",
     "award_type": "2026 H1 Project Awards",
     "members": [
-      "Guoliang Zeng",
-      "Jie Yang",
-      "Liang Gao"
+      "Guoliang Zeng"
     ],
     "email": "zengguoliang.926@bytedance.com",
-    "department": "Product",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "department": "Product"
   },
   {
     "project_name": "US Live Auction",
@@ -2108,15 +1632,9 @@
     "region": "Global",
     "award_type": "2026 H1 Project Awards",
     "members": [
-      "Yu Zhao",
-      "Jie Yang",
-      "Liang Gao"
+      "Yu Zhao"
     ],
     "email": "zhaoyu.chao@bytedance.com",
-    "department": "Product",
-    "member_email_map": {
-      "Jie Yang": "yangjie.summer@bytedance.com",
-      "Liang Gao": "gaoliang.zhuoyi@bytedance.com"
-    }
+    "department": "Product"
   }
 ]
