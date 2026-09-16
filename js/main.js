@@ -2849,13 +2849,9 @@ function initFeedbackWidget() {
       <div class="feedback-backdrop"></div>
       <div class="feedback-panel" role="dialog" aria-modal="true" aria-labelledby="feedback-title">
         <button class="feedback-close" type="button" aria-label="Close feedback">×</button>
-        <div class="feedback-header">
-          <div class="feedback-eyebrow">Recognition Hub</div>
-          <h3 id="feedback-title">Share your feedback</h3>
-          <p>Tell us what can be improved. Your feedback will be sent to the Recognition Hub feedback table.</p>
-        </div>
         <div class="feedback-auth">
           <div class="feedback-lock-orb">🔒</div>
+          <div class="feedback-auth-eyebrow">Recognition Hub</div>
           <strong>Private feedback access</strong>
           <p>This feedback channel is currently in limited testing. Enter the access password to continue.</p>
           <label>
@@ -2866,6 +2862,11 @@ function initFeedbackWidget() {
           <button class="feedback-auth-submit" type="button">Unlock feedback</button>
         </div>
         <form class="feedback-form">
+          <div class="feedback-header feedback-content-header">
+            <div class="feedback-eyebrow">Recognition Hub</div>
+            <h3 id="feedback-title">Share your feedback</h3>
+            <p>Tell us what can be improved. Your feedback will be sent to the Recognition Hub feedback table.</p>
+          </div>
           <div class="feedback-fields">
             <label>
               <span>Feedback type</span>
@@ -2914,6 +2915,7 @@ function initFeedbackWidget() {
   const message = widget.querySelector('textarea[name="message"]');
   const success = widget.querySelector('.feedback-success');
   const errorBox = widget.querySelector('.feedback-error');
+  const contentHeader = widget.querySelector('.feedback-content-header');
   const authPanel = widget.querySelector('.feedback-auth');
   const authInput = widget.querySelector('input[name="feedbackPassword"]');
   const authError = widget.querySelector('.feedback-auth-error');
@@ -2937,6 +2939,7 @@ function initFeedbackWidget() {
   const showFeedbackForm = () => {
     if (authPanel) authPanel.hidden = true;
     if (form) form.hidden = false;
+    if (contentHeader) contentHeader.hidden = false;
     fields.hidden = false;
     success.hidden = true;
     setTimeout(() => message?.focus(), 60);
@@ -2944,6 +2947,7 @@ function initFeedbackWidget() {
 
   const showFeedbackAuth = () => {
     if (form) form.hidden = true;
+    if (contentHeader) contentHeader.hidden = true;
     if (authPanel) authPanel.hidden = false;
     if (authError) {
       authError.hidden = true;
@@ -2972,8 +2976,10 @@ function initFeedbackWidget() {
       form?.reset();
       fields.hidden = false;
       success.hidden = true;
-      if (authPanel) authPanel.hidden = hasFeedbackAccess();
-      if (form) form.hidden = !hasFeedbackAccess();
+      const accessGranted = hasFeedbackAccess();
+      if (authPanel) authPanel.hidden = accessGranted;
+      if (contentHeader) contentHeader.hidden = !accessGranted;
+      if (form) form.hidden = !accessGranted;
       if (errorBox) {
         errorBox.hidden = true;
         errorBox.textContent = '';

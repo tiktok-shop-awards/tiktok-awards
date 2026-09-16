@@ -3749,7 +3749,7 @@ img {
 .feedback-fab {
   position: fixed;
   right: 22px;
-  bottom: 112px;
+  bottom: 22px;
   z-index: 9500;
   display: inline-flex;
   align-items: center;
@@ -3931,6 +3931,15 @@ img {
   background: linear-gradient(135deg, rgba(46, 208, 214, 0.95), rgba(35, 94, 255, 0.88));
   box-shadow: 0 16px 36px rgba(46, 208, 214, 0.18), 0 0 0 8px rgba(46, 208, 214, 0.06);
   font-size: 24px;
+}
+
+.feedback-auth-eyebrow {
+  color: rgba(46, 208, 214, 0.86);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1.2px;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .feedback-auth strong {
