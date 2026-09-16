@@ -2820,6 +2820,13 @@ function initFeedbackWidget() {
   const FEEDBACK_API_ENDPOINT = 'https://da1e5fb0.aipa.bytedance.net/api/feedback';
   const FEEDBACK_ACCESS_PASSWORD = '2026ttsoc';
   const FEEDBACK_ACCESS_KEY = 'recognition_feedback_access_granted';
+  const escapeFeedbackHtml = (value) => String(value || '').replace(/[&<>"']/g, (char) => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  }[char]));
 
   const pageName = (() => {
     const path = window.location.pathname.split('/').pop() || 'index.html';
@@ -2880,7 +2887,7 @@ function initFeedbackWidget() {
             </label>
             <div class="feedback-meta">
               <span>Page</span>
-              <strong>${escapeHtml(pageName)}</strong>
+              <strong>${escapeFeedbackHtml(pageName)}</strong>
             </div>
             <div class="feedback-error" role="alert" hidden></div>
             <button class="feedback-submit" type="submit">Submit feedback</button>
