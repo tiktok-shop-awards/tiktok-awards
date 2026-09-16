@@ -3896,6 +3896,19 @@ img {
   line-height: 1.5;
 }
 
+
+.feedback-modal:not(.is-unlocked) .feedback-form {
+  display: none !important;
+}
+
+.feedback-modal.is-unlocked .feedback-auth {
+  display: none !important;
+}
+
+.feedback-modal:not(.is-unlocked) .feedback-panel {
+  max-height: min(88vh, 560px);
+}
+
 .feedback-form {
   display: flex;
   flex-direction: column;

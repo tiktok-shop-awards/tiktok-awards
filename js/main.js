@@ -2937,6 +2937,7 @@ function initFeedbackWidget() {
   };
 
   const showFeedbackForm = () => {
+    modal.classList.add('is-unlocked');
     if (authPanel) authPanel.hidden = true;
     if (form) form.hidden = false;
     if (contentHeader) contentHeader.hidden = false;
@@ -2946,6 +2947,7 @@ function initFeedbackWidget() {
   };
 
   const showFeedbackAuth = () => {
+    modal.classList.remove('is-unlocked');
     if (form) form.hidden = true;
     if (contentHeader) contentHeader.hidden = true;
     if (authPanel) authPanel.hidden = false;
@@ -2977,6 +2979,7 @@ function initFeedbackWidget() {
       fields.hidden = false;
       success.hidden = true;
       const accessGranted = hasFeedbackAccess();
+      modal.classList.toggle('is-unlocked', accessGranted);
       if (authPanel) authPanel.hidden = accessGranted;
       if (contentHeader) contentHeader.hidden = !accessGranted;
       if (form) form.hidden = !accessGranted;
