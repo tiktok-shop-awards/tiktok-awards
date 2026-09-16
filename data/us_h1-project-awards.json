@@ -46,12 +46,18 @@
       "陈云飞Kumo",
       "李悦",
       "康宇婷",
-      "曹一润"
+      "曹一润",
+      "蒋西",
+      "聂鹏飞"
     ],
     "period": "2026 H1",
     "email": "zhangrui.25@bytedance.com",
     "team_award": "Regional E-Commerce Impactful Projects Award",
-    "award_type": "2026 H1 Project Awards"
+    "award_type": "2026 H1 Project Awards",
+    "member_email_map": {
+      "蒋西": "jiangxi.01@bytedance.com",
+      "聂鹏飞": "niepengfei@bytedance.com"
+    }
   },
   {
     "project_name": "US DFYD Project",

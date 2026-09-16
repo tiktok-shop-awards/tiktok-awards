@@ -181,11 +181,15 @@
       "苏糖",
       "周楗颢",
       "罗玉嫣Elvina",
-      "Ewelina Antonowicz-Zawadzka"
+      "Ewelina Antonowicz-Zawadzka",
+      "张国鹏"
     ],
     "period": "2026 H1",
     "email": "ningxin.wu@bytedance.com",
     "team_award": "Regional E-Commerce Impactful Projects Award",
-    "award_type": "2026 H1 Project Awards"
+    "award_type": "2026 H1 Project Awards",
+    "member_email_map": {
+      "张国鹏": "zhangguopeng@bytedance.com"
+    }
   }
 ]
