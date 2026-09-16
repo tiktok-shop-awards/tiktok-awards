@@ -2819,7 +2819,6 @@ function initFeedbackWidget() {
 
   const FEEDBACK_API_ENDPOINT = 'https://da1e5fb0.aipa.bytedance.net/api/feedback';
   const FEEDBACK_ACCESS_PASSWORD = '2026ttsoc';
-  const FEEDBACK_ACCESS_KEY = 'recognition_feedback_access_granted';
   const escapeFeedbackHtml = (value) => String(value || '').replace(/[&<>"']/g, (char) => ({
     '&': '&amp;',
     '<': '&lt;',
@@ -2827,6 +2826,12 @@ function initFeedbackWidget() {
     '"': '&quot;',
     "'": '&#39;'
   }[char]));
+
+  try {
+    localStorage.removeItem('recognition_feedback_access_granted');
+  } catch (err) {
+    // Ignore storage cleanup failures.
+  }
 
   const pageName = (() => {
     const path = window.location.pathname.split('/').pop() || 'index.html';
@@ -2920,22 +2925,6 @@ function initFeedbackWidget() {
   const authInput = widget.querySelector('input[name="feedbackPassword"]');
   const authError = widget.querySelector('.feedback-auth-error');
 
-  const hasFeedbackAccess = () => {
-    try {
-      return localStorage.getItem(FEEDBACK_ACCESS_KEY) === 'true';
-    } catch (err) {
-      return false;
-    }
-  };
-
-  const setFeedbackAccess = () => {
-    try {
-      localStorage.setItem(FEEDBACK_ACCESS_KEY, 'true');
-    } catch (err) {
-      // Access still works for this open modal if localStorage is unavailable.
-    }
-  };
-
   const showFeedbackForm = () => {
     modal.classList.add('is-unlocked');
     if (authPanel) authPanel.hidden = true;
@@ -2964,11 +2953,7 @@ function initFeedbackWidget() {
   const openModal = () => {
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
-    if (hasFeedbackAccess()) {
-      showFeedbackForm();
-    } else {
-      showFeedbackAuth();
-    }
+    showFeedbackAuth();
   };
 
   const closeModal = () => {
@@ -2978,11 +2963,10 @@ function initFeedbackWidget() {
       form?.reset();
       fields.hidden = false;
       success.hidden = true;
-      const accessGranted = hasFeedbackAccess();
-      modal.classList.toggle('is-unlocked', accessGranted);
-      if (authPanel) authPanel.hidden = accessGranted;
-      if (contentHeader) contentHeader.hidden = !accessGranted;
-      if (form) form.hidden = !accessGranted;
+      modal.classList.remove('is-unlocked');
+      if (authPanel) authPanel.hidden = false;
+      if (contentHeader) contentHeader.hidden = true;
+      if (form) form.hidden = true;
       if (errorBox) {
         errorBox.hidden = true;
         errorBox.textContent = '';
@@ -3106,7 +3090,6 @@ function initFeedbackWidget() {
   const unlockFeedback = () => {
     const password = String(authInput?.value || '').trim();
     if (password === FEEDBACK_ACCESS_PASSWORD) {
-      setFeedbackAccess();
       showFeedbackForm();
       return;
     }
