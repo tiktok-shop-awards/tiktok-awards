@@ -2812,3 +2812,386 @@ if (isHomePage) {
     loadSearchData();
   });
 }
+
+// ==================== Feedback Floating Button ====================
+function initFeedbackWidget() {
+  if (document.getElementById('feedback-widget')) return;
+
+  const FEEDBACK_API_ENDPOINT = 'https://da1e5fb0.aipa.bytedance.net/api/feedback';
+  const FEEDBACK_ACCESS_PASSWORD = '2026ttsoc';
+  const FEEDBACK_ACCESS_KEY = 'recognition_feedback_access_granted';
+
+  const pageName = (() => {
+    const path = window.location.pathname.split('/').pop() || 'index.html';
+    if (path.includes('global')) return 'Global';
+    if (path.includes('regional')) return 'Regional';
+    if (path.includes('departmental')) return 'Departmental';
+    if (path.includes('award-structure')) return 'Award Structure';
+    if (path.includes('media-gallery')) return 'Media Gallery';
+    return 'Home';
+  })();
+
+  const widget = document.createElement('div');
+  widget.id = 'feedback-widget';
+  widget.innerHTML = `
+    <button class="feedback-fab" type="button" aria-label="Open feedback form">
+      <span class="feedback-fab-icon">💬</span>
+      <span class="feedback-fab-text">Feedback</span>
+    </button>
+    <div class="feedback-modal" aria-hidden="true">
+      <div class="feedback-backdrop"></div>
+      <div class="feedback-panel" role="dialog" aria-modal="true" aria-labelledby="feedback-title">
+        <button class="feedback-close" type="button" aria-label="Close feedback">×</button>
+        <div class="feedback-header">
+          <div class="feedback-eyebrow">Recognition Hub</div>
+          <h3 id="feedback-title">Share your feedback</h3>
+          <p>Tell us what can be improved. Your feedback will be sent to the Recognition Hub feedback table.</p>
+        </div>
+        <div class="feedback-auth">
+          <div class="feedback-lock-orb">🔒</div>
+          <strong>Private feedback access</strong>
+          <p>This feedback channel is currently in limited testing. Enter the access password to continue.</p>
+          <label>
+            <span>Access password</span>
+            <input name="feedbackPassword" type="password" placeholder="Enter password" autocomplete="current-password" />
+          </label>
+          <div class="feedback-auth-error" role="alert" hidden></div>
+          <button class="feedback-auth-submit" type="button">Unlock feedback</button>
+        </div>
+        <form class="feedback-form">
+          <div class="feedback-fields">
+            <label>
+              <span>Feedback type</span>
+              <select name="type">
+                <option value="Suggestion">Suggestion</option>
+                <option value="Bug">Bug</option>
+                <option value="Data issue">Data issue</option>
+                <option value="Experience">Experience</option>
+                <option value="Other">Other</option>
+              </select>
+            </label>
+            <label>
+              <span>Your feedback</span>
+              <textarea name="message" rows="5" placeholder="Please describe your feedback or issue..." required></textarea>
+            </label>
+            <label>
+              <span>Contact info <em>optional</em></span>
+              <input name="contact" type="text" placeholder="Name / email / Feishu ID" />
+            </label>
+            <div class="feedback-meta">
+              <span>Page</span>
+              <strong>${escapeHtml(pageName)}</strong>
+            </div>
+            <div class="feedback-error" role="alert" hidden></div>
+            <button class="feedback-submit" type="submit">Submit feedback</button>
+          </div>
+          <div class="feedback-success" hidden>
+            <div class="feedback-success-orb">
+              <span>✓</span>
+            </div>
+            <strong>Feedback received</strong>
+            <p>Thanks for helping us improve Recognition Hub.</p>
+            <small>Your feedback has been submitted to the feedback table.</small>
+            <button class="feedback-done" type="button">Done</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(widget);
+
+  const modal = widget.querySelector('.feedback-modal');
+  const fab = widget.querySelector('.feedback-fab');
+  const form = widget.querySelector('.feedback-form');
+  const fields = widget.querySelector('.feedback-fields');
+  const message = widget.querySelector('textarea[name="message"]');
+  const success = widget.querySelector('.feedback-success');
+  const errorBox = widget.querySelector('.feedback-error');
+  const authPanel = widget.querySelector('.feedback-auth');
+  const authInput = widget.querySelector('input[name="feedbackPassword"]');
+  const authError = widget.querySelector('.feedback-auth-error');
+
+  const hasFeedbackAccess = () => {
+    try {
+      return localStorage.getItem(FEEDBACK_ACCESS_KEY) === 'true';
+    } catch (err) {
+      return false;
+    }
+  };
+
+  const setFeedbackAccess = () => {
+    try {
+      localStorage.setItem(FEEDBACK_ACCESS_KEY, 'true');
+    } catch (err) {
+      // Access still works for this open modal if localStorage is unavailable.
+    }
+  };
+
+  const showFeedbackForm = () => {
+    if (authPanel) authPanel.hidden = true;
+    if (form) form.hidden = false;
+    fields.hidden = false;
+    success.hidden = true;
+    setTimeout(() => message?.focus(), 60);
+  };
+
+  const showFeedbackAuth = () => {
+    if (form) form.hidden = true;
+    if (authPanel) authPanel.hidden = false;
+    if (authError) {
+      authError.hidden = true;
+      authError.textContent = '';
+    }
+    if (authInput) {
+      authInput.value = '';
+      setTimeout(() => authInput.focus(), 60);
+    }
+  };
+
+  const openModal = () => {
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    if (hasFeedbackAccess()) {
+      showFeedbackForm();
+    } else {
+      showFeedbackAuth();
+    }
+  };
+
+  const closeModal = () => {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    setTimeout(() => {
+      form?.reset();
+      fields.hidden = false;
+      success.hidden = true;
+      if (authPanel) authPanel.hidden = hasFeedbackAccess();
+      if (form) form.hidden = !hasFeedbackAccess();
+      if (errorBox) {
+        errorBox.hidden = true;
+        errorBox.textContent = '';
+      }
+      form?.querySelector('.feedback-submit')?.removeAttribute('disabled');
+      const submitBtn = form?.querySelector('.feedback-submit');
+      if (submitBtn) submitBtn.textContent = 'Submit feedback';
+    }, 180);
+  };
+
+  const showFeedbackSuccessOverlay = () => {
+    const existing = document.getElementById('feedback-success-overlay');
+    if (existing) existing.remove();
+
+    const overlay = document.createElement('div');
+    overlay.id = 'feedback-success-overlay';
+    overlay.className = 'feedback-success-overlay';
+    overlay.innerHTML = `
+      <div class="feedback-success-card">
+        <div class="feedback-success-orb">
+          <span>✓</span>
+        </div>
+        <strong>Feedback received</strong>
+        <p>Thanks for helping us improve Recognition Hub.</p>
+        <small>Your feedback has been submitted to the feedback table.</small>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    setTimeout(() => {
+      overlay.classList.add('leaving');
+      setTimeout(() => overlay.remove(), 260);
+    }, 1900);
+  };
+
+  const applySavedFabPosition = () => {
+    try {
+      const saved = JSON.parse(localStorage.getItem('recognition_feedback_fab_pos') || 'null');
+      if (!saved || typeof saved.x !== 'number' || typeof saved.y !== 'number') return;
+      const maxX = Math.max(8, window.innerWidth - fab.offsetWidth - 8);
+      const maxY = Math.max(8, window.innerHeight - fab.offsetHeight - 8);
+      fab.style.left = `${Math.min(Math.max(8, saved.x), maxX)}px`;
+      fab.style.top = `${Math.min(Math.max(8, saved.y), maxY)}px`;
+      fab.style.right = 'auto';
+      fab.style.bottom = 'auto';
+    } catch (err) {
+      // Ignore malformed localStorage data in preview mode
+    }
+  };
+
+  applySavedFabPosition();
+  window.addEventListener('resize', applySavedFabPosition);
+
+  let dragState = null;
+  const dragThreshold = 5;
+
+  fab?.addEventListener('pointerdown', (e) => {
+    if (e.button !== undefined && e.button !== 0) return;
+    const rect = fab.getBoundingClientRect();
+    dragState = {
+      pointerId: e.pointerId,
+      startX: e.clientX,
+      startY: e.clientY,
+      left: rect.left,
+      top: rect.top,
+      moved: false
+    };
+    fab.setPointerCapture?.(e.pointerId);
+  });
+
+  fab?.addEventListener('pointermove', (e) => {
+    if (!dragState || dragState.pointerId !== e.pointerId) return;
+    const dx = e.clientX - dragState.startX;
+    const dy = e.clientY - dragState.startY;
+    if (!dragState.moved && Math.hypot(dx, dy) < dragThreshold) return;
+    dragState.moved = true;
+    fab.classList.add('is-dragging');
+    const maxX = Math.max(8, window.innerWidth - fab.offsetWidth - 8);
+    const maxY = Math.max(8, window.innerHeight - fab.offsetHeight - 8);
+    const nextX = Math.min(Math.max(8, dragState.left + dx), maxX);
+    const nextY = Math.min(Math.max(8, dragState.top + dy), maxY);
+    fab.style.left = `${nextX}px`;
+    fab.style.top = `${nextY}px`;
+    fab.style.right = 'auto';
+    fab.style.bottom = 'auto';
+    e.preventDefault();
+  });
+
+  const endDrag = (e) => {
+    if (!dragState || dragState.pointerId !== e.pointerId) return;
+    const wasMoved = dragState.moved;
+    fab.releasePointerCapture?.(e.pointerId);
+    fab.classList.remove('is-dragging');
+    dragState = null;
+    if (wasMoved) {
+      const rect = fab.getBoundingClientRect();
+      localStorage.setItem('recognition_feedback_fab_pos', JSON.stringify({ x: rect.left, y: rect.top }));
+    } else {
+      openModal();
+    }
+  };
+
+  fab?.addEventListener('pointerup', endDrag);
+  fab?.addEventListener('pointercancel', (e) => {
+    if (!dragState || dragState.pointerId !== e.pointerId) return;
+    fab.releasePointerCapture?.(e.pointerId);
+    fab.classList.remove('is-dragging');
+    dragState = null;
+  });
+
+  fab?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      openModal();
+    }
+  });
+
+  widget.querySelector('.feedback-close')?.addEventListener('click', closeModal);
+  widget.querySelector('.feedback-backdrop')?.addEventListener('click', closeModal);
+
+  const unlockFeedback = () => {
+    const password = String(authInput?.value || '').trim();
+    if (password === FEEDBACK_ACCESS_PASSWORD) {
+      setFeedbackAccess();
+      showFeedbackForm();
+      return;
+    }
+    if (authError) {
+      authError.textContent = 'Incorrect password. Please try again.';
+      authError.hidden = false;
+    }
+    authInput?.focus();
+  };
+
+  widget.querySelector('.feedback-auth-submit')?.addEventListener('click', unlockFeedback);
+  authInput?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      unlockFeedback();
+    }
+  });
+
+  const showFeedbackError = (errorMessage) => {
+    if (!errorBox) return;
+    errorBox.textContent = errorMessage || 'Submission failed. Please try again later.';
+    errorBox.hidden = false;
+  };
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const contactInfo = String(formData.get('contact') || '').trim();
+    const feedbackContent = String(formData.get('message') || '').trim();
+    const payload = {
+      userName: contactInfo || 'Anonymous Visitor',
+      owner: 'Website',
+      feedbackType: formData.get('type') || 'Suggestion',
+      status: 'New',
+      notes: '',
+      feedbackContent,
+      contactInfo,
+      pageName,
+      submittedAt: new Date().toISOString()
+    };
+    if (!payload.feedbackContent) {
+      message?.focus();
+      return;
+    }
+
+    const submitBtn = form.querySelector('.feedback-submit');
+    if (errorBox) {
+      errorBox.hidden = true;
+      errorBox.textContent = '';
+    }
+    if (submitBtn) {
+      submitBtn.setAttribute('disabled', 'disabled');
+      submitBtn.textContent = 'Submitting...';
+    }
+
+    try {
+      const response = await fetch(FEEDBACK_API_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      let result = null;
+      const responseText = await response.text();
+      if (responseText) {
+        try {
+          result = JSON.parse(responseText);
+        } catch (parseError) {
+          result = { message: responseText };
+        }
+      }
+
+      if (!response.ok || result?.success === false) {
+        const apiMessage = result?.message || result?.error || `Request failed with status ${response.status}`;
+        throw new Error(apiMessage);
+      }
+
+      console.log('[Feedback Submitted]', result || { ok: true });
+      closeModal();
+      showFeedbackSuccessOverlay();
+    } catch (err) {
+      console.error('[Feedback Submit Error]', err);
+      showFeedbackError(err?.message || 'Submission failed. Please try again later.');
+      if (submitBtn) {
+        submitBtn.removeAttribute('disabled');
+        submitBtn.textContent = 'Submit feedback';
+      }
+    }
+  });
+
+  widget.querySelector('.feedback-done')?.addEventListener('click', closeModal);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initFeedbackWidget);
+} else {
+  initFeedbackWidget();
+}
