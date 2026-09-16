@@ -2843,7 +2843,7 @@ function initFeedbackWidget() {
     return 'Home';
   })();
 
-  const getFeedbackUserName = async () => {
+  const getFeedbackUser = async () => {
     const normalizeName = (user) => String(
       user?.username ||
       user?.name ||
@@ -2852,11 +2852,23 @@ function initFeedbackWidget() {
       user?.userName ||
       ''
     ).trim();
+    const normalizeUserId = (user) => String(
+      user?.userId ||
+      user?.user_id ||
+      user?.open_id ||
+      user?.openId ||
+      user?.id ||
+      ''
+    ).trim();
+    const normalizeUser = (user) => ({
+      name: normalizeName(user),
+      id: normalizeUserId(user)
+    });
 
     try {
       const cached = JSON.parse(sessionStorage.getItem('feishu_user') || 'null');
-      const cachedName = normalizeName(cached);
-      if (cachedName) return cachedName;
+      const cachedUser = normalizeUser(cached);
+      if (cachedUser.name || cachedUser.id) return cachedUser;
     } catch (err) {
       // Ignore malformed auth cache and fall back below.
     }
@@ -2865,14 +2877,14 @@ function initFeedbackWidget() {
       const authHelper = (typeof FeishuAuthHelper !== 'undefined' && FeishuAuthHelper) || window.FeishuAuthHelper;
       if (authHelper && typeof authHelper.getUser === 'function') {
         const user = await authHelper.getUser();
-        const authName = normalizeName(user);
-        if (authName) return authName;
+        const authUser = normalizeUser(user);
+        if (authUser.name || authUser.id) return authUser;
       }
     } catch (err) {
-      console.warn('[Feedback] Failed to read Feishu user name:', err?.message || err);
+      console.warn('[Feedback] Failed to read Feishu user:', err?.message || err);
     }
 
-    return '';
+    return { name: '', id: '' };
   };
 
   const widget = document.createElement('div');
@@ -3151,9 +3163,11 @@ function initFeedbackWidget() {
     const formData = new FormData(form);
     const contactInfo = String(formData.get('contact') || '').trim();
     const feedbackContent = String(formData.get('message') || '').trim();
-    const feishuUserName = await getFeedbackUserName();
+    const feishuUser = await getFeedbackUser();
     const payload = {
-      userName: feishuUserName || contactInfo || 'Anonymous Visitor',
+      userName: feishuUser.name || contactInfo || 'Anonymous Visitor',
+      submitterId: feishuUser.id || '',
+      submitter: feishuUser.id ? [{ id: feishuUser.id }] : [],
       owner: 'Website',
       feedbackType: formData.get('type') || 'Suggestion',
       status: 'New',
