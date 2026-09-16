@@ -2843,6 +2843,38 @@ function initFeedbackWidget() {
     return 'Home';
   })();
 
+  const getFeedbackUserName = async () => {
+    const normalizeName = (user) => String(
+      user?.username ||
+      user?.name ||
+      user?.en_name ||
+      user?.displayName ||
+      user?.userName ||
+      ''
+    ).trim();
+
+    try {
+      const cached = JSON.parse(sessionStorage.getItem('feishu_user') || 'null');
+      const cachedName = normalizeName(cached);
+      if (cachedName) return cachedName;
+    } catch (err) {
+      // Ignore malformed auth cache and fall back below.
+    }
+
+    try {
+      const authHelper = (typeof FeishuAuthHelper !== 'undefined' && FeishuAuthHelper) || window.FeishuAuthHelper;
+      if (authHelper && typeof authHelper.getUser === 'function') {
+        const user = await authHelper.getUser();
+        const authName = normalizeName(user);
+        if (authName) return authName;
+      }
+    } catch (err) {
+      console.warn('[Feedback] Failed to read Feishu user name:', err?.message || err);
+    }
+
+    return '';
+  };
+
   const widget = document.createElement('div');
   widget.id = 'feedback-widget';
   widget.innerHTML = `
@@ -3119,8 +3151,9 @@ function initFeedbackWidget() {
     const formData = new FormData(form);
     const contactInfo = String(formData.get('contact') || '').trim();
     const feedbackContent = String(formData.get('message') || '').trim();
+    const feishuUserName = await getFeedbackUserName();
     const payload = {
-      userName: contactInfo || 'Anonymous Visitor',
+      userName: feishuUserName || contactInfo || 'Anonymous Visitor',
       owner: 'Website',
       feedbackType: formData.get('type') || 'Suggestion',
       status: 'New',
