@@ -2818,7 +2818,6 @@ function initFeedbackWidget() {
   if (document.getElementById('feedback-widget')) return;
 
   const FEEDBACK_API_ENDPOINT = 'https://da1e5fb0.aipa.bytedance.net/api/feedback';
-  const FEEDBACK_ACCESS_PASSWORD = '2026ttsoc';
   const escapeFeedbackHtml = (value) => String(value || '').replace(/[&<>"']/g, (char) => ({
     '&': '&amp;',
     '<': '&lt;',
@@ -2826,12 +2825,6 @@ function initFeedbackWidget() {
     '"': '&quot;',
     "'": '&#39;'
   }[char]));
-
-  try {
-    localStorage.removeItem('recognition_feedback_access_granted');
-  } catch (err) {
-    // Ignore storage cleanup failures.
-  }
 
   const pageName = (() => {
     const path = window.location.pathname.split('/').pop() || 'index.html';
@@ -2898,18 +2891,6 @@ function initFeedbackWidget() {
       <div class="feedback-backdrop"></div>
       <div class="feedback-panel" role="dialog" aria-modal="true" aria-labelledby="feedback-title">
         <button class="feedback-close" type="button" aria-label="Close feedback">×</button>
-        <div class="feedback-auth">
-          <div class="feedback-lock-orb">🔒</div>
-          <div class="feedback-auth-eyebrow">Recognition Hub</div>
-          <strong>Private feedback access</strong>
-          <p>This feedback channel is currently in limited testing. Enter the access password to continue.</p>
-          <label>
-            <span>Access password</span>
-            <input name="feedbackPassword" type="password" placeholder="Enter password" autocomplete="current-password" />
-          </label>
-          <div class="feedback-auth-error" role="alert" hidden></div>
-          <button class="feedback-auth-submit" type="button">Unlock feedback</button>
-        </div>
         <form class="feedback-form">
           <div class="feedback-header feedback-content-header">
             <div class="feedback-eyebrow">Recognition Hub</div>
@@ -2961,13 +2942,9 @@ function initFeedbackWidget() {
   const success = widget.querySelector('.feedback-success');
   const errorBox = widget.querySelector('.feedback-error');
   const contentHeader = widget.querySelector('.feedback-content-header');
-  const authPanel = widget.querySelector('.feedback-auth');
-  const authInput = widget.querySelector('input[name="feedbackPassword"]');
-  const authError = widget.querySelector('.feedback-auth-error');
 
   const showFeedbackForm = () => {
     modal.classList.add('is-unlocked');
-    if (authPanel) authPanel.hidden = true;
     if (form) form.hidden = false;
     if (contentHeader) contentHeader.hidden = false;
     fields.hidden = false;
@@ -2975,25 +2952,10 @@ function initFeedbackWidget() {
     setTimeout(() => message?.focus(), 60);
   };
 
-  const showFeedbackAuth = () => {
-    modal.classList.remove('is-unlocked');
-    if (form) form.hidden = true;
-    if (contentHeader) contentHeader.hidden = true;
-    if (authPanel) authPanel.hidden = false;
-    if (authError) {
-      authError.hidden = true;
-      authError.textContent = '';
-    }
-    if (authInput) {
-      authInput.value = '';
-      setTimeout(() => authInput.focus(), 60);
-    }
-  };
-
   const openModal = () => {
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
-    showFeedbackAuth();
+    showFeedbackForm();
   };
 
   const closeModal = () => {
@@ -3004,7 +2966,6 @@ function initFeedbackWidget() {
       fields.hidden = false;
       success.hidden = true;
       modal.classList.remove('is-unlocked');
-      if (authPanel) authPanel.hidden = false;
       if (contentHeader) contentHeader.hidden = true;
       if (form) form.hidden = true;
       if (errorBox) {
@@ -3126,27 +3087,6 @@ function initFeedbackWidget() {
 
   widget.querySelector('.feedback-close')?.addEventListener('click', closeModal);
   widget.querySelector('.feedback-backdrop')?.addEventListener('click', closeModal);
-
-  const unlockFeedback = () => {
-    const password = String(authInput?.value || '').trim();
-    if (password === FEEDBACK_ACCESS_PASSWORD) {
-      showFeedbackForm();
-      return;
-    }
-    if (authError) {
-      authError.textContent = 'Incorrect password. Please try again.';
-      authError.hidden = false;
-    }
-    authInput?.focus();
-  };
-
-  widget.querySelector('.feedback-auth-submit')?.addEventListener('click', unlockFeedback);
-  authInput?.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      unlockFeedback();
-    }
-  });
 
   const showFeedbackError = (errorMessage) => {
     if (!errorBox) return;
