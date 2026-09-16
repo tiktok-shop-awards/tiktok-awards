@@ -2931,10 +2931,6 @@ function initFeedbackWidget() {
               <span>Your feedback</span>
               <textarea name="message" rows="5" placeholder="Please describe your feedback or issue..." required></textarea>
             </label>
-            <label>
-              <span>Contact info <em>optional</em></span>
-              <input name="contact" type="text" placeholder="Name / email / Feishu ID" />
-            </label>
             <div class="feedback-meta">
               <span>Page</span>
               <strong>${escapeFeedbackHtml(pageName)}</strong>
