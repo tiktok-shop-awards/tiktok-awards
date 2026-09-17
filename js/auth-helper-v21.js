@@ -1,5 +1,5 @@
 /**
- * Feishu Auth Helper v21.1 - Robust user ID extraction + warm-up retry
+ * Feishu Auth Helper v21.2 - Robust user ID extraction + warm-up retry
  * Flow: sessionStorage → URL code → SDK requestAuthCode with retry → fallback
  * Fix: _loginWithCode tries multiple field names for user ID (user_id, open_id, id)
  */
@@ -7,6 +7,7 @@ const FeishuAuthHelper = {
   _user: null,
   APP_ID: 'cli_a968a864a0f89bdd',
   AIPA_LOGIN: 'https://da1e5fb0.aipa.bytedance.net/api/auth/login',
+  AUTH_CACHE_VERSION: 'avatar-permission-refresh-20260917',
 
   async getUser() {
     if (this._user) return this._user;
@@ -16,7 +17,7 @@ const FeishuAuthHelper = {
       const cached = sessionStorage.getItem('feishu_user');
       if (cached) {
         const parsed = JSON.parse(cached);
-        if (parsed.userId && parsed.userId.startsWith('ou_')) {
+        if (parsed.userId && parsed.userId.startsWith('ou_') && parsed.authVersion === this.AUTH_CACHE_VERSION) {
           this._user = parsed;
           return this._user;
         }
@@ -141,7 +142,7 @@ const FeishuAuthHelper = {
             var uid = data.data.user_id || data.data.open_id || data.data.id || data.data.userId || '';
             var name = data.data.username || data.data.name || data.data.en_name || '';
             if (uid) {
-              this._user = { userId: uid, username: name };
+              this._user = { userId: uid, username: name, authVersion: this.AUTH_CACHE_VERSION };
               sessionStorage.setItem('feishu_user', JSON.stringify(this._user));
               return this._user;
             }
