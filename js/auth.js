@@ -1,5 +1,5 @@
 /**
- * Feishu Auth v12.0 - ByteDance internal-only access
+ * Feishu Auth v11.0 - ByteDance internal-only access
  * Browser access blocked, only Feishu embedded browser allowed.
  * In Feishu: wait for SDK, retry auth/login, then allow only AIPA-confirmed internal users.
  * Add ?auth_debug=1 on global.html to debug auth without running normal page auth.
@@ -16,14 +16,13 @@ document.addEventListener('DOMContentLoaded', function() {
     return;
   }
   var internalOnlyMode = true;
-  var authCacheVersion = 'avatar-permission-refresh-20260917';
 
   // Step 1: Check if already cached (real Feishu user only)
   try {
     var cached = sessionStorage.getItem('feishu_user');
     if (cached) {
       var parsed = JSON.parse(cached);
-      if (parsed.userId && parsed.userId.startsWith('ou_') && parsed.authVersion === authCacheVersion && (!internalOnlyMode || parsed.isInternal === true)) {
+      if (parsed.userId && parsed.userId.startsWith('ou_') && (!internalOnlyMode || parsed.isInternal === true)) {
         console.log('[FeishuAuth] Cached Feishu user, showing content');
         hideOverlay();
         return;
@@ -199,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
           }
           if (uid) {
-            var user = { userId: uid, username: name, isInternal: internalStatus === true, authVersion: authCacheVersion };
+            var user = { userId: uid, username: name, isInternal: internalStatus === true };
             sessionStorage.setItem('feishu_user', JSON.stringify(user));
             console.log('[FeishuAuth] Auth success:', uid);
             finishAuth();
