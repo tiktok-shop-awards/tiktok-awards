@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Departmental Awards - Global E-commerce Recognition Hub</title>
-  <link rel="stylesheet" href="css/main.css?v=feedback-public-v1">
+  <link rel="stylesheet" href="css/main.css?v=20260918-official-ui-v43">
   <style id="app-boot-guard-style">
     html.app-booting:not(.app-ready) body {
       visibility: hidden;
@@ -494,7 +494,7 @@
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
   <script src="js/award-api.js?v=20260914uv"></script>
   <script src="js/html2canvas.min.js"></script>
-  <script src="js/main.js?v=member-add-official-v3"></script>
+  <script src="js/main.js?v=20260918-official-ui-v43"></script>
   <script>
     // ===== Departmental Page State =====
     let departmentalData = null;
@@ -567,6 +567,7 @@
     document.addEventListener('DOMContentLoaded', async () => {
       highlightNavigation();
       initYearNavigation();
+      await loadFeishuAvatarMap();
 
       // Handle year change
       window.addEventListener('yearChanged', async () => {
@@ -871,18 +872,23 @@
         const email = award.email || '';
         const department = award.department || '';
         const reasonText = award.reason || '';
+        const summaryText = buildAwardSummary(reasonText, 'Recognized by the department for outstanding ownership, execution, and contribution.');
+        const detailMembers = memberCount
+          ? award.members.map(member => normalizeMember(member, getAwardMemberEmail(award, member, { allowAwardEmailFallback: true })))
+          : [normalizeMember({ name, email, department })];
 
         // Build a unique cardId consistent with regional/global format
         const cardId = `dept_${(department + '_' + name).replace(/\s+/g, '_')}_${award.award_type.replace(/\s+/g, '_')}`;
         const likeCount = getLikeCount(cardId);
+        registerAwardDetail(cardId, { title: name, reason: reasonText, members: detailMembers, awardType: detailMembers.length > 1 ? 'project' : 'individual' });
 
         // Escape single quotes for onclick handlers
         const safeName = name.replace(/'/g, "\\'");
 
         html += `
-          <div class="card individual-card" data-card-id="${cardId}">
+          <div class="card ${detailMembers.length > 1 ? 'project-card' : 'individual-card'} award-preview-card" data-card-id="${cardId}" onclick="showAwardDetailModal('${cardId}')">
             <div class="card-header">
-              <span class="card-icon">👤</span>
+              ${renderMemberAvatar(detailMembers[0], 'card-avatar')}
               <span class="card-title">${name}</span>
             </div>
             <div class="card-meta">${department}${email ? ' · ' + email : ''}${quarter ? ' · ' + quarter + ' 2026' : ''}${memberInfo ? ' · ' + memberInfo : ''}</div>
@@ -891,22 +897,22 @@
                 <span class="card-award-name">${icon} ${badgeLabel}</span>
               </div>
               <div class="card-amount">${bonus}</div>
-              <div class="card-reason-scroll">
-                ${reasonText}
-              </div>
+              <div class="card-summary">${escapeHtml(summaryText)}</div>
+              ${detailMembers.length > 1 ? `<div class="card-open-hint">Click card to view full reason and winners</div><div class="card-member-preview">${renderMemberAvatarStack(detailMembers)}</div>` : ''}
             </div>
             <div class="card-footer">
-              <div class="card-actions">
-                <button class="like-btn ${likeCount > 0 ? 'liked' : ''}" onclick="toggleLike('${cardId}', 'departmental', '${safeName}')">
+              <div class="card-actions" onclick="event.stopPropagation()">
+                <button class="like-btn ${likeCount > 0 ? 'liked' : ''}" onclick="event.stopPropagation(); toggleLike('${cardId}', 'departmental', '${safeName}')">
                   ❤️ <span class="like-count">${likeCount}</span>
                 </button>
-                <button class="comment-btn" onclick="showCommentsModal('${cardId}', '${safeName}', '${badgeLabel}')">
+                <button class="comment-btn" onclick="event.stopPropagation(); showCommentsModal('${cardId}', '${safeName}', '${badgeLabel}')">
                   💬 Comment
                 </button>
-                <button class="share-btn" data-award-type="${award.award_type === 'Departmental Award' ? 'project' : 'individual'}" data-project="${safeName}" data-award="${badgeLabel}" data-bonus="${award.bonus || ''}" data-reason="${reasonText.replace(/'/g, "\\'").replace(/"/g, '&quot;')}" data-members='${JSON.stringify([{name: name, email: email}]).replace(/'/g, "&#39;")}' onclick="showShareModalFromBtn(this)">
+                <button class="share-btn" data-award-type="${detailMembers.length > 1 ? 'project' : 'individual'}" data-project="${safeName}" data-award="${badgeLabel}" data-bonus="${award.bonus || ''}" data-reason="${reasonText.replace(/'/g, "\\'").replace(/"/g, '&quot;')}" data-members='${JSON.stringify(detailMembers).replace(/'/g, "&#39;")}' onclick="event.stopPropagation(); showShareModalFromBtn(this)">
                   📤 Share
                 </button>
               </div>
+              ${detailMembers.length > 1 ? '<span class="card-detail-hint">View details</span>' : ''}
             </div>
           </div>
         `;

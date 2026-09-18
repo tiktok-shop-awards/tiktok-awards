@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Regional Awards - Global E-commerce Recognition Hub</title>
-  <link rel="stylesheet" href="css/main.css?v=feedback-public-v1">
+  <link rel="stylesheet" href="css/main.css?v=20260918-official-ui-v43">
   <style id="app-boot-guard-style">
     html.app-booting:not(.app-ready) body {
       visibility: hidden;
@@ -698,7 +698,7 @@
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
   <script src="js/award-api.js?v=20260914uv"></script>
   <script src="js/html2canvas.min.js"></script>
-  <script src="js/main.js?v=member-add-official-v3"></script>
+  <script src="js/main.js?v=20260918-official-ui-v43"></script>
   <script>
     // Regional page specific initialization
     const regionNames = {
@@ -1256,6 +1256,7 @@
     
     document.addEventListener('DOMContentLoaded', async () => {
       console.log('DOMContentLoaded fired');
+      await loadFeishuAvatarMap();
       
       // Get year, region, and period from URL, then normalize them for deep links.
       const initialState = getInitialRegionalState();
@@ -1330,6 +1331,17 @@
         renderRegionNav(newYear, currentRegion);
         await loadRegionalData(currentRegion, newYear);
       });
+    });
+
+    // Refresh data and avatars after browser back/forward cache restoration.
+    window.addEventListener('pageshow', async (event) => {
+      if (!event.persisted) return;
+      const restoredState = getInitialRegionalState();
+      AppData.currentYear = restoredState.year;
+      currentRegion = restoredState.region;
+      currentAwardType = restoredState.period;
+      await loadFeishuAvatarMap({ force: true });
+      await loadRegionalData(currentRegion, restoredState.year);
     });
   </script>
 <script>
