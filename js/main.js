@@ -240,8 +240,28 @@ function getAwardMemberEmail(award, member, options = {}) {
   return '';
 }
 
+const FEISHU_AVATAR_MAP_VERSION = '20260918-avatar-v1';
+const FEISHU_AVATAR_MAP_STORAGE_KEY = `recognition-avatar-map:${FEISHU_AVATAR_MAP_VERSION}`;
+
 window.FEISHU_AVATAR_MAP = window.FEISHU_AVATAR_MAP || {};
 window.__feishuAvatarMapPromise = window.__feishuAvatarMapPromise || null;
+
+function ensureAvatarCdnPreconnect() {
+  [
+    'https://s16-imfile-sg.feishucdn.com',
+    'https://s1-imfile.feishucdn.com',
+    'https://s16-imfile-us.feishucdn.com'
+  ].forEach(origin => {
+    if (document.head.querySelector(`link[rel="preconnect"][href="${origin}"]`)) return;
+    const link = document.createElement('link');
+    link.rel = 'preconnect';
+    link.href = origin;
+    link.crossOrigin = 'anonymous';
+    document.head.appendChild(link);
+  });
+}
+
+ensureAvatarCdnPreconnect();
 
 function getFeishuAvatarUrl(email = '', name = '') {
   const avatarMap = window.FEISHU_AVATAR_MAP || {};
@@ -260,7 +280,20 @@ async function loadFeishuAvatarMap(options = {}) {
   if (window.__feishuAvatarMapPromise) return window.__feishuAvatarMapPromise;
 
   window.__feishuAvatarMapPromise = (async () => {
-    const res = await fetch('data/feishu-avatar-map.json?v=poster-avatar-v9', { cache: 'no-store' });
+    try {
+      const cachedMap = localStorage.getItem(FEISHU_AVATAR_MAP_STORAGE_KEY);
+      if (cachedMap) {
+        window.FEISHU_AVATAR_MAP = JSON.parse(cachedMap);
+        window.__feishuAvatarMapLoaded = true;
+        return window.FEISHU_AVATAR_MAP;
+      }
+    } catch (cacheError) {
+      console.warn('[Avatar] Local cache unavailable:', cacheError?.message || cacheError);
+    }
+
+    const res = await fetch(`data/feishu-avatar-map.json?v=${FEISHU_AVATAR_MAP_VERSION}`, {
+      cache: 'force-cache'
+    });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const map = await res.json();
     if (map && typeof map === 'object') {
@@ -268,6 +301,14 @@ async function loadFeishuAvatarMap(options = {}) {
         if (map[key]) acc[String(key).trim().toLowerCase()] = map[key];
         return acc;
       }, {});
+      try {
+        Object.keys(localStorage)
+          .filter(key => key.startsWith('recognition-avatar-map:') && key !== FEISHU_AVATAR_MAP_STORAGE_KEY)
+          .forEach(key => localStorage.removeItem(key));
+        localStorage.setItem(FEISHU_AVATAR_MAP_STORAGE_KEY, JSON.stringify(window.FEISHU_AVATAR_MAP));
+      } catch (cacheError) {
+        console.warn('[Avatar] Unable to persist local cache:', cacheError?.message || cacheError);
+      }
     }
     window.__feishuAvatarMapLoaded = true;
     return window.FEISHU_AVATAR_MAP || {};
@@ -289,13 +330,16 @@ function getAvatarInitials(name) {
   return (parts[0] || 'U').slice(0, 2).toUpperCase();
 }
 
-function renderMemberAvatar(member, sizeClass = '') {
+function renderMemberAvatar(member, sizeClass = '', options = {}) {
   const normalized = normalizeMember(member);
   const unionId = normalized.email ? UNION_ID_MAP[normalized.email.toLowerCase()] : null;
   const clickable = unionId ? ' member-avatar-clickable' : '';
   const onclickAttr = unionId ? ` onclick="event.stopPropagation(); openFeishuProfile('${unionId}')"` : '';
+  const priority = options.priority === true;
+  const loadingMode = priority ? 'eager' : 'lazy';
+  const fetchPriority = priority ? 'high' : 'low';
   const avatarImg = normalized.avatarUrl
-    ? `<img src="${escapeHtml(normalized.avatarUrl)}" alt="${escapeHtml(normalized.name)}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">`
+    ? `<img src="${escapeHtml(normalized.avatarUrl)}" alt="${escapeHtml(normalized.name)}" loading="${loadingMode}" fetchpriority="${fetchPriority}" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">`
     : '';
   const initialsStyle = normalized.avatarUrl ? ' style="display:none;"' : '';
   return `
@@ -1370,7 +1414,7 @@ function renderPodium(top3, containerId, title, highlightDatasets = []) {
     };
 
     const avatars = normalizedMembers.slice(0, 5).map(member =>
-      renderMemberAvatar(member, 'large')
+      renderMemberAvatar(member, 'large', { priority: true })
     ).join('');
     const extraAvatarCount = Math.max(0, memberCount - 5);
     const names = normalizedMembers.map(member =>
