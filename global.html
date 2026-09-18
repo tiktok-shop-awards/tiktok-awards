@@ -453,7 +453,7 @@
         </div>
         <nav class="top-nav">
           <a href="index.html?v=20260914mobiletabs2" class="nav-item">Home</a>
-          <a href="global.html?v=20260914mobiletabs2" class="nav-item active">Global</a>
+          <a href="global.html?v=20260918-official-ui-v44" class="nav-item active">Global</a>
           <a href="regional.html?v=20260914mobiletabs2" class="nav-item">Regional</a>
           <a href="departmental.html?v=20260914mobiletabs2" class="nav-item">Departmental</a>
           <a href="award-structure.html?v=20260914mobiletabs2" class="nav-item">Award Structure & Timeline</a>
@@ -573,7 +573,7 @@
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
   <script src="js/award-api.js?v=20260914uv"></script>
   <script src="js/html2canvas.min.js"></script>
-  <script src="js/main.js?v=20260918-official-ui-v43"></script>
+  <script src="js/main.js?v=20260918-official-ui-v44"></script>
   <script>
     // Global page specific initialization
     let currentHalf = getUrlParam('period') || 'H1';
@@ -733,6 +733,14 @@
           document.getElementById('global-awards').innerHTML = '<p style="color: var(--text-secondary);">Failed to load data. Please try again later.</p>';
         }
       });
+    });
+
+    // Feishu WebView may restore an old full-page snapshot from BFCache.
+    // Reload automatically on restoration so the latest card layout and scripts are used.
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) {
+        window.location.reload();
+      }
     });
 
     function setDebugReportText(report) {
