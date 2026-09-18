@@ -535,7 +535,7 @@
         </div>
         <nav class="top-nav">
           <a href="index.html?v=20260914mobiletabs2" class="nav-item">Home</a>
-          <a href="global.html?v=20260918-official-ui-v44" class="nav-item">Global</a>
+          <a href="global.html?v=20260918-home-fast-v47" class="nav-item">Global</a>
           <a href="regional.html?v=20260914mobiletabs2" class="nav-item active">Regional</a>
           <a href="departmental.html?v=20260914mobiletabs2" class="nav-item">Departmental</a>
           <a href="award-structure.html?v=20260914mobiletabs2" class="nav-item">Award Structure & Timeline</a>
@@ -698,7 +698,7 @@
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
   <script src="js/award-api.js?v=20260914uv"></script>
   <script src="js/html2canvas.min.js"></script>
-  <script src="js/main.js?v=20260918-avatar-fast-v45"></script>
+  <script src="js/main.js?v=20260918-home-fast-v47"></script>
   <script>
     // Regional page specific initialization
     const regionNames = {
@@ -1281,8 +1281,13 @@
       
       console.log('Data loaded, regionalData:', !!regionalData);
       
-      // Initialize search
-      await loadSearchData();
+      // Search data is non-critical. Load it only when the browser is idle.
+      const warmSearch = () => loadSearchData();
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(warmSearch, { timeout: 4000 });
+      } else {
+        setTimeout(warmSearch, 1500);
+      }
       
       // Search handlers - bind outside try-catch to ensure always available
       const searchInput = document.getElementById('search-input');
@@ -1297,14 +1302,11 @@
         if (!searchData) {
           searchResults.innerHTML = '<div class="no-results">Loading search data, please wait...</div>';
           searchResults.classList.add('active');
-          const checkInterval = setInterval(() => {
-            if (searchData) {
-              clearInterval(checkInterval);
-              performAndShowSearch(query);
-            }
-          }, 300);
-          setTimeout(() => clearInterval(checkInterval), 10000);
-          return;
+          await loadSearchData();
+          if (!searchData) {
+            searchResults.innerHTML = '<div class="no-results">Search data failed to load. Please try again later.</div>';
+            return;
+          }
         }
         const results = performSearch(query, 'regional');
         renderSearchResults(results, 'search-results');

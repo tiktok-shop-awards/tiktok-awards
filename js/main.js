@@ -577,17 +577,17 @@ function initDeptNavigation() {
 // ==================== Data Loading Functions ====================
 // Cache for manifest
 let _manifestCache = null;
-const CHUNK_VERSION = '20260918baselineemails-v1';
+const CHUNK_VERSION = '20260918-home-fast-v47';
 
 async function loadManifest() {
   if (_manifestCache) return _manifestCache;
-  const resp = await fetch('data/manifest.json?v=' + CHUNK_VERSION, { cache: 'no-store' });
+  const resp = await fetch('data/manifest.json?v=' + CHUNK_VERSION, { cache: 'force-cache' });
   if (!resp.ok) throw new Error('Failed to load manifest');
   _manifestCache = await resp.json();
   return _manifestCache;
 }
 
-async function loadChunkedFile(baseName) {
+async function loadChunkedFile(baseName, targetYear = null) {
   const manifest = await loadManifest();
   const fileMap = manifest[baseName];
   if (!fileMap) throw new Error('No manifest entry for ' + baseName);
@@ -597,12 +597,14 @@ async function loadChunkedFile(baseName) {
   if (hasYearStructure) {
     // Year-based: { '2026': { Q1: [files], Q2: [files] } }
     const result = {};
-    for (const year of Object.keys(fileMap)) {
+    const years = targetYear ? [String(targetYear)] : Object.keys(fileMap);
+    for (const year of years) {
+      if (!fileMap[year]) continue;
       result[year] = {};
       for (const period of Object.keys(fileMap[year])) {
         const files = fileMap[year][period];
         const chunks = await Promise.all(
-          files.map(f => fetch('data/' + f + '?v=' + CHUNK_VERSION, { cache: 'no-store' }).then(r => r.json()))
+          files.map(f => fetch('data/' + f + '?v=' + CHUNK_VERSION, { cache: 'force-cache' }).then(r => r.json()))
         );
         result[year][period] = chunks.flat();
       }
@@ -614,7 +616,7 @@ async function loadChunkedFile(baseName) {
     for (const period of Object.keys(fileMap)) {
       const files = fileMap[period];
       const chunks = await Promise.all(
-        files.map(f => fetch('data/' + f + '?v=' + CHUNK_VERSION, { cache: 'no-store' }).then(r => r.json()))
+        files.map(f => fetch('data/' + f + '?v=' + CHUNK_VERSION, { cache: 'force-cache' }).then(r => r.json()))
       );
       result[period] = chunks.flat();
     }
@@ -622,18 +624,19 @@ async function loadChunkedFile(baseName) {
   }
 }
 
-async function loadData(level, region = null, year = null) {
+async function loadData(level, region = null, year = null, options = {}) {
   try {
-    await loadFeishuAvatarMap();
+    if (!options.skipAvatarWait) await loadFeishuAvatarMap();
     let data;
+    const targetYear = year || AppData.currentYear || '2025';
 
     if (level === 'pop') {
-      const resp = await fetch('data/pop.json?v=' + CHUNK_VERSION, { cache: 'no-store' });
+      const resp = await fetch('data/pop.json?v=' + CHUNK_VERSION, { cache: 'force-cache' });
       if (!resp.ok) throw new Error('Failed to load pop.json');
       data = await resp.json();
     } else if (level === 'regional' && region && !['us','eu','sea'].includes(region)) {
       // latam and other small regions: load directly
-      const resp = await fetch('data/' + region + '.json?v=' + CHUNK_VERSION, { cache: 'no-store' });
+      const resp = await fetch('data/' + region + '.json?v=' + CHUNK_VERSION, { cache: 'force-cache' });
       if (!resp.ok) throw new Error('Failed to load ' + region + '.json');
       data = await resp.json();
     } else {
@@ -645,10 +648,9 @@ async function loadData(level, region = null, year = null) {
       else if (level === 'departmental') baseName = 'departmental';
       else throw new Error('Unknown level: ' + level);
 
-      data = await loadChunkedFile(baseName);
+      data = await loadChunkedFile(baseName, targetYear);
     }
 
-    const targetYear = year || AppData.currentYear || '2025';
     const hasYearStructure = data['2025'] || data['2026'];
 
     if (level === 'fs') {
@@ -722,7 +724,7 @@ async function loadData(level, region = null, year = null) {
 
 async function loadRankings(year = null) {
   try {
-    const response = await fetch('data/rankings.json?v=20260714z');
+    const response = await fetch('data/rankings.json?v=' + CHUNK_VERSION, { cache: 'force-cache' });
     if (!response.ok) throw new Error('Failed to load rankings');
     
     const data = await response.json();
@@ -2945,6 +2947,7 @@ document.addEventListener('keydown', (e) => {
 // ==================== Search Functions ====================
 let searchData = null;
 let nameMap = null;
+let searchDataLoadPromise = null;
 
 // Unwrap year-based data structure: if data has year keys (e.g. {2025: {...}, 2026: {...}}), extract the target year; otherwise return as-is
 function unwrapYearData(data, year) {
@@ -2979,6 +2982,9 @@ function mergeAllYears(data) {
 
 // Load all search data from JSON files (renamed from initSearch to avoid override by page scripts)
 async function loadSearchData() {
+  if (searchData) return searchData;
+  if (searchDataLoadPromise) return searchDataLoadPromise;
+  searchDataLoadPromise = (async () => {
   try {
     const [global, us, eu, sea, latam, rankings, departmental, fs, pop, nameMapData] = await Promise.all([
       loadChunkedFile('global').catch(() => null),
@@ -3008,9 +3014,14 @@ async function loadSearchData() {
       pop: mergeAllYears(pop)
     };
     console.log("[Search] Data loaded successfully - global:", !!searchData.global, "H1 count:", searchData.global?.['H1 Project Awards']?.length, "H2 count:", searchData.global?.['H2 Project Awards']?.length);
+    return searchData;
   } catch (error) {
     console.error('Error loading search data:', error);
+    searchDataLoadPromise = null;
+    return null;
   }
+  })();
+  return searchDataLoadPromise;
 }
 
 

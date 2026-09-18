@@ -751,7 +751,7 @@
         </div>
         <nav class="top-nav">
           <a href="index.html?v=20260914mobiletabs2" class="nav-item active">Home</a>
-          <a href="global.html?v=20260918-official-ui-v44" class="nav-item">Global</a>
+          <a href="global.html?v=20260918-home-fast-v47" class="nav-item">Global</a>
           <a href="regional.html?v=20260914mobiletabs2" class="nav-item">Regional</a>
           <a href="departmental.html?v=20260914mobiletabs2" class="nav-item">Departmental</a>
           <a href="award-structure.html?v=20260914mobiletabs2" class="nav-item">Award Structure & Timeline</a>
@@ -908,7 +908,7 @@
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
   <script src="js/award-api.js?v=20260914uv"></script>
   <script src="js/html2canvas.min.js"></script>
-  <script src="js/main.js?v=20260918-avatar-fast-v45"></script>
+  <script src="js/main.js?v=20260918-home-fast-v47"></script>
   <script>
     // Render Home Stats - Now includes Q1/Q2/Q3/Q4 data for FS/POP and all regional data
     // IMPORTANT: Project awards are counted by unique project, not by member records
@@ -1188,44 +1188,95 @@
     
     // Home page specific initialization
     document.addEventListener('DOMContentLoaded', async () => {
-      await loadFeishuAvatarMap();
-
       // Initialize navigation immediately
       highlightNavigation();
       initYearNavigation();
+
+      // Bind before any network request so an early year click cannot be lost.
+      window.addEventListener('yearChanged', async (e) => {
+        await loadHomePageData(e.detail.year);
+      });
       
       // Load initial data based on URL year parameter
-      await loadHomePageData();
+      await loadHomePageData(AppData.currentYear);
       
-      // Initialize search
-      await loadSearchData();
+      // Search data is non-critical. Load it only when the browser is idle.
       initSearchListeners();
+      const warmSearch = () => loadSearchData();
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(warmSearch, { timeout: 4000 });
+      } else {
+        setTimeout(warmSearch, 1500);
+      }
       
-      // Handle year change without page reload
-      window.addEventListener('yearChanged', async (e) => {
-        await loadHomePageData();
-      });
     });
     
     // 加载HomePage数据的函数
-    async function loadHomePageData() {
+    let homeLoadRequestId = 0;
+    let homeAvatarMapPromise = null;
+    function loadHomeAvatarMap() {
+      if (homeAvatarMapPromise) return homeAvatarMapPromise;
+      homeAvatarMapPromise = fetch('data/home-avatar-map.json?v=20260918-home-fast-v47', { cache: 'force-cache' })
+        .then(response => {
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          return response.json();
+        })
+        .then(map => {
+          window.FEISHU_AVATAR_MAP = { ...(window.FEISHU_AVATAR_MAP || {}), ...map };
+          return map;
+        })
+        .catch(error => {
+          console.warn('[Avatar] Home avatar map unavailable:', error?.message || error);
+          return {};
+        });
+      return homeAvatarMapPromise;
+    }
+
+    async function loadHomePageData(requestedYear) {
+      const requestId = ++homeLoadRequestId;
       try {
-        // Get year from URL or default to 2025
-        const urlYear = getUrlParam('year') || '2026';
+        const urlYear = String(requestedYear || getUrlParam('year') || AppData.currentYear || '2026');
         AppData.currentYear = urlYear;
-        
-        // Load all data for stats (Q1 + Q2 + Q3 + Q4 + FS + POP)
-        const [rankingsData, global, us, eu, sea, latam, fs, pop, departmental] = await Promise.all([
-          loadRankings(urlYear),
-          loadData('global', null, urlYear),
-          loadData('regional', 'us', urlYear),
-          loadData('regional', 'eu', urlYear),
-          loadData('regional', 'sea', urlYear),
-          loadData('regional', 'latam', urlYear),
-          loadData('fs'),
-          loadData('pop'),
-          loadData('departmental', null, urlYear)
+        const avatarPromise = loadHomeAvatarMap();
+        const rankingsPromise = loadRankings(urlYear);
+
+        // Render the ranking immediately from the small precomputed file.
+        const [rankingsData] = await Promise.all([rankingsPromise, avatarPromise]);
+        if (requestId !== homeLoadRequestId || AppData.currentYear !== urlYear) return;
+        const instantRanking = urlYear === '2026' && rankingsData?.scoreTiers?.length
+          ? rankingsData.scoreTiers
+          : (rankingsData?.top10 || rankingsData?.top3 || []).map(r => ({
+              name: r.name,
+              score: r.points,
+              points: r.points,
+              rank: r.rank,
+              email: r.email || '',
+              department: r.department || 'TikTok Shop',
+              region: r.region || null
+            }));
+        renderPodium(instantRanking, 'top3-podium', 'Global Top 3 Score Tiers');
+
+        // Warm the full avatar map after first paint for other pages and search.
+        const warmFullAvatarMap = () => loadFeishuAvatarMap();
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(warmFullAvatarMap, { timeout: 5000 });
+        } else {
+          setTimeout(warmFullAvatarMap, 2000);
+        }
+
+        // Load the larger award datasets in parallel for stats and score verification.
+        const statsDataPromise = Promise.all([
+          loadData('global', null, urlYear, { skipAvatarWait: true }),
+          loadData('regional', 'us', urlYear, { skipAvatarWait: true }),
+          loadData('regional', 'eu', urlYear, { skipAvatarWait: true }),
+          loadData('regional', 'sea', urlYear, { skipAvatarWait: true }),
+          loadData('regional', 'latam', urlYear, { skipAvatarWait: true }),
+          loadData('fs', null, urlYear, { skipAvatarWait: true }),
+          loadData('pop', null, urlYear, { skipAvatarWait: true }),
+          loadData('departmental', null, urlYear, { skipAvatarWait: true })
         ]);
+        const [global, us, eu, sea, latam, fs, pop, departmental] = await statsDataPromise;
+        if (requestId !== homeLoadRequestId || AppData.currentYear !== urlYear) return;
         const fsForStats = normalizeFsDataForHomeStats(fs, urlYear);
         
         // Build member to department mapping from all data
@@ -1255,9 +1306,7 @@
         const calculatedTiers = urlYear === '2026'
           ? calculateAllAwardScoreTiers(global, [us, eu, sea, latam, fsForStats], departmental)
           : [];
-        const rankingSource = rankingsData && (rankingsData.top10 || rankingsData.top3)
-          ? (rankingsData.top10 || rankingsData.top3)
-          : [];
+        const rankingSource = rankingsData && (rankingsData.top10 || rankingsData.top3) ? (rankingsData.top10 || rankingsData.top3) : [];
         const fallbackRanking = rankingSource.map(r => ({
             name: r.name,
             score: r.points,
@@ -1270,8 +1319,8 @@
         const podiumData = calculatedTiers.length ? calculatedTiers : fallbackRanking;
         if (podiumData.length > 0) {
           renderPodium(podiumData, 'top3-podium', 'Global Top 3 Score Tiers');
-          
-
+        } else {
+          document.getElementById('top3-podium').innerHTML = '<div class="no-data-msg">No rankings available for this year.</div>';
         }
         
         // Calculate and render stats
@@ -1337,10 +1386,7 @@
         if (!searchData) {
           searchResults.innerHTML = '<div class="no-results">Loading search data, please wait...</div>';
           searchResults.classList.add('active');
-          for (let i = 0; i < 33; i++) {
-            await new Promise(r => setTimeout(r, 300));
-            if (searchData) break;
-          }
+          await loadSearchData();
           if (!searchData) {
             searchResults.innerHTML = '<div class="no-results">Search data failed to load. Please try again later.</div>';
             return;

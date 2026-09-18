@@ -453,7 +453,7 @@
         </div>
         <nav class="top-nav">
           <a href="index.html?v=20260914mobiletabs2" class="nav-item">Home</a>
-          <a href="global.html?v=20260918-official-ui-v44" class="nav-item active">Global</a>
+          <a href="global.html?v=20260918-home-fast-v47" class="nav-item active">Global</a>
           <a href="regional.html?v=20260914mobiletabs2" class="nav-item">Regional</a>
           <a href="departmental.html?v=20260914mobiletabs2" class="nav-item">Departmental</a>
           <a href="award-structure.html?v=20260914mobiletabs2" class="nav-item">Award Structure & Timeline</a>
@@ -573,11 +573,12 @@
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
   <script src="js/award-api.js?v=20260914uv"></script>
   <script src="js/html2canvas.min.js"></script>
-  <script src="js/main.js?v=20260918-avatar-fast-v45"></script>
+  <script src="js/main.js?v=20260918-home-fast-v47"></script>
   <script>
     // Global page specific initialization
     let currentHalf = getUrlParam('period') || 'H1';
     let globalData = null;
+    let globalLoadRequestId = 0;
     const isAuthDebugMode = new URLSearchParams(window.location.search).get('auth_debug') === '1';
     
     // Period toggle handler
@@ -614,7 +615,7 @@
         runGlobalAuthDebug();
         return;
       }
-      await loadFeishuAvatarMap();
+      const avatarPromise = loadFeishuAvatarMap();
       // Search handlers - always bind regardless of data loading errors (Bug 4 fix)
       const searchInput = document.getElementById('search-input');
       const searchBtn = document.getElementById('search-btn');
@@ -632,11 +633,7 @@
         if (!searchData) {
           searchResults.innerHTML = '<div class="no-results">Loading search data, please wait...</div>';
           searchResults.classList.add('active');
-          // Wait for search data to be loaded (retry every 300ms, up to 10s)
-          for (let i = 0; i < 33; i++) {
-            await new Promise(r => setTimeout(r, 300));
-            if (searchData) break;
-          }
+          await loadSearchData();
           if (!searchData) {
             searchResults.innerHTML = '<div class="no-results">Search data failed to load. Please try again later.</div>';
             return;
@@ -688,8 +685,35 @@
         highlightNavigation();
         initYearNavigation();
         initPeriodToggle();
+
+        // Bind before the first data request so early year clicks are never lost.
+        window.addEventListener('yearChanged', async (e) => {
+          const newYear = e.detail.year;
+          const requestId = ++globalLoadRequestId;
+          try {
+            const loadedGlobalData = await loadData('global', null, newYear);
+            if (requestId !== globalLoadRequestId || AppData.currentYear !== newYear) return;
+            globalData = loadedGlobalData;
+            if (globalData) {
+              renderGlobalAwards(globalData, 'global-awards', currentHalf);
+              loadAllCardInteractions();
+            } else {
+              document.getElementById('global-awards').innerHTML = '<div class="no-data-msg">No global awards available for ' + newYear + '.</div>';
+            }
+          } catch (err) {
+            console.error('Error reloading global data on year change:', err);
+            document.getElementById('global-awards').innerHTML = '<p style="color: var(--text-secondary);">Failed to load data. Please try again later.</p>';
+          }
+        });
         
-        globalData = await loadData('global');
+        const initialRequestId = ++globalLoadRequestId;
+        const requestedYear = AppData.currentYear;
+        const [loadedGlobalData] = await Promise.all([
+          loadData('global', null, requestedYear, { skipAvatarWait: true }),
+          avatarPromise
+        ]);
+        if (initialRequestId !== globalLoadRequestId || AppData.currentYear !== requestedYear) return;
+        globalData = loadedGlobalData;
         
         console.log('=== GLOBAL PAGE DEBUG ===');
         console.log('globalData loaded:', !!globalData);
@@ -708,31 +732,18 @@
           loadAllCardInteractions();
         }
         
-        await loadSearchData();
+        const warmSearch = () => loadSearchData();
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(warmSearch, { timeout: 4000 });
+        } else {
+          setTimeout(warmSearch, 1500);
+        }
 
       } catch (error) {
         console.error('Error loading global page:', error);
         document.getElementById('global-awards').innerHTML = '<p style="color: var(--text-secondary);">Failed to load data.</p><p style="color: #ff6b6b; font-size: 12px; word-break: break-all;">Error: ' + (error.message || error) + '</p><p style="color: #999; font-size: 11px;">Stack: ' + (error.stack || '').substring(0, 300) + '</p>';
       }
       
-      // Handle year change without page reload
-      window.addEventListener('yearChanged', async (e) => {
-        const newYear = e.detail.year;
-        try {
-          globalData = await loadData('global', null, newYear);
-          if (globalData) {
-            // Re-render awards with current half
-            renderGlobalAwards(globalData, 'global-awards', currentHalf);
-            // Reload interactions for new cards
-            loadAllCardInteractions();
-          } else {
-            document.getElementById('global-awards').innerHTML = '<div class="no-data-msg">No global awards available for ' + newYear + '.</div>';
-          }
-        } catch (err) {
-          console.error('Error reloading global data on year change:', err);
-          document.getElementById('global-awards').innerHTML = '<p style="color: var(--text-secondary);">Failed to load data. Please try again later.</p>';
-        }
-      });
     });
 
     // Feishu WebView may restore an old full-page snapshot from BFCache.
