@@ -5775,7 +5775,7 @@ img {
   }
 }
 
-/* ==================== Formal Mobile Layout Restore v51 ==================== */
+/* ==================== Formal Mobile Layout Restore v52 ==================== */
 @media (max-width: 768px) {
   html,
   body {
@@ -6124,6 +6124,18 @@ img {
     gap: 12px !important;
     padding-top: 8px !important;
     align-items: stretch !important;
+  }
+
+  .top-winners-podium .top-winner-card.podium-tier-card.first {
+    order: 1 !important;
+  }
+
+  .top-winners-podium .top-winner-card.podium-tier-card.second {
+    order: 2 !important;
+  }
+
+  .top-winners-podium .top-winner-card.podium-tier-card.third {
+    order: 3 !important;
   }
 
   .top-winner-card.podium-tier-card,
