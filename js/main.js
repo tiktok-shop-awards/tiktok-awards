@@ -1600,6 +1600,15 @@ function getLikeCount(cardId) {
   return 0;
 }
 
+function getIsLikedByCurrentUser(cardId) {
+  if (_useApiMode === true) {
+    return false;
+  }
+  const storageKey = `like_${cardId}`;
+  const likes = _lsGetLikes();
+  return !!likes[storageKey];
+}
+
 // ==================== Comment Functions ====================
 function showCommentsModal(cardId, awardName, awardType) {
   const modal = document.getElementById('comments-modal');
@@ -2325,7 +2334,7 @@ function renderGlobalAwards(data, containerId, half) {
         </div>
         <div class="card-footer">
           <div class="card-actions" onclick="event.stopPropagation()">
-            <button class="like-btn ${likeCount > 0 ? 'liked' : ''}" onclick="event.stopPropagation(); toggleLike('${cardId}', 'global_project', '${project.project_name.replace(/'/g, "\\'")}')">
+            <button class="like-btn ${getIsLikedByCurrentUser(cardId) ? 'liked' : ''}" onclick="event.stopPropagation(); toggleLike('${cardId}', 'global_project', '${project.project_name.replace(/'/g, "\\'")}')">
               ❤️ <span class="like-count">${likeCount}</span>
             </button>
             <button class="comment-btn" onclick="event.stopPropagation(); showCommentsModal('${cardId}', '${project.project_name.replace(/'/g, "\\'")}', 'Global Project Award')">
@@ -2509,7 +2518,7 @@ function renderProjectCards(awards, region, half) {
         </div>
         <div class="card-footer">
           <div class="card-actions" onclick="event.stopPropagation()">
-            <button class="like-btn ${likeCount > 0 ? 'liked' : ''}" onclick="event.stopPropagation(); toggleLike('${cardId}', 'regional_project', '${project.project_name.replace(/'/g, "\\'")}')">
+            <button class="like-btn ${getIsLikedByCurrentUser(cardId) ? 'liked' : ''}" onclick="event.stopPropagation(); toggleLike('${cardId}', 'regional_project', '${project.project_name.replace(/'/g, "\\'")}')">
               ❤️ <span class="like-count">${likeCount}</span>
             </button>
             <button class="comment-btn" onclick="event.stopPropagation(); showCommentsModal('${cardId}', '${project.project_name.replace(/'/g, "\\'")}', 'Regional Project Award')">
@@ -2604,7 +2613,7 @@ function renderIndividualCards(awards, region, half) {
           </div>
           <div class="card-footer">
             <div class="card-actions" onclick="event.stopPropagation()">
-              <button class="like-btn ${likeCount > 0 ? 'liked' : ''}" onclick="event.stopPropagation(); toggleLike('${cardId}', 'individual', '${memberNameStr.replace(/'/g, "\\'")}')">
+              <button class="like-btn ${getIsLikedByCurrentUser(cardId) ? 'liked' : ''}" onclick="event.stopPropagation(); toggleLike('${cardId}', 'individual', '${memberNameStr.replace(/'/g, "\\'")}')">
                 ❤️ <span class="like-count">${likeCount}</span>
               </button>
               <button class="comment-btn" onclick="event.stopPropagation(); showCommentsModal('${cardId}', '${memberNameStr.replace(/'/g, "\\'")}', 'Individual Award')">

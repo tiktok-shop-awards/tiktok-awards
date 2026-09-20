@@ -3692,9 +3692,9 @@ img {
 
 .award-preview-card .like-btn {
   border-radius: 999px !important;
-  border-color: rgba(246, 33, 74, 0.65) !important;
-  background: rgba(246, 33, 74, 0.08) !important;
-  color: #ff4168 !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  background: rgba(255, 255, 255, 0.025) !important;
+  color: rgba(255, 255, 255, 0.58) !important;
 }
 
 .award-preview-card .comment-btn,
@@ -3716,10 +3716,16 @@ img {
   color: #fff !important;
 }
 
-.award-preview-card .like-btn:hover,
 .award-preview-card .like-btn.liked {
   border-color: rgba(246, 33, 74, 0.90) !important;
   background: rgba(246, 33, 74, 0.14) !important;
+  color: #ff4168 !important;
+}
+
+.award-preview-card .like-btn:hover {
+  border-color: rgba(246, 33, 74, 0.60) !important;
+  background: rgba(246, 33, 74, 0.08) !important;
+  color: #ff8ba3 !important;
 }
 
 .award-preview-card .card-content::after {
@@ -3816,6 +3822,10 @@ img {
 
 .award-preview-card .like-btn {
   border-radius: 999px !important;
+  color: rgba(255, 255, 255, 0.58) !important;
+}
+
+.award-preview-card .like-btn.liked {
   color: #ff4168 !important;
 }
 
