@@ -270,6 +270,25 @@ function getFeishuAvatarUrl(email = '', name = '') {
   return avatarMap[emailKey] || avatarMap[nameKey] || '';
 }
 
+function getOptimizedAvatarUrl(avatarUrl = '', size = 96) {
+  const rawUrl = String(avatarUrl || '').trim();
+  if (!rawUrl || !/\.feishucdn\.com\//i.test(rawUrl)) return rawUrl;
+
+  try {
+    const optimizedUrl = new URL(rawUrl, window.location.href);
+    const normalizedSize = Math.max(48, Math.min(480, Number(size) || 96));
+    optimizedUrl.searchParams.set('image_size', `${normalizedSize}x${normalizedSize}`);
+    optimizedUrl.searchParams.set('format', 'webp');
+    return optimizedUrl.toString();
+  } catch (err) {
+    return rawUrl;
+  }
+}
+
+function getAvatarImageErrorHandler(fallbackDisplay = 'inline') {
+  return `if(this.dataset.fallback){var fallback=this.dataset.fallback;this.dataset.fallback='';this.src=fallback;}else{this.style.display='none';this.nextElementSibling.style.display='${fallbackDisplay}';}`;
+}
+
 async function loadFeishuAvatarMap(options = {}) {
   const force = Boolean(options.force);
   if (force) {
@@ -338,8 +357,9 @@ function renderMemberAvatar(member, sizeClass = '', options = {}) {
   const priority = options.priority === true;
   const loadingMode = priority ? 'eager' : 'lazy';
   const fetchPriority = priority ? 'high' : 'low';
+  const optimizedAvatarUrl = getOptimizedAvatarUrl(normalized.avatarUrl, sizeClass === 'compact' ? 72 : 96);
   const avatarImg = normalized.avatarUrl
-    ? `<img src="${escapeHtml(normalized.avatarUrl)}" alt="${escapeHtml(normalized.name)}" loading="${loadingMode}" fetchpriority="${fetchPriority}" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">`
+    ? `<img src="${escapeHtml(optimizedAvatarUrl)}" data-fallback="${escapeHtml(normalized.avatarUrl)}" alt="${escapeHtml(normalized.name)}" loading="${loadingMode}" fetchpriority="${fetchPriority}" decoding="async" onerror="${getAvatarImageErrorHandler()}">`
     : '';
   const initialsStyle = normalized.avatarUrl ? ' style="display:none;"' : '';
   return `
@@ -1903,8 +1923,9 @@ function showShareModal(projectName, teamAward, bonus, reason, members, awardTyp
 
   const posterAvatar = (member, className = '') => {
     const normalized = normalizeMember(member);
+    const optimizedAvatarUrl = getOptimizedAvatarUrl(normalized.avatarUrl, className === 'hero' ? 320 : 192);
     const avatar = normalized.avatarUrl
-      ? `<img src="${escapeHtml(normalized.avatarUrl)}" alt="${escapeHtml(normalized.name)}" crossorigin="anonymous" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">`
+      ? `<img src="${escapeHtml(optimizedAvatarUrl)}" data-fallback="${escapeHtml(normalized.avatarUrl)}" alt="${escapeHtml(normalized.name)}" crossorigin="anonymous" decoding="async" onerror="${getAvatarImageErrorHandler('grid')}">`
       : '';
     const initialsStyle = normalized.avatarUrl ? ' style="display:none;"' : '';
     return `
