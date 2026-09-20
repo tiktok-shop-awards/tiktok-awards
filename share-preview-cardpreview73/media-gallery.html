@@ -1,0 +1,1325 @@
+<!-- v20260601a -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Gallery - Global E-commerce Recognition Hub</title>
+    <link rel="stylesheet" href="css/main.css?v=cardpreview73">
+  <style id="app-boot-guard-style">
+    html.app-booting:not(.app-ready) body {
+      visibility: hidden;
+      background: #000;
+    }
+    html.app-booting:not(.app-ready)::before {
+      content: 'Loading Recognition Hub...';
+      position: fixed;
+      inset: 0;
+      z-index: 2147483647;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle at 50% 38%, rgba(46, 208, 214, 0.14), transparent 32%),
+        linear-gradient(135deg, #000 0%, #080d12 54%, #000 100%);
+      color: rgba(255, 255, 255, 0.72);
+      font: 700 13px/1.4 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+  </style>
+  <script id="app-boot-guard-script">
+    (function () {
+      var root = document.documentElement;
+      root.classList.add('app-booting');
+      var revealed = false;
+      function reveal() {
+        if (revealed) return;
+        revealed = true;
+        root.classList.add('app-ready');
+      }
+      window.addEventListener('load', reveal, { once: true });
+      window.addEventListener('pageshow', reveal, { once: true });
+      setTimeout(reveal, 2500);
+    })();
+  </script>
+
+  <style>
+    /* Page Title */
+    .page-title {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: var(--spacing-xl);
+      color: var(--accent-color);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+    
+    .page-title-icon {
+      font-size: 28px;
+      -webkit-text-fill-color: initial;
+    }
+    
+    /* Video Section */
+    .video-section {
+      margin-bottom: var(--spacing-xxl);
+    }
+    
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      color: var(--text-primary);
+    }
+    
+    .section-title .icon {
+      font-size: 18px;
+    }
+    
+    .section-description {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    /* Upload Section */
+    .upload-section {
+      background: var(--bg-card);
+      border: 2px dashed var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      margin-bottom: var(--spacing-xxl);
+      transition: all 0.3s ease;
+    }
+    
+    .upload-section:hover {
+      border-color: var(--primary-color);
+    }
+    
+    .upload-section.drag-over {
+      border-color: var(--primary-color);
+      background: rgba(255, 45, 85, 0.1);
+    }
+    
+    .upload-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: var(--spacing-md);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      color: var(--text-primary);
+    }
+    
+    .upload-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .upload-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: white;
+    }
+    
+    .upload-area {
+      text-align: center;
+      padding: var(--spacing-xl);
+      cursor: pointer;
+    }
+    
+    .upload-text {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .upload-text strong {
+      color: var(--primary-color);
+    }
+    
+    .upload-hint {
+      font-size: 13px;
+      color: var(--text-secondary);
+      opacity: 0.7;
+    }
+    
+    .upload-formats {
+      display: flex;
+      gap: var(--spacing-sm);
+      justify-content: center;
+      margin-top: var(--spacing-md);
+    }
+    
+    .format-badge {
+      background: rgba(255, 45, 85, 0.15);
+      color: var(--primary-color);
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    
+    .upload-input {
+      display: none;
+    }
+    
+    /* Upload Preview */
+    .upload-preview {
+      margin-top: var(--spacing-lg);
+      padding: var(--spacing-md);
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: var(--radius-md);
+      display: none;
+    }
+    
+    .upload-preview.active {
+      display: block;
+    }
+    
+    .preview-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .preview-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: var(--bg-card-hover);
+      border-radius: var(--radius-sm);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .preview-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .preview-file-info {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+    
+    .preview-file-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--primary-color);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+    
+    .preview-file-name {
+      font-size: 14px;
+      color: var(--text-primary);
+    }
+    
+    .preview-file-size {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    
+    .preview-actions {
+      display: flex;
+      gap: var(--spacing-sm);
+    }
+    
+    .btn {
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+    }
+    
+    .btn-primary {
+      background: var(--primary-color);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: #e02548;
+    }
+    
+    .btn-secondary {
+      background: var(--border-color);
+      color: var(--text-primary);
+    }
+    
+    .btn-secondary:hover {
+      background: #4a4a4c;
+    }
+    
+    /* Upload Guide */
+    .upload-guide {
+      margin-top: var(--spacing-lg);
+      padding: var(--spacing-lg);
+      background: rgba(255, 214, 10, 0.1);
+      border: 1px solid rgba(255, 214, 10, 0.3);
+      border-radius: var(--radius-md);
+    }
+    
+    .guide-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent-color);
+      margin-bottom: var(--spacing-md);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+    
+    .guide-steps {
+      list-style: none;
+      counter-reset: step;
+    }
+    
+    .guide-steps li {
+      counter-increment: step;
+      padding-left: 36px;
+      position: relative;
+      margin-bottom: var(--spacing-sm);
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    
+    .guide-steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 24px;
+      height: 24px;
+      background: var(--accent-color);
+      color: var(--bg-dark);
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .guide-steps li code {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 13px;
+    }
+    
+    /* Video Grid */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: var(--spacing-lg);
+    }
+    
+    /* Video Grid - 3 equal columns */
+    .video-grid-3col {
+      display: flex;
+      gap: var(--spacing-lg);
+    }
+    .video-grid-3col > * {
+      flex: 1;
+      min-width: 0;
+    }
+    
+    /* Video Card */
+    .video-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .video-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary-color);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+    
+    .video-card.local-video {
+      border-color: rgba(48, 209, 88, 0.3);
+    }
+    
+    .video-card.local-video:hover {
+      border-color: var(--success-color);
+    }
+    
+    .video-thumbnail {
+      position: relative;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.2));
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    
+    .video-thumbnail::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.4) 100%);
+    }
+    
+    .video-thumbnail.local {
+      background: linear-gradient(135deg, rgba(48, 209, 88, 0.2), rgba(48, 209, 88, 0.1));
+    }
+    
+    .play-icon {
+      width: 64px;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      transition: all 0.3s ease;
+    }
+    
+    .video-card:hover .play-icon {
+      transform: scale(1.1);
+      background: var(--primary-color);
+    }
+    
+    .video-card.local-video:hover .play-icon {
+      background: var(--success-color);
+    }
+    
+    .video-card:hover .play-icon svg {
+      fill: white;
+    }
+    
+    .play-icon svg {
+      width: 28px;
+      height: 28px;
+      fill: var(--primary-color);
+      margin-left: 4px;
+    }
+    
+    .video-info {
+      padding: var(--spacing-md);
+    }
+    
+    .video-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-xs);
+    }
+    
+    .video-description {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .video-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+      align-items: center;
+    }
+    
+    .video-badge {
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    
+    .video-badge.local {
+      background: linear-gradient(135deg, var(--success-color), #28a745);
+    }
+    
+    .video-duration {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    
+    /* Featured Award Video */
+    .award-video-card {
+    }
+    
+    .award-video-card .video-thumbnail {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 107, 138, 0.2));
+    }
+    
+    /* External Link Hint */
+    .external-link-hint {
+      font-size: 11px;
+      color: var(--text-secondary);
+      opacity: 0.7;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: var(--spacing-xs);
+    }
+    
+    .external-link-hint svg {
+      width: 12px;
+      height: 12px;
+    }
+    
+    /* Video Modal */
+    .video-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-xl);
+    }
+    
+    .video-modal.active {
+      display: flex;
+    }
+    
+    .modal-content {
+      width: 100%;
+      max-width: 1000px;
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--spacing-md) var(--spacing-lg);
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .modal-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    
+    .modal-close {
+      width: 36px;
+      height: 36px;
+      background: var(--bg-card-hover);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+      color: var(--text-primary);
+      font-size: 20px;
+    }
+    
+    .modal-close:hover {
+      background: var(--primary-color);
+    }
+    
+    .modal-video-container {
+      position: relative;
+      width: 100%;
+      background: #000;
+    }
+    
+    .modal-video-container video {
+      width: 100%;
+      display: block;
+      max-height: 70vh;
+    }
+    
+    .modal-external-link {
+      padding: var(--spacing-lg);
+      text-align: center;
+    }
+    
+    .modal-external-link a {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-md) var(--spacing-xl);
+      background: var(--primary-color);
+      color: white;
+      border-radius: var(--radius-md);
+      font-size: 15px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    
+    .modal-external-link a:hover {
+      background: #e02548;
+      transform: translateY(-2px);
+    }
+    
+    .modal-external-link p {
+      margin-top: var(--spacing-md);
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    
+    /* Filter Tabs */
+    .filter-tabs {
+      display: flex;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-lg);
+      flex-wrap: wrap;
+    }
+    
+    .filter-tab {
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .filter-tab:hover {
+      border-color: var(--primary-color);
+      color: var(--text-primary);
+    }
+    
+    .filter-tab.active {
+      background: var(--primary-color);
+      border-color: var(--primary-color);
+      color: white;
+    }
+    
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: var(--spacing-xxl);
+      color: var(--text-secondary);
+    }
+    
+    .empty-state-icon {
+      font-size: 48px;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    /* Upload Stats */
+    .upload-stats {
+      display: flex;
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-lg);
+      padding-top: var(--spacing-lg);
+      border-top: 1px solid var(--border-color);
+    }
+    
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+    
+    .stat-icon {
+      width: 32px;
+      height: 32px;
+      background: rgba(255, 45, 85, 0.15);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+    
+    .stat-value {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .upload-stats {
+        flex-wrap: wrap;
+      }
+      
+      .modal-content {
+        margin: var(--spacing-md);
+      }
+      
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-md);
+      }
+    }
+    
+    /* ==================== Feishu Auth Styles ==================== */
+    .auth-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--bg-dark);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: var(--spacing-lg);
+    }
+    
+    .auth-container {
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .auth-icon { margin-bottom: var(--spacing-xl); }
+    .auth-icon svg { margin: 0 auto; }
+    
+    .auth-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: var(--spacing-md);
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .auth-description {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-xl);
+      line-height: 1.6;
+    }
+    
+    .auth-instructions {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      margin-bottom: var(--spacing-xl);
+      text-align: left;
+    }
+    
+    .auth-instructions h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: var(--spacing-md);
+      color: var(--text-primary);
+    }
+    
+    .auth-instructions ol { list-style: none; counter-reset: step; }
+    
+    .auth-instructions li {
+      counter-increment: step;
+      position: relative;
+      padding-left: 40px;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .auth-instructions li:last-child { margin-bottom: 0; }
+    
+    .auth-instructions li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 28px;
+      height: 28px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+    }
+    
+    .auth-instructions strong {
+      display: block;
+      font-size: 14px;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    
+    .auth-instructions p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+    
+    .auth-footer { margin-top: var(--spacing-lg); }
+    .auth-footer p { font-size: 13px; color: var(--text-secondary); margin-bottom: var(--spacing-md); }
+    
+    .auth-btn {
+      display: inline-block;
+      padding: 12px 32px;
+      background: var(--primary-color);
+      color: white;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    
+    .auth-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 45, 85, 0.3);
+    }
+    
+    .auth-btn.secondary {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+    }
+    
+    .auth-btn.secondary:hover { border-color: var(--primary-color); }
+    
+    /* Auth actions - primary button container */
+    .auth-actions {
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .auth-actions .auth-btn {
+      width: 100%;
+      max-width: 280px;
+      padding: 16px 32px;
+      font-size: 16px;
+    }
+    
+    .auth-icon.redirecting svg {
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(0.95); }
+    }
+    
+    .auth-icon.error svg circle, .auth-icon.error svg path { stroke: #FF3B30; }
+    
+    .auth-loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--spacing-lg);
+    }
+    
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 3px solid var(--bg-card);
+      border-top-color: var(--primary-color);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin { to { transform: rotate(360deg); } }
+  
+
+</style>
+</head>
+<body>
+  <!-- Auth Overlay -->
+  <div class="auth-overlay" id="auth-overlay">
+    <div class="auth-loading">
+      <div class="spinner"></div>
+      <p style="color: var(--text-secondary);">Initializing...</p>
+    </div>
+  </div>
+  <div class="page-wrapper">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-inner">
+        <div class="logo">
+          <span class="logo-icon">🏆</span>
+          <div class="logo-content">
+            <span class="logo-text">Global E-commerce Recognition Hub</span>
+            <span class="logo-subtitle">Celebrating award-winning projects and individuals across Global E-commerce business.</span>
+          </div>
+        </div>
+        <nav class="top-nav">
+          <a href="index.html?v=cardpreview73" class="nav-item">Home</a>
+          <a href="global.html?v=cardpreview73" class="nav-item">Global</a>
+          <a href="regional.html?v=cardpreview73" class="nav-item">Regional</a>
+          <a href="departmental.html?v=cardpreview73" class="nav-item">Departmental</a>
+          <a href="award-structure.html" class="nav-item">Award Structure & Timeline</a>
+          <a href="media-gallery.html" class="nav-item active">Media Gallery</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+      <div class="container">
+        <!-- Page Title -->
+        <h1 class="page-title">
+          <span class="page-title-icon">🎬</span>
+          Media Gallery
+        </h1>
+        
+        <!-- Upload Section -->
+        <!-- Videos Section - 3 equal columns -->
+        <section class="video-section">
+          <div class="section-header">
+            <h2 class="section-title">
+              <span class="icon">🎬</span>
+              Videos
+            </h2>
+          </div>
+          <p class="section-description">Award ceremony highlights & Lunch Takeaways series</p>
+          
+          <div id="videoGrid" class="video-grid-3col"></div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="modalTitle">Video Title</h3>
+          <button class="modal-close" onclick="closeModal()">&times;</button>
+        </div>
+        <div class="modal-video-container" id="modalVideoContainer">
+          <!-- Video or external link will be inserted here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>© 2025 Global E-commerce Recognition Hub. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Feishu H5 SDK -->
+  <script src="https://lf1-cdn-tos.bytegoofy.com/goofy/lark/op/h5-js-sdk-1.5.16.js"></script>
+  <script src="js/auth.js?v=20260914internalonly"></script>
+  <script src="js/auth-helper-v21.js?v=20260914retry"></script>
+  <script src="js/award-api.js?v=20260914uv"></script>
+    <script src="js/main.js?v=cardpreview73"></script>
+  <script>
+    // Video data
+    let videosData = {
+      videos: []
+    };
+    
+    let currentFilter = 'all';
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', async () => {
+      highlightNavigation();
+      await loadVideos();
+      setupUpload();
+      setupFilters();
+      setupModal();
+    });
+    
+    // Load videos from JSON
+    async function loadVideos() {
+      try {
+        const response = await fetch('data/media.json?v=20260807', { cache: 'no-store' });
+        if (response.ok) {
+          videosData = await response.json();
+          console.log('[MediaGallery] Loaded', videosData.videos.length, 'videos from JSON');
+          renderVideos();
+          updateStats();
+          return;
+        }
+      } catch (error) {
+        console.log('[MediaGallery] JSON fetch failed:', error);
+      }
+      // Fallback data if JSON fails to load
+      console.log('[MediaGallery] Using fallback data');
+      videosData = {
+        videos: [
+          {
+            id: "featured-2026h1",
+            title: "All Hands Award Video",
+            description: "2026 H1 Global Impactful Cross-Functional Projects",
+            type: "featured",
+            source: "feishu",
+            url: "https://bytedance.larkoffice.com/wiki/GhnkwQskIi55z0kqV6KcvXXBnQf",
+            duration: "",
+            badge: "",
+            thumbnail: "images/video-cover-2026h1-award.jpeg"
+          },
+          {
+            id: "featured-2025h2",
+            title: "All Hands Award Video",
+            description: "2025 H2 Global Impactful Cross-Functional Projects",
+            type: "featured",
+            source: "feishu",
+            url: "https://bytedance.larkoffice.com/file/Cc0rbwAHmo04Srx9SdqcqQhOnrg",
+            duration: "",
+            badge: "",
+            thumbnail: "images/video-cover-featured.png"
+          },
+          {
+            id: "lunch-takeaways-ep01",
+            title: "Lunch Takeaways EP01",
+            description: "Lunch Takeaways Global E-commerce Special Edition EP01",
+            type: "regular",
+            source: "feishu",
+            url: "https://bytedance.larkoffice.com/wiki/NE8vwnpxviljgXkj63Kcn5hin2c",
+            duration: "",
+            badge: "",
+            thumbnail: "images/video-cover-lunch-ep01.jpeg"
+          },
+          {
+            id: "lunch-takeaways-ep02",
+            title: "Lunch Takeaways EP02",
+            description: "Lunch Takeaways Global E-commerce Special Edition EP02",
+            type: "regular",
+            source: "feishu",
+            url: "https://bytedance.larkoffice.com/wiki/A5oNwXjYfiiOQMkOGiqcB4Nfnwb",
+            duration: "",
+            badge: "",
+            thumbnail: "images/video-cover-lunch-ep02.jpeg"
+          }
+        ]
+      };
+      renderVideos();
+      updateStats();
+    }
+    
+    // Render videos
+    function renderVideos() {
+      const gridContainer = document.getElementById('videoGrid');
+      
+      // Render all videos in 3-column grid
+      if (videosData.videos.length > 0) {
+        gridContainer.innerHTML = videosData.videos.map(v => renderVideoCard(v)).join('');
+      }
+      
+      // Add click handlers
+      document.querySelectorAll('.video-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const videoId = card.dataset.videoId;
+          const video = videosData.videos.find(v => v.id === videoId);
+          if (!video) return;
+          
+          const isExternal = video.source === 'feishu' || video.source === 'external';
+          if (isExternal) {
+            // Open in external browser (force system browser, not Feishu sidebar)
+            openInExternalBrowser(video.url);
+          } else {
+            openModal(video);
+          }
+        });
+      });
+    }
+    
+    // Render single video card
+    function renderVideoCard(video, isFeatured = false) {
+      const isLocal = video.source === 'local' || video.source === 'volcengine';
+      const isExternal = video.source === 'feishu' || video.source === 'external';
+      const cardClass = isLocal ? 'video-card local-video' : 'video-card';
+      const thumbnailClass = isLocal ? 'video-thumbnail local' : 'video-thumbnail';
+      
+      let badgeHtml = '';
+      if (video.badge) {
+        const badgeClass = isLocal ? 'video-badge local' : 'video-badge';
+        badgeHtml = `<span class="${badgeClass}">${video.badge}</span>`;
+      } else if (isLocal) {
+        badgeHtml = '<span class="video-badge local">Local</span>';
+      }
+      
+      let durationHtml = video.duration ? `<span class="video-duration">⏱ ${video.duration}</span>` : '';
+      
+      let externalHint = '';
+      if (isExternal) {
+        externalHint = `
+          <p class="external-link-hint">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/>
+              <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+            Opens in Feishu
+          </p>
+        `;
+      }
+      
+      const cardContent = `
+        <div class="${thumbnailClass}">
+          ${video.thumbnail ? '<img src="'+video.thumbnail+'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />' : ''}
+          <div class="play-icon">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        <div class="video-info">
+          <h3 class="video-title">${video.title}</h3>
+          ${video.description ? `<p class="video-description">${video.description}</p>` : ''}
+          <div class="video-meta">
+            ${badgeHtml}
+            ${durationHtml}
+          </div>
+          ${externalHint}
+        </div>
+      `;
+      
+      // All videos use <div> - external links open in system browser via JS
+      return `
+        <div class="${cardClass}" data-video-id="${video.id}">
+          ${cardContent}
+        </div>
+      `;
+    }
+    
+    // Update stats
+    function updateStats() {
+      const total = videosData.videos.length;
+      const local = videosData.videos.filter(v => v.source === 'local').length;
+      const external = videosData.videos.filter(v => v.source === 'feishu').length;
+      
+      document.getElementById('totalVideos').textContent = total;
+      document.getElementById('localVideos').textContent = local;
+      document.getElementById('externalVideos').textContent = external;
+    }
+    
+    // Setup upload functionality
+    function setupUpload() {
+      const uploadArea = document.getElementById('uploadArea');
+      const uploadSection = document.getElementById('uploadSection');
+      const videoInput = document.getElementById('videoInput');
+      const uploadPreview = document.getElementById('uploadPreview');
+      const previewList = document.getElementById('previewList');
+      
+      // Click to select
+      uploadArea.addEventListener('click', () => {
+        videoInput.click();
+      });
+      
+      // File input change
+      videoInput.addEventListener('change', (e) => {
+        handleFiles(e.target.files);
+      });
+      
+      // Drag and drop
+      uploadArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadSection.classList.add('drag-over');
+      });
+      
+      uploadArea.addEventListener('dragleave', () => {
+        uploadSection.classList.remove('drag-over');
+      });
+      
+      uploadArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadSection.classList.remove('drag-over');
+        handleFiles(e.dataTransfer.files);
+      });
+    }
+    
+    // Handle selected files
+    function handleFiles(files) {
+      if (files.length === 0) return;
+      
+      const previewList = document.getElementById('previewList');
+      const uploadPreview = document.getElementById('uploadPreview');
+      const selectedCount = document.getElementById('selectedCount');
+      
+      previewList.innerHTML = '';
+      selectedCount.textContent = files.length;
+      
+      Array.from(files).forEach(file => {
+        const size = formatFileSize(file.size);
+        const item = document.createElement('div');
+        item.className = 'preview-item';
+        item.innerHTML = `
+          <div class="preview-file-info">
+            <span class="preview-file-icon">🎬</span>
+            <div>
+              <div class="preview-file-name">${file.name}</div>
+              <div class="preview-file-size">${size}</div>
+            </div>
+          </div>
+          <div class="preview-actions">
+            <span class="video-badge">Ready to upload</span>
+          </div>
+        `;
+        previewList.appendChild(item);
+      });
+      
+      uploadPreview.classList.add('active');
+    }
+    
+    // Format file size
+    function formatFileSize(bytes) {
+      if (bytes === 0) return '0 Bytes';
+      const k = 1024;
+      const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+    
+    // Clear selection
+    function clearSelection() {
+      document.getElementById('videoInput').value = '';
+      document.getElementById('uploadPreview').classList.remove('active');
+    }
+    
+    // Setup filters
+    function setupFilters() {
+      const tabs = document.querySelectorAll('.filter-tab');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          currentFilter = tab.dataset.filter;
+          renderVideos();
+        });
+      });
+    }
+    
+    // Setup modal
+    // Open video URL reliably across all environments
+    function openInExternalBrowser(url) {
+      const isInFeishu = /Lark|Feishu/i.test(navigator.userAgent);
+      if (isInFeishu) {
+        // In Feishu (any mode: full webview, sidebar, 订阅号独立页面):
+        // Direct navigation is the most reliable method.
+        // SDK openExternalBrowser doesn't work in 订阅号 constrained webview,
+        // and window.open only opens in sidebar (invisible to user).
+        window.location.href = url;
+      } else {
+        // In system browser: open in new tab
+        const newWin = window.open(url, '_blank');
+        if (!newWin || newWin.closed) {
+          window.location.href = url;
+        }
+      }
+    }
+
+    function setupModal() {
+      const modal = document.getElementById('videoModal');
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+      
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeModal();
+        }
+      });
+    }
+    
+    // Open modal
+    function openModal(video) {
+      const modal = document.getElementById('videoModal');
+      const title = document.getElementById('modalTitle');
+      const container = document.getElementById('modalVideoContainer');
+      
+      title.textContent = video.title;
+      
+      if (video.source === 'local' || video.source === 'volcengine') {
+        // Local or Volcengine video - embed directly
+        container.innerHTML = `
+          <video controls autoplay>
+            <source src="${video.url}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        `;
+      } else {
+        // External link (feishu, etc.) - open in system browser
+        container.innerHTML = `
+          <div class="modal-external-link">
+            <a href="javascript:void(0)" onclick="openInExternalBrowser('${video.url}')">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+              Open Video in Browser
+            </a>
+            <p>This video is hosted externally. Click above to open it in your browser.</p>
+          </div>
+        `;
+      }
+      
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    // Close modal
+    function closeModal() {
+      const modal = document.getElementById('videoModal');
+      const container = document.getElementById('modalVideoContainer');
+      
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+      
+      // Stop video if playing
+      const video = container.querySelector('video');
+      if (video) {
+        video.pause();
+        video.src = '';
+      }
+    }
+  </script>
+<script>
+// Report page view on load (once per session). PV is unchanged; user_id enables backend UV counting.
+if (typeof AwardAPI !== 'undefined' && AwardAPI.reportPageView) {
+  AwardAPI.reportPageView(window.location.pathname);
+}
+</script>
+</body>
+</html>

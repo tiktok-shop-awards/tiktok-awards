@@ -1,0 +1,1356 @@
+<!-- v20260601a -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regional Awards - Global E-commerce Recognition Hub</title>
+  <link rel="stylesheet" href="css/main.css?v=cardpreview73">
+  <style id="app-boot-guard-style">
+    html.app-booting:not(.app-ready) body {
+      visibility: hidden;
+      background: #000;
+    }
+    html.app-booting:not(.app-ready)::before {
+      content: 'Loading Recognition Hub...';
+      position: fixed;
+      inset: 0;
+      z-index: 2147483647;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle at 50% 38%, rgba(46, 208, 214, 0.14), transparent 32%),
+        linear-gradient(135deg, #000 0%, #080d12 54%, #000 100%);
+      color: rgba(255, 255, 255, 0.72);
+      font: 700 13px/1.4 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+  </style>
+  <script id="app-boot-guard-script">
+    (function () {
+      var root = document.documentElement;
+      root.classList.add('app-booting');
+      var revealed = false;
+      function reveal() {
+        if (revealed) return;
+        revealed = true;
+        root.classList.add('app-ready');
+      }
+      window.addEventListener('load', reveal, { once: true });
+      window.addEventListener('pageshow', reveal, { once: true });
+      setTimeout(reveal, 2500);
+    })();
+  </script>
+
+  <style>
+    /* ==================== Regional Page Specific Styles ==================== */
+    .regional-header {
+      padding: var(--spacing-md) 0 var(--spacing-sm);
+      text-align: center;
+    }
+    
+    .regional-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: #FFFFFF;
+    }
+    
+    .regional-subtitle {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    /* Year Navigation - Centered */
+    .year-nav-wrapper {
+      text-align: center;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .year-nav-compact {
+      display: inline-flex;
+      gap: 4px;
+      background: var(--bg-card);
+      padding: 3px;
+      border-radius: 6px;
+    }
+    
+    .year-nav-compact .year-btn {
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: transparent;
+      border: none;
+      transition: all 0.2s ease;
+    }
+    
+    .year-nav-compact .year-btn:hover {
+      color: var(--text-primary);
+    }
+    
+    .year-nav-compact .year-btn.active {
+      background: var(--primary-color);
+      color: white;
+    }
+    
+    /* Region Navigation - Tab Style, Centered */
+    .region-nav-wrapper {
+      text-align: center;
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .region-nav {
+      display: inline-flex;
+      gap: 0;
+      background: var(--bg-card);
+      padding: 4px;
+      border-radius: 12px;
+    }
+    
+    .region-btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: transparent;
+      border: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .region-btn:hover {
+      color: var(--text-primary);
+    }
+    
+    .region-btn.active {
+      background: linear-gradient(135deg, var(--primary-color), #F86482);
+      color: white;
+      font-weight: 600;
+      box-shadow: 0 2px 12px rgba(246, 33, 74, 0.3);
+    }
+    
+    .region-btn .region-tag {
+      font-size: 9px;
+      font-weight: 600;
+      opacity: 0.7;
+      margin-left: 3px;
+      vertical-align: middle;
+    }
+    
+    .region-btn.active .region-tag {
+      opacity: 0.9;
+    }
+    
+    /* Podium Section */
+    .podium-section {
+      margin-bottom: var(--spacing-xxl);
+    }
+    
+    .section-title-main {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: var(--spacing-sm);
+      text-align: left;
+    }
+    
+    /* Scoring Rule Note */
+    .scoring-note {
+      font-size: 11px;
+      color: var(--text-secondary);
+      text-align: left;
+      margin-bottom: var(--spacing-md);
+    }
+    .ranking-notice {
+      font-size: 11px;
+      color: var(--text-secondary);
+      text-align: left;
+      margin-bottom: var(--spacing-md);
+      padding: 8px 12px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 8px;
+      line-height: 1.5;
+    }
+    
+    /* Regional Awards Title (Dynamic) */
+    .regional-awards-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: var(--spacing-md) 0;
+      padding-left: 0;
+      border-left: none;
+    }
+    
+    /* Award Type Toggle - Tab Style, Centered */
+    .award-type-wrapper {
+      text-align: center;
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .award-type-toggle {
+      display: inline-flex;
+      gap: 0;
+      background: var(--bg-card);
+      padding: 4px;
+      border-radius: 12px;
+    }
+    
+    /* Quarter toggle container - center buttons */
+    #quarter-toggle {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    #quarter-toggle .award-type-toggle {
+      display: inline-flex;
+      justify-content: center;
+    }
+    
+    .award-type-btn {
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: transparent;
+      border: none;
+      transition: all 0.3s ease;
+      text-align: center;
+      line-height: 1.4;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    
+    .award-type-btn:hover {
+      color: var(--text-primary);
+    }
+    
+    .award-type-btn.active {
+      background: linear-gradient(135deg, var(--primary-color), #F86482);
+      color: white;
+      font-weight: 600;
+      box-shadow: 0 2px 12px rgba(246, 33, 74, 0.3);
+    }
+    
+    .award-type-btn .btn-subtitle {
+      display: block;
+      font-size: 10px;
+      opacity: 0.8;
+      margin-top: 2px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .regional-title {
+        font-size: 24px;
+      }
+      
+      .region-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .region-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+      }
+      
+      .award-type-toggle {
+        flex-direction: column;
+      }
+      
+      .award-type-btn {
+        font-size: 11px;
+      }
+    }
+    
+    /* ==================== Feishu Auth Styles ==================== */
+    
+    
+    .auth-container {
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .auth-icon { margin-bottom: var(--spacing-xl); }
+    .auth-icon svg { margin: 0 auto; }
+    
+    .auth-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: var(--spacing-md);
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .auth-description {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-xl);
+      line-height: 1.6;
+    }
+    
+    .auth-instructions {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      margin-bottom: var(--spacing-xl);
+      text-align: left;
+    }
+    
+    .auth-instructions h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: var(--spacing-md);
+      color: var(--text-primary);
+    }
+    
+    .auth-instructions ol { list-style: none; counter-reset: step; }
+    
+    .auth-instructions li {
+      counter-increment: step;
+      position: relative;
+      padding-left: 40px;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .auth-instructions li:last-child { margin-bottom: 0; }
+    
+    .auth-instructions li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 28px;
+      height: 28px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+    }
+    
+    .auth-instructions strong {
+      display: block;
+      font-size: 14px;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    
+    .auth-instructions p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+    
+    .auth-footer { margin-top: var(--spacing-lg); }
+    .auth-footer p { font-size: 13px; color: var(--text-secondary); margin-bottom: var(--spacing-md); }
+    
+    .auth-btn {
+      display: inline-block;
+      padding: 12px 32px;
+      background: var(--primary-color);
+      color: white;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    
+    .auth-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(246, 33, 74, 0.3);
+    }
+    
+    .auth-btn.secondary {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+    }
+    
+    .auth-btn.secondary:hover { border-color: var(--primary-color); }
+    
+    /* Auth actions - primary button container */
+    .auth-actions {
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .auth-actions .auth-btn {
+      width: 100%;
+      max-width: 280px;
+      padding: 16px 32px;
+      font-size: 16px;
+    }
+    
+    .auth-icon.redirecting svg {
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(0.95); }
+    }
+    
+    .auth-icon.error svg circle, .auth-icon.error svg path { stroke: #FF3B30; }
+    
+    
+    
+    
+    
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Inline Search */
+    .inline-search {
+      display: flex;
+      gap: var(--spacing-sm);
+      max-width: 500px;
+      margin: 0 auto var(--spacing-lg);
+    }
+    
+    .inline-search .search-input {
+      flex: 1;
+      padding: 10px 16px;
+      border-radius: 24px;
+      font-size: 14px;
+      color: var(--text-primary);
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      outline: none;
+      transition: all 0.3s ease;
+    }
+    
+    .inline-search .search-input:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(255, 45, 85, 0.1);
+    }
+    
+    .inline-search .search-btn {
+      padding: 10px 20px;
+      border-radius: 24px;
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+      background: var(--primary-color);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .inline-search .search-btn:hover {
+      background: #e02548;
+      transform: translateY(-1px);
+    }
+    
+    /* Search Results */
+    .search-results-section {
+      margin-top: var(--spacing-lg);
+      display: none;
+    }
+    
+    .search-results-section.active {
+      display: block;
+    }
+    
+    @media (max-width: 768px) {
+      .inline-search {
+        flex-direction: column;
+      }
+    }
+
+    /* Smooth content transition on year/region switch */
+    #regional-awards {
+      transition: opacity 0.15s ease;
+    }
+    #regional-awards.fading {
+      opacity: 0.3;
+    }
+    /* Content wrapper for smooth transition */
+    .content-wrapper {
+      transition: opacity 0.2s ease;
+    }
+    .content-wrapper.fading {
+      opacity: 0;
+    }
+
+  
+
+</style>
+</head>
+<body>
+  <!-- Auth Overlay -->
+  
+  <!-- Auth Overlay -->
+  <div id="auth-overlay" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--bg-primary, #0f0f10);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  ">
+    <div style="font-size: 20px; font-weight: 700; margin-bottom: 8px;" id="auth-title">正在验证身份...</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.5);" id="auth-desc">请稍候</div>
+  </div>
+
+  <div class="page-wrapper">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-inner">
+        <div class="logo">
+          <span class="logo-icon">🏆</span>
+          <div class="logo-content">
+            <span class="logo-text">Global E-commerce Recognition Hub</span>
+            <span class="logo-subtitle">Celebrating outstanding projects and individuals across TikTok Shop.</span>
+          </div>
+        </div>
+        <nav class="top-nav">
+          <a href="index.html?v=cardpreview73" class="nav-item">Home</a>
+          <a href="global.html?v=cardpreview73" class="nav-item">Global</a>
+          <a href="regional.html?v=cardpreview73" class="nav-item active">Regional</a>
+          <a href="departmental.html?v=cardpreview73" class="nav-item">Departmental</a>
+          <a href="award-structure.html" class="nav-item">Award Structure & Timeline</a>
+          <a href="media-gallery.html" class="nav-item">Media Gallery</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+      <div class="container">
+        
+        <!-- Regional Header -->
+        <section class="regional-header">
+          <h1 class="regional-title">Regional Awards</h1>
+          <p class="regional-subtitle">Celebrating regional excellence and impact</p>
+          
+          <!-- Year Navigation - Centered -->
+          <div class="year-nav-wrapper">
+            <div class="year-nav-compact">
+              <button class="year-btn active" data-year="2026" id="year-2026-btn">2026</button>
+              <button class="year-btn" data-year="2025">2025</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Region Navigation - Tab Style -->
+        <div class="region-nav-wrapper">
+          <div class="region-nav" id="region-nav-bar">
+            <!-- Region buttons are dynamically rendered by renderRegionNav() based on year -->
+          </div>
+        </div>
+
+
+        <!-- Inline Search -->
+        <div class="inline-search">
+          <input type="text" class="search-input" id="search-input" placeholder="Search all years by name, project, department...">
+          <button class="search-btn" id="search-btn">🔍 Search</button>
+        </div>
+        <div id="search-results" class="search-results-section"></div>
+
+        <div class="content-wrapper" id="content-wrapper">
+
+        <!-- Dynamic Regional Awards Title -->
+        <h2 class="regional-awards-title" id="regional-awards-title">US Regional Awards</h2>
+
+        <!-- Award Type Toggle - For Non-LATAM Regions -->
+        <div class="award-type-wrapper" id="award-type-wrapper">
+          <div class="award-type-toggle">
+            <button class="award-type-btn active" data-type="H1 Project Awards">
+              H1
+              <span class="btn-subtitle">Impactful XFN Projects</span>
+            </button>
+            <button class="award-type-btn" data-type="H2 Project Awards">
+              H2
+              <span class="btn-subtitle">Impactful XFN Projects</span>
+            </button>
+            <button class="award-type-btn" data-type="H2 Individual Awards">
+              H2 BFCM
+              <span class="btn-subtitle">Stellar Contributors</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Quarter Toggle (for LATAM/FS/POP) -->
+        <div class="award-type-wrapper" id="quarter-toggle" style="display: none;">
+          <div class="award-type-toggle" id="quarter-buttons">
+            <button class="award-type-btn active" data-type="Q1">
+              Q1
+              <span class="btn-subtitle">Project Awards</span>
+            </button>
+            <button class="award-type-btn" data-type="Q2">
+              Q2
+              <span class="btn-subtitle">Project Awards</span>
+            </button>
+            <button class="award-type-btn" data-type="Q3">
+              Q3
+              <span class="btn-subtitle">Project Awards</span>
+            </button>
+            <button class="award-type-btn" data-type="Q4">
+              Q4
+              <span class="btn-subtitle">Project Awards</span>
+            </button>
+            <button class="award-type-btn" data-type="Q4 Individual Awards" id="q4-individual-btn" style="display: none;">
+              Q4 BFCM
+              <span class="btn-subtitle">Stellar Contributors</span>
+            </button>
+          </div>
+          <div class="award-type-toggle" id="h1-individual-button" style="display: none;">
+            <button class="award-type-btn active" data-type="H1 Individual Awards">
+              H1
+              <span class="btn-subtitle">Stellar Contributors</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Regional Awards Grid -->
+        <section class="awards-section">
+          <div id="regional-awards"></div>
+        </section>
+
+        </div><!-- end content-wrapper -->
+
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>© 2025 Global E-commerce Recognition Hub. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Members Modal -->
+  <div class="members-modal" id="members-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Team Members</h3>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Comments Modal -->
+  <div class="comments-modal" id="comments-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="comments-modal-title">Comments</h3>
+        <button class="modal-close" onclick="closeCommentsModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div id="comment-list"></div>
+        <div class="comment-input-wrapper">
+          <input type="text" class="comment-input" id="comment-input" placeholder="Write a comment...">
+          <button class="comment-submit-btn" onclick="submitComment()">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Share Modal -->
+  <div class="share-modal" id="share-modal">
+    <div class="modal-content" style="max-width: 700px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="share-modal-title">Share Award</h3>
+        <button class="modal-close" onclick="closeShareModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div id="poster-preview"></div>
+        <div class="share-actions">
+          <button class="download-btn" onclick="downloadPoster()">📥 Download Poster</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="js/auth.js?v=20260914internalonly"></script>
+  <script src="js/auth-helper-v21.js?v=20260914retry"></script>
+  <script src="js/award-api.js?v=feishu-share-dryrun-v16"></script>
+  <script src="js/html2canvas.min.js"></script>
+<script src="js/main.js?v=cardpreview73"></script>
+  <script>
+    // Regional page specific initialization
+    const regionNames = {
+      us: 'US',
+      us_pop: 'US (L2L+POP)',
+      eu: 'EU+UK+JP',
+      eu_pop: 'UK/EU/JP (L2L+POP)',
+      sea: 'SEA',
+      latam: 'LATAM',
+      fs: 'FS',
+      pop: 'POP'
+    };
+    
+    // Region button configs per year
+    const regionButtons2026 = [
+      { region: 'sea', label: 'SEA' },
+      { region: 'us', label: 'US <span class="region-tag">L2L+POP</span>' },
+      { region: 'latam', label: 'LATAM' },
+      { region: 'fs', label: 'FS' },
+      { region: 'eu', label: 'UK/EU/JP <span class="region-tag">L2L+POP</span>' }
+    ];
+    const regionButtons2025 = [
+      { region: 'us', label: 'US' },
+      { region: 'eu', label: 'EU+UK+JP' },
+      { region: 'sea', label: 'SEA' },
+      { region: 'latam', label: 'LATAM' },
+      { region: 'fs', label: 'FS' },
+      { region: 'pop', label: 'POP' }
+    ];
+
+    const validRegionsByYear = {
+      '2026': ['sea', 'us', 'latam', 'fs', 'eu'],
+      '2025': ['us', 'eu', 'sea', 'latam', 'fs', 'pop']
+    };
+
+    function getDefaultRegionForYear(year) {
+      return year === '2026' ? 'sea' : 'us';
+    }
+
+    function normalizeRegionForYear(region, year) {
+      let normalizedRegion = region || getDefaultRegionForYear(year);
+      if (year === '2026' && normalizedRegion === 'pop') {
+        normalizedRegion = 'us';
+      }
+      const validRegions = validRegionsByYear[year] || validRegionsByYear['2026'];
+      if (!validRegions.includes(normalizedRegion)) {
+        normalizedRegion = getDefaultRegionForYear(year);
+      }
+      return normalizedRegion;
+    }
+
+    function normalizeAwardTypeForRegion(region, year, awardType) {
+      const requestedType = awardType || 'H1 Project Awards';
+      if (year === '2026' && ['sea', 'us', 'eu', 'fs'].includes(region)) {
+        return 'H1 Project Awards';
+      }
+      if (region === 'latam') {
+        if (year === '2026') {
+          return ['Q1 Individual Awards', 'Q2 Individual Awards'].includes(requestedType)
+            ? requestedType
+            : 'Q1 Individual Awards';
+        }
+        return ['Q1', 'Q2', 'Q3', 'Q4'].includes(requestedType) ? requestedType : 'Q1';
+      }
+      if (region === 'pop' || (region === 'fs' && year === '2025')) {
+        return ['Q1', 'Q2', 'Q3', 'Q4', 'Q4 Individual Awards'].includes(requestedType)
+          ? requestedType
+          : 'Q1';
+      }
+      return ['H1 Project Awards', 'H2 Project Awards', 'H2 Individual Awards'].includes(requestedType)
+        ? requestedType
+        : 'H1 Project Awards';
+    }
+
+    function getInitialRegionalState() {
+      const year = getUrlParam('year') || '2026';
+      const region = normalizeRegionForYear(getUrlParam('region'), year);
+      const period = normalizeAwardTypeForRegion(region, year, getUrlParam('period'));
+      return { year, region, period };
+    }
+    
+    const initialRegionalState = getInitialRegionalState();
+    let currentRegion = initialRegionalState.region;
+    let currentAwardType = initialRegionalState.period;
+    let regionalData = null;
+    let allRegionalData = null; // Store all regional data for US+POP merge
+    
+    // Render region nav buttons based on year
+    function renderRegionNav(year, activeRegion) {
+      const navBar = document.getElementById('region-nav-bar');
+      if (!navBar) return;
+      const buttons = year === '2026' ? regionButtons2026 : regionButtons2025;
+      navBar.innerHTML = buttons.map(b => 
+        `<button class="region-btn${b.region === activeRegion ? ' active' : ''}" data-region="${b.region}">${b.label}</button>`
+      ).join('');
+      // Re-bind click events
+      navBar.querySelectorAll('.region-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const clickedRegion = btn.dataset.region;
+          if (year === '2026' && clickedRegion !== 'latam' && clickedRegion !== 'fs' && clickedRegion !== 'sea' && clickedRegion !== 'us' && clickedRegion !== 'eu') {
+            showToast('2026 data is not available yet for this region. Coming soon!');
+            return;
+          }
+          navBar.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentRegion = clickedRegion;
+          currentAwardType = normalizeAwardTypeForRegion(currentRegion, year, currentAwardType);
+          setUrlParams({ year, region: currentRegion, period: currentAwardType });
+          updateLabels();
+          loadRegionalData(currentRegion, year);
+        });
+      });
+    }
+    
+    // Update page labels and toggle visibility
+    function updateLabels() {
+      const currentYear = AppData.currentYear;
+      let displayRegion = currentRegion;
+      
+      // In 2026, US and EU buttons include POP data
+      if (currentYear === '2026' && currentRegion === 'us') {
+        displayRegion = 'us_pop';
+      } else if (currentYear === '2026' && currentRegion === 'eu') {
+        displayRegion = 'eu_pop';
+      }
+      
+      // region-name element was removed; title is updated via regional-awards-title below
+      
+      // Update 2026 badge - removed (data now available)
+      
+      // Update regional awards title
+      const titleEl = document.getElementById('regional-awards-title');
+      if (titleEl) {
+        titleEl.textContent = (regionNames[displayRegion] || regionNames[currentRegion]) + ' Regional Awards';
+      }
+      
+      // Update H2 Individual Awards tab text based on region
+      const h2IndivTab = document.querySelector('#award-type-wrapper .award-type-btn[data-type="H2 Individual Awards"]');
+      if (h2IndivTab) {
+        let tabTitle = 'Stellar Contributors';
+        let tabSubtitle = '';
+        
+        switch(currentRegion) {
+          case 'us':
+            tabTitle = 'BFCM';
+            tabSubtitle = 'Stellar Contributors';
+            break;
+          case 'eu':
+            tabTitle = 'BFCM/Tokutoku';
+            tabSubtitle = 'Stellar Contributors';
+            break;
+          case 'sea':
+            tabTitle = '11.11 & 12.12';
+            tabSubtitle = 'Stellar Contributors';
+            break;
+          default:
+            tabTitle = 'Stellar';
+            tabSubtitle = 'Contributors';
+        }
+        
+        h2IndivTab.innerHTML = `${tabTitle}<span class="btn-subtitle">${tabSubtitle}</span>`;
+      }
+      
+      // Show/hide toggle wrappers based on region and year
+      const awardTypeWrapper = document.getElementById('award-type-wrapper');
+      const quarterToggle = document.getElementById('quarter-toggle');
+      const quarterButtons = document.getElementById('quarter-buttons');
+      const h1IndividualButton = document.getElementById('h1-individual-button');
+      const h1ProjectTab = document.querySelector('#award-type-wrapper .award-type-btn[data-type="H1 Project Awards"]');
+      const h2ProjectTab = document.querySelector('#award-type-wrapper .award-type-btn[data-type="H2 Project Awards"]');
+      const is2026H1OnlyRegion = currentYear === '2026' && ['sea', 'us', 'eu', 'fs'].includes(currentRegion);
+      
+      [h1ProjectTab, h2ProjectTab, h2IndivTab].forEach(btn => {
+        if (btn) btn.style.display = '';
+      });
+      
+      // POP/FS 2025: 季度结构 (Q1/Q2/Q3/Q4 Project Awards)
+      const isQuarterRegion = currentRegion === 'pop' || (currentRegion === 'fs' && currentYear === '2025');
+      
+      if (currentRegion === 'latam') {
+        // LATAM: show appropriate buttons based on year
+        awardTypeWrapper.style.display = 'none';
+        quarterToggle.style.display = 'block';
+        
+        if (currentYear === '2026') {
+          // 2026: show Q1 + Q2 Individual Awards buttons
+          quarterButtons.style.display = 'none';
+          h1IndividualButton.style.display = 'flex';
+          h1IndividualButton.innerHTML = '<button class="award-type-btn" data-type="Q1 Individual Awards">Q1<span class="btn-subtitle">Stellar Contributors</span></button><button class="award-type-btn" data-type="Q2 Individual Awards">Q2<span class="btn-subtitle">Stellar Contributors</span></button>';
+          // Set active button
+          h1IndividualButton.querySelectorAll('.award-type-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.type === currentAwardType);
+          });
+          if (!['Q1 Individual Awards', 'Q2 Individual Awards'].includes(currentAwardType)) {
+            currentAwardType = 'Q1 Individual Awards';
+            h1IndividualButton.querySelectorAll('.award-type-btn').forEach(b => {
+              b.classList.toggle('active', b.dataset.type === currentAwardType);
+            });
+          }
+        } else {
+          // 2025 and earlier: show Q buttons
+          quarterButtons.style.display = 'inline-flex';
+          h1IndividualButton.style.display = 'none';
+          
+          // 更新季度按钮文字 - LATAM是个人奖
+          const quarterBtns = document.querySelectorAll('#quarter-buttons .award-type-btn');
+          quarterBtns.forEach(btn => {
+            const q = btn.dataset.type;
+            if (q === 'Q4 Individual Awards') {
+              // LATAM不显示Q4 BFCM按钮
+              btn.style.display = 'none';
+            } else if (q) {
+              btn.innerHTML = `${q}<span class="btn-subtitle">Stellar Contributors</span>`;
+              btn.style.display = '';
+            }
+          });
+          
+          if (!['Q1', 'Q2', 'Q3', 'Q4'].includes(currentAwardType)) {
+            currentAwardType = 'Q1';
+          }
+        }
+        document.querySelectorAll('#quarter-toggle .award-type-btn').forEach(b => {
+          b.classList.toggle('active', b.dataset.type === currentAwardType);
+        });
+      } else if (isQuarterRegion) {
+        // FS 2026: use H1/H2 buttons like other regions
+        if (currentRegion === 'fs' && currentYear === '2026') {
+          awardTypeWrapper.style.display = 'block';
+          quarterToggle.style.display = 'none';
+          
+          const h1Btn = document.querySelector('#award-type-wrapper .award-type-btn[data-type="H1 Project Awards"]');
+          const h2Btn = document.querySelector('#award-type-wrapper .award-type-btn[data-type="H2 Project Awards"]');
+          if (h1Btn) h1Btn.innerHTML = 'H1<span class="btn-subtitle">Project Awards</span>';
+          if (h2Btn) h2Btn.innerHTML = 'H2<span class="btn-subtitle">Project Awards</span>';
+          
+          if (!['H1 Project Awards', 'H2 Project Awards'].includes(currentAwardType)) {
+            currentAwardType = 'H1 Project Awards';
+          }
+          document.querySelectorAll('#award-type-wrapper .award-type-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.type === currentAwardType);
+          });
+        } else {
+          // FS 2025 and POP: 季度结构，显示Q1-Q4 Project Awards + Q4 BFCM个人奖按钮
+          awardTypeWrapper.style.display = 'none';
+          quarterToggle.style.display = 'flex';
+          quarterButtons.style.display = 'inline-flex';
+          h1IndividualButton.style.display = 'none';
+          
+          const quarterBtns = document.querySelectorAll('#quarter-buttons .award-type-btn');
+          quarterBtns.forEach(btn => {
+            const q = btn.dataset.type;
+            if (q === 'Q4 Individual Awards') {
+              btn.style.display = '';
+            } else if (q) {
+              btn.innerHTML = `${q}<span class="btn-subtitle">Project Awards</span>`;
+              btn.style.display = '';
+            }
+          });
+          
+          if (!['Q1', 'Q2', 'Q3', 'Q4', 'Q4 Individual Awards'].includes(currentAwardType)) {
+            currentAwardType = 'Q1';
+          }
+          document.querySelectorAll('#quarter-toggle .award-type-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.type === currentAwardType);
+          });
+        }
+      } else {
+        // Non-LATAM: show H1/H2 buttons, hide Q buttons
+        awardTypeWrapper.style.display = 'block';
+        quarterToggle.style.display = 'none';
+        
+        // 恢复H1/H2按钮文字
+        const h1Btn = document.querySelector('#award-type-wrapper .award-type-btn[data-type="H1 Project Awards"]');
+        const h2Btn = document.querySelector('#award-type-wrapper .award-type-btn[data-type="H2 Project Awards"]');
+        
+        if (h1Btn) {
+          h1Btn.innerHTML = 'H1<span class="btn-subtitle">Project Awards</span>';
+          h1Btn.dataset.type = 'H1 Project Awards';
+        }
+        if (h2Btn) {
+          h2Btn.innerHTML = 'H2<span class="btn-subtitle">Project Awards</span>';
+          h2Btn.dataset.type = 'H2 Project Awards';
+        }
+        
+        // Only reset if coming from LATAM (Q1-Q4 or H1 Individual Awards)
+        // For FS 2026, always default to H1 Project Awards (H2 has no data yet)
+        if (currentRegion === 'fs' && currentYear === '2026') {
+          currentAwardType = 'H1 Project Awards';
+          setUrlParam('period', currentAwardType);
+        } else if (['Q1', 'Q2', 'Q3', 'Q4', 'H1 Individual Awards', 'Q1 Project Awards', 'Q3 Project Awards'].includes(currentAwardType)) {
+          currentAwardType = 'H2 Project Awards';
+        }
+        document.querySelectorAll('#award-type-wrapper .award-type-btn').forEach(b => {
+          b.classList.toggle('active', b.dataset.type === currentAwardType);
+        });
+      }
+      
+      if (is2026H1OnlyRegion) {
+        if (h1ProjectTab) h1ProjectTab.style.display = '';
+        if (h2ProjectTab) h2ProjectTab.style.display = 'none';
+        if (h2IndivTab) h2IndivTab.style.display = 'none';
+        
+        if (currentAwardType !== 'H1 Project Awards') {
+          currentAwardType = 'H1 Project Awards';
+          setUrlParam('period', currentAwardType);
+        }
+        
+        document.querySelectorAll('#award-type-wrapper .award-type-btn').forEach(b => {
+          b.classList.toggle('active', b.dataset.type === currentAwardType);
+        });
+      }
+    }
+    
+    // Load and render regional data
+    async function loadRegionalData(region, year = null) {
+      const awardsContainer = document.getElementById('regional-awards');
+      const contentWrapper = document.getElementById('content-wrapper');
+      const currentYear = year || AppData.currentYear || '2026';
+      
+      // Fade out content while loading
+      if (contentWrapper) contentWrapper.classList.add('fading');
+      
+      try {
+        // Reset regionalData for each load to avoid stale data from previous region
+        regionalData = null;
+        
+        // Helper: filter POP data by region based on department keywords
+        function filterPopByRegion(popData, targetRegion) {
+          if (!popData) return {};
+          const result = {};
+          const usKeywords = ['US Operations', 'US Seller'];
+          const euKeywords = ['UK&EU&JP POP', 'UKEUJP POP', 'UK\u0026EU\u0026JP POP'];
+          for (const [awardKey, items] of Object.entries(popData)) {
+            if (!Array.isArray(items)) continue;
+            result[awardKey] = items.filter(item => {
+              const dept = item.department || '';
+              if (targetRegion === 'us') {
+                return usKeywords.some(kw => dept.includes(kw)) || (!euKeywords.some(kw => dept.includes(kw)) && !dept.includes('UK'));
+              } else if (targetRegion === 'eu') {
+                return euKeywords.some(kw => dept.includes(kw));
+              }
+              return true;
+            });
+          }
+          return result;
+        }
+        function mergeRegionWithPop(regionData, popFiltered) {
+          if (!regionData && !popFiltered) return null;
+          if (!popFiltered) return regionData;
+          if (!regionData) return popFiltered;
+          const allKeys = new Set([...Object.keys(regionData), ...Object.keys(popFiltered)]);
+          const merged = {};
+          for (const key of allKeys) {
+            merged[key] = [...(regionData[key] || []), ...(popFiltered[key] || [])];
+          }
+          return merged;
+        }
+        
+        // For 2026 US+POP merge (POP filtered to US-only entries)
+        if (currentYear === '2026' && region === 'us') {
+          const [usData, popData] = await Promise.all([
+            loadData('regional', 'us', currentYear),
+            loadData('pop')
+          ]);
+          const usPop = filterPopByRegion(popData, 'us');
+          regionalData = mergeRegionWithPop(usData, usPop);
+        } else if (currentYear === '2026' && region === 'eu') {
+          // 2026 EU+UK+POP merge (POP filtered to EU-only entries)
+          const [euData, popData] = await Promise.all([
+            loadData('regional', 'eu', currentYear),
+            loadData('pop')
+          ]);
+          const euPop = filterPopByRegion(popData, 'eu');
+          regionalData = mergeRegionWithPop(euData, euPop);
+        } else if (region === 'fs') {
+          const fsRaw = await loadData('fs', null, currentYear);
+          if (fsRaw) {
+            if (currentYear === '2025') {
+              // 2025 uses Q1-Q4 structure, keys are Q1/Q2/Q3/Q4 from manifest
+              regionalData = {
+                'Q1 Project Awards': fsRaw['Q1'] || [],
+                'Q2 Project Awards': fsRaw['Q2'] || [],
+                'Q3 Project Awards': fsRaw['Q3'] || [],
+                'Q4 Project Awards': fsRaw['Q4'] || [],
+                'H2 Individual Awards': fsRaw['H2 Individual Awards'] || []
+              };
+            } else {
+              // 2026+ uses H1/H2 structure directly from year-based manifest
+              regionalData = {
+                'H1 Project Awards': fsRaw['H1'] || [],
+                'H2 Project Awards': fsRaw['H2'] || []
+              };
+            }
+          }
+        } else if (region === 'pop') {
+          // POP data only exists for 2025; 2026 POP is merged into US/EU regions
+          if (currentYear === '2025') {
+            regionalData = await loadData('pop');
+          }
+        } else {
+          regionalData = await loadData('regional', region, currentYear);
+        }
+        
+        // Auto-fallback: if default 2026 has no data and user didn't manually pick a year,
+        // automatically switch to the most recent year with data
+        const hasYearInUrl = !!getUrlParam('year');
+        if (!regionalData && currentYear === '2026' && !hasYearInUrl) {
+          // Fall back to 2025
+          AppData.currentYear = '2025';
+          setUrlParam('year', '2025');
+          // Update year button active state
+          document.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
+          const y2025Btn = document.querySelector('.year-btn[data-year="2025"]');
+          if (y2025Btn) y2025Btn.classList.add('active');
+          updateYear2026Button();
+          // Re-render region nav for 2025
+          renderRegionNav('2025', region);
+          // Reload with 2025 data
+          await loadRegionalData(region, '2025');
+          return;
+        }
+
+        if (regionalData) {
+          // Update page title
+          updateLabels();
+          
+          // Auto-adjust currentAwardType: if the current tab has no data,
+          // switch to the most recent tab that has data
+          const hasYearInUrl2 = !!getUrlParam('period');
+          if (!hasYearInUrl2) {
+            const hasCurrentData = regionalData[currentAwardType] &&
+              Array.isArray(regionalData[currentAwardType]) &&
+              regionalData[currentAwardType].length > 0;
+            if (!hasCurrentData) {
+              // Priority order: most recent first
+              let priority = [];
+              if (region === 'latam') {
+                priority = ['Q2 Individual Awards', 'Q1 Individual Awards'];
+              } else if (isQuarterRegion) {
+                priority = ['Q4 Individual Awards', 'Q4', 'Q3', 'Q2', 'Q1'];
+              } else if (currentYear === '2026' && ['sea', 'us', 'eu', 'fs'].includes(region)) {
+                priority = ['H1 Project Awards'];
+              } else {
+                priority = ['H2 Individual Awards', 'H2 Project Awards', 'H1 Project Awards'];
+              }
+              for (const type of priority) {
+                if (regionalData[type] && Array.isArray(regionalData[type]) && regionalData[type].length > 0) {
+                  currentAwardType = type;
+                  // Update tab active state
+                  document.querySelectorAll('#award-type-wrapper .award-type-btn, #quarter-toggle .award-type-btn, #quarter-buttons .award-type-btn, #h1-individual-button .award-type-btn').forEach(b => {
+                    b.classList.toggle('active', b.dataset.type === currentAwardType);
+                  });
+                  setUrlParam('period', currentAwardType);
+                  break;
+                }
+              }
+            }
+          }
+          
+          // Render all awards
+          renderRegionalAwards(regionalData, 'regional-awards', currentAwardType, region);
+          // Load like/comment interactions from API
+          loadAllCardInteractions();
+        } else {
+          awardsContainer.innerHTML = '<div class="no-data-msg">No data available for this region.</div>';
+        }
+        // Fade in after content loaded
+        if (contentWrapper) contentWrapper.classList.remove('fading');
+      } catch (error) {
+        console.error('Error loading regional data:', error);
+        awardsContainer.innerHTML = '<div class="no-data-msg">No data available for this region.</div>';
+        if (contentWrapper) contentWrapper.classList.remove('fading');
+      }
+    }
+    
+    // Initialize region navigation
+    function initRegionNav() {
+      const urlYear = AppData.currentYear || getUrlParam('year') || '2026';
+      const urlRegion = normalizeRegionForYear(getUrlParam('region') || currentRegion, urlYear);
+      currentRegion = urlRegion;
+      renderRegionNav(urlYear, currentRegion);
+    }
+    
+    // Initialize award type toggle
+    function initAwardTypeToggle() {
+      // Non-LATAM buttons
+      const typeBtns = document.querySelectorAll('#award-type-wrapper .award-type-btn');
+      console.log('initAwardTypeToggle: found', typeBtns.length, 'buttons');
+      
+      typeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          console.log('Tab clicked:', btn.dataset.type, 'currentRegion:', currentRegion);
+          if (currentRegion === 'latam') return; // Don't allow clicking H buttons for LATAM
+          typeBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentAwardType = btn.dataset.type;
+          setUrlParams({ year: AppData.currentYear, region: currentRegion, period: currentAwardType });
+          
+          updateLabels();
+          
+          console.log('Rendering awards for:', currentAwardType, 'hasData:', !!regionalData);
+          if (regionalData) {
+            try {
+              renderRegionalAwards(regionalData, 'regional-awards', currentAwardType, currentRegion);
+              loadAllCardInteractions();
+            } catch (e) {
+              console.error('Error rendering awards:', e);
+            }
+          }
+        });
+      });
+      
+      // LATAM / FS / POP Q buttons
+      const quarterBtns = document.querySelectorAll('#quarter-toggle .award-type-btn');
+      quarterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const isQuarterRegion = currentRegion === 'latam' || currentRegion === 'fs' || currentRegion === 'pop';
+          if (!isQuarterRegion) return; // Only for LATAM / FS / POP
+          quarterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentAwardType = btn.dataset.type; // Q1, Q2, Q3, Q4, Q4 Individual Awards
+          AppData.currentLatamQuarter = currentAwardType;
+          setUrlParams({ year: AppData.currentYear, region: currentRegion, period: currentAwardType });
+          
+          if (regionalData) {
+            renderRegionalAwards(regionalData, 'regional-awards', currentAwardType, currentRegion);
+            loadAllCardInteractions();
+          }
+        });
+      });
+      
+      // Event delegation for dynamically created LATAM 2026 buttons (Q1/Q2 Individual Awards)
+      const quarterToggleEl = document.getElementById('quarter-toggle');
+      if (quarterToggleEl) {
+        quarterToggleEl.addEventListener('click', (e) => {
+          const btn = e.target.closest('.award-type-btn');
+          if (!btn) return;
+          if (currentRegion !== 'latam') return;
+          const h1Container = document.getElementById('h1-individual-button');
+          if (!h1Container || !h1Container.contains(btn)) return;
+          
+          h1Container.querySelectorAll('.award-type-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentAwardType = btn.dataset.type;
+          AppData.currentLatamQuarter = currentAwardType;
+          setUrlParams({ year: AppData.currentYear, region: currentRegion, period: currentAwardType });
+          
+          if (regionalData) {
+            renderRegionalAwards(regionalData, 'regional-awards', currentAwardType, currentRegion);
+            loadAllCardInteractions();
+          }
+        });
+      }
+    }
+    
+    document.addEventListener('DOMContentLoaded', async () => {
+      console.log('DOMContentLoaded fired');
+      await loadFeishuAvatarMap();
+      
+      // Get year, region, and period from URL, then normalize them for deep links.
+      const initialState = getInitialRegionalState();
+      let urlYear = initialState.year;
+      let urlRegion = initialState.region;
+      
+      AppData.currentYear = urlYear;
+      currentRegion = urlRegion;
+      currentAwardType = initialState.period;
+      setUrlParams({ year: urlYear, region: currentRegion, period: currentAwardType });
+      
+      // Initialize navigation
+      highlightNavigation();
+      initYearNavigation();
+      initRegionNav();
+      initAwardTypeToggle();
+      
+      console.log('Initial currentRegion:', currentRegion, 'currentAwardType:', currentAwardType, 'year:', urlYear);
+      
+      // Load initial region data
+      await loadRegionalData(currentRegion, urlYear);
+      
+      console.log('Data loaded, regionalData:', !!regionalData);
+      
+      // Initialize search
+      await loadSearchData();
+      
+      // Search handlers - bind outside try-catch to ensure always available
+      const searchInput = document.getElementById('search-input');
+      const searchBtn = document.getElementById('search-btn');
+      const searchResults = document.getElementById('search-results');
+
+      async function performAndShowSearch(query) {
+        if (!query) {
+          searchResults.classList.remove('active');
+          return;
+        }
+        if (!searchData) {
+          searchResults.innerHTML = '<div class="no-results">Loading search data, please wait...</div>';
+          searchResults.classList.add('active');
+          const checkInterval = setInterval(() => {
+            if (searchData) {
+              clearInterval(checkInterval);
+              performAndShowSearch(query);
+            }
+          }, 300);
+          setTimeout(() => clearInterval(checkInterval), 10000);
+          return;
+        }
+        const results = performSearch(query, 'all', { preferredScopes: ['regional', 'fs', 'pop'] });
+        renderSearchResults(results, 'search-results');
+        searchResults.classList.add('active');
+      }
+
+      if (searchBtn) {
+        searchBtn.addEventListener('click', () => performAndShowSearch(searchInput?.value));
+      }
+      if (searchInput) {
+        searchInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') performAndShowSearch(searchInput?.value);
+        });
+      }
+      
+      // Handle year change without page reload
+      window.addEventListener('yearChanged', async (e) => {
+        const newYear = e.detail.year;
+        // Re-render region nav for the new year
+        let activeRegion = normalizeRegionForYear(currentRegion, newYear);
+        currentRegion = activeRegion;
+        currentAwardType = normalizeAwardTypeForRegion(currentRegion, newYear, currentAwardType);
+        setUrlParams({ year: newYear, region: currentRegion, period: currentAwardType });
+        renderRegionNav(newYear, currentRegion);
+        await loadRegionalData(currentRegion, newYear);
+      });
+    });
+
+    // Browsers may restore this page from the back-forward cache with old avatar DOM.
+    // Reload both the avatar map and regional data before showing the restored page.
+    window.addEventListener('pageshow', async (event) => {
+      if (!event.persisted) return;
+      const restoredState = getInitialRegionalState();
+      AppData.currentYear = restoredState.year;
+      currentRegion = restoredState.region;
+      currentAwardType = restoredState.period;
+      await loadFeishuAvatarMap({ force: true });
+      await loadRegionalData(currentRegion, restoredState.year);
+    });
+  </script>
+<script>
+// Report page view on load (once per session). PV is unchanged; user_id enables backend UV counting.
+if (typeof AwardAPI !== 'undefined' && AwardAPI.reportPageView) {
+  AwardAPI.reportPageView(window.location.pathname);
+}
+</script>
+</body>
+</html>

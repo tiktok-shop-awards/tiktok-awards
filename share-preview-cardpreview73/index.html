@@ -1,0 +1,1575 @@
+<!-- v20260920-recognition-collection -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global E-commerce Recognition Hub</title>
+  <link rel="stylesheet" href="css/main.css?v=cardpreview73">
+  <style id="app-boot-guard-style">
+    html.app-booting:not(.app-ready) body {
+      visibility: hidden;
+      background: #000;
+    }
+    html.app-booting:not(.app-ready)::before {
+      content: 'Loading Recognition Hub...';
+      position: fixed;
+      inset: 0;
+      z-index: 2147483647;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle at 50% 38%, rgba(46, 208, 214, 0.14), transparent 32%),
+        linear-gradient(135deg, #000 0%, #080d12 54%, #000 100%);
+      color: rgba(255, 255, 255, 0.72);
+      font: 700 13px/1.4 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+  </style>
+  <script id="app-boot-guard-script">
+    (function () {
+      var root = document.documentElement;
+      root.classList.add('app-booting');
+      var revealed = false;
+      function reveal() {
+        if (revealed) return;
+        revealed = true;
+        root.classList.add('app-ready');
+      }
+      window.addEventListener('load', reveal, { once: true });
+      window.addEventListener('pageshow', reveal, { once: true });
+      setTimeout(reveal, 2500);
+    })();
+  </script>
+
+  <style>
+    /* ==================== Home Page Specific Styles ==================== */
+    .home-header {
+      padding: 0 0 var(--spacing-xs);
+    }
+    
+    .home-title {
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 4px;
+      color: #FFFFFF;
+      text-align: center;
+    }
+    
+    .home-subtitle {
+      font-size: 14px;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-bottom: 0;
+    }
+    
+    /* Compact Year Navigation */
+    .year-nav-compact {
+      display: inline-flex;
+      gap: var(--spacing-xs);
+      background: var(--bg-card);
+      padding: 3px;
+      border-radius: var(--radius-sm);
+      margin: var(--spacing-sm) auto 0;
+      width: fit-content;
+    }
+    
+    .year-nav-compact .year-btn {
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: transparent;
+      border: none;
+      transition: all 0.2s ease;
+    }
+    
+    .year-nav-compact .year-btn:hover {
+      color: var(--text-primary);
+    }
+    
+    .year-nav-compact .year-btn.active {
+      background: var(--primary-color);
+      color: white;
+    }
+    
+    .year-nav-wrapper {
+      text-align: center;
+    }
+    
+    /* Top 10 Section */
+    .top10-section {
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-md);
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+    }
+    
+    .section-badge {
+      padding: 4px 10px;
+      background: var(--primary-color);
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+      font-weight: 600;
+    }
+    
+    /* Inline Search */
+    .inline-search {
+      display: flex;
+      gap: var(--spacing-sm);
+      max-width: 400px;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .inline-search .search-input {
+      flex: 1;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      color: var(--text-primary);
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      outline: none;
+    }
+    
+    .inline-search .search-input:focus {
+      border-color: var(--primary-color);
+    }
+    
+    .inline-search .search-btn {
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      color: white;
+      background: var(--primary-color);
+    }
+    
+    /* Two Column Layout */
+    .home-two-columns {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: var(--spacing-lg);
+      align-items: start;
+      position: relative;
+    }
+    
+    .home-two-columns::before {
+      content: '';
+      position: absolute;
+      left: calc(100% - 400px - var(--spacing-lg)/2);
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--border-color) 20%, var(--border-color) 80%, transparent);
+    }
+    
+    /* Search Section */
+    .search-section {
+      position: sticky;
+      top: 80px;
+    }
+    
+    .search-box-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .search-input-full {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+    
+    .search-input-full:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+    
+    .search-btn-full {
+      width: 100%;
+      padding: 12px 20px;
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      border: none;
+      border-radius: var(--radius-md);
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .search-btn-full:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(246, 33, 74, 0.3);
+    }
+    
+    /* Top 10 List - Two Columns */
+    #top10-list {
+      display: block;
+    }
+    
+    #top10-list .ranking-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+    
+    #top10-list .ranking-item {
+      display: grid;
+      grid-template-columns: 36px 1fr auto;
+      padding: 8px 12px;
+      gap: 6px;
+      align-items: center;
+    }
+    
+    #top10-list .ranking-rank {
+      font-size: 14px;
+    }
+    
+    #top10-list .ranking-name {
+      font-size: 13px;
+    }
+    
+    #top10-list .ranking-dept {
+      display: block;
+      font-size: 10px;
+      grid-column: 2;
+      text-align: left;
+      color: var(--text-secondary);
+    }
+    
+    #top10-list .ranking-score {
+      font-size: 12px;
+      grid-row: 1 / 3;
+      grid-column: 3;
+    }
+    
+    /* Stats Grid - 3x2 Grid Layout */
+    .stats-grid-full {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-md);
+    }
+    
+    @media (max-width: 768px) {
+      .stats-grid-full {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    .stat-card {
+      text-align: center;
+      padding: var(--spacing-lg);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+      border-radius: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--primary-color);
+    }
+    
+    .stat-card:hover {
+      border-color: #2ED0D6;
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(46, 208, 214, 0.2);
+    }
+    
+
+    
+    .stat-icon {
+      font-size: 32px;
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .stat-value {
+      font-size: 36px;
+      font-weight: 800;
+      color: #2ED0D6;
+      margin-bottom: var(--spacing-xs);
+    }
+    
+    .stat-label {
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    /* Region Rank List */
+    .region-rank-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .region-rank-item {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: 10px 12px;
+      background: var(--bg-card);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      transition: all 0.2s ease;
+    }
+    
+    .region-rank-item:hover {
+      border-color: var(--primary-color);
+    }
+    
+    .region-rank-item .rank-num {
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 700;
+      color: white;
+    }
+    
+    .region-rank-item .region-name {
+      flex: 1;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    
+    .region-rank-item .region-count {
+      font-size: 11px;
+      color: var(--accent-color);
+      font-weight: 600;
+    }
+    
+    /* Quick Links Grid */
+    .quick-links-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    
+    .quick-link-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 14px 10px;
+      background: var(--bg-card);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    
+    .quick-link-card:hover {
+      border-color: var(--primary-color);
+      transform: translateY(-2px);
+      background: rgba(246, 33, 74, 0.05);
+    }
+    
+    .quick-link-icon {
+      font-size: 20px;
+    }
+    
+    .quick-link-text {
+      font-size: 11px;
+      color: var(--text-secondary);
+      text-align: center;
+      line-height: 1.3;
+    }
+    
+    /* Search Results - Full Width */
+    .search-results-section {
+      margin-top: var(--spacing-lg);
+      display: none;
+    }
+    
+    .search-results-section.active {
+      display: block;
+    }
+    
+    /* Responsive */
+    @media (max-width: 900px) {
+      .home-two-columns {
+        grid-template-columns: 1fr;
+      }
+      
+      .home-two-columns::before {
+        display: none;
+      }
+      
+      .search-section {
+        position: static;
+      }
+      
+      .stats-grid-full {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .stats-grid-full {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .home-title {
+        font-size: 24px;
+      }
+    }
+    
+    /* ==================== Feishu Auth Styles ==================== */
+    
+    
+    .auth-container {
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .auth-icon {
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .auth-icon svg {
+      margin: 0 auto;
+    }
+    
+    .auth-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: var(--spacing-md);
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .auth-description {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-xl);
+      line-height: 1.6;
+    }
+    
+    .auth-instructions {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      margin-bottom: var(--spacing-xl);
+      text-align: left;
+    }
+    
+    .auth-instructions h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: var(--spacing-md);
+      color: var(--text-primary);
+    }
+    
+    .auth-instructions ol {
+      list-style: none;
+      counter-reset: step;
+    }
+    
+    .auth-instructions li {
+      counter-increment: step;
+      position: relative;
+      padding-left: 40px;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .auth-instructions li:last-child {
+      margin-bottom: 0;
+    }
+    
+    .auth-instructions li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 28px;
+      height: 28px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+    }
+    
+    .auth-instructions strong {
+      display: block;
+      font-size: 14px;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    
+    .auth-instructions p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+    
+    .auth-footer {
+      margin-top: var(--spacing-lg);
+    }
+    
+    .auth-footer p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .auth-btn {
+      display: inline-block;
+      padding: 12px 32px;
+      background: var(--primary-color);
+      color: white;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    
+    .auth-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(246, 33, 74, 0.3);
+    }
+    
+    .auth-btn.secondary {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+    }
+    
+    .auth-btn.secondary:hover {
+      border-color: var(--primary-color);
+    }
+    
+    /* Auth actions - primary button container */
+    .auth-actions {
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .auth-actions .auth-btn {
+      width: 100%;
+      max-width: 280px;
+      padding: 16px 32px;
+      font-size: 16px;
+    }
+    
+    .auth-icon.redirecting svg {
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(0.95); }
+    }
+    
+    .auth-icon.error svg circle,
+    .auth-icon.error svg path {
+      stroke: #FF3B30;
+    }
+    
+    /* Loading spinner */
+    
+    
+    
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Stats Widget */
+    .stats-widget-btn {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #F6214A, #F86482);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      z-index: 1000;
+      box-shadow: 0 4px 16px rgba(246, 33, 74, 0.3);
+      transition: all 0.3s ease;
+    }
+    .stats-widget-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 24px rgba(246, 33, 74, 0.4);
+    }
+    .stats-widget-btn.active {
+      background: linear-gradient(135deg, #2ED0D6, #1ab5ba);
+      box-shadow: 0 4px 16px rgba(46, 208, 214, 0.3);
+    }
+
+    .stats-panel {
+      position: fixed;
+      bottom: 84px;
+      left: 24px;
+      width: 280px;
+      background: var(--bg-card, #1c1c1e);
+      border: 1px solid var(--border-color, rgba(255,255,255,0.1));
+      border-radius: 16px;
+      padding: 20px;
+      z-index: 999;
+      display: none;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      animation: slideUp 0.3s ease;
+    }
+    .stats-panel.visible {
+      display: block;
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .stats-panel-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary, #fff);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .stats-panel-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .stats-panel-item {
+      text-align: center;
+      padding: 12px 4px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+    }
+    .stats-panel-value {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-primary, #fff);
+      line-height: 1.2;
+    }
+    .stats-panel-value.loading {
+      color: rgba(255,255,255,0.3);
+    }
+    .stats-panel-label {
+      font-size: 11px;
+      color: var(--text-secondary, rgba(255,255,255,0.5));
+      margin-top: 4px;
+    }
+    .stats-panel-footer {
+      margin-top: 12px;
+      font-size: 10px;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+    }
+  
+
+</style>
+</head>
+<body>
+  <div id="auth-overlay" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--bg-primary, #0f0f10);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  ">
+    <div style="font-size: 20px; font-weight: 700; margin-bottom: 8px;" id="auth-title">正在验证身份...</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.5);" id="auth-desc">请稍候</div>
+  </div>
+  <!-- Auth Overlay -->
+  
+  
+  <div class="page-wrapper">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-inner">
+        <div class="logo">
+          <span class="logo-icon">🏆</span>
+          <div class="logo-content">
+            <span class="logo-text">Global E-commerce Recognition Hub</span>
+            <span class="logo-subtitle">Celebrating outstanding projects and individuals across TikTok Shop.</span>
+          </div>
+        </div>
+        <nav class="top-nav">
+          <a href="index.html?v=cardpreview73" class="nav-item active">Home</a>
+          <a href="global.html?v=cardpreview73" class="nav-item">Global</a>
+          <a href="regional.html?v=cardpreview73" class="nav-item">Regional</a>
+          <a href="departmental.html?v=cardpreview73" class="nav-item">Departmental</a>
+          <a href="award-structure.html" class="nav-item">Award Structure & Timeline</a>
+          <a href="media-gallery.html?v=20260907d" class="nav-item">Media Gallery</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content" style="padding-top: var(--spacing-md);">
+      <div class="container">
+        <!-- Home Header -->
+        <section class="home-header">
+          <h1 class="home-title">Global E-commerce Recognition Hub</h1>
+          <p class="home-subtitle">Celebrating outstanding projects and individuals across TikTok Shop.</p>
+        </section>
+        
+        <!-- Year Selection -->
+        <div class="year-nav-wrapper" style="text-align: center; margin: 0 0 var(--spacing-md);">
+          <div class="year-nav-compact">
+            <button class="year-btn active" data-year="2026" id="year-2026-btn">2026</button>
+            <button class="year-btn" data-year="2025">2025</button>
+          </div>
+        </div>
+
+        <!-- Top 3 Rankings -->
+        <section class="top10-section">
+          <div class="section-header">
+            <h2 class="section-title" style="font-size: 20px; margin: 0;">
+              <span class="icon">🌟</span>
+              Global Top 3 Score Tiers (Full Year Rankings)
+            </h2>
+          </div>
+          
+          <!-- Scoring Rule Note -->
+          <p style="font-size: 12px; color: var(--text-secondary); margin: var(--spacing-sm) 0;">
+            <strong>Scoring:</strong> Global Award = 5 pts | Regional Award = 3 pts | Departmental Award = 1 pt | Multiple-Award Bonus = +1 pt per additional award | Cross-Level Bonus = +1 pt per additional award level
+          </p>
+          
+          <!-- Podium (Top 3) -->
+          <div id="top3-podium"></div>
+        </section>
+
+        <!-- Award Summary -->
+        <section class="overview-section" style="margin-top: var(--spacing-xl);">
+          <h2 class="section-title" style="font-size: 18px; margin-bottom: var(--spacing-md); text-align: center;">
+            <span class="icon">📊</span>
+            Award Summary
+          </h2>
+          <div class="stats-grid-full" id="overview-stats">
+            <div class="stat-card">
+              <div class="stat-icon">🏆</div>
+              <div class="stat-value">-</div>
+              <div class="stat-label">Global Projects</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">🌍</div>
+              <div class="stat-value">-</div>
+              <div class="stat-label">Regional Projects</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">⭐</div>
+              <div class="stat-value">-</div>
+              <div class="stat-label">Individual Awards</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">💰</div>
+              <div class="stat-value">-</div>
+              <div class="stat-label">Total Bonus</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">👥</div>
+              <div class="stat-value">-</div>
+              <div class="stat-label">Team Members</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">🌐</div>
+              <div class="stat-value">-</div>
+              <div class="stat-label">Regions</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Search Awards -->
+        <section class="search-section-bottom" style="margin-top: var(--spacing-xl);">
+          <h2 class="section-title" style="font-size: 18px; margin-bottom: var(--spacing-md);">
+            <span class="icon">🔍</span>
+            Search Awards
+          </h2>
+          <div class="search-box-inline">
+                  <input type="text" class="search-input" id="search-input" placeholder="Search all years by name, project, department...">
+            <button class="search-btn" id="search-btn">Search</button>
+          </div>
+          <div id="search-results" class="search-results-section"></div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>© 2025 Global E-commerce Recognition Hub. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Members Modal -->
+  <div class="members-modal" id="members-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Team Members</h3>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Comments Modal -->
+  <div class="comments-modal" id="comments-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="comments-modal-title">Comments</h3>
+        <button class="modal-close" onclick="closeCommentsModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div id="comment-list"></div>
+        <div class="comment-input-wrapper">
+          <input type="text" class="comment-input" id="comment-input" placeholder="Write a comment...">
+          <button class="comment-submit-btn" onclick="submitComment()">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Share Modal -->
+  <div class="share-modal" id="share-modal">
+    <div class="modal-content" style="max-width: 700px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="share-modal-title">Share Award</h3>
+        <button class="modal-close" onclick="closeShareModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div id="poster-preview"></div>
+        <div class="share-actions">
+          <button class="download-btn" onclick="downloadPoster()">📥 Download Poster</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Feishu H5 SDK -->
+  <script src="https://lf-scm-cn.feishucdn.com/lark/op/h5-js-sdk-1.5.48.js"></script>
+  <script src="js/auth.js?v=20260914internalonly"></script>
+  <script src="js/auth-helper-v21.js?v=20260914retry"></script>
+  <script src="js/award-api.js?v=feishu-share-dryrun-v16"></script>
+  <script src="js/html2canvas.min.js"></script>
+    <script src="js/main.js?v=cardpreview73"></script>
+  <script>
+    // Render Home Stats - Now includes Q1/Q2/Q3/Q4 data for FS/POP and all regional data
+    // IMPORTANT: Project awards are counted by unique project, not by member records
+    // 汇率: 1 USD = 7.1 CNY
+    const EXCHANGE_RATE = 7.1;
+    
+    function convertToUSD(amount, currency) {
+      if (!amount) return 0;
+      const amt = parseFloat(amount);
+      return currency === 'CNY' ? amt / EXCHANGE_RATE : amt;
+    }
+    
+    function renderHomeStats(globalData, regionalData, fsData, popData, year = '2025', departmentalData = null) {
+      // ========== HomePage 统计规则（重要！）==========
+      // 1. Global Projects: Global数据的项目奖去重后数量
+      // 2. Regional Projects: US+EU+SEA+LATAM+FS+POP 项目奖去重后数量总和
+      // 3. Individual Awards: 所有区域个人奖记录数总和
+      // 4. Total Bonus: Global项目奖 + Regional项目奖 + 个人奖 奖金总和（CNY÷7.1换算USD）
+      // 5. Team Members: Global + Regional 所有项目奖的成员数量（不去重，累加人次）
+      // 6. Regions: 2025年=6个(US,EU,SEA,LATAM,FS,POP), 2026年=5个(US+POP合并,EU,SEA,LATAM,FS)
+      // ==================================================
+      
+      let globalProjects = 0;
+      let regionalProjects = 0;
+      let individualAwards = 0;
+      let totalBonusUSD = 0;
+      let teamMemberCount = 0;
+      
+      // Helper: 统计项目奖（去重）和个人奖
+      function processProjectAwards(awards) {
+        if (!awards || awards.length === 0) return { projCount: 0, projBonus: 0, members: 0 };
+        
+        // 项目奖按project_name去重，每个项目只计一次bonus
+        const projectBonusesMap = {};
+        let members = 0;
+        
+        awards.forEach(a => {
+          const pname = a.project_name;
+          if (pname && !projectBonusesMap[pname]) {
+            projectBonusesMap[pname] = convertToUSD(a.bonus, a.currency);
+          }
+          // Team Members: 不去重，累加所有项目奖的members.length
+          if (a.members) members += a.members.length;
+        });
+        
+        const projCount = Object.keys(projectBonusesMap).length;
+        const projBonus = Object.values(projectBonusesMap).reduce((sum, b) => sum + b, 0);
+        
+        return { projCount, projBonus, members };
+      }
+      
+      // 1. Global Projects (仅 globalData 本身，不含 FS 和 POP)
+      // Team Members 包含 Global + Regional 所有项目奖的成员数量
+      if (globalData) {
+        const allProjAwards = [
+          ...(globalData['Q1 Project Awards'] || []),
+          ...(globalData['Q2 Project Awards'] || []),
+          ...(globalData['Q3 Project Awards'] || []),
+          ...(globalData['Q4 Project Awards'] || []),
+          ...(globalData['H1 Project Awards'] || []),
+          ...(globalData['H2 Project Awards'] || [])
+        ];
+        const result = processProjectAwards(allProjAwards);
+        globalProjects = result.projCount;
+        totalBonusUSD += result.projBonus;
+        teamMemberCount += result.members;
+      }
+      
+      // 2. Regional Projects
+      // 2025: US, EU, SEA, LATAM, POP, FS = 6 regions
+      // 2026: US+POP merged, EU, SEA, LATAM, FS = 5 regions
+      const regions2025 = ['us', 'eu', 'sea', 'latam', 'fs', 'pop'];
+      const regions2026 = ['us', 'eu', 'sea', 'latam', 'fs'];
+      const regions = year === '2026' ? regions2026 : regions2025;
+      
+      // 收集所有个人奖
+      const allIndividualAwards = [];
+      const individualAwardKeys = ['H2 Individual Awards', 'Q1 Individual Awards', 'Q2 Individual Awards', 'Q3 Individual Awards', 'Q4 Individual Awards'];
+      
+      regions.forEach(region => {
+        let regionData = regionalData[region];
+        
+        // 2026年 US+POP 合并
+        if (year === '2026' && region === 'us') {
+          const usData = regionalData['us'] || {};
+          const popData2 = regionalData['pop'] || {};
+          regionData = {
+            'Q1 Project Awards': [...(usData['Q1 Project Awards'] || []), ...(popData2['Q1 Project Awards'] || [])],
+            'Q2 Project Awards': [...(usData['Q2 Project Awards'] || []), ...(popData2['Q2 Project Awards'] || [])],
+            'Q3 Project Awards': [...(usData['Q3 Project Awards'] || []), ...(popData2['Q3 Project Awards'] || [])],
+            'Q4 Project Awards': [...(usData['Q4 Project Awards'] || []), ...(popData2['Q4 Project Awards'] || [])],
+            'H1 Project Awards': [...(usData['H1 Project Awards'] || []), ...(popData2['H1 Project Awards'] || [])],
+            'H2 Project Awards': [...(usData['H2 Project Awards'] || []), ...(popData2['H2 Project Awards'] || [])],
+            'H2 Individual Awards': [...(usData['H2 Individual Awards'] || []), ...(popData2['H2 Individual Awards'] || [])],
+            'Q1 Individual Awards': [...(usData['Q1 Individual Awards'] || []), ...(popData2['Q1 Individual Awards'] || [])],
+            'Q2 Individual Awards': [...(usData['Q2 Individual Awards'] || []), ...(popData2['Q2 Individual Awards'] || [])],
+            'Q3 Individual Awards': [...(usData['Q3 Individual Awards'] || []), ...(popData2['Q3 Individual Awards'] || [])],
+            'Q4 Individual Awards': [...(usData['Q4 Individual Awards'] || []), ...(popData2['Q4 Individual Awards'] || [])]
+          };
+        }
+        
+        if (regionData) {
+          // Regional 项目奖
+          const allProjAwards = [
+            ...(regionData['Q1 Project Awards'] || []),
+            ...(regionData['Q2 Project Awards'] || []),
+            ...(regionData['Q3 Project Awards'] || []),
+            ...(regionData['Q4 Project Awards'] || []),
+            ...(regionData['H1 Project Awards'] || []),
+            ...(regionData['H2 Project Awards'] || [])
+          ];
+          const projResult = processProjectAwards(allProjAwards);
+          regionalProjects += projResult.projCount;
+          totalBonusUSD += projResult.projBonus;
+          teamMemberCount += projResult.members;
+          
+          // Individual awards
+          const indivAwards = individualAwardKeys.flatMap(key => regionData[key] || []);
+          allIndividualAwards.push(...indivAwards);
+        }
+      });
+      
+      // 3. FS 独立数据 (如果没有在 regional 中处理)
+      if (fsData && !regions.includes('fs')) {
+        const allProjAwards = [
+          ...(fsData['Q1 Project Awards'] || []),
+          ...(fsData['Q2 Project Awards'] || []),
+          ...(fsData['Q3 Project Awards'] || []),
+          ...(fsData['Q4 Project Awards'] || []),
+          ...(fsData['H1 Project Awards'] || []),
+          ...(fsData['H2 Project Awards'] || [])
+        ];
+        const result = processProjectAwards(allProjAwards);
+        regionalProjects += result.projCount;
+        totalBonusUSD += result.projBonus;
+        teamMemberCount += result.members;
+        
+        const indivAwards = individualAwardKeys.flatMap(key => fsData[key] || []);
+        allIndividualAwards.push(...indivAwards);
+      }
+      
+      // 4. POP 独立数据 (如果没有在 regional 中处理)
+      if (popData && !regions.includes('pop')) {
+        const allProjAwards = [
+          ...(popData['Q1 Project Awards'] || []),
+          ...(popData['Q2 Project Awards'] || []),
+          ...(popData['Q3 Project Awards'] || []),
+          ...(popData['Q4 Project Awards'] || []),
+          ...(popData['H1 Project Awards'] || []),
+          ...(popData['H2 Project Awards'] || [])
+        ];
+        const result = processProjectAwards(allProjAwards);
+        regionalProjects += result.projCount;
+        totalBonusUSD += result.projBonus;
+        teamMemberCount += result.members;
+        
+        const indivAwards = individualAwardKeys.flatMap(key => popData[key] || []);
+        allIndividualAwards.push(...indivAwards);
+      }
+      
+      // 5. Departmental data: Spot Bonus → Individual Awards, Departmental Award → Team Members
+      let deptIndividualCount = 0;
+      let deptBonusUSD = 0;
+      if (departmentalData) {
+        const allDeptAwards = [
+          ...(departmentalData['Q1'] || []),
+          ...(departmentalData['Q2'] || []),
+          ...(departmentalData['Q3'] || []),
+          ...(departmentalData['Q4'] || [])
+        ];
+        // Split: Spot Bonus is individual award, Departmental Award is team award
+        const spotBonuses = allDeptAwards.filter(a => a.award_type === 'Spot Bonus');
+        const deptAwards = allDeptAwards.filter(a => a.award_type !== 'Spot Bonus');
+        // Spot Bonus → Individual Awards
+        deptIndividualCount = spotBonuses.length;
+        // Departmental Award → Team Members
+        teamMemberCount += deptAwards.filter(a => a.members).reduce((sum, a) => sum + a.members.length, 0);
+        // Bonus: both types count
+        deptBonusUSD = allDeptAwards.reduce((sum, a) =>
+          sum + convertToUSD(a.bonus, a.currency), 0);
+        totalBonusUSD += deptBonusUSD;
+      }
+      
+      // Individual Awards 计数和奖金 (including Spot Bonus from departmental)
+      individualAwards = allIndividualAwards.length + deptIndividualCount;
+      const individualBonusUSD = allIndividualAwards.reduce((sum, a) => 
+        sum + convertToUSD(a.bonus, a.currency), 0);
+      totalBonusUSD += individualBonusUSD;
+      
+      // Regions count: 2025=6, 2026=5
+      const regionsCount = year === '2026' ? 5 : 6;
+      
+      // Render stats
+      const container = document.getElementById('overview-stats');
+      if (container) {
+        container.innerHTML = `
+          <div class="stat-card">
+            <div class="stat-icon">🏆</div>
+            <div class="stat-value">${globalProjects}</div>
+            <div class="stat-label">Global Projects</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🌍</div>
+            <div class="stat-value">${regionalProjects}</div>
+            <div class="stat-label">Regional Projects</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">⭐</div>
+            <div class="stat-value">${individualAwards}</div>
+            <div class="stat-label">Individual Awards</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">💰</div>
+            <div class="stat-value">${formatBonus(totalBonusUSD)}</div>
+            <div class="stat-label">Total Bonus</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">👥</div>
+            <div class="stat-value">${teamMemberCount}</div>
+            <div class="stat-label">Team Members</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🌐</div>
+            <div class="stat-value">${regionsCount}</div>
+            <div class="stat-label">Regions</div>
+          </div>
+        `;
+      }
+      
+      // Debug log
+      console.log('HomePage Stats:', {
+        year,
+        globalProjects,
+        regionalProjects,
+        individualAwards,
+        totalBonusUSD: totalBonusUSD.toFixed(2),
+        teamMemberCount,
+        regionsCount,
+        indivCount: allIndividualAwards.length
+      });
+    }
+
+    // Normalize FS year-based data for Home summary statistics.
+    // FS data is loaded from manifest as { H1: [...] } for 2026 and { Q1: [...], Q2: [...] } for 2025,
+    // while the Home summary counter expects standard award keys such as "H1 Project Awards".
+    function normalizeFsDataForHomeStats(fsData, year) {
+      if (!fsData) return fsData;
+      if (year === '2026') {
+        return {
+          'H1 Project Awards': fsData['H1'] || fsData['H1 Project Awards'] || [],
+          'H2 Project Awards': fsData['H2'] || fsData['H2 Project Awards'] || [],
+          'H2 Individual Awards': fsData['H2 Individual Awards'] || []
+        };
+      }
+      return {
+        'Q1 Project Awards': fsData['Q1'] || fsData['Q1 Project Awards'] || [],
+        'Q2 Project Awards': fsData['Q2'] || fsData['Q2 Project Awards'] || [],
+        'Q3 Project Awards': fsData['Q3'] || fsData['Q3 Project Awards'] || [],
+        'Q4 Project Awards': fsData['Q4'] || fsData['Q4 Project Awards'] || [],
+        'H2 Individual Awards': fsData['H2 Individual Awards'] || []
+      };
+    }
+    
+    function formatBonus(amount, currency = 'USD') {
+      if (!amount || amount === 0) return 'TBD';
+      
+      const symbol = currency === 'CNY' ? '¥' : '$';
+      
+      if (amount >= 1000000) {
+        return symbol + (amount / 1000000).toFixed(1) + 'M';
+      }
+      if (amount >= 1000) {
+        return symbol + (amount / 1000).toFixed(0) + 'K';
+      }
+      return symbol + amount;
+    }
+    
+    // Home page specific initialization
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadFeishuAvatarMap();
+
+      // Initialize navigation immediately
+      highlightNavigation();
+      initYearNavigation();
+      
+      // Load initial data based on URL year parameter
+      await loadHomePageData();
+      
+      // Initialize search
+      await loadSearchData();
+      initSearchListeners();
+      
+      // Handle year change without page reload
+      window.addEventListener('yearChanged', async (e) => {
+        await loadHomePageData();
+      });
+    });
+    
+    // 加载HomePage数据的函数
+    async function loadHomePageData() {
+      try {
+        // Get year from URL or default to 2025
+        const urlYear = getUrlParam('year') || '2026';
+        AppData.currentYear = urlYear;
+        
+        // Load all data for stats (Q1 + Q2 + Q3 + Q4 + FS + POP)
+        const [rankingsData, global, us, eu, sea, latam, fs, pop, departmental] = await Promise.all([
+          loadRankings(urlYear),
+          loadData('global', null, urlYear),
+          loadData('regional', 'us', urlYear),
+          loadData('regional', 'eu', urlYear),
+          loadData('regional', 'sea', urlYear),
+          loadData('regional', 'latam', urlYear),
+          loadData('fs'),
+          loadData('pop'),
+          loadData('departmental', null, urlYear)
+        ]);
+        const fsForStats = normalizeFsDataForHomeStats(fs, urlYear);
+        
+        // Build member to department mapping from all data
+        const memberDeptMap = {};
+        const allData = [global, us, eu, sea, latam, fsForStats, pop];
+        allData.forEach(data => {
+          if (!data) return;
+          const allAwards = [
+            ...(data['Q1 Project Awards'] || []),
+            ...(data['Q2 Project Awards'] || []),
+            ...(data['Q3 Project Awards'] || []),
+            ...(data['Q4 Project Awards'] || []),
+            ...(data['H1 Project Awards'] || []),
+            ...(data['H2 Project Awards'] || []),
+            ...(data['H2 Individual Awards'] || [])
+          ];
+          allAwards.forEach(award => {
+            const dept = award.department || 'TikTok Shop';
+            (award.members || []).forEach(member => {
+              if (!memberDeptMap[member]) {
+                memberDeptMap[member] = dept;
+              }
+            });
+          });
+        });
+        
+        // 2026 uses all award records and dense score ranking:
+        // Base score: Global = 5, Regional = 3, Departmental = 1.
+        // Bonuses: +1 per additional award and +1 per additional award level.
+        const calculatedTiers = urlYear === '2026'
+          ? calculateAllAwardScoreTiers(
+              global,
+              [us, eu, sea, latam, fsForStats],
+              departmental
+            )
+          : [];
+        const rankingSource = rankingsData && (rankingsData.top10 || rankingsData.top3)
+          ? (rankingsData.top10 || rankingsData.top3)
+          : [];
+        const fallbackRanking = rankingSource.map(r => ({
+            name: r.name,
+            score: r.points,
+            points: r.points,
+            rank: r.rank,
+            email: r.email || '',
+            department: r.department || memberDeptMap[r.name] || 'TikTok Shop',
+            region: r.region || null
+          }));
+        const podiumData = calculatedTiers.length ? calculatedTiers : fallbackRanking;
+        if (podiumData.length > 0) {
+          renderPodium(podiumData, 'top3-podium', 'Global Top 3 Score Tiers', [global, us, eu, sea, latam, fsForStats, pop, departmental]);
+        }
+        
+        // Calculate and render stats
+        // 注意：Global Projects 只包含 globalData 本身，FS 和 POP 的项目计入 Regional Projects
+        renderHomeStats(global, { us, eu, sea, latam, fs: fsForStats, pop: pop }, fsForStats, pop, urlYear, departmental);
+        
+      } catch (error) {
+        console.error('Error loading home page data:', error);
+      }
+    }
+    
+    // 合并Global数据和FS数据（支持季度结构）
+    function mergeGlobalData(global, fs) {
+      if (!global && !fs) return null;
+      if (!global) return fs;
+      if (!fs) return global;
+      
+      return {
+        'Q1 Project Awards': [
+          ...(global['Q1 Project Awards'] || []),
+          ...(fs['Q1 Project Awards'] || [])
+        ],
+        'Q2 Project Awards': [
+          ...(global['Q2 Project Awards'] || []),
+          ...(fs['Q2 Project Awards'] || [])
+        ],
+        'Q3 Project Awards': [
+          ...(global['Q3 Project Awards'] || []),
+          ...(fs['Q3 Project Awards'] || [])
+        ],
+        'Q4 Project Awards': [
+          ...(global['Q4 Project Awards'] || []),
+          ...(fs['Q4 Project Awards'] || [])
+        ],
+        'H1 Project Awards': [
+          ...(global['H1 Project Awards'] || []),
+          ...(fs['H1 Project Awards'] || [])
+        ],
+        'H2 Project Awards': [
+          ...(global['H2 Project Awards'] || []),
+          ...(fs['H2 Project Awards'] || [])
+        ],
+        'H2 Individual Awards': [
+          ...(global['H2 Individual Awards'] || []),
+          ...(fs['H2 Individual Awards'] || [])
+        ]
+      };
+    }
+    
+    // 初始化搜索功能 (renamed to avoid overriding main.js loadSearchData)
+    function initSearchListeners() {
+      const searchInput = document.getElementById('search-input');
+      const searchBtn = document.getElementById('search-btn');
+      const searchResults = document.getElementById('search-results');
+      
+      // Bug 1 fix: Handle race condition where searchData is not yet loaded
+      async function performAndShowSearch() {
+        const query = searchInput?.value || '';
+        if (!query) {
+          searchResults.classList.remove('active');
+          return;
+        }
+        if (!searchData) {
+          searchResults.innerHTML = '<div class="no-results">Loading search data, please wait...</div>';
+          searchResults.classList.add('active');
+          for (let i = 0; i < 33; i++) {
+            await new Promise(r => setTimeout(r, 300));
+            if (searchData) break;
+          }
+          if (!searchData) {
+            searchResults.innerHTML = '<div class="no-results">Search data failed to load. Please try again later.</div>';
+            return;
+          }
+        }
+        const results = performSearch(query, 'all');
+        renderSearchResults(results, 'search-results');
+        searchResults.classList.add('active');
+      }
+      
+      if (searchBtn) {
+        searchBtn.addEventListener('click', performAndShowSearch);
+      }
+      
+      if (searchInput) {
+        searchInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            performAndShowSearch();
+          }
+        });
+      }
+    }
+  
+// ===== Stats Widget =====
+document.addEventListener('DOMContentLoaded', function() {
+  const btn = document.getElementById('statsWidgetBtn');
+  const panel = document.getElementById('statsPanel');
+  const pinModal = document.getElementById('statsPinModal');
+  const pinInput = document.getElementById('statsPinInput');
+  const pinSubmit = document.getElementById('statsPinSubmit');
+  const pinError = document.getElementById('statsPinError');
+  const STATS_PIN = '2026TTSOC';
+  const PIN_KEY = 'stats_pin_verified';
+  
+  if (!btn || !panel) return;
+  
+  // Check if already verified this session
+  function isPinVerified() {
+    return sessionStorage.getItem(PIN_KEY) === '1';
+  }
+  
+  // Toggle panel
+  btn.addEventListener('click', () => {
+    const isVisible = panel.classList.contains('visible');
+    if (isVisible) {
+      panel.classList.remove('visible');
+      btn.classList.remove('active');
+      return;
+    }
+    if (isPinVerified()) {
+      panel.classList.add('visible');
+      btn.classList.add('active');
+      loadStats();
+    } else {
+      // Show PIN modal
+      if (pinModal) {
+        pinModal.style.display = 'block';
+        pinInput.value = '';
+        pinError.style.display = 'none';
+        setTimeout(() => pinInput.focus(), 100);
+      }
+    }
+  });
+  
+  // PIN submit
+  if (pinSubmit) {
+    pinSubmit.addEventListener('click', verifyPin);
+  }
+  if (pinInput) {
+    pinInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') verifyPin();
+    });
+  }
+  
+  // Close PIN modal
+  const pinClose = document.getElementById('statsPinClose');
+  if (pinClose) {
+    pinClose.addEventListener('click', () => {
+      pinModal.style.display = 'none';
+    });
+  }
+  // Click outside PIN modal to close
+  if (pinModal) {
+    pinModal.addEventListener('click', (e) => {
+      if (e.target === pinModal) {
+        pinModal.style.display = 'none';
+      }
+    });
+  }
+  function verifyPin() {
+    if (pinInput.value.trim().toUpperCase() === STATS_PIN) {
+      sessionStorage.setItem(PIN_KEY, '1');
+      pinModal.style.display = 'none';
+      panel.classList.add('visible');
+      btn.classList.add('active');
+      loadStats();
+    } else {
+      pinError.style.display = 'block';
+      pinInput.value = '';
+      pinInput.focus();
+    }
+  }
+  
+  // Close on click outside
+  document.addEventListener('click', (e) => {
+    if (!panel.contains(e.target) && !btn.contains(e.target) && !pinModal?.contains(e.target)) {
+      panel.classList.remove('visible');
+      btn.classList.remove('active');
+    }
+  });
+  
+  // Load stats data
+  async function loadStats() {
+    const pvEl = document.getElementById('statsPageViews');
+    const uvEl = document.getElementById('statsUniqueVisitors');
+    const likesEl = document.getElementById('statsLikes');
+    const commentsEl = document.getElementById('statsComments');
+    const footerEl = document.getElementById('statsFooter');
+    
+    // Reset
+    [pvEl, uvEl, likesEl, commentsEl].forEach(el => {
+      el.textContent = '-';
+      el.classList.add('loading');
+    });
+    footerEl.textContent = 'Loading...';
+    
+    try {
+      // Try AIPA stats API first
+      const res = await fetch('https://da1e5fb0.aipa.bytedance.net/api/stats', {
+        signal: AbortSignal.timeout(8000)
+      });
+      if (res.ok) {
+        const data = await res.json();
+        const stats = data.data || data;
+        pvEl.textContent = formatNum(stats.page_views || stats.visits || 0);
+        const uvValue = stats.unique_visitors ?? stats.uv ?? stats.unique_users ?? stats.visitors_unique;
+        uvEl.textContent = uvValue === undefined || uvValue === null ? '-' : formatNum(uvValue);
+        likesEl.textContent = formatNum(stats.total_likes || 0);
+        commentsEl.textContent = formatNum(stats.total_comments || 0);
+        [pvEl, uvEl, likesEl, commentsEl].forEach(el => el.classList.remove('loading'));
+        footerEl.textContent = 'Updated ' + new Date().toLocaleTimeString();
+
+        return;
+      }
+    } catch (e) {
+      console.warn('[Stats] AIPA API unavailable, using fallback');
+    }
+    
+    // Fallback: estimate from localStorage + AIPA if available
+    let likes = 0, comments = 0;
+    try {
+      if (typeof AwardAPI !== 'undefined' && await AwardAPI.checkAvailability()) {
+        // Can't easily get totals from existing API, show partial
+        likesEl.textContent = '?';
+        commentsEl.textContent = '?';
+      }
+    } catch(e) {}
+    
+    // Try localStorage fallback for likes
+    try {
+      const lsLikes = JSON.parse(localStorage.getItem('likes') || '{}');
+      likes = Object.keys(lsLikes).length;
+    } catch(e) {}
+    
+    // Page views from localStorage (approximate)
+    let pv = parseInt(localStorage.getItem('page_views') || '0') + 1;
+    localStorage.setItem('page_views', pv.toString());
+    
+    pvEl.textContent = pv;
+    uvEl.textContent = '-';
+    likesEl.textContent = likes || '-';
+    commentsEl.textContent = '-';
+    [pvEl, uvEl, likesEl, commentsEl].forEach(el => el.classList.remove('loading'));
+    footerEl.textContent = 'Local data only · Not shared across users';
+  }
+  
+  function formatNum(n) {
+    if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+    if (n >= 1000) return (n / 1000).toFixed(1) + 'K';
+    return n.toString();
+  }
+  
+  // Report page view on load (once per session). PV is unchanged; user_id enables backend UV counting.
+  if (typeof AwardAPI !== 'undefined' && AwardAPI.reportPageView) {
+    AwardAPI.reportPageView(window.location.pathname);
+  }
+});
+
+</script>
+<!-- Stats Widget -->
+<button class="stats-widget-btn" id="statsWidgetBtn" title="View statistics">📊</button>
+
+<!-- PIN Modal -->
+<div id="statsPinModal" style="display:none; position:fixed; bottom:84px; left:24px; width:240px; background:var(--bg-card,#1c1c1e); border:1px solid var(--border-color,rgba(255,255,255,0.1)); border-radius:16px; padding:20px; z-index:1001; box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+  <button id="statsPinClose" style="position:absolute; top:10px; right:12px; background:none; border:none; color:var(--text-secondary,rgba(255,255,255,0.4)); font-size:18px; cursor:pointer; padding:0; line-height:1;">✕</button>
+  <div style="font-size:14px; font-weight:700; color:var(--text-primary,#fff); margin-bottom:6px;">🔒 Enter PIN</div>
+  <div style="font-size:12px; color:var(--text-secondary,rgba(255,255,255,0.5)); margin-bottom:12px;">嘘～这里只有管理员能看！没密码的话就假装没看到这个按钮吧🙈</div>
+  <input id="statsPinInput" type="password" placeholder="Enter PIN" style="width:100%; padding:10px 14px; border-radius:10px; border:1px solid var(--border-color,rgba(255,255,255,0.15)); background:rgba(255,255,255,0.05); color:var(--text-primary,#fff); font-size:14px; outline:none; box-sizing:border-box;">
+  <div id="statsPinError" style="display:none; color:#F6214A; font-size:12px; margin-top:6px;">Incorrect PIN</div>
+  <button id="statsPinSubmit" style="width:100%; margin-top:10px; padding:10px; border-radius:10px; border:none; background:linear-gradient(135deg,#F6214A,#F86482); color:#fff; font-size:14px; font-weight:600; cursor:pointer;">Unlock</button>
+</div>
+
+<div class="stats-panel" id="statsPanel">
+  <div class="stats-panel-title">📈 Site Statistics</div>
+  <div class="stats-panel-grid">
+    <div class="stats-panel-item">
+      <div class="stats-panel-value loading" id="statsPageViews">-</div>
+      <div class="stats-panel-label">Visits</div>
+    </div>
+    <div class="stats-panel-item">
+      <div class="stats-panel-value loading" id="statsUniqueVisitors">-</div>
+      <div class="stats-panel-label">Unique Visitors</div>
+    </div>
+    <div class="stats-panel-item">
+      <div class="stats-panel-value loading" id="statsLikes">-</div>
+      <div class="stats-panel-label">Likes</div>
+    </div>
+    <div class="stats-panel-item">
+      <div class="stats-panel-value loading" id="statsComments">-</div>
+      <div class="stats-panel-label">Comments</div>
+    </div>
+  </div>
+  <div class="stats-panel-footer" id="statsFooter">Loading...</div>
+</div>
+</body>
+</html>

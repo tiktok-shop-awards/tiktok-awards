@@ -1,0 +1,52 @@
+{
+  "videos": [
+    {
+      "id": "featured-2026h1",
+      "title": "All Hands Award Video",
+      "description": "2026 H1 Global Impactful Cross-Functional Projects",
+      "type": "featured",
+      "source": "feishu",
+      "url": "https://bytedance.larkoffice.com/wiki/GhnkwQskIi55z0kqV6KcvXXBnQf",
+      "duration": "",
+      "badge": "",
+      "uploadedAt": "2026-08-07",
+      "thumbnail": "images/video-cover-2026h1-award.jpeg"
+    },
+    {
+      "id": "featured-2025h2",
+      "title": "All Hands Award Video",
+      "description": "2025 H2 Global Impactful Cross-Functional Projects",
+      "type": "featured",
+      "source": "feishu",
+      "url": "https://bytedance.larkoffice.com/file/Cc0rbwAHmo04Srx9SdqcqQhOnrg",
+      "duration": "",
+      "badge": "",
+      "uploadedAt": "2026-04-17",
+      "thumbnail": "images/video-cover-featured.png"
+    },
+    {
+      "id": "lunch-takeaways-ep01",
+      "title": "Lunch Takeaways EP01",
+      "description": "Lunch Takeaways Global E-commerce Special Edition EP01",
+      "type": "regular",
+      "source": "feishu",
+      "url": "https://bytedance.larkoffice.com/wiki/NE8vwnpxviljgXkj63Kcn5hin2c",
+      "duration": "",
+      "badge": "",
+      "uploadedAt": "2026-06-18",
+      "thumbnail": "images/video-cover-lunch-ep01.jpeg"
+    },
+    {
+      "id": "lunch-takeaways-ep02",
+      "title": "Lunch Takeaways EP02",
+      "description": "Lunch Takeaways Global E-commerce Special Edition EP02",
+      "type": "regular",
+      "source": "feishu",
+      "url": "https://bytedance.larkoffice.com/wiki/A5oNwXjYfiiOQMkOGiqcB4Nfnwb",
+      "duration": "",
+      "badge": "",
+      "uploadedAt": "2026-06-18",
+      "thumbnail": "images/video-cover-lunch-ep02.jpeg"
+    }
+  ]
+}
