@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Regional Awards - Global E-commerce Recognition Hub</title>
-  <link rel="stylesheet" href="css/main.css?v=20260920-site-search-v50">
+  <link rel="stylesheet" href="css/main.css?v=v50">
   <style id="app-boot-guard-style">
     html.app-booting:not(.app-ready) body {
       visibility: hidden;
@@ -534,12 +534,12 @@
           </div>
         </div>
         <nav class="top-nav">
-          <a href="index.html?v=20260914mobiletabs2" class="nav-item">Home</a>
-          <a href="global.html?v=20260918-home-fast-v47" class="nav-item">Global</a>
-          <a href="regional.html?v=20260914mobiletabs2" class="nav-item active">Regional</a>
-            <a href="departmental.html?v=20260920-comment-modal-v49" class="nav-item">Departmental</a>
-          <a href="award-structure.html?v=20260914mobiletabs2" class="nav-item">Award Structure & Timeline</a>
-          <a href="media-gallery.html?v=20260914mobiletabs2" class="nav-item">Media Gallery</a>
+          <a href="index.html" class="nav-item">Home</a>
+          <a href="global.html" class="nav-item">Global</a>
+          <a href="regional.html" class="nav-item active">Regional</a>
+          <a href="departmental.html" class="nav-item">Departmental</a>
+          <a href="award-structure.html" class="nav-item">Award Structure & Timeline</a>
+          <a href="media-gallery.html" class="nav-item">Media Gallery</a>
         </nav>
       </div>
     </header>
@@ -696,9 +696,9 @@
 
 <script src="js/auth.js?v=20260914internalonly"></script>
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
-  <script src="js/award-api.js?v=20260914uv"></script>
+  <script src="js/award-api.js?v=20260914internalonly"></script>
   <script src="js/html2canvas.min.js"></script>
-  <script src="js/main.js?v=20260920-site-search-v50"></script>
+<script src="js/main.js?v=v50"></script>
   <script>
     // Regional page specific initialization
     const regionNames = {
@@ -1281,13 +1281,8 @@
       
       console.log('Data loaded, regionalData:', !!regionalData);
       
-      // Search data is non-critical. Load it only when the browser is idle.
-      const warmSearch = () => loadSearchData();
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(warmSearch, { timeout: 4000 });
-      } else {
-        setTimeout(warmSearch, 1500);
-      }
+      // Initialize search
+      await loadSearchData();
       
       // Search handlers - bind outside try-catch to ensure always available
       const searchInput = document.getElementById('search-input');
@@ -1302,11 +1297,14 @@
         if (!searchData) {
           searchResults.innerHTML = '<div class="no-results">Loading search data, please wait...</div>';
           searchResults.classList.add('active');
-          await loadSearchData();
-          if (!searchData) {
-            searchResults.innerHTML = '<div class="no-results">Search data failed to load. Please try again later.</div>';
-            return;
-          }
+          const checkInterval = setInterval(() => {
+            if (searchData) {
+              clearInterval(checkInterval);
+              performAndShowSearch(query);
+            }
+          }, 300);
+          setTimeout(() => clearInterval(checkInterval), 10000);
+          return;
         }
         const results = performSearch(query, 'all', { preferredScopes: ['regional', 'fs', 'pop'] });
         renderSearchResults(results, 'search-results');
@@ -1335,7 +1333,8 @@
       });
     });
 
-    // Refresh data and avatars after browser back/forward cache restoration.
+    // Browsers may restore this page from the back-forward cache with old avatar DOM.
+    // Reload both the avatar map and regional data before showing the restored page.
     window.addEventListener('pageshow', async (event) => {
       if (!event.persisted) return;
       const restoredState = getInitialRegionalState();

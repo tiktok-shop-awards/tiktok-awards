@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Departmental Awards - Global E-commerce Recognition Hub</title>
-  <link rel="stylesheet" href="css/main.css?v=20260920-site-search-v50">
+  <link rel="stylesheet" href="css/main.css?v=v50">
   <style id="app-boot-guard-style">
     html.app-booting:not(.app-ready) body {
       visibility: hidden;
@@ -395,12 +395,12 @@
           </div>
         </div>
         <nav class="top-nav">
-          <a href="index.html?v=20260914mobiletabs2" class="nav-item">Home</a>
-          <a href="global.html?v=20260918-home-fast-v47" class="nav-item">Global</a>
-          <a href="regional.html?v=20260914mobiletabs2" class="nav-item">Regional</a>
-            <a href="departmental.html?v=20260920-comment-modal-v49" class="nav-item active">Departmental</a>
-          <a href="award-structure.html?v=20260914mobiletabs2" class="nav-item">Award Structure & Timeline</a>
-          <a href="media-gallery.html?v=20260914mobiletabs2" class="nav-item">Media Gallery</a>
+          <a href="index.html" class="nav-item">Home</a>
+          <a href="global.html" class="nav-item">Global</a>
+          <a href="regional.html" class="nav-item">Regional</a>
+          <a href="departmental.html" class="nav-item active">Departmental</a>
+          <a href="award-structure.html" class="nav-item">Award Structure & Timeline</a>
+          <a href="media-gallery.html" class="nav-item">Media Gallery</a>
         </nav>
       </div>
     </header>
@@ -510,9 +510,9 @@
   <!-- Feishu H5 SDK -->
   <script src="js/auth.js?v=20260914internalonly"></script>
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
-  <script src="js/award-api.js?v=20260914uv"></script>
+  <script src="js/award-api.js?v=20260914internalonly"></script>
   <script src="js/html2canvas.min.js"></script>
-  <script src="js/main.js?v=20260920-site-search-v50"></script>
+<script src="js/main.js?v=v50"></script>
   <script>
     // ===== Departmental Page State =====
     let departmentalData = null;
@@ -906,9 +906,9 @@
         const department = award.department || '';
         const reasonText = award.reason || '';
         const summaryText = buildAwardSummary(reasonText, 'Recognized by the department for outstanding ownership, execution, and contribution.');
-        const detailMembers = memberCount
+        const detailMembers = (award.members && award.members.length)
           ? award.members.map(member => normalizeMember(member, getAwardMemberEmail(award, member, { allowAwardEmailFallback: true })))
-          : [normalizeMember({ name, email, department })];
+          : [{ name, email, department }];
 
         // Build a unique cardId consistent with regional/global format
         const cardId = `dept_${(department + '_' + name).replace(/\s+/g, '_')}_${award.award_type.replace(/\s+/g, '_')}`;
@@ -918,13 +918,22 @@
           kind: 'departmental'
         });
         const likeCount = getLikeCount(cardId);
-        registerAwardDetail(cardId, { title: name, reason: reasonText, members: detailMembers, awardType: detailMembers.length > 1 ? 'project' : 'individual' });
+        registerAwardDetail(cardId, {
+          title: name,
+          awardName: `${icon} ${badgeLabel}`,
+          bonus,
+          period: quarter ? `${quarter} 2026` : '2026',
+          reason: reasonText,
+          summary: summaryText,
+          members: detailMembers,
+          awardType: detailMembers.length > 1 ? 'project' : 'individual'
+        });
 
         // Escape single quotes for onclick handlers
         const safeName = name.replace(/'/g, "\\'");
 
         html += `
-          <div class="card ${detailMembers.length > 1 ? 'project-card' : 'individual-card'} award-preview-card" data-card-id="${cardId}" data-search-key="${searchKey}" onclick="showAwardDetailModal('${cardId}')">
+          <div class="card individual-card award-preview-card" data-card-id="${cardId}" data-search-key="${searchKey}" onclick="showAwardDetailModal('${cardId}')">
             <div class="card-header">
               ${renderMemberAvatar(detailMembers[0], 'card-avatar')}
               <span class="card-title">${name}</span>
@@ -936,7 +945,13 @@
               </div>
               <div class="card-amount">${bonus}</div>
               <div class="card-summary">${escapeHtml(summaryText)}</div>
-              ${detailMembers.length > 1 ? `<div class="card-open-hint">Click card to view full reason and winners</div><div class="card-member-preview">${renderMemberAvatarStack(detailMembers)}</div>` : ''}
+              <div class="card-open-hint">Click card to view full reason and winner</div>
+              ${detailMembers.length > 1 ? `
+                <div class="card-member-preview">
+                  ${renderMemberAvatarStack(detailMembers)}
+                  <span>${detailMembers.length} team members</span>
+                </div>
+              ` : ''}
             </div>
             <div class="card-footer">
               <div class="card-actions" onclick="event.stopPropagation()">
@@ -946,11 +961,11 @@
                 <button class="comment-btn" onclick="event.stopPropagation(); showCommentsModal('${cardId}', '${safeName}', '${badgeLabel}')">
                   💬 Comment
                 </button>
-                <button class="share-btn" data-award-type="${detailMembers.length > 1 ? 'project' : 'individual'}" data-project="${safeName}" data-award="${badgeLabel}" data-bonus="${award.bonus || ''}" data-reason="${reasonText.replace(/'/g, "\\'").replace(/"/g, '&quot;')}" data-members='${JSON.stringify(detailMembers).replace(/'/g, "&#39;")}' onclick="event.stopPropagation(); showShareModalFromBtn(this)">
+                <button class="share-btn" data-award-type="${award.award_type === 'Departmental Award' ? 'project' : 'individual'}" data-project="${safeName}" data-award="${badgeLabel}" data-bonus="${award.bonus || ''}" data-reason="${reasonText.replace(/'/g, "\\'").replace(/"/g, '&quot;')}" data-members='${JSON.stringify(detailMembers).replace(/'/g, "&#39;")}' onclick="event.stopPropagation(); showShareModalFromBtn(this)">
                   📤 Share
                 </button>
               </div>
-              ${detailMembers.length > 1 ? '<span class="card-detail-hint">View details</span>' : ''}
+              <span class="card-detail-hint">View details</span>
             </div>
           </div>
         `;

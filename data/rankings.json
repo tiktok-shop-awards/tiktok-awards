@@ -111,53 +111,6 @@
     ]
   },
   "2026": {
-    "scoreTiers": [
-      {
-        "rank": 1,
-        "score": 13,
-        "points": 13,
-        "members": [
-          {
-            "name": "Biying Wu",
-            "email": "biying.wu@bytedance.com",
-            "department": "UXR",
-            "score": 13
-          }
-        ]
-      },
-      {
-        "rank": 2,
-        "score": 11,
-        "points": 11,
-        "members": [
-          {
-            "name": "费子轩",
-            "email": "feizixuan@bytedance.com",
-            "department": "US Ops",
-            "score": 11
-          }
-        ]
-      },
-      {
-        "rank": 3,
-        "score": 10,
-        "points": 10,
-        "members": [
-          {
-            "name": "Haley Chau",
-            "email": "haley.chau@bytedance.com",
-            "department": "US Ops- Non CP",
-            "score": 10
-          },
-          {
-            "name": "Winnie Wang",
-            "email": "wangyu.winnie2@bytedance.com",
-            "department": "US Ops- Non CP",
-            "score": 10
-          }
-        ]
-      }
-    ],
     "top3": [
       {
         "name": "Biying Wu",

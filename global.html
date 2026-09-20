@@ -1,14 +1,13 @@
 <!-- v20260601a -->
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Global Awards - Global E-commerce Recognition Hub</title>
-  <link rel="stylesheet" href="css/main.css?v=20260920-site-search-v50">
+  <link rel="stylesheet" href="css/main.css?v=v50">
   <style id="app-boot-guard-style">
     html.app-booting:not(.app-ready) body {
       visibility: hidden;
@@ -52,7 +51,7 @@
     .home-header {
       padding: var(--spacing-xl) 0 var(--spacing-md);
     }
-    
+
     .home-title {
       font-size: 32px;
       font-weight: 800;
@@ -60,13 +59,13 @@
       color: #FFFFFF;
       text-align: center;
     }
-    
+
     .home-subtitle {
       font-size: 14px;
       color: var(--text-secondary);
       text-align: center;
     }
-    
+
     /* Compact Year Navigation - Centered */
     .year-nav-compact {
       display: inline-flex;
@@ -78,11 +77,11 @@
       width: fit-content;
       text-align: center;
     }
-    
+
     .year-nav-wrapper {
       text-align: center;
     }
-    
+
     .year-nav-compact .year-btn {
       padding: 4px 12px;
       border-radius: 4px;
@@ -93,21 +92,21 @@
       border: none;
       transition: all 0.2s ease;
     }
-    
+
     .year-nav-compact .year-btn:hover {
       color: var(--text-primary);
     }
-    
+
     .year-nav-compact .year-btn.active {
       background: var(--primary-color);
       color: white;
     }
-    
+
     /* Top 3 Podium Section */
     .podium-section {
       margin-bottom: var(--spacing-xxl);
     }
-    
+
     .section-header {
       display: flex;
       align-items: center;
@@ -116,7 +115,7 @@
       flex-wrap: wrap;
       gap: var(--spacing-sm);
     }
-    
+
     .section-badge {
       padding: 4px 10px;
       background: var(--primary-color);
@@ -124,7 +123,7 @@
       font-size: 11px;
       font-weight: 600;
     }
-    
+
     /* Inline Search inside podium section */
     .inline-search {
       display: flex;
@@ -132,7 +131,7 @@
       max-width: 500px;
       margin: 0 auto var(--spacing-lg);
     }
-    
+
     .inline-search .search-input {
       flex: 1;
       padding: 10px 16px;
@@ -144,12 +143,12 @@
       outline: none;
       transition: all 0.3s ease;
     }
-    
+
     .inline-search .search-input:focus {
       border-color: var(--primary-color);
       box-shadow: 0 0 0 3px rgba(255, 45, 85, 0.1);
     }
-    
+
     .inline-search .search-btn {
       padding: 10px 20px;
       border-radius: 24px;
@@ -189,7 +188,7 @@
     .search-clear.visible {
       display: flex;
     }
-    
+
     /* Period Toggle - Beautiful Tab Style */
     .period-toggle {
       display: flex;
@@ -203,7 +202,7 @@
       margin-left: auto;
       margin-right: auto;
     }
-    
+
     .period-btn {
       flex: 1;
       padding: 12px 20px;
@@ -218,73 +217,73 @@
       line-height: 1.4;
       cursor: pointer;
     }
-    
+
     .period-btn:hover {
       color: var(--text-primary);
     }
-    
+
     .period-btn.active {
       background: linear-gradient(135deg, var(--primary-color), #ff6b8a);
       color: white;
       font-weight: 600;
       box-shadow: 0 2px 12px rgba(255, 45, 85, 0.3);
     }
-    
+
     .period-btn .period-label {
       display: block;
       font-size: 11px;
       opacity: 0.8;
       margin-top: 2px;
     }
-    
+
     /* Search Results */
     .search-results-section {
       margin-top: var(--spacing-lg);
       display: none;
     }
-    
+
     .search-results-section.active {
       display: block;
     }
-    
+
     /* Responsive */
     @media (max-width: 768px) {
       .home-title {
         font-size: 24px;
       }
-      
+
       .period-btn {
         padding: 10px 12px;
         font-size: 12px;
       }
-      
+
       .period-btn .period-label {
         display: none;
       }
-      
+
       .inline-search {
         flex-direction: column;
       }
     }
-    
+
     /* ==================== Feishu Auth Styles ==================== */
-    
-    
+
+
     .auth-container {
       max-width: 500px;
       width: 100%;
       text-align: center;
       animation: fadeIn 0.3s ease;
     }
-    
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    
+
     .auth-icon { margin-bottom: var(--spacing-xl); }
     .auth-icon svg { margin: 0 auto; }
-    
+
     .auth-title {
       font-size: 28px;
       font-weight: 700;
@@ -294,14 +293,14 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-    
+
     .auth-description {
       font-size: 16px;
       color: var(--text-secondary);
       margin-bottom: var(--spacing-xl);
       line-height: 1.6;
     }
-    
+
     .auth-instructions {
       background: var(--bg-card);
       border-radius: var(--radius-lg);
@@ -309,25 +308,25 @@
       margin-bottom: var(--spacing-xl);
       text-align: left;
     }
-    
+
     .auth-instructions h3 {
       font-size: 16px;
       font-weight: 600;
       margin-bottom: var(--spacing-md);
       color: var(--text-primary);
     }
-    
+
     .auth-instructions ol { list-style: none; counter-reset: step; }
-    
+
     .auth-instructions li {
       counter-increment: step;
       position: relative;
       padding-left: 40px;
       margin-bottom: var(--spacing-md);
     }
-    
+
     .auth-instructions li:last-child { margin-bottom: 0; }
-    
+
     .auth-instructions li::before {
       content: counter(step);
       position: absolute;
@@ -344,23 +343,23 @@
       font-weight: 600;
       color: white;
     }
-    
+
     .auth-instructions strong {
       display: block;
       font-size: 14px;
       color: var(--text-primary);
       margin-bottom: 4px;
     }
-    
+
     .auth-instructions p {
       font-size: 13px;
       color: var(--text-secondary);
       margin: 0;
     }
-    
+
     .auth-footer { margin-top: var(--spacing-lg); }
     .auth-footer p { font-size: 13px; color: var(--text-secondary); margin-bottom: var(--spacing-md); }
-    
+
     .auth-btn {
       display: inline-block;
       padding: 12px 32px;
@@ -372,54 +371,54 @@
       text-decoration: none;
       transition: all 0.2s ease;
     }
-    
+
     .auth-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(255, 45, 85, 0.3);
     }
-    
+
     .auth-btn.secondary {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
     }
-    
+
     .auth-btn.secondary:hover { border-color: var(--primary-color); }
-    
+
     /* Auth actions - primary button container */
     .auth-actions {
       margin-bottom: var(--spacing-xl);
     }
-    
+
     .auth-actions .auth-btn {
       width: 100%;
       max-width: 280px;
       padding: 16px 32px;
       font-size: 16px;
     }
-    
+
     .auth-icon.redirecting svg {
       animation: pulse 1.5s ease-in-out infinite;
     }
-    
+
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.7; transform: scale(0.95); }
     }
-    
+
     .auth-icon.error svg circle, .auth-icon.error svg path { stroke: #FF3B30; }
-    
-    
-    
-    
-    
+
+
+
+
+
     @keyframes spin { to { transform: rotate(360deg); } }
-  
+
 
 </style>
 </head>
 <body>
   <!-- Auth Overlay -->
-  
+
   <!-- Auth Overlay -->
   <div id="auth-overlay" style="
     position: fixed;
@@ -434,8 +433,7 @@
     justify-content: center;
     z-index: 9999;
     color: #fff;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  ">
+    font-family: -apple-system, BlinkMacSystemFont, " segoe="" ui",="" roboto,="" sans-serif;="" "="">
     <div style="font-size: 20px; font-weight: 700; margin-bottom: 8px;" id="auth-title">正在验证身份...</div>
     <div style="font-size: 13px; color: rgba(255,255,255,0.5);" id="auth-desc">请稍候</div>
   </div>
@@ -452,18 +450,18 @@
           </div>
         </div>
         <nav class="top-nav">
-          <a href="index.html?v=20260914mobiletabs2" class="nav-item">Home</a>
-          <a href="global.html?v=20260918-home-fast-v47" class="nav-item active">Global</a>
-          <a href="regional.html?v=20260914mobiletabs2" class="nav-item">Regional</a>
-            <a href="departmental.html?v=20260920-comment-modal-v49" class="nav-item">Departmental</a>
-          <a href="award-structure.html?v=20260914mobiletabs2" class="nav-item">Award Structure & Timeline</a>
-          <a href="media-gallery.html?v=20260914mobiletabs2" class="nav-item">Media Gallery</a>
+          <a href="index.html" class="nav-item">Home</a>
+          <a href="global.html" class="nav-item active">Global</a>
+          <a href="regional.html" class="nav-item">Regional</a>
+          <a href="departmental.html" class="nav-item">Departmental</a>
+          <a href="award-structure.html" class="nav-item">Award Structure &amp; Timeline</a>
+          <a href="media-gallery.html" class="nav-item">Media Gallery</a>
         </nav>
       </div>
     </header>
 
     <!-- Main Content -->
-    <main class="main-content" id="main-content">
+    <main class="main-content" id="main-content" style="display: block;">
       <div class="container">
         <!-- Home Header with Compact Year Nav -->
         <section class="home-header">
@@ -471,25 +469,25 @@
           <p class="home-subtitle">Celebrating Global Excellence and Impact.</p>
           <div class="year-nav-wrapper" style="text-align: center;">
             <div class="year-nav-compact">
-              <button class="year-btn" data-year="2026" id="year-2026-btn">2026</button>
-              <button class="year-btn active" data-year="2025">2025</button>
+              <button class="year-btn active" data-year="2026" id="year-2026-btn">2026</button>
+              <button class="year-btn" data-year="2025">2025</button>
             </div>
           </div>
         </section>
 
         <!-- Search Section -->
         <section class="podium-section">
-          
+
           <!-- Inline Search - Left aligned -->
           <div class="inline-search">
             <input type="text" class="search-input" id="search-input" placeholder="Search all years by name, project, department...">
             <button class="search-clear" id="search-clear" title="Clear search">✕</button>
             <button class="search-btn" id="search-btn">🔍 Search</button>
           </div>
-          
+
           <!-- Search Results -->
           <div id="search-results" class="search-results-section"></div>
-          
+
         </section>
 
         <!-- Page Title -->
@@ -512,7 +510,202 @@
 
         <!-- All Global Awards -->
         <section class="awards-section">
-          <div id="global-awards"></div>
+          <div id="global-awards"><div class="awards-grid">
+      <div class="card project-card award-preview-card" data-card-id="global_Malaysia_TikTok_Paylater_Growth_Project" onclick="showAwardDetailModal('global_Malaysia_TikTok_Paylater_Growth_Project')">
+        <div class="card-header">
+          <span class="card-icon">🏆</span>
+          <span class="card-title">Malaysia TikTok Paylater Growth Project</span>
+        </div>
+        <div class="card-body">
+          <div class="card-period">H1</div>
+          <div class="card-award">
+            <span class="card-award-name">🏆 Global E-Commerce Impactful Projects Award</span>
+          </div>
+          <div class="card-amount">$30,000</div>
+          <div class="card-summary">TikTok Paylater achieves market leadership in Malaysia In H1 2026, TikTok Paylater adoption in Malaysia grew significantly, doubling its penetration across TikTok Shop transactions.</div>
+          <div class="card-open-hint">Click card to view full reason and winners</div>
+          <div class="card-member-preview">
+
+    <div class="card-member-stack">
+
+    <div class="award-member-avatar compact" title="Jonathan Low">
+      <span>JL</span>
+    </div>
+
+    <div class="award-member-avatar compact" title="Yuying Xu">
+      <span>YX</span>
+    </div>
+
+    <div class="award-member-avatar compact" title="Charlotte Chen">
+      <span>CC</span>
+    </div>
+
+    <div class="award-member-avatar compact" title="Lori">
+      <span>LO</span>
+    </div>
+
+    <div class="award-member-avatar compact" title="Tang Tang">
+      <span>TT</span>
+    </div>
+
+      <div class="award-member-avatar compact more">+16</div>
+    </div>
+
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-actions" onclick="event.stopPropagation()">
+            <button class="like-btn liked" onclick="event.stopPropagation(); toggleLike('global_Malaysia_TikTok_Paylater_Growth_Project', 'global_project', 'Malaysia TikTok Paylater Growth Project')">
+              ❤️ <span class="like-count">10</span>
+            </button>
+            <button class="comment-btn" onclick="event.stopPropagation(); showCommentsModal('global_Malaysia_TikTok_Paylater_Growth_Project', 'Malaysia TikTok Paylater Growth Project', 'Global Project Award')">
+              💬 Comment
+            </button>
+            <button class="share-btn" data-project="Malaysia TikTok Paylater Growth Project" data-award="Global E-Commerce Impactful Projects Award" data-bonus="30000" data-reason="TikTok Paylater achieves market leadership in Malaysia
+In H1 2026, TikTok Paylater adoption in Malaysia grew significantly, doubling its penetration across TikTok Shop transactions. This milestone positions Malaysia as a leading market for Buy Now, Pay Later (BNPL) on the platform — achieved while maintaining strong cost efficiency.
+
+[Highlights]
+Penetration doubled — BNPL adoption reached a market-leading share of total transaction volume
+Healthy commerce growth — meaningful uplift in GMV, order volume, and active buyers
+Efficient returns — advertising and GMV return metrics both exceeded market benchmarks
+
+[Collaboration Highlights]
+User-First Strategy, Deliver industry-leading experience
+Operations and User Growth BNPL teams co-built strategies rooted in user and market needs. Aligned with core business initiatives, the team launched interest-free programs and drove TikTok Paylater awareness through mall sellers, creators, and integrated marketing - both online &amp; offline.
+Data-Driven Insights &amp; Bytestyles Empowerment
+The team operated with pragmatic goals and data-driven decision-making, balancing strong growth with spend efficiency. This disciplined approach enabled the significant TTPL penetration uplift while delivering strong business ROI &amp; ROAS.
+Clear Ownership, Cohesive Execution
+Cross-functional teams aligned quarterly on strategy and operations key actions, anchored by a shared long-term vision. Regular reviews and close collaboration ensured continuous progress and rapid problem-solving. TikTok Paylater is now a must-have multiplier for merchants to convert buyers." data-members="[{&quot;name&quot;:&quot;Jonathan Low&quot;,&quot;email&quot;:&quot;jonathan.low@bytedance.com&quot;},{&quot;name&quot;:&quot;Yuying Xu&quot;,&quot;email&quot;:&quot;&quot;},{&quot;name&quot;:&quot;Charlotte Chen&quot;,&quot;email&quot;:&quot;chenjunhong.charl@bytedance.com&quot;},{&quot;name&quot;:&quot;Lori&quot;,&quot;email&quot;:&quot;louyue.lori@bytedance.com&quot;},{&quot;name&quot;:&quot;Tang Tang&quot;,&quot;email&quot;:&quot;tangtang.1@bytedance.com&quot;},{&quot;name&quot;:&quot;Jaraline Ong&quot;,&quot;email&quot;:&quot;jaraline.ong@bytedance.com&quot;},{&quot;name&quot;:&quot;Nur Aisya Binti Rosly&quot;,&quot;email&quot;:&quot;aisyarosly@bytedance.com&quot;},{&quot;name&quot;:&quot;Stella Yang&quot;,&quot;email&quot;:&quot;yangsurong.stella@bytedance.com&quot;},{&quot;name&quot;:&quot;Robert Tan&quot;,&quot;email&quot;:&quot;robert.tan@bytedance.com&quot;},{&quot;name&quot;:&quot;Sydney Zhou&quot;,&quot;email&quot;:&quot;sydney.zhou1@bytedance.com&quot;},{&quot;name&quot;:&quot;Dianbang Hou&quot;,&quot;email&quot;:&quot;dianbang.hou@bytedance.com&quot;},{&quot;name&quot;:&quot;Cathy Mei&quot;,&quot;email&quot;:&quot;meiyue@bytedance.com&quot;},{&quot;name&quot;:&quot;Ruchao Cai&quot;,&quot;email&quot;:&quot;cairuchao@bytedance.com&quot;},{&quot;name&quot;:&quot;Veronica Ju&quot;,&quot;email&quot;:&quot;jumengshi@bytedance.com&quot;},{&quot;name&quot;:&quot;Stanleigh Jenkins Pingguan&quot;,&quot;email&quot;:&quot;stanleigh.pingguan@bytedance.com&quot;},{&quot;name&quot;:&quot;Christal Chin&quot;,&quot;email&quot;:&quot;christal.chin@bytedance.com&quot;},{&quot;name&quot;:&quot;gigi Gao&quot;,&quot;email&quot;:&quot;gaoxuan.gao@bytedance.com&quot;},{&quot;name&quot;:&quot;Winston .S&quot;,&quot;email&quot;:&quot;winston@bytedance.com&quot;},{&quot;name&quot;:&quot;Yan Huang&quot;,&quot;email&quot;:&quot;huangyan.h@bytedance.com&quot;},{&quot;name&quot;:&quot;Derrick Siew&quot;,&quot;email&quot;:&quot;derrick.siew@bytedance.com&quot;},{&quot;name&quot;:&quot;Ray Gi Teo&quot;,&quot;email&quot;:&quot;raygi.teo@bytedance.com&quot;}]" onclick="event.stopPropagation(); showShareModalFromBtn(this)">
+              📤 Share
+            </button>
+          </div>
+          <span class="card-detail-hint">View details</span>
+        </div>
+      </div>
+
+      <div class="card project-card award-preview-card" data-card-id="global_US_Live_Auction" onclick="showAwardDetailModal('global_US_Live_Auction')">
+        <div class="card-header">
+          <span class="card-icon">🏆</span>
+          <span class="card-title">US Live Auction</span>
+        </div>
+        <div class="card-body">
+          <div class="card-period">H1</div>
+          <div class="card-award">
+            <span class="card-award-name">🏆 Global E-Commerce Impactful Projects Award</span>
+          </div>
+          <div class="card-amount">$30,000</div>
+          <div class="card-summary">Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market.</div>
+          <div class="card-open-hint">Click card to view full reason and winners</div>
+          <div class="card-member-preview">
+
+    <div class="card-member-stack">
+
+    <div class="award-member-avatar compact" title="Winnie Wang">
+      <span>WW</span>
+    </div>
+
+    <div class="award-member-avatar compact" title="Feifei Tang">
+      <span>FT</span>
+    </div>
+
+    <div class="award-member-avatar compact" title="Grace Ha">
+      <span>GH</span>
+    </div>
+
+    <div class="award-member-avatar compact" title="Haley Chau">
+      <span>HC</span>
+    </div>
+
+    <div class="award-member-avatar compact" title="Troy Chen">
+      <span>TC</span>
+    </div>
+
+      <div class="award-member-avatar compact more">+59</div>
+    </div>
+
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-actions" onclick="event.stopPropagation()">
+            <button class="like-btn liked" onclick="event.stopPropagation(); toggleLike('global_US_Live_Auction', 'global_project', 'US Live Auction')">
+              ❤️ <span class="like-count">12</span>
+            </button>
+            <button class="comment-btn" onclick="event.stopPropagation(); showCommentsModal('global_US_Live_Auction', 'US Live Auction', 'Global Project Award')">
+              💬 Comment
+            </button>
+            <button class="share-btn" data-project="US Live Auction" data-award="Global E-Commerce Impactful Projects Award" data-bonus="30000" data-reason="Auction has emerged as an innovative format that breaks away from traditional pricing models and has been well received by both users and merchants in the US market. For TTS, however, making it work required LIVE Operations to rapidly onboard and educate merchants, Product teams to build the end-to-end auction flow, and XFN partners to establish rules and governance for both merchants and users. The initiative demanded exceptional cross-functional alignment and execution." data-members="[{&quot;name&quot;:&quot;Winnie Wang&quot;,&quot;email&quot;:&quot;wangyu.winnie2@bytedance.com&quot;},{&quot;name&quot;:&quot;Feifei Tang&quot;,&quot;email&quot;:&quot;tangfeifei.01@bytedance.com&quot;},{&quot;name&quot;:&quot;Grace Ha&quot;,&quot;email&quot;:&quot;grace.ha@bytedance.com&quot;},{&quot;name&quot;:&quot;Haley Chau&quot;,&quot;email&quot;:&quot;haley.chau@bytedance.com&quot;},{&quot;name&quot;:&quot;Troy Chen&quot;,&quot;email&quot;:&quot;chenyaoyang@bytedance.com&quot;},{&quot;name&quot;:&quot;Kade Percy&quot;,&quot;email&quot;:&quot;kade.percy@bytedance.com&quot;},{&quot;name&quot;:&quot;Shuo Huang&quot;,&quot;email&quot;:&quot;huangshuo.123@bytedance.com&quot;},{&quot;name&quot;:&quot;Lili Guo&quot;,&quot;email&quot;:&quot;guolili.2022@bytedance.com&quot;},{&quot;name&quot;:&quot;Jackson Yin&quot;,&quot;email&quot;:&quot;jackson.yin@bytedance.com&quot;},{&quot;name&quot;:&quot;Hongqian Su (粟虹倩)&quot;,&quot;email&quot;:&quot;hongqian.su@bytedance.com&quot;},{&quot;name&quot;:&quot;Michael He&quot;,&quot;email&quot;:&quot;dingyuanhe@bytedance.com&quot;},{&quot;name&quot;:&quot;Evan DeCuire&quot;,&quot;email&quot;:&quot;evan.decuire@bytedance.com&quot;},{&quot;name&quot;:&quot;Renee Chen&quot;,&quot;email&quot;:&quot;renee.chen@bytedance.com&quot;},{&quot;name&quot;:&quot;Cooper&quot;,&quot;email&quot;:&quot;chengchuanchi@bytedance.com&quot;},{&quot;name&quot;:&quot;Ziyang Chen&quot;,&quot;email&quot;:&quot;zchen@bytedance.com&quot;},{&quot;name&quot;:&quot;William Li&quot;,&quot;email&quot;:&quot;william.li@bytedance.com&quot;},{&quot;name&quot;:&quot;Edward Chen&quot;,&quot;email&quot;:&quot;edward.chen@bytedance.com&quot;},{&quot;name&quot;:&quot;Iris Wang&quot;,&quot;email&quot;:&quot;iris.ytwang@bytedance.com&quot;},{&quot;name&quot;:&quot;Yiming Song&quot;,&quot;email&quot;:&quot;songyiming.jason@bytedance.com&quot;},{&quot;name&quot;:&quot;Lela Yuan&quot;,&quot;email&quot;:&quot;lela.yuan@bytedance.com&quot;},{&quot;name&quot;:&quot;Ibrahim Lari&quot;,&quot;email&quot;:&quot;ibrahim.lari@bytedance.com&quot;},{&quot;name&quot;:&quot;Linda Zhu&quot;,&quot;email&quot;:&quot;linda.zhu@bytedance.com&quot;},{&quot;name&quot;:&quot;Annie Evans&quot;,&quot;email&quot;:&quot;annieevans@bytedance.com&quot;},{&quot;name&quot;:&quot;Yaqin Zhuo&quot;,&quot;email&quot;:&quot;zhuoyaqin@bytedance.com&quot;},{&quot;name&quot;:&quot;Chunyan Xia&quot;,&quot;email&quot;:&quot;xiachunyan@bytedance.com&quot;},{&quot;name&quot;:&quot;Jacky Shan&quot;,&quot;email&quot;:&quot;shanjiaqi.226@bytedance.com&quot;},{&quot;name&quot;:&quot;Wanxu Xu&quot;,&quot;email&quot;:&quot;xuwanxu.vivi@bytedance.com&quot;},{&quot;name&quot;:&quot;Chao Zhang&quot;,&quot;email&quot;:&quot;zhangchao.yingxuan@bytedance.com&quot;},{&quot;name&quot;:&quot;Yun Chen&quot;,&quot;email&quot;:&quot;chenyun.2048@bytedance.com&quot;},{&quot;name&quot;:&quot;Xiangyu(Barry)&quot;,&quot;email&quot;:&quot;zhaoxiangyu.go@bytedance.com&quot;},{&quot;name&quot;:&quot;Frank Wu&quot;,&quot;email&quot;:&quot;frankwu@bytedance.com&quot;},{&quot;name&quot;:&quot;Xin Liu&quot;,&quot;email&quot;:&quot;liuxin.staraway@bytedance.com&quot;},{&quot;name&quot;:&quot;Yu Peng&quot;,&quot;email&quot;:&quot;pengyu.pengyu@bytedance.com&quot;},{&quot;name&quot;:&quot;Yanran Liang&quot;,&quot;email&quot;:&quot;yanranliang@bytedance.com&quot;},{&quot;name&quot;:&quot;Yilin Gu&quot;,&quot;email&quot;:&quot;guyilin@bytedance.com&quot;},{&quot;name&quot;:&quot;Qin Wang&quot;,&quot;email&quot;:&quot;wangqin.0210@bytedance.com&quot;},{&quot;name&quot;:&quot;Jingyi Zhou&quot;,&quot;email&quot;:&quot;zhoujingyi.rebecca@bytedance.com&quot;},{&quot;name&quot;:&quot;Rae Ma&quot;,&quot;email&quot;:&quot;mazhimin.rae@bytedance.com&quot;},{&quot;name&quot;:&quot;Jie Yang&quot;,&quot;email&quot;:&quot;yangjie.kory@bytedance.com&quot;},{&quot;name&quot;:&quot;Yiyang Fan&quot;,&quot;email&quot;:&quot;yiyangfan@bytedance.com&quot;},{&quot;name&quot;:&quot;Susie Xu&quot;,&quot;email&quot;:&quot;xuxi.susie@bytedance.com&quot;},{&quot;name&quot;:&quot;Song Lu&quot;,&quot;email&quot;:&quot;song.lu@bytedance.com&quot;},{&quot;name&quot;:&quot;Jinyao Zhou&quot;,&quot;email&quot;:&quot;jinyaoz.brian@bytedance.com&quot;},{&quot;name&quot;:&quot;Mingman Yuan&quot;,&quot;email&quot;:&quot;mingmanyuan@bytedance.com&quot;},{&quot;name&quot;:&quot;Rui Wen Lau&quot;,&quot;email&quot;:&quot;ruiwen.lau@bytedance.com&quot;},{&quot;name&quot;:&quot;Ruorong Xu&quot;,&quot;email&quot;:&quot;xuruorong@bytedance.com&quot;},{&quot;name&quot;:&quot;Andrew Xie&quot;,&quot;email&quot;:&quot;zhaonanxie@bytedance.com&quot;},{&quot;name&quot;:&quot;Wei (微) Wong-Haney&quot;,&quot;email&quot;:&quot;wei.wonghaney@bytedance.com&quot;},{&quot;name&quot;:&quot;Biying Wu&quot;,&quot;email&quot;:&quot;biying.wu@bytedance.com&quot;},{&quot;name&quot;:&quot;Haotong Ma&quot;,&quot;email&quot;:&quot;mahaotong.111@bytedance.com&quot;},{&quot;name&quot;:&quot;Cora&quot;,&quot;email&quot;:&quot;chenyue.321@bytedance.com&quot;},{&quot;name&quot;:&quot;Danchen Wu&quot;,&quot;email&quot;:&quot;wudanchen.02@bytedance.com&quot;},{&quot;name&quot;:&quot;Yue Yang&quot;,&quot;email&quot;:&quot;yangyue.luna@bytedance.com&quot;},{&quot;name&quot;:&quot;Yuqi Ji&quot;,&quot;email&quot;:&quot;jiyuqi.h@bytedance.com&quot;},{&quot;name&quot;:&quot;Ocean(Xueqian) Liu&quot;,&quot;email&quot;:&quot;xueqian.liu@bytedance.com&quot;},{&quot;name&quot;:&quot;Cancan Huang&quot;,&quot;email&quot;:&quot;huangcancan@bytedance.com&quot;},{&quot;name&quot;:&quot;Ran Zhang&quot;,&quot;email&quot;:&quot;zhangran.rachel@bytedance.com&quot;},{&quot;name&quot;:&quot;Tina Xu&quot;,&quot;email&quot;:&quot;xutong.qr@bytedance.com&quot;},{&quot;name&quot;:&quot;Yaqiong Hou&quot;,&quot;email&quot;:&quot;houyaqiong@bytedance.com&quot;},{&quot;name&quot;:&quot;Wei Luo&quot;,&quot;email&quot;:&quot;luowei.vv@bytedance.com&quot;},{&quot;name&quot;:&quot;Lin Zhu&quot;,&quot;email&quot;:&quot;zhulin.jolin@bytedance.com&quot;},{&quot;name&quot;:&quot;Zoe Yan&quot;,&quot;email&quot;:&quot;yanzeyu.0510@bytedance.com&quot;},{&quot;name&quot;:&quot;Guoliang Zeng&quot;,&quot;email&quot;:&quot;zengguoliang.926@bytedance.com&quot;},{&quot;name&quot;:&quot;Yu Zhao&quot;,&quot;email&quot;:&quot;zhaoyu.chao@bytedance.com&quot;}]" onclick="event.stopPropagation(); showShareModalFromBtn(this)">
+              📤 Share
+            </button>
+          </div>
+          <span class="card-detail-hint">View details</span>
+        </div>
+      </div>
+
+      <div class="card project-card award-preview-card" data-card-id="global_SEA_LIVE_Ads_Project" onclick="showAwardDetailModal('global_SEA_LIVE_Ads_Project')">
+        <div class="card-header">
+          <span class="card-icon">🏆</span>
+          <span class="card-title">SEA LIVE Ads Project</span>
+        </div>
+        <div class="card-body">
+          <div class="card-period">H1</div>
+          <div class="card-award">
+            <span class="card-award-name">🏆 Global E-Commerce Impactful Projects Award</span>
+          </div>
+          <div class="card-amount">$30,000</div>
+          <div class="card-summary">SEA LIVE Ads delivered exceptional business growth in H1, with overall LIVE Take Rate increasing from 3.6% to 4.8%, while Merchant LIVE Take Rate grew even faster from 5.9% to 8.0%.</div>
+          <div class="card-open-hint">Click card to view full reason and winners</div>
+          <div class="card-member-preview">
+
+    <div class="card-member-stack">
+
+    <div class="award-member-avatar compact" title="Xiaolong Zhang">
+      <span>XZ</span>
+    </div>
+
+    <div class="award-member-avatar compact" title="Rui Fu">
+      <span>RF</span>
+    </div>
+
+    <div class="award-member-avatar compact" title="Raphael Luo">
+      <span>RL</span>
+    </div>
+
+    <div class="award-member-avatar compact" title="Francis Feng">
+      <span>FF</span>
+    </div>
+
+    <div class="award-member-avatar compact" title="Fei Hsiung">
+      <span>FH</span>
+    </div>
+
+      <div class="award-member-avatar compact more">+46</div>
+    </div>
+
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-actions" onclick="event.stopPropagation()">
+            <button class="like-btn" onclick="event.stopPropagation(); toggleLike('global_SEA_LIVE_Ads_Project', 'global_project', 'SEA LIVE Ads Project')">
+              ❤️ <span class="like-count">5</span>
+            </button>
+            <button class="comment-btn" onclick="event.stopPropagation(); showCommentsModal('global_SEA_LIVE_Ads_Project', 'SEA LIVE Ads Project', 'Global Project Award')">
+              💬 Comment
+            </button>
+            <button class="share-btn" data-project="SEA LIVE Ads Project" data-award="Global E-Commerce Impactful Projects Award" data-bonus="30000" data-reason="SEA LIVE Ads delivered exceptional business growth in H1, with overall LIVE Take Rate increasing from 3.6% to 4.8%, while Merchant LIVE Take Rate grew even faster from 5.9% to 8.0%.
+Unlike traditional eCommerce ads, LIVE commerce requires fundamentally different solutions across advertiser adoption, customer behavior, traffic allocation, and monetization optimization due to its highly dynamic and real-time nature.
+This growth was driven by four strategic pillars jointly delivered by the e-Commerce and Shop Ads organizations.
+expanded LIVE GMax penetration through a combination of product innovation and ecosystem collaboration. Initiatives including Dynamic Commissions, LIVE Bundle, LIVE Mission, and joint key-account penetration programs with eCommerce Operations enabled substantially more merchants to adopt LIVE advertising at scale.
+successfully transformed advertiser behavior to improve campaign quality and budget efficiency. Through Auto-Budget adoption, Creative Exploration optimization, and LIVE Ads Diagnosis enhancements, budget hit rates decreased from 30% to 25%, increased Video-to-LIVE creative supply among top advertisers, and extended LIVE advertising duration, creating a healthier and more sustainable monetization model.
+maximized major commerce moments by launching programs such as the KLS Accelerator Program, enabling top advertisers to capitalize on Double Day and Payday campaigns with significant LIVE GMV acceleration during peak shopping events.
+continuously optimized monetization efficiency through bidding strategy upgrades, automation capabilities, traffic allocation improvements, and Hybrid Lift optimization, further improving delivery efficiency and Take Rate.
+Together, these initiatives addressed critical bottlenecks across the entire LIVE advertising ecosystem, from merchant activation and campaign adoption to traffic optimization and monetization efficiency, creating a scalable growth engine for LIVE Ads. Beyond delivering substantial Take Rate improvements in H1, the program established a stronger long-term foundation for sustainable LIVE commerce growth across global markets." data-members="[{&quot;name&quot;:&quot;Xiaolong Zhang&quot;,&quot;email&quot;:&quot;zhangxiaolong.sqq@bytedance.com&quot;},{&quot;name&quot;:&quot;Rui Fu&quot;,&quot;email&quot;:&quot;furui.1014@bytedance.com&quot;},{&quot;name&quot;:&quot;Raphael Luo&quot;,&quot;email&quot;:&quot;luozerong@bytedance.com&quot;},{&quot;name&quot;:&quot;Francis Feng&quot;,&quot;email&quot;:&quot;fengjiahao.1018@bytedance.com&quot;},{&quot;name&quot;:&quot;Fei Hsiung&quot;,&quot;email&quot;:&quot;fei.hsiung@bytedance.com&quot;},{&quot;name&quot;:&quot;Junsha X/Sally&quot;,&quot;email&quot;:&quot;xiejunsha@bytedance.com&quot;},{&quot;name&quot;:&quot;Jasper Zhao&quot;,&quot;email&quot;:&quot;jianpeng.zhao@bytedance.com&quot;},{&quot;name&quot;:&quot;Iris Chen&quot;,&quot;email&quot;:&quot;chenjunran@bytedance.com&quot;},{&quot;name&quot;:&quot;Effy&quot;,&quot;email&quot;:&quot;zhangyiran.carol@bytedance.com&quot;},{&quot;name&quot;:&quot;Jerilyn Tan&quot;,&quot;email&quot;:&quot;jerilyn.tancy@bytedance.com&quot;},{&quot;name&quot;:&quot;Ling Zhang&quot;,&quot;email&quot;:&quot;zhangling.99@bytedance.com&quot;},{&quot;name&quot;:&quot;Vera Yang&quot;,&quot;email&quot;:&quot;yangwanzhi@bytedance.com&quot;},{&quot;name&quot;:&quot;LiLi Qian&quot;,&quot;email&quot;:&quot;qianlili@bytedance.com&quot;},{&quot;name&quot;:&quot;Shuning Sun&quot;,&quot;email&quot;:&quot;sunshuning.03@bytedance.com&quot;},{&quot;name&quot;:&quot;Stella Wu&quot;,&quot;email&quot;:&quot;wuleqi@bytedance.com&quot;},{&quot;name&quot;:&quot;Lin Huang&quot;,&quot;email&quot;:&quot;huanglin.2@bytedance.com&quot;},{&quot;name&quot;:&quot;Yixun Sun&quot;,&quot;email&quot;:&quot;sunyixun.syx@bytedance.com&quot;},{&quot;name&quot;:&quot;Xingyu Pan&quot;,&quot;email&quot;:&quot;panxingyu.april@bytedance.com&quot;},{&quot;name&quot;:&quot;Darry&quot;,&quot;email&quot;:&quot;duanrui.darry@bytedance.com&quot;},{&quot;name&quot;:&quot;Luyao Sun&quot;,&quot;email&quot;:&quot;scarlettsun.25@bytedance.com&quot;},{&quot;name&quot;:&quot;Lan Yao&quot;,&quot;email&quot;:&quot;yaolan.2857@bytedance.com&quot;},{&quot;name&quot;:&quot;Jacky Li&quot;,&quot;email&quot;:&quot;lijiaqi.kk@bytedance.com&quot;},{&quot;name&quot;:&quot;Stephen Zou&quot;,&quot;email&quot;:&quot;zougansheng@bytedance.com&quot;},{&quot;name&quot;:&quot;Zhujun Li&quot;,&quot;email&quot;:&quot;lizhujun.777@bytedance.com&quot;},{&quot;name&quot;:&quot;Jing Zhou&quot;,&quot;email&quot;:&quot;zhoujing.jenny@bytedance.com&quot;},{&quot;name&quot;:&quot;孙诗棠&quot;,&quot;email&quot;:&quot;&quot;},{&quot;name&quot;:&quot;Jia Yi Foo&quot;,&quot;email&quot;:&quot;jiayi.foo@bytedance.com&quot;},{&quot;name&quot;:&quot;April(Xueyun) Ji&quot;,&quot;email&quot;:&quot;jixueyun@bytedance.com&quot;},{&quot;name&quot;:&quot;Lucien Tian&quot;,&quot;email&quot;:&quot;luxintian@bytedance.com&quot;},{&quot;name&quot;:&quot;Jourdan&quot;,&quot;email&quot;:&quot;zhanghao.jourdan@bytedance.com&quot;},{&quot;name&quot;:&quot;Roby Liu&quot;,&quot;email&quot;:&quot;liushijun@bytedance.com&quot;},{&quot;name&quot;:&quot;Hui Shi Tjan&quot;,&quot;email&quot;:&quot;tjan.huishi@bytedance.com&quot;},{&quot;name&quot;:&quot;Sia Shi&quot;,&quot;email&quot;:&quot;shiyao.sia@bytedance.com&quot;},{&quot;name&quot;:&quot;Shirley LIU&quot;,&quot;email&quot;:&quot;liutong.310@bytedance.com&quot;},{&quot;name&quot;:&quot;Veronica Qu&quot;,&quot;email&quot;:&quot;qubingzhou@bytedance.com&quot;},{&quot;name&quot;:&quot;Siyi Huang&quot;,&quot;email&quot;:&quot;huangsiyi.ann143@bytedance.com&quot;},{&quot;name&quot;:&quot;Zhenqi He&quot;,&quot;email&quot;:&quot;hezhenqi@bytedance.com&quot;},{&quot;name&quot;:&quot;Min Qian&quot;,&quot;email&quot;:&quot;qianmin.1004@bytedance.com&quot;},{&quot;name&quot;:&quot;Guojun Wu&quot;,&quot;email&quot;:&quot;wuguojun.wu@bytedance.com&quot;},{&quot;name&quot;:&quot;Xiao Yang&quot;,&quot;email&quot;:&quot;yangxiao.sean@bytedance.com&quot;},{&quot;name&quot;:&quot;Gen&quot;,&quot;email&quot;:&quot;hugen@bytedance.com&quot;},{&quot;name&quot;:&quot;Xiaomeng Pan&quot;,&quot;email&quot;:&quot;panxiaomeng@bytedance.com&quot;},{&quot;name&quot;:&quot;Yuke Qin&quot;,&quot;email&quot;:&quot;qinyuke.qyk@bytedance.com&quot;},{&quot;name&quot;:&quot;Zefan Xie&quot;,&quot;email&quot;:&quot;xiezefan@bytedance.com&quot;},{&quot;name&quot;:&quot;Zewen Fei&quot;,&quot;email&quot;:&quot;zewen.fei@bytedance.com&quot;},{&quot;name&quot;:&quot;Sixu Chen&quot;,&quot;email&quot;:&quot;chensixu.iris@bytedance.com&quot;},{&quot;name&quot;:&quot;Zoe Zhao&quot;,&quot;email&quot;:&quot;zhaozhuyun@bytedance.com&quot;},{&quot;name&quot;:&quot;Kayla Xie&quot;,&quot;email&quot;:&quot;xietingting.0322@bytedance.com&quot;},{&quot;name&quot;:&quot;Raoli Zhang&quot;,&quot;email&quot;:&quot;zhangraoli@bytedance.com&quot;},{&quot;name&quot;:&quot;Weijian Qiu&quot;,&quot;email&quot;:&quot;qiuweijian@bytedance.com&quot;},{&quot;name&quot;:&quot;Shadow&quot;,&quot;email&quot;:&quot;shadow.luo@bytedance.com&quot;}]" onclick="event.stopPropagation(); showShareModalFromBtn(this)">
+              📤 Share
+            </button>
+          </div>
+          <span class="card-detail-hint">View details</span>
+        </div>
+      </div>
+    </div></div>
         </section>
       </div>
     </main>
@@ -529,7 +722,7 @@
   <div class="members-modal" id="members-modal">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="modal-title">Team Members</h3>
+        <h3 class="modal-title" id="modal-title">Members</h3>
         <button class="modal-close" onclick="closeModal()">×</button>
       </div>
       <div class="modal-body" id="modal-body"></div>
@@ -571,37 +764,36 @@
 
 <script src="js/auth.js?v=20260914internalonly"></script>
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
-  <script src="js/award-api.js?v=20260914uv"></script>
+  <script src="js/award-api.js?v=20260914internalonly"></script>
   <script src="js/html2canvas.min.js"></script>
-  <script src="js/main.js?v=20260920-site-search-v50"></script>
+<script src="js/main.js?v=v50"></script>
   <script>
     // Global page specific initialization
     let currentHalf = getUrlParam('period') || 'H1';
     let globalData = null;
-    let globalLoadRequestId = 0;
     const isAuthDebugMode = new URLSearchParams(window.location.search).get('auth_debug') === '1';
-    
+
     // Period toggle handler
     function initPeriodToggle() {
       const periodBtns = document.querySelectorAll('.period-btn');
-      
+
       // Set initial active state from URL
       periodBtns.forEach(b => {
         b.classList.toggle('active', b.dataset.period === currentHalf);
       });
       setUrlParam('period', currentHalf);
-      
+
       periodBtns.forEach(btn => {
         btn.addEventListener('click', () => {
           const period = btn.dataset.period;
           if (period === currentHalf) return;
-          
+
           periodBtns.forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
-          
+
           currentHalf = period;
           setUrlParam('period', currentHalf);
-          
+
           if (globalData) {
             renderGlobalAwards(globalData, 'global-awards', currentHalf);
             loadAllCardInteractions();
@@ -609,18 +801,18 @@
         });
       });
     }
-    
+
     document.addEventListener('DOMContentLoaded', async () => {
       if (isAuthDebugMode) {
         runGlobalAuthDebug();
         return;
       }
-      const avatarPromise = loadFeishuAvatarMap();
+      await loadFeishuAvatarMap();
       // Search handlers - always bind regardless of data loading errors (Bug 4 fix)
       const searchInput = document.getElementById('search-input');
       const searchBtn = document.getElementById('search-btn');
       const searchResults = document.getElementById('search-results');
-      
+
       // Bug 1 fix: Handle race condition where searchData is not yet loaded
       async function performAndShowSearch() {
         console.log("[Search Debug] called, query:", searchInput?.value, "searchData:", !!searchData);
@@ -633,7 +825,11 @@
         if (!searchData) {
           searchResults.innerHTML = '<div class="no-results">Loading search data, please wait...</div>';
           searchResults.classList.add('active');
-          await loadSearchData();
+          // Wait for search data to be loaded (retry every 300ms, up to 10s)
+          for (let i = 0; i < 33; i++) {
+            await new Promise(r => setTimeout(r, 300));
+            if (searchData) break;
+          }
           if (!searchData) {
             searchResults.innerHTML = '<div class="no-results">Search data failed to load. Please try again later.</div>';
             return;
@@ -643,11 +839,11 @@
         renderSearchResults(results, 'search-results');
         searchResults.classList.add('active');
       }
-      
+
       if (searchBtn) {
         searchBtn.addEventListener('click', performAndShowSearch);
       }
-      
+
       if (searchInput) {
         searchInput.addEventListener('keypress', (e) => {
           if (e.key === 'Enter') {
@@ -655,7 +851,7 @@
           }
         });
       }
-      
+
       // Clear search button
       const searchClear = document.getElementById('search-clear');
       if (searchClear) {
@@ -679,42 +875,15 @@
           }
         });
       }
-      
+
       // Data loading in try-catch (search binding is already done above)
       try {
         highlightNavigation();
         initYearNavigation();
         initPeriodToggle();
 
-        // Bind before the first data request so early year clicks are never lost.
-        window.addEventListener('yearChanged', async (e) => {
-          const newYear = e.detail.year;
-          const requestId = ++globalLoadRequestId;
-          try {
-            const loadedGlobalData = await loadData('global', null, newYear);
-            if (requestId !== globalLoadRequestId || AppData.currentYear !== newYear) return;
-            globalData = loadedGlobalData;
-            if (globalData) {
-              renderGlobalAwards(globalData, 'global-awards', currentHalf);
-              loadAllCardInteractions();
-            } else {
-              document.getElementById('global-awards').innerHTML = '<div class="no-data-msg">No global awards available for ' + newYear + '.</div>';
-            }
-          } catch (err) {
-            console.error('Error reloading global data on year change:', err);
-            document.getElementById('global-awards').innerHTML = '<p style="color: var(--text-secondary);">Failed to load data. Please try again later.</p>';
-          }
-        });
-        
-        const initialRequestId = ++globalLoadRequestId;
-        const requestedYear = AppData.currentYear;
-        const [loadedGlobalData] = await Promise.all([
-          loadData('global', null, requestedYear, { skipAvatarWait: true }),
-          avatarPromise
-        ]);
-        if (initialRequestId !== globalLoadRequestId || AppData.currentYear !== requestedYear) return;
-        globalData = loadedGlobalData;
-        
+        globalData = await loadData('global');
+
         console.log('=== GLOBAL PAGE DEBUG ===');
         console.log('globalData loaded:', !!globalData);
         if (globalData) {
@@ -722,36 +891,41 @@
           console.log('H2 Project Awards count:', (globalData['H2 Project Awards'] || []).length);
           console.log('Data keys:', Object.keys(globalData));
         }
-        
+
         if (globalData) {
           // Render awards by default (H1)
           console.log('Calling renderGlobalAwards with half:', currentHalf);
           renderGlobalAwards(globalData, 'global-awards', currentHalf);
-          
+
           // Load like/comment interactions from API
           loadAllCardInteractions();
         }
-        
-        const warmSearch = () => loadSearchData();
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(warmSearch, { timeout: 4000 });
-        } else {
-          setTimeout(warmSearch, 1500);
-        }
+
+        await loadSearchData();
 
       } catch (error) {
         console.error('Error loading global page:', error);
         document.getElementById('global-awards').innerHTML = '<p style="color: var(--text-secondary);">Failed to load data.</p><p style="color: #ff6b6b; font-size: 12px; word-break: break-all;">Error: ' + (error.message || error) + '</p><p style="color: #999; font-size: 11px;">Stack: ' + (error.stack || '').substring(0, 300) + '</p>';
       }
-      
-    });
 
-    // Feishu WebView may restore an old full-page snapshot from BFCache.
-    // Reload automatically on restoration so the latest card layout and scripts are used.
-    window.addEventListener('pageshow', (event) => {
-      if (event.persisted) {
-        window.location.reload();
-      }
+      // Handle year change without page reload
+      window.addEventListener('yearChanged', async (e) => {
+        const newYear = e.detail.year;
+        try {
+          globalData = await loadData('global', null, newYear);
+          if (globalData) {
+            // Re-render awards with current half
+            renderGlobalAwards(globalData, 'global-awards', currentHalf);
+            // Reload interactions for new cards
+            loadAllCardInteractions();
+          } else {
+            document.getElementById('global-awards').innerHTML = '<div class="no-data-msg">No global awards available for ' + newYear + '.</div>';
+          }
+        } catch (err) {
+          console.error('Error reloading global data on year change:', err);
+          document.getElementById('global-awards').innerHTML = '<p style="color: var(--text-secondary);">Failed to load data. Please try again later.</p>';
+        }
+      });
     });
 
     function setDebugReportText(report) {
@@ -1004,5 +1178,6 @@ if (typeof AwardAPI !== 'undefined' && AwardAPI.reportPageView) {
   AwardAPI.reportPageView(window.location.pathname);
 }
 </script>
-</body>
-</html>
+
+
+</body></html>
