@@ -398,7 +398,7 @@
           <a href="index.html?v=20260914mobiletabs2" class="nav-item">Home</a>
           <a href="global.html?v=20260918-home-fast-v47" class="nav-item">Global</a>
           <a href="regional.html?v=20260914mobiletabs2" class="nav-item">Regional</a>
-          <a href="departmental.html?v=20260914mobiletabs2" class="nav-item active">Departmental</a>
+            <a href="departmental.html?v=20260920-comment-modal-v49" class="nav-item active">Departmental</a>
           <a href="award-structure.html?v=20260914mobiletabs2" class="nav-item">Award Structure & Timeline</a>
           <a href="media-gallery.html?v=20260914mobiletabs2" class="nav-item">Media Gallery</a>
         </nav>
@@ -471,6 +471,23 @@
         <p>© 2026 Global E-commerce Recognition Hub. All rights reserved.</p>
       </div>
     </footer>
+  </div>
+
+  <!-- Comments Modal -->
+  <div class="comments-modal" id="comments-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="comments-modal-title">Comments</h3>
+        <button class="modal-close" onclick="closeCommentsModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div id="comment-list"></div>
+        <div class="comment-input-wrapper">
+          <input type="text" class="comment-input" id="comment-input" placeholder="Write a comment...">
+          <button class="comment-submit-btn" onclick="submitComment()">Send</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Share Modal -->
