@@ -158,10 +158,11 @@
   <main class="test-card">
     <div class="eyebrow">RECOGNITION HUB · SAFE TEST</div>
     <h1>飞书原生分享测试</h1>
-    <p class="intro">用于验证网页应用能否唤起飞书原生会话选择器。请仅选择自己或专用测试会话。</p>
+    <p class="intro">用于验证网页应用能否唤起飞书原生会话选择器。若从副本跳转而来，会优先发送当前荣誉海报卡片；请仅选择自己或专用测试会话。</p>
 
     <div class="privacy">
-      <span>不读取真实奖项或员工数据</span>
+      <span>不上传或存储真实奖项或员工数据</span>
+      <span>仅从本机剪贴板读取本次待分享卡片</span>
       <span>不读取联系人或群聊列表</span>
       <span>不会在选择会话前发送消息</span>
       <span>每次只能选择一个内部会话</span>
@@ -179,7 +180,7 @@
     </div>
 
     <p id="status" class="status" role="status" aria-live="polite">请在飞书客户端内打开此页面。</p>
-    <p class="footnote">测试卡只包含固定测试文字和本页链接，不包含 Recognition Hub 业务数据。</p>
+    <p class="footnote">直接打开时发送固定测试文字；从副本跳转时发送剪贴板中的当前荣誉海报卡片，数据不写入服务器或 URL。</p>
   </main>
 
   <script>
@@ -226,7 +227,7 @@
       return configPromise;
     }
 
-    function buildTestCard() {
+    function buildFallbackTestCard() {
       return {
         msg_type: 'interactive',
         update_multi: false,
@@ -255,6 +256,34 @@
       };
     }
 
+    async function readRecognitionClipboardCard() {
+      if (!navigator.clipboard?.readText) return null;
+      try {
+        const text = await navigator.clipboard.readText();
+        const prefix = 'RECOGNITION_SHARE_V1:';
+        if (!text || !text.startsWith(prefix)) return null;
+        const payload = JSON.parse(text.slice(prefix.length));
+        const cardContent = payload?.card_content;
+        if (!cardContent || cardContent.msg_type !== 'interactive' || !cardContent.card) {
+          throw new Error('Invalid Recognition card payload');
+        }
+        return cardContent;
+      } catch (error) {
+        console.warn('[Recognition share] Clipboard payload unavailable:', error);
+        return null;
+      }
+    }
+
+    async function resolveShareCardContent() {
+      const clipboardCard = await readRecognitionClipboardCard();
+      if (clipboardCard) {
+        setStatus('已读取当前荣誉海报卡片。下一步请选择自己或测试会话。');
+        return clipboardCard;
+      }
+      setStatus('未读取到荣誉海报卡片，将发送固定安全测试卡。');
+      return buildFallbackTestCard();
+    }
+
     async function openNativeShare() {
       shareButton.disabled = true;
       shareButton.textContent = '正在打开…';
@@ -265,6 +294,7 @@
         if (!window.tt || typeof window.tt.sendMessageCard !== 'function') {
           throw new Error('当前飞书客户端不支持原生卡片分享');
         }
+        const cardContent = await resolveShareCardContent();
         await new Promise((resolve, reject) => {
           window.tt.sendMessageCard({
             shouldChooseChat: true,
@@ -274,7 +304,7 @@
               externalChat: false,
               confirmTitle: '发送测试卡片'
             },
-            cardContent: buildTestCard(),
+            cardContent,
             withAdditionalMessage: false,
             success: resolve,
             fail: reject
