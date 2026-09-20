@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Regional Awards - Global E-commerce Recognition Hub</title>
-  <link rel="stylesheet" href="css/main.css?v=20260918-official-ui-v43">
+  <link rel="stylesheet" href="css/main.css?v=20260920-site-search-v50">
   <style id="app-boot-guard-style">
     html.app-booting:not(.app-ready) body {
       visibility: hidden;
@@ -572,7 +572,7 @@
 
         <!-- Inline Search -->
         <div class="inline-search">
-          <input type="text" class="search-input" id="search-input" placeholder="Search by name, project, department...">
+          <input type="text" class="search-input" id="search-input" placeholder="Search all years by name, project, department...">
           <button class="search-btn" id="search-btn">🔍 Search</button>
         </div>
         <div id="search-results" class="search-results-section"></div>
@@ -698,7 +698,7 @@
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
   <script src="js/award-api.js?v=20260914uv"></script>
   <script src="js/html2canvas.min.js"></script>
-  <script src="js/main.js?v=20260920-avatar-webp-v48"></script>
+  <script src="js/main.js?v=20260920-site-search-v50"></script>
   <script>
     // Regional page specific initialization
     const regionNames = {
@@ -1308,7 +1308,7 @@
             return;
           }
         }
-        const results = performSearch(query, 'regional');
+        const results = performSearch(query, 'all', { preferredScopes: ['regional', 'fs', 'pop'] });
         renderSearchResults(results, 'search-results');
         searchResults.classList.add('active');
       }

@@ -2244,7 +2244,8 @@ function renderGlobalAwards(data, containerId, half) {
         members: [],
         department: award.department,
         period: award.period,
-        project_english_name: award.project_english_name
+        project_english_name: award.project_english_name,
+        _searchSource: award
       };
     }
     award.members.forEach(m => {
@@ -2263,6 +2264,11 @@ function renderGlobalAwards(data, containerId, half) {
   
   Object.values(projectGroups).forEach(project => {
     const cardId = `global_${project.project_name.replace(/\s+/g, '_')}`;
+    const searchKey = createAwardSearchKey(project._searchSource || project, {
+      scopeKey: 'global',
+      year: AppData.currentYear,
+      kind: 'project'
+    });
     const likeCount = getLikeCount(cardId);
     const reasonText = project.reason || '';
     const displayTitle = project.project_english_name || project.project_name;
@@ -2285,7 +2291,7 @@ function renderGlobalAwards(data, containerId, half) {
     });
     
     html += `
-      <div class="card project-card award-preview-card" data-card-id="${cardId}" onclick="showAwardDetailModal('${cardId}')">
+      <div class="card project-card award-preview-card" data-card-id="${cardId}" data-search-key="${searchKey}" onclick="showAwardDetailModal('${cardId}')">
         <div class="card-header">
           <span class="card-icon">🏆</span>
           <span class="card-title">${displayTitle}</span>
@@ -2424,7 +2430,8 @@ function renderProjectCards(awards, region, half) {
         members: [],
         department: award.department,
         region: award.region,
-        currency: award.currency || defaultCurrency
+        currency: award.currency || defaultCurrency,
+        _searchSource: award
       };
     }
     award.members.forEach(m => {
@@ -2439,6 +2446,13 @@ function renderProjectCards(awards, region, half) {
   
   Object.values(projectGroups).forEach(project => {
     const cardId = `regional_${region}_${project.project_name.replace(/\s+/g, '_')}`;
+    const searchScope = region === 'fs' || region === 'pop' ? region : 'regional';
+    const searchKey = createAwardSearchKey(project._searchSource || project, {
+      scopeKey: searchScope,
+      region,
+      year: AppData.currentYear,
+      kind: 'project'
+    });
     const likeCount = getLikeCount(cardId);
     const reasonText = project.reason || '';
     const displayTitle = project.project_english_name || project.project_name;
@@ -2461,7 +2475,7 @@ function renderProjectCards(awards, region, half) {
     });
     
     html += `
-      <div class="card project-card award-preview-card" data-card-id="${cardId}" onclick="showAwardDetailModal('${cardId}')">
+      <div class="card project-card award-preview-card" data-card-id="${cardId}" data-search-key="${searchKey}" onclick="showAwardDetailModal('${cardId}')">
         <div class="card-header">
           <span class="card-icon">🏆</span>
           <span class="card-title">${displayTitle}</span>
@@ -2514,6 +2528,14 @@ function renderIndividualCards(awards, region, half) {
     memberNames.forEach((memberName, idx) => {
       const memberNameStr = typeof memberName === 'string' ? memberName : memberName.name;
       const cardId = `individual_${region}_${memberNameStr.replace(/\s+/g, '_')}_${idx}`;
+      const searchScope = region === 'fs' || region === 'pop' ? region : 'regional';
+      const searchKey = createAwardSearchKey(award, {
+        scopeKey: searchScope,
+        region,
+        year: AppData.currentYear,
+        kind: 'individual',
+        targetPerson: memberNameStr
+      });
       const likeCount = getLikeCount(cardId);
       const reasonText = award.reason || award.award_reason || '';
       const deptDisplay = award.department || award.region || region;
@@ -2551,7 +2573,7 @@ function renderIndividualCards(awards, region, half) {
       });
       
       html += `
-        <div class="card individual-card award-preview-card" data-card-id="${cardId}" onclick="showAwardDetailModal('${cardId}')">
+        <div class="card individual-card award-preview-card" data-card-id="${cardId}" data-search-key="${searchKey}" onclick="showAwardDetailModal('${cardId}')">
           <div class="card-header">
             ${renderMemberAvatar(winner, 'card-avatar')}
             <span class="card-title">${memberNameStr}</span>
@@ -2968,7 +2990,7 @@ document.addEventListener('keydown', (e) => {
 // ==================== Search Functions ====================
 let searchData = null;
 let nameMap = null;
-let searchDataLoadPromise = null;
+let searchDataPromise = null;
 
 // Unwrap year-based data structure: if data has year keys (e.g. {2025: {...}, 2026: {...}}), extract the target year; otherwise return as-is
 function unwrapYearData(data, year) {
@@ -2993,7 +3015,12 @@ function mergeAllYears(data) {
             Object.keys(yearData).forEach(awardKey => {
                 if (Array.isArray(yearData[awardKey])) {
                     if (!merged[awardKey]) merged[awardKey] = [];
-                    merged[awardKey] = merged[awardKey].concat(yearData[awardKey]);
+                    merged[awardKey] = merged[awardKey].concat(
+                      yearData[awardKey].map(award => {
+                        if (!award || typeof award !== 'object') return award;
+                        return { ...award, _searchYear: award._searchYear || year };
+                      })
+                    );
                 }
             });
         }
@@ -3004,45 +3031,49 @@ function mergeAllYears(data) {
 // Load all search data from JSON files (renamed from initSearch to avoid override by page scripts)
 async function loadSearchData() {
   if (searchData) return searchData;
-  if (searchDataLoadPromise) return searchDataLoadPromise;
-  searchDataLoadPromise = (async () => {
-  try {
-    const [global, us, eu, sea, latam, rankings, departmental, fs, pop, nameMapData] = await Promise.all([
-      loadChunkedFile('global').catch(() => null),
-      loadChunkedFile('us').catch(() => null),
-      loadChunkedFile('eu').catch(() => null),
-      loadChunkedFile('sea').catch(() => null),
-      fetch('data/latam.json?v=' + CHUNK_VERSION).then(r => r.json()).catch(() => null),
-      fetch('data/rankings.json?v=' + CHUNK_VERSION).then(r => r.json()).catch(() => null),
-      loadChunkedFile('departmental').catch(() => null),
-      loadChunkedFile('fs').catch(() => null),
-      fetch('data/pop.json?v=' + CHUNK_VERSION).then(r => r.json()).catch(() => null),
-      fetch('data/name-map.json?v=' + CHUNK_VERSION).then(r => r.json()).catch(() => null)
-    ]);
-    nameMap = nameMapData || {};
+  if (searchDataPromise) return searchDataPromise;
 
-    searchData = {
-      global: mergeAllYears(global),
-      regional: {
-        us: mergeAllYears(us),
-        eu: mergeAllYears(eu),
-        sea: mergeAllYears(sea),
-        latam: mergeAllYears(latam)
-      },
-      rankings: mergeAllYears(rankings),
-      departmental: mergeAllYears(departmental),
-      fs: mergeAllYears(fs),
-      pop: mergeAllYears(pop)
-    };
-    console.log("[Search] Data loaded successfully - global:", !!searchData.global, "H1 count:", searchData.global?.['H1 Project Awards']?.length, "H2 count:", searchData.global?.['H2 Project Awards']?.length);
-    return searchData;
-  } catch (error) {
-    console.error('Error loading search data:', error);
-    searchDataLoadPromise = null;
-    return null;
-  }
+  searchDataPromise = (async () => {
+    try {
+      const [global, us, eu, sea, latam, rankings, departmental, fs, pop, nameMapData] = await Promise.all([
+        loadChunkedFile('global').catch(() => null),
+        loadChunkedFile('us').catch(() => null),
+        loadChunkedFile('eu').catch(() => null),
+        loadChunkedFile('sea').catch(() => null),
+        fetch('data/latam.json?v=' + CHUNK_VERSION).then(r => r.json()).catch(() => null),
+        fetch('data/rankings.json?v=' + CHUNK_VERSION).then(r => r.json()).catch(() => null),
+        loadChunkedFile('departmental').catch(() => null),
+        loadChunkedFile('fs').catch(() => null),
+        fetch('data/pop.json?v=' + CHUNK_VERSION).then(r => r.json()).catch(() => null),
+        fetch('data/name-map.json?v=' + CHUNK_VERSION).then(r => r.json()).catch(() => null)
+      ]);
+      nameMap = nameMapData || {};
+
+      searchData = {
+        global: mergeAllYears(global),
+        regional: {
+          us: mergeAllYears(us),
+          eu: mergeAllYears(eu),
+          sea: mergeAllYears(sea),
+          latam: mergeAllYears(latam)
+        },
+        rankings: mergeAllYears(rankings),
+        departmental: mergeAllYears(departmental),
+        fs: mergeAllYears(fs),
+        pop: mergeAllYears(pop)
+      };
+      console.log("[Search] Data loaded successfully - global:", !!searchData.global, "H1 count:", searchData.global?.['H1 Project Awards']?.length, "H2 count:", searchData.global?.['H2 Project Awards']?.length);
+      return searchData;
+    } catch (error) {
+      console.error('Error loading search data:', error);
+      searchData = null;
+      return null;
+    } finally {
+      if (!searchData) searchDataPromise = null;
+    }
   })();
-  return searchDataLoadPromise;
+
+  return searchDataPromise;
 }
 
 
@@ -3083,20 +3114,117 @@ function matchesWord(text, searchTerm) {
   return false;
 }
 
-function performSearch(query, level = 'all') {
+function getSearchResultYear(award) {
+  if (!award) return '';
+  if (award._searchYear) return String(award._searchYear);
+  const candidates = [award.period, award.award_type, award.project_name, award.award_name];
+  for (const candidate of candidates) {
+    const match = String(candidate || '').match(/\b(20\d{2})\b/);
+    if (match) return match[1];
+  }
+  return '';
+}
+
+function createAwardSearchKey(award, context = {}) {
+  const normalize = value => String(value || '').trim().toLowerCase().replace(/\s+/g, ' ');
+  const kind = context.kind || 'project';
+  const identity = kind === 'individual'
+    ? (context.targetPerson || award.winner_name || award.project_name || award.award_name)
+    : (award.project_name || award.award_name || award.winner_name);
+  const parts = [
+    context.scopeKey,
+    context.region,
+    context.year || getSearchResultYear(award),
+    kind,
+    identity,
+    award.department,
+    award.award_type || award.team_award
+  ];
+  return encodeURIComponent(parts.map(normalize).join('|'));
+}
+
+function getSearchResultTargetUrl(result) {
+  const params = new URLSearchParams();
+  if (result.year) params.set('year', result.year);
+  if (result.targetKey) params.set('search_key', result.targetKey);
+  params.set('from', 'search');
+
+  let page = 'index.html';
+  if (result.scopeKey === 'global') {
+    page = 'global.html';
+    const halfMatch = String(result.targetPeriod || result.period || '').match(/\b(H1|H2)\b/i);
+    if (halfMatch) params.set('period', halfMatch[1].toUpperCase());
+  } else if (['regional', 'fs', 'pop'].includes(result.scopeKey)) {
+    page = 'regional.html';
+    params.set('region', result.targetRegion || result.scopeKey);
+    if (result.targetPeriod) params.set('period', result.targetPeriod);
+  } else if (result.scopeKey === 'departmental') {
+    page = 'departmental.html';
+    const quarterMatch = String(result.targetPeriod || result.period || '').match(/\b(Q[1-4])\b/i);
+    if (quarterMatch) params.set('quarter', quarterMatch[1].toUpperCase());
+  }
+
+  return `${page}?${params.toString()}`;
+}
+
+function openSearchResultTarget(targetUrl) {
+  if (!targetUrl) return;
+  window.location.href = targetUrl;
+}
+
+function initSearchTargetNavigation() {
+  const requestedKey = getUrlParam('search_key');
+  if (!requestedKey || window.__searchTargetObserverStarted) return;
+  window.__searchTargetObserverStarted = true;
+
+  let observer = null;
+  let timeoutId = null;
+  const tryOpenTarget = () => {
+    const target = Array.from(document.querySelectorAll('[data-search-key]'))
+      .find(card => card.dataset.searchKey === requestedKey);
+    if (!target || window.__searchTargetFocused) return false;
+
+    window.__searchTargetFocused = true;
+    if (observer) observer.disconnect();
+    if (timeoutId) clearTimeout(timeoutId);
+    target.classList.add('search-target-highlight');
+    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => target.classList.remove('search-target-highlight'), 3200);
+    return true;
+  };
+
+  if (tryOpenTarget()) return;
+  observer = new MutationObserver(tryOpenTarget);
+  observer.observe(document.body, { childList: true, subtree: true });
+  timeoutId = setTimeout(() => {
+    observer.disconnect();
+    if (!window.__searchTargetFocused) {
+      showToast('The original award card could not be located.');
+    }
+  }, 12000);
+}
+
+function performSearch(query, level = 'all', options = {}) {
   if (!query || !searchData) return [];
   
   const results = [];
   const seenKeys = new Set();
   const searchTerm = query.toLowerCase().trim();
+  const preferredScopes = Array.isArray(options.preferredScopes) ? options.preferredScopes : [];
+  const preferredDepartment = String(options.preferredDepartment || '').trim().toLowerCase();
+  const preferredDepartmentTerms = (Array.isArray(options.preferredDepartmentTerms) ? options.preferredDepartmentTerms : [])
+    .map(term => String(term || '').trim().toLowerCase())
+    .filter(Boolean);
   
-  function getMatchSource(matchName, matchDept, matchMember, matchReason) {
+  function getMatchSource(matchName, matchDept, matchMember, matchAward, matchEmail, matchReason) {
     let source = Infinity;
     if (matchName) source = Math.min(source, 1);
     if (matchDept) source = Math.min(source, 2);
     if (matchMember) source = Math.min(source, 3);
-    if (matchReason) source = Math.min(source, 4);
-    return source === Infinity ? 4 : source;
+    if (matchAward) source = Math.min(source, 4);
+    if (matchEmail) source = Math.min(source, 5);
+    if (matchReason) source = Math.min(source, 6);
+    return source === Infinity ? 6 : source;
   }
   
   // Generic award search - works with any data source
@@ -3108,16 +3236,26 @@ function performSearch(query, level = 'all') {
       const matchWinner = award.winner_name && matchesWord(award.winner_name, searchTerm);
       const matchMember = award.members?.some(m => matchesWord(typeof m === 'string' ? m : m.name || '', searchTerm)) || false;
       const matchDept = matchesWord(award.department, searchTerm);
+      const matchAward = matchesWord(award.award_name, searchTerm)
+        || matchesWord(award.team_award, searchTerm)
+        || matchesWord(award.award_type, searchTerm);
+      const matchEmail = matchesWord(award.email, searchTerm)
+        || award.members?.some(m => typeof m === 'object' && matchesWord(m.email || '', searchTerm))
+        || false;
+      const matchReason = matchesWord(award.reason, searchTerm);
       
-      if (matchName || matchWinner || matchMember || matchDept) {
+      if (matchName || matchWinner || matchMember || matchDept || matchAward || matchEmail || matchReason) {
         const winnerName = award.winner_name || (award.members && award.members[0] ? (typeof award.members[0] === 'string' ? award.members[0] : award.members[0].name) : '');
+        const resultYear = getSearchResultYear(award) || opts.defaultYear || '';
+        const matchedMembers = matchMember ? award.members?.filter(m => matchesWord(typeof m === 'string' ? m : m.name || '', searchTerm)) || [] : [];
+        const targetPerson = isIndividual && matchedMembers.length
+          ? (typeof matchedMembers[0] === 'string' ? matchedMembers[0] : matchedMembers[0].name || '')
+          : winnerName;
         const dedupKey = isIndividual 
-          ? `${opts.level}|${opts.key}|${winnerName}`
-          : `${opts.level}|${award.project_name}`;
+          ? `${opts.scopeKey}|${resultYear}|${opts.key}|${targetPerson}`
+          : `${opts.scopeKey}|${resultYear}|${award.project_name}`;
         if (seenKeys.has(dedupKey)) return;
         seenKeys.add(dedupKey);
-        
-        const matchedMembers = matchMember ? award.members?.filter(m => matchesWord(typeof m === 'string' ? m : m.name || '', searchTerm)) || [] : [];
         
         results.push({
           type: isIndividual ? 'Individual Award' : 'Project Award',
@@ -3130,7 +3268,18 @@ function performSearch(query, level = 'all') {
           department: award.department || '',
           email: award.email || '',
           reason: award.reason,
-          matchSource: getMatchSource(matchName, matchDept, matchWinner || matchMember, false),
+          year: resultYear,
+          scopeKey: opts.scopeKey,
+          targetRegion: opts.region || '',
+          targetPeriod: opts.key || '',
+          targetKey: createAwardSearchKey(award, {
+            scopeKey: opts.scopeKey,
+            region: opts.region || '',
+            year: resultYear,
+            kind: isIndividual ? 'individual' : 'project',
+            targetPerson
+          }),
+          matchSource: getMatchSource(matchName, matchDept, matchWinner || matchMember, matchAward, matchEmail, matchReason),
           matchedMembers: matchedMembers,
           memberCount: award.members?.length || 0
         });
@@ -3149,7 +3298,7 @@ function performSearch(query, level = 'all') {
   // 1. Global
   if (searchData.global && (level === 'all' || level === 'global')) {
     getAwardKeys(searchData.global).forEach(key => {
-      searchAwardArray(searchData.global[key], { level: 'Global', key });
+      searchAwardArray(searchData.global[key], { level: 'Global', scopeKey: 'global', key });
     });
   }
   
@@ -3159,7 +3308,13 @@ function performSearch(query, level = 'all') {
       const data = searchData.regional[region];
       if (!data) return;
       getAwardKeys(data).forEach(key => {
-        searchAwardArray(data[key], { level: `Regional - ${region.toUpperCase()}`, key });
+        searchAwardArray(data[key], {
+          level: `Regional - ${region.toUpperCase()}`,
+          scopeKey: 'regional',
+          region,
+          key,
+          isIndividual: region === 'latam' || /Individual/i.test(key)
+        });
       });
     });
   }
@@ -3167,14 +3322,27 @@ function performSearch(query, level = 'all') {
   // 3. FS
   if (searchData.fs && (level === 'all' || level === 'fs')) {
     getAwardKeys(searchData.fs).forEach(key => {
-      searchAwardArray(searchData.fs[key], { level: 'FS', key });
+      searchAwardArray(searchData.fs[key], {
+        level: 'FS',
+        scopeKey: 'fs',
+        region: 'fs',
+        key,
+        isIndividual: /Individual/i.test(key)
+      });
     });
   }
   
   // 4. POP
   if (searchData.pop && (level === 'all' || level === 'pop')) {
     getAwardKeys(searchData.pop).forEach(key => {
-      searchAwardArray(searchData.pop[key], { level: 'POP', key });
+      searchAwardArray(searchData.pop[key], {
+        level: 'POP',
+        scopeKey: 'pop',
+        region: 'pop',
+        key,
+        defaultYear: '2025',
+        isIndividual: /Individual/i.test(key)
+      });
     });
   }
   
@@ -3185,9 +3353,15 @@ function performSearch(query, level = 'all') {
       awards.forEach(award => {
         const matchWinner = award.winner_name && matchesWord(award.winner_name, searchTerm);
         const matchMember = award.members?.some(m => matchesWord(typeof m === 'string' ? m : m.name || '', searchTerm)) || false;
+        const matchDept = matchesWord(award.department, searchTerm);
+        const matchAward = matchesWord(award.award_name, searchTerm) || matchesWord(award.award_type, searchTerm);
+        const matchEmail = matchesWord(award.email, searchTerm)
+          || award.members?.some(m => typeof m === 'object' && matchesWord(m.email || '', searchTerm))
+          || false;
+        const matchReason = matchesWord(award.reason, searchTerm);
         
-        if (matchWinner || matchMember) {
-          const dedupKey = `dept|${q}|${award.winner_name}|${award.department}`;
+        if (matchWinner || matchMember || matchDept || matchAward || matchEmail || matchReason) {
+          const dedupKey = `dept|${getSearchResultYear(award)}|${q}|${award.winner_name}|${award.department}`;
           if (!seenKeys.has(dedupKey)) {
             seenKeys.add(dedupKey);
             const matchedMembers = matchMember ? award.members?.filter(m => matchesWord(typeof m === 'string' ? m : m.name || '', searchTerm)) || [] : [];
@@ -3201,7 +3375,17 @@ function performSearch(query, level = 'all') {
               members: award.members,
               department: award.department,
               email: award.email || '',
-              matchSource: getMatchSource(matchWinner, false, matchMember, false),
+              reason: award.reason || '',
+              year: getSearchResultYear(award),
+              scopeKey: 'departmental',
+              targetRegion: '',
+              targetPeriod: q,
+              targetKey: createAwardSearchKey(award, {
+                scopeKey: 'departmental',
+                year: getSearchResultYear(award),
+                kind: 'departmental'
+              }),
+              matchSource: getMatchSource(matchWinner, matchDept, matchMember, matchAward, matchEmail, matchReason),
               matchedMembers: matchedMembers,
               memberCount: award.members?.length || 0
             });
@@ -3211,7 +3395,31 @@ function performSearch(query, level = 'all') {
     });
   }
   
-  results.sort((a, b) => a.matchSource - b.matchSource);
+  function getPagePriority(result) {
+    const resultDepartment = String(result.department || '').trim().toLowerCase();
+    const matchesPreferredDepartment = preferredDepartmentTerms.length
+      ? preferredDepartmentTerms.some(term => resultDepartment.includes(term))
+      : preferredDepartment && resultDepartment === preferredDepartment;
+    if (
+      (preferredDepartment || preferredDepartmentTerms.length)
+      && result.scopeKey === 'departmental'
+      && matchesPreferredDepartment
+    ) {
+      return 0;
+    }
+    if (preferredScopes.includes(result.scopeKey)) {
+      return (preferredDepartment || preferredDepartmentTerms.length) ? 1 : 0;
+    }
+    return (preferredDepartment || preferredDepartmentTerms.length) ? 2 : 1;
+  }
+
+  results.sort((a, b) => {
+    const pagePriorityDiff = getPagePriority(a) - getPagePriority(b);
+    if (pagePriorityDiff !== 0) return pagePriorityDiff;
+    const matchSourceDiff = a.matchSource - b.matchSource;
+    if (matchSourceDiff !== 0) return matchSourceDiff;
+    return String(b.year || '').localeCompare(String(a.year || ''));
+  });
   return results;
 }
 
@@ -3227,6 +3435,9 @@ function renderSearchResults(results, containerId) {
   
   let html = '';
   results.slice(0, 20).forEach(result => {
+    const yearLabel = result.year || 'Year not specified';
+    const periodLabel = String(result.period || '').replace(new RegExp(`^${result.year || ''}\\s*`), '').trim();
+    const targetUrl = getSearchResultTargetUrl(result);
     let memberLine = '';
     if (result.type === 'Project Award' && result.matchedMembers && result.matchedMembers.length > 0) {
       const matchedNames = result.matchedMembers.map(m => typeof m === 'string' ? m : m.name || '').join(', ');
@@ -3241,13 +3452,14 @@ function renderSearchResults(results, containerId) {
       }
     }
     html += `
-      <div class="search-result-item">
+      <div class="search-result-item search-result-link" role="link" tabindex="0" data-target-url="${escapeHtml(targetUrl)}" aria-label="View ${escapeHtml(result.name)} award">
         <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
           <span style="background: var(--primary-color); padding: 2px 8px; border-radius: 4px; font-size: 12px;">
             ${result.type}
           </span>
           <span style="color: var(--text-secondary); font-size: 12px;">${result.level}</span>
-          ${result.period ? `<span style="color: var(--accent-color); font-size: 11px;">${result.period}</span>` : ''}
+          <span style="color: var(--accent-color); font-size: 11px;">${yearLabel}</span>
+          ${periodLabel ? `<span style="color: var(--text-secondary); font-size: 11px;">${periodLabel}</span>` : ''}
         </div>
         
         <div style="font-weight: 600; margin-bottom: 4px;">${result.name}</div>
@@ -3256,11 +3468,22 @@ function renderSearchResults(results, containerId) {
         ${result.department ? `<div style="color: var(--text-secondary); font-size: 11px;">🏢 ${result.department}</div>` : ''}
         ${memberLine}
         ${winnerLine}
+        <div class="search-result-action">View award <span aria-hidden="true">→</span></div>
       </div>
     `;
   });
   
   container.innerHTML = html;
+  container.querySelectorAll('.search-result-link').forEach(item => {
+    const openTarget = () => openSearchResultTarget(item.dataset.targetUrl);
+    item.addEventListener('click', openTarget);
+    item.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openTarget();
+      }
+    });
+  });
 }
 
 // ==================== Initialize ====================
@@ -3280,6 +3503,12 @@ if (isHomePage) {
     // Load search data on every page (page scripts bind their own listeners)
     loadSearchData();
   });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initSearchTargetNavigation);
+} else {
+  initSearchTargetNavigation();
 }
 
 // ==================== Feedback Floating Button Preview ====================

@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Departmental Awards - Global E-commerce Recognition Hub</title>
-  <link rel="stylesheet" href="css/main.css?v=20260918-official-ui-v43">
+  <link rel="stylesheet" href="css/main.css?v=20260920-site-search-v50">
   <style id="app-boot-guard-style">
     html.app-booting:not(.app-ready) body {
       visibility: hidden;
@@ -440,10 +440,11 @@
           </div>
 
           <div class="dept-search">
-            <input type="text" class="search-input" id="dept-search-input" placeholder="Search by name...">
+            <input type="text" class="search-input" id="dept-search-input" placeholder="Search all years by name, project, department...">
             <button class="search-clear" id="dept-search-clear" title="Clear search">✕</button>
             <button class="search-btn" id="dept-search-btn">🔍 Search</button>
           </div>
+          <div id="dept-search-results" class="search-results"></div>
 
           <div class="quarter-tabs" id="dept-quarter-tabs">
             <div class="quarter-tab active" data-quarter="all">All</div>
@@ -511,7 +512,7 @@
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
   <script src="js/award-api.js?v=20260914uv"></script>
   <script src="js/html2canvas.min.js"></script>
-  <script src="js/main.js?v=20260920-avatar-webp-v48"></script>
+  <script src="js/main.js?v=20260920-site-search-v50"></script>
   <script>
     // ===== Departmental Page State =====
     let departmentalData = null;
@@ -597,10 +598,17 @@
       const urlDept = getUrlParam('dept');
       if (urlDept) {
         const urlQuarter = getUrlParam('quarter') || 'all';
-        // Check if this dept exists in DEPT_GROUPS
-        const deptExists = DEPT_GROUPS.some(g => g.departments.some(d => d.name === urlDept));
-        if (deptExists) {
-          openDept(urlDept, urlQuarter);
+        const deptConfig = DEPT_GROUPS
+          .flatMap(group => group.departments)
+          .find(dept => dept.name === urlDept || dept.fullName === urlDept);
+        if (deptConfig) {
+          openDept(deptConfig.fullName, urlQuarter);
+        }
+      } else {
+        const requestedSearchKey = getUrlParam('search_key');
+        const targetDept = requestedSearchKey ? findDepartmentForSearchKey(requestedSearchKey) : null;
+        if (targetDept) {
+          openDept(targetDept, getUrlParam('quarter') || 'all');
         }
       }
     });
@@ -697,6 +705,22 @@
       return allAwards.filter(a => a.department === deptFullName);
     }
 
+    function findDepartmentForSearchKey(searchKey) {
+      const currentYear = getUrlParam('year') || '2026';
+      for (const group of DEPT_GROUPS) {
+        for (const dept of group.departments) {
+          const awards = getAwardsForDept(dept.fullName);
+          const hasTarget = awards.some(award => createAwardSearchKey(award, {
+            scopeKey: 'departmental',
+            year: currentYear,
+            kind: 'departmental'
+          }) === searchKey);
+          if (hasTarget) return dept.fullName;
+        }
+      }
+      return '';
+    }
+
     // ===== Compute Stats for a Department =====
     function computeDeptStats(awards) {
       const awardCount = awards.length;
@@ -779,6 +803,7 @@
       // Reset search input
       const searchInput = document.getElementById('dept-search-input');
       if (searchInput) searchInput.value = '';
+      setDeptSearchMode(false);
 
       // Set quarter tabs
       document.querySelectorAll('#dept-quarter-tabs .quarter-tab').forEach(tab => {
@@ -793,6 +818,7 @@
     // ===== Close Department Detail =====
     function closeDept() {
       currentDeptName = '';
+      setDeptSearchMode(false);
       document.getElementById('dept-list-view').classList.remove('hidden');
       document.getElementById('dept-detail').classList.remove('active');
       setUrlParams({ dept: null, quarter: null });
@@ -820,16 +846,6 @@
       // Filter by award type
       if (currentDeptAwardType !== 'all') {
         filteredAwards = filteredAwards.filter(a => a.award_type === currentDeptAwardType);
-      }
-
-      // Filter by search
-      if (deptSearchQuery) {
-        const q = deptSearchQuery.toLowerCase();
-        filteredAwards = filteredAwards.filter(a => {
-          const nameMatch = (a.winner_name || '').toLowerCase().includes(q);
-          const memberMatch = (a.members || []).some(m => m.toLowerCase().includes(q));
-          return nameMatch || memberMatch;
-        });
       }
 
       // Render award type filter
@@ -896,6 +912,11 @@
 
         // Build a unique cardId consistent with regional/global format
         const cardId = `dept_${(department + '_' + name).replace(/\s+/g, '_')}_${award.award_type.replace(/\s+/g, '_')}`;
+        const searchKey = createAwardSearchKey(award, {
+          scopeKey: 'departmental',
+          year: getUrlParam('year') || '2026',
+          kind: 'departmental'
+        });
         const likeCount = getLikeCount(cardId);
         registerAwardDetail(cardId, { title: name, reason: reasonText, members: detailMembers, awardType: detailMembers.length > 1 ? 'project' : 'individual' });
 
@@ -903,7 +924,7 @@
         const safeName = name.replace(/'/g, "\\'");
 
         html += `
-          <div class="card ${detailMembers.length > 1 ? 'project-card' : 'individual-card'} award-preview-card" data-card-id="${cardId}" onclick="showAwardDetailModal('${cardId}')">
+          <div class="card ${detailMembers.length > 1 ? 'project-card' : 'individual-card'} award-preview-card" data-card-id="${cardId}" data-search-key="${searchKey}" onclick="showAwardDetailModal('${cardId}')">
             <div class="card-header">
               ${renderMemberAvatar(detailMembers[0], 'card-avatar')}
               <span class="card-title">${name}</span>
@@ -951,26 +972,63 @@
         });
       });
 
-      // Search handlers
+      // Full-site search with current department and Departmental results prioritized
       const searchInput = document.getElementById('dept-search-input');
       const searchBtn = document.getElementById('dept-search-btn');
 
-      if (searchBtn) {
-        searchBtn.addEventListener('click', () => {
-          deptSearchQuery = (searchInput.value || '').trim();
+      function getCurrentDeptSearchTerms() {
+        const deptConfig = DEPT_GROUPS
+          .flatMap(group => group.departments)
+          .find(dept => dept.name === currentDeptName);
+        const fullName = deptConfig?.fullName || currentDeptName;
+        return [
+          currentDeptName,
+          fullName,
+          ...(DEPT_KEYWORDS[fullName] || []),
+          ...(DEPT_KEYWORDS[currentDeptName] || [])
+        ].filter(Boolean);
+      }
+
+      async function performDepartmentalSiteSearch() {
+        deptSearchQuery = (searchInput?.value || '').trim();
+        if (!deptSearchQuery) {
+          setDeptSearchMode(false);
           renderDeptDetailView();
+          return;
+        }
+
+        setDeptSearchMode(true);
+        const searchResults = document.getElementById('dept-search-results');
+        if (!searchData) {
+          searchResults.innerHTML = '<div class="no-results">Loading all-year search data, please wait...</div>';
+          await loadSearchData();
+        }
+        if (!searchData) {
+          searchResults.innerHTML = '<div class="no-results">Search data failed to load. Please try again later.</div>';
+          return;
+        }
+
+        const results = performSearch(deptSearchQuery, 'all', {
+          preferredScopes: ['departmental'],
+          preferredDepartment: currentDeptName,
+          preferredDepartmentTerms: getCurrentDeptSearchTerms()
         });
+        renderSearchResults(results, 'dept-search-results');
+      }
+
+      if (searchBtn) {
+        searchBtn.addEventListener('click', performDepartmentalSiteSearch);
       }
       if (searchInput) {
         searchInput.addEventListener('keypress', (e) => {
           if (e.key === 'Enter') {
-            deptSearchQuery = (searchInput.value || '').trim();
-            renderDeptDetailView();
+            performDepartmentalSiteSearch();
           }
         });
         searchInput.addEventListener('input', () => {
           if (!searchInput.value.trim()) {
             deptSearchQuery = '';
+            setDeptSearchMode(false);
             renderDeptDetailView();
           }
         });
@@ -982,6 +1040,7 @@
         searchClear.addEventListener('click', () => {
           searchInput.value = '';
           deptSearchQuery = '';
+          setDeptSearchMode(false);
           renderDeptDetailView();
           searchClear.classList.remove('visible');
           searchInput.focus();
@@ -998,6 +1057,22 @@
         });
       }
     });
+
+    function setDeptSearchMode(active) {
+      const searchResults = document.getElementById('dept-search-results');
+      const browseSections = [
+        document.getElementById('dept-quarter-tabs'),
+        document.getElementById('dept-award-type-filter'),
+        document.getElementById('dept-awards-list')
+      ];
+      if (searchResults) {
+        searchResults.classList.toggle('active', active);
+        if (!active) searchResults.innerHTML = '';
+      }
+      browseSections.forEach(section => {
+        if (section) section.style.display = active ? 'none' : '';
+      });
+    }
   </script>
 <script>
 // Report page view on load (once per session). PV is unchanged; user_id enables backend UV counting.
