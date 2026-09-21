@@ -1,0 +1,15 @@
+{
+  "name": "Global E-commerce Recognition Hub",
+  "short_name": "Recognition Hub",
+  "icons": [
+    {
+      "src": "/tiktok-awards/images/recognition-hub-icon-512-v2.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#080A10",
+  "background_color": "#080A10",
+  "display": "standalone"
+}
