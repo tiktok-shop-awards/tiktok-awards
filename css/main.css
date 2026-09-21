@@ -3217,11 +3217,75 @@ img {
   font-size: 14px;
 }
 
+.quick-comments {
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--border-color);
+}
+
+.quick-comments-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  margin-bottom: 9px;
+}
+
+.quick-comments-label {
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.quick-comments-hint {
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+
+.quick-comments-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.quick-comment-chip {
+  max-width: 100%;
+  padding: 7px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.045);
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.25;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+}
+
+.quick-comment-chip:hover {
+  color: #fff;
+  border-color: rgba(37, 244, 238, 0.42);
+  background: rgba(37, 244, 238, 0.08);
+}
+
+.quick-comment-chip:focus-visible {
+  outline: 2px solid rgba(37, 244, 238, 0.7);
+  outline-offset: 2px;
+}
+
+.quick-comment-chip.selected {
+  color: #fff;
+  border-color: rgba(37, 244, 238, 0.62);
+  background: linear-gradient(135deg, rgba(37, 244, 238, 0.16), rgba(51, 112, 255, 0.14));
+  box-shadow: inset 0 0 0 1px rgba(37, 244, 238, 0.08);
+}
+
 .comment-input-wrapper {
   display: flex;
   gap: var(--spacing-sm);
-  padding-top: var(--spacing-md);
-  border-top: 1px solid var(--border-color);
+  padding-top: var(--spacing-sm);
 }
 
 .comment-input {
@@ -3253,6 +3317,30 @@ img {
 
 .comment-submit-btn:hover {
   background: var(--primary-color);
+}
+
+@media (max-width: 640px) {
+  .quick-comments-header {
+    margin-bottom: 8px;
+  }
+
+  .quick-comments-list {
+    flex-wrap: nowrap;
+    margin-right: calc(var(--spacing-md) * -1);
+    padding-right: var(--spacing-md);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .quick-comments-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .quick-comment-chip {
+    flex: 0 0 auto;
+  }
 }
 
 /* ==================== Comment Button ==================== */

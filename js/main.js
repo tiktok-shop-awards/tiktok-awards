@@ -1610,6 +1610,54 @@ function getIsLikedByCurrentUser(cardId) {
 }
 
 // ==================== Comment Functions ====================
+const QUICK_COMMENT_OPTIONS = [
+  'Congratulations 🎉',
+  'Scale new height!',
+  'Great teamwork and impact!'
+];
+
+function ensureQuickCommentOptions() {
+  const input = document.getElementById('comment-input');
+  const inputWrapper = input ? input.closest('.comment-input-wrapper') : null;
+  if (!input || !inputWrapper || inputWrapper.previousElementSibling?.classList.contains('quick-comments')) return;
+
+  const quickComments = document.createElement('div');
+  quickComments.className = 'quick-comments';
+  quickComments.setAttribute('aria-label', 'Quick comments');
+  quickComments.innerHTML = `
+    <div class="quick-comments-header">
+      <span class="quick-comments-label">Quick comments</span>
+      <span class="quick-comments-hint">Tap to fill, then send</span>
+    </div>
+    <div class="quick-comments-list">
+      ${QUICK_COMMENT_OPTIONS.map((comment) => `
+        <button type="button" class="quick-comment-chip" data-comment="${escapeHtml(comment)}" aria-pressed="false">
+          ${escapeHtml(comment)}
+        </button>
+      `).join('')}
+    </div>
+  `;
+
+  quickComments.addEventListener('click', (event) => {
+    const chip = event.target.closest('.quick-comment-chip');
+    if (!chip) return;
+    input.value = chip.dataset.comment || '';
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    input.focus();
+    input.setSelectionRange(input.value.length, input.value.length);
+  });
+
+  input.addEventListener('input', () => {
+    quickComments.querySelectorAll('.quick-comment-chip').forEach((chip) => {
+      const isSelected = input.value === chip.dataset.comment;
+      chip.classList.toggle('selected', isSelected);
+      chip.setAttribute('aria-pressed', String(isSelected));
+    });
+  });
+
+  inputWrapper.before(quickComments);
+}
+
 function showCommentsModal(cardId, awardName, awardType) {
   const modal = document.getElementById('comments-modal');
   const modalTitle = document.getElementById('comments-modal-title');
@@ -1629,8 +1677,10 @@ function showCommentsModal(cardId, awardName, awardType) {
   commentList.innerHTML = '<div class="no-comments">Loading comments...</div>';
 
   // Clear and focus input
+  ensureQuickCommentOptions();
   if (commentInput) {
     commentInput.value = '';
+    commentInput.dispatchEvent(new Event('input', { bubbles: true }));
     commentInput.focus();
   }
 
