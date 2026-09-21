@@ -2390,7 +2390,7 @@ function buildNativeFeishuPosterImageCard(award, imageKey) {
           actions: [{
             tag: 'button',
             type: 'primary',
-            text: { tag: 'plain_text', content: 'Learn more about this recognition' },
+            text: { tag: 'plain_text', content: 'Discover more highlights' },
             url: feishuDetailUrl
           }]
         },
