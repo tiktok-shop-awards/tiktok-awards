@@ -2333,6 +2333,73 @@ function buildNativeFeishuCollectionCard(collection) {
   };
 }
 
+function buildNativeFeishuPosterImageCard(award, imageKey) {
+  const isCollection = award?.share_type === 'recognition_collection';
+  const detailUrl = String(award?.detail_url || window.location.href);
+  const title = isCollection
+    ? String(award?.title || 'Recognition Collection').slice(0, 80)
+    : String(award?.award_name || 'Recognition Award').slice(0, 80);
+  const subject = isCollection
+    ? String(award?.subject || title).slice(0, 120)
+    : String(award?.project_name || award?.title || 'Recognition honor poster').slice(0, 120);
+  const footer = isCollection
+    ? String(award?.summary || 'Recognition collection poster').slice(0, 120)
+    : compactFeishuMeta([award?.year, award?.period, award?.level, award?.department, award?.region]) || 'Recognition honor poster';
+
+  return {
+    msg_type: 'interactive',
+    update_multi: false,
+    card: {
+      config: { wide_screen_mode: true },
+      header: {
+        template: 'orange',
+        title: {
+          tag: 'plain_text',
+          content: isCollection ? 'Recognition Collection' : 'Recognition Spotlight'
+        }
+      },
+      elements: [
+        {
+          tag: 'div',
+          text: {
+            tag: 'lark_md',
+            content: [
+              `**${escapeFeishuCardMarkdown(title)}**`,
+              `# ${escapeFeishuCardMarkdown(subject)}`
+            ].join('\n')
+          }
+        },
+        {
+          tag: 'img',
+          img_key: imageKey,
+          alt: {
+            tag: 'plain_text',
+            content: 'Recognition honor poster'
+          },
+          mode: 'fit_horizontal',
+          preview: true
+        },
+        {
+          tag: 'action',
+          actions: [{
+            tag: 'button',
+            type: 'primary',
+            text: { tag: 'plain_text', content: isCollection ? 'Open honor collection' : 'Open honor poster' },
+            url: detailUrl
+          }]
+        },
+        {
+          tag: 'note',
+          elements: [{
+            tag: 'plain_text',
+            content: footer
+          }]
+        }
+      ]
+    }
+  };
+}
+
 function ensurePosterFeishuShareButton() {
   const modal = document.getElementById('share-modal');
   const shareActions = modal?.querySelector('.share-actions');
@@ -2348,6 +2415,126 @@ function ensurePosterFeishuShareButton() {
   feishuButton.textContent = 'Share to Feishu';
   feishuButton.disabled = false;
   return feishuButton;
+}
+
+async function captureCurrentPosterCanvas() {
+  const posterContent = document.getElementById('poster-content');
+  if (!posterContent) {
+    throw new Error('Poster content not found');
+  }
+  if (typeof html2canvas === 'undefined') {
+    throw new Error('html2canvas library not loaded');
+  }
+
+  const previewContainer = document.getElementById('poster-preview');
+  const savedOpacity = previewContainer ? previewContainer.style.opacity : '';
+  const savedOverflow = previewContainer ? previewContainer.style.overflow : '';
+  const savedWidth = previewContainer ? previewContainer.style.width : '';
+  const savedTransform = posterContent.style.transform;
+  const savedTransformOrigin = posterContent.style.transformOrigin;
+  const savedPosterWidth = posterContent.style.width;
+
+  try {
+    if (previewContainer) {
+      previewContainer.style.opacity = '0.01';
+      previewContainer.style.overflow = 'visible';
+      previewContainer.style.width = 'auto';
+    }
+    posterContent.style.transform = 'none';
+    posterContent.style.transformOrigin = 'top left';
+
+    const posterWidth = 1440;
+    posterContent.style.width = posterWidth + 'px';
+    const posterActualHeight = posterContent.scrollHeight;
+    const exportScale = posterContent.classList.contains('collection-poster')
+      ? Math.max(1, Math.min(2, 30000 / posterActualHeight))
+      : 2;
+
+    return await html2canvas(posterContent, {
+      backgroundColor: '#000000',
+      scale: exportScale,
+      width: posterWidth,
+      height: posterActualHeight,
+      useCORS: true,
+      logging: false,
+      onclone: function(clonedDoc) {
+        const clonedPoster = clonedDoc.getElementById('poster-content');
+        if (clonedPoster) {
+          clonedPoster.classList.add('poster-no-decorations');
+          clonedPoster.querySelectorAll('.poster-v2-top, .poster-v2-body, .poster-v2-footer, .poster-v2-divider, .poster-v2-corner-br').forEach(function(el) {
+            el.style.position = 'relative';
+            el.style.zIndex = '10';
+          });
+        }
+      }
+    });
+  } finally {
+    posterContent.style.transform = savedTransform;
+    posterContent.style.transformOrigin = savedTransformOrigin;
+    posterContent.style.width = savedPosterWidth || '1440px';
+    if (previewContainer) {
+      previewContainer.style.opacity = savedOpacity;
+      previewContainer.style.overflow = savedOverflow;
+      previewContainer.style.width = savedWidth;
+    }
+  }
+}
+
+function canvasToPngBlob(canvas) {
+  return new Promise((resolve, reject) => {
+    canvas.toBlob(blob => {
+      if (blob) resolve(blob);
+      else reject(new Error('Failed to convert poster canvas to PNG'));
+    }, 'image/png', 0.96);
+  });
+}
+
+function extractFeishuImageKey(response) {
+  if (!response || typeof response !== 'object') return '';
+  return response.image_key
+    || response.imageKey
+    || response.data?.image_key
+    || response.data?.imageKey
+    || response.data?.image?.image_key
+    || response.data?.image?.imageKey
+    || '';
+}
+
+async function uploadPosterImageForFeishu(blob, award) {
+  const baseUrl = (typeof AwardAPI !== 'undefined' && AwardAPI.BASE_URL)
+    ? AwardAPI.BASE_URL
+    : 'https://da1e5fb0.aipa.bytedance.net';
+  const endpoint = `${baseUrl}/api/feishu/share/poster-image`;
+  const formData = new FormData();
+  const filename = award?.share_type === 'recognition_collection'
+    ? 'recognition-collection.png'
+    : 'recognition-poster.png';
+  formData.append('file', blob, filename);
+  formData.append('filename', filename);
+  formData.append('award_id', String(award?.award_id || award?.id || ''));
+  formData.append('title', String(award?.title || award?.award_name || award?.project_name || 'Recognition poster').slice(0, 160));
+
+  const response = await fetch(endpoint, {
+    method: 'POST',
+    credentials: 'include',
+    body: formData,
+    signal: AbortSignal.timeout(45000)
+  });
+  if (!response.ok) {
+    const text = await response.text().catch(() => '');
+    const error = new Error(`Poster image upload failed: HTTP ${response.status}`);
+    error.status = response.status;
+    error.responseText = text;
+    throw error;
+  }
+  const payload = await response.json();
+  const imageKey = extractFeishuImageKey(payload);
+  if (!imageKey) {
+    const error = new Error('Poster image upload did not return image_key');
+    error.responsePayload = payload;
+    throw error;
+  }
+  return imageKey;
 }
 
 function showFeishuShareStatus(message, type = 'info', duration = 3600) {
@@ -2378,10 +2565,18 @@ async function shareCurrentAwardToFeishu(button) {
   if (button) {
     button.disabled = true;
     button.classList.add('is-loading');
-    button.textContent = 'Opening…';
+    button.textContent = 'Creating image…';
   }
 
   try {
+    showFeishuShareStatus('Creating poster image…', 'info', 4200);
+    const canvas = await captureCurrentPosterCanvas();
+    const blob = await canvasToPngBlob(canvas);
+    if (button) button.textContent = 'Uploading image…';
+    showFeishuShareStatus('Uploading poster to Feishu…', 'info', 5200);
+    const imageKey = await uploadPosterImageForFeishu(blob, award);
+    if (button) button.textContent = 'Opening…';
+
     await initFeishuJssdk();
     if (!window.tt || typeof window.tt.sendMessageCard !== 'function') {
       throw new Error('Native Feishu sharing is unavailable in this environment.');
@@ -2396,7 +2591,7 @@ async function shareCurrentAwardToFeishu(button) {
           externalChat: false,
           confirmTitle: 'Share recognition'
         },
-        cardContent: buildNativeFeishuAwardCard(award),
+        cardContent: buildNativeFeishuPosterImageCard(award, imageKey),
         withAdditionalMessage: false,
         success: resolve,
         fail: reject
@@ -2407,9 +2602,12 @@ async function shareCurrentAwardToFeishu(button) {
     const errorCode = Number(error?.errCode ?? error?.errno);
     if (errorCode === -6) {
       showFeishuShareStatus('Sharing canceled.');
+    } else if (error?.status === 404) {
+      console.warn('[Feishu Share] Poster image upload endpoint is missing:', error);
+      showFeishuShareStatus('Poster image upload service is not ready yet. AIPA needs POST /api/feishu/share/poster-image.', 'error', 7200);
     } else {
       console.warn('[Feishu Share] Native sharing unavailable:', error);
-      showFeishuShareStatus('Open this page in Feishu to share this recognition card.', 'error', 4600);
+      showFeishuShareStatus('Could not share the poster image. Please check the upload service or Feishu environment.', 'error', 6200);
     }
   } finally {
     if (button) {
