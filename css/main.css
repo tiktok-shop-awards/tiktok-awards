@@ -6367,3 +6367,85 @@ img {
     border-radius: 16px;
   }
 }
+
+
+/* Feishu poster image sharing v54 */
+.feishu-share-btn {
+  background: linear-gradient(135deg, #3370ff, #5b8cff);
+  box-shadow: 0 8px 24px rgba(51, 112, 255, 0.22);
+}
+
+.feishu-share-btn.is-loading {
+  opacity: .76;
+  cursor: wait;
+}
+
+.feishu-share-btn.is-loading::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  margin-right: 7px;
+  border: 2px solid rgba(255,255,255,.32);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: feishuShareSpin .7s linear infinite;
+}
+
+.feishu-share-toast {
+  position: fixed;
+  z-index: 2147483647;
+  left: 50%;
+  bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: min(440px, calc(100vw - 32px));
+  padding: 12px 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  color: rgba(255,255,255,.88);
+  background: rgba(20,23,30,.96);
+  box-shadow: 0 16px 44px rgba(0,0,0,.38);
+  backdrop-filter: blur(16px);
+  opacity: 0;
+  transform: translate(-50%, 12px);
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.feishu-share-toast.visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.feishu-share-toast > span {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+  place-items: center;
+  border-radius: 50%;
+  color: #071012;
+  background: #57f2ea;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.feishu-share-toast.error > span {
+  color: #fff;
+  background: #f04f65;
+}
+
+.feishu-share-toast.success > span {
+  color: #06130c;
+  background: #5be38f;
+}
+
+.feishu-share-toast p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+@keyframes feishuShareSpin {
+  to { transform: rotate(360deg); }
+}
