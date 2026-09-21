@@ -2175,8 +2175,8 @@ function buildNativeFeishuAwardCard(award) {
   const detailUrl = String(award?.detail_url || window.location.href);
   const awardName = String(award?.award_name || 'Recognition Award').trim();
   const projectName = String(award?.project_name || award?.title || 'Award Recognition').trim();
-  const reason = truncateFeishuCardText(award?.reason_summary || award?.reason || '', 360);
-  const heroTitle = truncateFeishuCardText(projectName, 96);
+  const reason = truncateFeishuCardText(award?.reason_summary || award?.reason || '', 260);
+  const heroTitle = truncateFeishuCardText(projectName, 88);
   const meta = compactFeishuMeta([
     award?.year,
     award?.period,
@@ -2193,10 +2193,10 @@ function buildNativeFeishuAwardCard(award) {
     card: {
       config: { wide_screen_mode: true },
       header: {
-        template: 'yellow',
+        template: 'orange',
         title: {
           tag: 'plain_text',
-          content: 'Recognition Spotlight'
+          content: 'Award Recognition'
         }
       },
       elements: [
@@ -2205,27 +2205,35 @@ function buildNativeFeishuAwardCard(award) {
           text: {
             tag: 'lark_md',
             content: [
-              `**${escapeFeishuCardMarkdown(awardName)}**`,
-              '',
+              `**RECOGNITION SPOTLIGHT**`,
               `# ${escapeFeishuCardMarkdown(heroTitle)}`,
-              '',
-              `**Honoree**\n${escapeFeishuCardMarkdown(memberText)}`
+              `**${escapeFeishuCardMarkdown(awardName)}**`
             ].join('\n')
           }
         },
         { tag: 'hr' },
+        {
+          tag: 'div',
+          text: {
+            tag: 'lark_md',
+            content: [
+              `**Honoree**`,
+              `# ${escapeFeishuCardMarkdown(memberText)}`
+            ].join('\n')
+          }
+        },
         ...(detailBlocks.length ? [{
           tag: 'div',
           text: {
             tag: 'lark_md',
-            content: detailBlocks.join('\n\n')
+            content: detailBlocks.join('\n')
           }
         }] : []),
         ...(reason ? [{
           tag: 'div',
           text: {
             tag: 'lark_md',
-            content: `**Why this matters**\n${escapeFeishuCardMarkdown(reason)}`
+            content: `> ${escapeFeishuCardMarkdown(reason)}`
           }
         }] : []),
         {
@@ -2234,7 +2242,7 @@ function buildNativeFeishuAwardCard(award) {
             {
               tag: 'button',
               type: 'primary',
-              text: { tag: 'plain_text', content: 'View recognition poster' },
+              text: { tag: 'plain_text', content: 'Open honor poster' },
               url: detailUrl
             }
           ]
@@ -2253,7 +2261,7 @@ function buildNativeFeishuAwardCard(award) {
 
 function buildNativeFeishuCollectionCard(collection) {
   const awards = Array.isArray(collection?.awards) ? collection.awards : [];
-  const visibleAwards = awards.slice(0, 8);
+  const visibleAwards = awards.slice(0, 5);
   const remainingCount = Math.max(0, awards.length - visibleAwards.length);
   const title = String(collection?.title || 'Recognition Collection').slice(0, 80);
   const subject = String(collection?.subject || title).trim();
@@ -2270,8 +2278,8 @@ function buildNativeFeishuCollectionCard(collection) {
     card: {
       config: { wide_screen_mode: true },
       header: {
-        template: 'yellow',
-        title: { tag: 'plain_text', content: 'Recognition Collection' }
+        template: 'orange',
+        title: { tag: 'plain_text', content: 'Award Recognition' }
       },
       elements: [
         {
@@ -2279,20 +2287,29 @@ function buildNativeFeishuCollectionCard(collection) {
           text: {
             tag: 'lark_md',
             content: [
-              `**${escapeFeishuCardMarkdown(title)}**`,
-              '',
+              `**RECOGNITION COLLECTION**`,
               `# ${escapeFeishuCardMarkdown(truncateFeishuCardText(subject, 96))}`,
-              '',
-              `**Collection summary**\n${escapeFeishuCardMarkdown(truncateFeishuCardText(summary, 260))}`
+              `**${escapeFeishuCardMarkdown(title)}**`
             ].join('\n')
           }
         },
         { tag: 'hr' },
+        {
+          tag: 'div',
+          text: {
+            tag: 'lark_md',
+            content: [
+              `**Recognition records**`,
+              `# ${awards.length}`,
+              escapeFeishuCardMarkdown(truncateFeishuCardText(summary, 180))
+            ].filter(Boolean).join('\n')
+          }
+        },
         ...(awardLines.length ? [{
           tag: 'div',
           text: {
             tag: 'lark_md',
-            content: `**Featured records**\n${awardLines.join('\n')}`
+            content: `**Featured honors**\n${awardLines.join('\n')}`
           }
         }] : []),
         {
@@ -2300,7 +2317,7 @@ function buildNativeFeishuCollectionCard(collection) {
           actions: [{
             tag: 'button',
             type: 'primary',
-            text: { tag: 'plain_text', content: 'View recognition collection' },
+            text: { tag: 'plain_text', content: 'Open honor collection' },
             url: String(collection?.detail_url || window.location.href)
           }]
         },
