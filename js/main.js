@@ -1540,38 +1540,184 @@ async function _isApiMode() {
   return _useApiMode;
 }
 
-// Toggle like (heart) - like/unlike
-async function toggleLike(cardId, awardType, awardName) {
-  if (await _isApiMode()) {
-    // API mode
-    try {
-      const user = await getCurrentUser();
-      const result = await AwardAPI.toggleLike(cardId, user.userId);
-      if (result) {
-        updateLikeDisplay(cardId, result.liked, result.like_count);
-        return;
-      }
-    } catch (e) {
-      console.warn('[toggleLike] API failed, falling back to localStorage', e);
+// 点赞成功后的顶部落花效果，仅提供视觉反馈，不读写业务数据
+function launchLikeCelebration() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (document.querySelector('.like-celebration-canvas')) return;
+
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d');
+  if (!context) return;
+
+  canvas.className = 'like-celebration-canvas';
+  canvas.setAttribute('aria-hidden', 'true');
+  canvas.style.cssText = [
+    'position:fixed',
+    'inset:0',
+    'z-index:5000',
+    'width:100%',
+    'height:100%',
+    'pointer-events:none',
+    'contain:strict'
+  ].join(';');
+  document.body.appendChild(canvas);
+
+  const colors = ['#FFD75A', '#FFF2A8', '#2ED0D6', '#F6214A', '#FFFFFF', '#8C7CFF'];
+  const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+  const startedAt = performance.now();
+  const duration = 4200;
+  let width = window.innerWidth;
+  let height = window.innerHeight;
+  let animationFrame;
+  let particles = [];
+
+  function resizeCanvas() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = Math.round(width * pixelRatio);
+    canvas.height = Math.round(height * pixelRatio);
+    context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+  }
+
+  function addFallingPetals(count) {
+    for (let index = 0; index < count; index += 1) {
+      particles.push({
+        x: Math.random() * width,
+        y: -16 - Math.random() * height * 0.34,
+        vx: (Math.random() - 0.5) * 0.75,
+        vy: 2.1 + Math.random() * 2.4,
+        sway: 0.35 + Math.random() * 0.85,
+        swayOffset: Math.random() * Math.PI * 2,
+        size: 3.5 + Math.random() * 5.5,
+        length: 7 + Math.random() * 8,
+        rotation: Math.random() * Math.PI,
+        rotationSpeed: (Math.random() - 0.5) * 0.09,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        shape: Math.random() > 0.24 ? 'petal' : 'spark',
+        life: 0,
+        maxLife: 220 + Math.random() * 130
+      });
     }
   }
 
-  // localStorage fallback
-  const storageKey = `like_${cardId}`;
-  let likes = _lsGetLikes();
+  function drawParticle(particle) {
+    const alpha = Math.max(0, 1 - particle.life / particle.maxLife);
+    context.save();
+    context.globalAlpha = Math.min(1, alpha * 1.6);
+    context.translate(particle.x, particle.y);
+    context.rotate(particle.rotation);
+    context.fillStyle = particle.color;
 
-  if (likes[storageKey]) {
-    delete likes[storageKey];
-  } else {
-    likes[storageKey] = {
-      type: awardType,
-      name: awardName,
-      timestamp: Date.now()
-    };
+    if (particle.shape === 'spark') {
+      context.rotate(Math.PI / 4);
+      const sparkSize = particle.size * 0.75;
+      context.fillRect(-sparkSize / 2, -sparkSize / 2, sparkSize, sparkSize);
+    } else {
+      context.beginPath();
+      context.ellipse(
+        0,
+        0,
+        particle.length * 0.5,
+        particle.size * Math.max(0.28, Math.abs(Math.cos(particle.rotation))) * 0.5,
+        0,
+        0,
+        Math.PI * 2
+      );
+      context.fill();
+    }
+    context.restore();
   }
 
-  _lsSetLikes(likes);
-  updateLikeDisplay(cardId, !!likes[storageKey], likes[storageKey] ? 1 : 0);
+  function cleanup() {
+    window.cancelAnimationFrame(animationFrame);
+    window.removeEventListener('resize', resizeCanvas);
+    canvas.remove();
+  }
+
+  function animate(now) {
+    context.clearRect(0, 0, width, height);
+
+    particles = particles.filter((particle) => {
+      particle.life += 1;
+      particle.x += particle.vx + Math.sin(particle.life * 0.035 + particle.swayOffset) * particle.sway;
+      particle.y += particle.vy;
+      particle.rotation += particle.rotationSpeed;
+      drawParticle(particle);
+      return particle.life < particle.maxLife && particle.y < height + 40;
+    });
+
+    if (particles.length && now - startedAt < duration) {
+      animationFrame = window.requestAnimationFrame(animate);
+    } else {
+      cleanup();
+    }
+  }
+
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas, { passive: true });
+  addFallingPetals(width < 768 ? 66 : 110);
+  animationFrame = window.requestAnimationFrame(animate);
+}
+
+// Toggle like (heart) - like/unlike
+async function toggleLike(cardId, awardType, awardName) {
+  const likeBtn = document.querySelector(`[data-card-id="${cardId}"] .like-btn`);
+  if (likeBtn?.dataset.likePending === 'true') return;
+
+  const countSpan = likeBtn?.querySelector('.like-count');
+  const originalLiked = Boolean(likeBtn?.classList.contains('liked'));
+  const originalCount = Number.parseInt(countSpan?.textContent || '0', 10) || 0;
+  const optimisticLiked = !originalLiked;
+  const optimisticCount = Math.max(0, originalCount + (optimisticLiked ? 1 : -1));
+
+  // 立即更新按钮，后台完成后再用真实结果校准
+  if (likeBtn) {
+    likeBtn.dataset.likePending = 'true';
+    likeBtn.setAttribute('aria-busy', 'true');
+  }
+  updateLikeDisplay(cardId, optimisticLiked, optimisticCount);
+
+  try {
+    if (await _isApiMode()) {
+      // API mode
+      try {
+        const user = await getCurrentUser();
+        const result = await AwardAPI.toggleLike(cardId, user.userId);
+        if (result) {
+          updateLikeDisplay(cardId, result.liked, result.like_count);
+          if (result.liked === true) launchLikeCelebration();
+          return;
+        }
+      } catch (e) {
+        console.warn('[toggleLike] API failed, falling back to localStorage', e);
+      }
+    }
+
+    // localStorage fallback
+    const storageKey = `like_${cardId}`;
+    let likes = _lsGetLikes();
+    const wasLiked = !!likes[storageKey];
+
+    if (wasLiked) {
+      delete likes[storageKey];
+    } else {
+      likes[storageKey] = {
+        type: awardType,
+        name: awardName,
+        timestamp: Date.now()
+      };
+    }
+
+    _lsSetLikes(likes);
+    const isLiked = !!likes[storageKey];
+    updateLikeDisplay(cardId, isLiked, isLiked ? 1 : 0);
+    if (!wasLiked && isLiked) launchLikeCelebration();
+  } finally {
+    if (likeBtn) {
+      delete likeBtn.dataset.likePending;
+      likeBtn.removeAttribute('aria-busy');
+    }
+  }
 }
 
 function updateLikeDisplay(cardId, isLiked, likeCount) {
