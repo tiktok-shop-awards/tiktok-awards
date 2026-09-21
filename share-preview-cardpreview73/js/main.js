@@ -2145,6 +2145,20 @@ function escapeFeishuCardMarkdown(value) {
     .replace(/([*_~`])/g, '\\$1');
 }
 
+function truncateFeishuCardText(value, maxLength = 280) {
+  const text = String(value || '').trim();
+  if (!text || text.length <= maxLength) return text;
+  return `${text.slice(0, maxLength - 1)}…`;
+}
+
+function compactFeishuMeta(items) {
+  return items
+    .map(item => String(item || '').trim())
+    .filter(Boolean)
+    .map(escapeFeishuCardMarkdown)
+    .join(' · ');
+}
+
 function buildNativeFeishuAwardCard(award) {
   if (award?.share_type === 'recognition_collection') {
     return buildNativeFeishuCollectionCard(award);
@@ -2159,12 +2173,19 @@ function buildNativeFeishuAwardCard(award) {
     ? `${visibleNames.join(' · ')}${remainingCount ? ` · +${remainingCount} more` : ''}`
     : 'Recognition recipient';
   const detailUrl = String(award?.detail_url || window.location.href);
-  const summaryLines = [
-    `**${escapeFeishuCardMarkdown(award?.project_name || 'Award Recognition')}**`,
-    escapeFeishuCardMarkdown(memberText),
-    [award?.year, award?.bonus].filter(Boolean).map(escapeFeishuCardMarkdown).join(' · '),
-    award?.reason_summary ? escapeFeishuCardMarkdown(award.reason_summary) : ''
-  ].filter(Boolean);
+  const awardName = String(award?.award_name || 'Recognition Award').trim();
+  const projectName = String(award?.project_name || award?.title || 'Award Recognition').trim();
+  const reason = truncateFeishuCardText(award?.reason_summary || award?.reason || '', 360);
+  const heroTitle = truncateFeishuCardText(projectName, 96);
+  const meta = compactFeishuMeta([
+    award?.year,
+    award?.period,
+    award?.level,
+    award?.department,
+    award?.region
+  ]);
+  const bonusLine = award?.bonus ? `**Reward**\n${escapeFeishuCardMarkdown(award.bonus)}` : '';
+  const detailBlocks = [meta ? `**Recognition details**\n${meta}` : '', bonusLine].filter(Boolean);
 
   return {
     msg_type: 'interactive',
@@ -2172,10 +2193,10 @@ function buildNativeFeishuAwardCard(award) {
     card: {
       config: { wide_screen_mode: true },
       header: {
-        template: 'turquoise',
+        template: 'yellow',
         title: {
           tag: 'plain_text',
-          content: String(award?.award_name || 'Recognition Award').slice(0, 80)
+          content: 'Recognition Spotlight'
         }
       },
       elements: [
@@ -2183,19 +2204,47 @@ function buildNativeFeishuAwardCard(award) {
           tag: 'div',
           text: {
             tag: 'lark_md',
-            content: summaryLines.join('\n')
+            content: [
+              `**${escapeFeishuCardMarkdown(awardName)}**`,
+              '',
+              `# ${escapeFeishuCardMarkdown(heroTitle)}`,
+              '',
+              `**Honoree**\n${escapeFeishuCardMarkdown(memberText)}`
+            ].join('\n')
           }
         },
+        { tag: 'hr' },
+        ...(detailBlocks.length ? [{
+          tag: 'div',
+          text: {
+            tag: 'lark_md',
+            content: detailBlocks.join('\n\n')
+          }
+        }] : []),
+        ...(reason ? [{
+          tag: 'div',
+          text: {
+            tag: 'lark_md',
+            content: `**Why this matters**\n${escapeFeishuCardMarkdown(reason)}`
+          }
+        }] : []),
         {
           tag: 'action',
           actions: [
             {
               tag: 'button',
               type: 'primary',
-              text: { tag: 'plain_text', content: 'View award' },
+              text: { tag: 'plain_text', content: 'View recognition poster' },
               url: detailUrl
             }
           ]
+        },
+        {
+          tag: 'note',
+          elements: [{
+            tag: 'plain_text',
+            content: 'Shared from Recognition Hub'
+          }]
         }
       ]
     }
@@ -2207,13 +2256,11 @@ function buildNativeFeishuCollectionCard(collection) {
   const visibleAwards = awards.slice(0, 8);
   const remainingCount = Math.max(0, awards.length - visibleAwards.length);
   const title = String(collection?.title || 'Recognition Collection').slice(0, 80);
-  const summary = [
-    `**${escapeFeishuCardMarkdown(collection?.subject || title)}**`,
-    escapeFeishuCardMarkdown(collection?.summary || `${awards.length} recognition record${awards.length === 1 ? '' : 's'}`)
-  ].filter(Boolean).join('\n');
+  const subject = String(collection?.subject || title).trim();
+  const summary = String(collection?.summary || `${awards.length} recognition record${awards.length === 1 ? '' : 's'}`).trim();
   const awardLines = visibleAwards.map((award, index) => {
     const meta = [award?.year, award?.level, award?.period].filter(Boolean).join(' · ');
-    return `${index + 1}. **${escapeFeishuCardMarkdown(award?.name || award?.award || 'Recognition')}**${meta ? `\n${escapeFeishuCardMarkdown(meta)}` : ''}`;
+    return `${index + 1}. **${escapeFeishuCardMarkdown(award?.name || award?.award || 'Recognition')}**${meta ? ` · ${escapeFeishuCardMarkdown(meta)}` : ''}`;
   });
   if (remainingCount) awardLines.push(`+ ${remainingCount} more recognition record${remainingCount === 1 ? '' : 's'}`);
 
@@ -2223,24 +2270,37 @@ function buildNativeFeishuCollectionCard(collection) {
     card: {
       config: { wide_screen_mode: true },
       header: {
-        template: 'turquoise',
-        title: { tag: 'plain_text', content: title }
+        template: 'yellow',
+        title: { tag: 'plain_text', content: 'Recognition Collection' }
       },
       elements: [
         {
           tag: 'div',
-          text: { tag: 'lark_md', content: summary }
+          text: {
+            tag: 'lark_md',
+            content: [
+              `**${escapeFeishuCardMarkdown(title)}**`,
+              '',
+              `# ${escapeFeishuCardMarkdown(truncateFeishuCardText(subject, 96))}`,
+              '',
+              `**Collection summary**\n${escapeFeishuCardMarkdown(truncateFeishuCardText(summary, 260))}`
+            ].join('\n')
+          }
         },
+        { tag: 'hr' },
         ...(awardLines.length ? [{
           tag: 'div',
-          text: { tag: 'lark_md', content: awardLines.join('\n\n') }
+          text: {
+            tag: 'lark_md',
+            content: `**Featured records**\n${awardLines.join('\n')}`
+          }
         }] : []),
         {
           tag: 'action',
           actions: [{
             tag: 'button',
             type: 'primary',
-            text: { tag: 'plain_text', content: 'View Recognition Hub' },
+            text: { tag: 'plain_text', content: 'View recognition collection' },
             url: String(collection?.detail_url || window.location.href)
           }]
         },
@@ -2265,66 +2325,12 @@ function ensurePosterFeishuShareButton() {
     feishuButton = document.createElement('button');
     feishuButton.className = 'download-btn feishu-share-btn';
     feishuButton.type = 'button';
-    feishuButton.onclick = () => openFeishuShareConfirmation(feishuButton);
+    feishuButton.onclick = () => shareCurrentAwardToFeishu(feishuButton);
     shareActions.prepend(feishuButton);
   }
   feishuButton.textContent = 'Share to Feishu';
   feishuButton.disabled = false;
   return feishuButton;
-}
-
-function ensureFeishuShareConfirmationDialog() {
-  let dialog = document.getElementById('feishu-share-confirm-dialog');
-  if (dialog) return dialog;
-  dialog = document.createElement('div');
-  dialog.id = 'feishu-share-confirm-dialog';
-  dialog.className = 'feishu-self-test-dialog feishu-share-confirm-dialog';
-  dialog.setAttribute('aria-hidden', 'true');
-  dialog.innerHTML = `
-    <div class="feishu-self-test-panel" role="dialog" aria-modal="true" aria-labelledby="feishu-share-confirm-title">
-      <div class="feishu-self-test-mark" aria-hidden="true">FEISHU SHARE</div>
-      <h3 id="feishu-share-confirm-title">Share this recognition card</h3>
-      <p>The next step opens Feishu's native chat picker and sends the current recognition card after you confirm. You may select one or more internal chats. External chats and new group creation are disabled.</p>
-      <div class="feishu-self-test-actions">
-        <button type="button" class="secondary" data-share-confirm-cancel>Cancel</button>
-        <button type="button" class="primary" data-share-confirm>Open Feishu picker</button>
-      </div>
-    </div>
-  `;
-  document.body.appendChild(dialog);
-  const confirmButton = dialog.querySelector('[data-share-confirm]');
-  dialog.querySelector('[data-share-confirm-cancel]').addEventListener('click', closeFeishuShareConfirmation);
-  dialog.addEventListener('click', event => {
-    if (event.target === dialog) closeFeishuShareConfirmation();
-  });
-  confirmButton.addEventListener('click', async () => {
-    const sourceButton = dialog._sourceButton;
-    closeFeishuShareConfirmation();
-    await shareCurrentAwardToFeishu(sourceButton);
-  });
-  return dialog;
-}
-
-function openFeishuShareConfirmation(button) {
-  if (!window.CurrentAwardShare) {
-    showFeishuShareStatus('No poster is ready to share.', 'error');
-    return;
-  }
-  const dialog = ensureFeishuShareConfirmationDialog();
-  const confirmButton = dialog.querySelector('[data-share-confirm]');
-  confirmButton.disabled = false;
-  dialog._sourceButton = button || null;
-  dialog.classList.add('active');
-  dialog.setAttribute('aria-hidden', 'false');
-  confirmButton.focus();
-}
-
-function closeFeishuShareConfirmation() {
-  const dialog = document.getElementById('feishu-share-confirm-dialog');
-  if (!dialog) return;
-  dialog.classList.remove('active');
-  dialog.setAttribute('aria-hidden', 'true');
-  dialog._sourceButton = null;
 }
 
 function showFeishuShareStatus(message, type = 'info', duration = 3600) {
