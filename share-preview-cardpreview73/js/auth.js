@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var titleEl = document.getElementById('auth-title');
   var descEl = document.getElementById('auth-desc');
   var isLocalPreview = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  var isIsolatedSharePreview = window.location.pathname.indexOf('/share-preview-cardpreview73/') !== -1;
   if (isLocalPreview) {
     console.log('[FeishuAuth] Local card preview: bypass auth in copied preview only');
     sessionStorage.setItem('feishu_user', JSON.stringify({
@@ -49,6 +50,22 @@ document.addEventListener('DOMContentLoaded', function() {
   if (!isInFeishu) {
     console.log('[FeishuAuth] Not in Feishu, access denied');
     showFeishuOnlyBlock();
+    return;
+  }
+
+  // Isolated Feishu share preview:
+  // This preview is only for validating the native Feishu share flow on a trusted domain.
+  // Keep browser access blocked, but do not require AIPA identity verification here,
+  // because AppLink web_url opens outside the full internal app auth context.
+  if (isIsolatedSharePreview) {
+    console.log('[FeishuAuth] Isolated share preview opened in Feishu: bypass AIPA auth for preview only');
+    sessionStorage.setItem('feishu_user', JSON.stringify({
+      userId: 'ou_share_preview_cardpreview73',
+      username: 'Feishu Share Preview',
+      isInternal: true,
+      authVersion: 'share-preview-cardpreview73'
+    }));
+    hideOverlay();
     return;
   }
 
