@@ -2139,6 +2139,11 @@ function buildAwardShareUrl(awardId, year) {
   return url.toString();
 }
 
+function buildFeishuWebAppLink(targetUrl) {
+  const safeUrl = String(targetUrl || window.location.href);
+  return `https://applink.feishu.cn/client/web_url/open?mode=appCenter&reload=true&url=${encodeURIComponent(safeUrl)}`;
+}
+
 function escapeFeishuCardMarkdown(value) {
   return String(value || '')
     .replace(/\\/g, '\\\\')
@@ -2336,6 +2341,7 @@ function buildNativeFeishuCollectionCard(collection) {
 function buildNativeFeishuPosterImageCard(award, imageKey) {
   const isCollection = award?.share_type === 'recognition_collection';
   const detailUrl = String(award?.detail_url || window.location.href);
+  const feishuDetailUrl = buildFeishuWebAppLink(detailUrl);
   const title = isCollection
     ? String(award?.title || 'Recognition Collection').slice(0, 80)
     : String(award?.award_name || 'Recognition Award').slice(0, 80);
@@ -2384,8 +2390,8 @@ function buildNativeFeishuPosterImageCard(award, imageKey) {
           actions: [{
             tag: 'button',
             type: 'primary',
-            text: { tag: 'plain_text', content: isCollection ? 'Open honor collection' : 'Open honor poster' },
-            url: detailUrl
+            text: { tag: 'plain_text', content: 'Learn more about this recognition' },
+            url: feishuDetailUrl
           }]
         },
         {
