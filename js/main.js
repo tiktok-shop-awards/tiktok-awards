@@ -2452,8 +2452,9 @@ function compactFeishuMeta(items) {
     .join(' · ');
 }
 
-function buildNativeFeishuPosterImageCard(award, imageKey) {
+function buildNativeFeishuPosterImageCard(award, imageKeys) {
   const isCollection = award?.share_type === 'recognition_collection';
+  const posterImageKeys = (Array.isArray(imageKeys) ? imageKeys : [imageKeys]).filter(Boolean);
   const detailUrl = String(award?.detail_url || window.location.href);
   const feishuDetailUrl = buildFeishuWebAppLink(detailUrl);
   const title = isCollection
@@ -2489,7 +2490,7 @@ function buildNativeFeishuPosterImageCard(award, imageKey) {
             ].join('\n')
           }
         },
-        {
+        ...posterImageKeys.map(imageKey => ({
           tag: 'img',
           img_key: imageKey,
           alt: {
@@ -2498,7 +2499,7 @@ function buildNativeFeishuPosterImageCard(award, imageKey) {
           },
           mode: 'fit_horizontal',
           preview: true
-        },
+        })),
         {
           tag: 'action',
           layout: 'flow',
@@ -2520,6 +2521,71 @@ function buildNativeFeishuPosterImageCard(award, imageKey) {
       ]
     }
   };
+}
+
+const FEISHU_POSTER_MAX_DIMENSION = 11800;
+const FEISHU_POSTER_PAGE_HEIGHT = 11800;
+const FEISHU_POSTER_MAX_BYTES = 9 * 1024 * 1024;
+const POSTER_CAPTURE_MAX_HEIGHT = 30000;
+const POSTER_MIN_PAGE_RATIO = 0.42;
+
+function collectPosterSafeBreaks(posterContent, exportScale) {
+  const selectors = [
+    '.poster-modern-topbar',
+    '.poster-editorial-hero',
+    '.poster-modern-winner-card',
+    '.poster-modern-members .member-item',
+    '.poster-modern-story',
+    '.poster-modern-footer',
+    '.honor-poster-brand',
+    '.honor-poster-hero',
+    '.honor-poster-divider',
+    '.honor-poster-metrics',
+    '.honor-poster-distributions',
+    '.honor-poster-award',
+    '.honor-poster-footer'
+  ];
+  const posterRect = posterContent.getBoundingClientRect();
+  const safeBreaks = new Set();
+  posterContent.querySelectorAll(selectors.join(',')).forEach(element => {
+    const rect = element.getBoundingClientRect();
+    const bottom = Math.round((rect.bottom - posterRect.top) * exportScale);
+    if (bottom > 0) safeBreaks.add(bottom);
+  });
+  return [...safeBreaks].sort((a, b) => a - b);
+}
+
+function calculatePosterPageRanges(totalHeight, safeBreaks, maxPageHeight = FEISHU_POSTER_PAGE_HEIGHT) {
+  if (totalHeight <= maxPageHeight) return [{ offsetY: 0, height: totalHeight, smart: true }];
+  const pageCount = Math.ceil(totalHeight / maxPageHeight);
+  const minPageHeight = Math.min(maxPageHeight * POSTER_MIN_PAGE_RATIO, totalHeight / pageCount * 0.7);
+  const candidates = [...new Set((safeBreaks || [])
+    .map(value => Math.round(Number(value)))
+    .filter(value => Number.isFinite(value) && value > 0 && value < totalHeight))]
+    .sort((a, b) => a - b);
+  const cuts = [0];
+
+  for (let pageIndex = 1; pageIndex < pageCount; pageIndex += 1) {
+    const previousCut = cuts[cuts.length - 1];
+    const pagesRemaining = pageCount - pageIndex;
+    const idealCut = previousCut + (totalHeight - previousCut) / (pagesRemaining + 1);
+    const minCut = Math.max(previousCut + minPageHeight, totalHeight - pagesRemaining * maxPageHeight);
+    const maxCut = Math.min(previousCut + maxPageHeight, totalHeight - pagesRemaining * minPageHeight);
+    const validCandidates = candidates.filter(value => value >= minCut && value <= maxCut);
+    const cut = validCandidates.length
+      ? validCandidates.reduce((best, value) => (
+        Math.abs(value - idealCut) < Math.abs(best - idealCut) ? value : best
+      ))
+      : Math.round(Math.min(maxCut, Math.max(minCut, idealCut)));
+    cuts.push(cut);
+  }
+
+  cuts.push(totalHeight);
+  return cuts.slice(0, -1).map((offsetY, index) => ({
+    offsetY,
+    height: cuts[index + 1] - offsetY,
+    smart: candidates.includes(cuts[index + 1])
+  }));
 }
 
 function ensurePosterFeishuShareButton() {
@@ -2568,11 +2634,14 @@ async function captureCurrentPosterCanvas() {
     const posterWidth = 1440;
     posterContent.style.width = posterWidth + 'px';
     const posterActualHeight = posterContent.scrollHeight;
-    const exportScale = posterContent.classList.contains('collection-poster')
-      ? Math.max(1, Math.min(2, 30000 / posterActualHeight))
-      : 2;
+    const exportScale = Math.min(
+      2,
+      POSTER_CAPTURE_MAX_HEIGHT / Math.max(1, posterActualHeight),
+      FEISHU_POSTER_MAX_DIMENSION / posterWidth
+    );
+    const safeBreaks = collectPosterSafeBreaks(posterContent, exportScale);
 
-    return await html2canvas(posterContent, {
+    const canvas = await html2canvas(posterContent, {
       backgroundColor: '#000000',
       scale: exportScale,
       width: posterWidth,
@@ -2590,6 +2659,7 @@ async function captureCurrentPosterCanvas() {
         }
       }
     });
+    return { canvas, safeBreaks };
   } finally {
     posterContent.style.transform = savedTransform;
     posterContent.style.transformOrigin = savedTransformOrigin;
@@ -2602,13 +2672,79 @@ async function captureCurrentPosterCanvas() {
   }
 }
 
-function canvasToPngBlob(canvas) {
+function canvasToBlob(canvas, type = 'image/png', quality) {
   return new Promise((resolve, reject) => {
     canvas.toBlob(blob => {
       if (blob) resolve(blob);
-      else reject(new Error('Failed to convert poster canvas to PNG'));
-    }, 'image/png', 0.96);
+      else reject(new Error(`Failed to convert poster canvas to ${type}`));
+    }, type, quality);
   });
+}
+
+function createPosterCanvas(width, height) {
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.max(1, Math.round(width));
+  canvas.height = Math.max(1, Math.round(height));
+  return canvas;
+}
+
+function resizePosterCanvas(sourceCanvas, scale) {
+  const resized = createPosterCanvas(sourceCanvas.width * scale, sourceCanvas.height * scale);
+  const context = resized.getContext('2d', { alpha: false });
+  context.fillStyle = '#000000';
+  context.fillRect(0, 0, resized.width, resized.height);
+  context.imageSmoothingEnabled = true;
+  context.imageSmoothingQuality = 'high';
+  context.drawImage(sourceCanvas, 0, 0, resized.width, resized.height);
+  return resized;
+}
+
+function slicePosterCanvas(sourceCanvas, offsetY, sliceHeight) {
+  const page = createPosterCanvas(sourceCanvas.width, sliceHeight);
+  const context = page.getContext('2d', { alpha: false });
+  context.fillStyle = '#000000';
+  context.fillRect(0, 0, page.width, page.height);
+  context.drawImage(sourceCanvas, 0, offsetY, sourceCanvas.width, sliceHeight, 0, 0, page.width, sliceHeight);
+  return page;
+}
+
+async function encodePosterPage(pageCanvas) {
+  let workingCanvas = pageCanvas;
+  let blob = await canvasToBlob(workingCanvas, 'image/png');
+  if (blob.size <= FEISHU_POSTER_MAX_BYTES) {
+    return { blob, width: workingCanvas.width, height: workingCanvas.height, format: 'png' };
+  }
+
+  blob = await canvasToBlob(workingCanvas, 'image/jpeg', 0.9);
+  for (let attempt = 0; attempt < 4 && blob.size > FEISHU_POSTER_MAX_BYTES; attempt += 1) {
+    const scale = Math.min(0.9, Math.sqrt(FEISHU_POSTER_MAX_BYTES / blob.size) * 0.9);
+    workingCanvas = resizePosterCanvas(workingCanvas, scale);
+    blob = await canvasToBlob(workingCanvas, 'image/jpeg', attempt < 2 ? 0.88 : 0.82);
+  }
+  if (blob.size > FEISHU_POSTER_MAX_BYTES) {
+    const error = new Error('Poster remains above the Feishu image limit');
+    error.code = 'POSTER_TOO_LARGE';
+    throw error;
+  }
+  return { blob, width: workingCanvas.width, height: workingCanvas.height, format: 'jpg' };
+}
+
+async function preparePosterImagesForFeishu(capture) {
+  let canvas = capture?.canvas || capture;
+  let safeBreaks = Array.isArray(capture?.safeBreaks) ? capture.safeBreaks : [];
+  if (canvas.width > FEISHU_POSTER_MAX_DIMENSION) {
+    const scale = FEISHU_POSTER_MAX_DIMENSION / canvas.width;
+    canvas = resizePosterCanvas(canvas, scale);
+    safeBreaks = safeBreaks.map(value => Math.round(value * scale));
+  }
+  const pageRanges = calculatePosterPageRanges(canvas.height, safeBreaks);
+  const images = [];
+  for (const range of pageRanges) {
+    const encoded = await encodePosterPage(slicePosterCanvas(canvas, range.offsetY, range.height));
+    images.push({ ...encoded, page: images.length + 1, smartBreak: range.smart });
+  }
+  if (!images.length) throw new Error('Poster image preparation produced no output');
+  return images;
 }
 
 function extractFeishuImageKey(response) {
@@ -2622,15 +2758,21 @@ function extractFeishuImageKey(response) {
     || '';
 }
 
-async function uploadPosterImageForFeishu(blob, award) {
+async function uploadPosterImageForFeishu(image, award) {
+  const blob = image?.blob;
+  if (!(blob instanceof Blob)) {
+    throw new Error('Poster image blob is missing');
+  }
   const baseUrl = (typeof AwardAPI !== 'undefined' && AwardAPI.BASE_URL)
     ? AwardAPI.BASE_URL
     : 'https://da1e5fb0.aipa.bytedance.net';
   const endpoint = `${baseUrl}/api/feishu/share/poster-image`;
   const formData = new FormData();
-  const filename = award?.share_type === 'recognition_collection'
-    ? 'recognition-collection.png'
-    : 'recognition-poster.png';
+  const extension = image.format === 'jpg' ? 'jpg' : 'png';
+  const baseName = award?.share_type === 'recognition_collection'
+    ? 'recognition-collection'
+    : 'recognition-poster';
+  const filename = `${baseName}-${image.page || 1}.${extension}`;
   formData.append('file', blob, filename);
   formData.append('filename', filename);
   formData.append('award_id', String(award?.award_id || award?.id || ''));
@@ -2657,6 +2799,22 @@ async function uploadPosterImageForFeishu(blob, award) {
     throw error;
   }
   return imageKey;
+}
+
+function getFeishuPosterShareErrorMessage(error, stage) {
+  const responseText = String(error?.responseText || '');
+  if (error?.code === 'POSTER_TOO_LARGE' || /234006|234039|image.{0,20}(size|resolution|dimension)|too large/i.test(responseText)) {
+    return 'This poster is still too large for Feishu after compression.';
+  }
+  if (error?.name === 'TimeoutError' || error?.name === 'AbortError') {
+    return 'Poster upload timed out. Please retry once.';
+  }
+  if (error?.status === 404) return 'Poster image upload service is not ready yet.';
+  if (stage === 'capture') return 'Poster capture failed. Please close and reopen the poster, then retry.';
+  if (stage === 'prepare') return 'Poster image preparation failed before upload.';
+  if (stage === 'upload') return 'Feishu rejected the poster upload. Please retry once.';
+  if (stage === 'send') return 'Poster uploaded, but the Feishu chat picker could not open.';
+  return 'Could not share the poster image.';
 }
 
 function showFeishuShareStatus(message, type = 'info', duration = 3600) {
@@ -2690,15 +2848,23 @@ async function shareCurrentAwardToFeishu(button) {
     button.textContent = 'Creating image…';
   }
 
+  let stage = 'capture';
   try {
     showFeishuShareStatus('Creating poster image…', 'info', 4200);
-    const canvas = await captureCurrentPosterCanvas();
-    const blob = await canvasToPngBlob(canvas);
-    if (button) button.textContent = 'Uploading image…';
-    showFeishuShareStatus('Uploading poster to Feishu…', 'info', 5200);
-    const imageKey = await uploadPosterImageForFeishu(blob, award);
+    const capture = await captureCurrentPosterCanvas();
+    stage = 'prepare';
+    if (button) button.textContent = 'Optimizing image…';
+    const images = await preparePosterImagesForFeishu(capture);
+    stage = 'upload';
+    const imageKeys = [];
+    for (let index = 0; index < images.length; index += 1) {
+      if (button) button.textContent = `Uploading ${index + 1}/${images.length}…`;
+      showFeishuShareStatus(`Uploading poster image ${index + 1} of ${images.length}…`, 'info', 5200);
+      imageKeys.push(await uploadPosterImageForFeishu(images[index], award));
+    }
     if (button) button.textContent = 'Opening…';
 
+    stage = 'send';
     await initFeishuJssdk();
     if (!window.tt || typeof window.tt.sendMessageCard !== 'function') {
       throw new Error('Native Feishu sharing is unavailable in this environment.');
@@ -2713,7 +2879,7 @@ async function shareCurrentAwardToFeishu(button) {
           externalChat: false,
           confirmTitle: 'Share recognition'
         },
-        cardContent: buildNativeFeishuPosterImageCard(award, imageKey),
+        cardContent: buildNativeFeishuPosterImageCard(award, imageKeys),
         withAdditionalMessage: false,
         success: resolve,
         fail: reject
@@ -2724,12 +2890,13 @@ async function shareCurrentAwardToFeishu(button) {
     const errorCode = Number(error?.errCode ?? error?.errno);
     if (errorCode === -6) {
       showFeishuShareStatus('Sharing canceled.');
-    } else if (error?.status === 404) {
-      console.warn('[Feishu Share] Poster image upload endpoint is missing:', error);
-      showFeishuShareStatus('Poster image upload service is not ready yet. AIPA needs POST /api/feishu/share/poster-image.', 'error', 7200);
     } else {
-      console.warn('[Feishu Share] Native sharing unavailable:', error);
-      showFeishuShareStatus('Could not share the poster image. Please check the upload service or Feishu environment.', 'error', 6200);
+      console.warn('[Feishu Share] Failed stage:', stage, {
+        status: error?.status || null,
+        code: error?.code || error?.errCode || error?.errno || null,
+        name: error?.name || 'Error'
+      });
+      showFeishuShareStatus(getFeishuPosterShareErrorMessage(error, stage), 'error', 7200);
     }
   } finally {
     if (button) {
