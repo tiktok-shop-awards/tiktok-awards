@@ -2429,7 +2429,7 @@ function buildAwardShareUrl(awardId, year) {
 
 function buildFeishuWebAppLink(targetUrl) {
   const safeUrl = String(targetUrl || window.location.href);
-  return `https://applink.feishu.cn/client/web_url/open?mode=appCenter&reload=true&url=${encodeURIComponent(safeUrl)}`;
+  return `https://applink.feishu.cn/client/web_url/open?mode=sidebar-semi&max_width=800&reload=false&url=${encodeURIComponent(safeUrl)}`;
 }
 
 function escapeFeishuCardMarkdown(value) {
