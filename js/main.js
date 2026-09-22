@@ -2428,7 +2428,8 @@ function buildAwardShareUrl(awardId, year) {
 }
 
 function buildFeishuWebAppLink(targetUrl) {
-  return String(targetUrl || window.location.href);
+  const safeUrl = String(targetUrl || window.location.href);
+  return `https://applink.feishu.cn/client/web_url/open?mode=appCenter&url=${encodeURIComponent(safeUrl)}`;
 }
 
 function escapeFeishuCardMarkdown(value) {
