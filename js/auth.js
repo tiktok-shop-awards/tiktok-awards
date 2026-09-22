@@ -5,7 +5,7 @@
  * Add ?auth_debug=1 on global.html to debug auth without running normal page auth.
  * In browser: show "Open in Feishu" screen
  */
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
   var overlay = document.getElementById('auth-overlay');
   var content = document.getElementById('main-content');
   var titleEl = document.getElementById('auth-title');
@@ -31,8 +31,28 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   } catch(e) { sessionStorage.removeItem('feishu_user'); }
 
-  // Step 2: Check if in Feishu
-  var isInFeishu = /Lark|Feishu/i.test(navigator.userAgent);
+  function isInFeishuEnvironment() {
+    return /Lark|Feishu/i.test(navigator.userAgent)
+      || !!(window.tt && (window.tt.requestAuthCode || window.tt.sendMessageCard || window.tt.env));
+  }
+
+  async function waitForFeishuEnvironment() {
+    if (isInFeishuEnvironment()) return true;
+    if (overlay) overlay.style.display = 'flex';
+    if (content) content.style.display = 'none';
+    if (titleEl) titleEl.textContent = '正在打开飞书环境';
+    if (descEl) descEl.innerHTML = '首次进入可能需要几秒钟，请稍候...';
+    var waits = [350, 650, 1000];
+    for (var i = 0; i < waits.length; i++) {
+      await delay(waits[i]);
+      if (isInFeishuEnvironment()) return true;
+    }
+    return false;
+  }
+
+  // Step 2: 检查是否在飞书内。AppLink 首次拉起时 JSBridge 可能略晚注入，
+  // 因此先给飞书 WebView 一个很短的预热窗口，再决定是否展示拦截页。
+  var isInFeishu = await waitForFeishuEnvironment();
   if (!isInFeishu) {
     console.log('[FeishuAuth] Not in Feishu, access denied');
     showFeishuOnlyBlock();
