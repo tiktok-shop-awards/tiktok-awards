@@ -426,6 +426,45 @@ function findTopWinnerHighlight(person, datasets = []) {
   return null;
 }
 
+function findTopWinnerProjects(person, datasets = []) {
+  const targetName = String(person?.name || '').trim().toLowerCase();
+  const targetEmail = String(person?.email || '').trim().toLowerCase();
+  if (!targetName && !targetEmail) return [];
+
+  const projects = [];
+  const seenProjects = new Set();
+
+  datasets.filter(Boolean).forEach(data => {
+    Object.values(data)
+      .filter(Array.isArray)
+      .flat()
+      .forEach(award => {
+        if (!award || typeof award !== 'object') return;
+        const rawMembers = award.members || (award.winner_name ? [award.winner_name] : []);
+        const matched = rawMembers.some(member => {
+          const normalized = normalizeMember(member, getAwardMemberEmail(award, member));
+          const name = String(normalized.name || '').trim().toLowerCase();
+          const email = String(normalized.email || '').trim().toLowerCase();
+          return (targetEmail && email === targetEmail) || (targetName && name === targetName);
+        });
+        if (!matched) return;
+
+        const projectName = String(
+          award.project_name
+          || award.team_award
+          || award.award_name
+          || ''
+        ).trim();
+        const projectKey = projectName.toLowerCase();
+        if (!projectName || seenProjects.has(projectKey)) return;
+        seenProjects.add(projectKey);
+        projects.push({ name: projectName });
+      });
+  });
+
+  return projects;
+}
+
 const AwardDetailStore = {};
 
 function registerAwardDetail(cardId, detail) {
@@ -1442,9 +1481,51 @@ function renderPodium(top3, containerId, title, highlightDatasets = []) {
       renderMemberAvatar(member, 'large', { priority: true })
     ).join('');
     const extraAvatarCount = Math.max(0, memberCount - 5);
-    const names = normalizedMembers.map(member =>
-      `<span title="${escapeHtml(member.department || '')}">${escapeHtml(member.name)}</span>`
-    ).join('');
+    const maxProjectsPerMember = memberCount === 1 ? 6 : (memberCount > 4 ? 1 : 3);
+    const memberProjectGroups = members.map((member, memberIndex) => {
+      let projects = Array.isArray(member.projects) ? member.projects : [];
+      if (!projects.length) {
+        projects = findTopWinnerProjects(member, highlightDatasets);
+      }
+
+      const uniqueProjects = [];
+      const seenProjects = new Set();
+      projects.forEach(project => {
+        const projectName = String(project?.name || '').trim();
+        const projectKey = projectName.toLowerCase();
+        if (!projectName || seenProjects.has(projectKey)) return;
+        seenProjects.add(projectKey);
+        uniqueProjects.push(projectName);
+      });
+
+      const normalizedMember = normalizedMembers[memberIndex];
+      const visibleProjects = uniqueProjects.slice(0, maxProjectsPerMember);
+      const remainingProjects = uniqueProjects.slice(maxProjectsPerMember);
+
+      return `
+        <div class="podium-member-projects">
+          <div class="podium-member-name" title="${escapeHtml(normalizedMember?.department || '')}">
+            ${escapeHtml(normalizedMember?.name || member.name || '')}
+          </div>
+          ${visibleProjects.length ? `
+            <div class="podium-member-project-list">
+              ${visibleProjects.map(project => `
+                <div class="podium-member-project" title="${escapeHtml(project)}">
+                  <span>${escapeHtml(project)}</span>
+                </div>
+              `).join('')}
+              ${remainingProjects.length ? `
+                <div class="podium-member-project-more" title="${escapeHtml(remainingProjects.join(' · '))}">
+                  +${remainingProjects.length} more
+                </div>
+              ` : ''}
+            </div>
+          ` : `
+            <div class="podium-member-project-empty">Award details coming soon</div>
+          `}
+        </div>
+      `;
+    }).join('');
 
     return `
       <div class="podium-item ${getClass(displayRank)} top-winner-card podium-tier-card tier-size-${memberCount > 12 ? 'large' : memberCount > 4 ? 'medium' : 'small'}">
@@ -1455,7 +1536,7 @@ function renderPodium(top3, containerId, title, highlightDatasets = []) {
         </div>
         <div class="podium-rank">${escapeHtml(tierTitle)}</div>
         <div class="podium-rank-sub">${memberCount} ${memberCount === 1 ? 'winner' : 'winners'}</div>
-        <div class="podium-tier-names">${names}</div>
+        <div class="podium-member-project-groups">${memberProjectGroups}</div>
         <div class="podium-score">${score} pts</div>
         <button class="podium-poster-btn" title="Generate group poster" onclick="event.stopPropagation(); showTopWinnerPoster('${posterId}')">📤</button>
       </div>`;

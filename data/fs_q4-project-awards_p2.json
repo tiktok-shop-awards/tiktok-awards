@@ -556,5 +556,25 @@
       "Jie Wang"
     ],
     "currency": "CNY"
+  },
+  {
+    "award_type": "2025 Q4 Project Awards",
+    "period": "2025 Q4",
+    "quarter": "Q4",
+    "project_name": "Black Friday Campaign Initiative",
+    "team_award": "Gold Medal Initiative",
+    "department": "Global E-Commerce-Global Selling Full Service-UK & EU Operations",
+    "region": "FS",
+    "original_region": "FS",
+    "bonus": "30000",
+    "reason": "本次黑五大促，美墨、英欧及日本在高目标压力和多重不确定性下，通过与各方的紧密协作，均拿到了超预期的成果。\n\nUS & MX 规模、利润、钱效、渗透均超预期达成：\n美国：通过前置对供给画像和补贴方案进行摸排和优化，上翻秋冬、圣诞、严选等专项货盘并提前备货至本地仓，定向货盘促间爆发显著好于大盘均值。核心货盘爆发+167%，促前上线RCT实验&补贴腾挪高价格带&高价敏商品，置换效率关税后最优-20.6，高价格带置换更优-26.1；商家商业化也拿到了显著更优的结果。\n墨西哥：墨西哥在美国的基础上，增加了对内容供给方向的突破，通过玩法激励和定向货盘扶持，直播开播和GMV也有历史性突破 vs 基准期 +924%。\n \nUK & EU 通过行业/供应链/物流/国家等各方合作，协同提效，最终实现规模与利润双突破，刷新历史记录（UK实现首个盈利黑五，峰值日GMV突破千万；EU以更少亏损斩获更高规模）：\n精准营销工具组合，优化工具投入结构；显著扩大商业化规模带动大盘增长；新模式充分投入（UK陆运、EU本地托管专项品在黑五期间绿通货盘扶持，实现陆运商品AA爆发+156%，本地托管上线即出单，打造西班牙应急灯爆品累计销售～300单）；UK EU商品策略/营销能力互通；AIGC能力促中积极推动商家手动发文能力应上尽上。\n \nJP 全周期GMV爆发182% （短视频和直播分别爆发249%/293%），创造3次历史新高；爆品数增长135%。",
+    "members": [
+      "Danyang Dai"
+    ],
+    "email": "daidanyang@bytedance.com",
+    "member_email_map": {
+      "Danyang Dai": "daidanyang@bytedance.com"
+    },
+    "currency": "CNY"
   }
 ]
