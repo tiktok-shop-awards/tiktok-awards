@@ -2427,6 +2427,19 @@ function buildAwardShareUrl(awardId, year) {
   return url.toString();
 }
 
+function buildRecognitionSearchShareUrl(query, scopeName = '', view = 'results') {
+  const url = new URL('index.html', window.location.href);
+  url.searchParams.delete('v');
+  if (AppData.currentYear) url.searchParams.set('year', AppData.currentYear);
+  url.searchParams.set('recognition_search', String(query || '').trim());
+  url.searchParams.set('recognition_view', view);
+  if (scopeName) url.searchParams.set('recognition_scope', String(scopeName).trim());
+  url.searchParams.set('utm_source', 'feishu');
+  url.searchParams.set('utm_medium', 'recognition_insights');
+  url.searchParams.set('utm_campaign', 'recognition_share');
+  return url.toString();
+}
+
 function buildFeishuWebAppLink(targetUrl) {
   const safeUrl = String(targetUrl || window.location.href);
   return `https://applink.feishu.cn/client/web_url/open?mode=appCenter&url=${encodeURIComponent(safeUrl)}`;
@@ -2454,16 +2467,21 @@ function compactFeishuMeta(items) {
 
 function buildNativeFeishuPosterImageCard(award, imageKeys) {
   const isCollection = award?.share_type === 'recognition_collection';
+  const isInsights = award?.share_type === 'recognition_insights';
   const posterImageKeys = (Array.isArray(imageKeys) ? imageKeys : [imageKeys]).filter(Boolean);
   const detailUrl = String(award?.detail_url || window.location.href);
   const feishuDetailUrl = buildFeishuWebAppLink(detailUrl);
   const title = isCollection
     ? String(award?.title || 'Recognition Collection').slice(0, 80)
+    : isInsights
+      ? String(award?.title || 'Recognition Insights').slice(0, 80)
     : String(award?.award_name || 'Recognition Award').slice(0, 80);
   const subject = isCollection
     ? String(award?.subject || title).slice(0, 120)
+    : isInsights
+      ? String(award?.subject || 'Search insights').slice(0, 120)
     : String(award?.project_name || award?.title || 'Recognition honor poster').slice(0, 120);
-  const footer = isCollection
+  const footer = isCollection || isInsights
     ? String(award?.summary || 'Recognition collection poster').slice(0, 120)
     : compactFeishuMeta([award?.year, award?.period, award?.level, award?.department, award?.region]) || 'Recognition honor poster';
 
@@ -2476,7 +2494,7 @@ function buildNativeFeishuPosterImageCard(award, imageKeys) {
         template: 'orange',
         title: {
           tag: 'plain_text',
-          content: isCollection ? 'Recognition Collection' : 'Recognition Spotlight'
+          content: isCollection ? 'Recognition Collection' : isInsights ? 'Recognition Insights' : 'Recognition Spotlight'
         }
       },
       elements: [
@@ -2534,7 +2552,7 @@ function collectPosterSafeBreaks(posterContent, exportScale) {
     '.poster-modern-topbar',
     '.poster-editorial-hero',
     '.poster-modern-winner-card',
-    '.poster-modern-members .member-item',
+    '.poster-modern-member',
     '.poster-modern-story',
     '.poster-modern-footer',
     '.honor-poster-brand',
@@ -2771,6 +2789,8 @@ async function uploadPosterImageForFeishu(image, award) {
   const extension = image.format === 'jpg' ? 'jpg' : 'png';
   const baseName = award?.share_type === 'recognition_collection'
     ? 'recognition-collection'
+    : award?.share_type === 'recognition_insights'
+      ? 'recognition-insights'
     : 'recognition-poster';
   const filename = `${baseName}-${image.page || 1}.${extension}`;
   formData.append('file', blob, filename);
@@ -2996,9 +3016,11 @@ async function downloadPoster() {
 
     // Convert to image and download
     const link = document.createElement('a');
-    link.download = posterContent.classList.contains('collection-poster')
-      ? 'recognition-collection.png'
-      : 'award-poster.png';
+    link.download = posterContent.classList.contains('recognition-insights-poster')
+      ? 'recognition-insights.png'
+      : posterContent.classList.contains('collection-poster')
+        ? 'recognition-collection.png'
+        : 'award-poster.png';
     link.href = canvas.toDataURL('image/png');
     link.click();
   } catch (error) {
@@ -4869,13 +4891,13 @@ async function openRecognitionCollectionPoster(selectedScope = null) {
     title: `${collectionLabel} · Recognition`,
     subject: collectionLabel,
     summary: `${posterResults.length} recognition record${posterResults.length === 1 ? '' : 's'}${years ? ` · ${years}` : ''}`,
-    detail_url: buildAwardShareUrl('', ''),
+    detail_url: buildRecognitionSearchShareUrl(query, scope?.name || '', 'results'),
     awards: posterResults.map(result => ({
       name: result.name || result.award || 'Recognition',
       award: result.award || '',
       year: result.year || '',
       period: String(result.period || result.targetPeriod || '')
-        .replace(new RegExp(`^${result.year || ''}\s*`), '')
+        .replace(new RegExp(`^${result.year || ''}\\s*`), '')
         .trim(),
       level: result.scopeKey === 'global'
         ? 'Global'
@@ -4906,6 +4928,67 @@ function fitRecognitionPosterPreview() {
   preview.style.width = wrapper.style.width;
   preview.style.height = wrapper.style.height;
   preview.style.margin = '0 auto';
+}
+
+function openRecognitionInsightsPoster() {
+  const dashboardModal = document.getElementById('recognition-dashboard-modal');
+  const context = dashboardModal?._recognitionContext;
+  const sourceDashboard = dashboardModal?.querySelector('.recognition-dashboard');
+  const shareModal = document.getElementById('share-modal');
+  const preview = document.getElementById('poster-preview');
+  const title = document.getElementById('share-modal-title');
+  if (!context?.results?.length || !sourceDashboard || !shareModal || !preview) return;
+
+  const poster = sourceDashboard.cloneNode(true);
+  poster.querySelectorAll('[data-share-recognition-insights], [data-html2canvas-ignore]').forEach(element => element.remove());
+  const awardNames = [...new Set(context.results
+    .map(result => String(result.name || result.award || '').trim())
+    .filter(Boolean))];
+  const originalDetails = poster.querySelector('.recognition-details');
+  if (originalDetails) {
+    const conciseDetails = document.createElement('section');
+    conciseDetails.className = 'recognition-insights-awards';
+    conciseDetails.innerHTML = `
+      <div class="recognition-insights-awards-head">
+        <h4>Award details</h4>
+        <span>${awardNames.length}</span>
+      </div>
+      <div class="recognition-insights-awards-list">
+        ${awardNames.map((name, index) => `
+          <div class="recognition-insights-award-item">
+            <span>${String(index + 1).padStart(2, '0')}</span>
+            <strong>${escapeHtml(name)}</strong>
+          </div>
+        `).join('')}
+      </div>
+    `;
+    originalDetails.replaceWith(conciseDetails);
+  }
+  poster.querySelectorAll('[id]').forEach(element => element.removeAttribute('id'));
+  poster.id = 'poster-content';
+  poster.classList.add('recognition-insights-poster');
+  poster.style.width = '1440px';
+  poster.style.margin = '0';
+
+  const wrapper = document.createElement('div');
+  wrapper.id = 'poster-wrapper';
+  wrapper.style.overflow = 'hidden';
+  wrapper.style.position = 'relative';
+  wrapper.appendChild(poster);
+  preview.replaceChildren(wrapper);
+  title.textContent = 'Recognition Insights Poster';
+
+  window.CurrentAwardShare = {
+    share_type: 'recognition_insights',
+    title: 'Recognition Insights',
+    subject: context.label || context.query || 'Recognition overview',
+    summary: `${context.results.length} matching award record${context.results.length === 1 ? '' : 's'}`,
+    detail_url: buildRecognitionSearchShareUrl(context.query, context.scopeName, 'dashboard')
+  };
+  ensurePosterFeishuShareButton();
+  closeRecognitionDashboard();
+  shareModal.classList.add('active');
+  requestAnimationFrame(() => fitRecognitionPosterPreview());
 }
 
 function closeRecognitionDashboard() {
@@ -4959,9 +5042,16 @@ function openRecognitionDashboard(selectedScope = null) {
     body.innerHTML = renderRecognitionDashboard(
       dashboardResults,
       dashboardLabel,
-      { showPosterButton: false, personalSubject: subject || null }
+      { showPosterButton: false, showInsightsShareButton: true, personalSubject: subject || null }
     );
+    body.querySelector('[data-share-recognition-insights]')?.addEventListener('click', openRecognitionInsightsPoster);
   }
+  modal._recognitionContext = {
+    results: dashboardResults.slice(),
+    query,
+    scopeName: scope?.name || '',
+    label: dashboardLabel
+  };
   modal.classList.add('active');
   modal.setAttribute('aria-hidden', 'false');
   modal.querySelector('.recognition-dashboard-close')?.focus();
@@ -4977,6 +5067,7 @@ function renderRecognitionDashboard(results, query = '', options = {}) {
             <h3 id="recognition-dashboard-title">Personal Recognition overview</h3>
             <p>${escapeHtml(options.personalSubject.name || query || 'Selected person')}</p>
           </div>
+          ${options.showInsightsShareButton ? '<button type="button" class="recognition-insights-share-btn" data-share-recognition-insights data-html2canvas-ignore="true">Create insights poster</button>' : ''}
         </div>
         <div class="recognition-data-scope">
           Based only on award records directly connected to this person. Related-person, team headcount and participation metrics are not included.
@@ -5008,7 +5099,10 @@ function renderRecognitionDashboard(results, query = '', options = {}) {
           <h3 id="recognition-dashboard-title">Recognition overview</h3>
           <p>Search: ${escapeHtml(query || 'Current result set')}</p>
         </div>
-        ${options.showPosterButton === false ? '' : '<button type="button" class="recognition-poster-btn" onclick="openRecognitionCollectionPoster()">Create collection poster · PNG</button>'}
+        <div class="recognition-dashboard-head-actions">
+          ${options.showInsightsShareButton ? '<button type="button" class="recognition-insights-share-btn" data-share-recognition-insights data-html2canvas-ignore="true">Create insights poster</button>' : ''}
+          ${options.showPosterButton === false ? '' : '<button type="button" class="recognition-poster-btn" onclick="openRecognitionCollectionPoster()">Create collection poster · PNG</button>'}
+        </div>
       </div>
       <div class="recognition-data-scope">
         Based only on complete award records in this search. No team headcount, coverage rate or participation rate is inferred.
@@ -5150,6 +5244,37 @@ function renderSearchResults(results, containerId) {
       }
     });
   });
+}
+
+async function restoreRecognitionShareStateFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const query = String(params.get('recognition_search') || '').trim();
+  if (!query) return false;
+
+  const searchInput = document.getElementById('search-input');
+  const searchResults = document.getElementById('search-results');
+  if (!searchInput || !searchResults) return false;
+  if (!searchData) await loadSearchData();
+  if (!searchData) return false;
+
+  searchInput.value = query;
+  const allResults = performSearch(query, 'all');
+  const scopeName = String(params.get('recognition_scope') || '').trim();
+  const scope = scopeName
+    ? groupRecognitionResultsByDepartment(allResults).find(group => (
+        group.name.localeCompare(scopeName, undefined, { sensitivity: 'base' }) === 0
+      )) || null
+    : null;
+  const visibleResults = scope?.results || allResults;
+  renderSearchResults(visibleResults, 'search-results');
+  searchResults.classList.add('active', 'recognition-shared-target');
+  searchResults.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  window.setTimeout(() => searchResults.classList.remove('recognition-shared-target'), 2400);
+
+  if (params.get('recognition_view') === 'dashboard' && visibleResults.length) {
+    window.setTimeout(() => openRecognitionDashboard(scope), 280);
+  }
+  return true;
 }
 
 document.addEventListener('keydown', event => {
