@@ -567,6 +567,61 @@
       display: block;
       max-height: 70vh;
     }
+
+    .modal-video-loading {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: rgba(0, 0, 0, 0.58);
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 13px;
+      font-weight: 600;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .modal-video-loading.hidden {
+      opacity: 0;
+    }
+
+    .modal-video-loading::before {
+      content: '';
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255, 255, 255, 0.35);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: mediaVideoSpin 0.8s linear infinite;
+    }
+
+    @keyframes mediaVideoSpin {
+      to { transform: rotate(360deg); }
+    }
+
+    .modal-video-fallback {
+      display: none;
+      padding: 18px 20px;
+      text-align: center;
+      background: #111;
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+
+    .modal-video-fallback.active {
+      display: block;
+    }
+
+    .modal-video-fallback button {
+      margin-top: 12px;
+      padding: 10px 18px;
+      border-radius: 9px;
+      background: var(--primary-color);
+      color: #fff;
+      font-weight: 700;
+    }
     
     .modal-external-link {
       padding: var(--spacing-lg);
@@ -1173,7 +1228,7 @@
     // Load videos from JSON
     async function loadVideos() {
       try {
-        const response = await fetch('data/media.json?v=20260807', { cache: 'no-store' });
+        const response = await fetch('data/media.json?v=20260924-inline-video-v63', { cache: 'no-store' });
         if (response.ok) {
           videosData = await response.json();
           console.log('[MediaGallery] Loaded', videosData.videos.length, 'videos from JSON');
@@ -1195,6 +1250,7 @@
             type: "featured",
             source: "feishu",
             url: "https://bytedance.larkoffice.com/wiki/GhnkwQskIi55z0kqV6KcvXXBnQf",
+            playback_url: "videos/recognition-2026h1-720p.mp4",
             duration: "",
             badge: "",
             thumbnail: "images/video-cover-2026h1-award.jpeg"
@@ -1206,6 +1262,7 @@
             type: "featured",
             source: "feishu",
             url: "https://bytedance.larkoffice.com/file/Cc0rbwAHmo04Srx9SdqcqQhOnrg",
+            playback_url: "videos/recognition-2025h2-720p.mp4",
             duration: "",
             badge: "",
             thumbnail: "images/video-cover-featured.png"
@@ -1217,6 +1274,7 @@
             type: "regular",
             source: "feishu",
             url: "https://bytedance.larkoffice.com/wiki/NE8vwnpxviljgXkj63Kcn5hin2c",
+            playback_url: "videos/lunch-takeaways-ep01-720p.mp4",
             duration: "",
             badge: "",
             thumbnail: "images/video-cover-lunch-ep01.jpeg"
@@ -1228,6 +1286,7 @@
             type: "regular",
             source: "feishu",
             url: "https://bytedance.larkoffice.com/wiki/A5oNwXjYfiiOQMkOGiqcB4Nfnwb",
+            playback_url: "videos/lunch-takeaways-ep02-720p.mp4",
             duration: "",
             badge: "",
             thumbnail: "images/video-cover-lunch-ep02.jpeg"
@@ -1254,8 +1313,11 @@
           const video = videosData.videos.find(v => v.id === videoId);
           if (!video) return;
           
+          const hasInlinePlayback = Boolean(video.playback_url);
           const isExternal = video.source === 'feishu' || video.source === 'external';
-          if (isExternal) {
+          if (hasInlinePlayback) {
+            openModal(video);
+          } else if (isExternal) {
             // Open in external browser (force system browser, not Feishu sidebar)
             openInExternalBrowser(video.url);
           } else {
@@ -1283,7 +1345,16 @@
       let durationHtml = video.duration ? `<span class="video-duration">⏱ ${video.duration}</span>` : '';
       
       let externalHint = '';
-      if (isExternal) {
+      if (video.playback_url) {
+        externalHint = `
+          <p class="external-link-hint">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            Plays here
+          </p>
+        `;
+      } else if (isExternal) {
         externalHint = `
           <p class="external-link-hint">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1328,9 +1399,12 @@
       const local = videosData.videos.filter(v => v.source === 'local').length;
       const external = videosData.videos.filter(v => v.source === 'feishu').length;
       
-      document.getElementById('totalVideos').textContent = total;
-      document.getElementById('localVideos').textContent = local;
-      document.getElementById('externalVideos').textContent = external;
+      const totalVideos = document.getElementById('totalVideos');
+      const localVideos = document.getElementById('localVideos');
+      const externalVideos = document.getElementById('externalVideos');
+      if (totalVideos) totalVideos.textContent = total;
+      if (localVideos) localVideos.textContent = local;
+      if (externalVideos) externalVideos.textContent = external;
     }
     
     // Setup upload functionality
@@ -1340,6 +1414,7 @@
       const videoInput = document.getElementById('videoInput');
       const uploadPreview = document.getElementById('uploadPreview');
       const previewList = document.getElementById('previewList');
+      if (!uploadArea || !uploadSection || !videoInput || !uploadPreview || !previewList) return;
       
       // Click to select
       uploadArea.addEventListener('click', () => {
@@ -1461,6 +1536,13 @@
           closeModal();
         }
       });
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          const player = document.querySelector('#modalVideoContainer video');
+          if (player) player.pause();
+        }
+      });
     }
     
     // Open modal
@@ -1469,16 +1551,39 @@
       const title = document.getElementById('modalTitle');
       const container = document.getElementById('modalVideoContainer');
       
-      title.textContent = video.title;
+      title.textContent = video.description || video.title;
       
-      if (video.source === 'local' || video.source === 'volcengine') {
-        // Local or Volcengine video - embed directly
+      if (video.playback_url || video.source === 'local' || video.source === 'volcengine') {
+        // The media file is requested only after the user clicks the card.
+        const playbackUrl = video.playback_url || video.url;
         container.innerHTML = `
-          <video controls autoplay>
-            <source src="${video.url}" type="video/mp4">
+          <video controls autoplay playsinline preload="none" poster="${video.thumbnail || ''}">
+            <source src="${playbackUrl}" type="video/mp4">
             Your browser does not support the video tag.
           </video>
+          <div class="modal-video-loading">Loading video</div>
+          <div class="modal-video-fallback">
+            The video could not be played here.
+            <br>
+            <button type="button">Open original in Feishu</button>
+          </div>
         `;
+        const player = container.querySelector('video');
+        const loading = container.querySelector('.modal-video-loading');
+        const fallback = container.querySelector('.modal-video-fallback');
+        const fallbackButton = fallback.querySelector('button');
+        const markReady = () => loading.classList.add('hidden');
+        player.addEventListener('canplay', markReady, { once: true });
+        player.addEventListener('playing', markReady, { once: true });
+        player.addEventListener('error', () => {
+          loading.classList.add('hidden');
+          fallback.classList.add('active');
+        }, { once: true });
+        fallbackButton.addEventListener('click', () => openInExternalBrowser(video.url));
+        player.play().catch(() => {
+          // Some WebViews require a tap on the native play control.
+          markReady();
+        });
       } else {
         // External link (feishu, etc.) - open in system browser
         container.innerHTML = `
@@ -1512,8 +1617,11 @@
       const video = container.querySelector('video');
       if (video) {
         video.pause();
-        video.src = '';
+        video.removeAttribute('src');
+        video.querySelectorAll('source').forEach(source => source.removeAttribute('src'));
+        video.load();
       }
+      container.innerHTML = '';
     }
   </script>
 <script>
