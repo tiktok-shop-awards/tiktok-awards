@@ -1460,6 +1460,73 @@ img {
   justify-content: center;
 }
 
+.top-winner-poster-picker {
+  width: 100%;
+  padding: 8px 0 4px;
+}
+
+.top-winner-poster-picker > p {
+  margin-bottom: 18px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.top-winner-poster-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 14px;
+}
+
+.top-winner-poster-choice {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px;
+  color: var(--text-primary);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  text-align: left;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.top-winner-poster-choice:hover {
+  border-color: var(--accent-color);
+  background: rgba(46,208,214,0.07);
+}
+
+.top-winner-poster-choice .award-member-avatar.large {
+  width: 64px;
+  height: 64px;
+  margin: 0;
+  font-size: 18px;
+}
+
+.top-winner-poster-choice span {
+  min-width: 0;
+}
+
+.top-winner-poster-choice strong,
+.top-winner-poster-choice small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.top-winner-poster-choice strong {
+  font-size: 16px;
+}
+
+.top-winner-poster-choice small {
+  margin-top: 5px;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
 .download-btn {
   padding: var(--spacing-md) var(--spacing-xl);
   border-radius: var(--radius-md);
@@ -2715,6 +2782,60 @@ img {
   padding: 78px 0 68px;
 }
 
+.poster-certificate-recipient {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: -18px 0 66px;
+  text-align: center;
+}
+
+.poster-editorial-container .poster-certificate-recipient .poster-modern-avatar.hero {
+  width: 230px;
+  height: 230px;
+  margin: 0 0 34px;
+  border: 2px solid rgba(255,255,255,0.30);
+  box-shadow:
+    0 0 0 12px rgba(255,255,255,0.045),
+    0 0 0 14px rgba(87,242,234,0.20),
+    0 30px 90px rgba(0,0,0,0.44);
+}
+
+.poster-certificate-recipient-copy {
+  width: 100%;
+  text-align: center;
+}
+
+.poster-certificate-recipient-copy .member-name {
+  color: #fff;
+  font-size: 58px;
+  line-height: 1.04;
+  font-weight: 880;
+  letter-spacing: -1.8px;
+  overflow-wrap: anywhere;
+}
+
+.poster-certificate-recipient-copy .member-dept {
+  margin-top: 14px;
+  color: rgba(255,255,255,0.60);
+  font-size: 22px;
+  line-height: 1.35;
+}
+
+.poster-certificate-recipient-copy .member-email {
+  margin-top: 9px;
+  color: rgba(87,242,234,0.82);
+  font-size: 17px;
+  line-height: 1.3;
+  font-weight: 620;
+  overflow-wrap: anywhere;
+}
+
+.poster-editorial-container.poster-single-recipient .poster-editorial-content {
+  gap: 0;
+}
+
 .poster-editorial-kicker {
   display: flex;
   align-items: center;
@@ -2802,6 +2923,118 @@ img {
   font-size: 42px;
   line-height: 1;
   font-weight: 880;
+}
+
+/* Single-recipient certificate composition */
+.poster-editorial-container.poster-single-recipient .poster-editorial-hero {
+  padding: 50px 0 58px;
+}
+
+.poster-v2-container.poster-modern-container.poster-editorial-container.poster-single-recipient {
+  min-height: 1500px;
+}
+
+.poster-editorial-container.poster-single-recipient .poster-certificate-recipient {
+  position: relative;
+  margin: 0 0 50px;
+  padding-bottom: 46px;
+}
+
+.poster-editorial-container.poster-single-recipient .poster-certificate-recipient::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 240px;
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, rgba(87,242,234,0.58), transparent);
+}
+
+.poster-editorial-container.poster-single-recipient .poster-certificate-recipient .poster-modern-avatar.hero {
+  width: 176px;
+  height: 176px;
+  margin-bottom: 26px;
+  box-shadow:
+    0 0 0 8px rgba(255,255,255,0.04),
+    0 0 0 10px rgba(87,242,234,0.16),
+    0 22px 58px rgba(0,0,0,0.38);
+}
+
+.poster-editorial-container.poster-single-recipient .poster-certificate-recipient-copy .member-name {
+  font-size: 46px;
+  line-height: 1.06;
+  letter-spacing: -1.2px;
+}
+
+.poster-editorial-container.poster-single-recipient .poster-certificate-recipient-copy .member-dept {
+  margin-top: 11px;
+  font-size: 19px;
+}
+
+.poster-editorial-container.poster-single-recipient .poster-certificate-recipient-copy .member-email {
+  margin-top: 7px;
+  font-size: 15px;
+}
+
+.poster-editorial-container.poster-single-recipient .poster-editorial-kicker {
+  justify-content: center;
+  font-size: 14px;
+  letter-spacing: 2.8px;
+}
+
+.poster-editorial-container.poster-single-recipient .poster-editorial-kicker i {
+  width: 34px;
+}
+
+.poster-editorial-container.poster-single-recipient .poster-editorial-award-label {
+  margin-top: 36px;
+  font-size: 15px;
+  letter-spacing: 4px;
+  text-align: center;
+}
+
+.poster-editorial-container.poster-single-recipient .poster-editorial-award-title {
+  max-width: 1020px;
+  margin: 14px auto 0;
+  font-size: 68px;
+  line-height: 1.04;
+  letter-spacing: -2.6px;
+  text-align: center;
+}
+
+.poster-editorial-container.poster-single-recipient .poster-editorial-project-row {
+  width: min(100%, 1050px);
+  margin: 46px auto 0;
+  padding: 24px 0;
+  align-items: center;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.poster-editorial-container.poster-single-recipient .poster-editorial-project {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.poster-editorial-container.poster-single-recipient .poster-editorial-project strong {
+  font-size: 31px;
+}
+
+.poster-editorial-container.poster-single-recipient .poster-editorial-bonus {
+  min-width: 220px;
+  padding: 0 0 0 30px;
+  border-top: 0;
+  border-bottom: 0;
+  border-left: 1px solid rgba(255,255,255,0.12);
+}
+
+.poster-editorial-container.poster-single-recipient .poster-editorial-bonus strong {
+  font-size: 36px;
+}
+
+.poster-editorial-container.poster-single-recipient .poster-editorial-story {
+  padding: 36px 42px 40px;
 }
 
 .poster-editorial-content {

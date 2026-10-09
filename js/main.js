@@ -150,6 +150,33 @@ function formatCurrency(amount, currency = 'USD') {
   return symbol + Number(amount).toLocaleString();
 }
 
+function parseAwardBonusAmount(value) {
+  if (value === null || value === undefined || value === '') return null;
+  const normalized = String(value).replace(/,/g, '').trim();
+  const amount = Number(normalized);
+  return Number.isFinite(amount) && amount > 0 ? amount : null;
+}
+
+function formatAwardBonusTotals(totals = {}, hasUnknown = false) {
+  const symbols = {
+    USD: '$',
+    CNY: '¥',
+    RMB: '¥',
+    EUR: '€',
+    GBP: '£',
+    SGD: 'S$'
+  };
+  const entries = Object.entries(totals)
+    .filter(([, amount]) => Number.isFinite(amount) && amount > 0)
+    .map(([currency, amount]) => {
+      const normalizedCurrency = currency === 'RMB' ? 'CNY' : currency;
+      const symbol = symbols[normalizedCurrency] || `${normalizedCurrency} `;
+      return `${symbol}${Number(amount).toLocaleString()}`;
+    });
+  if (!entries.length) return 'TBD';
+  return entries.join(' + ') + (hasUnknown ? ' + TBD' : '');
+}
+
 function formatBonus(amount, currency = 'USD') {
   if (!amount || amount === 0) return 'TBD';
   const symbol = (currency === 'CNY' || currency === 'RMB') ? '¥' : '$';
@@ -1372,7 +1399,10 @@ function calculateAllAwardScoreTiers(globalData, regionalDatasets = [], departme
               || award.region
               || 'TikTok Shop',
             score: 0,
-            awards: { global: 0, regional: 0, departmental: 0 }
+            awards: { global: 0, regional: 0, departmental: 0 },
+            projects: [],
+            bonusTotals: {},
+            hasUnknownBonus: false
           });
         }
 
@@ -1380,6 +1410,27 @@ function calculateAllAwardScoreTiers(globalData, regionalDatasets = [], departme
         person.score += points;
         person.awards[level] += 1;
         if (!person.email && email) person.email = email;
+
+        const projectName = String(
+          award.project_name
+          || award.team_award
+          || award.award_name
+          || ''
+        ).trim();
+        if (projectName && !person.projects.some(project =>
+          project.name.toLowerCase() === projectName.toLowerCase()
+        )) {
+          person.projects.push({ name: projectName, level });
+        }
+
+        const bonusAmount = parseAwardBonusAmount(award.bonus);
+        if (bonusAmount !== null) {
+          const rawCurrency = String(award.currency || 'USD').trim().toUpperCase();
+          const currency = rawCurrency === 'RMB' ? 'CNY' : rawCurrency;
+          person.bonusTotals[currency] = (person.bonusTotals[currency] || 0) + bonusAmount;
+        } else {
+          person.hasUnknownBonus = true;
+        }
       });
     });
   };
@@ -1468,13 +1519,39 @@ function renderPodium(top3, containerId, title, highlightDatasets = []) {
       department: getDept(member)
     }));
     const highlightText = `${memberCount} ${memberCount === 1 ? 'winner ranks' : 'winners rank'} ${ordinal(displayRank)} in the ${AppData.currentYear || '2026'} full-year Global E-Commerce Awards with ${score} points. Scoring includes Global Award = 5 pts, Regional Award = 3 pts, Departmental Award = 1 pt, Multiple-Award Bonus = +1 pt per additional award, and Cross-Level Bonus = +1 pt per additional award level.`;
+    const individualPosters = members.map((member, memberIndex) => {
+      const memberProjects = Array.isArray(member.projects) && member.projects.length
+        ? member.projects
+        : findTopWinnerProjects(member, highlightDatasets);
+      const uniqueProjects = [];
+      const seenProjects = new Set();
+      memberProjects.forEach(project => {
+        const projectName = String(project?.name || '').trim();
+        const projectKey = projectName.toLowerCase();
+        if (!projectName || seenProjects.has(projectKey)) return;
+        seenProjects.add(projectKey);
+        uniqueProjects.push(projectName);
+      });
+      return {
+        member: normalizedMembers[memberIndex],
+        projectText: uniqueProjects.length
+          ? uniqueProjects.map((project, index) => `${String(index + 1).padStart(2, '0')}  ${project}`).join('\n')
+          : 'Award details coming soon',
+        bonusFormatted: formatAwardBonusTotals(member.bonusTotals || {}, Boolean(member.hasUnknownBonus))
+      };
+    });
+    const singlePoster = memberCount === 1 ? individualPosters[0] : null;
     window.TopWinnerPosterStore[posterId] = {
       name: tierTitle,
       members: normalizedMembers,
       points: score,
       rank: displayRank,
       year: AppData.currentYear || '2026',
-      highlightText
+      highlightText,
+      isSingleWinner: memberCount === 1,
+      singleProjectText: singlePoster?.projectText || '',
+      singleBonusFormatted: singlePoster?.bonusFormatted || '',
+      individualPosters
     };
 
     const avatars = normalizedMembers.slice(0, 5).map(member =>
@@ -1538,7 +1615,7 @@ function renderPodium(top3, containerId, title, highlightDatasets = []) {
         <div class="podium-rank-sub">${memberCount} ${memberCount === 1 ? 'winner' : 'winners'}</div>
         <div class="podium-member-project-groups">${memberProjectGroups}</div>
         <div class="podium-score">${score} pts</div>
-        <button class="podium-poster-btn" title="Generate group poster" onclick="event.stopPropagation(); showTopWinnerPoster('${posterId}')">📤</button>
+        <button class="podium-poster-btn" title="Generate individual poster" onclick="event.stopPropagation(); showTopWinnerPoster('${posterId}')">📤</button>
       </div>`;
   }
 
@@ -1557,14 +1634,67 @@ function renderPodium(top3, containerId, title, highlightDatasets = []) {
 function showTopWinnerPoster(posterId) {
   const data = window.TopWinnerPosterStore && window.TopWinnerPosterStore[posterId];
   if (!data) return;
+  if ((data.individualPosters || []).length > 1) {
+    showTopWinnerPosterPicker(posterId);
+    return;
+  }
+  showTopWinnerIndividualPoster(posterId, 0);
+}
+
+function showTopWinnerPosterPicker(posterId) {
+  const data = window.TopWinnerPosterStore && window.TopWinnerPosterStore[posterId];
+  const modal = document.getElementById('share-modal');
+  const modalTitle = document.getElementById('share-modal-title');
+  const posterPreview = document.getElementById('poster-preview');
+  if (!data || !modal || !posterPreview) return;
+  const shareActions = modal.querySelector('.share-actions');
+  if (shareActions) shareActions.style.display = 'none';
+  if (modalTitle) modalTitle.textContent = 'Choose Your Individual Poster';
+  posterPreview.innerHTML = `
+    <div class="top-winner-poster-picker">
+      <p>Each tied winner has a separate poster with their own projects and award bonus.</p>
+      <div class="top-winner-poster-options">
+        ${(data.individualPosters || []).map((person, index) => `
+          <button type="button" class="top-winner-poster-choice" onclick="showTopWinnerIndividualPoster('${posterId}', ${index})">
+            ${renderMemberAvatar(person.member, 'large', { priority: true })}
+            <span>
+              <strong>${escapeHtml(person.member?.name || '')}</strong>
+              <small>${escapeHtml(person.member?.department || '')}</small>
+            </span>
+          </button>
+        `).join('')}
+      </div>
+    </div>
+  `;
+  posterPreview.style.height = 'auto';
+  posterPreview.style.width = '100%';
+  posterPreview.style.overflow = 'visible';
+  posterPreview.style.display = 'block';
+  modal.classList.add('active');
+}
+
+function showTopWinnerIndividualPoster(posterId, personIndex) {
+  const data = window.TopWinnerPosterStore && window.TopWinnerPosterStore[posterId];
+  const person = data && (data.individualPosters || [])[personIndex];
+  if (!data || !person) return;
+  const modal = document.getElementById('share-modal');
+  const shareActions = modal?.querySelector('.share-actions');
+  if (shareActions) shareActions.style.display = '';
   showShareModal(
     data.name,
     `Global Top ${data.rank} Score Tier · ${data.year}`,
-    '',
-    data.highlightText,
-    data.members || [],
-    (data.members || []).length > 1 ? 'project' : 'individual',
-    { awardId: posterId }
+    person.bonusFormatted,
+    person.projectText,
+    [person.member],
+    'individual',
+    {
+      awardId: posterId,
+      posterKind: 'top3-single',
+      reasonLabel: 'Recognized Projects',
+      reasonCaption: 'Award Portfolio',
+      bonusFormatted: person.bonusFormatted,
+      posterPersonIndex: personIndex
+    }
   );
 }
 
@@ -2182,16 +2312,20 @@ function showShareModalFromBtn(btn) {
 function showShareModal(projectName, teamAward, bonus, reason, members, awardType, shareMeta = {}) {
   awardType = awardType || 'project';
   const membersLabel = awardType === 'individual' ? 'Winner' : 'Team Members';
+  const reasonLabel = shareMeta.reasonLabel || 'Winning Reason';
+  const reasonCaption = shareMeta.reasonCaption || 'Full Citation';
   console.log('showShareModal called:', { projectName, teamAward, bonus });
 
   const modal = document.getElementById('share-modal');
   const modalTitle = document.getElementById('share-modal-title');
   const posterPreview = document.getElementById('poster-preview');
+  const shareActions = modal?.querySelector('.share-actions');
 
   if (!modal) {
     console.error('Share modal not found');
     return;
   }
+  if (shareActions) shareActions.style.display = '';
 
   modalTitle.textContent = 'Share Award';
 
@@ -2259,7 +2393,7 @@ function showShareModal(projectName, teamAward, bonus, reason, members, awardTyp
   const membersCountLabel = memberCount > 0 ? `${memberCount} ${memberCount === 1 ? 'person' : 'people'}` : 'Recognition';
 
   const currentYear = (typeof AppData !== 'undefined' && AppData.currentYear) ? AppData.currentYear : '2025';
-  const bonusFormatted = formatCurrency(bonus);
+  const bonusFormatted = shareMeta.bonusFormatted || formatCurrency(bonus);
   const shareUrl = buildAwardShareUrl(shareMeta.awardId || '', currentYear);
   window.CurrentAwardShare = {
     award_id: shareMeta.awardId || '',
@@ -2286,10 +2420,24 @@ function showShareModal(projectName, teamAward, bonus, reason, members, awardTyp
   // V2 poster template
   const tiktokLogoSrc = 'images/tiktok-logo-white.png';
   const awardTitle = teamAward || 'Impactful Projects Award';
+  const certificateRecipient = memberCount <= 1
+    ? `
+      <div class="poster-certificate-recipient">
+        ${posterAvatar(primaryMember, 'hero')}
+        <div class="poster-certificate-recipient-copy">
+          <div class="member-name">${escapeHtml(heroName)}</div>
+          ${heroDept ? `<div class="member-dept">${escapeHtml(heroDept)}</div>` : ''}
+          ${heroEmail ? `<div class="member-email">${escapeHtml(heroEmail)}</div>` : ''}
+        </div>
+      </div>
+    `
+    : '';
+  const singlePosterClass = memberCount <= 1 ? 'poster-single-recipient' : '';
+  const storyIndex = memberCount <= 1 ? '01' : '02';
 
   posterPreview.innerHTML = `
     <div id="poster-wrapper" style="overflow:hidden;position:relative;">
-      <div class="poster-v2-container poster-modern-container poster-editorial-container ${reasonDensityClass} ${memberDensityClass}" id="poster-content">
+      <div class="poster-v2-container poster-modern-container poster-editorial-container ${reasonDensityClass} ${memberDensityClass} ${singlePosterClass}" id="poster-content">
         <div class="poster-editorial-grain"></div>
         <div class="poster-modern-topbar poster-editorial-topbar">
           <div class="poster-modern-brand poster-editorial-brand">
@@ -2303,6 +2451,7 @@ function showShareModal(projectName, teamAward, bonus, reason, members, awardTyp
         </div>
 
         <header class="poster-editorial-hero">
+          ${certificateRecipient}
           <div class="poster-editorial-kicker">
             <span>${escapeHtml(awardTypeLabel)}</span>
             <i></i>
@@ -2324,6 +2473,7 @@ function showShareModal(projectName, teamAward, bonus, reason, members, awardTyp
         </header>
 
         <main class="poster-editorial-content">
+          ${memberCount > 1 ? `
           <section class="poster-modern-winner-card poster-editorial-winners">
             <div class="poster-modern-card-head">
               <div>
@@ -2336,14 +2486,15 @@ function showShareModal(projectName, teamAward, bonus, reason, members, awardTyp
               ${memberList}
             </div>
           </section>
+          ` : ''}
 
           <section class="poster-modern-story poster-editorial-story">
             <div class="poster-editorial-section-head">
               <div>
-                <div class="poster-editorial-index">02</div>
-                <div class="poster-modern-section-title">Winning Reason</div>
+                <div class="poster-editorial-index">${storyIndex}</div>
+                <div class="poster-modern-section-title">${escapeHtml(reasonLabel)}</div>
               </div>
-              <span>Full Citation</span>
+              <span>${escapeHtml(reasonCaption)}</span>
             </div>
             <div class="poster-modern-reason-text">${formatReason(reason)}</div>
           </section>
