@@ -2660,9 +2660,16 @@ function buildRecognitionSearchShareUrl(query, scopeName = '', view = 'results')
   return url.toString();
 }
 
+const FEISHU_WEB_APP_ID = 'cli_a968a864a0f89bdd';
+
 function buildFeishuWebAppLink(targetUrl) {
-  const safeUrl = String(targetUrl || window.location.href);
-  return `https://applink.feishu.cn/client/web_url/open?mode=appCenter&url=${encodeURIComponent(safeUrl)}`;
+  const target = new URL(String(targetUrl || window.location.href), window.location.href);
+  const appPath = `${target.pathname}${target.search}${target.hash}`;
+  const params = new URLSearchParams({
+    appId: FEISHU_WEB_APP_ID,
+    path: appPath
+  });
+  return `https://applink.feishu.cn/client/web_app/open?${params.toString()}`;
 }
 
 function escapeFeishuCardMarkdown(value) {

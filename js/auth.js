@@ -346,8 +346,9 @@ document.addEventListener('DOMContentLoaded', async function() {
       btn.style.fontWeight = '600';
       btn.style.cursor = 'pointer';
       btn.onclick = function() {
-        var currentUrl = window.location.href;
-        var applink = 'https://applink.feishu.cn/client/web_url/open?mode=appCenter&url=' + encodeURIComponent(currentUrl);
+        var target = new URL(window.location.href);
+        var appPath = target.pathname + target.search + target.hash;
+        var applink = 'https://applink.feishu.cn/client/web_app/open?appId=cli_a968a864a0f89bdd&path=' + encodeURIComponent(appPath);
         window.location.href = applink;
       };
       overlay.appendChild(btn);
