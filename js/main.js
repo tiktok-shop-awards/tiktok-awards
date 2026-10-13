@@ -295,7 +295,7 @@ function getAwardMemberEmail(award, member, options = {}) {
   return '';
 }
 
-const FEISHU_AVATAR_MAP_VERSION = '20260918-avatar-v1';
+const FEISHU_AVATAR_MAP_VERSION = '20261013-latam-q3-avatar-v1';
 const FEISHU_AVATAR_MAP_STORAGE_KEY = `recognition-avatar-map:${FEISHU_AVATAR_MAP_VERSION}`;
 
 window.FEISHU_AVATAR_MAP = window.FEISHU_AVATAR_MAP || {};
@@ -699,7 +699,7 @@ let _manifestCache = null;
 let _manifestPromise = null;
 const _chunkedFilePromises = new Map();
 const _jsonFilePromises = new Map();
-const CHUNK_VERSION = '20260918baselineemails-v1';
+const CHUNK_VERSION = '20261013-latam-q3-department-v1';
 
 async function loadManifest() {
   if (_manifestCache) return _manifestCache;
@@ -1076,6 +1076,13 @@ function getQ2IndividualAwardsYear(data, year) {
   return yearData['Q2 Individual Awards'] || [];
 }
 
+// Get Q3 individual awards (year-based structure, for LATAM 2026)
+function getQ3IndividualAwardsYear(data, year) {
+  const yearData = getYearData(data, year);
+  if (!yearData) return [];
+  return yearData['Q3 Individual Awards'] || [];
+}
+
 // Get H2 individual awards (year-based structure)
 function getH2IndividualAwardsYear(data, year) {
   const yearData = getYearData(data, year);
@@ -1092,6 +1099,8 @@ function getLatamIndividualAwards(data, year, period) {
     return yearData['Q1 Individual Awards'] || [];
   } else if (period === 'Q2 Individual Awards') {
     return yearData['Q2 Individual Awards'] || [];
+  } else if (period === 'Q3 Individual Awards') {
+    return yearData['Q3 Individual Awards'] || [];
   } else if (period === 'H2 Individual Awards') {
     return yearData['H2 Individual Awards'] || [];
   }
@@ -3426,6 +3435,14 @@ function renderRegionalAwards(data, containerId, period, region) {
       html = NO_DATA;
     } else {
       html = renderIndividualCards(q2Awards, region, 'Q2');
+    }
+  } else if (period === 'Q3 Individual Awards') {
+    // LATAM Q3 individual awards (2026)
+    const q3Awards = getQ3IndividualAwardsYear(data, currentYear);
+    if (q3Awards.length === 0) {
+      html = NO_DATA;
+    } else {
+      html = renderIndividualCards(q3Awards, region, 'Q3');
     }
   } else if (period === 'H1 Project Awards') {
     const h1Awards = getH1ProjectAwardsYear(data, currentYear);

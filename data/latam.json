@@ -1427,6 +1427,206 @@
           "Karina Ayala"
         ]
       }
+    ],
+    "Q3 Individual Awards": [
+      {
+        "award_type": "2026 Q3个人奖",
+        "period": "2026 Q3",
+        "quarter": "Q3",
+        "project_name": "MX Cross-border Rate Card and BR Shipping Subsidy Optimization",
+        "team_award": "LATAM Stellar Contributor",
+        "winner_name": "刘朔桐",
+        "email": "liushuotong@bytedance.com",
+        "department": "Global E-Commerce-User & Promotion Growth-LATAM",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "currency": "USD",
+        "reason": "Shuotong delivered outstanding Q3 results by leading rate card optimization and campaign shipping subsidy projects across LATAM. In Mexico, Shuotong drove the split of the cross-border B rate card into local and cross-border fulfillment fees, making logistics costs easier for sellers to understand and unlocking a 16% tax reduction on cross-border fulfillment fees, with an estimated 0.15pp saving in overall tax cost.\n\nAdditionally, in Brazil, Shuotong adjusted rate cards in 492 cities to match competitor shipping rates, growing GMV by 81.6% and orders by 123.5% in those cities, well above overall market growth. Shuotong also designed a campaign shipping subsidy strategy that lifted overall GMV by 1% with only a 0.16pp increase in subsidy rate.",
+        "members": [
+          {
+            "name": "刘朔桐",
+            "email": "liushuotong@bytedance.com",
+            "department": "Global E-Commerce-User & Promotion Growth-LATAM"
+          }
+        ]
+      },
+      {
+        "award_type": "2026 Q3个人奖",
+        "period": "2026 Q3",
+        "quarter": "Q3",
+        "project_name": "LATAM E-commerce Gameplay",
+        "team_award": "LATAM Stellar Contributor",
+        "winner_name": "郑浩",
+        "email": "zhenghao.666@bytedance.com",
+        "department": "Global E-Commerce-Product-LATAM Product",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "currency": "USD",
+        "reason": "As the gameplay POC for LATAM e-commerce, Hao turned a deep understanding of local user preferences into more than 7% cumulative GMV uplift. Drawing on LATAM carnival culture, Hao launched Red Packet Rain to distribute campaign coupon packs, lifting overall GMV by 3% in both markets with far higher spend efficiency than regular campaign subsidies, and it has since been rolled out as a core campaign capability.\n\nAdditionally, Hao upgraded mall gameplay through BXGY, the three-order challenge, and the golden egg game, driving a 5% GMV uplift in Mexico and building a multi-gameplay investment framework by country. Bonus gameplay contributed a further 2% to 2.5% GMV uplift while supporting engagement goals for livestream and reviews.",
+        "members": [
+          {
+            "name": "郑浩",
+            "email": "zhenghao.666@bytedance.com",
+            "department": "Global E-Commerce-Product-LATAM Product"
+          }
+        ]
+      },
+      {
+        "award_type": "2026 Q3个人奖",
+        "period": "2026 Q3",
+        "quarter": "Q3",
+        "project_name": "Agent-powered Auto Tuning and Troubleshooting Tools",
+        "team_award": "LATAM Stellar Contributor",
+        "winner_name": "王一川",
+        "email": "wangyichuan@bytedance.com",
+        "department": "Data-International E-Commerce-Recommendation",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "currency": "USD",
+        "reason": "Yichuan took a key step in the team's shift toward AI-driven R&D by building and launching Agent-based auto tuning and troubleshooting tools. In Q3, these tools were applied across 6 projects with complex business scenarios, including dynamic compute allocation, VT consistency tuning, DFM and first-touch attribution, and livestream VT optimization by audience segment, contributing 46.7% of gains in video and 23.6% in livestream.\n\nAdditionally, the tools significantly reduced manual tuning effort, shortened optimization cycles, and steadily accumulated business insights. This work laid a solid foundation for upgrading the team's Agent infrastructure and supporting the complex scenarios of global e-commerce with higher efficiency.",
+        "members": [
+          {
+            "name": "王一川",
+            "email": "wangyichuan@bytedance.com",
+            "department": "Data-International E-Commerce-Recommendation"
+          }
+        ]
+      },
+      {
+        "award_type": "2026 Q3个人奖",
+        "period": "2026 Q3",
+        "quarter": "Q3",
+        "project_name": "Brazil Competitor Core Seller Project",
+        "team_award": "LATAM Stellar Contributor",
+        "winner_name": "Renato Belmiro",
+        "email": "renato.belmiro@bytedance.com",
+        "department": "Global E-Commerce-LATAM Operations",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "currency": "USD",
+        "reason": "Renato drove strong Q3 results for the Brazil Core Seller program, delivering acquisition and seller growth well above target. Q3 onboarding reached approximately 1,400 sellers against a target of 1,200 (116%), and August alone set a record of 650 onboardings, reaching 163% of the monthly target, with BPO contributing 59% of new competitor Core Seller onboardings.\n\nAdditionally, Renato expanded the operating model from pure acquisition into scaled seller incubation. Approximately 650 sellers reached T2 against a target of 314 (207%), alongside 136 T3 sellers. Renato also established a structured BPO playbook covering moderation, category access, logistics, and new-seller restrictions, laying a strong foundation for Q4.",
+        "members": [
+          {
+            "name": "Renato Belmiro",
+            "email": "renato.belmiro@bytedance.com",
+            "department": "Global E-Commerce-LATAM Operations"
+          }
+        ]
+      },
+      {
+        "award_type": "2026 Q3个人奖",
+        "period": "2026 Q3",
+        "quarter": "Q3",
+        "project_name": "LATAM Seller Fraud Risk Control",
+        "team_award": "LATAM Stellar Contributor",
+        "winner_name": "karolina castro",
+        "email": "karolina.c@bytedance.com",
+        "department": "Global E-Commerce-Governance and Experience-Risk Control and Security-LATAM Operations",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "currency": "USD",
+        "reason": "Karolina kept P0 Fraud CCR consistently below target throughout Q3, holding at 0.018% or lower in Mexico (vs 0.023% target) and 0.024% or lower in Brazil (vs 0.027% target). Karolina helped launch a strategy to detect seller fraud clusters behind more than 45K onboarding attempts, supported a safe LATAM auction rollout on the seller side, and advanced LLM capabilities that cut non-seller-fault noise by 20%.\n\nAdditionally, Karolina showed strong ownership by launching risk escalation monitoring across 11 escalation groups and improving enforcement transparency through customized seller messaging and same-day follow-up loops. Karolina also saw cross-functional issues through to resolution, even when they fell outside the RCS scope.",
+        "members": [
+          {
+            "name": "karolina castro",
+            "email": "karolina.c@bytedance.com",
+            "department": "Global E-Commerce-Governance and Experience-Risk Control and Security-LATAM Operations"
+          }
+        ]
+      },
+      {
+        "award_type": "2026 Q3个人奖",
+        "period": "2026 Q3",
+        "quarter": "Q3",
+        "project_name": "Brazil J&T Delivery Quality Improvement",
+        "team_award": "LATAM Stellar Contributor",
+        "winner_name": "Shuo Shi",
+        "email": "shishuo.alen@bytedance.com",
+        "department": "Supply Chain and Logistics-LATAM Logistics Operations",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "currency": "USD",
+        "reason": "After joining the Brazil logistics team as the J&T operations owner, Shuo quickly got up to speed in a new market and took on an aggressive quality target. Combining on-site research with data analysis, Shuo pinpointed the core issues, including internal theft at pickup and last-mile problem parcels, and worked with the carrier to fix the top underperforming pickup and delivery stations.\n\nAdditionally, Shuo partnered with the carrier to establish standard handling processes for the long term and tracked results through daily data monitoring. As a result, the undelivered rate dropped from 1.03% to 0.61%, the long-tail order rate fell from 0.67% to 0.36%, and FD decreased from 0.27% to 0.14%, a significant improvement in operational quality.",
+        "members": [
+          {
+            "name": "Shuo Shi",
+            "email": "shishuo.alen@bytedance.com",
+            "department": "Supply Chain and Logistics-LATAM Logistics Operations"
+          }
+        ]
+      },
+      {
+        "award_type": "2026 Q3个人奖",
+        "period": "2026 Q3",
+        "quarter": "Q3",
+        "project_name": "Mexico and Brazil Mid-year Logistics Vendor Negotiation",
+        "team_award": "LATAM Stellar Contributor",
+        "winner_name": "翁振宇",
+        "email": "wengzhenyu@bytedance.com",
+        "department": "Supply Chain and Logistics-International Business-LATAM",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "currency": "USD",
+        "reason": "Johnny led the 2026 mid-year logistics vendor negotiations in Mexico and Brazil under strong cost pressure and complex market conditions. In Mexico, Johnny went beyond vendor quotes by breaking down last-mile cost structures and building a cost model to estimate the true costs of core vendors, giving the negotiation strategy and targets a solid data foundation and delivering a rate reduction beyond expectations.\n\nAdditionally, in Brazil, Johnny built UG subsidies and priority categories into the negotiation strategy and focused on MG origin and the 3 to 5kg weight band, achieving reductions far above average. This data-driven approach raised the bar for regional vendor management and created a playbook for future negotiations.",
+        "members": [
+          {
+            "name": "翁振宇",
+            "email": "wengzhenyu@bytedance.com",
+            "department": "Supply Chain and Logistics-International Business-LATAM"
+          }
+        ]
+      },
+      {
+        "award_type": "2026 Q3个人奖",
+        "period": "2026 Q3",
+        "quarter": "Q3",
+        "project_name": "Brazil BNPL Launch",
+        "team_award": "LATAM Stellar Contributor",
+        "winner_name": "丁荣荣",
+        "email": "dingrongrong.drr@bytedance.com",
+        "department": "Global Payment-LATAM Financial Service",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "currency": "USD",
+        "reason": "As the product owner for BNPL in Brazil, Cyrus led the collaboration across finance, payment, and e-commerce teams to launch a locally compliant BNPL product (BaaS + FIDC) from 0 to 1. During a test with 50% traffic, a 1M user whitelist, and zero marketing subsidy, GMV penetration of just 0.13% drove a 0.34% uplift in GMV per user and a 0.32% uplift in ARPPU.\n\nAdditionally, by offering localized installment payments, Cyrus recovered orders that would otherwise be lost to insufficient funds, improving order-to-payment conversion and payment success rate. Cyrus also resolved blockers across the full chain, brought the credit application completion rate to 20%, and steadily reduced first payment default, laying the groundwork for scaled growth.",
+        "members": [
+          {
+            "name": "丁荣荣",
+            "email": "dingrongrong.drr@bytedance.com",
+            "department": "Global Payment-LATAM Financial Service"
+          }
+        ]
+      },
+      {
+        "award_type": "2026 Q3个人奖",
+        "period": "2026 Q3",
+        "quarter": "Q3",
+        "project_name": "Top Live Creator Incubation",
+        "team_award": "LATAM Stellar Contributor",
+        "winner_name": "Eduardo Beltran",
+        "email": "eduardo.beltran@bytedance.com",
+        "department": "Global E-Commerce-Mexico Operations-Central ops",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "currency": "USD",
+        "reason": "Eduardo delivered record-breaking Q3 results in top live creator incubation in Mexico. Eduardo ranked #1 in Mexico in August for the number of creators above $50K in L30D sales, and in July drove 38 live sessions above $5K against a target of 8 (475% of target). Eduardo also incubated the first L7 creator in Mexico, with over $300K in L30D sales, setting a market precedent.\n\nAdditionally, Eduardo took ownership of an existing creator base and accelerated its tier progression, turning occasional live creators into consistent high performers. Eduardo now holds the highest number of L6+ creators in the team, with distinct milestones delivered across 3 consecutive months through a structured way of working.",
+        "members": [
+          {
+            "name": "Eduardo Beltran",
+            "email": "eduardo.beltran@bytedance.com",
+            "department": "Global E-Commerce-Mexico Operations-Central ops"
+          }
+        ]
+      }
     ]
   }
 }

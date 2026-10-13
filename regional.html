@@ -706,7 +706,7 @@
   <script src="js/auth.js?v=20260922feishuwait"></script>
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
   <script src="js/award-api.js?v=20260914internalonly"></script>
-  <script src="js/main.js?v=v64-performance"></script>
+  <script src="js/main.js?v=v65-latam-q3"></script>
   <script>
     // Regional page specific initialization
     const regionNames = {
@@ -765,7 +765,7 @@
       }
       if (region === 'latam') {
         if (year === '2026') {
-          return ['Q1 Individual Awards', 'Q2 Individual Awards'].includes(requestedType)
+          return ['Q1 Individual Awards', 'Q2 Individual Awards', 'Q3 Individual Awards'].includes(requestedType)
             ? requestedType
             : 'Q1 Individual Awards';
         }
@@ -892,15 +892,15 @@
         quarterToggle.style.display = 'block';
         
         if (currentYear === '2026') {
-          // 2026: show Q1 + Q2 Individual Awards buttons
+          // 2026: show Q1 + Q2 + Q3 Individual Awards buttons
           quarterButtons.style.display = 'none';
           h1IndividualButton.style.display = 'flex';
-          h1IndividualButton.innerHTML = '<button class="award-type-btn" data-type="Q1 Individual Awards">Q1<span class="btn-subtitle">Stellar Contributors</span></button><button class="award-type-btn" data-type="Q2 Individual Awards">Q2<span class="btn-subtitle">Stellar Contributors</span></button>';
+          h1IndividualButton.innerHTML = '<button class="award-type-btn" data-type="Q1 Individual Awards">Q1<span class="btn-subtitle">Stellar Contributors</span></button><button class="award-type-btn" data-type="Q2 Individual Awards">Q2<span class="btn-subtitle">Stellar Contributors</span></button><button class="award-type-btn" data-type="Q3 Individual Awards">Q3<span class="btn-subtitle">Stellar Contributors</span></button>';
           // Set active button
           h1IndividualButton.querySelectorAll('.award-type-btn').forEach(b => {
             b.classList.toggle('active', b.dataset.type === currentAwardType);
           });
-          if (!['Q1 Individual Awards', 'Q2 Individual Awards'].includes(currentAwardType)) {
+          if (!['Q1 Individual Awards', 'Q2 Individual Awards', 'Q3 Individual Awards'].includes(currentAwardType)) {
             currentAwardType = 'Q1 Individual Awards';
             h1IndividualButton.querySelectorAll('.award-type-btn').forEach(b => {
               b.classList.toggle('active', b.dataset.type === currentAwardType);
@@ -1144,7 +1144,7 @@
               // Priority order: most recent first
               let priority = [];
               if (region === 'latam') {
-                priority = ['Q2 Individual Awards', 'Q1 Individual Awards'];
+                priority = ['Q3 Individual Awards', 'Q2 Individual Awards', 'Q1 Individual Awards'];
               } else if (isQuarterRegion) {
                 priority = ['Q4 Individual Awards', 'Q4', 'Q3', 'Q2', 'Q1'];
               } else if (currentYear === '2026' && ['sea', 'us', 'eu', 'fs'].includes(region)) {
@@ -1238,7 +1238,7 @@
         });
       });
       
-      // Event delegation for dynamically created LATAM 2026 buttons (Q1/Q2 Individual Awards)
+      // Event delegation for dynamically created LATAM 2026 buttons (Q1/Q2/Q3 Individual Awards)
       const quarterToggleEl = document.getElementById('quarter-toggle');
       if (quarterToggleEl) {
         quarterToggleEl.addEventListener('click', (e) => {
