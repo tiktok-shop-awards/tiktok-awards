@@ -774,8 +774,7 @@ Together, these initiatives addressed critical bottlenecks across the entire LIV
   <script src="js/auth.js?v=20260922feishuwait"></script>
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
   <script src="js/award-api.js?v=20260914internalonly"></script>
-  <script src="js/html2canvas.min.js"></script>
-  <script src="js/main.js?v=v63"></script>
+  <script src="js/main.js?v=v64-performance"></script>
   <script>
     // Global page specific initialization
     let currentHalf = getUrlParam('period') || 'H1';
@@ -834,11 +833,7 @@ Together, these initiatives addressed critical bottlenecks across the entire LIV
         if (!searchData) {
           searchResults.innerHTML = '<div class="no-results">Loading search data, please wait...</div>';
           searchResults.classList.add('active');
-          // Wait for search data to be loaded (retry every 300ms, up to 10s)
-          for (let i = 0; i < 33; i++) {
-            await new Promise(r => setTimeout(r, 300));
-            if (searchData) break;
-          }
+          await loadSearchData();
           if (!searchData) {
             searchResults.innerHTML = '<div class="no-results">Search data failed to load. Please try again later.</div>';
             return;
@@ -909,8 +904,6 @@ Together, these initiatives addressed critical bottlenecks across the entire LIV
           // Load like/comment interactions from API
           loadAllCardInteractions();
         }
-
-        await loadSearchData();
 
       } catch (error) {
         console.error('Error loading global page:', error);

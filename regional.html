@@ -706,8 +706,7 @@
   <script src="js/auth.js?v=20260922feishuwait"></script>
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
   <script src="js/award-api.js?v=20260914internalonly"></script>
-  <script src="js/html2canvas.min.js"></script>
-  <script src="js/main.js?v=v63"></script>
+  <script src="js/main.js?v=v64-performance"></script>
   <script>
     // Regional page specific initialization
     const regionNames = {
@@ -1290,9 +1289,6 @@
       
       console.log('Data loaded, regionalData:', !!regionalData);
       
-      // Initialize search
-      await loadSearchData();
-      
       // Search handlers - bind outside try-catch to ensure always available
       const searchInput = document.getElementById('search-input');
       const searchBtn = document.getElementById('search-btn');
@@ -1306,14 +1302,11 @@
         if (!searchData) {
           searchResults.innerHTML = '<div class="no-results">Loading search data, please wait...</div>';
           searchResults.classList.add('active');
-          const checkInterval = setInterval(() => {
-            if (searchData) {
-              clearInterval(checkInterval);
-              performAndShowSearch(query);
-            }
-          }, 300);
-          setTimeout(() => clearInterval(checkInterval), 10000);
-          return;
+          await loadSearchData();
+          if (!searchData) {
+            searchResults.innerHTML = '<div class="no-results">Search data failed to load. Please try again later.</div>';
+            return;
+          }
         }
         const results = performSearch(query, 'all', { preferredScopes: ['regional', 'fs', 'pop'] });
         renderSearchResults(results, 'search-results');

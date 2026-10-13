@@ -916,8 +916,7 @@
   <script src="js/auth.js?v=20260922feishuwait"></script>
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
   <script src="js/award-api.js?v=20260914internalonly"></script>
-  <script src="js/html2canvas.min.js"></script>
-  <script src="js/main.js?v=v63"></script>
+  <script src="js/main.js?v=v64-performance"></script>
   <script>
     // Render Home Stats - Now includes Q1/Q2/Q3/Q4 data for FS/POP and all regional data
     // IMPORTANT: Project awards are counted by unique project, not by member records
@@ -1207,7 +1206,6 @@
       await loadHomePageData();
 
       // Initialize search
-      await loadSearchData();
       initSearchListeners();
       await restoreRecognitionShareStateFromUrl();
 
@@ -1352,10 +1350,7 @@
         if (!searchData) {
           searchResults.innerHTML = '<div class="no-results">Loading search data, please wait...</div>';
           searchResults.classList.add('active');
-          for (let i = 0; i < 33; i++) {
-            await new Promise(r => setTimeout(r, 300));
-            if (searchData) break;
-          }
+          await loadSearchData();
           if (!searchData) {
             searchResults.innerHTML = '<div class="no-results">Search data failed to load. Please try again later.</div>';
             return;

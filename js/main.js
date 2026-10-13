@@ -150,6 +150,34 @@ function formatCurrency(amount, currency = 'USD') {
   return symbol + Number(amount).toLocaleString();
 }
 
+let _html2CanvasPromise = null;
+
+function ensureHtml2CanvasLoaded() {
+  if (typeof html2canvas !== 'undefined') return Promise.resolve();
+  if (_html2CanvasPromise) return _html2CanvasPromise;
+
+  _html2CanvasPromise = new Promise((resolve, reject) => {
+    const existing = document.querySelector('script[data-html2canvas-loader]');
+    if (existing) {
+      existing.addEventListener('load', resolve, { once: true });
+      existing.addEventListener('error', () => reject(new Error('html2canvas library failed to load')), { once: true });
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = 'js/html2canvas.min.js';
+    script.dataset.html2canvasLoader = 'true';
+    script.onload = resolve;
+    script.onerror = () => reject(new Error('html2canvas library failed to load'));
+    document.head.appendChild(script);
+  }).catch(error => {
+    _html2CanvasPromise = null;
+    throw error;
+  });
+
+  return _html2CanvasPromise;
+}
+
 function parseAwardBonusAmount(value) {
   if (value === null || value === undefined || value === '') return null;
   const normalized = String(value).replace(/,/g, '').trim();
@@ -668,49 +696,85 @@ function initDeptNavigation() {
 // ==================== Data Loading Functions ====================
 // Cache for manifest
 let _manifestCache = null;
+let _manifestPromise = null;
+const _chunkedFilePromises = new Map();
+const _jsonFilePromises = new Map();
 const CHUNK_VERSION = '20260918baselineemails-v1';
 
 async function loadManifest() {
   if (_manifestCache) return _manifestCache;
-  const resp = await fetch('data/manifest.json?v=' + CHUNK_VERSION, { cache: 'no-store' });
-  if (!resp.ok) throw new Error('Failed to load manifest');
-  _manifestCache = await resp.json();
-  return _manifestCache;
+  if (!_manifestPromise) {
+    _manifestPromise = fetch('data/manifest.json?v=' + CHUNK_VERSION, { cache: 'force-cache' })
+      .then(resp => {
+        if (!resp.ok) throw new Error('Failed to load manifest');
+        return resp.json();
+      })
+      .then(manifest => {
+        _manifestCache = manifest;
+        return manifest;
+      })
+      .catch(error => {
+        _manifestPromise = null;
+        throw error;
+      });
+  }
+  return _manifestPromise;
 }
 
 async function loadChunkedFile(baseName) {
-  const manifest = await loadManifest();
-  const fileMap = manifest[baseName];
-  if (!fileMap) throw new Error('No manifest entry for ' + baseName);
+  if (!_chunkedFilePromises.has(baseName)) {
+    const request = (async () => {
+      const manifest = await loadManifest();
+      const fileMap = manifest[baseName];
+      if (!fileMap) throw new Error('No manifest entry for ' + baseName);
 
-  const hasYearStructure = Object.keys(fileMap).some(k => /^\d{4}$/.test(k));
+      const hasYearStructure = Object.keys(fileMap).some(k => /^\d{4}$/.test(k));
 
-  if (hasYearStructure) {
-    // Year-based: { '2026': { Q1: [files], Q2: [files] } }
-    const result = {};
-    for (const year of Object.keys(fileMap)) {
-      result[year] = {};
-      for (const period of Object.keys(fileMap[year])) {
-        const files = fileMap[year][period];
-        const chunks = await Promise.all(
-          files.map(f => fetch('data/' + f + '?v=' + CHUNK_VERSION, { cache: 'no-store' }).then(r => r.json()))
-        );
-        result[year][period] = chunks.flat();
+      if (hasYearStructure) {
+        // Year-based: { '2026': { Q1: [files], Q2: [files] } }
+        const result = {};
+        for (const year of Object.keys(fileMap)) {
+          result[year] = {};
+          for (const period of Object.keys(fileMap[year])) {
+            const files = fileMap[year][period];
+            const chunks = await Promise.all(files.map(loadVersionedJson));
+            result[year][period] = chunks.flat();
+          }
+        }
+        return result;
       }
-    }
-    return result;
-  } else {
-    // Flat: { 'H1 Project Awards': [files], ... }
-    const result = {};
-    for (const period of Object.keys(fileMap)) {
-      const files = fileMap[period];
-      const chunks = await Promise.all(
-        files.map(f => fetch('data/' + f + '?v=' + CHUNK_VERSION, { cache: 'no-store' }).then(r => r.json()))
-      );
-      result[period] = chunks.flat();
-    }
-    return result;
+
+      // Flat: { 'H1 Project Awards': [files], ... }
+      const result = {};
+      for (const period of Object.keys(fileMap)) {
+        const files = fileMap[period];
+        const chunks = await Promise.all(files.map(loadVersionedJson));
+        result[period] = chunks.flat();
+      }
+      return result;
+    })().catch(error => {
+      _chunkedFilePromises.delete(baseName);
+      throw error;
+    });
+    _chunkedFilePromises.set(baseName, request);
   }
+  return _chunkedFilePromises.get(baseName);
+}
+
+function loadVersionedJson(fileName) {
+  if (!_jsonFilePromises.has(fileName)) {
+    const request = fetch('data/' + fileName + '?v=' + CHUNK_VERSION, { cache: 'force-cache' })
+      .then(resp => {
+        if (!resp.ok) throw new Error('Failed to load ' + fileName);
+        return resp.json();
+      })
+      .catch(error => {
+        _jsonFilePromises.delete(fileName);
+        throw error;
+      });
+    _jsonFilePromises.set(fileName, request);
+  }
+  return _jsonFilePromises.get(fileName);
 }
 
 async function loadData(level, region = null, year = null) {
@@ -719,14 +783,10 @@ async function loadData(level, region = null, year = null) {
     let data;
 
     if (level === 'pop') {
-      const resp = await fetch('data/pop.json?v=' + CHUNK_VERSION, { cache: 'no-store' });
-      if (!resp.ok) throw new Error('Failed to load pop.json');
-      data = await resp.json();
+      data = await loadVersionedJson('pop.json');
     } else if (level === 'regional' && region && !['us','eu','sea'].includes(region)) {
       // latam and other small regions: load directly
-      const resp = await fetch('data/' + region + '.json?v=' + CHUNK_VERSION, { cache: 'no-store' });
-      if (!resp.ok) throw new Error('Failed to load ' + region + '.json');
-      data = await resp.json();
+      data = await loadVersionedJson(region + '.json');
     } else {
       // Split files: global, us, eu, sea, fs, departmental
       let baseName;
@@ -2779,9 +2839,7 @@ async function captureCurrentPosterCanvas() {
   if (!posterContent) {
     throw new Error('Poster content not found');
   }
-  if (typeof html2canvas === 'undefined') {
-    throw new Error('html2canvas library not loaded');
-  }
+  await ensureHtml2CanvasLoaded();
 
   const previewContainer = document.getElementById('poster-preview');
   const savedOpacity = previewContainer ? previewContainer.style.opacity : '';
@@ -3101,10 +3159,7 @@ async function downloadPoster() {
   }
 
   try {
-    // Check if html2canvas is available (should be pre-loaded locally)
-    if (typeof html2canvas === 'undefined') {
-      throw new Error('html2canvas library not loaded');
-    }
+    await ensureHtml2CanvasLoaded();
 
     // Reduce preview opacity during capture to avoid visual flash
     // Note: do NOT use visibility:hidden — html2canvas inherits it and captures pure black
@@ -4026,12 +4081,12 @@ async function loadSearchData() {
         loadChunkedFile('us').catch(() => null),
         loadChunkedFile('eu').catch(() => null),
         loadChunkedFile('sea').catch(() => null),
-        fetch('data/latam.json?v=' + CHUNK_VERSION).then(r => r.json()).catch(() => null),
-        fetch('data/rankings.json?v=' + CHUNK_VERSION).then(r => r.json()).catch(() => null),
+        loadVersionedJson('latam.json').catch(() => null),
+        loadVersionedJson('rankings.json').catch(() => null),
         loadChunkedFile('departmental').catch(() => null),
         loadChunkedFile('fs').catch(() => null),
-        fetch('data/pop.json?v=' + CHUNK_VERSION).then(r => r.json()).catch(() => null),
-        fetch('data/name-map.json?v=' + CHUNK_VERSION).then(r => r.json()).catch(() => null)
+        loadVersionedJson('pop.json').catch(() => null),
+        loadVersionedJson('name-map.json').catch(() => null)
       ]);
       nameMap = nameMapData || {};
 
@@ -5449,8 +5504,6 @@ if (isHomePage) {
     initYearNavigation();
     initRegionNavigation();
     initDeptNavigation();
-    // Load search data on every page (page scripts bind their own listeners)
-    loadSearchData();
   });
 }
 
