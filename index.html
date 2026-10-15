@@ -915,7 +915,7 @@
   <script src="js/auth.js?v=20261013-feishu-webapp-v1"></script>
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
   <script src="js/award-api.js?v=20260914internalonly"></script>
-  <script src="js/main.js?v=20261015-score-10-5-3-2025-v1"></script>
+  <script src="js/main.js?v=20261015-score-fast-rankings-v1"></script>
   <script>
     // Render Home Stats - Now includes Q1/Q2/Q3/Q4 data for FS/POP and all regional data
     // IMPORTANT: Project awards are counted by unique project, not by member records
@@ -1222,17 +1222,32 @@
         // Get year from URL or default to 2025
         const urlYear = getUrlParam('year') || '2026';
         AppData.currentYear = urlYear;
+        const rankingsData = await loadRankings(urlYear).catch(() => null);
+        const rankingSource = rankingsData && (rankingsData.top10 || rankingsData.top3)
+          ? (rankingsData.top10 || rankingsData.top3)
+          : [];
+        const precomputedRanking = rankingSource.map(r => ({
+            name: r.name,
+            score: r.points,
+            points: r.points,
+            rank: r.rank,
+            email: r.email || '',
+            department: r.department || 'TikTok Shop',
+            region: r.region || null
+          }));
+        if (precomputedRanking.length > 0) {
+          renderPodium(precomputedRanking, 'top3-podium', 'Global Top 3 Score Tiers');
+        }
 
         // Load all data for stats (Q1 + Q2 + Q3 + Q4 + FS + POP)
-        const [rankingsData, global, us, eu, sea, latam, fs, pop, departmental] = await Promise.all([
-          loadRankings(urlYear),
+        const [global, us, eu, sea, latam, fs, pop, departmental] = await Promise.all([
           loadData('global', null, urlYear),
           loadData('regional', 'us', urlYear),
           loadData('regional', 'eu', urlYear),
           loadData('regional', 'sea', urlYear),
           loadData('regional', 'latam', urlYear),
           loadData('fs'),
-          loadData('pop'),
+          urlYear === '2025' ? loadData('pop') : Promise.resolve(null),
           loadData('departmental', null, urlYear)
         ]);
         const fsForStats = normalizeFsDataForHomeStats(fs, urlYear);
@@ -1261,27 +1276,14 @@
           });
         });
 
-        // 2025 and 2026 use all award records and dense score ranking:
-        // Base score: Global = 10, Regional = 5, Departmental = 3.
-        // Bonus: +1 per additional award.
-        const calculatedTiers = calculateAllAwardScoreTiers(
-          global,
-          [us, eu, sea, latam, fsForStats, pop],
-          departmental
-        );
-        const rankingSource = rankingsData && (rankingsData.top10 || rankingsData.top3)
-          ? (rankingsData.top10 || rankingsData.top3)
-          : [];
-        const fallbackRanking = rankingSource.map(r => ({
-            name: r.name,
-            score: r.points,
-            points: r.points,
-            rank: r.rank,
-            email: r.email || '',
-            department: r.department || memberDeptMap[r.name] || 'TikTok Shop',
-            region: r.region || null
-          }));
-        const podiumData = calculatedTiers.length ? calculatedTiers : fallbackRanking;
+        const calculatedTiers = precomputedRanking.length
+          ? []
+          : calculateAllAwardScoreTiers(
+              global,
+              [us, eu, sea, latam, fsForStats, pop],
+              departmental
+            );
+        const podiumData = precomputedRanking.length ? precomputedRanking : calculatedTiers;
         if (podiumData.length > 0) {
           renderPodium(podiumData, 'top3-podium', 'Global Top 3 Score Tiers', [global, us, eu, sea, latam, fsForStats, pop, departmental]);
         }

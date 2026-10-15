@@ -886,7 +886,7 @@ async function loadData(level, region = null, year = null) {
 
 async function loadRankings(year = null) {
   try {
-    const response = await fetch('data/rankings.json?v=20260714z');
+    const response = await fetch('data/rankings.json?v=20261015-score-10-5-3-v1');
     if (!response.ok) throw new Error('Failed to load rankings');
 
     const data = await response.json();
