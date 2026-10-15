@@ -2784,6 +2784,7 @@ const FEISHU_POSTER_PAGE_HEIGHT = 11800;
 const FEISHU_POSTER_MAX_BYTES = 9 * 1024 * 1024;
 const POSTER_CAPTURE_MAX_HEIGHT = 30000;
 const POSTER_MIN_PAGE_RATIO = 0.42;
+const FEISHU_SHARE_CAPTURE_SCALE = 1;
 
 function collectPosterSafeBreaks(posterContent, exportScale) {
   const selectors = [
@@ -2889,7 +2890,7 @@ async function captureCurrentPosterCanvas() {
     posterContent.style.width = posterWidth + 'px';
     const posterActualHeight = posterContent.scrollHeight;
     const exportScale = Math.min(
-      2,
+      FEISHU_SHARE_CAPTURE_SCALE,
       POSTER_CAPTURE_MAX_HEIGHT / Math.max(1, posterActualHeight),
       FEISHU_POSTER_MAX_DIMENSION / posterWidth
     );

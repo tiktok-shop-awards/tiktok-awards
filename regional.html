@@ -50,9 +50,9 @@
         revealed = true;
         root.classList.add('app-ready');
       }
-      window.addEventListener('load', reveal, { once: true });
+      document.addEventListener('DOMContentLoaded', reveal, { once: true });
       window.addEventListener('pageshow', reveal, { once: true });
-      setTimeout(reveal, 2500);
+      setTimeout(reveal, 800);
     })();
   </script>
 
@@ -706,7 +706,7 @@
   <script src="js/auth.js?v=20261013-feishu-webapp-v1"></script>
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
   <script src="js/award-api.js?v=20260914internalonly"></script>
-  <script src="js/main.js?v=20261015-fast-render-v1"></script>
+  <script src="js/main.js?v=20261015-urgent-stability-v1"></script>
   <script>
     // Regional page specific initialization
     const regionNames = {
