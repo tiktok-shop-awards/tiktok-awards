@@ -915,7 +915,7 @@
   <script src="js/auth.js?v=20261013-feishu-webapp-v1"></script>
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
   <script src="js/award-api.js?v=20260914internalonly"></script>
-  <script src="js/main.js?v=20261015-score-fast-rankings-v2"></script>
+  <script src="js/main.js?v=20261015-score-fast-rankings-v3"></script>
   <script>
     // Render Home Stats - Now includes Q1/Q2/Q3/Q4 data for FS/POP and all regional data
     // IMPORTANT: Project awards are counted by unique project, not by member records
@@ -1237,9 +1237,11 @@
           }));
         if (precomputedRanking.length > 0) {
           try {
-            renderPodium(buildScoreTiersFromRanking(precomputedRanking), 'top3-podium', 'Global Top 3 Score Tiers');
+            const precomputedTiers = buildScoreTiersFromRanking(precomputedRanking);
+            renderPodium(precomputedTiers, 'top3-podium', 'Global Top 3 Score Tiers');
           } catch (renderError) {
             console.error('Error rendering precomputed score tiers:', renderError);
+            renderFallbackScoreTiers(precomputedRanking, 'top3-podium');
           }
         }
 
@@ -1293,6 +1295,7 @@
             renderPodium(podiumData, 'top3-podium', 'Global Top 3 Score Tiers', [global, us, eu, sea, latam, fsForStats, pop, departmental]);
           } catch (renderError) {
             console.error('Error rendering score tiers:', renderError);
+            renderFallbackScoreTiers(podiumData, 'top3-podium');
           }
         }
 
@@ -1321,6 +1324,40 @@
           points: score,
           members: scoreGroups.get(score)
         }));
+    }
+
+    function renderFallbackScoreTiers(rankings, containerId) {
+      const container = document.getElementById(containerId);
+      if (!container || !Array.isArray(rankings) || !rankings.length) return;
+      const tiers = rankings.every(item => Array.isArray(item.members))
+        ? rankings.slice(0, 3)
+        : buildScoreTiersFromRanking(rankings);
+      const medal = rank => rank === 1 ? '🥇' : rank === 2 ? '🥈' : '🥉';
+      container.innerHTML = `
+        <div class="podium top-winners-podium">
+          ${tiers.map((tier, index) => {
+            const rank = tier.rank || index + 1;
+            const score = tier.score || tier.points || 0;
+            const members = tier.members || [];
+            return `
+              <div class="podium-item top-winner-card podium-tier-card tier-size-small">
+                <div class="podium-medal">${medal(rank)}</div>
+                <div class="podium-rank">${rank === 1 ? '1st' : rank === 2 ? '2nd' : '3rd'} Place</div>
+                <div class="podium-rank-sub">${members.length} ${members.length === 1 ? 'winner' : 'winners'}</div>
+                <div class="podium-member-project-groups">
+                  ${members.map(member => `
+                    <div class="podium-member-projects">
+                      <div class="podium-member-name">${escapeHtml(member.name || '')}</div>
+                      <div class="podium-member-project-empty">${escapeHtml(member.department || member.region || 'TikTok Shop')}</div>
+                    </div>
+                  `).join('')}
+                </div>
+                <div class="podium-score">${score} pts</div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      `;
     }
 
     // 合并Global数据和FS数据（支持季度结构）
