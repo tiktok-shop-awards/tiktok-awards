@@ -4771,6 +4771,7 @@ function getRecognitionQueryAliases(query) {
 function findRecognitionPosterSubject(query, results) {
   const aliases = getRecognitionQueryAliases(query);
   const candidates = new Map();
+  const normalizedQuery = String(query || '').trim().toLowerCase();
 
   results.forEach(result => {
     getRecognitionPeople(result).forEach(person => {
@@ -4789,9 +4790,15 @@ function findRecognitionPosterSubject(query, results) {
   const candidateList = Array.from(candidates.values());
   const candidateNames = new Set(candidateList.map(person => String(person.name || '').trim().toLowerCase()));
   const candidateEmails = new Set(candidateList.map(person => String(person.email || '').trim().toLowerCase()).filter(Boolean));
-  if (candidateNames.size !== 1 || candidateEmails.size > 1) return null;
+  const namesResolveToSameAlias = Array.from(candidateNames).every(name => aliases.has(name));
+  if ((!namesResolveToSameAlias && candidateNames.size !== 1) || candidateEmails.size > 1) return null;
 
-  const canonicalName = candidateList[0].name;
+  const canonicalCandidate =
+    candidateList.find(person => String(person.name || '').trim().toLowerCase() === normalizedQuery)
+    || candidateList.find(person => String(person.email || '').trim().toLowerCase() === normalizedQuery)
+    || candidateList.find(person => person.email)
+    || candidateList[0];
+  const canonicalName = canonicalCandidate.name;
   const canonicalEmail = Array.from(candidateEmails)[0] || '';
   const mappedAvatar = getFeishuAvatarUrl(canonicalEmail, canonicalName);
   const candidateAvatars = new Set(
@@ -4800,22 +4807,20 @@ function findRecognitionPosterSubject(query, results) {
       .filter(Boolean)
   );
   if (mappedAvatar) candidateAvatars.add(mappedAvatar);
-  if (candidateAvatars.size > 1) return null;
 
   const candidateDepartments = [...new Set(candidateList.map(person => String(person.department || '').trim()).filter(Boolean))];
   const subject = {
-    ...candidateList[0],
+    ...canonicalCandidate,
     email: canonicalEmail || candidateList.find(person => person.email)?.email || '',
     avatarUrl: mappedAvatar || Array.from(candidateAvatars)[0] || '',
     department: candidateDepartments.length === 1 ? candidateDepartments[0] : ''
   };
-  const normalizedSubjectName = String(subject.name || '').trim().toLowerCase();
   const normalizedSubjectEmail = String(subject.email || '').trim().toLowerCase();
   const subjectResults = results.filter(result => getRecognitionPeople(result).some(person => {
     const personName = String(person.name || '').trim().toLowerCase();
     const personEmail = String(person.email || '').trim().toLowerCase();
     if (normalizedSubjectEmail && personEmail) return personEmail === normalizedSubjectEmail;
-    return personName === normalizedSubjectName;
+    return aliases.has(personName);
   }));
 
   return subjectResults.length ? { ...subject, results: subjectResults } : null;
