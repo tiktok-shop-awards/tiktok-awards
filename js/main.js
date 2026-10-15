@@ -178,6 +178,14 @@ function ensureHtml2CanvasLoaded() {
   return _html2CanvasPromise;
 }
 
+function warmPosterCaptureLibrary() {
+  window.setTimeout(() => {
+    ensureHtml2CanvasLoaded().catch(err => {
+      console.warn('[Poster] html2canvas preload failed:', err?.message || err);
+    });
+  }, 0);
+}
+
 function parseAwardBonusAmount(value) {
   if (value === null || value === undefined || value === '') return null;
   const normalized = String(value).replace(/,/g, '').trim();
@@ -2584,6 +2592,7 @@ function showShareModal(projectName, teamAward, bonus, reason, members, awardTyp
 
   // Show modal FIRST so the browser computes layout (scrollHeight is 0 when display:none)
   modal.classList.add('active');
+  warmPosterCaptureLibrary();
 
   // Now measure and scale the poster preview
   const preview = document.getElementById('poster-preview');
@@ -5140,6 +5149,7 @@ async function openRecognitionCollectionPoster(selectedScope = null) {
   };
   ensurePosterFeishuShareButton();
   modal.classList.add('active');
+  warmPosterCaptureLibrary();
   requestAnimationFrame(() => fitRecognitionPosterPreview());
 }
 

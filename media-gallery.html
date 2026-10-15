@@ -1207,7 +1207,7 @@
   <script src="js/auth.js?v=20261013-feishu-webapp-v1"></script>
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
   <script src="js/award-api.js?v=20260914uv"></script>
-  <script src="js/main.js?v=20261015-nonblocking-avatar-v1"></script>
+  <script src="js/main.js?v=20261015-fast-render-v1"></script>
   <script>
     // Video data
     let videosData = {
@@ -1228,7 +1228,7 @@
     // Load videos from JSON
     async function loadVideos() {
       try {
-        const response = await fetch('data/media.json?v=20260924-inline-video-v63', { cache: 'no-store' });
+        const response = await fetch('data/media.json?v=20261015-cover-jpg-v1', { cache: 'no-store' });
         if (response.ok) {
           videosData = await response.json();
           console.log('[MediaGallery] Loaded', videosData.videos.length, 'videos from JSON');
@@ -1265,7 +1265,7 @@
             playback_url: "videos/recognition-2025h2-720p.mp4",
             duration: "",
             badge: "",
-            thumbnail: "images/video-cover-featured.png"
+            thumbnail: "images/video-cover-featured.jpg"
           },
           {
             id: "lunch-takeaways-ep01",
