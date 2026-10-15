@@ -1517,9 +1517,9 @@ function calculateAllAwardScoreTiers(globalData, regionalDatasets = [], departme
     });
   };
 
-  addDataset(globalData, 'global', 5);
-  regionalDatasets.filter(Boolean).forEach(data => addDataset(data, 'regional', 3));
-  addDataset(departmentalData, 'departmental', 1);
+  addDataset(globalData, 'global', 10);
+  regionalDatasets.filter(Boolean).forEach(data => addDataset(data, 'regional', 5));
+  addDataset(departmentalData, 'departmental', 3);
 
   const scoreGroups = new Map();
   [...people.values()].forEach(person => {
@@ -1529,8 +1529,7 @@ function calculateAllAwardScoreTiers(globalData, regionalDatasets = [], departme
     person.totalAwards = totalAwards;
     person.awardLevels = awardLevels;
     person.multipleAwardBonus = Math.max(0, totalAwards - 1);
-    person.crossLevelBonus = Math.max(0, awardLevels - 1);
-    person.score = person.baseScore + person.multipleAwardBonus + person.crossLevelBonus;
+    person.score = person.baseScore + person.multipleAwardBonus;
     if (!scoreGroups.has(person.score)) scoreGroups.set(person.score, []);
     scoreGroups.get(person.score).push(person);
   });
@@ -1600,7 +1599,7 @@ function renderPodium(top3, containerId, title, highlightDatasets = []) {
       email: member.email,
       department: getDept(member)
     }));
-    const highlightText = `${memberCount} ${memberCount === 1 ? 'winner ranks' : 'winners rank'} ${ordinal(displayRank)} in the ${AppData.currentYear || '2026'} full-year Global E-Commerce Awards with ${score} points. Scoring includes Global Award = 5 pts, Regional Award = 3 pts, Departmental Award = 1 pt, Multiple-Award Bonus = +1 pt per additional award, and Cross-Level Bonus = +1 pt per additional award level.`;
+    const highlightText = `${memberCount} ${memberCount === 1 ? 'winner ranks' : 'winners rank'} ${ordinal(displayRank)} in the ${AppData.currentYear || '2026'} full-year Global E-Commerce Awards with ${score} points. Scoring includes Global Award = 10 pts, Regional Award = 5 pts, Departmental Award = 3 pts, and Multiple-Award Bonus = +1 pt per additional award.`;
     const individualPosters = members.map((member, memberIndex) => {
       const memberProjects = Array.isArray(member.projects) && member.projects.length
         ? member.projects

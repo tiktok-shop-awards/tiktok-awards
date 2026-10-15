@@ -797,7 +797,7 @@
 
           <!-- Scoring Rule Note -->
           <p style="font-size: 12px; color: var(--text-secondary); margin: var(--spacing-sm) 0;">
-            <strong>Scoring:</strong> Global Award = 5 pts | Regional Award = 3 pts | Departmental Award = 1 pt | Multiple-Award Bonus = +1 pt per additional award | Cross-Level Bonus = +1 pt per additional award level
+            <strong>Scoring:</strong> Global Award = 10 pts | Regional Award = 5 pts | Departmental Award = 3 pts | Multiple-Award Bonus = +1 pt per additional award
           </p>
 
           <!-- Podium (Top 3) -->
@@ -915,7 +915,7 @@
   <script src="js/auth.js?v=20261013-feishu-webapp-v1"></script>
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
   <script src="js/award-api.js?v=20260914internalonly"></script>
-  <script src="js/main.js?v=20261015-person-alias-v1"></script>
+  <script src="js/main.js?v=20261015-score-10-5-3-v1"></script>
   <script>
     // Render Home Stats - Now includes Q1/Q2/Q3/Q4 data for FS/POP and all regional data
     // IMPORTANT: Project awards are counted by unique project, not by member records
@@ -1262,8 +1262,8 @@
         });
 
         // 2026 uses all award records and dense score ranking:
-        // Base score: Global = 5, Regional = 3, Departmental = 1.
-        // Bonuses: +1 per additional award and +1 per additional award level.
+        // Base score: Global = 10, Regional = 5, Departmental = 3.
+        // Bonus: +1 per additional award.
         const calculatedTiers = urlYear === '2026'
           ? calculateAllAwardScoreTiers(
               global,
