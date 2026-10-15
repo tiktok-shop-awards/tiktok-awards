@@ -779,7 +779,9 @@ function loadVersionedJson(fileName) {
 
 async function loadData(level, region = null, year = null) {
   try {
-    await loadFeishuAvatarMap();
+    loadFeishuAvatarMap().catch(err => {
+      console.warn('[Avatar] Background avatar map load failed:', err?.message || err);
+    });
     let data;
 
     if (level === 'pop') {

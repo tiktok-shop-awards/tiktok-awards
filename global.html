@@ -774,7 +774,7 @@ Together, these initiatives addressed critical bottlenecks across the entire LIV
   <script src="js/auth.js?v=20261013-feishu-webapp-v1"></script>
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
   <script src="js/award-api.js?v=20260914internalonly"></script>
-  <script src="js/main.js?v=20261013-feishu-webapp-v1"></script>
+  <script src="js/main.js?v=20261015-nonblocking-avatar-v1"></script>
   <script>
     // Global page specific initialization
     let currentHalf = getUrlParam('period') || 'H1';
@@ -815,7 +815,9 @@ Together, these initiatives addressed critical bottlenecks across the entire LIV
         runGlobalAuthDebug();
         return;
       }
-      await loadFeishuAvatarMap();
+      loadFeishuAvatarMap().catch(err => {
+        console.warn('[Avatar] Background avatar map load failed:', err?.message || err);
+      });
       // Search handlers - always bind regardless of data loading errors (Bug 4 fix)
       const searchInput = document.getElementById('search-input');
       const searchBtn = document.getElementById('search-btn');

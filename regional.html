@@ -706,7 +706,7 @@
   <script src="js/auth.js?v=20261013-feishu-webapp-v1"></script>
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
   <script src="js/award-api.js?v=20260914internalonly"></script>
-  <script src="js/main.js?v=20261013-feishu-webapp-v1"></script>
+  <script src="js/main.js?v=20261015-nonblocking-avatar-v1"></script>
   <script>
     // Regional page specific initialization
     const regionNames = {
@@ -1264,7 +1264,9 @@
     
     document.addEventListener('DOMContentLoaded', async () => {
       console.log('DOMContentLoaded fired');
-      await loadFeishuAvatarMap();
+      loadFeishuAvatarMap().catch(err => {
+        console.warn('[Avatar] Background avatar map load failed:', err?.message || err);
+      });
       
       // Get year, region, and period from URL, then normalize them for deep links.
       const initialState = getInitialRegionalState();
