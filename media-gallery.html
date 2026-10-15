@@ -1228,7 +1228,7 @@
     // Load videos from JSON
     async function loadVideos() {
       try {
-        const response = await fetch('data/media.json?v=20261015-cover-jpg-v1', { cache: 'no-store' });
+        const response = await fetch('data/media.json?v=20261015-cover-fixed-v1', { cache: 'no-store' });
         if (response.ok) {
           videosData = await response.json();
           console.log('[MediaGallery] Loaded', videosData.videos.length, 'videos from JSON');
@@ -1265,7 +1265,7 @@
             playback_url: "videos/recognition-2025h2-720p.mp4",
             duration: "",
             badge: "",
-            thumbnail: "images/video-cover-featured.jpg"
+            thumbnail: "images/video-cover-featured-awards.jpg"
           },
           {
             id: "lunch-takeaways-ep01",
