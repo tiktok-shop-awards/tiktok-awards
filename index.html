@@ -915,7 +915,7 @@
   <script src="js/auth.js?v=20261013-feishu-webapp-v1"></script>
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
   <script src="js/award-api.js?v=20260914internalonly"></script>
-  <script src="js/main.js?v=20261015-score-10-5-3-v1"></script>
+  <script src="js/main.js?v=20261015-score-10-5-3-2025-v1"></script>
   <script>
     // Render Home Stats - Now includes Q1/Q2/Q3/Q4 data for FS/POP and all regional data
     // IMPORTANT: Project awards are counted by unique project, not by member records
@@ -1261,16 +1261,14 @@
           });
         });
 
-        // 2026 uses all award records and dense score ranking:
+        // 2025 and 2026 use all award records and dense score ranking:
         // Base score: Global = 10, Regional = 5, Departmental = 3.
         // Bonus: +1 per additional award.
-        const calculatedTiers = urlYear === '2026'
-          ? calculateAllAwardScoreTiers(
-              global,
-              [us, eu, sea, latam, fsForStats],
-              departmental
-            )
-          : [];
+        const calculatedTiers = calculateAllAwardScoreTiers(
+          global,
+          [us, eu, sea, latam, fsForStats, pop],
+          departmental
+        );
         const rankingSource = rankingsData && (rankingsData.top10 || rankingsData.top3)
           ? (rankingsData.top10 || rankingsData.top3)
           : [];
