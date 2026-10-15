@@ -352,13 +352,48 @@ function getAvatarImageErrorHandler(fallbackDisplay = 'inline') {
   return `if(this.dataset.fallback){var fallback=this.dataset.fallback;this.dataset.fallback='';this.src=fallback;}else{this.style.display='none';this.nextElementSibling.style.display='${fallbackDisplay}';}`;
 }
 
+function refreshRenderedAvatars(root = document) {
+  const avatarMap = window.FEISHU_AVATAR_MAP || {};
+  if (!avatarMap || Object.keys(avatarMap).length === 0) return;
+
+  root.querySelectorAll('.award-member-avatar[data-avatar-name], .poster-modern-avatar[data-avatar-name]').forEach(avatarEl => {
+    if (avatarEl.dataset.avatarResolved === '1') return;
+    const email = (avatarEl.dataset.avatarEmail || '').trim().toLowerCase();
+    const name = (avatarEl.dataset.avatarName || '').trim().toLowerCase();
+    const avatarUrl = avatarMap[email] || avatarMap[name] || '';
+    if (!avatarUrl) return;
+
+    const sizeClass = avatarEl.classList.contains('compact') ? 72 : 96;
+    const optimizedAvatarUrl = getOptimizedAvatarUrl(avatarUrl, sizeClass);
+    const existingImg = avatarEl.querySelector('img');
+    const initials = avatarEl.querySelector('span');
+
+    if (existingImg) {
+      existingImg.dataset.fallback = avatarUrl;
+      existingImg.src = optimizedAvatarUrl;
+      existingImg.style.display = '';
+    } else {
+      avatarEl.insertAdjacentHTML(
+        'afterbegin',
+        `<img src="${escapeHtml(optimizedAvatarUrl)}" data-fallback="${escapeHtml(avatarUrl)}" alt="${escapeHtml(avatarEl.dataset.avatarName || '')}" loading="lazy" fetchpriority="low" decoding="async" onerror="${getAvatarImageErrorHandler()}">`
+      );
+    }
+
+    if (initials) initials.style.display = 'none';
+    avatarEl.dataset.avatarResolved = '1';
+  });
+}
+
 async function loadFeishuAvatarMap(options = {}) {
   const force = Boolean(options.force);
   if (force) {
     window.__feishuAvatarMapLoaded = false;
     window.__feishuAvatarMapPromise = null;
   }
-  if (window.__feishuAvatarMapLoaded) return window.FEISHU_AVATAR_MAP || {};
+  if (window.__feishuAvatarMapLoaded) {
+    refreshRenderedAvatars();
+    return window.FEISHU_AVATAR_MAP || {};
+  }
   if (window.__feishuAvatarMapPromise) return window.__feishuAvatarMapPromise;
 
   window.__feishuAvatarMapPromise = (async () => {
@@ -367,6 +402,7 @@ async function loadFeishuAvatarMap(options = {}) {
       if (cachedMap) {
         window.FEISHU_AVATAR_MAP = JSON.parse(cachedMap);
         window.__feishuAvatarMapLoaded = true;
+        refreshRenderedAvatars();
         return window.FEISHU_AVATAR_MAP;
       }
     } catch (cacheError) {
@@ -393,11 +429,14 @@ async function loadFeishuAvatarMap(options = {}) {
       }
     }
     window.__feishuAvatarMapLoaded = true;
+    refreshRenderedAvatars();
     return window.FEISHU_AVATAR_MAP || {};
   })();
 
   try {
-    return await window.__feishuAvatarMapPromise;
+    const avatarMap = await window.__feishuAvatarMapPromise;
+    refreshRenderedAvatars();
+    return avatarMap;
   } catch (err) {
     window.__feishuAvatarMapLoaded = false;
     window.__feishuAvatarMapPromise = null;
@@ -425,8 +464,9 @@ function renderMemberAvatar(member, sizeClass = '', options = {}) {
     ? `<img src="${escapeHtml(optimizedAvatarUrl)}" data-fallback="${escapeHtml(normalized.avatarUrl)}" alt="${escapeHtml(normalized.name)}" loading="${loadingMode}" fetchpriority="${fetchPriority}" decoding="async" onerror="${getAvatarImageErrorHandler()}">`
     : '';
   const initialsStyle = normalized.avatarUrl ? ' style="display:none;"' : '';
+  const avatarDataAttrs = ` data-avatar-name="${escapeHtml(normalized.name)}" data-avatar-email="${escapeHtml(normalized.email || '')}"${normalized.avatarUrl ? ' data-avatar-resolved="1"' : ''}`;
   return `
-    <div class="award-member-avatar ${sizeClass}${clickable}" title="${escapeHtml(normalized.name)}"${onclickAttr}>
+    <div class="award-member-avatar ${sizeClass}${clickable}" title="${escapeHtml(normalized.name)}"${avatarDataAttrs}${onclickAttr}>
       ${avatarImg}<span${initialsStyle}>${escapeHtml(getAvatarInitials(normalized.name))}</span>
     </div>
   `;
