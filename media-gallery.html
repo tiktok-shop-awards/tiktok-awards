@@ -1228,11 +1228,17 @@
     // Load videos from JSON
     async function loadVideos() {
       try {
-        const response = await fetch('data/media.json?v=20261015-media-720p-balanced', { cache: 'no-store' });
+        const response = await fetch('data/media.json?v=20261015-media-720p-balanced-fallback', { cache: 'no-store' });
         if (response.ok) {
           videosData = await response.json();
+          if (!Array.isArray(videosData.videos) || videosData.videos.length === 0) {
+            throw new Error('Media JSON has no videos');
+          }
           console.log('[MediaGallery] Loaded', videosData.videos.length, 'videos from JSON');
           renderVideos();
+          if (!document.querySelector('.video-card')) {
+            throw new Error('Media cards did not render');
+          }
           updateStats();
           return;
         }
