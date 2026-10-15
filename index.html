@@ -915,7 +915,7 @@
   <script src="js/auth.js?v=20261013-feishu-webapp-v1"></script>
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
   <script src="js/award-api.js?v=20260914internalonly"></script>
-  <script src="js/main.js?v=20261015-score-fast-rankings-v1"></script>
+  <script src="js/main.js?v=20261015-score-fast-rankings-v2"></script>
   <script>
     // Render Home Stats - Now includes Q1/Q2/Q3/Q4 data for FS/POP and all regional data
     // IMPORTANT: Project awards are counted by unique project, not by member records
@@ -1236,7 +1236,11 @@
             region: r.region || null
           }));
         if (precomputedRanking.length > 0) {
-          renderPodium(precomputedRanking, 'top3-podium', 'Global Top 3 Score Tiers');
+          try {
+            renderPodium(buildScoreTiersFromRanking(precomputedRanking), 'top3-podium', 'Global Top 3 Score Tiers');
+          } catch (renderError) {
+            console.error('Error rendering precomputed score tiers:', renderError);
+          }
         }
 
         // Load all data for stats (Q1 + Q2 + Q3 + Q4 + FS + POP)
@@ -1285,7 +1289,11 @@
             );
         const podiumData = precomputedRanking.length ? precomputedRanking : calculatedTiers;
         if (podiumData.length > 0) {
-          renderPodium(podiumData, 'top3-podium', 'Global Top 3 Score Tiers', [global, us, eu, sea, latam, fsForStats, pop, departmental]);
+          try {
+            renderPodium(podiumData, 'top3-podium', 'Global Top 3 Score Tiers', [global, us, eu, sea, latam, fsForStats, pop, departmental]);
+          } catch (renderError) {
+            console.error('Error rendering score tiers:', renderError);
+          }
         }
 
         // Calculate and render stats
@@ -1295,6 +1303,24 @@
       } catch (error) {
         console.error('Error loading home page data:', error);
       }
+    }
+
+    function buildScoreTiersFromRanking(rankings) {
+      const scoreGroups = new Map();
+      rankings.forEach(person => {
+        const score = person.score || person.points || 0;
+        if (!scoreGroups.has(score)) scoreGroups.set(score, []);
+        scoreGroups.get(score).push(person);
+      });
+      return [...scoreGroups.keys()]
+        .sort((a, b) => b - a)
+        .slice(0, 3)
+        .map((score, index) => ({
+          rank: index + 1,
+          score,
+          points: score,
+          members: scoreGroups.get(score)
+        }));
     }
 
     // 合并Global数据和FS数据（支持季度结构）
