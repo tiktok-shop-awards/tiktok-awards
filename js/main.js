@@ -729,8 +729,9 @@ async function loadManifest() {
   return _manifestPromise;
 }
 
-async function loadChunkedFile(baseName) {
-  if (!_chunkedFilePromises.has(baseName)) {
+async function loadChunkedFile(baseName, targetYear = null) {
+  const cacheKey = targetYear ? `${baseName}:${targetYear}` : baseName;
+  if (!_chunkedFilePromises.has(cacheKey)) {
     const request = (async () => {
       const manifest = await loadManifest();
       const fileMap = manifest[baseName];
@@ -741,7 +742,8 @@ async function loadChunkedFile(baseName) {
       if (hasYearStructure) {
         // Year-based: { '2026': { Q1: [files], Q2: [files] } }
         const result = {};
-        for (const year of Object.keys(fileMap)) {
+        const yearsToLoad = targetYear && fileMap[targetYear] ? [targetYear] : Object.keys(fileMap);
+        for (const year of yearsToLoad) {
           result[year] = {};
           for (const period of Object.keys(fileMap[year])) {
             const files = fileMap[year][period];
@@ -761,12 +763,12 @@ async function loadChunkedFile(baseName) {
       }
       return result;
     })().catch(error => {
-      _chunkedFilePromises.delete(baseName);
+      _chunkedFilePromises.delete(cacheKey);
       throw error;
     });
-    _chunkedFilePromises.set(baseName, request);
+    _chunkedFilePromises.set(cacheKey, request);
   }
-  return _chunkedFilePromises.get(baseName);
+  return _chunkedFilePromises.get(cacheKey);
 }
 
 function loadVersionedJson(fileName) {
@@ -806,7 +808,8 @@ async function loadData(level, region = null, year = null) {
       else if (level === 'departmental') baseName = 'departmental';
       else throw new Error('Unknown level: ' + level);
 
-      data = await loadChunkedFile(baseName);
+      const targetYear = year || AppData.currentYear || '2025';
+      data = await loadChunkedFile(baseName, targetYear);
     }
 
     const targetYear = year || AppData.currentYear || '2025';
