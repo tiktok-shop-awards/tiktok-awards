@@ -1,0 +1,1568 @@
+{
+  "version": "20261015",
+  "byEmail": {
+    "benjamin.music@bytedance.com": "Benjamin Music",
+    "frederick.fu@bytedance.com": "Federico",
+    "zhangzhe.gigi@bytedance.com": "Gigi Zhang",
+    "hongqian.su@bytedance.com": "Hongqian Su",
+    "lisa.ge@bytedance.com": "Lisa Ge",
+    "maogufeng@bytedance.com": "Michael Mao",
+    "guoqianle@bytedance.com": "Qianle(Alex)",
+    "salvatore.ganzerli@bytedance.com": "Salvatore Ganzerli",
+    "liyuqing.829@bytedance.com": "Viola",
+    "wei.wonghaney@bytedance.com": "Wei Wong-Haney",
+    "xinling.soda@bytedance.com": "XinLing",
+    "yiqing.han@bytedance.com": "Yiqing",
+    "dingweiwei1@bytedance.com": "Weiwei Ding",
+    "dingrongrong.drr@bytedance.com": "Cyrus",
+    "dingyuanchao@bytedance.com": "Yuanchao Ding",
+    "yanbailu@bytedance.com": "Bailu Yan",
+    "yanhanzhao@bytedance.com": "Hanzhao Yan",
+    "yuqinan@bytedance.com": "Qinan Yu",
+    "linzhen.420@bytedance.com": "Cecilia",
+    "heluo.cc@bytedance.com": "Luo He",
+    "yukangfei.123@bytedance.com": "Kangfei Yu",
+    "houbangqing@bytedance.com": "Bangqing Hou",
+    "yushanshan.1224@bytedance.com": "Shanshan Yu",
+    "binni@bytedance.com": "Bin Ni",
+    "nizehao.max@bytedance.com": "Zehao Ni",
+    "fengjiayong.john@bytedance.com": "John Von",
+    "fengpeiyao.617@bytedance.com": "Peiyao Feng",
+    "fenghaojie.1013@bytedance.com": "Haojie Feng",
+    "fengyuan.psyduck@bytedance.com": "Yuan Feng",
+    "yisi@bytedance.com": "Yisi Liu",
+    "guolingliu@bytedance.com": "Guoling Liu",
+    "liumiaohan@bytedance.com": "Hannah Liu",
+    "liuning.nic1@bytedance.com": "Ning Liu",
+    "liukangxu@bytedance.com": "Kangxu Liu",
+    "fir.liu@bytedance.com": "Xinqi Liu",
+    "yuxuanliu.celine@bytedance.com": "Yuxuan Liu",
+    "liuzhiyuan.hera@bytedance.com": "Hera Liu",
+    "liushuotong@bytedance.com": "Shuotong Liu",
+    "liulu.olivia@bytedance.com": "Olivia",
+    "liuzubing@bytedance.com": "Harvey Liu",
+    "liuhanshu.7@bytedance.com": "Hanshu Liu",
+    "liurong.ux@bytedance.com": "Rong Liu",
+    "liuwei.vivian666@bytedance.com": "Wei Liu",
+    "liu.sylvia@bytedance.com": "Sylvia Liu",
+    "zhuoyue.re@bytedance.com": "Yue Zhuo",
+    "lukunhao@bytedance.com": "Kunhao Lu",
+    "yejiazhi@bytedance.com": "Jiazhi Ye",
+    "lvshuangyao.o@bytedance.com": "Shuangyao Lv",
+    "lvmingyang@bytedance.com": "eddie",
+    "wushuna@bytedance.com": "Serena Wu",
+    "wusonglin.234@bytedance.com": "Wesley",
+    "wuzhen.88@bytedance.com": "Zhen Wu",
+    "emma.goh@bytedance.com": "Emma Goh",
+    "wumengmeng.max@bytedance.com": "Max Wu",
+    "zhouxinrui.zz@bytedance.com": "Xinrui Zhou",
+    "zhouyi.happy@bytedance.com": "Yi Zhou",
+    "zhoujianhao.felix@bytedance.com": "Felix Zhou",
+    "zhouhuan.nancy@bytedance.com": "Huan Zhou",
+    "zhouyan.1202@bytedance.com": "Yan Zhou",
+    "zhouruilin.824@bytedance.com": "Raina Zhou",
+    "zhoucheng.blues@bytedance.com": "Cheng Zhou",
+    "zhouchaoran@bytedance.com": "Chaoran Zhou",
+    "chaochaozhou@bytedance.com": "Joseph Zhou",
+    "heyiran.0303@bytedance.com": "Yiran He",
+    "tangyujiao@bytedance.com": "Judy Tang",
+    "tangxuli@bytedance.com": "Xuli Tang",
+    "tangmengze@bytedance.com": "Mengze Tang",
+    "tangwei.012@bytedance.com": "Wei Tang",
+    "xiasuyun@bytedance.com": "Anaya",
+    "xihaocheng@bytedance.com": "Haocheng Xi",
+    "jibo.1558@bytedance.com": "Bo Ji",
+    "sunxizi.serene@bytedance.com": "Serene",
+    "sunjuan.sj@bytedance.com": "Juan Sun",
+    "sunbinhui.00@bytedance.com": "Brian Sun",
+    "hanmingsun@bytedance.com": "Hanming Sun",
+    "menghuipeng@bytedance.com": "Huipeng Meng",
+    "ningzehang.ev@bytedance.com": "Zehang Ning",
+    "songyuanyuan.qw@bytedance.com": "Yuanyuan Song",
+    "songyongchao@bytedance.com": "Yongchao Song",
+    "kenny.low@bytedance.com": "Kenny Low",
+    "ryan.yin@bytedance.com": "Ryan Yin",
+    "juchao.jc@bytedance.com": "Jack Ju",
+    "cuixianshi@bytedance.com": "Xianshi(Henry) Cui",
+    "changwei.david@bytedance.com": "David Chang",
+    "changjiamin.123@bytedance.com": "Jiamin Chang",
+    "kangyuting.x@bytedance.com": "Yuting Kang",
+    "liaozhiwen@bytedance.com": "Zhiwen Liao",
+    "zhangdanyang.1123@bytedance.com": "Danyang Zhang",
+    "zhangjiayu.ja@bytedance.com": "Jiayu Zhang",
+    "zhangyetao.zyt@bytedance.com": "Yetao Zhang",
+    "zhangtongxin.felix@bytedance.com": "Tongxin Zhang",
+    "zhangguopeng@bytedance.com": "Guopeng Zhang",
+    "zhangzixuan.12@bytedance.com": "Zixuan Zhang",
+    "zhangwenli.168@bytedance.com": "Jessie Zhang",
+    "zhangmenglin@bytedance.com": "Menglin Zhang",
+    "zhangxin.67@bytedance.com": "Xin Zhang",
+    "zhangxun.sean@bytedance.com": "Xun Zhang",
+    "zhangling.99@bytedance.com": "Ling Zhang",
+    "zhangling.lillian@bytedance.com": "Lillian Zhang",
+    "zhangyiming.eddie@bytedance.com": "Yiming Zhang",
+    "zhangrui.25@bytedance.com": "Rui Zhang",
+    "zhangqiqi.vivi@bytedance.com": "Vivian Zhang",
+    "weiyu.zhang@bytedance.com": "Vera Zhang",
+    "zhangsuke@bytedance.com": "Suke Zhang",
+    "zhanggewei@bytedance.com": "Gewei",
+    "zhangminghe.0515@bytedance.com": "Ada Zhang",
+    "pengzhao.rachel@bytedance.com": "Rachel",
+    "pengsen.sam@bytedance.com": "Sam Peng",
+    "pengqi.lovework@bytedance.com": "Qi Peng",
+    "xuwei.1212@bytedance.com": "Wei Xu",
+    "xukehan@bytedance.com": "Kehan Xu",
+    "xupingping.6577@bytedance.com": "Pingping Xu",
+    "xudedong@bytedance.com": "DeDong Xu",
+    "xuyueqiang@bytedance.com": "Abby Xu",
+    "rachelxu.1111@bytedance.com": "Rachel Xu",
+    "xuqirui@bytedance.com": "Qirui Xu",
+    "xushiyun.24@bytedance.com": "Shiyun Xu",
+    "zhijia.peanut@bytedance.com": "Peanut Zhi",
+    "yirun@bytedance.com": "Yirun Cao",
+    "zengguangying.2026@bytedance.com": "William Zeng",
+    "zhujiabin@bytedance.com": "Jiabin Zhu",
+    "zhuyouping@bytedance.com": "Youping Zhu",
+    "zhuzhipeng.93@bytedance.com": "Zhipeng Zhu",
+    "zhuyun@bytedance.com": "Stone Zhu",
+    "yanchen.zhu@bytedance.com": "Yanchen Zhu",
+    "zhuxiaoyi.suki@bytedance.com": "Suki Zhu",
+    "zhukezhou@bytedance.com": "Muko Zhu",
+    "zhurui.0208@bytedance.com": "Rui Zhu",
+    "biyun@bytedance.com": "Sarah Zhu",
+    "zhulong.zhu@bytedance.com": "Long Zhu",
+    "xuchen.quan666@bytedance.com": "Xuchen Quan",
+    "lijingda.666@bytedance.com": "Jordan Lee",
+    "lijiachen.0628@bytedance.com": "Jiachen Li",
+    "likejiao@bytedance.com": "Kejiao Li",
+    "lizhouyang@bytedance.com": "Zhouyang Li",
+    "liyue.irene@bytedance.com": "Irene Li",
+    "lixiaofei.01@bytedance.com": "Chelsea Li",
+    "lichenhan@bytedance.com": "Chenhan Li",
+    "linkeli@bytedance.com": "Linke Li",
+    "liyang.kylin@bytedance.com": "Kylin Li",
+    "liyanqiu.tk@bytedance.com": "Yanqiu Li",
+    "lizhenzhen.janeli@bytedance.com": "Zhenzhen Li",
+    "liyaoyao.y@bytedance.com": "Yaoyao Li",
+    "lixiuzuan@bytedance.com": "Xiuzuan Li",
+    "lizike@bytedance.com": "Zike Li",
+    "liwei.0504@bytedance.com": "Ella Li",
+    "mili@bytedance.com": "Hera Li",
+    "lihaowen.30@bytedance.com": "Haowen Li",
+    "lixiaoyao.081x@bytedance.com": "Xiaoyao Li",
+    "liyuhong.lynn@bytedance.com": "Yuhong Li",
+    "litong.hc@bytedance.com": "Heston Li",
+    "duqianwen.1@bytedance.com": "Qianwen Du",
+    "duxiangpeng@bytedance.com": "Xiangpeng Du",
+    "duyaxuan.vic@bytedance.com": "Vic Du",
+    "yanglili.5994@bytedance.com": "Lili Yang",
+    "yangjing.jennie@bytedance.com": "Jennie Yang",
+    "yangliu.yangl@bytedance.com": "Liu Yang",
+    "yangnan.26@bytedance.com": "Nan Yang",
+    "yangyi.irene@bytedance.com": "Irene Yang",
+    "yangshiqi.blair@bytedance.com": "Blair",
+    "yangyang.0314@bytedance.com": "Jasper Yang",
+    "linjing.0127@bytedance.com": "Jing Lin",
+    "linyangfan@bytedance.com": "Esther Lin",
+    "linyangqin.cyrus7@bytedance.com": "Yangqin Lin",
+    "liangbing.17@bytedance.com": "Bing Liang",
+    "liangshuang.aa@bytedance.com": "Sherry Liang",
+    "qi.fan@bytedance.com": "Qi Fan",
+    "yinmairui@bytedance.com": "Mairui Yin",
+    "biweisen@bytedance.com": "Weisen Bi",
+    "bixin.43@bytedance.com": "Xin Bi",
+    "jiangweiran@bytedance.com": "Warren Jiang",
+    "tangwei.wei@bytedance.com": "Wei Tang",
+    "tangwei.vincent@bytedance.com": "Vincent Tang",
+    "wangyang.0616@bytedance.com": "Yang Wang",
+    "shentianyi.10@bytedance.com": "Veronica Shen",
+    "shenzehong@bytedance.com": "Zehong Shen",
+    "shenyao.haruka@bytedance.com": "Yao Shen",
+    "hongyifan.yf@bytedance.com": "Yifan Hong",
+    "jingjing.tu@bytedance.com": "Jingjing Tu",
+    "youwenhao.ywh@bytedance.com": "Wenhao You",
+    "chenxiaoxiao.01@bytedance.com": "XiaoXiao",
+    "niutianyu@bytedance.com": "Tianyu Niu",
+    "wangyichuan@bytedance.com": "Yichuan Wang",
+    "wangdan.900818@bytedance.com": "Alice Wang",
+    "wangyaning.1023@bytedance.com": "Yaning Wang",
+    "wangyou.233@bytedance.com": "You Wang",
+    "wangxinyi.csy@bytedance.com": "Xinyi Wang",
+    "wangfengjiao.lily@bytedance.com": "Fengjiao Wang",
+    "wangzhuo.lora@bytedance.com": "Lora Wang",
+    "wangning.warner@bytedance.com": "Ning Wang",
+    "wangyu.winnie2@bytedance.com": "Winnie Wang",
+    "wangjiaqi.zoe@bytedance.com": "Zoe Wang",
+    "wangqingmin@bytedance.com": "Anna Wang",
+    "wangjianpeng.mb@bytedance.com": "Jianpeng Wang",
+    "wangxiaoye.666@bytedance.com": "Yeh Wang",
+    "wangmengyun.054@bytedance.com": "Molly",
+    "toanwang.123@bytedance.com": "Tao Wang",
+    "wangrui.wil@bytedance.com": "William",
+    "wanghaotian.666@bytedance.com": "Haotian Wang",
+    "wangxi.sidney@bytedance.com": "Xi Wang",
+    "wangchao.evan@bytedance.com": "Chao Wang",
+    "wangyue.gabi@bytedance.com": "Yue Wang",
+    "wangxue.judy@bytedance.com": "Judy Wang",
+    "wangwenwen.bonnie@bytedance.com": "Wenwen Wang",
+    "wangchi.jamie@bytedance.com": "Jamie Wang",
+    "ganlai@bytedance.com": "Lai Gan",
+    "yu.tian1@bytedance.com": "Yu Tian",
+    "shenxueyan@bytedance.com": "Xueyan Shen",
+    "baizhe@bytedance.com": "Zhe Bai",
+    "baijiaqi.jomo@bytedance.com": "Jomo",
+    "baihao.lingjun@bytedance.com": "Hao Bai",
+    "baiqi.7@bytedance.com": "Bella Bai",
+    "chengyafeng.9@bytedance.com": "Yafeng Cheng",
+    "chengchong.cc@bytedance.com": "Chong Cheng",
+    "chengzhiya.0401@bytedance.com": "Zhiya Cheng",
+    "chengluting@bytedance.com": "Luting Cheng",
+    "fang.foo@bytedance.com": "Fang Yu Foo",
+    "shiqi.fu@bytedance.com": "Shiqi Fu",
+    "yuhong.ivie@bytedance.com": "Ivie Luo",
+    "luoyuyan.53@bytedance.com": "Elvina Luo",
+    "wengzhenyu@bytedance.com": "Johnny Weng",
+    "gengyanhong@bytedance.com": "Tem",
+    "niepengfei@bytedance.com": "Phelan",
+    "huxiaobo.hxb@bytedance.com": "Xiaobo Hu",
+    "husiqian.888@bytedance.com": "Siqian Hu",
+    "hujinyi.76@bytedance.com": "Joy Hu",
+    "hujun@bytedance.com": "Jun Hu",
+    "aizieralimu@bytedance.com": "Aizier Alimu",
+    "huangchang.sutang@bytedance.com": "Candice Su",
+    "fanzhou.fz@bytedance.com": "Timy",
+    "dongguolin@bytedance.com": "Guolin Dong",
+    "jiangjieyu.11@bytedance.com": "Jieyu Jiang",
+    "jiangxiaoqian.99@bytedance.com": "Xiaoqian Jiang",
+    "jiangxi.01@bytedance.com": "Xi Jiang",
+    "jiangyinyuan@bytedance.com": "Silver Jiang",
+    "jiangxiaoming.1@bytedance.com": "Eddy Jiang",
+    "cainan@bytedance.com": "Nan Cai",
+    "caiyu.ben@bytedance.com": "Ben Cai",
+    "caiyi.ion@bytedance.com": "Yi Cai",
+    "chufuwei@bytedance.com": "Fuwei Chu",
+    "zhuyujie.1030@bytedance.com": "Yujie Zhu",
+    "feizixuan@bytedance.com": "Zixuan Fei",
+    "feichengzhi@bytedance.com": "Ben Fei",
+    "heyuying.45@bytedance.com": "Yuying He",
+    "zhaoyi.pm@bytedance.com": "Yi Zhao",
+    "zhaoyuechen@bytedance.com": "Cherry Zhao",
+    "zhaochuhan.611@bytedance.com": "Brynn Zhao",
+    "zhaohuanli@bytedance.com": "Bella Zhao",
+    "zhaorunnan.rita@bytedance.com": "Rita Zhao",
+    "zhaoxiyue.elena@bytedance.com": "Elena Zhao",
+    "luwei.sky@bytedance.com": "Wei Lu",
+    "pangmiao@bytedance.com": "Miao Pang",
+    "denglei.eric@bytedance.com": "Eric Deng",
+    "qiuyuhan.123@bytedance.com": "Margaret Qiu",
+    "zoubing.123@bytedance.com": "Bing Zou",
+    "zouying.zou@bytedance.com": "Ying Zou",
+    "zhengbing.67@bytedance.com": "Savannah Zheng",
+    "zhenghengda@bytedance.com": "Hengda Zheng",
+    "zhenghao.666@bytedance.com": "Hao Zheng",
+    "zhengxiuxiu.66@bytedance.com": "Xiuxiu Zheng",
+    "zhengjingwei@bytedance.com": "Jingwei Zheng",
+    "liyuanguo.lydia@bytedance.com": "Liyuan Guo",
+    "guona.rena@bytedance.com": "Na Guo",
+    "guoxiaolong.gxl@bytedance.com": "Xiaolong Guo",
+    "jinhuiting@bytedance.com": "Huiting Jin",
+    "jinchangcong@bytedance.com": "Changcong Jin",
+    "jinqiushi.01@bytedance.com": "Qiushi(Dennis) Jin",
+    "zhongjunqiang@bytedance.com": "Junqiang Zhong",
+    "qianbolun@bytedance.com": "Bolun Qian",
+    "chenchuan.0208@bytedance.com": "Chuan Chen",
+    "chenyunfei.kumo@bytedance.com": "Kumo Chen",
+    "chenweihao.rex@bytedance.com": "Rex Chen",
+    "chenxiaolong.23@bytedance.com": "Xiaolong Chen",
+    "chenyi.sup76@bytedance.com": "Yi Chen",
+    "chenxiaofeng.lavine@bytedance.com": "Xiaofeng Chen",
+    "chenchen.ac@bytedance.com": "Remi Chen",
+    "chenqing.0918@bytedance.com": "Qing Chen",
+    "jason.chenxi@bytedance.com": "Jason Chen Xi",
+    "chenjieyi.2020@bytedance.com": "Jieyi Chen",
+    "chenjielei@bytedance.com": "Caroline Chen",
+    "hongchao.chen@bytedance.com": "Hongchao Chen",
+    "chenxuanyu.yu@bytedance.com": "Xuanyu Chen",
+    "chenyuheng.olivia@bytedance.com": "Olivia Chen",
+    "chenmeijie@bytedance.com": "Emma Chen",
+    "chenyinghao.ttk@bytedance.com": "Yinghao Chen",
+    "shiya.chen@bytedance.com": "Shiya Felicia Chen",
+    "chenyanyu.ciel@bytedance.com": "Yanyu Chen",
+    "chenwenqi.7@bytedance.com": "Wenqi Chen",
+    "taojing.904@bytedance.com": "Jing Tao",
+    "huotianzuo@bytedance.com": "Tianzuo Huo",
+    "weiluting@bytedance.com": "Luting Wei",
+    "hankuntong@bytedance.com": "Kuntong Han",
+    "guxiaoling.01@bytedance.com": "Xiaoling Gu",
+    "cicigao@bytedance.com": "Li Gao",
+    "gaoshuangjie@bytedance.com": "SJ Gao",
+    "weiyue.0123@bytedance.com": "Serena Wei",
+    "huangdan.1028@bytedance.com": "Nicole",
+    "huangdanlei@bytedance.com": "Dana Huang",
+    "huangjun.alice@bytedance.com": "Jun Huang",
+    "huangqianyin.79@bytedance.com": "Deanna Huang",
+    "huangsiyuan.7@bytedance.com": "Sandra Huang",
+    "yingjie.huang@bytedance.com": "Yingjie Huang",
+    "cynthia.huang@bytedance.com": "Cynthia Huang",
+    "huanghe.222@bytedance.com": "He Huang",
+    "huanghaobin@bytedance.com": "Haobin Huang",
+    "hsh@bytedance.com": "Sue Huang",
+    "huangshixian@bytedance.com": "Karen Huang",
+    "huangyunfeng.16@bytedance.com": "Yunfeng Huang",
+    "huangxueqiong@bytedance.com": "Sandra Huang",
+    "liwanlu.queenie@bytedance.com": "Wanlu Li",
+    "kayqi@bytedance.com": "Kay Qi",
+    "gongguanren@bytedance.com": "Roy Gong"
+  },
+  "byName": {
+    "Benjamin Music 乐杰": "Benjamin Music",
+    "Frederick 付校宇": "Federico",
+    "Gigi Zhang 吉吉": "Gigi Zhang",
+    "Hongqian Su (粟虹倩)": "Hongqian Su",
+    "Lisa葛嘉卉": "Lisa Ge",
+    "Michael Mao(毛谷峰)": "Michael Mao",
+    "Qianle(Alex) 郭乾乐": "Qianle(Alex)",
+    "Salvatore Ganzerli（萨学东）": "Salvatore Ganzerli",
+    "Viola 励雨青": "Viola",
+    "Wei (微) Wong-Haney": "Wei Wong-Haney",
+    "XinLing 信陵": "XinLing",
+    "Yiqing 亦青": "Yiqing",
+    "丁未未": "Weiwei Ding",
+    "丁荣荣": "Cyrus",
+    "丁远超": "Yuanchao Ding",
+    "严柏露": "Bailu Yan",
+    "严汉钊": "Hanzhao Yan",
+    "于奇楠": "Qinan Yu",
+    "付雪晴Cecilia": "Cecilia",
+    "何洛": "Luo He",
+    "余康菲": "Kangfei Yu",
+    "侯邦庆": "Bangqing Hou",
+    "俞姗姗": "Shanshan Yu",
+    "倪彬": "Bin Ni",
+    "倪泽豪": "Zehao Ni",
+    "冯佳勇": "John Von",
+    "冯珮瑶": "Peiyao Feng",
+    "冯豪杰": "Haojie Feng",
+    "冯远": "Yuan Feng",
+    "刘一丝": "Yisi Liu",
+    "刘国岭": "Guoling Liu",
+    "刘妙涵": "Hannah Liu",
+    "刘宁": "Ning Liu",
+    "刘康旭": "Kangxu Liu",
+    "刘新祺": "Xinqi Liu",
+    "刘昱萱": "Yuxuan Liu",
+    "刘智渊": "Hera Liu",
+    "刘朔桐": "Shuotong Liu",
+    "刘璐Olivia": "Olivia",
+    "刘祖兵": "Harvey Liu",
+    "刘菡姝": "Hanshu Liu",
+    "刘蓉": "Rong Liu",
+    "刘薇": "Wei Liu",
+    "刘雅婧Sylvia": "Sylvia Liu",
+    "卓越": "Yue Zhuo",
+    "卢坤豪": "Kunhao Lu",
+    "叶佳智": "Jiazhi Ye",
+    "吕双爻": "Shuangyao Lv",
+    "吕名扬": "eddie",
+    "吴姝娜": "Serena Wu",
+    "吴松林": "Wesley",
+    "吴真": "Zhen Wu",
+    "吴秀娟 （Emma)": "Emma Goh",
+    "吴蒙蒙": "Max Wu",
+    "周心瑞": "Xinrui Zhou",
+    "周意": "Yi Zhou",
+    "周楗颢": "Felix Zhou",
+    "周欢": "Huan Zhou",
+    "周燕": "Yan Zhou",
+    "周益润": "Yirun Zhou",
+    "周睿琳": "Raina Zhou",
+    "周程": "Cheng Zhou",
+    "周超然": "Chaoran Zhou",
+    "周超超": "Joseph Zhou",
+    "和怡然": "Yiran He",
+    "唐于佼": "Judy Tang",
+    "唐旭利": "Xuli Tang",
+    "唐梦泽Tommi": "Mengze Tang",
+    "唐薇": "Wei Tang",
+    "夏素云 Anaya": "Anaya",
+    "奚皓澄": "Haocheng Xi",
+    "姬波": "Bo Ji",
+    "孙夕子": "Serene",
+    "孙娟": "Juan Sun",
+    "孙彬晖": "Brian Sun",
+    "孙悍铭": "Hanming Sun",
+    "孙诗棠": "Shitang Sun",
+    "孟会鹏": "Huipeng Meng",
+    "宁泽航": "Zehang Ning",
+    "宋园园": "Yuanyuan Song",
+    "宋涌潮": "Yongchao Song",
+    "小刘 (Kenny)": "Kenny Low",
+    "尹润嘉 Ryan": "Ryan Yin",
+    "居超": "Jack Ju",
+    "崔贤师": "Xianshi(Henry) Cui",
+    "常伟": "David Chang",
+    "常佳敏": "Jiamin Chang",
+    "康宇婷": "Yuting Kang",
+    "廖智文": "Zhiwen Liao",
+    "张丹洋": "Danyang Zhang",
+    "张佳瑜": "Jiayu Zhang",
+    "张叶桃": "Yetao Zhang",
+    "张同鑫": "Tongxin Zhang",
+    "张国鹏": "Guopeng Zhang",
+    "张子璇": "Zixuan Zhang",
+    "张文丽": "Jessie Zhang",
+    "张梦琳": "Menglin Zhang",
+    "张欣": "Xin Zhang",
+    "张洵": "Xun Zhang",
+    "张益铭": "Yiming Zhang",
+    "张睿": "Rui Zhang",
+    "张祺琦": "Vivian Zhang",
+    "张维宇": "Vera Zhang",
+    "张苏可": "Suke Zhang",
+    "张革伟": "Gewei",
+    "张鸣鹤": "Ada Zhang",
+    "彭昭 Rachel": "Rachel",
+    "彭森": "Sam Peng",
+    "彭琪": "Qi Peng",
+    "徐伟": "Wei Xu",
+    "徐克含": "Kehan Xu",
+    "徐平平": "Pingping Xu",
+    "徐德东": "DeDong Xu",
+    "徐月蔷": "Abby Xu",
+    "徐紫卿": "Rachel Xu",
+    "徐绮睿": "Qirui Xu",
+    "徐诗韵": "Shiyun Xu",
+    "智佳": "Peanut Zhi",
+    "曹一润": "Yirun Cao",
+    "曾光影": "William Zeng",
+    "朱家斌": "Jiabin Zhu",
+    "朱幼平": "Youping Zhu",
+    "朱志鹏": "Zhipeng Zhu",
+    "朱昀": "Stone Zhu",
+    "朱晏辰": "Yanchen Zhu",
+    "朱晓懿 Suki": "Suki Zhu",
+    "朱柯舟 Muko": "Muko Zhu",
+    "朱瑞": "Rui Zhu",
+    "朱碧芸": "Sarah Zhu",
+    "朱龙": "Long Zhu",
+    "权旭晨Maggie": "Xuchen Quan",
+    "李京达": "Jordan Lee",
+    "李佳宸": "Jiachen Li",
+    "李可娇": "Kejiao Li",
+    "李周阳": "Zhouyang Li",
+    "李悦": "Irene Li",
+    "李晓飞": "Chelsea Li",
+    "李晨晗": "Chenhan Li",
+    "李林珂": "Linke Li",
+    "李洋 Kylin": "Kylin Li",
+    "李燕秋": "Yanqiu Li",
+    "李珍珍": "Zhenzhen Li",
+    "李瑶瑶": "Yaoyao Li",
+    "李秀钻": "Xiuzuan Li",
+    "李紫珂": "Zike Li",
+    "李蔚": "Ella Li",
+    "李谜": "Hera Li",
+    "李豪文": "Haowen Li",
+    "李逍遥": "Xiaoyao Li",
+    "李雨虹": "Yuhong Li",
+    "李鹤晨": "Heston Li",
+    "杜倩文": "Qianwen Du",
+    "杜向鹏": "Xiangpeng Du",
+    "杜雅萱": "Vic Du",
+    "杨丽丽": "Lili Yang",
+    "杨婧 Jennie": "Jennie Yang",
+    "杨柳": "Liu Yang",
+    "杨楠": "Nan Yang",
+    "杨翌": "Irene Yang",
+    "杨诗琪": "Blair",
+    "杨阳": "Jasper Yang",
+    "林婧": "Jing Lin",
+    "林扬帆": "Esther Lin",
+    "林阳钦": "Yangqin Lin",
+    "梁冰": "Bing Liang",
+    "梁爽": "Sherry Liang",
+    "樊琦": "Qi Fan",
+    "殷麦蕊": "Mairui Yin",
+    "毕纬森": "Weisen Bi",
+    "毕鑫": "Xin Bi",
+    "江蔚然": "Warren Jiang",
+    "汤伟": "Wei Tang",
+    "汤维": "Vincent Tang",
+    "汪洋": "Yang Wang",
+    "沈天一": "Veronica Shen",
+    "沈泽鸿": "Zehong Shen",
+    "沈瑶": "Yao Shen",
+    "洪一帆": "Yifan Hong",
+    "涂晶晶": "Jingjing Tu",
+    "游文皓 Hiram": "Wenhao You",
+    "潇潇": "XiaoXiao",
+    "牛天宇": "Tianyu Niu",
+    "王一川": "Yichuan Wang",
+    "王丹 Alice": "Alice Wang",
+    "王亚宁": "Yaning Wang",
+    "王优": "You Wang",
+    "王信杙": "Xinyi Wang",
+    "王凤姣": "Fengjiao Wang",
+    "王卓": "Lora Wang",
+    "王宁": "Ning Wang",
+    "王宇": "Winnie Wang",
+    "王家琪": "Zoe Wang",
+    "王庆敏 Anna": "Anna Wang",
+    "王建鹏": "Jianpeng Wang",
+    "王晓叶": "Yeh Wang",
+    "王梦云": "Molly",
+    "王涛": "Tao Wang",
+    "王瑞": "William",
+    "王皓田": "Haotian Wang",
+    "王茜 Xi": "Xi Wang",
+    "王超": "Chao Wang",
+    "王越": "Yue Wang",
+    "王雪": "Judy Wang",
+    "王雯雯": "Wenwen Wang",
+    "王驰": "Jamie Wang",
+    "甘来": "Lai Gan",
+    "田雨": "Yu Tian",
+    "申雪艳": "Xueyan Shen",
+    "白哲": "Zhe Bai",
+    "白嘉琦": "Jomo",
+    "白皓": "Hao Bai",
+    "白祈": "Bella Bai",
+    "程亚峰": "Yafeng Cheng",
+    "程冲": "Chong Cheng",
+    "程智雅": "Zhiya Cheng",
+    "程陆婷": "Luting Cheng",
+    "符方宇": "Fang Yu Foo",
+    "符诗琪 (Shiqi)": "Shiqi Fu",
+    "罗昱宏": "Ivie Luo",
+    "罗玉嫣Elvina": "Elvina Luo",
+    "翁振宇": "Johnny Weng",
+    "耿子": "Tem",
+    "聂鹏飞": "Phelan",
+    "胡小博": "Xiaobo Hu",
+    "胡思倩": "Siqian Hu",
+    "胡瑾怡": "Joy Hu",
+    "胡骏": "Jun Hu",
+    "艾孜尔阿力木": "Aizier Alimu",
+    "苏糖": "Candice Su",
+    "范舟": "Timy",
+    "董国霖": "Guolin Dong",
+    "蒋婕雨": "Jieyu Jiang",
+    "蒋晓倩": "Xiaoqian Jiang",
+    "蒋西": "Xi Jiang",
+    "蒋银元": "Silver Jiang",
+    "蒋霄铭": "Eddy Jiang",
+    "蔡楠": "Nan Cai",
+    "蔡煜 Ben Cai": "Ben Cai",
+    "蔡熠": "Yi Cai",
+    "褚芙玮": "Fuwei Chu",
+    "诸雨捷": "Yujie Zhu",
+    "费子轩": "Zixuan Fei",
+    "费成志": "Ben Fei",
+    "贺语盈": "Yuying He",
+    "赵仪": "Yi Zhao",
+    "赵月晨": "Cherry Zhao",
+    "赵楚涵": "Brynn Zhao",
+    "赵欢丽": "Bella Zhao",
+    "赵润楠 Rita": "Rita Zhao",
+    "赵溪月": "Elena Zhao",
+    "路崴": "Wei Lu",
+    "逄淼": "Miao Pang",
+    "邓雷": "Eric Deng",
+    "邱雨晗": "Margaret Qiu",
+    "邹兵": "Bing Zou",
+    "邹莹": "Ying Zou",
+    "郑冰": "Savannah Zheng",
+    "郑恒达": "Hengda Zheng",
+    "郑浩": "Hao Zheng",
+    "郑秀秀": "Xiuxiu Zheng",
+    "郑经炜": "Jingwei Zheng",
+    "郭力源": "Liyuan Guo",
+    "郭娜": "Na Guo",
+    "郭小龙": "Xiaolong Guo",
+    "金慧婷": "Huiting Jin",
+    "金昌琮": "Changcong Jin",
+    "金秋实": "Qiushi(Dennis) Jin",
+    "钟俊强": "Junqiang Zhong",
+    "钱伯伦": "Bolun Qian",
+    "陈串": "Chuan Chen",
+    "陈云飞Kumo": "Kumo Chen",
+    "陈伟皓(Rex Chen)": "Rex Chen",
+    "陈小龙": "Xiaolong Chen",
+    "陈怡": "Yi Chen",
+    "陈晓峰": "Xiaofeng Chen",
+    "陈晨": "Remi Chen",
+    "陈晴": "Qing Chen",
+    "陈曦 Jason": "Jason Chen Xi",
+    "陈洁怡": "Jieyi Chen",
+    "陈洁蕾": "Caroline Chen",
+    "陈洪超": "Hongchao Chen",
+    "陈炫羽": "Xuanyu Chen",
+    "陈煜衡": "Olivia Chen",
+    "陈玫洁": "Emma Chen",
+    "陈英豪": "Yinghao Chen",
+    "陈诗雅": "Shiya Felicia Chen",
+    "陈雁羽": "Yanyu Chen",
+    "陈雯琦": "Wenqi Chen",
+    "陶靖": "Jing Tao",
+    "霍天佐": "Tianzuo Huo",
+    "韦陆婷": "Luting Wei",
+    "韩昆彤": "Kuntong Han",
+    "顾晓玲": "Xiaoling Gu",
+    "高丽": "Li Gao",
+    "高爽洁": "SJ Gao",
+    "魏悦": "Serena Wei",
+    "黄丹": "Nicole",
+    "黄丹蕾": "Dana Huang",
+    "黄俊 Jun": "Jun Huang",
+    "黄倩茵": "Deanna Huang",
+    "黄思媛 Sandra": "Sandra Huang",
+    "黄映杰": "Yingjie Huang",
+    "黄朝姗": "Cynthia Huang",
+    "黄河": "He Huang",
+    "黄皓彬": "Haobin Huang",
+    "黄苏惠": "Sue Huang",
+    "黄诗贤": "Karen Huang",
+    "黄鋆锋": "Yunfeng Huang",
+    "黄雪琼": "Sandra Huang",
+    "黎婉露": "Wanlu Li",
+    "齐临Kay": "Kay Qi",
+    "龚冠仁": "Roy Gong"
+  },
+  "byNameEmails": {
+    "Benjamin Music 乐杰": [
+      "benjamin.music@bytedance.com"
+    ],
+    "Frederick 付校宇": [
+      "frederick.fu@bytedance.com"
+    ],
+    "Gigi Zhang 吉吉": [
+      "zhangzhe.gigi@bytedance.com"
+    ],
+    "Hongqian Su (粟虹倩)": [
+      "hongqian.su@bytedance.com"
+    ],
+    "Lisa葛嘉卉": [
+      "lisa.ge@bytedance.com"
+    ],
+    "Michael Mao(毛谷峰)": [
+      "maogufeng@bytedance.com"
+    ],
+    "Qianle(Alex) 郭乾乐": [
+      "guoqianle@bytedance.com"
+    ],
+    "Salvatore Ganzerli（萨学东）": [
+      "salvatore.ganzerli@bytedance.com"
+    ],
+    "Viola 励雨青": [
+      "liyuqing.829@bytedance.com"
+    ],
+    "Wei (微) Wong-Haney": [
+      "wei.wonghaney@bytedance.com"
+    ],
+    "XinLing 信陵": [
+      "xinling.soda@bytedance.com"
+    ],
+    "Yiqing 亦青": [
+      "yiqing.han@bytedance.com"
+    ],
+    "丁未未": [
+      "dingweiwei1@bytedance.com"
+    ],
+    "丁荣荣": [
+      "dingrongrong.drr@bytedance.com"
+    ],
+    "丁远超": [
+      "dingyuanchao@bytedance.com"
+    ],
+    "严柏露": [
+      "yanbailu@bytedance.com"
+    ],
+    "严汉钊": [
+      "yanhanzhao@bytedance.com"
+    ],
+    "于奇楠": [
+      "yuqinan@bytedance.com"
+    ],
+    "付雪晴Cecilia": [
+      "linzhen.420@bytedance.com"
+    ],
+    "何洛": [
+      "heluo.cc@bytedance.com"
+    ],
+    "余康菲": [
+      "yukangfei.123@bytedance.com"
+    ],
+    "侯邦庆": [
+      "houbangqing@bytedance.com"
+    ],
+    "俞姗姗": [
+      "yushanshan.1224@bytedance.com"
+    ],
+    "倪彬": [
+      "binni@bytedance.com"
+    ],
+    "倪泽豪": [
+      "nizehao.max@bytedance.com"
+    ],
+    "冯佳勇": [
+      "fengjiayong.john@bytedance.com"
+    ],
+    "冯珮瑶": [
+      "fengpeiyao.617@bytedance.com"
+    ],
+    "冯豪杰": [
+      "fenghaojie.1013@bytedance.com"
+    ],
+    "冯远": [
+      "fengyuan.psyduck@bytedance.com"
+    ],
+    "刘一丝": [
+      "yisi@bytedance.com"
+    ],
+    "刘国岭": [
+      "guolingliu@bytedance.com"
+    ],
+    "刘妙涵": [
+      "liumiaohan@bytedance.com"
+    ],
+    "刘宁": [
+      "liuning.nic1@bytedance.com"
+    ],
+    "刘康旭": [
+      "liukangxu@bytedance.com"
+    ],
+    "刘新祺": [
+      "fir.liu@bytedance.com"
+    ],
+    "刘昱萱": [
+      "yuxuanliu.celine@bytedance.com"
+    ],
+    "刘智渊": [
+      "liuzhiyuan.hera@bytedance.com"
+    ],
+    "刘朔桐": [
+      "liushuotong@bytedance.com"
+    ],
+    "刘璐Olivia": [
+      "liulu.olivia@bytedance.com"
+    ],
+    "刘祖兵": [
+      "liuzubing@bytedance.com"
+    ],
+    "刘菡姝": [
+      "liuhanshu.7@bytedance.com"
+    ],
+    "刘蓉": [
+      "liurong.ux@bytedance.com"
+    ],
+    "刘薇": [
+      "liuwei.vivian666@bytedance.com"
+    ],
+    "刘雅婧Sylvia": [
+      "liu.sylvia@bytedance.com"
+    ],
+    "卓越": [
+      "zhuoyue.re@bytedance.com"
+    ],
+    "卢坤豪": [
+      "lukunhao@bytedance.com"
+    ],
+    "叶佳智": [
+      "yejiazhi@bytedance.com"
+    ],
+    "吕双爻": [
+      "lvshuangyao.o@bytedance.com"
+    ],
+    "吕名扬": [
+      "lvmingyang@bytedance.com"
+    ],
+    "吴姝娜": [
+      "wushuna@bytedance.com"
+    ],
+    "吴松林": [
+      "wusonglin.234@bytedance.com"
+    ],
+    "吴真": [
+      "wuzhen.88@bytedance.com"
+    ],
+    "吴秀娟 （Emma)": [
+      "emma.goh@bytedance.com"
+    ],
+    "吴蒙蒙": [
+      "wumengmeng.max@bytedance.com"
+    ],
+    "周心瑞": [
+      "zhouxinrui.zz@bytedance.com"
+    ],
+    "周意": [
+      "zhouyi.happy@bytedance.com"
+    ],
+    "周楗颢": [
+      "zhoujianhao.felix@bytedance.com"
+    ],
+    "周欢": [
+      "zhouhuan.nancy@bytedance.com"
+    ],
+    "周燕": [
+      "zhouyan.1202@bytedance.com"
+    ],
+    "周益润": [],
+    "周睿琳": [
+      "zhouruilin.824@bytedance.com"
+    ],
+    "周程": [
+      "zhoucheng.blues@bytedance.com"
+    ],
+    "周超然": [
+      "zhouchaoran@bytedance.com"
+    ],
+    "周超超": [
+      "chaochaozhou@bytedance.com"
+    ],
+    "和怡然": [
+      "heyiran.0303@bytedance.com"
+    ],
+    "唐于佼": [
+      "tangyujiao@bytedance.com"
+    ],
+    "唐旭利": [
+      "tangxuli@bytedance.com"
+    ],
+    "唐梦泽Tommi": [
+      "tangmengze@bytedance.com"
+    ],
+    "唐薇": [
+      "tangwei.012@bytedance.com"
+    ],
+    "夏素云 Anaya": [
+      "xiasuyun@bytedance.com"
+    ],
+    "奚皓澄": [
+      "xihaocheng@bytedance.com"
+    ],
+    "姬波": [
+      "jibo.1558@bytedance.com"
+    ],
+    "孙夕子": [
+      "sunxizi.serene@bytedance.com"
+    ],
+    "孙娟": [
+      "sunjuan.sj@bytedance.com"
+    ],
+    "孙彬晖": [
+      "sunbinhui.00@bytedance.com"
+    ],
+    "孙悍铭": [
+      "hanmingsun@bytedance.com"
+    ],
+    "孙诗棠": [],
+    "孟会鹏": [
+      "menghuipeng@bytedance.com"
+    ],
+    "宁泽航": [
+      "ningzehang.ev@bytedance.com"
+    ],
+    "宋园园": [
+      "songyuanyuan.qw@bytedance.com"
+    ],
+    "宋涌潮": [
+      "songyongchao@bytedance.com"
+    ],
+    "小刘 (Kenny)": [
+      "kenny.low@bytedance.com"
+    ],
+    "尹润嘉 Ryan": [
+      "ryan.yin@bytedance.com"
+    ],
+    "居超": [
+      "juchao.jc@bytedance.com"
+    ],
+    "崔贤师": [
+      "cuixianshi@bytedance.com"
+    ],
+    "常伟": [
+      "changwei.david@bytedance.com"
+    ],
+    "常佳敏": [
+      "changjiamin.123@bytedance.com"
+    ],
+    "康宇婷": [
+      "kangyuting.x@bytedance.com"
+    ],
+    "廖智文": [
+      "liaozhiwen@bytedance.com"
+    ],
+    "张丹洋": [
+      "zhangdanyang.1123@bytedance.com"
+    ],
+    "张佳瑜": [
+      "zhangjiayu.ja@bytedance.com"
+    ],
+    "张叶桃": [
+      "zhangyetao.zyt@bytedance.com"
+    ],
+    "张同鑫": [
+      "zhangtongxin.felix@bytedance.com"
+    ],
+    "张国鹏": [
+      "zhangguopeng@bytedance.com"
+    ],
+    "张子璇": [
+      "zhangzixuan.12@bytedance.com"
+    ],
+    "张文丽": [
+      "zhangwenli.168@bytedance.com"
+    ],
+    "张梦琳": [
+      "zhangmenglin@bytedance.com"
+    ],
+    "张欣": [
+      "zhangxin.67@bytedance.com"
+    ],
+    "张洵": [
+      "zhangxun.sean@bytedance.com"
+    ],
+    "张益铭": [
+      "zhangyiming.eddie@bytedance.com"
+    ],
+    "张睿": [
+      "zhangrui.25@bytedance.com"
+    ],
+    "张祺琦": [
+      "zhangqiqi.vivi@bytedance.com"
+    ],
+    "张维宇": [
+      "weiyu.zhang@bytedance.com"
+    ],
+    "张苏可": [
+      "zhangsuke@bytedance.com"
+    ],
+    "张革伟": [
+      "zhanggewei@bytedance.com"
+    ],
+    "张鸣鹤": [
+      "zhangminghe.0515@bytedance.com"
+    ],
+    "彭昭 Rachel": [
+      "pengzhao.rachel@bytedance.com"
+    ],
+    "彭森": [
+      "pengsen.sam@bytedance.com"
+    ],
+    "彭琪": [
+      "pengqi.lovework@bytedance.com"
+    ],
+    "徐伟": [
+      "xuwei.1212@bytedance.com"
+    ],
+    "徐克含": [
+      "xukehan@bytedance.com"
+    ],
+    "徐平平": [
+      "xupingping.6577@bytedance.com"
+    ],
+    "徐德东": [
+      "xudedong@bytedance.com"
+    ],
+    "徐月蔷": [
+      "xuyueqiang@bytedance.com"
+    ],
+    "徐紫卿": [
+      "rachelxu.1111@bytedance.com"
+    ],
+    "徐绮睿": [
+      "xuqirui@bytedance.com"
+    ],
+    "徐诗韵": [
+      "xushiyun.24@bytedance.com"
+    ],
+    "智佳": [
+      "zhijia.peanut@bytedance.com"
+    ],
+    "曹一润": [
+      "yirun@bytedance.com"
+    ],
+    "曾光影": [
+      "zengguangying.2026@bytedance.com"
+    ],
+    "朱家斌": [
+      "zhujiabin@bytedance.com"
+    ],
+    "朱幼平": [
+      "zhuyouping@bytedance.com"
+    ],
+    "朱志鹏": [
+      "zhuzhipeng.93@bytedance.com"
+    ],
+    "朱昀": [
+      "zhuyun@bytedance.com"
+    ],
+    "朱晏辰": [
+      "yanchen.zhu@bytedance.com"
+    ],
+    "朱晓懿 Suki": [
+      "zhuxiaoyi.suki@bytedance.com"
+    ],
+    "朱柯舟 Muko": [
+      "zhukezhou@bytedance.com"
+    ],
+    "朱瑞": [
+      "zhurui.0208@bytedance.com"
+    ],
+    "朱碧芸": [
+      "biyun@bytedance.com"
+    ],
+    "朱龙": [
+      "zhulong.zhu@bytedance.com"
+    ],
+    "权旭晨Maggie": [
+      "xuchen.quan666@bytedance.com"
+    ],
+    "李京达": [
+      "lijingda.666@bytedance.com"
+    ],
+    "李佳宸": [
+      "lijiachen.0628@bytedance.com"
+    ],
+    "李可娇": [
+      "likejiao@bytedance.com"
+    ],
+    "李周阳": [
+      "lizhouyang@bytedance.com"
+    ],
+    "李悦": [
+      "liyue.irene@bytedance.com"
+    ],
+    "李晓飞": [
+      "lixiaofei.01@bytedance.com"
+    ],
+    "李晨晗": [
+      "lichenhan@bytedance.com"
+    ],
+    "李林珂": [
+      "linkeli@bytedance.com"
+    ],
+    "李洋 Kylin": [
+      "liyang.kylin@bytedance.com"
+    ],
+    "李燕秋": [
+      "liyanqiu.tk@bytedance.com"
+    ],
+    "李珍珍": [
+      "lizhenzhen.janeli@bytedance.com"
+    ],
+    "李瑶瑶": [
+      "liyaoyao.y@bytedance.com"
+    ],
+    "李秀钻": [
+      "lixiuzuan@bytedance.com"
+    ],
+    "李紫珂": [
+      "lizike@bytedance.com"
+    ],
+    "李蔚": [
+      "liwei.0504@bytedance.com"
+    ],
+    "李谜": [
+      "mili@bytedance.com"
+    ],
+    "李豪文": [
+      "lihaowen.30@bytedance.com"
+    ],
+    "李逍遥": [
+      "lixiaoyao.081x@bytedance.com"
+    ],
+    "李雨虹": [
+      "liyuhong.lynn@bytedance.com"
+    ],
+    "李鹤晨": [
+      "litong.hc@bytedance.com"
+    ],
+    "杜倩文": [
+      "duqianwen.1@bytedance.com"
+    ],
+    "杜向鹏": [
+      "duxiangpeng@bytedance.com"
+    ],
+    "杜雅萱": [
+      "duyaxuan.vic@bytedance.com"
+    ],
+    "杨丽丽": [
+      "yanglili.5994@bytedance.com"
+    ],
+    "杨婧 Jennie": [
+      "yangjing.jennie@bytedance.com"
+    ],
+    "杨柳": [
+      "yangliu.yangl@bytedance.com"
+    ],
+    "杨楠": [
+      "yangnan.26@bytedance.com"
+    ],
+    "杨翌": [
+      "yangyi.irene@bytedance.com"
+    ],
+    "杨诗琪": [
+      "yangshiqi.blair@bytedance.com"
+    ],
+    "杨阳": [
+      "yangyang.0314@bytedance.com"
+    ],
+    "林婧": [
+      "linjing.0127@bytedance.com"
+    ],
+    "林扬帆": [
+      "linyangfan@bytedance.com"
+    ],
+    "林阳钦": [
+      "linyangqin.cyrus7@bytedance.com"
+    ],
+    "梁冰": [
+      "liangbing.17@bytedance.com"
+    ],
+    "梁爽": [
+      "liangshuang.aa@bytedance.com"
+    ],
+    "樊琦": [
+      "qi.fan@bytedance.com"
+    ],
+    "殷麦蕊": [
+      "yinmairui@bytedance.com"
+    ],
+    "毕纬森": [
+      "biweisen@bytedance.com"
+    ],
+    "毕鑫": [
+      "bixin.43@bytedance.com"
+    ],
+    "江蔚然": [
+      "jiangweiran@bytedance.com"
+    ],
+    "汤伟": [
+      "tangwei.wei@bytedance.com"
+    ],
+    "汤维": [
+      "tangwei.vincent@bytedance.com"
+    ],
+    "汪洋": [
+      "wangyang.0616@bytedance.com"
+    ],
+    "沈天一": [
+      "shentianyi.10@bytedance.com"
+    ],
+    "沈泽鸿": [
+      "shenzehong@bytedance.com"
+    ],
+    "沈瑶": [
+      "shenyao.haruka@bytedance.com"
+    ],
+    "洪一帆": [
+      "hongyifan.yf@bytedance.com"
+    ],
+    "涂晶晶": [
+      "jingjing.tu@bytedance.com"
+    ],
+    "游文皓 Hiram": [
+      "youwenhao.ywh@bytedance.com"
+    ],
+    "潇潇": [
+      "chenxiaoxiao.01@bytedance.com"
+    ],
+    "牛天宇": [
+      "niutianyu@bytedance.com"
+    ],
+    "王一川": [
+      "wangyichuan@bytedance.com"
+    ],
+    "王丹 Alice": [
+      "wangdan.900818@bytedance.com"
+    ],
+    "王亚宁": [
+      "wangyaning.1023@bytedance.com"
+    ],
+    "王优": [
+      "wangyou.233@bytedance.com"
+    ],
+    "王信杙": [
+      "wangxinyi.csy@bytedance.com"
+    ],
+    "王凤姣": [
+      "wangfengjiao.lily@bytedance.com"
+    ],
+    "王卓": [
+      "wangzhuo.lora@bytedance.com"
+    ],
+    "王宁": [
+      "wangning.warner@bytedance.com"
+    ],
+    "王宇": [
+      "wangyu.winnie2@bytedance.com"
+    ],
+    "王家琪": [
+      "wangjiaqi.zoe@bytedance.com"
+    ],
+    "王庆敏 Anna": [
+      "wangqingmin@bytedance.com"
+    ],
+    "王建鹏": [
+      "wangjianpeng.mb@bytedance.com"
+    ],
+    "王晓叶": [
+      "wangxiaoye.666@bytedance.com"
+    ],
+    "王梦云": [
+      "wangmengyun.054@bytedance.com"
+    ],
+    "王涛": [
+      "toanwang.123@bytedance.com"
+    ],
+    "王瑞": [
+      "wangrui.wil@bytedance.com"
+    ],
+    "王皓田": [
+      "wanghaotian.666@bytedance.com"
+    ],
+    "王茜 Xi": [
+      "wangxi.sidney@bytedance.com"
+    ],
+    "王超": [
+      "wangchao.evan@bytedance.com"
+    ],
+    "王越": [
+      "wangyue.gabi@bytedance.com"
+    ],
+    "王雪": [
+      "wangxue.judy@bytedance.com"
+    ],
+    "王雯雯": [
+      "wangwenwen.bonnie@bytedance.com"
+    ],
+    "王驰": [
+      "wangchi.jamie@bytedance.com"
+    ],
+    "甘来": [
+      "ganlai@bytedance.com"
+    ],
+    "田雨": [
+      "yu.tian1@bytedance.com"
+    ],
+    "申雪艳": [
+      "shenxueyan@bytedance.com"
+    ],
+    "白哲": [
+      "baizhe@bytedance.com"
+    ],
+    "白嘉琦": [
+      "baijiaqi.jomo@bytedance.com"
+    ],
+    "白皓": [
+      "baihao.lingjun@bytedance.com"
+    ],
+    "白祈": [
+      "baiqi.7@bytedance.com"
+    ],
+    "程亚峰": [
+      "chengyafeng.9@bytedance.com"
+    ],
+    "程冲": [
+      "chengchong.cc@bytedance.com"
+    ],
+    "程智雅": [
+      "chengzhiya.0401@bytedance.com"
+    ],
+    "程陆婷": [
+      "chengluting@bytedance.com"
+    ],
+    "符方宇": [
+      "fang.foo@bytedance.com"
+    ],
+    "符诗琪 (Shiqi)": [
+      "shiqi.fu@bytedance.com"
+    ],
+    "罗昱宏": [
+      "yuhong.ivie@bytedance.com"
+    ],
+    "罗玉嫣Elvina": [
+      "luoyuyan.53@bytedance.com"
+    ],
+    "翁振宇": [
+      "wengzhenyu@bytedance.com"
+    ],
+    "耿子": [
+      "gengyanhong@bytedance.com"
+    ],
+    "聂鹏飞": [
+      "niepengfei@bytedance.com"
+    ],
+    "胡小博": [
+      "huxiaobo.hxb@bytedance.com"
+    ],
+    "胡思倩": [
+      "husiqian.888@bytedance.com"
+    ],
+    "胡瑾怡": [
+      "hujinyi.76@bytedance.com"
+    ],
+    "胡骏": [
+      "hujun@bytedance.com"
+    ],
+    "艾孜尔阿力木": [
+      "aizieralimu@bytedance.com"
+    ],
+    "苏糖": [
+      "huangchang.sutang@bytedance.com"
+    ],
+    "范舟": [
+      "fanzhou.fz@bytedance.com"
+    ],
+    "董国霖": [
+      "dongguolin@bytedance.com"
+    ],
+    "蒋婕雨": [
+      "jiangjieyu.11@bytedance.com"
+    ],
+    "蒋晓倩": [
+      "jiangxiaoqian.99@bytedance.com"
+    ],
+    "蒋西": [
+      "jiangxi.01@bytedance.com"
+    ],
+    "蒋银元": [
+      "jiangyinyuan@bytedance.com"
+    ],
+    "蒋霄铭": [
+      "jiangxiaoming.1@bytedance.com"
+    ],
+    "蔡楠": [
+      "cainan@bytedance.com"
+    ],
+    "蔡煜 Ben Cai": [
+      "caiyu.ben@bytedance.com"
+    ],
+    "蔡熠": [
+      "caiyi.ion@bytedance.com"
+    ],
+    "褚芙玮": [
+      "chufuwei@bytedance.com"
+    ],
+    "诸雨捷": [
+      "zhuyujie.1030@bytedance.com"
+    ],
+    "费子轩": [
+      "feizixuan@bytedance.com"
+    ],
+    "费成志": [
+      "feichengzhi@bytedance.com"
+    ],
+    "贺语盈": [
+      "heyuying.45@bytedance.com"
+    ],
+    "赵仪": [
+      "zhaoyi.pm@bytedance.com"
+    ],
+    "赵月晨": [
+      "zhaoyuechen@bytedance.com"
+    ],
+    "赵楚涵": [
+      "zhaochuhan.611@bytedance.com"
+    ],
+    "赵欢丽": [
+      "zhaohuanli@bytedance.com"
+    ],
+    "赵润楠 Rita": [
+      "zhaorunnan.rita@bytedance.com"
+    ],
+    "赵溪月": [
+      "zhaoxiyue.elena@bytedance.com"
+    ],
+    "路崴": [
+      "luwei.sky@bytedance.com"
+    ],
+    "逄淼": [
+      "pangmiao@bytedance.com"
+    ],
+    "邓雷": [
+      "denglei.eric@bytedance.com"
+    ],
+    "邱雨晗": [
+      "qiuyuhan.123@bytedance.com"
+    ],
+    "邹兵": [
+      "zoubing.123@bytedance.com"
+    ],
+    "邹莹": [
+      "zouying.zou@bytedance.com"
+    ],
+    "郑冰": [
+      "zhengbing.67@bytedance.com"
+    ],
+    "郑恒达": [
+      "zhenghengda@bytedance.com"
+    ],
+    "郑浩": [
+      "zhenghao.666@bytedance.com"
+    ],
+    "郑秀秀": [
+      "zhengxiuxiu.66@bytedance.com"
+    ],
+    "郑经炜": [
+      "zhengjingwei@bytedance.com"
+    ],
+    "郭力源": [
+      "liyuanguo.lydia@bytedance.com"
+    ],
+    "郭娜": [
+      "guona.rena@bytedance.com"
+    ],
+    "郭小龙": [
+      "guoxiaolong.gxl@bytedance.com"
+    ],
+    "金慧婷": [
+      "jinhuiting@bytedance.com"
+    ],
+    "金昌琮": [
+      "jinchangcong@bytedance.com"
+    ],
+    "金秋实": [
+      "jinqiushi.01@bytedance.com"
+    ],
+    "钟俊强": [
+      "zhongjunqiang@bytedance.com"
+    ],
+    "钱伯伦": [
+      "qianbolun@bytedance.com"
+    ],
+    "陈串": [
+      "chenchuan.0208@bytedance.com"
+    ],
+    "陈云飞Kumo": [
+      "chenyunfei.kumo@bytedance.com"
+    ],
+    "陈伟皓(Rex Chen)": [
+      "chenweihao.rex@bytedance.com"
+    ],
+    "陈小龙": [
+      "chenxiaolong.23@bytedance.com"
+    ],
+    "陈怡": [
+      "chenyi.sup76@bytedance.com"
+    ],
+    "陈晓峰": [
+      "chenxiaofeng.lavine@bytedance.com"
+    ],
+    "陈晨": [
+      "chenchen.ac@bytedance.com"
+    ],
+    "陈晴": [
+      "chenqing.0918@bytedance.com"
+    ],
+    "陈曦 Jason": [
+      "jason.chenxi@bytedance.com"
+    ],
+    "陈洁怡": [
+      "chenjieyi.2020@bytedance.com"
+    ],
+    "陈洁蕾": [
+      "chenjielei@bytedance.com"
+    ],
+    "陈洪超": [
+      "hongchao.chen@bytedance.com"
+    ],
+    "陈炫羽": [
+      "chenxuanyu.yu@bytedance.com"
+    ],
+    "陈煜衡": [
+      "chenyuheng.olivia@bytedance.com"
+    ],
+    "陈玫洁": [
+      "chenmeijie@bytedance.com"
+    ],
+    "陈英豪": [
+      "chenyinghao.ttk@bytedance.com"
+    ],
+    "陈诗雅": [
+      "shiya.chen@bytedance.com"
+    ],
+    "陈雁羽": [
+      "chenyanyu.ciel@bytedance.com"
+    ],
+    "陈雯琦": [
+      "chenwenqi.7@bytedance.com"
+    ],
+    "陶靖": [
+      "taojing.904@bytedance.com"
+    ],
+    "霍天佐": [
+      "huotianzuo@bytedance.com"
+    ],
+    "韦陆婷": [
+      "weiluting@bytedance.com"
+    ],
+    "韩昆彤": [
+      "hankuntong@bytedance.com"
+    ],
+    "顾晓玲": [
+      "guxiaoling.01@bytedance.com"
+    ],
+    "高丽": [
+      "cicigao@bytedance.com"
+    ],
+    "高爽洁": [
+      "gaoshuangjie@bytedance.com"
+    ],
+    "魏悦": [
+      "weiyue.0123@bytedance.com"
+    ],
+    "黄丹": [
+      "huangdan.1028@bytedance.com"
+    ],
+    "黄丹蕾": [
+      "huangdanlei@bytedance.com"
+    ],
+    "黄俊 Jun": [
+      "huangjun.alice@bytedance.com"
+    ],
+    "黄倩茵": [
+      "huangqianyin.79@bytedance.com"
+    ],
+    "黄思媛 Sandra": [
+      "huangsiyuan.7@bytedance.com"
+    ],
+    "黄映杰": [
+      "yingjie.huang@bytedance.com"
+    ],
+    "黄朝姗": [
+      "cynthia.huang@bytedance.com"
+    ],
+    "黄河": [
+      "huanghe.222@bytedance.com"
+    ],
+    "黄皓彬": [
+      "huanghaobin@bytedance.com"
+    ],
+    "黄苏惠": [
+      "hsh@bytedance.com"
+    ],
+    "黄诗贤": [
+      "huangshixian@bytedance.com"
+    ],
+    "黄鋆锋": [
+      "huangyunfeng.16@bytedance.com"
+    ],
+    "黄雪琼": [
+      "huangxueqiong@bytedance.com"
+    ],
+    "黎婉露": [
+      "liwanlu.queenie@bytedance.com"
+    ],
+    "齐临Kay": [
+      "kayqi@bytedance.com"
+    ],
+    "龚冠仁": [
+      "gongguanren@bytedance.com"
+    ]
+  },
+  "ambiguousNames": [
+    "张玲"
+  ]
+}

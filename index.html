@@ -915,7 +915,7 @@
   <script src="js/auth.js?v=20261013-feishu-webapp-v1"></script>
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
   <script src="js/award-api.js?v=20260914internalonly"></script>
-  <script src="js/main.js?v=20261015-avatar-refresh-v1"></script>
+  <script src="js/main.js?v=20261016-english-names-v1"></script>
   <script>
     // Render Home Stats - Now includes Q1/Q2/Q3/Q4 data for FS/POP and all regional data
     // IMPORTANT: Project awards are counted by unique project, not by member records
@@ -1347,7 +1347,7 @@
                 <div class="podium-member-project-groups">
                   ${members.map(member => `
                     <div class="podium-member-projects">
-                      <div class="podium-member-name">${escapeHtml(member.name || '')}</div>
+                      <div class="podium-member-name">${escapeHtml(getEmployeeDisplayName(member))}</div>
                       <div class="podium-member-project-empty">${escapeHtml(member.department || member.region || 'TikTok Shop')}</div>
                     </div>
                   `).join('')}

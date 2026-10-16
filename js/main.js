@@ -276,6 +276,44 @@ function getMemberDisplayName(member) {
   return member?.name || member?.winner_name || member?.displayName || '';
 }
 
+// Presentation only: retain source names for IDs, scoring, search links and avatars.
+let employeeDisplayNames = { byEmail: {}, byName: {}, byNameEmails: {}, ambiguousNames: [] };
+let employeeDisplayNamesPromise = null;
+
+function getEmployeeDisplayName(member, fallbackEmail = '') {
+  const rawName = getMemberDisplayName(member);
+  const email = String(member?.email || fallbackEmail || '').trim().toLowerCase();
+  if (email && employeeDisplayNames.byEmail[email]) return employeeDisplayNames.byEmail[email];
+  const verifiedEmails = employeeDisplayNames.byNameEmails?.[String(rawName).trim()] || [];
+  if (email && verifiedEmails.length && !verifiedEmails.includes(email)) return rawName;
+  return employeeDisplayNames.byName[String(rawName).trim()] || rawName;
+}
+
+function matchesEmployeeName(member, searchTerm, fallbackEmail = '') {
+  return matchesWord(getMemberDisplayName(member), searchTerm)
+    || matchesWord(getEmployeeDisplayName(member, fallbackEmail), searchTerm);
+}
+
+function loadEmployeeDisplayNames() {
+  if (!employeeDisplayNamesPromise) {
+    employeeDisplayNamesPromise = fetch('data/employee-display-names.json?v=20261016', { cache: 'no-cache' })
+      .then(response => {
+        if (!response.ok) throw new Error('Employee name mapping unavailable');
+        return response.json();
+      })
+      .then(mapping => {
+        employeeDisplayNames = mapping;
+        return mapping;
+      })
+      .catch(error => {
+        employeeDisplayNamesPromise = null;
+        console.warn('[Employee names]', error.message);
+        return employeeDisplayNames;
+      });
+  }
+  return employeeDisplayNamesPromise;
+}
+
 function getAwardMemberEmail(award, member, options = {}) {
   const memberName = getMemberDisplayName(member);
   if (member && typeof member === 'object' && member.email) return member.email;
@@ -375,7 +413,7 @@ function refreshRenderedAvatars(root = document) {
     } else {
       avatarEl.insertAdjacentHTML(
         'afterbegin',
-        `<img src="${escapeHtml(optimizedAvatarUrl)}" data-fallback="${escapeHtml(avatarUrl)}" alt="${escapeHtml(avatarEl.dataset.avatarName || '')}" loading="lazy" fetchpriority="low" decoding="async" onerror="${getAvatarImageErrorHandler()}">`
+        `<img src="${escapeHtml(optimizedAvatarUrl)}" data-fallback="${escapeHtml(avatarUrl)}" alt="${escapeHtml(getEmployeeDisplayName(avatarEl.dataset.avatarName || '', email))}" loading="lazy" fetchpriority="low" decoding="async" onerror="${getAvatarImageErrorHandler()}">`
       );
     }
 
@@ -453,6 +491,7 @@ function getAvatarInitials(name) {
 
 function renderMemberAvatar(member, sizeClass = '', options = {}) {
   const normalized = normalizeMember(member);
+  const displayName = getEmployeeDisplayName(normalized);
   const unionId = normalized.email ? UNION_ID_MAP[normalized.email.toLowerCase()] : null;
   const clickable = unionId ? ' member-avatar-clickable' : '';
   const onclickAttr = unionId ? ` onclick="event.stopPropagation(); openFeishuProfile('${unionId}')"` : '';
@@ -461,13 +500,13 @@ function renderMemberAvatar(member, sizeClass = '', options = {}) {
   const fetchPriority = priority ? 'high' : 'low';
   const optimizedAvatarUrl = getOptimizedAvatarUrl(normalized.avatarUrl, sizeClass === 'compact' ? 72 : 96);
   const avatarImg = normalized.avatarUrl
-    ? `<img src="${escapeHtml(optimizedAvatarUrl)}" data-fallback="${escapeHtml(normalized.avatarUrl)}" alt="${escapeHtml(normalized.name)}" loading="${loadingMode}" fetchpriority="${fetchPriority}" decoding="async" onerror="${getAvatarImageErrorHandler()}">`
+    ? `<img src="${escapeHtml(optimizedAvatarUrl)}" data-fallback="${escapeHtml(normalized.avatarUrl)}" alt="${escapeHtml(displayName)}" loading="${loadingMode}" fetchpriority="${fetchPriority}" decoding="async" onerror="${getAvatarImageErrorHandler()}">`
     : '';
   const initialsStyle = normalized.avatarUrl ? ' style="display:none;"' : '';
   const avatarDataAttrs = ` data-avatar-name="${escapeHtml(normalized.name)}" data-avatar-email="${escapeHtml(normalized.email || '')}"${normalized.avatarUrl ? ' data-avatar-resolved="1"' : ''}`;
   return `
-    <div class="award-member-avatar ${sizeClass}${clickable}" title="${escapeHtml(normalized.name)}"${avatarDataAttrs}${onclickAttr}>
-      ${avatarImg}<span${initialsStyle}>${escapeHtml(getAvatarInitials(normalized.name))}</span>
+    <div class="award-member-avatar ${sizeClass}${clickable}" title="${escapeHtml(displayName)}"${avatarDataAttrs}${onclickAttr}>
+      ${avatarImg}<span${initialsStyle}>${escapeHtml(getAvatarInitials(displayName))}</span>
     </div>
   `;
 }
@@ -590,7 +629,9 @@ function showAwardDetailModal(cardId) {
   const members = (detail.members || []).map(m => normalizeMember(m));
   const memberLabel = detail.awardType === 'individual' ? 'Winner' : `Team Members (${members.length})`;
 
-  modalTitle.textContent = detail.title || 'Award Details';
+  modalTitle.textContent = detail.awardType === 'individual'
+    ? getEmployeeDisplayName({ name: detail.title, email: members[0]?.email }) || 'Award Details'
+    : detail.title || 'Award Details';
   modalBody.innerHTML = `
     <div class="award-detail-modal">
       <div class="award-detail-section">
@@ -608,7 +649,7 @@ function showAwardDetailModal(cardId) {
               <div class="award-detail-member${clickable}"${onclickAttr}>
                 ${renderMemberAvatar(member, 'large')}
                 <div>
-                  <div class="member-name">${escapeHtml(member.name)}</div>
+                  <div class="member-name">${escapeHtml(getEmployeeDisplayName(member))}</div>
                   ${member.department ? `<div class="member-email">${escapeHtml(member.department)}</div>` : ''}
                   ${member.email ? `<div class="member-email">${escapeHtml(member.email)}</div>` : ''}
                 </div>
@@ -816,7 +857,7 @@ function loadVersionedJson(fileName) {
     const request = fetch('data/' + fileName + '?v=' + CHUNK_VERSION, { cache: 'force-cache' })
       .then(resp => {
         if (!resp.ok) throw new Error('Failed to load ' + fileName);
-        return resp.json();
+        return Promise.all([resp.json(), loadEmployeeDisplayNames()]).then(([data]) => data);
       })
       .catch(error => {
         _jsonFilePromises.delete(fileName);
@@ -1703,7 +1744,7 @@ function renderPodium(top3, containerId, title, highlightDatasets = []) {
       return `
         <div class="podium-member-projects">
           <div class="podium-member-name" title="${escapeHtml(normalizedMember?.department || '')}">
-            ${escapeHtml(normalizedMember?.name || member.name || '')}
+            ${escapeHtml(getEmployeeDisplayName(normalizedMember || member))}
           </div>
           ${visibleProjects.length ? `
             <div class="podium-member-project-list">
@@ -1779,7 +1820,7 @@ function showTopWinnerPosterPicker(posterId) {
           <button type="button" class="top-winner-poster-choice" onclick="showTopWinnerIndividualPoster('${posterId}', ${index})">
             ${renderMemberAvatar(person.member, 'large', { priority: true })}
             <span>
-              <strong>${escapeHtml(person.member?.name || '')}</strong>
+              <strong>${escapeHtml(getEmployeeDisplayName(person.member))}</strong>
               <small>${escapeHtml(person.member?.department || '')}</small>
             </span>
           </button>
@@ -1831,7 +1872,7 @@ function renderRankingList(rankings, startRank = 4, containerId) {
     html += `
       <div class="ranking-item">
         <span class="ranking-rank">#${r.rank || i + startRank}</span>
-        <span class="ranking-name">${r.name}</span>
+        <span class="ranking-name">${escapeHtml(getEmployeeDisplayName(r))}</span>
         <span class="ranking-dept">${r.department || r.region || ''}</span>
         <span class="ranking-score">${r.points || r.score || 0} pts</span>
       </div>
@@ -2458,7 +2499,10 @@ function showShareModal(projectName, teamAward, bonus, reason, members, awardTyp
     : (members ? [normalizeMember({ name: members })] : []);
   const memberCount = normalizedMembers.length;
   const primaryMember = normalizedMembers[0] || normalizeMember({ name: projectName });
-  const heroName = primaryMember.name || projectName || 'Winner';
+  const heroName = getEmployeeDisplayName(primaryMember) || projectName || 'Winner';
+  const displayProjectName = normalizedMembers.some(member => member.name === projectName)
+    ? getEmployeeDisplayName(normalizedMembers.find(member => member.name === projectName))
+    : projectName;
   const heroDept = primaryMember.department || primaryMember.dept || '';
   const heroEmail = primaryMember.email || '';
   const awardTypeLabel = awardType === 'individual' ? 'Individual Excellence' : 'Team Achievement';
@@ -2471,12 +2515,12 @@ function showShareModal(projectName, teamAward, bonus, reason, members, awardTyp
     const normalized = normalizeMember(member);
     const optimizedAvatarUrl = getOptimizedAvatarUrl(normalized.avatarUrl, className === 'hero' ? 320 : 192);
     const avatar = normalized.avatarUrl
-      ? `<img src="${escapeHtml(optimizedAvatarUrl)}" data-fallback="${escapeHtml(normalized.avatarUrl)}" alt="${escapeHtml(normalized.name)}" crossorigin="anonymous" decoding="async" onerror="${getAvatarImageErrorHandler('grid')}">`
+      ? `<img src="${escapeHtml(optimizedAvatarUrl)}" data-fallback="${escapeHtml(normalized.avatarUrl)}" alt="${escapeHtml(getEmployeeDisplayName(normalized))}" crossorigin="anonymous" decoding="async" onerror="${getAvatarImageErrorHandler('grid')}">`
       : '';
     const initialsStyle = normalized.avatarUrl ? ' style="display:none;"' : '';
     return `
       <div class="poster-modern-avatar ${className}">
-        ${avatar}<span${initialsStyle}>${escapeHtml(getAvatarInitials(normalized.name))}</span>
+        ${avatar}<span${initialsStyle}>${escapeHtml(getAvatarInitials(getEmployeeDisplayName(normalized)))}</span>
       </div>
     `;
   };
@@ -2487,7 +2531,7 @@ function showShareModal(projectName, teamAward, bonus, reason, members, awardTyp
       <div class="poster-modern-member">
         ${posterAvatar(normalized, 'small')}
         <div class="poster-modern-member-copy">
-          <div class="member-name">${escapeHtml(normalized.name)}</div>
+          <div class="member-name">${escapeHtml(getEmployeeDisplayName(normalized))}</div>
           ${normalized.department ? `<div class="member-dept">${escapeHtml(normalized.department)}</div>` : ''}
           ${normalized.email ? `<div class="member-email">${escapeHtml(normalized.email)}</div>` : ''}
         </div>
@@ -2519,12 +2563,12 @@ function showShareModal(projectName, teamAward, bonus, reason, members, awardTyp
   window.CurrentAwardShare = {
     award_id: shareMeta.awardId || '',
     award_name: teamAward || 'Recognition Award',
-    project_name: projectName || 'Award Recognition',
+    project_name: displayProjectName || 'Award Recognition',
     bonus: bonusFormatted,
     reason: stripMarkdown(reason || ''),
     reason_summary: truncateText(stripMarkdown(reason || ''), 220),
     members: normalizedMembers.map(member => ({
-      name: member.name || '',
+      name: getEmployeeDisplayName(member) || '',
       email: member.email || '',
       department: member.department || member.dept || '',
       avatar_url: member.avatarUrl || ''
@@ -2583,7 +2627,7 @@ function showShareModal(projectName, teamAward, bonus, reason, members, awardTyp
           <div class="poster-editorial-project-row">
             <div class="poster-editorial-project">
               <span>Recognized work</span>
-              <strong>${escapeHtml(projectName)}</strong>
+              <strong>${escapeHtml(displayProjectName)}</strong>
             </div>
             ${bonusFormatted ? `
             <div class="poster-editorial-bonus">
@@ -3695,7 +3739,7 @@ function renderIndividualCards(awards, region, half) {
         <div class="card individual-card award-preview-card" data-card-id="${cardId}" data-search-key="${searchKey}" onclick="showAwardDetailModal('${cardId}')">
           <div class="card-header">
             ${renderMemberAvatar(winner, 'card-avatar')}
-            <span class="card-title">${memberNameStr}</span>
+            <span class="card-title">${escapeHtml(getEmployeeDisplayName(winner))}</span>
           </div>
           <div class="card-meta">${deptDisplay}</div>
           <div class="card-body">
@@ -3747,7 +3791,7 @@ function showMembersModal(projectName, members) {
   let membersHtml = '<div class="members-list">';
   members.forEach((member, idx) => {
     const normalized = normalizeMember(member);
-    const name = normalized.name;
+    const name = getEmployeeDisplayName(normalized);
     const email = normalized.email;
     const unionId = email ? UNION_ID_MAP[email.toLowerCase()] : null;
     const clickable = unionId ? 'member-item-clickable' : '';
@@ -4166,7 +4210,12 @@ async function loadSearchData() {
         loadVersionedJson('pop.json').catch(() => null),
         loadVersionedJson('name-map.json').catch(() => null)
       ]);
-      nameMap = nameMapData || {};
+      const ambiguousNames = new Set(employeeDisplayNames.ambiguousNames || []);
+      nameMap = {
+        ...Object.fromEntries(Object.entries(nameMapData || {}).filter(([left, right]) =>
+          !ambiguousNames.has(left) && !ambiguousNames.has(right))),
+        ...employeeDisplayNames.byName
+      };
 
       searchData = {
         global: mergeAllYears(global),
@@ -4400,8 +4449,8 @@ function performSearch(query, level = 'all', options = {}) {
     const isIndividual = opts.isIndividual || /Individual/i.test(opts.key || '');
     awards.forEach(award => {
       const matchName = matchesWord(award.project_name, searchTerm);
-      const matchWinner = award.winner_name && matchesWord(award.winner_name, searchTerm);
-      const matchMember = award.members?.some(m => matchesWord(typeof m === 'string' ? m : m.name || '', searchTerm)) || false;
+      const matchWinner = award.winner_name && matchesEmployeeName(award.winner_name, searchTerm, award.email);
+      const matchMember = award.members?.some(m => matchesEmployeeName(m, searchTerm, getAwardMemberEmail(award, m))) || false;
       const matchDept = matchesDepartmentSearch(award.department, searchTerm);
       const matchAward = matchesWord(award.award_name, searchTerm)
         || matchesWord(award.team_award, searchTerm)
@@ -4414,7 +4463,7 @@ function performSearch(query, level = 'all', options = {}) {
       if (matchName || matchWinner || matchMember || matchDept || matchAward || matchEmail || matchReason) {
         const winnerName = award.winner_name || (award.members && award.members[0] ? (typeof award.members[0] === 'string' ? award.members[0] : award.members[0].name) : '');
         const resultYear = getSearchResultYear(award) || opts.defaultYear || '';
-        const matchedMembers = matchMember ? award.members?.filter(m => matchesWord(typeof m === 'string' ? m : m.name || '', searchTerm)) || [] : [];
+        const matchedMembers = matchMember ? award.members?.filter(m => matchesEmployeeName(m, searchTerm, getAwardMemberEmail(award, m))) || [] : [];
         const firstRenderedMember = award.members?.[0]
           ? (typeof award.members[0] === 'string' ? award.members[0] : award.members[0].name || '')
           : '';
@@ -4535,8 +4584,8 @@ function performSearch(query, level = 'all', options = {}) {
     ['Q1', 'Q2', 'Q3', 'Q4'].forEach(q => {
       const awards = searchData.departmental[q] || [];
       awards.forEach(award => {
-        const matchWinner = award.winner_name && matchesWord(award.winner_name, searchTerm);
-        const matchMember = award.members?.some(m => matchesWord(typeof m === 'string' ? m : m.name || '', searchTerm)) || false;
+        const matchWinner = award.winner_name && matchesEmployeeName(award.winner_name, searchTerm, award.email);
+        const matchMember = award.members?.some(m => matchesEmployeeName(m, searchTerm, getAwardMemberEmail(award, m))) || false;
         const matchDept = matchesDepartmentSearch(award.department, searchTerm);
         const matchAward = matchesWord(award.award_name, searchTerm) || matchesWord(award.award_type, searchTerm);
         const matchEmail = matchesWord(award.email, searchTerm)
@@ -4748,14 +4797,14 @@ function renderRecognitionDistribution(title, values) {
 
 function getRecognitionDetailRows(results, compact = false) {
   return results.map((result, index) => {
-    const people = getRecognitionPeople(result).map(person => person.name);
+    const people = getRecognitionPeople(result).map(person => getEmployeeDisplayName(person));
     const period = [result.year, result.period].filter(Boolean).join(' · ');
     const bonus = formatRecognitionBonus(result.bonus, result.currency);
     return `
       <article class="${compact ? 'collection-poster-row' : 'recognition-detail-row'}">
         <div class="recognition-detail-index">${String(index + 1).padStart(2, '0')}</div>
         <div class="recognition-detail-main">
-          <strong>${escapeHtml(result.name || result.award || '')}</strong>
+          <strong>${escapeHtml(result.name === result.winner ? getEmployeeDisplayName(result.name, result.email) : result.name || result.award || '')}</strong>
           <span>${escapeHtml([result.award, result.level, period].filter(Boolean).join(' · '))}</span>
           ${result.department ? `<small>${escapeHtml(result.department)}</small>` : ''}
           ${people.length ? `<small>${escapeHtml(people.join(' · '))}</small>` : ''}
@@ -4816,7 +4865,8 @@ function findRecognitionPosterSubject(query, results) {
     getRecognitionPeople(result).forEach(person => {
       const normalizedName = String(person.name || '').trim().toLowerCase();
       const normalizedEmail = String(person.email || '').trim().toLowerCase();
-      if (!aliases.has(normalizedName) && !aliases.has(normalizedEmail)) return;
+      const normalizedDisplayName = getEmployeeDisplayName(person).trim().toLowerCase();
+      if (!aliases.has(normalizedName) && !aliases.has(normalizedEmail) && !aliases.has(normalizedDisplayName)) return;
       const key = `${normalizedName}|${String(person.department || '').trim().toLowerCase()}`;
       if (!candidates.has(key)) candidates.set(key, { ...person });
       const current = candidates.get(key);
@@ -4859,7 +4909,7 @@ function findRecognitionPosterSubject(query, results) {
     const personName = String(person.name || '').trim().toLowerCase();
     const personEmail = String(person.email || '').trim().toLowerCase();
     if (normalizedSubjectEmail && personEmail) return personEmail === normalizedSubjectEmail;
-    return aliases.has(personName);
+    return aliases.has(personName) || aliases.has(getEmployeeDisplayName(person).trim().toLowerCase());
   }));
 
   return subjectResults.length ? { ...subject, results: subjectResults } : null;
@@ -4965,7 +5015,7 @@ function renderHonorPosterRows(results) {
             ${period ? `<span>${escapeHtml(period)}</span>` : ''}
             <span>${escapeHtml(scope)}</span>
           </div>
-          <h3>${escapeHtml(result.name || result.award || 'Recognition')}</h3>
+          <h3>${escapeHtml(result.name === result.winner ? getEmployeeDisplayName(result.name, result.email) : result.name || result.award || 'Recognition')}</h3>
           ${result.award ? `<p>${escapeHtml(result.award)}</p>` : ''}
           ${result.department ? `<small>${escapeHtml(result.department)}</small>` : ''}
         </div>
@@ -5120,7 +5170,7 @@ async function openRecognitionCollectionPoster(selectedScope = null) {
     ? (subject.avatarUrl || getFeishuAvatarUrl(subject.email || '', subject.name || ''))
     : '';
   const optimizedSubjectAvatar = getOptimizedAvatarUrl(subjectAvatar, 320);
-  const subjectInitials = subject ? getAvatarInitials(subject.name) : '';
+  const subjectInitials = subject ? getAvatarInitials(getEmployeeDisplayName(subject)) : '';
   const modal = document.getElementById('share-modal');
   const preview = document.getElementById('poster-preview');
   const title = document.getElementById('share-modal-title');
@@ -5142,14 +5192,14 @@ async function openRecognitionCollectionPoster(selectedScope = null) {
                 <img src="${escapeHtml(optimizedSubjectAvatar)}"
                      data-fallback="${escapeHtml(subjectAvatar)}"
                      crossorigin="anonymous"
-                     alt="${escapeHtml(subject.name)}"
+                     alt="${escapeHtml(getEmployeeDisplayName(subject))}"
                      onerror="${getAvatarImageErrorHandler('flex')}">
               ` : ''}
               <span${subjectAvatar ? ' style="display:none;"' : ''}>${escapeHtml(subjectInitials)}</span>
             </div>
             <div class="honor-poster-person">
               <span class="honor-poster-kicker">HONORING</span>
-              <h2>${escapeHtml(subject.name)}</h2>
+              <h2>${escapeHtml(getEmployeeDisplayName(subject))}</h2>
               ${subject.department ? `<p>${escapeHtml(subject.department)}</p>` : ''}
               <small>${posterResults.length} Recognition${posterResults.length === 1 ? '' : 's'}${years ? ` · ${escapeHtml(years)}` : ''}</small>
             </div>
@@ -5174,7 +5224,7 @@ async function openRecognitionCollectionPoster(selectedScope = null) {
       </div>
     </div>
   `;
-  const collectionLabel = subject?.name || (scope ? `${scope.name} · ${query}` : query || 'Honor Highlights');
+  const collectionLabel = subject ? getEmployeeDisplayName(subject) : (scope ? `${scope.name} · ${query}` : query || 'Honor Highlights');
   window.CurrentAwardShare = {
     share_type: 'recognition_collection',
     title: `${collectionLabel} · Recognition`,
@@ -5182,7 +5232,9 @@ async function openRecognitionCollectionPoster(selectedScope = null) {
     summary: `${posterResults.length} recognition record${posterResults.length === 1 ? '' : 's'}${years ? ` · ${years}` : ''}`,
     detail_url: buildRecognitionSearchShareUrl(query, scope?.name || '', 'results'),
     awards: posterResults.map(result => ({
-      name: result.name || result.award || 'Recognition',
+      name: result.name === result.winner
+        ? getEmployeeDisplayName(result.name, result.email)
+        : result.name || result.award || 'Recognition',
       award: result.award || '',
       year: result.year || '',
       period: String(result.period || result.targetPeriod || '')
@@ -5303,7 +5355,7 @@ function openRecognitionDashboard(selectedScope = null) {
     scope = departmentGroups[0] || null;
   }
   const dashboardResults = subject?.results || scope?.results || results;
-  const dashboardLabel = subject?.name || (scope ? `${scope.name} · ${query}` : query);
+  const dashboardLabel = subject ? getEmployeeDisplayName(subject) : (scope ? `${scope.name} · ${query}` : query);
   let modal = document.getElementById('recognition-dashboard-modal');
   if (!modal) {
     modal = document.createElement('div');
@@ -5355,7 +5407,7 @@ function renderRecognitionDashboard(results, query = '', options = {}) {
         <div class="recognition-dashboard-head">
           <div>
             <h3 id="recognition-dashboard-title">Personal Recognition overview</h3>
-            <p>${escapeHtml(options.personalSubject.name || query || 'Selected person')}</p>
+            <p>${escapeHtml(getEmployeeDisplayName(options.personalSubject) || query || 'Selected person')}</p>
           </div>
           ${options.showInsightsShareButton ? '<button type="button" class="recognition-insights-share-btn" data-share-recognition-insights data-html2canvas-ignore="true">Create insights poster</button>' : ''}
         </div>
@@ -5411,7 +5463,7 @@ function renderRecognitionDashboard(results, query = '', options = {}) {
       <div class="recognition-repeat">
         <h4>Repeat participation</h4>
         ${insights.repeatPeople.length
-          ? `<div class="recognition-repeat-list">${insights.repeatPeople.map(person => `<span>${escapeHtml(person.name)} <b>× ${person.count}</b></span>`).join('')}</div>`
+          ? `<div class="recognition-repeat-list">${insights.repeatPeople.map(person => `<span>${escapeHtml(getEmployeeDisplayName(person))} <b>× ${person.count}</b></span>`).join('')}</div>`
           : '<p>No repeat participants in this result set.</p>'}
       </div>
       <details class="recognition-details">
@@ -5468,7 +5520,7 @@ function renderSearchResults(results, containerId) {
     const targetUrl = getSearchResultTargetUrl(result);
     let memberLine = '';
     if (result.type === 'Project Award' && result.matchedMembers && result.matchedMembers.length > 0) {
-      const matchedNames = result.matchedMembers.map(m => typeof m === 'string' ? m : m.name || '').join(', ');
+      const matchedNames = result.matchedMembers.map(m => getEmployeeDisplayName(m)).join(', ');
       const total = result.memberCount || (result.members?.length || 0);
       memberLine = `<div style="color: var(--text-secondary); font-size: 11px; margin-top: 2px;">👤 ${matchedNames}${total > result.matchedMembers.length ? ` (team of ${total})` : ''}</div>`;
     }
@@ -5476,7 +5528,7 @@ function renderSearchResults(results, containerId) {
     if (result.winner && result.winner !== result.name) {
       const matchedStr = result.matchedMembers?.map(m => typeof m === 'string' ? m : m.name || '').join(', ') || '';
       if (!matchedStr.includes(result.winner)) {
-        winnerLine = `<div style="color: var(--text-secondary); font-size: 11px; margin-top: 2px;">👤 ${result.winner}</div>`;
+        winnerLine = `<div style="color: var(--text-secondary); font-size: 11px; margin-top: 2px;">👤 ${escapeHtml(getEmployeeDisplayName(result.winner, result.email))}</div>`;
       }
     }
     html += `
@@ -5490,7 +5542,7 @@ function renderSearchResults(results, containerId) {
           ${periodLabel ? `<span style="color: var(--text-secondary); font-size: 11px;">${periodLabel}</span>` : ''}
         </div>
 
-        <div style="font-weight: 600; margin-bottom: 4px;">${result.name}</div>
+        <div style="font-weight: 600; margin-bottom: 4px;">${escapeHtml(result.name === result.winner ? getEmployeeDisplayName(result.name, result.email) : result.name)}</div>
 
         <div style="color: var(--accent-color); font-size: 14px;">${result.award || (result.points ? result.points + ' pts' : '')}</div>
         ${result.department ? `<div style="color: var(--text-secondary); font-size: 11px;">🏢 ${result.department}</div>` : ''}
