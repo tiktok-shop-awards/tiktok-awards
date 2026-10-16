@@ -341,7 +341,7 @@ function getAwardMemberEmail(award, member, options = {}) {
   return '';
 }
 
-const FEISHU_AVATAR_MAP_VERSION = '20261013-latam-q3-avatar-v1';
+const FEISHU_AVATAR_MAP_VERSION = '20261016-latam-q3-katia-avatar-v1';
 const FEISHU_AVATAR_MAP_STORAGE_KEY = `recognition-avatar-map:${FEISHU_AVATAR_MAP_VERSION}`;
 
 window.FEISHU_AVATAR_MAP = window.FEISHU_AVATAR_MAP || {};
@@ -788,7 +788,7 @@ let _manifestCache = null;
 let _manifestPromise = null;
 const _chunkedFilePromises = new Map();
 const _jsonFilePromises = new Map();
-const CHUNK_VERSION = '20261013-latam-q3-department-v1';
+const CHUNK_VERSION = '20261016-latam-q3-katia-v1';
 
 async function loadManifest() {
   if (_manifestCache) return _manifestCache;

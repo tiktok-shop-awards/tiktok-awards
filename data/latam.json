@@ -1626,6 +1626,28 @@
             "department": "Global E-Commerce-Mexico Operations-Central ops"
           }
         ]
+      },
+      {
+        "award_type": "2026 Q3个人奖",
+        "period": "2026 Q3",
+        "quarter": "Q3",
+        "project_name": "Mega Livestream Initiatives",
+        "team_award": "LATAM Stellar Contributor",
+        "winner_name": "Katia Silva",
+        "email": "katia.silva@bytedance.com",
+        "department": "Global E-Commerce-Brazil Operations-Central Ops",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "currency": "USD",
+        "reason": "Katia delivered strong Q3 results by driving end-to-end execution of mega livestream initiatives in Brazil, from planning and cluster coordination to event delivery, contributing to solid progress against both the L7 and HiPo goals. A highlight was the Garcia non-stop live, where Katia brought together the right creators, sellers, and execution plan to reach a 500K milestone, a breakthrough result for the team.\n\nAdditionally, Katia built deeper partnerships with the Home & Living and Electronics clusters, laying a stronger foundation for future livestream collaborations while identifying and developing new creators. Katia also documented a practical live playbook SOP for CMs and AMs, turning lessons from successful events into a repeatable approach that helped more Electronics creators get started and generate sales.",
+        "members": [
+          {
+            "name": "Katia Silva",
+            "email": "katia.silva@bytedance.com",
+            "department": "Global E-Commerce-Brazil Operations-Central Ops"
+          }
+        ]
       }
     ]
   }
