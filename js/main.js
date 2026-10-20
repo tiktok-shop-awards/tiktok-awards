@@ -1,4 +1,4 @@
-// MAIN.JS VERSION: 20260920-recognition-collection
+// MAIN.JS VERSION: 20261020-employee-departments-modal-v1
 // TikTok Shop Stars Awards - Main JavaScript
 
 // ==================== Global Data Store ====================
@@ -255,18 +255,46 @@ function buildAwardSummary(reason, fallback = 'Outstanding contribution with mea
   return truncateText(summary, 420);
 }
 
-function normalizeMember(member, fallbackEmail = '') {
+function hasCjkText(value) {
+  return /[\u3400-\u9fff]/.test(String(value || ''));
+}
+
+function isDetailedEnglishDepartment(value) {
+  const department = String(value || '').trim();
+  if (!department || hasCjkText(department)) return false;
+  if (!/[A-Za-z]/.test(department)) return false;
+  if (!department.includes('-')) return false;
+  if (department.length < 12) return false;
+  return true;
+}
+
+function isDetailedDepartmentPath(value) {
+  const department = String(value || '').trim();
+  if (!department) return false;
+  if (!/[A-Za-z\u3400-\u9fff]/.test(department)) return false;
+  if (!department.includes('-')) return false;
+  if (department.length < 12) return false;
+  return true;
+}
+
+function normalizeMember(member, fallbackEmail = '', fallbackDepartment = '') {
   if (typeof member === 'string') {
     const email = fallbackEmail || '';
-    return { name: member, email, avatarUrl: getFeishuAvatarUrl(email, member) };
+    return {
+      name: member,
+      email,
+      avatarUrl: getFeishuAvatarUrl(email, member),
+      department: getEmployeeDepartmentDisplay(email, fallbackDepartment)
+    };
   }
   const email = member?.email || fallbackEmail || '';
   const name = member?.name || member?.winner_name || 'Unknown';
+  const sourceDepartment = member?.department || member?.dept || fallbackDepartment || '';
   return {
     name,
     email,
     avatarUrl: member?.avatar_url || member?.avatarUrl || member?.avatar || member?.photo_url || member?.photoUrl || getFeishuAvatarUrl(email, name),
-    department: member?.department || member?.dept || '',
+    department: getEmployeeDepartmentDisplay(email, sourceDepartment),
     role: member?.role || ''
   };
 }
@@ -279,6 +307,41 @@ function getMemberDisplayName(member) {
 // Presentation only: retain source names for IDs, scoring, search links and avatars.
 let employeeDisplayNames = { byEmail: {}, byName: {}, byNameEmails: {}, ambiguousNames: [] };
 let employeeDisplayNamesPromise = null;
+let employeeDepartments = { byEmail: {} };
+let employeeDepartmentsPromise = null;
+
+function getEmployeeDepartment(email) {
+  return employeeDepartments.byEmail[String(email || '').trim().toLowerCase()] || '';
+}
+
+function getEmployeeDepartmentDisplay(email, fallbackDepartment = '') {
+  const mappedDepartment = getEmployeeDepartment(email);
+  if (isDetailedEnglishDepartment(mappedDepartment)) return mappedDepartment;
+  if (isDetailedEnglishDepartment(fallbackDepartment)) return String(fallbackDepartment).trim();
+  if (isDetailedDepartmentPath(mappedDepartment)) return mappedDepartment;
+  if (isDetailedDepartmentPath(fallbackDepartment)) return String(fallbackDepartment).trim();
+  return 'Department unavailable';
+}
+
+function loadEmployeeDepartments() {
+  if (!employeeDepartmentsPromise) {
+    employeeDepartmentsPromise = fetch('data/employee-departments.json?v=20261020-production-sync-v1', { cache: 'no-cache' })
+      .then(response => {
+        if (!response.ok) throw new Error('Employee department mapping unavailable');
+        return response.json();
+      })
+      .then(mapping => {
+        employeeDepartments = mapping;
+        return mapping;
+      })
+      .catch(error => {
+        employeeDepartmentsPromise = null;
+        console.warn('[Employee departments]', error.message);
+        return employeeDepartments;
+      });
+  }
+  return employeeDepartmentsPromise;
+}
 
 function getEmployeeDisplayName(member, fallbackEmail = '') {
   const rawName = getMemberDisplayName(member);
@@ -547,7 +610,7 @@ function findTopWinnerHighlight(person, datasets = []) {
       const awards = Array.isArray(data[bucket]) ? data[bucket] : [];
       for (const award of awards) {
         const rawMembers = award.members || (award.winner_name ? [award.winner_name] : []);
-        const members = rawMembers.map(m => normalizeMember(m, getAwardMemberEmail(award, m)));
+        const members = rawMembers.map(m => normalizeMember(m, getAwardMemberEmail(award, m), award.department || ''));
         const matched = members.some(m => {
           const name = (m.name || '').trim().toLowerCase();
           const email = (m.email || '').trim().toLowerCase();
@@ -584,7 +647,7 @@ function findTopWinnerProjects(person, datasets = []) {
         if (!award || typeof award !== 'object') return;
         const rawMembers = award.members || (award.winner_name ? [award.winner_name] : []);
         const matched = rawMembers.some(member => {
-          const normalized = normalizeMember(member, getAwardMemberEmail(award, member));
+          const normalized = normalizeMember(member, getAwardMemberEmail(award, member), award.department || '');
           const name = String(normalized.name || '').trim().toLowerCase();
           const email = String(normalized.email || '').trim().toLowerCase();
           return (targetEmail && email === targetEmail) || (targetName && name === targetName);
@@ -624,6 +687,7 @@ function showAwardDetailModal(cardId) {
   const modal = document.getElementById('members-modal');
   const modalTitle = document.getElementById('modal-title');
   const modalBody = document.getElementById('modal-body');
+  const modalContent = modal?.querySelector('.modal-content');
   if (!detail || !modal || !modalTitle || !modalBody) return;
 
   const members = (detail.members || []).map(m => normalizeMember(m));
@@ -650,8 +714,10 @@ function showAwardDetailModal(cardId) {
                 ${renderMemberAvatar(member, 'large')}
                 <div>
                   <div class="member-name">${escapeHtml(getEmployeeDisplayName(member))}</div>
-                  ${member.department ? `<div class="member-email">${escapeHtml(member.department)}</div>` : ''}
-                  ${member.email ? `<div class="member-email">${escapeHtml(member.email)}</div>` : ''}
+                  ${detail.awardType === 'project'
+                    ? `<div class="member-department">${escapeHtml(member.department || 'Department unavailable')}</div>`
+                    : `${member.department ? `<div class="member-email">${escapeHtml(member.department)}</div>` : ''}
+                       ${member.email ? `<div class="member-email">${escapeHtml(member.email)}</div>` : ''}`}
                 </div>
               </div>
             `;
@@ -660,8 +726,12 @@ function showAwardDetailModal(cardId) {
       </div>
     </div>
   `;
+  if (modalContent) modalContent.scrollTop = 0;
   modal.classList.add('award-detail-active');
   modal.classList.add('active');
+  requestAnimationFrame(() => {
+    if (modalContent) modalContent.scrollTop = 0;
+  });
 }
 
 // ==================== Navigation Functions ====================
@@ -788,7 +858,7 @@ let _manifestCache = null;
 let _manifestPromise = null;
 const _chunkedFilePromises = new Map();
 const _jsonFilePromises = new Map();
-const CHUNK_VERSION = '20261016-latam-q3-katia-v1';
+const CHUNK_VERSION = '20261020-employee-departments-modal-v1';
 
 async function loadManifest() {
   if (_manifestCache) return _manifestCache;
@@ -857,7 +927,7 @@ function loadVersionedJson(fileName) {
     const request = fetch('data/' + fileName + '?v=' + CHUNK_VERSION, { cache: 'force-cache' })
       .then(resp => {
         if (!resp.ok) throw new Error('Failed to load ' + fileName);
-        return Promise.all([resp.json(), loadEmployeeDisplayNames()]).then(([data]) => data);
+        return Promise.all([resp.json(), loadEmployeeDisplayNames(), loadEmployeeDepartments()]).then(([data]) => data);
       })
       .catch(error => {
         _jsonFilePromises.delete(fileName);
@@ -1873,7 +1943,7 @@ function renderRankingList(rankings, startRank = 4, containerId) {
       <div class="ranking-item">
         <span class="ranking-rank">#${r.rank || i + startRank}</span>
         <span class="ranking-name">${escapeHtml(getEmployeeDisplayName(r))}</span>
-        <span class="ranking-dept">${r.department || r.region || ''}</span>
+        <span class="ranking-dept">${escapeHtml(getEmployeeDepartmentDisplay(r.email, r.department || r.region || ''))}</span>
         <span class="ranking-score">${r.points || r.score || 0} pts</span>
       </div>
     `;
@@ -3408,7 +3478,11 @@ function renderGlobalAwards(data, containerId, half) {
       const memberEmail = getAwardMemberEmail(award, m);
       const memberKey = `${memberName}__${memberEmail}`.toLowerCase();
       if (memberName && !projectGroups[key].members.find(mem => `${mem.name}__${mem.email || ''}`.toLowerCase() === memberKey)) {
-        projectGroups[key].members.push({ name: memberName, email: memberEmail });
+        projectGroups[key].members.push({
+          name: memberName,
+          email: memberEmail,
+          department: (typeof m === 'object' && (m.department || m.dept)) || award.department || ''
+        });
       }
     });
   });
@@ -3600,7 +3674,11 @@ function renderProjectCards(awards, region, half) {
     award.members.forEach(m => {
       const memberName = getMemberDisplayName(m);
       if (memberName && !projectGroups[key].members.find(mem => mem.name === memberName)) {
-        projectGroups[key].members.push({ name: getMemberDisplayName(m), email: getAwardMemberEmail(award, m) });
+        projectGroups[key].members.push({
+          name: getMemberDisplayName(m),
+          email: getAwardMemberEmail(award, m),
+          department: (typeof m === 'object' && (m.department || m.dept)) || award.department || ''
+        });
       }
     });
   });
@@ -3701,7 +3779,6 @@ function renderIndividualCards(awards, region, half) {
       });
       const likeCount = getLikeCount(cardId);
       const reasonText = award.reason || award.award_reason || '';
-      const deptDisplay = award.department || award.region || region;
       const summaryText = buildAwardSummary(reasonText, 'Recognized as a stellar contributor for outstanding individual impact and ownership.');
 
       // Determine award name based on region and department
@@ -3721,8 +3798,11 @@ function renderIndividualCards(awards, region, half) {
       if (region === 'latam') {
         awardName = 'Global E-commerce LATAM Stellar Contributor';
       }
-      const winner = normalizeMember(memberName, getAwardMemberEmail(award, memberName, { allowAwardEmailFallback: true }));
-      winner.department = winner.department || deptDisplay;
+      const winner = normalizeMember(
+        memberName,
+        getAwardMemberEmail(award, memberName, { allowAwardEmailFallback: true }),
+        award.department || award.region || region
+      );
       const bonusDisplay = formatCurrency(award.bonus, currency);
       registerAwardDetail(cardId, {
         title: memberNameStr,
@@ -3741,7 +3821,7 @@ function renderIndividualCards(awards, region, half) {
             ${renderMemberAvatar(winner, 'card-avatar')}
             <span class="card-title">${escapeHtml(getEmployeeDisplayName(winner))}</span>
           </div>
-          <div class="card-meta">${deptDisplay}</div>
+          <div class="card-meta">${escapeHtml(winner.department)}</div>
           <div class="card-body">
             <div class="card-award">
               <span class="card-award-name">🌟 ${awardName}</span>
@@ -4317,6 +4397,30 @@ function matchesDepartmentSearch(department, searchTerm) {
   return ` ${normalizedDepartment} `.includes(` ${normalizedQuery} `);
 }
 
+function getAwardSearchMembers(award) {
+  const members = Array.isArray(award?.members) && award.members.length
+    ? award.members
+    : (award?.winner_name ? [award.winner_name] : []);
+  return members.map(member => normalizeMember(
+    member,
+    getAwardMemberEmail(award, member, { allowAwardEmailFallback: true }),
+    award?.department || ''
+  ));
+}
+
+function mergeMatchedMembers(...groups) {
+  const seen = new Set();
+  return groups.flat().filter(member => {
+    const normalized = normalizeMember(member);
+    const key = normalized.email
+      ? `email:${normalized.email.toLowerCase()}`
+      : `name:${normalized.name.toLowerCase()}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
 function getSearchResultYear(award) {
   if (!award) return '';
   if (award._searchYear) return String(award._searchYear);
@@ -4448,10 +4552,15 @@ function performSearch(query, level = 'all', options = {}) {
     if (!awards || !Array.isArray(awards)) return;
     const isIndividual = opts.isIndividual || /Individual/i.test(opts.key || '');
     awards.forEach(award => {
+      const searchableMembers = getAwardSearchMembers(award);
+      const departmentMatchedMembers = searchableMembers.filter(member =>
+        member.department !== 'Department unavailable'
+        && matchesDepartmentSearch(member.department, searchTerm)
+      );
       const matchName = matchesWord(award.project_name, searchTerm);
       const matchWinner = award.winner_name && matchesEmployeeName(award.winner_name, searchTerm, award.email);
       const matchMember = award.members?.some(m => matchesEmployeeName(m, searchTerm, getAwardMemberEmail(award, m))) || false;
-      const matchDept = matchesDepartmentSearch(award.department, searchTerm);
+      const matchDept = matchesDepartmentSearch(award.department, searchTerm) || departmentMatchedMembers.length > 0;
       const matchAward = matchesWord(award.award_name, searchTerm)
         || matchesWord(award.team_award, searchTerm)
         || matchesWord(award.award_type, searchTerm);
@@ -4463,7 +4572,10 @@ function performSearch(query, level = 'all', options = {}) {
       if (matchName || matchWinner || matchMember || matchDept || matchAward || matchEmail || matchReason) {
         const winnerName = award.winner_name || (award.members && award.members[0] ? (typeof award.members[0] === 'string' ? award.members[0] : award.members[0].name) : '');
         const resultYear = getSearchResultYear(award) || opts.defaultYear || '';
-        const matchedMembers = matchMember ? award.members?.filter(m => matchesEmployeeName(m, searchTerm, getAwardMemberEmail(award, m))) || [] : [];
+        const nameMatchedMembers = matchMember
+          ? award.members?.filter(m => matchesEmployeeName(m, searchTerm, getAwardMemberEmail(award, m))) || []
+          : [];
+        const matchedMembers = mergeMatchedMembers(nameMatchedMembers, departmentMatchedMembers);
         const firstRenderedMember = award.members?.[0]
           ? (typeof award.members[0] === 'string' ? award.members[0] : award.members[0].name || '')
           : '';
@@ -4489,6 +4601,7 @@ function performSearch(query, level = 'all', options = {}) {
           winner: winnerName || '',
           members: award.members,
           department: award.department || '',
+          matchedDepartment: departmentMatchedMembers[0]?.department || '',
           email: award.email || '',
           reason: award.reason,
           bonus: award.bonus,
@@ -4584,9 +4697,14 @@ function performSearch(query, level = 'all', options = {}) {
     ['Q1', 'Q2', 'Q3', 'Q4'].forEach(q => {
       const awards = searchData.departmental[q] || [];
       awards.forEach(award => {
+        const searchableMembers = getAwardSearchMembers(award);
+        const departmentMatchedMembers = searchableMembers.filter(member =>
+          member.department !== 'Department unavailable'
+          && matchesDepartmentSearch(member.department, searchTerm)
+        );
         const matchWinner = award.winner_name && matchesEmployeeName(award.winner_name, searchTerm, award.email);
         const matchMember = award.members?.some(m => matchesEmployeeName(m, searchTerm, getAwardMemberEmail(award, m))) || false;
-        const matchDept = matchesDepartmentSearch(award.department, searchTerm);
+        const matchDept = matchesDepartmentSearch(award.department, searchTerm) || departmentMatchedMembers.length > 0;
         const matchAward = matchesWord(award.award_name, searchTerm) || matchesWord(award.award_type, searchTerm);
         const matchEmail = matchesWord(award.email, searchTerm)
           || award.members?.some(m => typeof m === 'object' && matchesWord(m.email || '', searchTerm))
@@ -4597,7 +4715,10 @@ function performSearch(query, level = 'all', options = {}) {
           const dedupKey = `dept|${getSearchResultYear(award)}|${q}|${award.winner_name}|${award.department}`;
           if (!seenKeys.has(dedupKey)) {
             seenKeys.add(dedupKey);
-            const matchedMembers = matchMember ? award.members?.filter(m => matchesWord(typeof m === 'string' ? m : m.name || '', searchTerm)) || [] : [];
+            const nameMatchedMembers = matchMember
+              ? award.members?.filter(m => matchesEmployeeName(m, searchTerm, getAwardMemberEmail(award, m))) || []
+              : [];
+            const matchedMembers = mergeMatchedMembers(nameMatchedMembers, departmentMatchedMembers);
             results.push({
               type: award.award_type || 'Departmental Award',
               level: 'Departmental',
@@ -4607,6 +4728,7 @@ function performSearch(query, level = 'all', options = {}) {
               winner: award.winner_name,
               members: award.members,
               department: award.department,
+              matchedDepartment: departmentMatchedMembers[0]?.department || '',
               email: award.email || '',
               reason: award.reason || '',
               bonus: award.bonus,
@@ -4672,14 +4794,14 @@ function performSearch(query, level = 'all', options = {}) {
 function getRecognitionPeople(result) {
   const people = [];
   const addPerson = (person, fallbackEmail = '') => {
-    const normalized = normalizeMember(person, fallbackEmail);
+    const normalized = normalizeMember(person, fallbackEmail, result.department || '');
     const name = String(normalized.name || '').trim();
     const email = String(normalized.email || '').trim();
     if (!name || name === 'Unknown') return;
     people.push({
       name,
       email,
-      department: normalized.department || result.department || '',
+      department: normalized.department,
       avatarUrl: normalized.avatarUrl || getFeishuAvatarUrl(email, name) || ''
     });
   };
@@ -5518,6 +5640,7 @@ function renderSearchResults(results, containerId) {
     const yearLabel = result.year || 'Year not specified';
     const periodLabel = String(result.period || '').replace(new RegExp(`^${result.year || ''}\\s*`), '').trim();
     const targetUrl = getSearchResultTargetUrl(result);
+    const resultDepartment = result.matchedDepartment || result.department || '';
     let memberLine = '';
     if (result.type === 'Project Award' && result.matchedMembers && result.matchedMembers.length > 0) {
       const matchedNames = result.matchedMembers.map(m => getEmployeeDisplayName(m)).join(', ');
@@ -5545,7 +5668,7 @@ function renderSearchResults(results, containerId) {
         <div style="font-weight: 600; margin-bottom: 4px;">${escapeHtml(result.name === result.winner ? getEmployeeDisplayName(result.name, result.email) : result.name)}</div>
 
         <div style="color: var(--accent-color); font-size: 14px;">${result.award || (result.points ? result.points + ' pts' : '')}</div>
-        ${result.department ? `<div style="color: var(--text-secondary); font-size: 11px;">🏢 ${result.department}</div>` : ''}
+        ${resultDepartment ? `<div style="color: var(--text-secondary); font-size: 11px;">🏢 ${escapeHtml(resultDepartment)}</div>` : ''}
         ${memberLine}
         ${winnerLine}
         <div class="search-result-action">View award <span aria-hidden="true">→</span></div>

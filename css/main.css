@@ -4273,6 +4273,31 @@ img {
   line-height: 1.35 !important;
 }
 
+.award-detail-member .member-department {
+  display: -webkit-box;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+@media (max-width: 820px) {
+  .award-detail-member {
+    align-items: start !important;
+  }
+
+  .award-detail-member .member-department {
+    -webkit-line-clamp: 4;
+  }
+}
+
 /* ==================== Card Preview v21: Minimal Detail Content ==================== */
 .award-detail-modal {
   gap: var(--spacing-xl) !important;

@@ -30,7 +30,19 @@
         "Margaret Qiu",
         "Yubo Cui"
       ],
-      "currency": "CNY"
+      "currency": "CNY",
+      "member_email_map": {
+        "Zi Gu": "guzi.77@bytedance.com",
+        "Huan Zhou": "zhouhuan.nancy@bytedance.com",
+        "Yirun Cao": "yirun@bytedance.com",
+        "Chloe Kou": "qiaohuikou@bytedance.com",
+        "Savannah Zheng": "zhengbing.67@bytedance.com",
+        "Jay Zhang": "zhangjiongjie@bytedance.com",
+        "Songlin Wu": "wusonglin.234@bytedance.com",
+        "Valentina Wu": "xuyingwu@bytedance.com",
+        "Margaret Qiu": "qiuyuhan.123@bytedance.com",
+        "Yubo Cui": "cuiyubo.622@bytedance.com"
+      }
     }
   ],
   "Q2 Project Awards": [
@@ -66,7 +78,24 @@
         "Margaret Qiu",
         "Siyu Zhang"
       ],
-      "currency": "CNY"
+      "currency": "CNY",
+      "member_email_map": {
+        "Zi Gu": "guzi.77@bytedance.com",
+        "Huan Zhou": "zhouhuan.nancy@bytedance.com",
+        "Jason Yu": "j.yu@bytedance.com",
+        "Jiayuan Yan": "yanjiayuan@bytedance.com",
+        "Zhen Wang": "wangzhen.chris@bytedance.com",
+        "Chen Chen": "chen.chen23@bytedance.com",
+        "Yuhan Wang": "yuhan.wang@bytedance.com",
+        "Sylvia Liu": "liu.sylvia@bytedance.com",
+        "Lee Li": "danjing.li@bytedance.com",
+        "Hanyang Hu": "huhanyang@bytedance.com",
+        "Yunhao Li": "liyunhao.lyh@bytedance.com",
+        "Shuwei Lu": "lushuwei@bytedance.com",
+        "Songlin Wu": "wusonglin.234@bytedance.com",
+        "Margaret Qiu": "qiuyuhan.123@bytedance.com",
+        "Siyu Zhang": "siyu.zhang@bytedance.com"
+      }
     },
     {
       "award_type": "Q2 Project Awards",
@@ -89,7 +118,14 @@
         "Danling Huang",
         "Ellie W"
       ],
-      "currency": "CNY"
+      "currency": "CNY",
+      "member_email_map": {
+        "Diane": "xiaoyusun@bytedance.com",
+        "Mengyue Liu": "liumengyue.cheers@bytedance.com",
+        "Jay Zhang": "zhangjiongjie@bytedance.com",
+        "Shanyu Liu": "liushanyu.0213@bytedance.com",
+        "Ellie W": "wuxin.ellie@bytedance.com"
+      }
     },
     {
       "award_type": "Q2 Project Awards",
@@ -138,7 +174,28 @@
         "Qinan Yu",
         "Jiadong Shen"
       ],
-      "currency": "CNY"
+      "currency": "CNY",
+      "member_email_map": {
+        "Millie Cheng": "minghuicheng@bytedance.com",
+        "Qing Chen": "chenqing.0918@bytedance.com",
+        "Alex Zeng": "zengdazhan@bytedance.com",
+        "Chongkang Huang": "huangchongkang.hck@bytedance.com",
+        "Joseph Zhou": "chaochaozhou@bytedance.com",
+        "Fengjiao Wang": "wangfengjiao.lily@bytedance.com",
+        "Qianyi Shi": "shiqianyi.711@bytedance.com",
+        "Aaron Ni": "niweihao.694@bytedance.com",
+        "Cassie Xu": "xuxinyi.cassie@bytedance.com",
+        "Pengle Sun": "sunpengle.946@bytedance.com",
+        "Jiaxing Xiao": "xiaojiaxing@bytedance.com",
+        "Robin Zhang": "zhangquanbin.520@bytedance.com",
+        "James Hongyi Lin": "lin.hongyi@bytedance.com",
+        "Feiyan Wang": "wangfeiyan.jiajia@bytedance.com",
+        "Gino Li": "lichengxiang.33@bytedance.com",
+        "Kris Zhou": "zhouyuzhu@bytedance.com",
+        "Yun Tian": "liangheng.ty@bytedance.com",
+        "Matt": "mattzhang@bytedance.com",
+        "Luna Fan": "fanruizhen@bytedance.com"
+      }
     }
   ],
   "Q3 Project Awards": [
@@ -174,7 +231,23 @@
         "Cassie Xu",
         "Joyce Li"
       ],
-      "currency": "CNY"
+      "currency": "CNY",
+      "member_email_map": {
+        "Qing Chen": "chenqing.0918@bytedance.com",
+        "Millie Cheng": "minghuicheng@bytedance.com",
+        "Joseph Zhou": "chaochaozhou@bytedance.com",
+        "Fengjiao Wang": "wangfengjiao.lily@bytedance.com",
+        "Haiyan Bao": "baohaiyan@bytedance.com",
+        "Yuhan Wang": "yuhan.wang@bytedance.com",
+        "Robin Zhang": "zhangquanbin.520@bytedance.com",
+        "Aaron Ni": "niweihao.694@bytedance.com",
+        "Megan Yeh": "yeyanyu@bytedance.com",
+        "Qianyi Shi": "shiqianyi.711@bytedance.com",
+        "Siyu Zhang": "siyu.zhang@bytedance.com",
+        "Mengyue Liu": "liumengyue.cheers@bytedance.com",
+        "Cassie Xu": "xuxinyi.cassie@bytedance.com",
+        "Joyce Li": "liwanyun.0@bytedance.com"
+      }
     },
     {
       "award_type": "Q3 Project Awards",
@@ -197,7 +270,15 @@
         "Paul Zheng",
         "Gewei"
       ],
-      "currency": "CNY"
+      "currency": "CNY",
+      "member_email_map": {
+        "Zi Gu": "guzi.77@bytedance.com",
+        "Wilson": "weiwen.123@bytedance.com",
+        "Xin Yu": "yuxin.19@bytedance.com",
+        "Meg Zhang": "zhangmiao.1@bytedance.com",
+        "Sylvia Liu": "liu.sylvia@bytedance.com",
+        "Paul Zheng": "paul.zheng@bytedance.com"
+      }
     }
   ],
   "Q4 Project Awards": [
@@ -227,7 +308,17 @@
         "Jin Yang",
         "Chrissy Xu"
       ],
-      "currency": "CNY"
+      "currency": "CNY",
+      "member_email_map": {
+        "Lee Li": "danjing.li@bytedance.com",
+        "James Hongyi Lin": "lin.hongyi@bytedance.com",
+        "Zhiyan Wang": "wangzhiyan.15@bytedance.com",
+        "Leo Zhou": "huanyu.zhou@bytedance.com",
+        "Paul Zheng": "paul.zheng@bytedance.com",
+        "Chase Chen": "chenzhixing.chase@bytedance.com",
+        "Li Chen": "johnnychen@bytedance.com",
+        "Jin Yang": "yangjin.678@bytedance.com"
+      }
     },
     {
       "award_type": "Q4 Project Awards",
@@ -256,7 +347,18 @@
         "Jing Tong",
         "Tianyu Ma"
       ],
-      "currency": "CNY"
+      "currency": "CNY",
+      "member_email_map": {
+        "Zhiyan Wang": "wangzhiyan.15@bytedance.com",
+        "Sylvia Liu": "liu.sylvia@bytedance.com",
+        "Jin Yang": "yangjin.678@bytedance.com",
+        "Tingting Zhang": "zhangtingting.2020@bytedance.com",
+        "Yanan Zhu": "zhuyanan.1202@bytedance.com",
+        "Nicole Li": "nicole.899@bytedance.com",
+        "Ke Zhu": "zhuke.0401@bytedance.com",
+        "Qianwen Du": "duqianwen.1@bytedance.com",
+        "Tianyu Ma": "matianyu.2020@bytedance.com"
+      }
     },
     {
       "award_type": "Q4 Project Awards",
@@ -285,7 +387,18 @@
         "Xiuzuan Li",
         "Winnie Wang"
       ],
-      "currency": "CNY"
+      "currency": "CNY",
+      "member_email_map": {
+        "Gloria": "liuchang.gloria@bytedance.com",
+        "Xuena Song": "songxuena.01@bytedance.com",
+        "Alex Zeng": "zengdazhan@bytedance.com",
+        "Joyce Li": "liwanyun.0@bytedance.com",
+        "Qingzhu Li": "liqingzhu@bytedance.com",
+        "Jingyi Mei": "meijingyi.916@bytedance.com",
+        "Quanyi Liu": "quanyi.liu@bytedance.com",
+        "Lester Sun": "less@bytedance.com",
+        "Margaret Qiu": "qiuyuhan.123@bytedance.com"
+      }
     },
     {
       "award_type": "Q4 Project Awards",
@@ -309,7 +422,13 @@
         "Chi Zhang",
         "Lijie Guo"
       ],
-      "currency": "CNY"
+      "currency": "CNY",
+      "member_email_map": {
+        "Yuki": "yuki.tagami@bytedance.com",
+        "Qingshan Liu": "liuqingshan.gary@bytedance.com",
+        "Meiwen Huang": "huangmeiwen@bytedance.com",
+        "Allison": "shuaicheng@ad.bytedance.com"
+      }
     }
   ],
   "H2 Individual Awards": [
@@ -419,7 +538,10 @@
       "members": [
         "Yiru Wang"
       ],
-      "currency": "CNY"
+      "currency": "CNY",
+      "member_email_map": {
+        "Yiru Wang": "yiru.wang@bytedance.com"
+      }
     },
     {
       "award_type": "H2 Individual Awards",
@@ -437,7 +559,10 @@
       "members": [
         "Matthew Fahey"
       ],
-      "currency": "CNY"
+      "currency": "CNY",
+      "member_email_map": {
+        "Matthew Fahey": "matthew.fahey@bytedance.com"
+      }
     },
     {
       "award_type": "H2 Individual Awards",

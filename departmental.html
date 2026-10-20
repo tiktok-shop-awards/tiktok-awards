@@ -17,7 +17,7 @@
   <link rel="manifest" href="/tiktok-awards/recognition-hub-v2.webmanifest">
   <meta property="og:image" content="https://tiktok-shop-awards.github.io/tiktok-awards/images/recognition-hub-icon-512-v2.png">
   <meta name="twitter:image" content="https://tiktok-shop-awards.github.io/tiktok-awards/images/recognition-hub-icon-512-v2.png">
-  <link rel="stylesheet" href="css/main.css?v=v63">
+  <link rel="stylesheet" href="css/main.css?v=20261020-employee-departments-modal-v1">
   <style id="app-boot-guard-style">
     html.app-booting:not(.app-ready) body {
       visibility: hidden;
@@ -520,7 +520,7 @@
   <script src="js/auth.js?v=20261013-feishu-webapp-v1"></script>
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
   <script src="js/award-api.js?v=20260914internalonly"></script>
-  <script src="js/main.js?v=20261016-latam-q3-katia-v1"></script>
+  <script src="js/main.js?v=20261020-employee-departments-modal-v1"></script>
   <script>
     // ===== Departmental Page State =====
     let departmentalData = null;
@@ -921,8 +921,10 @@
         const reasonText = award.reason || '';
         const summaryText = buildAwardSummary(reasonText, 'Recognized by the department for outstanding ownership, execution, and contribution.');
         const detailMembers = (award.members && award.members.length)
-          ? award.members.map(member => normalizeMember(member, getAwardMemberEmail(award, member, { allowAwardEmailFallback: true })))
-          : [{ name, email, department }];
+          ? award.members.map(member => normalizeMember(member, getAwardMemberEmail(award, member, { allowAwardEmailFallback: true }), department))
+          : [normalizeMember({ name, email, department })];
+        const displayDepartment = detailMembers[0]?.department || getEmployeeDepartmentDisplay(email, department);
+        const displayEmail = detailMembers[0]?.email || email;
 
         // Build a unique cardId consistent with regional/global format
         const cardId = `dept_${(department + '_' + name).replace(/\s+/g, '_')}_${award.award_type.replace(/\s+/g, '_')}`;
@@ -953,7 +955,7 @@
               ${renderMemberAvatar(detailMembers[0], 'card-avatar')}
               <span class="card-title">${escapeHtml(displayName)}</span>
             </div>
-            <div class="card-meta">${department}${email ? ' · ' + email : ''}${quarter ? ' · ' + quarter + ' 2026' : ''}${memberInfo ? ' · ' + memberInfo : ''}</div>
+            <div class="card-meta">${escapeHtml(displayDepartment)}${displayEmail ? ' · ' + escapeHtml(displayEmail) : ''}${quarter ? ' · ' + escapeHtml(quarter) + ' 2026' : ''}${memberInfo ? ' · ' + escapeHtml(memberInfo) : ''}</div>
             <div class="card-body">
               <div class="card-award">
                 <span class="card-award-name">${icon} ${badgeLabel}</span>
