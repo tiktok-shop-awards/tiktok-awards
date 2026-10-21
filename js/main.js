@@ -1,4 +1,4 @@
-// MAIN.JS VERSION: 20261021-public-feishu-share-v8
+// MAIN.JS VERSION: 20261021-public-feishu-share-v9
 // TikTok Shop Stars Awards - Main JavaScript
 
 // ==================== Global Data Store ====================
@@ -2943,7 +2943,7 @@ const POSTER_CAPTURE_MAX_HEIGHT = 30000;
 const POSTER_MIN_PAGE_RATIO = 0.42;
 const FEISHU_SHARE_CAPTURE_SCALE = 1;
 const FEISHU_PUBLIC_SHARE_BASE = 'https://recognition-poster-gateway.2264300243.workers.dev';
-const FEISHU_POSTER_UPLOAD_ENDPOINT = `${FEISHU_PUBLIC_SHARE_BASE}/api/feishu/share/poster-image`;
+const FEISHU_POSTER_UPLOAD_ENDPOINT = 'https://da1e5fb0.aipa.bytedance.net/api/feishu/share/poster-image';
 const FEISHU_JSSDK_CONFIG_ENDPOINT = `${FEISHU_PUBLIC_SHARE_BASE}/api/feishu/share/jssdk-config`;
 const FEISHU_APP_ID = 'cli_a968a864a0f89bdd';
 
@@ -3288,9 +3288,6 @@ async function uploadPosterImageForFeishu(image, award, onProgress) {
   if (!(blob instanceof Blob)) {
     throw new Error('Poster image blob is missing');
   }
-  const requestHeaders = {
-    'x-feishu-auth-code': await requestFreshFeishuPosterAuthCode()
-  };
   const formData = new FormData();
   const extension = image.format === 'jpg' ? 'jpg' : 'png';
   const baseName = award?.share_type === 'recognition_collection'
@@ -3307,8 +3304,7 @@ async function uploadPosterImageForFeishu(image, award, onProgress) {
   const payload = await uploadPosterFormData(
     FEISHU_POSTER_UPLOAD_ENDPOINT,
     formData,
-    onProgress,
-    requestHeaders
+    onProgress
   );
   const imageKey = extractFeishuImageKey(payload);
   if (!imageKey) {
