@@ -6934,10 +6934,45 @@ img {
 }
 
 
-/* Feishu poster image sharing v54 */
+/* Feishu poster image sharing v55 */
+.share-actions {
+  align-items: flex-start;
+}
+
+.feishu-share-control {
+  display: grid;
+  width: min(280px, 100%);
+  gap: 8px;
+}
+
+.feishu-share-control .feishu-share-btn {
+  width: 100%;
+}
+
 .feishu-share-btn {
   background: linear-gradient(135deg, #3370ff, #5b8cff);
   box-shadow: 0 8px 24px rgba(51, 112, 255, 0.22);
+}
+
+.feishu-network-note {
+  margin: 0;
+  padding: 0 2px 0 10px;
+  border-left: 2px solid rgba(91, 140, 255, 0.72);
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 11px;
+  line-height: 1.45;
+  text-align: left;
+}
+
+@media (min-width: 761px) {
+  .feishu-share-control {
+    width: 380px;
+  }
+
+  .feishu-network-note {
+    font-size: 10px;
+    white-space: nowrap;
+  }
 }
 
 .feishu-share-btn.is-loading {
@@ -7013,4 +7048,21 @@ img {
 
 @keyframes feishuShareSpin {
   to { transform: rotate(360deg); }
+}
+
+@media (max-width: 640px) {
+  .share-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .feishu-share-control,
+  .share-actions > .download-btn {
+    width: 100%;
+  }
+
+  .feishu-network-note {
+    padding-left: 9px;
+    font-size: 10px;
+  }
 }

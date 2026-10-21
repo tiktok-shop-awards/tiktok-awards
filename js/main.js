@@ -1,4 +1,4 @@
-// MAIN.JS VERSION: 20261021-public-feishu-share-v9
+// MAIN.JS VERSION: 20261021-internal-feishu-share-v10
 // TikTok Shop Stars Awards - Main JavaScript
 
 // ==================== Global Data Store ====================
@@ -2942,10 +2942,6 @@ const FEISHU_POSTER_MAX_BYTES = 2 * 1024 * 1024;
 const POSTER_CAPTURE_MAX_HEIGHT = 30000;
 const POSTER_MIN_PAGE_RATIO = 0.42;
 const FEISHU_SHARE_CAPTURE_SCALE = 1;
-const FEISHU_PUBLIC_SHARE_BASE = 'https://recognition-poster-gateway.2264300243.workers.dev';
-const FEISHU_POSTER_UPLOAD_ENDPOINT = 'https://da1e5fb0.aipa.bytedance.net/api/feishu/share/poster-image';
-const FEISHU_JSSDK_CONFIG_ENDPOINT = `${FEISHU_PUBLIC_SHARE_BASE}/api/feishu/share/jssdk-config`;
-const FEISHU_APP_ID = 'cli_a968a864a0f89bdd';
 
 function collectPosterSafeBreaks(posterContent, exportScale) {
   const selectors = [
@@ -3010,13 +3006,28 @@ function ensurePosterFeishuShareButton() {
   const modal = document.getElementById('share-modal');
   const shareActions = modal?.querySelector('.share-actions');
   if (!shareActions) return null;
-  let feishuButton = shareActions.querySelector('.feishu-share-btn');
+  let feishuControl = shareActions.querySelector('.feishu-share-control');
+  if (!feishuControl) {
+    feishuControl = document.createElement('div');
+    feishuControl.className = 'feishu-share-control';
+    shareActions.prepend(feishuControl);
+  }
+
+  let feishuButton = feishuControl.querySelector('.feishu-share-btn');
   if (!feishuButton) {
     feishuButton = document.createElement('button');
     feishuButton.className = 'download-btn feishu-share-btn';
     feishuButton.type = 'button';
     feishuButton.onclick = () => shareCurrentAwardToFeishu(feishuButton);
-    shareActions.prepend(feishuButton);
+    feishuControl.appendChild(feishuButton);
+  }
+
+  let networkNote = feishuControl.querySelector('.feishu-network-note');
+  if (!networkNote) {
+    networkNote = document.createElement('p');
+    networkNote.className = 'feishu-network-note';
+    networkNote.textContent = 'Available only on the company network or with Seal enabled.';
+    feishuControl.appendChild(networkNote);
   }
   feishuButton.textContent = 'Share to Feishu';
   feishuButton.disabled = false;
@@ -3194,11 +3205,6 @@ function uploadPosterFormData(endpoint, formData, onProgress, headers = {}) {
         const error = new Error(`Poster image upload failed: HTTP ${xhr.status}`);
         error.status = xhr.status;
         error.responseText = responseText;
-        try {
-          const payload = JSON.parse(responseText);
-          error.code = payload?.code || '';
-          error.stage = payload?.stage || '';
-        } catch {}
         reject(error);
         return;
       }
@@ -3219,8 +3225,6 @@ function uploadPosterFormData(endpoint, formData, onProgress, headers = {}) {
     xhr.ontimeout = () => {
       const error = new Error('Poster image upload timed out');
       error.name = 'TimeoutError';
-      error.code = 'PUBLIC_GATEWAY_TIMEOUT';
-      error.stage = 'gateway_request';
       reject(error);
     };
     xhr.onabort = () => {
@@ -3232,62 +3236,15 @@ function uploadPosterFormData(endpoint, formData, onProgress, headers = {}) {
   });
 }
 
-async function requestFreshFeishuPosterAuthCode() {
-  if (typeof FeishuAuthHelper !== 'undefined') {
-    if (typeof FeishuAuthHelper._loadJSSDKWithRetry === 'function') {
-      await FeishuAuthHelper._loadJSSDKWithRetry(3);
-    }
-    if (typeof FeishuAuthHelper._waitForAuthApi === 'function') {
-      await FeishuAuthHelper._waitForAuthApi(12000);
-    }
-  }
-
-  if (!window.tt || typeof window.tt.requestAuthCode !== 'function') {
-    const error = new Error('Feishu authorization is unavailable');
-    error.code = 'FEISHU_AUTH_CODE_UNAVAILABLE';
-    throw error;
-  }
-
-  const appId = (typeof FeishuAuthHelper !== 'undefined' && FeishuAuthHelper.APP_ID)
-    ? FeishuAuthHelper.APP_ID
-    : FEISHU_APP_ID;
-  return new Promise((resolve, reject) => {
-    const timeout = window.setTimeout(() => {
-      const error = new Error('Feishu authorization timed out');
-      error.name = 'TimeoutError';
-      error.code = 'FEISHU_AUTH_CODE_TIMEOUT';
-      reject(error);
-    }, 12000);
-
-    window.tt.requestAuthCode({
-      appId,
-      success: result => {
-        window.clearTimeout(timeout);
-        const code = String(result?.code || '').trim();
-        if (!code) {
-          const error = new Error('Feishu authorization returned no code');
-          error.code = 'FEISHU_AUTH_CODE_EMPTY';
-          reject(error);
-          return;
-        }
-        resolve(code);
-      },
-      fail: cause => {
-        window.clearTimeout(timeout);
-        const error = new Error('Feishu authorization failed');
-        error.code = 'FEISHU_AUTH_CODE_FAILED';
-        error.cause = cause;
-        reject(error);
-      }
-    });
-  });
-}
-
 async function uploadPosterImageForFeishu(image, award, onProgress) {
   const blob = image?.blob;
   if (!(blob instanceof Blob)) {
     throw new Error('Poster image blob is missing');
   }
+  const baseUrl = (typeof AwardAPI !== 'undefined' && AwardAPI.BASE_URL)
+    ? AwardAPI.BASE_URL
+    : 'https://da1e5fb0.aipa.bytedance.net';
+  const endpoint = `${baseUrl}/api/feishu/share/poster-image`;
   const formData = new FormData();
   const extension = image.format === 'jpg' ? 'jpg' : 'png';
   const baseName = award?.share_type === 'recognition_collection'
@@ -3301,11 +3258,7 @@ async function uploadPosterImageForFeishu(image, award, onProgress) {
   formData.append('award_id', String(award?.award_id || award?.id || ''));
   formData.append('title', String(award?.title || award?.award_name || award?.project_name || 'Recognition poster').slice(0, 160));
 
-  const payload = await uploadPosterFormData(
-    FEISHU_POSTER_UPLOAD_ENDPOINT,
-    formData,
-    onProgress
-  );
+  const payload = await uploadPosterFormData(endpoint, formData, onProgress);
   const imageKey = extractFeishuImageKey(payload);
   if (!imageKey) {
     const error = new Error('Poster image upload did not return image_key');
@@ -3317,15 +3270,6 @@ async function uploadPosterImageForFeishu(image, award, onProgress) {
 
 function getFeishuPosterShareErrorMessage(error, stage) {
   const responseText = String(error?.responseText || '');
-  if (/^FEISHU_AUTH_CODE_/.test(String(error?.code || ''))) {
-    return 'Feishu authorization could not be completed. Please reopen the page in Feishu and retry.';
-  }
-  if (error?.code === 'UPSTREAM_TIMEOUT') {
-    return `Feishu timed out at ${error?.stage || 'an upstream step'}. Please retry once.`;
-  }
-  if (error?.code === 'PUBLIC_GATEWAY_TIMEOUT') {
-    return 'The public Feishu gateway did not respond in time.';
-  }
   if (error?.code === 'POSTER_TOO_LARGE' || /234006|234039|image.{0,20}(size|resolution|dimension)|too large/i.test(responseText)) {
     return 'This poster is still too large for Feishu after compression.';
   }
@@ -4135,27 +4079,12 @@ function initFeishuJssdk() {
 
 function _doJssdkConfig() {
   const currentUrl = window.location.href.split('#')[0];
-  const controller = new AbortController();
-  const timeout = window.setTimeout(() => controller.abort(), 25000);
   return fetch(
-    `${FEISHU_JSSDK_CONFIG_ENDPOINT}?url=${encodeURIComponent(currentUrl)}`,
-    { signal: controller.signal }
+    `https://da1e5fb0.aipa.bytedance.net/api/jssdk_config?url=${encodeURIComponent(currentUrl)}`
   )
-    .then(async res => {
-      let data;
-      try {
-        data = await res.json();
-      } catch {
-        throw new Error(`JSSDK gateway returned invalid JSON (HTTP ${res.status})`);
-      }
-      if (!res.ok) {
-        const error = new Error(data?.error || `HTTP ${res.status}`);
-        error.status = res.status;
-        error.code = data?.code || '';
-        error.stage = data?.stage || '';
-        throw error;
-      }
-      return data;
+    .then(res => {
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json();
     })
     .then(data => {
       _debugLog('JSSDK: server response received');
@@ -4191,22 +4120,10 @@ function _doJssdkConfig() {
       });
     })
     .catch(err => {
-      const message = err?.name === 'AbortError'
-        ? 'public gateway timed out'
-        : err.message;
-      _debugLog('JSSDK: init failed - ' + message);
+      _debugLog('JSSDK: init failed - ' + err.message);
       // Reset so we can retry
       _jssdkPromise = null;
-      if (err?.name === 'AbortError') {
-        const timeoutError = new Error('Public JSSDK gateway timed out');
-        timeoutError.code = 'PUBLIC_JSSDK_TIMEOUT';
-        timeoutError.stage = 'jssdk_config';
-        throw timeoutError;
-      }
       throw err;
-    })
-    .finally(() => {
-      window.clearTimeout(timeout);
     });
 }
 
