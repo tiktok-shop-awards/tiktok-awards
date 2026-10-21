@@ -1,8 +1,8 @@
 /**
- * Feishu Auth v11.0 - ByteDance internal-only access
+ * Feishu Auth v11.1 - enterprise Feishu access
  * Browser access blocked, only Feishu embedded browser allowed.
- * In Feishu: wait for SDK, retry auth/login, then allow only AIPA-confirmed internal users.
- * Add ?auth_debug=1 on global.html to debug auth without running normal page auth.
+ * In Feishu: wait for SDK, retry auth/login, then allow users authenticated by this enterprise app.
+ * Add ?auth_debug=1 on localhost to debug auth without running normal page auth.
  * In browser: show "Open in Feishu" screen
  */
 document.addEventListener('DOMContentLoaded', async function() {
@@ -10,8 +10,22 @@ document.addEventListener('DOMContentLoaded', async function() {
   var content = document.getElementById('main-content');
   var titleEl = document.getElementById('auth-title');
   var descEl = document.getElementById('auth-desc');
+  if (titleEl) {
+    titleEl.style.maxWidth = 'calc(100vw - 48px)';
+    titleEl.style.textAlign = 'center';
+  }
+  if (descEl) {
+    descEl.style.width = 'calc(100vw - 48px)';
+    descEl.style.maxWidth = 'calc(100vw - 48px)';
+    descEl.style.textAlign = 'center';
+    descEl.style.lineHeight = '1.6';
+    descEl.style.whiteSpace = 'normal';
+    descEl.style.overflowWrap = 'anywhere';
+  }
   var params = new URLSearchParams(window.location.search);
-  if (params.get('auth_debug') === '1') {
+  var isLocalDebug = params.get('auth_debug') === '1'
+    && /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname);
+  if (isLocalDebug) {
     console.log('[FeishuAuth] Auth debug mode enabled, skip normal page auth');
     return;
   }
@@ -209,16 +223,14 @@ document.addEventListener('DOMContentLoaded', async function() {
           var uid = data.data.user_id || data.data.open_id || data.data.id || data.data.userId || '';
           var name = data.data.username || data.data.name || data.data.en_name || '';
           var internalStatus = getInternalStatus(data);
-          if (internalOnlyMode && internalStatus !== true) {
-            console.warn('[FeishuAuth] Internal-only mode rejected user. Status:', internalStatus, 'data:', JSON.stringify(data));
+          if (internalOnlyMode && internalStatus === false) {
+            console.warn('[FeishuAuth] Enterprise access rejected user. Status:', internalStatus, 'data:', JSON.stringify(data));
             finishAuth();
-            showInternalOnlyBlock(internalStatus === 'missing'
-              ? '后端暂未返回内部员工校验结果，请联系管理员确认 AIPA /api/auth/login 是否已返回 is_internal=true。'
-              : '仅限字节内部员工访问。');
+            showInternalOnlyBlock('仅限企业内部员工访问。');
             return;
           }
-          if (uid) {
-            var user = { userId: uid, username: name, isInternal: internalStatus === true };
+          if (uid && uid.startsWith('ou_')) {
+            var user = { userId: uid, username: name, isInternal: true };
             sessionStorage.setItem('feishu_user', JSON.stringify(user));
             console.log('[FeishuAuth] Auth success:', uid);
             finishAuth();
@@ -264,28 +276,20 @@ document.addEventListener('DOMContentLoaded', async function() {
       data.is_bytdance_internal,
       data.isByteDanceInternal,
       data.byte_internal,
-      data.bytedance_internal
+      data.bytedance_internal,
+      data.data && data.data.is_internal,
+      data.data && data.data.isInternal,
+      data.data && data.data.internal,
+      data.data && data.data.is_byte_internal,
+      data.data && data.data.isByteInternal,
+      data.data && data.data.is_bytdance_internal,
+      data.data && data.data.isByteDanceInternal,
+      data.data && data.data.byte_internal,
+      data.data && data.data.bytedance_internal
     ];
     for (var t = 0; t < topLevelCandidates.length; t++) {
       if (topLevelCandidates[t] === true || topLevelCandidates[t] === 'true' || topLevelCandidates[t] === 1 || topLevelCandidates[t] === '1') return true;
       if (topLevelCandidates[t] === false || topLevelCandidates[t] === 'false' || topLevelCandidates[t] === 0 || topLevelCandidates[t] === '0') return false;
-    }
-    if (!data.data) return false;
-    var d = data.data;
-    var candidates = [
-      d.is_internal,
-      d.isInternal,
-      d.internal,
-      d.is_byte_internal,
-      d.isByteInternal,
-      d.is_bytdance_internal,
-      d.isByteDanceInternal,
-      d.byte_internal,
-      d.bytedance_internal
-    ];
-    for (var i = 0; i < candidates.length; i++) {
-      if (candidates[i] === true || candidates[i] === 'true' || candidates[i] === 1 || candidates[i] === '1') return true;
-      if (candidates[i] === false || candidates[i] === 'false' || candidates[i] === 0 || candidates[i] === '0') return false;
     }
     if (data.code === 'FORBIDDEN' || data.code === 'NOT_INTERNAL' || data.code === 'UNAUTHORIZED') return false;
     return 'missing';
@@ -293,7 +297,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
   function getBackendErrorMessage(data) {
     if (data && (data.message || data.msg)) return data.message || data.msg;
-    if (data && data.code === 'FORBIDDEN') return '仅限字节内部员工访问。';
+    if (data && data.code === 'FORBIDDEN') return '仅限企业内部员工访问。';
     return '身份验证失败，请确认已从飞书内部应用打开。';
   }
 
@@ -306,7 +310,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     if (overlay) overlay.style.display = 'flex';
     if (content) content.style.display = 'none';
     if (titleEl) titleEl.textContent = '暂无访问权限';
-    if (descEl) descEl.innerHTML = message || '仅限字节内部员工访问。';
+    if (descEl) descEl.innerHTML = message || '仅限企业内部员工访问。';
   }
 
   function fallbackToLocalUser() {
