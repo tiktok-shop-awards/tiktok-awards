@@ -298,6 +298,32 @@
       display: flex;
     }
 
+    @media (max-width: 768px) {
+      .dept-search {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto auto;
+        align-items: center;
+        width: 100%;
+        max-width: 100%;
+        gap: 8px;
+      }
+
+      .dept-search .search-input {
+        width: 100% !important;
+        min-width: 0;
+      }
+
+      .dept-search .search-btn {
+        width: 96px !important;
+        flex: none;
+      }
+
+      .dept-search .search-clear {
+        width: 32px !important;
+        min-width: 32px;
+      }
+    }
+
     /* Quarter tabs */
     .quarter-tabs {
       display: flex;
@@ -520,7 +546,7 @@
   <script src="js/auth.js?v=20261021-enterprise-feishu-v4"></script>
   <script src="js/auth-helper-v21.js?v=20260914retry"></script>
   <script src="js/award-api.js?v=20260914internalonly"></script>
-  <script src="js/main.js?v=20261020-employee-departments-modal-v1"></script>
+  <script src="js/main.js?v=20261021-mobile-poster-share-v1"></script>
   <script>
     // ===== Departmental Page State =====
     let departmentalData = null;

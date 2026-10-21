@@ -1,4 +1,4 @@
-// MAIN.JS VERSION: 20261020-employee-departments-modal-v1
+// MAIN.JS VERSION: 20261021-mobile-poster-share-v1
 // TikTok Shop Stars Awards - Main JavaScript
 
 // ==================== Global Data Store ====================
@@ -3169,6 +3169,29 @@ function extractFeishuImageKey(response) {
     || '';
 }
 
+function createPosterUploadTimeout(timeoutMs) {
+  if (typeof AbortController !== 'function') {
+    return { signal: null, cancel() {}, didTimeout() { return false; } };
+  }
+
+  const controller = new AbortController();
+  let timedOut = false;
+  const timeoutId = window.setTimeout(() => {
+    timedOut = true;
+    controller.abort();
+  }, timeoutMs);
+
+  return {
+    signal: controller.signal,
+    cancel() {
+      window.clearTimeout(timeoutId);
+    },
+    didTimeout() {
+      return timedOut;
+    }
+  };
+}
+
 async function uploadPosterImageForFeishu(image, award) {
   const blob = image?.blob;
   if (!(blob instanceof Blob)) {
@@ -3191,12 +3214,27 @@ async function uploadPosterImageForFeishu(image, award) {
   formData.append('award_id', String(award?.award_id || award?.id || ''));
   formData.append('title', String(award?.title || award?.award_name || award?.project_name || 'Recognition poster').slice(0, 160));
 
-  const response = await fetch(endpoint, {
+  const uploadTimeout = createPosterUploadTimeout(45000);
+  const requestOptions = {
     method: 'POST',
     credentials: 'include',
-    body: formData,
-    signal: AbortSignal.timeout(45000)
-  });
+    body: formData
+  };
+  if (uploadTimeout.signal) requestOptions.signal = uploadTimeout.signal;
+
+  let response;
+  try {
+    response = await fetch(endpoint, requestOptions);
+  } catch (error) {
+    if (uploadTimeout.didTimeout()) {
+      const timeoutError = new Error('Poster image upload timed out');
+      timeoutError.name = 'TimeoutError';
+      throw timeoutError;
+    }
+    throw error;
+  } finally {
+    uploadTimeout.cancel();
+  }
   if (!response.ok) {
     const text = await response.text().catch(() => '');
     const error = new Error(`Poster image upload failed: HTTP ${response.status}`);
@@ -3223,6 +3261,9 @@ function getFeishuPosterShareErrorMessage(error, stage) {
     return 'Poster upload timed out. Please retry once.';
   }
   if (error?.status === 404) return 'Poster image upload service is not ready yet.';
+  if (stage === 'upload' && error?.name === 'TypeError') {
+    return 'Could not reach the poster upload service. Please check your connection and retry.';
+  }
   if (stage === 'capture') return 'Poster capture failed. Please close and reopen the poster, then retry.';
   if (stage === 'prepare') return 'Poster image preparation failed before upload.';
   if (stage === 'upload') return 'Feishu rejected the poster upload. Please retry once.';
