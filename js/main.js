@@ -2831,10 +2831,10 @@ const FEISHU_WEB_APP_ID = 'cli_a968a864a0f89bdd';
 
 function buildFeishuWebAppLink(targetUrl) {
   const target = new URL(String(targetUrl || window.location.href), window.location.href);
-  const appPath = `${target.pathname}${target.search}${target.hash}`;
   const params = new URLSearchParams({
     appId: FEISHU_WEB_APP_ID,
-    path: appPath
+    path: target.pathname,
+    lk_target_url: target.toString()
   });
   return `https://applink.feishu.cn/client/web_app/open?${params.toString()}`;
 }

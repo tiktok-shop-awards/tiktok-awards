@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page Not Found | Recognition Hub</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #000;
+      color: #fff;
+      font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    main {
+      width: min(100% - 40px, 560px);
+      text-align: center;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 28px;
+    }
+    p {
+      margin: 0;
+      color: #a1a1a6;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Page not found</h1>
+    <p>The requested Recognition Hub page could not be found.</p>
+  </main>
+  <script>
+    (function recoverLegacyRecognitionLink() {
+      var allowedPages = {
+        '/tiktok-awards/index.html': true,
+        '/tiktok-awards/global.html': true,
+        '/tiktok-awards/regional.html': true,
+        '/tiktok-awards/departmental.html': true,
+        '/tiktok-awards/profile.html': true
+      };
+      var original = window.location.pathname + window.location.search + window.location.hash;
+      var candidate = window.location.pathname;
+
+      for (var i = 0; i < 2; i += 1) {
+        try {
+          var decoded = decodeURIComponent(candidate);
+          if (decoded === candidate) break;
+          candidate = decoded;
+        } catch (error) {
+          break;
+        }
+      }
+
+      candidate = candidate.replace(
+        /^(?:\/tiktok-awards){2,}\//,
+        '/tiktok-awards/'
+      );
+
+      var recoveredHash = '';
+      var hashIndex = candidate.indexOf('#');
+      if (hashIndex >= 0) {
+        recoveredHash = candidate.slice(hashIndex);
+        candidate = candidate.slice(0, hashIndex);
+      }
+
+      var recoveredSearch = '';
+      var queryIndex = candidate.indexOf('?');
+      if (queryIndex >= 0) {
+        recoveredSearch = candidate.slice(queryIndex);
+        candidate = candidate.slice(0, queryIndex);
+      }
+
+      if (candidate === '/tiktok-awards/' || candidate === '/tiktok-awards') {
+        candidate = '/tiktok-awards/index.html';
+      }
+
+      var destination =
+        candidate +
+        (recoveredSearch || window.location.search) +
+        (recoveredHash || window.location.hash);
+      var marker = 'recognition-link-recovery:' + original;
+      var alreadyTried = false;
+
+      try {
+        alreadyTried = window.sessionStorage.getItem(marker) === '1';
+      } catch (error) {
+        alreadyTried = false;
+      }
+
+      if (allowedPages[candidate] && destination !== original && !alreadyTried) {
+        try {
+          window.sessionStorage.setItem(marker, '1');
+        } catch (error) {
+          // Continue without storage; the destination must still differ from the source.
+        }
+        window.location.replace(destination);
+      }
+    }());
+  </script>
+</body>
+</html>
