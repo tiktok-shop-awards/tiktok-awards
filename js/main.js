@@ -1,4 +1,4 @@
-// MAIN.JS VERSION: 20261021-mobile-poster-share-v4
+// MAIN.JS VERSION: 20261021-mobile-poster-share-v5
 // TikTok Shop Stars Awards - Main JavaScript
 
 // ==================== Global Data Store ====================
@@ -2942,6 +2942,8 @@ const FEISHU_POSTER_MAX_BYTES = 2 * 1024 * 1024;
 const POSTER_CAPTURE_MAX_HEIGHT = 30000;
 const POSTER_MIN_PAGE_RATIO = 0.42;
 const FEISHU_SHARE_CAPTURE_SCALE = 1;
+const FEISHU_MOBILE_POSTER_GATEWAY = 'https://recognition-poster-gateway.2264300243.workers.dev/api/feishu/share/poster-image';
+const FEISHU_APP_ID = 'cli_a968a864a0f89bdd';
 
 function collectPosterSafeBreaks(posterContent, exportScale) {
   const selectors = [
@@ -3165,11 +3167,16 @@ function extractFeishuImageKey(response) {
     || '';
 }
 
-function uploadPosterFormData(endpoint, formData, onProgress) {
+function uploadPosterFormData(endpoint, formData, onProgress, headers = {}) {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', endpoint, true);
     xhr.timeout = 90000;
+    Object.entries(headers).forEach(([name, value]) => {
+      if (value !== null && value !== undefined && value !== '') {
+        xhr.setRequestHeader(name, String(value));
+      }
+    });
 
     if (xhr.upload && typeof onProgress === 'function') {
       xhr.upload.onprogress = event => {
@@ -3216,15 +3223,86 @@ function uploadPosterFormData(endpoint, formData, onProgress) {
   });
 }
 
+function getFeishuPosterUploadStrategy(userAgent = navigator.userAgent) {
+  const isFeishu = /Feishu|Lark/i.test(String(userAgent || ''));
+  const isMobileDevice = /Android|iPhone|iPad|iPod/i.test(String(userAgent || ''));
+  if (isFeishu && isMobileDevice) {
+    return {
+      endpoint: FEISHU_MOBILE_POSTER_GATEWAY,
+      requiresAuthCode: true
+    };
+  }
+
+  const baseUrl = (typeof AwardAPI !== 'undefined' && AwardAPI.BASE_URL)
+    ? AwardAPI.BASE_URL
+    : 'https://da1e5fb0.aipa.bytedance.net';
+  return {
+    endpoint: `${baseUrl}/api/feishu/share/poster-image`,
+    requiresAuthCode: false
+  };
+}
+
+async function requestFreshFeishuPosterAuthCode() {
+  if (typeof FeishuAuthHelper !== 'undefined') {
+    if (typeof FeishuAuthHelper._loadJSSDKWithRetry === 'function') {
+      await FeishuAuthHelper._loadJSSDKWithRetry(3);
+    }
+    if (typeof FeishuAuthHelper._waitForAuthApi === 'function') {
+      await FeishuAuthHelper._waitForAuthApi(12000);
+    }
+  }
+
+  if (!window.tt || typeof window.tt.requestAuthCode !== 'function') {
+    const error = new Error('Feishu authorization is unavailable');
+    error.code = 'FEISHU_AUTH_CODE_UNAVAILABLE';
+    throw error;
+  }
+
+  const appId = (typeof FeishuAuthHelper !== 'undefined' && FeishuAuthHelper.APP_ID)
+    ? FeishuAuthHelper.APP_ID
+    : FEISHU_APP_ID;
+  return new Promise((resolve, reject) => {
+    const timeout = window.setTimeout(() => {
+      const error = new Error('Feishu authorization timed out');
+      error.name = 'TimeoutError';
+      error.code = 'FEISHU_AUTH_CODE_TIMEOUT';
+      reject(error);
+    }, 12000);
+
+    window.tt.requestAuthCode({
+      appId,
+      success: result => {
+        window.clearTimeout(timeout);
+        const code = String(result?.code || '').trim();
+        if (!code) {
+          const error = new Error('Feishu authorization returned no code');
+          error.code = 'FEISHU_AUTH_CODE_EMPTY';
+          reject(error);
+          return;
+        }
+        resolve(code);
+      },
+      fail: cause => {
+        window.clearTimeout(timeout);
+        const error = new Error('Feishu authorization failed');
+        error.code = 'FEISHU_AUTH_CODE_FAILED';
+        error.cause = cause;
+        reject(error);
+      }
+    });
+  });
+}
+
 async function uploadPosterImageForFeishu(image, award, onProgress) {
   const blob = image?.blob;
   if (!(blob instanceof Blob)) {
     throw new Error('Poster image blob is missing');
   }
-  const baseUrl = (typeof AwardAPI !== 'undefined' && AwardAPI.BASE_URL)
-    ? AwardAPI.BASE_URL
-    : 'https://da1e5fb0.aipa.bytedance.net';
-  const endpoint = `${baseUrl}/api/feishu/share/poster-image`;
+  const uploadStrategy = getFeishuPosterUploadStrategy();
+  const requestHeaders = {};
+  if (uploadStrategy.requiresAuthCode) {
+    requestHeaders['x-feishu-auth-code'] = await requestFreshFeishuPosterAuthCode();
+  }
   const formData = new FormData();
   const extension = image.format === 'jpg' ? 'jpg' : 'png';
   const baseName = award?.share_type === 'recognition_collection'
@@ -3238,7 +3316,12 @@ async function uploadPosterImageForFeishu(image, award, onProgress) {
   formData.append('award_id', String(award?.award_id || award?.id || ''));
   formData.append('title', String(award?.title || award?.award_name || award?.project_name || 'Recognition poster').slice(0, 160));
 
-  const payload = await uploadPosterFormData(endpoint, formData, onProgress);
+  const payload = await uploadPosterFormData(
+    uploadStrategy.endpoint,
+    formData,
+    onProgress,
+    requestHeaders
+  );
   const imageKey = extractFeishuImageKey(payload);
   if (!imageKey) {
     const error = new Error('Poster image upload did not return image_key');
@@ -3250,6 +3333,9 @@ async function uploadPosterImageForFeishu(image, award, onProgress) {
 
 function getFeishuPosterShareErrorMessage(error, stage) {
   const responseText = String(error?.responseText || '');
+  if (/^FEISHU_AUTH_CODE_/.test(String(error?.code || ''))) {
+    return 'Feishu authorization could not be completed. Please reopen the page in Feishu and retry.';
+  }
   if (error?.code === 'POSTER_TOO_LARGE' || /234006|234039|image.{0,20}(size|resolution|dimension)|too large/i.test(responseText)) {
     return 'This poster is still too large for Feishu after compression.';
   }
