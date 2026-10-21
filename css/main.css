@@ -6918,13 +6918,13 @@ img {
   .top-winner-card.podium-tier-card.first,
   .top-winner-card.podium-tier-card.second,
   .top-winner-card.podium-tier-card.third {
-    grid-template-columns: 40px minmax(0, 1fr) auto !important;
+    grid-template-columns: minmax(0, 1fr) !important;
     padding: 12px !important;
   }
 
   .top-winner-card.podium-tier-card .podium-rank-sub {
-    grid-column: 2 / 4;
-    justify-self: start;
+    grid-column: 1;
+    justify-self: center;
   }
 
   .stats-grid,
