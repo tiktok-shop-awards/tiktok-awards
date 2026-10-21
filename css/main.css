@@ -6702,7 +6702,8 @@ img {
   .top-winner-card.podium-tier-card.second,
   .top-winner-card.podium-tier-card.third {
     display: grid !important;
-    grid-template-columns: 44px minmax(0, 1fr) auto !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    justify-items: center !important;
     align-items: center !important;
     gap: 10px !important;
     width: 100% !important;
@@ -6721,9 +6722,9 @@ img {
   }
 
   .top-winner-card.podium-tier-card .podium-medal {
-    position: static !important;
-    grid-column: 1;
-    grid-row: 1 / 5;
+    position: absolute !important;
+    top: 14px;
+    left: 14px;
     width: 40px;
     height: 40px;
     display: flex !important;
@@ -6737,7 +6738,7 @@ img {
   }
 
   .top-winner-card.podium-tier-card .podium-tier-avatars {
-    grid-column: 1 / -1 !important;
+    grid-column: 1 !important;
     grid-row: 1 !important;
     min-height: 36px !important;
     justify-self: stretch !important;
@@ -6754,6 +6755,10 @@ img {
     font-size: 11px !important;
   }
 
+  .podium-tier-avatars .award-member-avatar.large:first-child {
+    margin-left: 0 !important;
+  }
+
   .podium-avatar-more {
     width: 30px !important;
     height: 30px !important;
@@ -6763,28 +6768,37 @@ img {
   }
 
   .top-winner-card.podium-tier-card .podium-rank {
-    grid-column: 2;
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: center;
     margin: 2px 0 0 !important;
     color: #fff !important;
     font-size: 14px !important;
     line-height: 1.2 !important;
-    text-align: left !important;
+    text-align: center !important;
   }
 
   .top-winner-card.podium-tier-card .podium-rank-sub {
-    grid-column: 3;
-    justify-self: end;
+    grid-column: 1;
+    grid-row: 3;
+    justify-self: center;
     margin: 2px 0 0 !important;
     color: rgba(255, 255, 255, 0.52) !important;
     font-size: 11px !important;
     line-height: 1.2 !important;
+    text-align: center !important;
     white-space: nowrap;
   }
 
   .podium-tier-names,
+  .podium-member-project-groups,
   .podium-tier-card.tier-size-medium .podium-tier-names,
-  .podium-tier-card.tier-size-large .podium-tier-names {
-    grid-column: 2 / 4;
+  .podium-tier-card.tier-size-large .podium-tier-names,
+  .podium-tier-card.tier-size-medium .podium-member-project-groups,
+  .podium-tier-card.tier-size-large .podium-member-project-groups {
+    grid-column: 1;
+    grid-template-columns: 1fr;
+    justify-self: stretch;
     display: flex !important;
     flex-direction: column !important;
     gap: 5px !important;
@@ -6795,13 +6809,13 @@ img {
   .podium-tier-card.tier-size-large .podium-tier-names span {
     font-size: 12px !important;
     line-height: 1.25 !important;
-    text-align: left !important;
+    text-align: center !important;
     overflow-wrap: anywhere;
   }
 
   .top-winner-card.podium-tier-card .podium-score {
-    grid-column: 2 / 4;
-    justify-self: start;
+    grid-column: 1;
+    justify-self: center;
     margin-top: 6px !important;
     padding: 4px 8px;
     border-radius: 999px;
