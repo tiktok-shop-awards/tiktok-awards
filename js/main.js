@@ -1,4 +1,4 @@
-// MAIN.JS VERSION: 20261021-mobile-poster-share-v3
+// MAIN.JS VERSION: 20261021-mobile-poster-share-v4
 // TikTok Shop Stars Awards - Main JavaScript
 
 // ==================== Global Data Store ====================
@@ -3169,7 +3169,6 @@ function uploadPosterFormData(endpoint, formData, onProgress) {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', endpoint, true);
-    xhr.withCredentials = true;
     xhr.timeout = 90000;
 
     if (xhr.upload && typeof onProgress === 'function') {
