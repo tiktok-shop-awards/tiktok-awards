@@ -1,7 +1,7 @@
 /**
- * Feishu Auth v11.1 - enterprise Feishu access
+ * Feishu Auth v11.2 - enterprise Feishu access
  * Browser access blocked, only Feishu embedded browser allowed.
- * In Feishu: wait for SDK, retry auth/login, then allow users authenticated by this enterprise app.
+ * In Feishu: require this enterprise app's auth code; AIPA enriches identity but does not gate viewing.
  * Add ?auth_debug=1 on localhost to debug auth without running normal page auth.
  * In browser: show "Open in Feishu" screen
  */
@@ -30,13 +30,19 @@ document.addEventListener('DOMContentLoaded', async function() {
     return;
   }
   var internalOnlyMode = true;
+  var feishuAccessKey = 'enterprise_feishu_access_verified';
 
   // Step 1: Check if already cached (real Feishu user only)
   try {
+    if (sessionStorage.getItem(feishuAccessKey) === '1' && isInFeishuEnvironment()) {
+      console.log('[FeishuAuth] Cached enterprise Feishu access, showing content');
+      hideOverlay();
+      return;
+    }
     var cached = sessionStorage.getItem('feishu_user');
     if (cached) {
       var parsed = JSON.parse(cached);
-      if (parsed.userId && parsed.userId.startsWith('ou_') && (!internalOnlyMode || parsed.isInternal === true)) {
+      if (isInFeishuEnvironment() && parsed.userId && parsed.userId.startsWith('ou_') && (!internalOnlyMode || parsed.isInternal === true)) {
         console.log('[FeishuAuth] Cached Feishu user, showing content');
         hideOverlay();
         return;
@@ -219,36 +225,33 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
         var data = await loginWithCode(res.code, 2);
         if (done) return;
+        var internalStatus = getInternalStatus(data);
+        if (internalOnlyMode && internalStatus === false) {
+          console.warn('[FeishuAuth] Enterprise access rejected user. Status:', internalStatus, 'data:', JSON.stringify(data));
+          finishAuth();
+          showInternalOnlyBlock('仅限企业内部员工访问。');
+          return;
+        }
         if (data && data.success && data.data) {
           var uid = data.data.user_id || data.data.open_id || data.data.id || data.data.userId || '';
           var name = data.data.username || data.data.name || data.data.en_name || '';
-          var internalStatus = getInternalStatus(data);
-          if (internalOnlyMode && internalStatus === false) {
-            console.warn('[FeishuAuth] Enterprise access rejected user. Status:', internalStatus, 'data:', JSON.stringify(data));
-            finishAuth();
-            showInternalOnlyBlock('仅限企业内部员工访问。');
-            return;
-          }
           if (uid && uid.startsWith('ou_')) {
             var user = { userId: uid, username: name, isInternal: true };
             sessionStorage.setItem('feishu_user', JSON.stringify(user));
+            sessionStorage.setItem(feishuAccessKey, '1');
             console.log('[FeishuAuth] Auth success:', uid);
             finishAuth();
             hideOverlay();
+            return;
           } else {
-            console.warn('[FeishuAuth] No user ID in response, falling back');
-            finishAuth();
-            fallbackToLocalUser();
+            console.warn('[FeishuAuth] AIPA returned no valid open ID; using verified Feishu app access');
           }
         } else {
-          console.warn('[FeishuAuth] Auth API returned failure after retries, falling back');
-          finishAuth();
-          if (internalOnlyMode) {
-            showInternalOnlyBlock(getBackendErrorMessage(data));
-          } else {
-            fallbackToLocalUser();
-          }
+          console.warn('[FeishuAuth] AIPA identity enrichment unavailable; using verified Feishu app access');
         }
+        sessionStorage.setItem(feishuAccessKey, '1');
+        finishAuth();
+        hideOverlay();
       },
       fail: function(err) {
         clearTimeout(authTimeout);
@@ -266,7 +269,7 @@ document.addEventListener('DOMContentLoaded', async function() {
   // --- Helper functions ---
 
   function getInternalStatus(data) {
-    if (!data) return false;
+    if (!data) return 'missing';
     var topLevelCandidates = [
       data.is_internal,
       data.isInternal,
