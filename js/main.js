@@ -1,4 +1,4 @@
-// MAIN.JS VERSION: 20261021-mobile-poster-share-v5
+// MAIN.JS VERSION: 20261021-mobile-poster-share-v6
 // TikTok Shop Stars Awards - Main JavaScript
 
 // ==================== Global Data Store ====================
@@ -3223,10 +3223,16 @@ function uploadPosterFormData(endpoint, formData, onProgress, headers = {}) {
   });
 }
 
-function getFeishuPosterUploadStrategy(userAgent = navigator.userAgent) {
-  const isFeishu = /Feishu|Lark/i.test(String(userAgent || ''));
-  const isMobileDevice = /Android|iPhone|iPad|iPod/i.test(String(userAgent || ''));
-  if (isFeishu && isMobileDevice) {
+function getFeishuPosterUploadStrategy(userAgent = navigator.userAgent, deviceInfo) {
+  const ua = String(userAgent || '');
+  const info = deviceInfo || {
+    mobile: typeof navigator !== 'undefined' && navigator.userAgentData?.mobile === true,
+    maxTouchPoints: typeof navigator !== 'undefined' ? navigator.maxTouchPoints : 0
+  };
+  const isMobileDevice = /Android|iPhone|iPad|iPod|Mobile|OpenHarmony/i.test(ua)
+    || info.mobile === true
+    || (/Macintosh/i.test(ua) && Number(info.maxTouchPoints) > 1);
+  if (isMobileDevice) {
     return {
       endpoint: FEISHU_MOBILE_POSTER_GATEWAY,
       requiresAuthCode: true
