@@ -1,5 +1,5 @@
 /**
- * Feishu Auth v11.2 - enterprise Feishu access
+ * Feishu Auth v11.3 - enterprise Feishu access
  * Browser access blocked, only Feishu embedded browser allowed.
  * In Feishu: require this enterprise app's auth code; AIPA enriches identity but does not gate viewing.
  * Add ?auth_debug=1 on localhost to debug auth without running normal page auth.
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
   function isInFeishuEnvironment() {
     return /Lark|Feishu/i.test(navigator.userAgent)
-      || !!(window.tt && (window.tt.requestAuthCode || window.tt.sendMessageCard || window.tt.env));
+      || !!(window.tt && (window.tt.requestAuthCode || window.tt.requestAccess || window.tt.sendMessageCard || window.tt.env));
   }
 
   async function waitForFeishuEnvironment() {
@@ -110,9 +110,13 @@ document.addEventListener('DOMContentLoaded', async function() {
   }
 
   // Load JSSDK
+  function hasAuthApi() {
+    return !!(window.tt && (window.tt.requestAuthCode || window.tt.requestAccess));
+  }
+
   function loadJSSDKOnce() {
     return new Promise(function(resolve, reject) {
-      if (window.h5sdk || window.tt) { resolve(); return; }
+      if (window.h5sdk || hasAuthApi()) { resolve(); return; }
       var s = document.createElement('script');
       s.src = 'https://lf-scm-cn.feishucdn.com/lark/op/h5-js-sdk-1.5.48.js';
       s.onload = function() { resolve(); };
@@ -131,14 +135,14 @@ document.addEventListener('DOMContentLoaded', async function() {
         if (i < maxAttempts) await delay(800 * i);
       }
     }
-    return !!(window.h5sdk || window.tt);
+    return !!(window.h5sdk || hasAuthApi());
   }
 
   function waitForAuthApi(timeoutMs) {
     return new Promise(function(resolve) {
       var start = Date.now();
       (function check() {
-        if (window.tt && window.tt.requestAuthCode) {
+        if (hasAuthApi()) {
           resolve(true);
           return;
         }
@@ -187,43 +191,51 @@ document.addEventListener('DOMContentLoaded', async function() {
   async function doAuth() {
     var authApiReady = await waitForAuthApi(12000);
     if (!authApiReady) {
-      console.warn('[FeishuAuth] tt.requestAuthCode not available after waiting, falling back');
+      console.warn('[FeishuAuth] Feishu auth API not available after waiting, falling back');
       finishAuth();
       fallbackToLocalUser();
       return;
     }
 
-    requestAuthCodeWithRetry(1);
+    requestFeishuAuthWithRetry(1);
   }
 
-  function requestAuthCodeWithRetry(attempt) {
+  function requestFeishuAuthWithRetry(attempt) {
     if (done) return;
     var maxAttempts = 3;
+    var useRequestAccess = !!(window.tt && window.tt.requestAccess);
+    var method = useRequestAccess ? 'requestAccess' : 'requestAuthCode';
     var authTimeout = setTimeout(function() {
-      console.warn('[FeishuAuth] requestAuthCode timed out, attempt:', attempt);
+      console.warn('[FeishuAuth] ' + method + ' timed out, attempt:', attempt);
       if (attempt < maxAttempts) {
-        requestAuthCodeWithRetry(attempt + 1);
+        requestFeishuAuthWithRetry(attempt + 1);
       } else {
         finishAuth();
         fallbackToLocalUser();
       }
     }, 12000);
-    
-    window.tt.requestAuthCode({
-      appId: FeishuAuthHelper.APP_ID,
+
+    var options = {
       success: async function(res) {
         clearTimeout(authTimeout);
-        if (!res.code) {
-          console.warn('[FeishuAuth] No auth code, attempt:', attempt);
+        var code = res && (res.code || res.authCode || res.auth_code);
+        if (!code && useRequestAccess) {
+          sessionStorage.setItem(feishuAccessKey, '1');
+          finishAuth();
+          hideOverlay();
+          return;
+        }
+        if (!code) {
+          console.warn('[FeishuAuth] No auth code from ' + method + ', attempt:', attempt);
           if (attempt < maxAttempts) {
-            setTimeout(function() { requestAuthCodeWithRetry(attempt + 1); }, 600);
+            setTimeout(function() { requestFeishuAuthWithRetry(attempt + 1); }, 600);
           } else {
             finishAuth();
             fallbackToLocalUser();
           }
           return;
         }
-        var data = await loginWithCode(res.code, 2);
+        var data = await loginWithCode(code, 2);
         if (done) return;
         var internalStatus = getInternalStatus(data);
         if (internalOnlyMode && internalStatus === false) {
@@ -255,15 +267,22 @@ document.addEventListener('DOMContentLoaded', async function() {
       },
       fail: function(err) {
         clearTimeout(authTimeout);
-        console.warn('[FeishuAuth] requestAuthCode fail:', JSON.stringify(err), 'attempt:', attempt);
+        console.warn('[FeishuAuth] ' + method + ' fail:', JSON.stringify(err), 'attempt:', attempt);
         if (attempt < maxAttempts) {
-          setTimeout(function() { requestAuthCodeWithRetry(attempt + 1); }, 600);
+          setTimeout(function() { requestFeishuAuthWithRetry(attempt + 1); }, 600);
         } else {
           finishAuth();
           fallbackToLocalUser();
         }
       }
-    });
+    };
+    if (useRequestAccess) {
+      options.appID = FeishuAuthHelper.APP_ID;
+      options.scopeList = [];
+    } else {
+      options.appId = FeishuAuthHelper.APP_ID;
+    }
+    window.tt[method](options);
   }
 
   // --- Helper functions ---
