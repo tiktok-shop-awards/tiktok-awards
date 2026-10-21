@@ -1,4 +1,4 @@
-// MAIN.JS VERSION: 20261021-mobile-poster-share-v1
+// MAIN.JS VERSION: 20261021-mobile-poster-share-v2
 // TikTok Shop Stars Awards - Main JavaScript
 
 // ==================== Global Data Store ====================
@@ -938,7 +938,7 @@ function loadVersionedJson(fileName) {
   return _jsonFilePromises.get(fileName);
 }
 
-async function loadData(level, region = null, year = null) {
+async function loadData(level, region = null, year = null, options = {}) {
   try {
     loadFeishuAvatarMap().catch(err => {
       console.warn('[Avatar] Background avatar map load failed:', err?.message || err);
@@ -1030,6 +1030,7 @@ async function loadData(level, region = null, year = null) {
     }
   } catch (error) {
     console.error('Error loading data:', error);
+    if (options.throwOnError) throw error;
     return null;
   }
 }
@@ -3169,30 +3170,59 @@ function extractFeishuImageKey(response) {
     || '';
 }
 
-function createPosterUploadTimeout(timeoutMs) {
-  if (typeof AbortController !== 'function') {
-    return { signal: null, cancel() {}, didTimeout() { return false; } };
-  }
+function uploadPosterFormData(endpoint, formData, onProgress) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', endpoint, true);
+    xhr.withCredentials = true;
+    xhr.timeout = 90000;
 
-  const controller = new AbortController();
-  let timedOut = false;
-  const timeoutId = window.setTimeout(() => {
-    timedOut = true;
-    controller.abort();
-  }, timeoutMs);
-
-  return {
-    signal: controller.signal,
-    cancel() {
-      window.clearTimeout(timeoutId);
-    },
-    didTimeout() {
-      return timedOut;
+    if (xhr.upload && typeof onProgress === 'function') {
+      xhr.upload.onprogress = event => {
+        if (event.lengthComputable && event.total > 0) {
+          onProgress(Math.min(100, Math.round((event.loaded / event.total) * 100)));
+        }
+      };
     }
-  };
+
+    xhr.onload = () => {
+      const responseText = xhr.responseText || '';
+      if (xhr.status < 200 || xhr.status >= 300) {
+        const error = new Error(`Poster image upload failed: HTTP ${xhr.status}`);
+        error.status = xhr.status;
+        error.responseText = responseText;
+        reject(error);
+        return;
+      }
+      try {
+        resolve(JSON.parse(responseText));
+      } catch (cause) {
+        const error = new Error('Poster image upload returned invalid JSON');
+        error.cause = cause;
+        error.responseText = responseText;
+        reject(error);
+      }
+    };
+    xhr.onerror = () => {
+      const error = new Error('Poster image upload network error');
+      error.name = 'NetworkError';
+      reject(error);
+    };
+    xhr.ontimeout = () => {
+      const error = new Error('Poster image upload timed out');
+      error.name = 'TimeoutError';
+      reject(error);
+    };
+    xhr.onabort = () => {
+      const error = new Error('Poster image upload was aborted');
+      error.name = 'AbortError';
+      reject(error);
+    };
+    xhr.send(formData);
+  });
 }
 
-async function uploadPosterImageForFeishu(image, award) {
+async function uploadPosterImageForFeishu(image, award, onProgress) {
   const blob = image?.blob;
   if (!(blob instanceof Blob)) {
     throw new Error('Poster image blob is missing');
@@ -3214,35 +3244,7 @@ async function uploadPosterImageForFeishu(image, award) {
   formData.append('award_id', String(award?.award_id || award?.id || ''));
   formData.append('title', String(award?.title || award?.award_name || award?.project_name || 'Recognition poster').slice(0, 160));
 
-  const uploadTimeout = createPosterUploadTimeout(45000);
-  const requestOptions = {
-    method: 'POST',
-    credentials: 'include',
-    body: formData
-  };
-  if (uploadTimeout.signal) requestOptions.signal = uploadTimeout.signal;
-
-  let response;
-  try {
-    response = await fetch(endpoint, requestOptions);
-  } catch (error) {
-    if (uploadTimeout.didTimeout()) {
-      const timeoutError = new Error('Poster image upload timed out');
-      timeoutError.name = 'TimeoutError';
-      throw timeoutError;
-    }
-    throw error;
-  } finally {
-    uploadTimeout.cancel();
-  }
-  if (!response.ok) {
-    const text = await response.text().catch(() => '');
-    const error = new Error(`Poster image upload failed: HTTP ${response.status}`);
-    error.status = response.status;
-    error.responseText = text;
-    throw error;
-  }
-  const payload = await response.json();
+  const payload = await uploadPosterFormData(endpoint, formData, onProgress);
   const imageKey = extractFeishuImageKey(payload);
   if (!imageKey) {
     const error = new Error('Poster image upload did not return image_key');
@@ -3261,7 +3263,7 @@ function getFeishuPosterShareErrorMessage(error, stage) {
     return 'Poster upload timed out. Please retry once.';
   }
   if (error?.status === 404) return 'Poster image upload service is not ready yet.';
-  if (stage === 'upload' && error?.name === 'TypeError') {
+  if (stage === 'upload' && (error?.name === 'TypeError' || error?.name === 'NetworkError')) {
     return 'Could not reach the poster upload service. Please check your connection and retry.';
   }
   if (stage === 'capture') return 'Poster capture failed. Please close and reopen the poster, then retry.';
@@ -3314,7 +3316,9 @@ async function shareCurrentAwardToFeishu(button) {
     for (let index = 0; index < images.length; index += 1) {
       if (button) button.textContent = `Uploading ${index + 1}/${images.length}…`;
       showFeishuShareStatus(`Uploading poster image ${index + 1} of ${images.length}…`, 'info', 5200);
-      imageKeys.push(await uploadPosterImageForFeishu(images[index], award));
+      imageKeys.push(await uploadPosterImageForFeishu(images[index], award, percent => {
+        if (button) button.textContent = `Uploading ${index + 1}/${images.length} · ${percent}%`;
+      }));
     }
     if (button) button.textContent = 'Opening…';
 
