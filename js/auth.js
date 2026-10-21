@@ -1,5 +1,5 @@
 /**
- * Feishu Auth v11.3 - enterprise Feishu access
+ * Feishu Auth v11.4 - enterprise Feishu access
  * Browser access blocked, only Feishu embedded browser allowed.
  * In Feishu: require this enterprise app's auth code; AIPA enriches identity but does not gate viewing.
  * Add ?auth_debug=1 on localhost to debug auth without running normal page auth.
@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', async function() {
   function requestFeishuAuthWithRetry(attempt) {
     if (done) return;
     var maxAttempts = 3;
-    var useRequestAccess = !!(window.tt && window.tt.requestAccess);
+    var useRequestAccess = !!(window.tt && !window.tt.requestAuthCode && window.tt.requestAccess);
     var method = useRequestAccess ? 'requestAccess' : 'requestAuthCode';
     var authTimeout = setTimeout(function() {
       console.warn('[FeishuAuth] ' + method + ' timed out, attempt:', attempt);
@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     }, 12000);
 
     var options = {
-      success: async function(res) {
+      success: function(res) {
         clearTimeout(authTimeout);
         var code = res && (res.code || res.authCode || res.auth_code);
         if (!code && useRequestAccess) {
@@ -235,35 +235,28 @@ document.addEventListener('DOMContentLoaded', async function() {
           }
           return;
         }
-        var data = await loginWithCode(code, 2);
-        if (done) return;
-        var internalStatus = getInternalStatus(data);
-        if (internalOnlyMode && internalStatus === false) {
-          console.warn('[FeishuAuth] Enterprise access rejected user. Status:', internalStatus, 'data:', JSON.stringify(data));
-          finishAuth();
-          showInternalOnlyBlock('仅限企业内部员工访问。');
-          return;
-        }
-        if (data && data.success && data.data) {
-          var uid = data.data.user_id || data.data.open_id || data.data.id || data.data.userId || '';
-          var name = data.data.username || data.data.name || data.data.en_name || '';
-          if (uid && uid.startsWith('ou_')) {
-            var user = { userId: uid, username: name, isInternal: true };
-            sessionStorage.setItem('feishu_user', JSON.stringify(user));
-            sessionStorage.setItem(feishuAccessKey, '1');
-            console.log('[FeishuAuth] Auth success:', uid);
-            finishAuth();
-            hideOverlay();
-            return;
-          } else {
-            console.warn('[FeishuAuth] AIPA returned no valid open ID; using verified Feishu app access');
-          }
-        } else {
-          console.warn('[FeishuAuth] AIPA identity enrichment unavailable; using verified Feishu app access');
-        }
         sessionStorage.setItem(feishuAccessKey, '1');
         finishAuth();
         hideOverlay();
+
+        // Identity enrichment is non-blocking. App-scoped Feishu auth already
+        // proves access; AIPA only adds the user ID for optional features.
+        loginWithCode(code, 1).then(function(data) {
+          if (getInternalStatus(data) === false) {
+            console.warn('[FeishuAuth] Enterprise access rejected by backend');
+            sessionStorage.removeItem(feishuAccessKey);
+            sessionStorage.removeItem('feishu_user');
+            showInternalOnlyBlock('仅限企业内部员工访问。');
+            return;
+          }
+          if (!data || !data.success || !data.data) return;
+          var uid = data.data.user_id || data.data.open_id || data.data.id || data.data.userId || '';
+          var name = data.data.username || data.data.name || data.data.en_name || '';
+          if (!uid || !uid.startsWith('ou_')) return;
+          var user = { userId: uid, username: name, isInternal: true };
+          sessionStorage.setItem('feishu_user', JSON.stringify(user));
+          console.log('[FeishuAuth] Identity enrichment success:', uid);
+        });
       },
       fail: function(err) {
         clearTimeout(authTimeout);
