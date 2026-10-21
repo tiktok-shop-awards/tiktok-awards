@@ -1,4 +1,4 @@
-// MAIN.JS VERSION: 20261021-public-feishu-share-v7
+// MAIN.JS VERSION: 20261021-public-feishu-share-v8
 // TikTok Shop Stars Awards - Main JavaScript
 
 // ==================== Global Data Store ====================
@@ -3173,7 +3173,7 @@ function uploadPosterFormData(endpoint, formData, onProgress, headers = {}) {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', endpoint, true);
-    xhr.timeout = 60000;
+    xhr.timeout = 90000;
     Object.entries(headers).forEach(([name, value]) => {
       if (value !== null && value !== undefined && value !== '') {
         xhr.setRequestHeader(name, String(value));
