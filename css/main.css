@@ -6736,12 +6736,14 @@ img {
     font-size: 22px !important;
   }
 
-  .podium-tier-avatars {
-    grid-column: 2 / 4;
+  .top-winner-card.podium-tier-card .podium-tier-avatars {
+    grid-column: 1 / -1 !important;
+    grid-row: 1 !important;
     min-height: 36px !important;
-    justify-content: flex-start !important;
+    justify-self: stretch !important;
+    justify-content: center !important;
     margin: 0 !important;
-    padding-left: 6px !important;
+    padding-left: 0 !important;
   }
 
   .podium-tier-avatars .award-member-avatar.large {
