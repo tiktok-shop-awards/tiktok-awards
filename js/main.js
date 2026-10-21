@@ -1,4 +1,4 @@
-// MAIN.JS VERSION: 20261021-mobile-poster-share-v2
+// MAIN.JS VERSION: 20261021-mobile-poster-share-v3
 // TikTok Shop Stars Awards - Main JavaScript
 
 // ==================== Global Data Store ====================
@@ -2938,7 +2938,7 @@ function buildNativeFeishuPosterImageCard(award, imageKeys) {
 
 const FEISHU_POSTER_MAX_DIMENSION = 11800;
 const FEISHU_POSTER_PAGE_HEIGHT = 11800;
-const FEISHU_POSTER_MAX_BYTES = 9 * 1024 * 1024;
+const FEISHU_POSTER_MAX_BYTES = 2 * 1024 * 1024;
 const POSTER_CAPTURE_MAX_HEIGHT = 30000;
 const POSTER_MIN_PAGE_RATIO = 0.42;
 const FEISHU_SHARE_CAPTURE_SCALE = 1;
@@ -3122,16 +3122,11 @@ function slicePosterCanvas(sourceCanvas, offsetY, sliceHeight) {
 
 async function encodePosterPage(pageCanvas) {
   let workingCanvas = pageCanvas;
-  let blob = await canvasToBlob(workingCanvas, 'image/png');
-  if (blob.size <= FEISHU_POSTER_MAX_BYTES) {
-    return { blob, width: workingCanvas.width, height: workingCanvas.height, format: 'png' };
-  }
-
-  blob = await canvasToBlob(workingCanvas, 'image/jpeg', 0.9);
+  let blob = await canvasToBlob(workingCanvas, 'image/jpeg', 0.9);
   for (let attempt = 0; attempt < 4 && blob.size > FEISHU_POSTER_MAX_BYTES; attempt += 1) {
     const scale = Math.min(0.9, Math.sqrt(FEISHU_POSTER_MAX_BYTES / blob.size) * 0.9);
     workingCanvas = resizePosterCanvas(workingCanvas, scale);
-    blob = await canvasToBlob(workingCanvas, 'image/jpeg', attempt < 2 ? 0.88 : 0.82);
+    blob = await canvasToBlob(workingCanvas, 'image/jpeg', attempt < 2 ? 0.86 : 0.8);
   }
   if (blob.size > FEISHU_POSTER_MAX_BYTES) {
     const error = new Error('Poster remains above the Feishu image limit');
